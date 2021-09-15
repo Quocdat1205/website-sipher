@@ -2,8 +2,8 @@ import { StoreProvider } from "easy-peasy";
 import { FC } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ChakraProvider } from "@chakra-ui/react";
-import chakraTheme from "../utils/chakraTheme";
-import store from "../store";
+import chakraTheme from "@utils/chakraTheme";
+import store from "@src/store";
 
 interface ProviderProps {
 	children: JSX.Element;
