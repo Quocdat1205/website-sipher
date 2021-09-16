@@ -33,11 +33,11 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                             }
                         >
                             <SecondaryTextContainer headline="Official Document">
-                                <SimpleGrid minChildWidth="12rem" spacing={4} mt={4}>
+                                <SimpleGrid minChildWidth="8rem" spacing={4} mt={4}>
                                     {atlas.map(item => (
                                         <SocialTag
                                             key={item.title}
-                                            icon={<Img src={item.icon} h="2.5rem" rounded="full" />}
+                                            icon={<Img src={item.icon} h={"100%"} rounded="full" />}
                                             headline={item.title}
                                             href="https://sipher.gitbook.io/sipher-atlas/"
                                         />
@@ -45,11 +45,11 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 </SimpleGrid>
                             </SecondaryTextContainer>
                             <SecondaryTextContainer headline="Social Channels">
-                                <SimpleGrid minChildWidth="12rem" spacing={4} mt={4}>
+                                <SimpleGrid minChildWidth="8rem" spacing={4} mt={4}>
                                     {socialChannels.map(channel => (
                                         <SocialTag
                                             key={channel.title}
-                                            icon={<channel.icon size="2.5rem" />}
+                                            icon={<channel.icon size="100%" />}
                                             headline={channel.title}
                                             as="a"
                                             href={channel.path}
@@ -58,11 +58,11 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 </SimpleGrid>
                             </SecondaryTextContainer>
                             <SecondaryTextContainer headline="News">
-                                <SimpleGrid minChildWidth="12rem" spacing={4} mt={4}>
+                                <SimpleGrid minChildWidth="8rem" spacing={4} mt={4}>
                                     {news.map(item => (
                                         <SocialTag
                                             key={item.title}
-                                            icon={<item.icon size="2.5rem" />}
+                                            icon={<item.icon size="100%" />}
                                             headline={item.title}
                                             as="a"
                                             href={item.path}
@@ -71,11 +71,11 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 </SimpleGrid>
                             </SecondaryTextContainer>
                             <SecondaryTextContainer headline="Official Email">
-                                <SimpleGrid minChildWidth="12rem" spacing={4} mt={4}>
+                                <SimpleGrid minChildWidth="8rem" spacing={4} mt={4}>
                                     {emails.map(email => (
                                         <SocialTag
                                             key={email.email}
-                                            icon={<email.icon size="2.5rem" />}
+                                            icon={<email.icon size="100%" />}
                                             headline={email.email}
                                             as="a"
                                             href={`mailto: ${email.email}`}

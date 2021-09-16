@@ -26,7 +26,7 @@ export const NavBar = ({}: NavBarProps) => {
     console.log(router.pathname.split("/")[1] === "")
     return (
         <Flex px={4} py={4} bg="black" align="center" justify="space-between">
-            <Flex mr="4" w="18rem" flexShrink={0} align="center" as="a" href="/">
+            <Flex mr="4" w={["auto", "auto", "18rem"]} flexShrink={0} align="center" as="a" href="/">
                 <Img src="/images/general/logo_pc.png" h={["1.5rem", "2rem", "2.5rem"]} mx={[0, 0, "auto"]} />
             </Flex>
             {device === "pc" ? (
@@ -41,7 +41,7 @@ export const NavBar = ({}: NavBarProps) => {
                     ))}
                 </HStack>
             ) : (
-                <Grid rounded="full" color="main.darkRed" px={2} placeItems="center" onClick={() => setSideBarOn(true)}>
+                <Grid rounded="full" color="main.darkRed" px={0} placeItems="center" onClick={() => setSideBarOn(true)}>
                     <GiHamburgerMenu size="2rem" />
                 </Grid>
             )}

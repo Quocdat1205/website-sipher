@@ -1,7 +1,6 @@
 // * DESCRIPTION:
 
 import { Flex, chakra } from "@chakra-ui/react"
-import useDevice from "@hooks/useDevice"
 import { useRouter } from "next/dist/client/router"
 import React from "react"
 import { MyText, NavBox, SpecialButton } from "."
@@ -13,7 +12,6 @@ interface BaseSideBarProps {
 
 export const BaseSideBar = ({ children, inDrawer }: BaseSideBarProps) => {
     const router = useRouter()
-    const device = useDevice()
     return (
         <Flex
             direction="column"
@@ -23,7 +21,11 @@ export const BaseSideBar = ({ children, inDrawer }: BaseSideBarProps) => {
             overflow="overlay"
             maxW="20rem"
             h="full"
-            display={inDrawer ? "flex" : device === "phone" ? "none" : "flex"}
+            sx={{
+                "@media (max-width: 960px)": {
+                    display: inDrawer ? "flex" : "none",
+                },
+            }}
         >
             <NavBox>{children}</NavBox>
             <SpecialButton

@@ -14,17 +14,21 @@ import {
 } from "@components/shared"
 import IntroductionVideo from "./IntroductionVideo"
 import homeContent from "@constant/content/home"
-import useMediaQuery from "@hooks/useMediaQuery"
 interface HomeBodyProps {
     setSelectedAnchor: (newAnchor: string) => void
 }
 
 const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
-    const device = useMediaQuery()
-    const path = device === "pc" ? "/images/pc/home/Background.png" : "/images/pc/background.jpg"
     return (
         <MotionContainer>
-            <BackgroundContainer image={path}>
+            <BackgroundContainer
+                sx={{
+                    backgroundImage: "/images/pc/home/Background.png",
+                    "@media (max-width: 960px)": {
+                        backgroundImage: "/images/pc/background.jpg",
+                    },
+                }}
+            >
                 <ViewContainer onView={setSelectedAnchor} label="Home" mb={[14, 14, 28]}>
                     <Grid h="100%" placeItems="center" py={"12rem"}>
                         <Flex direction="column" align="center">

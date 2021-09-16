@@ -1,6 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex, Text, Box, HStack, Img } from "@chakra-ui/react"
+import { MyText } from "@components/shared"
 import { SipherTeamItem } from "@constant/content/roadmapAndTeam"
 import { FaLinkedin, FaTelegram, FaTwitter } from "react-icons/fa"
 
@@ -12,9 +13,9 @@ const MemberCard = ({ item }: MemberCardProps) => {
     return (
         <Flex w="full" direction="column" overflow="hidden">
             <Flex>
-                <Text color="main.yellow" fontSize="lg">
+                <MyText color="main.yellow" size="large" isTruncated>
                     {item.id}
-                </Text>
+                </MyText>
                 <HStack ml={2}>
                     {item.social?.telegram && (
                         <Box as="a" target="_blank" href={item.social.telegram}>
@@ -33,9 +34,9 @@ const MemberCard = ({ item }: MemberCardProps) => {
                     )}
                 </HStack>
             </Flex>
-            <Text color="gray.400" fontWeight="semibold">
+            <MyText size="medium" color="gray.400" fontWeight="semibold" isTruncated>
                 {item.title}
-            </Text>
+            </MyText>
             <Box my={2}>
                 <Img src={item.image} w="full" />
             </Box>

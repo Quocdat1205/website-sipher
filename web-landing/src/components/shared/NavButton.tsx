@@ -23,6 +23,7 @@ export const NavButton = ({ text, active, onClick }: NavButtonProps) => {
             as="button"
             onClick={onClick}
             letterSpacing="0.5px"
+            _focus={{ outline: "none" }}
         >
             {text}
         </Box>
