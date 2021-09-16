@@ -1,5 +1,6 @@
 // * DESCRIPTION:
 
+import { Box } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
 interface MotionContainerProps {
@@ -8,7 +9,7 @@ interface MotionContainerProps {
 const pageVatiants = {
     out: {
         opacity: 0,
-        y: "-5vh",
+        y: "5vh",
     },
     in: {
         opacity: 1,
@@ -20,8 +21,16 @@ const pageTransition = {
 }
 export const MotionContainer = ({ children }: MotionContainerProps) => {
     return (
-        <motion.div initial="out" animate="in" variants={pageVatiants} transition={pageTransition}>
-            {children}
+        <motion.div
+            className="motion-container"
+            initial="out"
+            animate="in"
+            variants={pageVatiants}
+            transition={pageTransition}
+        >
+            <Box h="full" className="motion-box" overflow="auto">
+                {children}
+            </Box>
         </motion.div>
     )
 }

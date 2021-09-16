@@ -1,40 +1,55 @@
 // * DESCRIPTION:
 
-import { Box, Grid, Flex, Image, Heading, Text, chakra } from "@chakra-ui/react"
-import { SpecialButton, TextContainer, ViewContainer, MotionContainer } from "@components/shared"
+import { Grid, Flex, Heading, chakra, Img } from "@chakra-ui/react"
+import {
+    TextContainer,
+    ViewContainer,
+    MotionContainer,
+    SignUpButton,
+    SpecialButton,
+    ResponsiveImg,
+    MyText,
+    Paragraph,
+    BackgroundContainer,
+} from "@components/shared"
 import IntroductionVideo from "./IntroductionVideo"
 import homeContent from "@constant/content/home"
+import useMediaQuery from "@hooks/useMediaQuery"
 interface HomeBodyProps {
     setSelectedAnchor: (newAnchor: string) => void
 }
 
 const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
+    const device = useMediaQuery()
+    const path = device === "pc" ? "/images/pc/home/Background.png" : "/images/pc/background.jpg"
     return (
         <MotionContainer>
-            <Box bgImage="/images/pc/home/Background.png" bgSize="cover" minH="100%" overflow="auto" pb={8}>
-                <ViewContainer onView={setSelectedAnchor} label="Home" mb={28}>
-                    <Grid h="100%" placeItems="center" py="12rem">
+            <BackgroundContainer image={path}>
+                <ViewContainer onView={setSelectedAnchor} label="Home" mb={[14, 14, 28]}>
+                    <Grid h="100%" placeItems="center" py={"12rem"}>
                         <Flex direction="column" align="center">
-                            <Image src="/images/pc/home/logohome.png" height="6rem" />
+                            <Img src="/images/pc/home/logohome.png" maxH="4rem" alt="home-logo" />
                             <Heading color="whiteAlpha.900" fontWeight="thin">
                                 SOLD OUT
                             </Heading>
-                            <Text>Thanks to all of our early adopters and our community</Text>
-                            <Text>Sipher Inus are now available on OpenSea</Text>
+                            <MyText textAlign="center">Thanks to all of our early adopters and our community</MyText>
+                            <MyText textAlign="center">Sipher Inus are now available on OpenSea</MyText>
                             <SpecialButton
+                                as="a"
                                 rounded="full"
-                                text="MINT SIPHER INU WITH 0.1ETH"
+                                text="BUY SIPHER ON OPENSEA"
                                 w="fit-content"
-                                px={16}
-                                py={4}
+                                px={[8, 8, 16]}
+                                py={[3, 3, 4]}
                                 fontSize="md"
                                 mt={4}
+                                href="https://opensea.io/collection/sipheriansurge"
                             />
                         </Flex>
                     </Grid>
                 </ViewContainer>
-                <ViewContainer onView={setSelectedAnchor} label="Sipheria The Universe" mb={28}>
-                    <Flex justify="center" px="20rem" py="5rem">
+                <ViewContainer onView={setSelectedAnchor} label="Sipheria The Universe" mb={[14, 14, 28]}>
+                    <Flex justify="center" py="5rem">
                         <IntroductionVideo />
                     </Flex>
                     <Flex direction="column" align="center">
@@ -46,15 +61,13 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                             }
                         >
                             {homeContent.sipheriaTheUnivere.map(paragraph => (
-                                <Text key={paragraph} fontSize="lg" textAlign="justify" mb={4}>
-                                    {paragraph}
-                                </Text>
+                                <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <SpecialButton rounded="full" text="Join Us" w="fit-content" px={16} py={4} />
+                        <SignUpButton />
                     </Flex>
                 </ViewContainer>
-                <ViewContainer onView={setSelectedAnchor} label="First Fleet Sipherian Surge" mb={28}>
+                <ViewContainer onView={setSelectedAnchor} label="First Fleet Sipherian Surge" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
                         <TextContainer
                             mb={4}
@@ -65,16 +78,14 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                             }
                         >
                             {homeContent.firstFleetSipherianSurge.map(paragraph => (
-                                <Text key={paragraph} fontSize="lg" textAlign="justify" mb={4}>
-                                    {paragraph}
-                                </Text>
+                                <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <Image src="/images/pc/home/group_sipher.png" w="32rem" mb={4} />
-                        <SpecialButton rounded="full" text="Find Out About Sipher" w="fit-content" px={16} py={4} />
+                        <ResponsiveImg src="/images/pc/home/group_sipher.png" />
+                        <SignUpButton />
                     </Flex>
                 </ViewContainer>
-                <ViewContainer onView={setSelectedAnchor} label="Game Character As NFTs" mb={28}>
+                <ViewContainer onView={setSelectedAnchor} label="Game Characters As NFTs" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
                         <TextContainer
                             mb={4}
@@ -84,29 +95,23 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 </chakra.span>
                             }
                         >
-                            <Text fontSize="lg" textAlign="justify" mb={4}>
-                                {homeContent.gameCharactersAsNfts[0]}
-                            </Text>
+                            <Paragraph>{homeContent.gameCharactersAsNfts[0]}</Paragraph>
                             <Flex w="full" justify="center">
-                                <Image src="/images/pc/home/sipher6.png" w="32rem" mb={4} />
+                                <ResponsiveImg src="/images/pc/home/sipher6.png" />
                             </Flex>
-                            <Text fontSize="lg" textAlign="justify" mb={4}>
-                                {homeContent.gameCharactersAsNfts[1]}
-                            </Text>
+                            <Paragraph>{homeContent.gameCharactersAsNfts[1]}</Paragraph>
                             <Flex w="full" justify="center">
-                                <Image src="/images/pc/home/home3.png" w="32rem" mb={4} />
+                                <ResponsiveImg src="/images/pc/home/home3.png" />
                             </Flex>
-                            <Text fontSize="lg" textAlign="justify" mb={4}>
-                                {homeContent.gameCharactersAsNfts[2]}
-                            </Text>
+                            <Paragraph>{homeContent.gameCharactersAsNfts[2]}</Paragraph>
                             <Flex w="full" justify="center">
-                                <Image src="/images/pc/home/home4.png" w="32rem" mb={4} />
+                                <ResponsiveImg src="/images/pc/home/home4.png" />
                             </Flex>
                         </TextContainer>
-                        <SpecialButton rounded="full" text="Sign Up Now" w="fit-content" px={16} py={4} />
+                        <SignUpButton />
                     </Flex>
                 </ViewContainer>
-            </Box>
+            </BackgroundContainer>
         </MotionContainer>
     )
 }

@@ -14,7 +14,7 @@ const IntroductionVideo = ({}: IntroductionVideoProps) => {
         else videoRef.current?.pause()
     }, [isPlaying])
     return (
-        <Flex pos="relative" justify="center" maxW="40rem">
+        <Flex pos="relative" justify="center" maxW="32rem">
             {!isPlaying && (
                 <Image
                     src="/images/pc/home/home1.png"
@@ -22,6 +22,7 @@ const IntroductionVideo = ({}: IntroductionVideoProps) => {
                     h="full"
                     zIndex="banner"
                     onClick={() => setIsPlaying(true)}
+                    alt="thumbnail"
                 />
             )}
             <video src="/video/video.mp4" controls={true} ref={videoRef} onPause={() => setIsPlaying(false)} />
