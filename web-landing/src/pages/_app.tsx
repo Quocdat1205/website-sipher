@@ -63,13 +63,13 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                 </script> */}
                 </Head>
                 <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
-                <Flex h="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900">
+                {/* <Flex h="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900">
                     <NavBar />
                     <Flex flex={1} overflow="hidden">
                         {getLayout(<Component {...pageProps} />)}
-                        {/* <Component {...pageProps} /> */}
                     </Flex>
-                </Flex>
+                </Flex> */}
+                {getLayout(<Component {...pageProps} />)}
             </ChakraProvider>
         </StoreProvider>
     )
