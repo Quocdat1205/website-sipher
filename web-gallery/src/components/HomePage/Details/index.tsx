@@ -5,10 +5,7 @@ import { FiChevronLeft } from "react-icons/fi";
 import { useRouter } from "next/dist/client/router";
 
 import { getMerkle, getNFTId } from "@api/nfts";
-import MyText from "@shared/reponsiveComp/MyText";
-import MyHeading from "@shared/reponsiveComp//MyHeading";
-import MyButton from "@shared/reponsiveComp/MyButton";
-import MyTd from "@shared/reponsiveComp/MyTd";
+import { MyButton, MyHeading, MyText, MyTd } from "@sipher/web-components";
 
 const HomeDetails = () => {
 	const [notFound, setNotFound] = useState(false);

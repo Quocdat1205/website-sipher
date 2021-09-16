@@ -1,7 +1,7 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Flex } from "@chakra-ui/layout";
 import React from "react";
-import MyText from "@shared/reponsiveComp/MyText";
+import { MyText } from "@sipher/web-components";
 
 interface Props {
 	item: {

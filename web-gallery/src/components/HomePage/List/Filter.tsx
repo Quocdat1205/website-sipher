@@ -2,9 +2,7 @@
 import { Select, Flex, InputLeftElement, InputGroup } from "@chakra-ui/react";
 import React from "react";
 import { BsSearch } from "react-icons/bs";
-
-import MyInput from "@shared/reponsiveComp//MyInput";
-import MySelect from "@shared/reponsiveComp/MySelect";
+import { MyInput, MySelect } from "@sipher/web-components";
 
 interface Props {
 	setSearch: (searchText: string) => void;

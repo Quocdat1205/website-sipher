@@ -1,5 +1,5 @@
 {
-	"name": "web-landing",
+	"name": "web-minting",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -19,7 +19,7 @@
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
 		"react-icons": "^4.2.0",
-		"react-intersection-observer": "^8.32.1"
+		"web3": "^1.5.2"
 	},
 	"devDependencies": {
 		"@types/react": "17.0.20",

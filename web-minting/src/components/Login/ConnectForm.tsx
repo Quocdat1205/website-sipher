@@ -1,124 +1,67 @@
-import { Image, CircularProgress, Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
+import { MyText } from "@sipher/web-components";
+import useChakraToast from "@src/hooks/useChakraToast";
+import { useMetamask } from "@src/hooks/useMetamask";
+import { useRouter } from "next/dist/client/router";
+import { useState } from "react";
+import CardConnect from "./CardConnect";
 
 const ConnectForm = () => {
+	const router = useRouter();
+	const { metaState, connect } = useMetamask();
+	const toast = useChakraToast();
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleConnectMetaMask = async () => {
+		setIsLoading(true);
+		if (metaState.isAvailable && !metaState.isConnected) {
+			(async () => {
+				try {
+					await connect();
+					setIsLoading(false);
+					toast("success", "Connect successfully");
+					router.push("/minting");
+				} catch (err: any) {
+					if (err.code === 4001) {
+						toast("error", "Please connect or signature to MetaMask");
+						setIsLoading(false);
+					} else if (err.code === -32002) {
+						toast("error", "Please unclock MetaMask");
+						setIsLoading(false);
+					} else {
+						console.error(err);
+					}
+				}
+			})();
+		} else {
+			if (metaState.isAvailable && metaState.isConnected) {
+				toast("warning", "Metamask is connected.");
+				router.push("/minting");
+			} else {
+				toast("error", "You don't have Metamask installed");
+				setIsLoading(false);
+			}
+		}
+	};
+
 	return (
 		<Flex flexDir="column" p="4">
 			<Box mb="6" textAlign="center">
-				<Text fontSize="1.4rem">Choose wallet connect now</Text>
-				<Text fontSize="1rem" color="red.500" mt="1">
+				<MyText fontSize="1.4rem">Choose wallet connect now</MyText>
+				<MyText fontSize="1rem" color="red.500" mt="1">
 					Ethereum Mainnet Only
-				</Text>
+				</MyText>
 			</Box>
-			<Box py="2" px="4">
-				<Flex
-					cursor="pointer"
-					py="1"
-					px="4"
-					mb="4"
-					borderBottomLeftRadius="0.3rem"
-					borderTopRightRadius="0.3rem"
-					border="1px"
-					// borderColor={metaState.isConnected && metaState.isSignature ? "green" : "whiteAlpha.700"}
-					// justifyContent={isLoading ? "center" : "space-between"}
-					justifyContent={"space-between"}
-					flexDir="row"
-					alignItems="center"
-					_hover={{ bg: "gray.500" }}
-				>
-					{/* {isLoading ? (
-						<CircularProgress isIndeterminate size="24px" color="teal" />
-					) : (
-						<> */}
-					<Text fontSize="1.2rem">MetaMask</Text>
-					<Image src="/images/icons/metaMask.png" alt="" />
-					{/* </>
-					)} */}
-				</Flex>
-				<Flex
-					opacity="0.4"
-					pointerEvents="none"
-					py="1"
-					px="4"
-					mb="4"
-					borderBottomLeftRadius="0.3rem"
-					borderTopRightRadius="0.3rem"
-					border="1px"
-					borderColor="whiteAlpha.700"
-					justifyContent="space-between"
-					flexDir="row"
-					alignItems="center"
-					_hover={{ bg: "gray.500" }}
-				>
-					<Text fontSize="1.2rem">Binance (Coming soon)</Text>
-					<Image src="/images/icons/Binance.png" alt="" />
-				</Flex>
-				<Flex
-					opacity="0.4"
-					pointerEvents="none"
-					py="1"
-					px="4"
-					mb="4"
-					borderBottomLeftRadius="0.3rem"
-					borderTopRightRadius="0.3rem"
-					border="1px"
-					borderColor="whiteAlpha.700"
-					justifyContent="space-between"
-					flexDir="row"
-					alignItems="center"
-					_hover={{ bg: "gray.500" }}
-				>
-					<Text fontSize="1.2rem">TrustWallet (Coming soon)</Text>
-					<Image src="/images/icons/TWT.png" alt="" />
-				</Flex>
-				{/* <Flex
-            py="1"
-            px="6"
-            mb="4"
-            borderBottomLeftRadius="0.3rem"
-            borderTopRightRadius="0.3rem"
-            border="1px"
-            borderColor="whiteAlpha.700"
-            justifyContent="space-between"
-            flexDir="row"
-            alignItems="center"
-            _hover={{ bg: "gray.500" }}
-          >
-            <Text fontSize="1rem">MathWallet</Text>
-            <Image src="/images/icons/Math.png" alt="" />
-          </Flex>
-          <Flex
-            py="1"
-            px="6"
-            mb="4"
-            borderBottomLeftRadius="0.3rem"
-            borderTopRightRadius="0.3rem"
-            border="1px"
-            borderColor="whiteAlpha.700"
-            justifyContent="space-between"
-            flexDir="row"
-            alignItems="center"
-            _hover={{ bg: "gray.500" }}
-          >
-            <Text fontSize="1rem">TokenPocket</Text>
-            <Image src="/images/icons/Pocket.png" alt="" />
-          </Flex>
-          <Flex
-            py="1"
-            px="6"
-            mb="4"
-            borderBottomLeftRadius="0.3rem"
-            borderTopRightRadius="0.3rem"
-            border="1px"
-            borderColor="whiteAlpha.700"
-            justifyContent="space-between"
-            flexDir="row"
-            alignItems="center"
-            _hover={{ bg: "gray.500" }}
-          >
-            <Text fontSize="1rem">SafePalWallet</Text>
-            <Image src="/images/icons/Safe.png" alt="" />
-          </Flex>
-         */}
+			<Box p="4">
+				<CardConnect
+					isLoading={isLoading}
+					active={metaState.accountLogin !== ""}
+					onClick={() => handleConnectMetaMask()}
+					src="/images/icons/metaMask.png"
+					title="MetaMask"
+				/>
+				<CardConnect disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" />
+				<CardConnect disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" />
 			</Box>
 		</Flex>
 	);

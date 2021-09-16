@@ -8,9 +8,8 @@ import { getAllNFTs } from "@api/nfts";
 import Card from "./Card";
 import Filter from "./Filter";
 import BorderLine from "@components/BorderLine";
-import MyButton from "@shared/reponsiveComp/MyButton";
+import { MyButton, MyText } from "@sipher/web-components";
 import { useStoreActions, useStoreState } from "@src/store";
-import MyText from "@shared/reponsiveComp/MyText";
 interface Props {}
 
 const HomeList = (props: Props) => {

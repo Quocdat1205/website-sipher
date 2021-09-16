@@ -1,8 +1,9 @@
 import { Td, TableCellProps } from "@chakra-ui/react";
+import React from "react";
 
 interface MyTableCellProps extends TableCellProps {}
 
-const MyTd = (props: MyTableCellProps) => {
+export const MyTd = (props: MyTableCellProps) => {
 	return (
 		<Td fontSize={["sm", "md", "lg"]} {...props}>
 			{props.children}
