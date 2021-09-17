@@ -17,7 +17,7 @@ interface FormControlProps {
 export const TextFormControl = ({ label, value, onChange, error, type, isRequired }: FormControlProps) => {
     return (
         <FormControl mb={[2, 4]} isInvalid={!!error}>
-            <FormLabel fontSize={["md", "lg"]} mb={[0.5, 1]} color="main.yellow">
+            <FormLabel fontSize={["sm", "md", "lg"]} mb={[0.5, 1]} color="main.yellow">
                 <Flex align="center">
                     {label}
                     {isRequired && (
@@ -36,7 +36,7 @@ export const TextFormControl = ({ label, value, onChange, error, type, isRequire
                 _focus={{
                     borderBottomColor: "main.yellow",
                 }}
-                fontSize={["md", "lg"]}
+                fontSize={["sm", "md", "lg"]}
                 color="whiteAlpha.900"
                 px={4}
             />

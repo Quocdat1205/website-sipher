@@ -34,10 +34,11 @@ export const SpecialButton = ({
             shadow="base"
             letterSpacing="1px"
             pos="relative"
+            textAlign="center"
             {...rest}
         >
             {isLoading && (
-                <Grid pos="absolute" top={0} left={0} w="full" h="full" placeItems="center">
+                <Grid pos="absolute" top={0} left={0} w="full" h="full" placeItems="center" pointerEvents="none">
                     <Flex align="center">
                         <Spinner size="sm" thickness="3px" />
                         <Text ml={4}>{loadingText}</Text>

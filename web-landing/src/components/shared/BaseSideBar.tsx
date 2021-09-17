@@ -1,6 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex, chakra } from "@chakra-ui/react"
+import { useStoreActions } from "@store"
 import { useRouter } from "next/dist/client/router"
 import React from "react"
 import { MyText, NavBox, SpecialButton } from "."
@@ -12,6 +13,7 @@ interface BaseSideBarProps {
 
 export const BaseSideBar = ({ children, inDrawer }: BaseSideBarProps) => {
     const router = useRouter()
+    const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     return (
         <Flex
             direction="column"
@@ -30,20 +32,16 @@ export const BaseSideBar = ({ children, inDrawer }: BaseSideBarProps) => {
             <NavBox>{children}</NavBox>
             <SpecialButton
                 mt={4}
-                text={
-                    <chakra.span as="a" href="https://discord.com/invite/dRqdSxUSmd" target="_blank">
-                        Join the discord to become an early supporter
-                    </chakra.span>
-                }
+                as="a"
+                href="https://discord.com/invite/dRqdSxUSmd"
+                text={<chakra.span>Join the discord to become an early supporter</chakra.span>}
             />
             <SpecialButton
                 my={4}
                 rounded="full"
-                text={
-                    <chakra.span as="a" href="https://opensea.io/collection/sipheriansurge" target="_blank">
-                        View collection on opensea
-                    </chakra.span>
-                }
+                as="a"
+                href="https://opensea.io/collection/sipheriansurge"
+                text={<chakra.span>View collection on opensea</chakra.span>}
             />
             <Flex direction="column" mt="auto" align="center">
                 <MyText size="xsmall" color="whiteAlpha.900">{`Copyright Reserved © Sipher 2021`}</MyText>
@@ -51,7 +49,10 @@ export const BaseSideBar = ({ children, inDrawer }: BaseSideBarProps) => {
                     size="xsmall"
                     color="main.yellow"
                     cursor="pointer"
-                    onClick={() => router.push("/term-and-condition")}
+                    onClick={() => {
+                        setSideBarOn(false)
+                        router.push("/term-and-condition")
+                    }}
                 >{`TERM & CONDITION`}</MyText>
             </Flex>
         </Flex>

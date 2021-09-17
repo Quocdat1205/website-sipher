@@ -14,7 +14,7 @@ const TermAndConditionPage: NextPageWithLayout = () => {
         </>
     )
 }
-SalesPage.getLayout = (page: ReactElement) => {
+TermAndConditionPage.getLayout = (page: ReactElement) => {
     return <MainLayout>{page}</MainLayout>
 }
 export default TermAndConditionPage

@@ -90,7 +90,12 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                         <SignUpButton />
                     </Flex>
                 </ViewContainer>
-                <ViewContainer onView={setSelectedAnchor} label="Game Characters As NFTs" mb={[14, 14, 28]}>
+                <ViewContainer
+                    onView={setSelectedAnchor}
+                    label="Game Characters As NFTs"
+                    mb={[14, 14, 28]}
+                    threshold={0.2}
+                >
                     <Flex direction="column" align="center">
                         <TextContainer
                             mb={4}

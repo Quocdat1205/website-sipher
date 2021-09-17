@@ -60,7 +60,7 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
                     <Flex direction="column" align="center" px={2} py={4} pt={6}>
                         <Heading
                             color="whiteAlpha.900"
-                            fontSize={["md", "lg"]}
+                            fontSize={["sm", "md", "lg"]}
                             fontWeight="semibold"
                             textTransform="uppercase"
                             mb={4}

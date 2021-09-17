@@ -13,7 +13,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
     return (
         <MotionContainer>
             <BackgroundContainer>
-                <ViewContainer onView={setSelectedAnchor} label="Roadmap" mb={[14, 14, 28]}>
+                <ViewContainer onView={setSelectedAnchor} label="Roadmap" mb={[14, 14, 28]} threshold={0.1}>
                     <Flex direction="column" align="center">
                         <TextContainer
                             headline={
@@ -39,7 +39,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                         </TextContainer>
                     </Flex>
                 </ViewContainer>
-                <ViewContainer onView={setSelectedAnchor} label="Team" mb={[14, 14, 28]}>
+                <ViewContainer onView={setSelectedAnchor} label="Team" mb={[14, 14, 28]} threshold={0.1}>
                     <Flex direction="column" align="center">
                         <TextContainer
                             headline={
