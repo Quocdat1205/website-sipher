@@ -24,10 +24,11 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
             <BackgroundContainer
                 sx={{
                     backgroundImage: `url("/images/pc/home/Background.png"), url("/images/pc/background.jpg")`,
+                    backgroundRepeat: "no-repeat, repeat",
                     "@media (max-width: 960px)": {
                         backgroundImage: "/images/pc/background.jpg",
+                        backgroundRepeat: "repeat",
                     },
-                    backgroundRepeat: "no-repeat, repeat",
                 }}
             >
                 <ViewContainer onView={setSelectedAnchor} label="Home" mb={[14, 14, 28]}>
