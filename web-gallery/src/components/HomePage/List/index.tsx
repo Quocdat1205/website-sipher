@@ -9,7 +9,7 @@ import Card from "./Card";
 import Filter from "./Filter";
 import BorderLine from "@components/BorderLine";
 import { MyButton, MyHeading, MyText } from "@sipher/web-components";
-import { useStoreActions, useStoreState } from "@src/store";
+import { useStoreActions, useStoreState } from "src/store";
 interface Props {}
 
 const HomeList = (props: Props) => {

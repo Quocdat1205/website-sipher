@@ -1,5 +1,5 @@
 import useFormCore from "@hooks/useFormCore";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext } from "react";
 
 interface TypeState {
 	account: string;
@@ -41,5 +41,3 @@ export const useWalletContext = () => {
 	const ctx = useContext(WalletContext) as IWalletContext;
 	return ctx;
 };
-
-// export { typeStateMap, WalletContext, WalletProvider };

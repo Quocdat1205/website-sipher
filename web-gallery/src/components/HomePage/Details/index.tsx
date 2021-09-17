@@ -6,7 +6,7 @@ import { useRouter } from "next/dist/client/router";
 
 import { getMerkle, getNFTId } from "@api/nfts";
 import { MyHeading, MyButton, MyText, MyTd } from "@sipher/web-components";
-import BorderLine from "@src/components/BorderLine";
+import BorderLine from "@components/BorderLine";
 
 const HomeDetails = () => {
 	const [notFound, setNotFound] = useState(false);

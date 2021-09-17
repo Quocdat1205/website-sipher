@@ -1,4 +1,4 @@
-import Login from "@components/Login";
+import Login from "@components/UI/Login";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
