@@ -23,6 +23,7 @@ export const NavBarLink = ({ onClick, text, active, href }: NavBarLinkProps) => 
                 textAlign="center"
                 isTruncated
                 onClick={() => router.push(href)}
+                textTransform="uppercase"
             >
                 {text}
             </MyText>
