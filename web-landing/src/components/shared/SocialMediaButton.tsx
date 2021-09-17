@@ -5,9 +5,10 @@ import { IconButton } from "@chakra-ui/button"
 interface SocialMediaButtonProps {
     icon: JSX.Element
     href: string
+    rel?: string
 }
 
-export const SocialMediaButton = ({ icon, href }: SocialMediaButtonProps) => {
+export const SocialMediaButton = ({ icon, href, rel }: SocialMediaButtonProps) => {
     return (
         <IconButton
             color="white"
@@ -22,6 +23,7 @@ export const SocialMediaButton = ({ icon, href }: SocialMediaButtonProps) => {
             target="_blank"
             href={href}
             size="lg"
+            rel={rel}
         />
     )
 }

@@ -8,10 +8,14 @@ interface SocialMediaBarProps {}
 export const SocialMediaBar = ({}: SocialMediaBarProps) => {
     return (
         <Flex justify="space-between">
-            <SocialMediaButton icon={<FaTwitter size="2rem" />} href="https://twitter.com/Sipherxyz" />
-            <SocialMediaButton icon={<FaDiscord size="2rem" />} href="https://discord.gg/dRqdSxUSmd" />
-            <SocialMediaButton icon={<FaFacebook size="2rem" />} href="https://www.facebook.com/sipher.xyz" />
-            <SocialMediaButton icon={<FaMediumM size="2rem" />} href="https://medium.com/sipherxyz" />
+            <SocialMediaButton icon={<FaTwitter size="2rem" />} href="https://twitter.com/Sipherxyz" rel="noreferrer" />
+            <SocialMediaButton icon={<FaDiscord size="2rem" />} href="https://discord.gg/dRqdSxUSmd" rel="noreferrer" />
+            <SocialMediaButton
+                icon={<FaFacebook size="2rem" />}
+                href="https://www.facebook.com/sipher.xyz"
+                rel="noreferrer"
+            />
+            <SocialMediaButton icon={<FaMediumM size="2rem" />} href="https://medium.com/sipherxyz" rel="noreferrer" />
         </Flex>
     )
 }

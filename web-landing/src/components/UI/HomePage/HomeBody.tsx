@@ -50,6 +50,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 fontSize="md"
                                 mt={4}
                                 href="https://opensea.io/collection/sipheriansurge"
+                                rel="noreferrer"
                             />
                         </Flex>
                     </Grid>

@@ -8,6 +8,7 @@ interface SpecialButtonProps extends BoxProps {
     href?: string
     isLoading?: boolean
     loadingText?: string
+    rel?: string
 }
 
 export const SpecialButton = ({
@@ -16,6 +17,7 @@ export const SpecialButton = ({
     href,
     isLoading,
     loadingText = "Submitting",
+    rel,
     ...rest
 }: SpecialButtonProps) => {
     return (
@@ -23,6 +25,7 @@ export const SpecialButton = ({
             as={as}
             href={href}
             target="_blank"
+            rel={rel}
             textTransform="uppercase"
             w="full"
             rounded="md"

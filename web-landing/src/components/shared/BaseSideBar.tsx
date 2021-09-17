@@ -34,6 +34,7 @@ export const BaseSideBar = ({ children, inDrawer }: BaseSideBarProps) => {
                 mt={4}
                 as="a"
                 href="https://discord.com/invite/dRqdSxUSmd"
+                rel="noreferrer"
                 text={<chakra.span>Join the discord to become an early supporter</chakra.span>}
             />
             <SpecialButton
@@ -41,6 +42,7 @@ export const BaseSideBar = ({ children, inDrawer }: BaseSideBarProps) => {
                 rounded="full"
                 as="a"
                 href="https://opensea.io/collection/sipheriansurge"
+                rel="noreferrer"
                 text={<chakra.span>View collection on opensea</chakra.span>}
             />
             <Flex direction="column" mt="auto" align="center">

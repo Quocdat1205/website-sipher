@@ -23,7 +23,12 @@ export const NavBar = ({}: NavBarProps) => {
     return (
         <Flex px={4} py={4} bg="black" align="center" justify="space-between" overflow="hidden">
             <Flex mr="4" w={["auto", "auto", "18rem"]} flexShrink={0} align="center" onClick={() => router.push("/")}>
-                <Img src="/images/general/logo_pc.png" h={["1.5rem", "2rem", "2.5rem"]} mx={[0, 0, "auto"]} />
+                <Img
+                    src="/images/general/logo_pc.png"
+                    h={["1.5rem", "2rem", "2.5rem"]}
+                    mx={[0, 0, "auto"]}
+                    alt="sipher-logo"
+                />
             </Flex>
             <HStack
                 spacing={[2, 2, 2, 4]}
