@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/layout";
 import { useMetamask } from "@hooks/useMetamask";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 import { NavBar } from "../shared/NavBar";
 
 interface Props {
@@ -9,24 +10,31 @@ interface Props {
 
 const MainLayout = ({ children }: Props) => {
 	const { metaState } = useMetamask();
+	const router = useRouter();
 
-	return metaState.isConnected ? (
-		<Flex
-			color="whiteAlpha.900"
-			bg="url(/images/bgMinting.png) no-repeat"
-			bgSize="100% 100%"
-			w="full"
-			h="100vh"
-			flexDir="column"
-			pos="relative"
-		>
-			<NavBar />
-			<Flex flex={1} overflow="hidden">
-				{children}
+	useEffect(() => {
+		if (!metaState.isConnected) {
+			router.push("/");
+		}
+	}, [metaState.isConnected, router]);
+
+	return (
+		metaState.isConnected && (
+			<Flex
+				color="whiteAlpha.900"
+				bg="url(/images/bgMinting.png) no-repeat"
+				bgSize="100% 100%"
+				w="full"
+				h="100vh"
+				flexDir="column"
+				pos="relative"
+			>
+				<NavBar />
+				<Flex flex={1} overflow="hidden">
+					{children}
+				</Flex>
 			</Flex>
-		</Flex>
-	) : (
-		<Flex>Not Found</Flex>
+		)
 	);
 };
 export default MainLayout;

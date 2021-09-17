@@ -2,7 +2,7 @@ import { StoreProvider } from "easy-peasy";
 import { FC } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ChakraProvider } from "@chakra-ui/react";
-import chakraTheme from "@utils/chakraTheme";
+import { theme } from "@sipher/web-components/lib/theme";
 import store from "../store";
 
 interface ProviderProps {
@@ -20,7 +20,7 @@ const Provider: FC<ProviderProps> = ({ children }) => {
 	return (
 		<StoreProvider store={store}>
 			<QueryClientProvider client={queryClient}>
-				<ChakraProvider theme={chakraTheme}>{children}</ChakraProvider>
+				<ChakraProvider theme={theme}>{children}</ChakraProvider>
 			</QueryClientProvider>
 		</StoreProvider>
 	);

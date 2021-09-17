@@ -1,10 +1,10 @@
 // * DESCRIPTION:
-import { Box, Flex, HStack, Img } from "@chakra-ui/react";
+import { Flex, HStack, Img } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NavBarLink } from "./NavBarLink";
-import { BiWallet } from "react-icons/bi";
-import { MyText } from "@sipher/web-components";
 import { useMetamask } from "@hooks/useMetamask";
+import useChakraToast from "@hooks/useChakraToast";
+import AccountAddress from "./AccountAddress";
 
 interface NavBarProps {}
 
@@ -15,8 +15,14 @@ export const navMenus = [
 ];
 
 export const NavBar = ({}: NavBarProps) => {
-	const { metaState } = useMetamask();
+	const { metaState, setMetaState } = useMetamask();
 	const router = useRouter();
+	const toast = useChakraToast();
+
+	const signOut = () => {
+		setMetaState("isConnected", false);
+		toast("success", "Logout successfully");
+	};
 
 	return (
 		<Flex px={4} py={4} bg="black" align="center" justify="space-between" overflow="hidden">
@@ -28,18 +34,9 @@ export const NavBar = ({}: NavBarProps) => {
 				align="center"
 				onClick={() => window.open("https://sipher.xyz", "_blank")}
 			>
-				<Img src="/images/logo_pc.png" h={["1.5rem", "2rem", "2.5rem"]} mx={[0, 0, "auto"]} />
+				<Img src="/images/logo_pc.png" h={["10%", "2rem", "2.5rem"]} mx={[0, 0, "auto"]} />
 			</Flex>
-			<HStack
-				spacing={[2, 2, 2, 4]}
-				flex={3}
-				justify="space-evenly"
-				sx={{
-					"@media (max-width: 960px)": {
-						display: "none",
-					},
-				}}
-			>
+			<HStack spacing={[6, 8, 10, 12]} flex={3} justify="flex-start">
 				{navMenus.map((menu) => (
 					<NavBarLink
 						key={menu.id}
@@ -49,27 +46,7 @@ export const NavBar = ({}: NavBarProps) => {
 					/>
 				))}
 			</HStack>
-			<Flex flexDir="row" align="center" pos="relative">
-				<Box
-					zIndex="1"
-					bg="black"
-					pos="absolute"
-					left="0"
-					top="50%"
-					transform="translate(-50%,-50%)"
-					border="1px"
-					borderColor="yellow.400"
-					p="2"
-					borderRadius="99"
-				>
-					<BiWallet color="#ecc94b" size="1.2rem" />
-				</Box>
-				<MyText bg="gray.700" borderRadius="99" px="6" py="1">
-					{metaState.accountLogin !== "" && metaState.accountLogin.slice(0, 6)}
-					...
-					{metaState.accountLogin.slice(metaState.accountLogin.length - 4, metaState.accountLogin.length)}
-				</MyText>
-			</Flex>
+			<AccountAddress signOut={signOut} account={metaState.accountLogin} />
 		</Flex>
 	);
 };

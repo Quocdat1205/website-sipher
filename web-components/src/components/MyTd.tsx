@@ -5,7 +5,7 @@ interface MyTableCellProps extends TableCellProps {}
 
 export const MyTd = (props: MyTableCellProps) => {
 	return (
-		<Td fontSize={["sm", "md", "lg"]} {...props}>
+		<Td fontSize={["sm", "sm", "md", "lg"]} {...props}>
 			{props.children}
 		</Td>
 	);

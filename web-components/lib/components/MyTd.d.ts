@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { TableCellProps } from "@chakra-ui/react";
 interface MyTableCellProps extends TableCellProps {
 }

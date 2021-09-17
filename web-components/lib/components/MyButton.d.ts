@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ButtonProps } from "@chakra-ui/react";
 interface MyButtonProps extends ButtonProps {
 }

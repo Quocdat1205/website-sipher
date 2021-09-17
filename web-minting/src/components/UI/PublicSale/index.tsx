@@ -8,11 +8,20 @@ interface Props {}
 
 const PublicSale = (props: Props) => {
 	return (
-		<Flex w="100%" flexDir="column" alignItems="center" justifyContent="center" h="100%">
+		<Flex
+			className="nice-scroll"
+			overflow="auto"
+			p="2"
+			w="100%"
+			flexDir="column"
+			alignItems="center"
+			justifyContent="center"
+			h="100%"
+		>
 			<Flex
 				flexDir="row"
 				w="70%"
-				p="2%"
+				p="1.5%"
 				alignItems="center"
 				justifyContent="center"
 				bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
@@ -29,7 +38,7 @@ const PublicSale = (props: Props) => {
 					w="100%"
 					flexDir="column"
 					alignItems="center"
-					p="2%"
+					p="1.5%"
 					sx={{ h4: { fontSize: "1.5rem", color: "yellow.500" } }}
 				>
 					<BuyDoge />

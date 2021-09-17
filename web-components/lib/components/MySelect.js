@@ -12,6 +12,6 @@ var __assign = (this && this.__assign) || function () {
 import { Select } from "@chakra-ui/react";
 import React from "react";
 export var MySelect = function (props) {
-    return (React.createElement(Select, __assign({ fontSize: ["sm", "md", "lg"] }, props), props.children));
+    return (React.createElement(Select, __assign({ fontSize: ["sm", "sm", "md", "lg"] }, props), props.children));
 };
 export default MySelect;

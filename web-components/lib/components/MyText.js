@@ -12,6 +12,6 @@ var __assign = (this && this.__assign) || function () {
 import { Text } from "@chakra-ui/layout";
 import React from "react";
 export var MyText = function (props) {
-    return (React.createElement(Text, __assign({ fontSize: ["sm", "md", "lg"] }, props), props.children));
+    return (React.createElement(Text, __assign({ fontSize: ["sm", "sm", "md", "lg"] }, props), props.children));
 };
 export default MyText;
