@@ -12,9 +12,10 @@ interface FormControlProps {
     error?: string
     type?: string
     isRequired?: boolean
+    inputRef?: React.RefObject<HTMLInputElement>
 }
 
-export const TextFormControl = ({ label, value, onChange, error, type, isRequired }: FormControlProps) => {
+export const TextFormControl = ({ label, value, onChange, error, type, isRequired, inputRef }: FormControlProps) => {
     return (
         <FormControl mb={[2, 4]} isInvalid={!!error}>
             <FormLabel fontSize={["sm", "md", "lg"]} mb={[0.5, 1]} color="main.yellow">
@@ -39,6 +40,7 @@ export const TextFormControl = ({ label, value, onChange, error, type, isRequire
                 fontSize={["sm", "md", "lg"]}
                 color="whiteAlpha.900"
                 px={4}
+                ref={inputRef}
             />
             <FormErrorMessage>{error}</FormErrorMessage>
         </FormControl>
