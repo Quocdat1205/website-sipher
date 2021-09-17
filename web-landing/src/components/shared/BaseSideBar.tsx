@@ -3,7 +3,7 @@
 import { Flex, chakra } from "@chakra-ui/react"
 import { useStoreActions } from "@store"
 import { useRouter } from "next/dist/client/router"
-import React from "react"
+import React, { useState } from "react"
 import { MyText, NavBox, SpecialButton } from "."
 
 interface BaseSideBarProps {

@@ -12,6 +12,7 @@ import {
     Box,
 } from "@chakra-ui/react"
 import { usePostSubscribe } from "@hooks/api/subscribe"
+import useChakraToast from "@hooks/useChakraToast"
 import useFormCore from "@hooks/useFormCore"
 import { useStoreActions, useStoreState } from "@store"
 import React, { useEffect } from "react"
@@ -27,7 +28,7 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
         email: "",
         full_name: "",
     })
-
+    const toast = useChakraToast()
     useEffect(() => {
         initForm()
     }, [subscribeModal, initForm])
@@ -36,8 +37,9 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
         onError: error => console.log("error json", error),
         onSuccess: data => {
             if (!data.message) {
-                setSubscribeModal(false)
                 initForm()
+                setSubscribeModal(false)
+                toast("Stay tuned & subscribe to our community for woofing perks and exclusive news.")
             } else {
                 if (data.message === "email exists") setError("email", "Email was already subscribed!")
                 else setError("email", "Something went wrong!")
