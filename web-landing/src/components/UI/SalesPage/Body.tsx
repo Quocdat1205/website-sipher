@@ -33,7 +33,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                         >
                             <Paragraph>{salesContent.characterPrices[0]}</Paragraph>
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/sales/sale1.png" />
+                        <ResponsiveImg src="/images/pc/sales/sale1.png" alt="sipher-sales-1" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Distribution" mb={[14, 14, 28]}>
@@ -41,7 +41,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                         <TextContainer headline={<chakra.span color="main.darkRed">Distribution</chakra.span>}>
                             <Paragraph>{salesContent.distribution[0]}</Paragraph>
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/sales/sale2.png" />
+                        <ResponsiveImg src="/images/pc/sales/sale2.png" alt="sipher-sales-2" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Use Of Funds" mb={[14, 14, 28]}>
@@ -74,7 +74,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 </chakra.span>
                             }
                         ></TextContainer>
-                        <ResponsiveImg src="/images/pc/sales/sale3.png" />
+                        <ResponsiveImg src="/images/pc/sales/sale3.png" alt="sipher-sales-3" />
                         <SignUpButton />
                     </Flex>
                 </ViewContainer>

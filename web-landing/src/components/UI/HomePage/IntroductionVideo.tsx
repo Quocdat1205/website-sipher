@@ -22,7 +22,7 @@ const IntroductionVideo = ({}: IntroductionVideoProps) => {
                     h="full"
                     zIndex="banner"
                     onClick={() => setIsPlaying(true)}
-                    alt="thumbnail"
+                    alt="sipher-video-thumbnail"
                 />
             )}
             <video src="/video/video.mp4" controls={true} ref={videoRef} onPause={() => setIsPlaying(false)} />

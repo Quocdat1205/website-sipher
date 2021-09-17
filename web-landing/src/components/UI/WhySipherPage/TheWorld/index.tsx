@@ -37,7 +37,7 @@ const TheWorld = ({}: TheWorldProps) => {
                                 Learn more about <chakra.span color="main.yellow">World as Blocks</chakra.span>
                             </Paragraph>
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why1.png" />
+                        <ResponsiveImg src="/images/pc/why/why1.png" alt="sipher-the-world-1" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer label="Game Characters As Nfts" onView={setSelectedAnchor} mb={[14, 14, 28]}>
@@ -55,7 +55,7 @@ const TheWorld = ({}: TheWorldProps) => {
                                 Learn more about <chakra.span color="main.yellow">Moon Base Station</chakra.span>
                             </Paragraph>
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why2.png" />
+                        <ResponsiveImg src="/images/pc/why/why2.png" alt="sipher-the-world-2" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer label="Trading At Bazaar" onView={setSelectedAnchor} mb={[14, 14, 28]}>
@@ -72,7 +72,7 @@ const TheWorld = ({}: TheWorldProps) => {
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why3.png" />
+                        <ResponsiveImg src="/images/pc/why/why3.png" alt="sipher-the-world-3" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer label="Land Ownership" onView={setSelectedAnchor} mb={[14, 14, 28]}>
@@ -88,7 +88,7 @@ const TheWorld = ({}: TheWorldProps) => {
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why4.png" />
+                        <ResponsiveImg src="/images/pc/why/why4.png" alt="sipher-the-world-4" />
                         <SignUpButton />
                     </Flex>
                 </ViewContainer>

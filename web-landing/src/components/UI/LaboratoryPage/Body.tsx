@@ -26,7 +26,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/laboratory/laboratory1.png" />
+                        <ResponsiveImg src="/images/pc/laboratory/laboratory1.png" alt="sipher-laboratory-1" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Smart Contract" mb={[14, 14, 28]}>
@@ -42,7 +42,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/laboratory/laboratory2.png" />
+                        <ResponsiveImg src="/images/pc/laboratory/laboratory2.png" alt="sipher-laboratory-2" />
                         <SignUpButton />
                     </Flex>
                 </ViewContainer>

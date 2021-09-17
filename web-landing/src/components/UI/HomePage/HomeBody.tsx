@@ -34,7 +34,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                 <ViewContainer onView={setSelectedAnchor} label="Home" mb={[14, 14, 28]}>
                     <Grid h="100%" placeItems="center" py={"12rem"}>
                         <Flex direction="column" align="center">
-                            <Img src="/images/pc/home/logohome.png" maxH="4rem" alt="home-logo" />
+                            <Img src="/images/pc/home/logohome.png" maxH="4rem" alt="sipher-logo" />
                             <Heading color="whiteAlpha.900" fontWeight="thin">
                                 SOLD OUT
                             </Heading>
@@ -87,7 +87,10 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/home/group_sipher.png" />
+                        <ResponsiveImg
+                            src="/images/pc/home/group_sipher.png"
+                            alt="sipher-first-fleet-sipherian-surge"
+                        />
                         <SignUpButton />
                     </Flex>
                 </ViewContainer>
@@ -108,15 +111,18 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                         >
                             <Paragraph>{homeContent.gameCharactersAsNfts[0]}</Paragraph>
                             <Flex w="full" justify="center">
-                                <ResponsiveImg src="/images/pc/home/sipher6.png" />
+                                <ResponsiveImg
+                                    src="/images/pc/home/sipher6.png"
+                                    alt="sipher-game-characters-as-nfts-1"
+                                />
                             </Flex>
                             <Paragraph>{homeContent.gameCharactersAsNfts[1]}</Paragraph>
                             <Flex w="full" justify="center">
-                                <ResponsiveImg src="/images/pc/home/home3.png" />
+                                <ResponsiveImg src="/images/pc/home/home3.png" alt="sipher-game-characters-as-nfts-2" />
                             </Flex>
                             <Paragraph>{homeContent.gameCharactersAsNfts[2]}</Paragraph>
                             <Flex w="full" justify="center">
-                                <ResponsiveImg src="/images/pc/home/home4.png" />
+                                <ResponsiveImg src="/images/pc/home/home4.png" alt="sipher-game-characters-as-nfts-2" />
                             </Flex>
                         </TextContainer>
                         <SignUpButton />

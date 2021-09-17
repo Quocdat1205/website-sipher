@@ -30,7 +30,7 @@ const TheWorld = ({}: TheWorldProps) => {
                             }
                         >
                             <Flex justify="center">
-                                <ResponsiveImg src="/images/pc/why/gameplay1.png" />
+                                <ResponsiveImg src="/images/pc/why/gameplay1.png" alt="sipher-gameplay-1" />
                             </Flex>
                             {gameplayContent.gameCategory.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
@@ -58,7 +58,7 @@ const TheWorld = ({}: TheWorldProps) => {
                                 Learn more about <chakra.span color="main.yellow">Gameplay</chakra.span>
                             </Paragraph>
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/gameplay2.png" />
+                        <ResponsiveImg src="/images/pc/why/gameplay2.png" alt="sipher-gameplay-2" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer label="Immersive Storyline" onView={setSelectedAnchor} mb={[14, 14, 28]}>
@@ -75,7 +75,7 @@ const TheWorld = ({}: TheWorldProps) => {
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                         </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/gameplay3.png" />
+                        <ResponsiveImg src="/images/pc/why/gameplay3.png" alt="sipher-gameplay-3" />
                     </Flex>
                 </ViewContainer>
                 <ViewContainer label="Classes & Skills" onView={setSelectedAnchor} mb={[14, 14, 28]}>
@@ -89,7 +89,7 @@ const TheWorld = ({}: TheWorldProps) => {
                             }
                         >
                             <Flex w="full" justify="center">
-                                <ResponsiveImg src="/images/pc/why/gameplay4.png" />
+                                <ResponsiveImg src="/images/pc/why/gameplay4.png" alt="sipher-gameplay-4" />
                             </Flex>
                             {gameplayContent.classesAndSkills.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
@@ -112,7 +112,7 @@ const TheWorld = ({}: TheWorldProps) => {
                             }
                         >
                             <Flex w="full" justify="center">
-                                <ResponsiveImg src="/images/pc/why/gameplay5.png" />
+                                <ResponsiveImg src="/images/pc/why/gameplay5.png" alt="sipher-gameplay-5" />
                             </Flex>
                             {gameplayContent.expeditionMechanic.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
