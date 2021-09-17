@@ -71,7 +71,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                                 </SimpleGrid>
                             </SecondaryTextContainer>
                             <SecondaryTextContainer headline="Official Email">
-                                <SimpleGrid minChildWidth="8rem" spacing={4} mt={4}>
+                                <SimpleGrid minChildWidth="12rem" spacing={4} mt={4}>
                                     {emails.map(email => (
                                         <SocialTag
                                             key={email.email}
