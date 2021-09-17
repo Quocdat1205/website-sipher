@@ -3,7 +3,7 @@
 import { NavButton, BaseSideBar } from "@components/shared"
 import { textToPath } from "src/utils"
 
-const HomeSideBarMenu = ["Home", "Sipheria The Universe", "First Fleet Sipherian Surge", "Game Character As NFTs"]
+const HomeSideBarMenu = ["Home", "Sipheria The Universe", "First Fleet Sipherian Surge", "Game Characters As NFTs"]
 
 interface SideBarProps {
     selectedAnchor: string
@@ -11,7 +11,6 @@ interface SideBarProps {
 }
 
 const SideBar = ({ selectedAnchor, setSelectedAnchor }: SideBarProps) => {
-    console.log(selectedAnchor)
     return (
         <BaseSideBar>
             {HomeSideBarMenu.map(item => (

@@ -13,7 +13,7 @@ export const NavButton = ({ text, active, onClick }: NavButtonProps) => {
         <Box
             bgGradient={active ? "linear(to-b, main.darkRed, main.offBlack)" : "linear(to-l, main.gray, main.gray)"}
             w="full"
-            p={2}
+            p={3}
             textAlign="center"
             color="white"
             textTransform="uppercase"
@@ -22,6 +22,8 @@ export const NavButton = ({ text, active, onClick }: NavButtonProps) => {
             fontWeight="semibold"
             as="button"
             onClick={onClick}
+            letterSpacing="0.5px"
+            _focus={{ outline: "none" }}
         >
             {text}
         </Box>

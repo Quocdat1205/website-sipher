@@ -6,7 +6,7 @@ import { useRouter } from "next/dist/client/router"
 import { textToPath } from "src/utils"
 import TabButton from "./TabButton"
 
-const WhySipherSideBarMenu = [
+export const WhySipherSideBarMenu = [
     {
         id: "The World",
         menu: ["World Block Category", "Game Characters As NFTs", "Trading At Bazaar", "Land Ownership"],
@@ -36,12 +36,12 @@ const SideBar = ({ selectedAnchor, setSelectedAnchor }: SideBarProps) => {
         WhySipherSideBarMenu.find(item => router.pathname.includes(`/why-sipher/${textToPath(item.id)}`))?.id || ""
     return (
         <BaseSideBar>
-            <HStack>
+            <HStack justify="space-between">
                 {WhySipherSideBarMenu.map(item => (
                     <TabButton
                         key={item.id}
                         type={item.id}
-                        onClick={() => router.push(textToPath(item.id))}
+                        onClick={() => router.push(`${textToPath(item.id)}`)}
                         active={item.id === getActiveId()}
                     />
                 ))}

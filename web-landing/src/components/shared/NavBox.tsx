@@ -1,8 +1,7 @@
 // * DESCRIPTION:
 
-import { Image } from "@chakra-ui/image"
-import { BoxProps, Flex, VStack } from "@chakra-ui/layout"
-import { SocialMediaBar, NavButtonProps } from "."
+import { BoxProps, Flex, VStack, Box } from "@chakra-ui/react"
+import { SocialMediaBar } from "."
 
 interface NavBoxProps extends BoxProps {
     children: React.ReactNode
@@ -10,9 +9,11 @@ interface NavBoxProps extends BoxProps {
 
 export const NavBox = ({ children, ...rest }: NavBoxProps) => {
     return (
-        <Flex w="full" direction="column" px={4} py={8} rounded="md" bg="main.darkGrey" {...rest}>
+        <Flex w="full" direction="column" px={4} py={4} rounded="md" bg="main.darkGrey" {...rest}>
             <VStack spacing={4}>{children}</VStack>
-            <Image src="/images/general/line.png" w="full" my={4} h="10px" />
+            <Box bg="main.darkRed" w="full" h="1px" my={4} pos="relative">
+                <Box pos="absolute" w="4%" minW="1rem" h="3px" top="-1px" bg="main.darkRed" rounded="full"></Box>
+            </Box>
             <SocialMediaBar />
         </Flex>
     )

@@ -2,13 +2,23 @@ import { NextPageWithLayout } from "@pages/_app"
 import { ReactElement } from "react"
 import WhySipherUI from "@components/UI/WhySipherPage"
 import TheWorld from "@components/UI/WhySipherPage/TheWorld"
-
+import Head from "next/head"
+import MainLayout from "@components/UI/MainLayout"
 const WhySipherPage: NextPageWithLayout = () => {
     return <TheWorld />
 }
 
 WhySipherPage.getLayout = (page: ReactElement) => {
-    return <WhySipherUI>{page}</WhySipherUI>
+    return (
+        <>
+            <Head>
+                <title>Why Sipher</title>
+            </Head>
+            <MainLayout>
+                <WhySipherUI>{page}</WhySipherUI>
+            </MainLayout>
+        </>
+    )
 }
 
 export default WhySipherPage

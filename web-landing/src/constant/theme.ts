@@ -31,7 +31,7 @@ const theme = extendTheme({
         global: {
             "*": {
                 fontFamily: "Chakra Petch",
-                color: "whiteAlpha.900",
+                color: "inherit",
             },
             "div::-webkit-scrollbar": {
                 width: "0.3rem",
@@ -42,6 +42,10 @@ const theme = extendTheme({
             "div::-webkit-scrollbar-thumb": {
                 background: "linear-gradient(to bottom, #391798, #F44A67, #F4B533)",
             },
+            ".motion-container": {
+                overflow: "hidden",
+                height: "100%",
+            },
         },
     },
     components: {
@@ -49,9 +53,16 @@ const theme = extendTheme({
             baseStyle: {
                 fontFamily: "Chakra Petch",
                 letterSpacing: "1px",
+                color: "whiteAlpha.900",
+            },
+        },
+        Text: {
+            baseStyle: {
+                color: "whiteAlpha.900",
             },
         },
     },
+    breakpoints: ["0px", "480px", "960px", "1440px"],
 })
 
 export default theme

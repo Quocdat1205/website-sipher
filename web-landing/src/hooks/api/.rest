@@ -1,0 +1,8 @@
+POST https://be.sipherion.com/api/sipher/v1.0/subscribe
+content-type: "application/json"
+accept: "application/json"
+
+{
+    "email": "test@gmail.com",
+    "full_name": "awesome"
+}

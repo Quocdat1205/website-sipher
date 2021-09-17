@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Image, Flex, Text } from "@chakra-ui/react"
+import { Img, Flex, Text } from "@chakra-ui/react"
 
 interface TabButtonProps {
     type: string
@@ -17,7 +17,7 @@ const TabButton = ({ type, onClick, active }: TabButtonProps) => {
     }
     return (
         <Flex direction="column" align="center" cursor="pointer" onClick={onClick}>
-            <Image src={active ? genImage()[1] : genImage()[0]} h="12" />
+            <Img src={active ? genImage()[1] : genImage()[0]} h="12" alt="" />
             <Text fontSize="xs" isTruncated>
                 {type}
             </Text>

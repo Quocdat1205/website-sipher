@@ -1,27 +1,24 @@
 // * DESCRIPTION:
 
 import { Box, BoxProps } from "@chakra-ui/layout"
+import useObserver from "@hooks/useObserver"
 import { useEffect } from "react"
-import { useInView } from "react-intersection-observer"
 import { textToPath } from "src/utils"
 
 interface ViewContainerProps extends BoxProps {
     label: string
     onView?: (hash: string) => void
+    threshold?: number
 }
 
-export const ViewContainer = ({ label, onView, ...rest }: ViewContainerProps) => {
-    const { ref, inView } = useInView({
-        // trigger onView when >65% of container is visible
-        threshold: 0.65,
-        // wait 0.5 seconds
-        delay: 250,
-    })
+export const ViewContainer = ({ label, onView, threshold, ...rest }: ViewContainerProps) => {
+    const { ref, isInView } = useObserver(threshold)
     useEffect(() => {
-        if (inView && onView) {
+        if (isInView && onView) {
             onView(textToPath(label))
             history.replaceState(undefined, "", `#${textToPath(label)}`)
         }
-    }, [inView])
+    }, [isInView, label, onView])
+
     return <Box id={textToPath(label)} ref={ref} {...rest} />
 }

@@ -14,7 +14,7 @@ const HomeUI = ({}: HomeUIProps) => {
             <Box>
                 <SideBar selectedAnchor={selectedAnchor} setSelectedAnchor={setSelectedAnchor} />
             </Box>
-            <Box flex={1} overflow="auto">
+            <Box flex={1} overflow="hidden">
                 <HomeBody setSelectedAnchor={setSelectedAnchor} />
             </Box>
         </Flex>
