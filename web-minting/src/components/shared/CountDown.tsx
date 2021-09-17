@@ -1,9 +1,8 @@
 import { Box, chakra, HStack, Text } from "@chakra-ui/react";
-import { useMetamask } from "@hooks/useMetamask";
 import React, { useEffect, useState } from "react";
+import { useMetamask } from "@hooks/useMetamask";
 
 function CountDown() {
-	const { metaState } = useMetamask();
 	// const targetTime = moment(metaState.time && metaState.time);
 	// const [currentTime, setCurrentTime] = useState(moment());
 	// const timeBetween = moment.duration(targetTime.diff(currentTime));

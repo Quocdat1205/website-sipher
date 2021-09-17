@@ -2,7 +2,7 @@ import { Box, chakra, Flex } from "@chakra-ui/react";
 import { MyText } from "@sipher/web-components";
 import { useMetamask } from "@hooks/useMetamask";
 import React from "react";
-import CountDown from "./CountDown";
+import CountDown from "@components/shared/CountDown";
 
 function HowtoMint() {
 	const { metaState } = useMetamask();
