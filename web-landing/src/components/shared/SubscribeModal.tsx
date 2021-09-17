@@ -14,7 +14,7 @@ import {
 import { usePostSubscribe } from "@hooks/api/subscribe"
 import useFormCore from "@hooks/useFormCore"
 import { useStoreActions, useStoreState } from "@store"
-import React from "react"
+import React, { useEffect } from "react"
 import { isEmail } from "src/utils"
 import { Paragraph, SpecialButton, TextFormControl } from "."
 
@@ -23,15 +23,26 @@ interface SubscribeModalProps {}
 export const SubscribeModal = ({}: SubscribeModalProps) => {
     const subscribeModal = useStoreState(state => state.subscribeModal)
     const setSubscribeModal = useStoreActions(action => action.setSubscribeModal)
-    const { values, setValue, errors, setError } = useFormCore({
+    const { values, setValue, errors, setError, initForm } = useFormCore({
         email: "",
         full_name: "",
     })
 
+    useEffect(() => {
+        initForm()
+    }, [subscribeModal, initForm])
+
     const { mutate, isLoading } = usePostSubscribe({
-        onError: error => console.log("Error", error),
-        onSuccess: data => console.log(data),
-        onSettled: () => setSubscribeModal(false),
+        onError: error => console.log("error json", error),
+        onSuccess: data => {
+            if (!data.message) {
+                setSubscribeModal(false)
+                initForm()
+            } else {
+                if (data.message === "email exists") setError("email", "Email was already subscribed!")
+                else setError("email", "Something went wrong!")
+            }
+        },
     })
 
     const submit = () => {

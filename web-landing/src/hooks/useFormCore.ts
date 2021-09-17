@@ -1,4 +1,4 @@
-import { useCallback, useReducer } from "react"
+import { useCallback, useMemo, useReducer } from "react"
 
 interface IOption {
     clearErrorOnValueChange: boolean
@@ -23,7 +23,10 @@ export const useFormCore = <IForm extends Record<string, any>>(
 
     type Action<T> = SetAction | InitAction<T>
     type IFormError = Record<keyof IForm, string>
-    const initialError: IFormError = Object.assign({}, ...Object.keys(initialValues).map(key => ({ [key]: "" })))
+    const initialError: IFormError = useMemo(
+        () => Object.assign({}, ...Object.keys(initialValues).map(key => ({ [key]: "" }))),
+        []
+    )
 
     // generate reducer base on initial value input
     const genReducer = <P extends Record<string, any>>(initValues: P): [(state: P, action: Action<P>) => P, P] => {
@@ -59,7 +62,13 @@ export const useFormCore = <IForm extends Record<string, any>>(
         [dispatch, setError, options.clearErrorOnValueChange]
     )
 
-    const initForm = (payload: IForm = initialValues) => dispatch({ type: "INIT", payload })
+    const initForm = useCallback(
+        (payload: IForm = initialValues) => {
+            dispatch({ type: "INIT", payload })
+            dispatchError({ type: "INIT", payload: initialError })
+        },
+        [dispatch, dispatchError, initialError]
+    )
 
     return { values, setValue, initForm, errors, setError }
 }

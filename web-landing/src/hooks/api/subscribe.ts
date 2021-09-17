@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { useMutation, UseMutationOptions } from "react-query"
 
 interface ISubscribeInput {
@@ -6,11 +6,16 @@ interface ISubscribeInput {
     full_name: string
 }
 
-const postSubscribe = async (input: ISubscribeInput) => {
-    const { data } = await axios.post("https://be.sipherion.com/api/sipher/v1.0/subscribe", input)
-    return data
-}
+const postSubscribe = (input: ISubscribeInput) =>
+    axios
+        .post("https://be.sipher.xyz/api/sipher/v1.0/subscribe", input)
+        .then(() => ({
+            message: "",
+        }))
+        .catch(err => ({ message: err.response.data.error }))
 
-export const usePostSubscribe = (options?: UseMutationOptions<unknown, unknown, ISubscribeInput, unknown>) => {
-    return useMutation<unknown, unknown, ISubscribeInput>(postSubscribe, options)
+export const usePostSubscribe = (
+    options?: UseMutationOptions<{ message: string }, unknown, ISubscribeInput, unknown>
+) => {
+    return useMutation<{ message: string }, unknown, ISubscribeInput>(postSubscribe, options)
 }
