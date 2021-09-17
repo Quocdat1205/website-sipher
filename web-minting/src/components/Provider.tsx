@@ -3,11 +3,11 @@ import { FC } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ChakraProvider } from "@chakra-ui/react";
 import chakraTheme from "@utils/chakraTheme";
-import store from "@src/store";
-import { WalletProvider } from "@src/hooks/storeWallet/store";
+import store from "../store";
+import { WalletProvider } from "@hooks/storeWallet/store";
 
 interface ProviderProps {
-	children: JSX.Element;
+	children: React.ReactNode;
 }
 const queryClient = new QueryClient({
 	defaultOptions: {

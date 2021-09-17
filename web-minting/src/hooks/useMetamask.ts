@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import Web3 from "web3";
 import { authenticateUser, getUsersByAddress, signupUser } from "@api/user";
-import { useWalletContext } from "@src/hooks/storeWallet/store";
+import { useWalletContext } from "@hooks/storeWallet/store";
 
 declare global {
 	interface Window {

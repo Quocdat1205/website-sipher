@@ -16,7 +16,6 @@
     "noImplicitAny": false,
     "baseUrl": ".",
         "paths": {
-            "@src/*": ["src/*"],
             "@api/*": ["src/api/*"],
             "@pages/*": ["src/pages/*"],
             "@components/*": ["src/components/*"],

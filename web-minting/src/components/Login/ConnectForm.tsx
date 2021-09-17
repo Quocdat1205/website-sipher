@@ -1,7 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { MyText } from "@sipher/web-components";
-import useChakraToast from "@src/hooks/useChakraToast";
-import { useMetamask } from "@src/hooks/useMetamask";
+import useChakraToast from "@hooks/useChakraToast";
+import { useMetamask } from "@hooks/useMetamask";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 import CardConnect from "./CardConnect";
@@ -19,8 +19,8 @@ const ConnectForm = () => {
 				try {
 					await connect();
 					setIsLoading(false);
+					router.push("/minting-private");
 					toast("success", "Connect successfully");
-					router.push("/minting");
 				} catch (err: any) {
 					if (err.code === 4001) {
 						toast("error", "Please connect or signature to MetaMask");
@@ -35,8 +35,8 @@ const ConnectForm = () => {
 			})();
 		} else {
 			if (metaState.isAvailable && metaState.isConnected) {
+				router.push("/minting-private");
 				toast("warning", "Metamask is connected.");
-				router.push("/minting");
 			} else {
 				toast("error", "You don't have Metamask installed");
 				setIsLoading(false);

@@ -1,9 +1,7 @@
-import { Box } from "@chakra-ui/layout"
-import type { NextPage } from "next"
+import HomeList from "@components/HomePage/List";
+import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-    return <Box>
-        Hello
-    </Box>
-}
-export default Home
+	return <HomeList />;
+};
+export default Home;

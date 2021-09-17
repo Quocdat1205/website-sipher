@@ -3,7 +3,7 @@ import { Flex, Image } from "@chakra-ui/react";
 import BuyDoge from "./BuyDoge";
 import HowtoMint from "./HowtoMint";
 
-function MinAvatar() {
+function MintAvatar() {
 	return (
 		<Flex w="100%" flexDir="column" alignItems="center" justifyContent="center" h="100%">
 			<Flex
@@ -46,4 +46,4 @@ function MinAvatar() {
 	);
 }
 
-export default MinAvatar;
+export default MintAvatar;

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { CircularProgress, Table, IconButton, Tbody, Tr, Box, Flex, chakra, Image } from "@chakra-ui/react";
+import { Heading, CircularProgress, Table, IconButton, Tbody, Tr, Box, Flex, chakra, Image } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { FiChevronLeft } from "react-icons/fi";
 import { useRouter } from "next/dist/client/router";
 
 import { getMerkle, getNFTId } from "@api/nfts";
-import { MyButton, MyHeading, MyText, MyTd } from "@sipher/web-components";
+import { MyHeading, MyButton, MyText, MyTd } from "@sipher/web-components";
+import BorderLine from "@src/components/BorderLine";
 
 const HomeDetails = () => {
 	const [notFound, setNotFound] = useState(false);
@@ -36,27 +37,45 @@ const HomeDetails = () => {
 			color="whiteAlpha.800"
 			h="100vh"
 			w="100%"
-			p="8"
+			p="4"
 			flexDir="column"
-			className="nice-scroll"
-			overflow="auto"
 			bg="url(https://sipher.xyz/images/pc/background.jpg)"
 		>
-			<Flex>
-				<IconButton
+			<Flex py="2" align="center" justify="space-between">
+				<Flex>
+					<IconButton
+						colorScheme="orange"
+						fontSize={["2rem", "2.5rem", "3rem"]}
+						aria-label="back to list"
+						variant="ghost"
+						rounded="full"
+						size="lg"
+						icon={<FiChevronLeft />}
+						onClick={() => router.push("/")}
+					/>
+				</Flex>
+				<Flex ml="4">
+					<chakra.a href="https://sipher.xyz" display="block" cursor="pointer">
+						<Image h="2rem" src="https://sipher.xyz/images/general/logo_pc.png" alt="" />
+					</chakra.a>
+				</Flex>
+				<Heading ml="4" size="xl" fontWeight="normal" flex="1" py="2" color="red.500">
+					Details
+				</Heading>
+				<MyButton
+					bgGradient="linear(180deg, #FF6795 0%, #FF710B 84.37%)"
 					colorScheme="orange"
-					fontSize={["2rem", "2.5rem", "3rem"]}
-					aria-label="back to list"
-					variant="ghost"
-					rounded="full"
-					size="lg"
-					icon={<FiChevronLeft />}
-					onClick={() => router.push("/list")}
-				/>
+					color="whiteAlpha.800"
+					borderRadius="99"
+					onClick={() => (window.location.href = "https://sipher.xyz/")}
+				>
+					Back to home
+				</MyButton>
 			</Flex>
+			<BorderLine />
 			{!notFound ? (
 				!isLoading && infoNFT && merkle ? (
-					<Flex algin="center" flexDir="column">
+					<Flex className="nice-scroll" overflow="auto" p="4" algin="center" flexDir="column">
 						<Flex py="2%" flexDir="row">
 							<Box flex="1">
 								<Box p="2" borderColor="whiteAlpha.600" border="1px">

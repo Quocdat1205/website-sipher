@@ -1,6 +1,6 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
 import { MyText } from "@sipher/web-components";
-import { useMetamask } from "@src/hooks/useMetamask";
+import { useMetamask } from "@hooks/useMetamask";
 import React from "react";
 import CountDown from "./CountDown";
 
