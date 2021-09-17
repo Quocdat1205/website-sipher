@@ -9,26 +9,9 @@ function HowtoMint() {
 
 	return (
 		<Flex flexDir="row" w="100%" px="4" justifyContent="space-between">
-			<Box
-				flex="1"
-				textAlign="left"
-				fontSize={{
-					base: "1rem",
-					sm: "1rem",
-					md: "1rem",
-					xl: "1rem",
-					xxl: "1.2rem",
-					xxxl: "2rem",
-				}}
-				borderRight="1px"
-				borderColor="gray.600"
-			>
+			<Box flex="1" textAlign="left" fontSize={["sm", "sm", "md", "lg"]} borderRight="1px" borderColor="gray.600">
 				<MyText>
-					{metaState.status === "PUBLIC_SALE"
-						? "PUBLIC SALE:"
-						: metaState.status === "END_SALE"
-						? ""
-						: "PRIVATE SALE:"}
+					{metaState.status === "PUBLIC_SALE" ? "PUBLIC SALE:" : metaState.status === "END_SALE" ? "" : ""}
 				</MyText>
 				<chakra.ul px="4">
 					{metaState.status === "NOT_FOR_SALE" ? (
@@ -36,12 +19,6 @@ function HowtoMint() {
 							<li>Available for whitelisted addresses only.</li>
 							<li>Each address will be able to mint 01 NFT.</li>
 							<li>Start at 08:00 AM Sep 07, 2021 UTC+7.</li>
-						</>
-					) : metaState.status === "PRIVATE_SALE" ? (
-						<>
-							<li>Available for whitelisted addresses only.</li>
-							<li>Each address will be able to mint 01 NFT.</li>
-							<li>Pre-sale end time.</li>
 						</>
 					) : metaState.status === "PUBLIC_SALE" ? (
 						<>
@@ -62,19 +39,7 @@ function HowtoMint() {
 					</chakra.ol>
 				</Box>
 			</Box>
-			<Box
-				flex="1"
-				textAlign="left"
-				ml="2%"
-				fontSize={{
-					base: "1rem",
-					sm: "1rem",
-					md: "1rem",
-					xl: "1rem",
-					xxl: "1.2rem",
-					xxxl: "2rem",
-				}}
-			>
+			<Box flex="1" textAlign="left" ml="2%" fontSize={["sm", "sm", "md", "lg"]}>
 				<MyText>NOTE</MyText>
 				<chakra.ul px="4">
 					{metaState.status !== "END_SALE" ? (

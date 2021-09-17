@@ -185,6 +185,7 @@ export const useMetamask = () => {
 		UpdateAccount,
 		handleAuthenticate,
 		getBalanceMetaMask,
+		setMetaState: setValue,
 		metaState: { ...values, isAvailable: !!provider },
 	};
 };

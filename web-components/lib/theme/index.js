@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 export var theme = extendTheme({
+    breakpoints: ["0px", "768px", "960px", "1440px"],
     colors: {
         main: {
             yellow: "#F4B533",
@@ -22,6 +23,37 @@ export var theme = extendTheme({
             darkRed: "#B70F28",
             darkGrey: "#242424",
             white: "#FFFFFF",
+        },
+    },
+    components: {
+        Heading: {
+            baseStyle: {
+                fontFamily: "Chakra Petch",
+                letterSpacing: "1px",
+                color: "whiteAlpha.900",
+            },
+        },
+        Text: {
+            baseStyle: {
+                color: "whiteAlpha.900",
+            },
+        },
+    },
+    styles: {
+        global: {
+            "*": {
+                fontFamily: "Chakra Petch",
+            },
+            ".nice-scroll::-webkit-scrollbar": {
+                width: "0.5rem",
+            },
+            ".nice-scroll::-webkit-scrollbar-track": {
+                background: "transparent",
+            },
+            ".nice-scroll::-webkit-scrollbar-thumb": {
+                borderRadius: "99px",
+                background: "yellow.300",
+            },
         },
     },
 });

@@ -39,12 +39,11 @@ function BuyDoge() {
 		min: 0,
 		// max:
 		//   metaState.status === "PRIVATE_SALE"
-		//     ? (userRecord ? userRecord.whitelistBought : 0) === 1
+		//     && (userRecord ? userRecord.whitelistBought : 0) === 1
 		//       ? 0
 		//       : 1
-		//     : 5 - ((userRecord ? userRecord.publicBought : 0) + (userRecord ? userRecord.whitelistBought : 0)) || 0,
 		onChange: (v) => setSlot(parseInt(v)),
-		isDisabled: metaState.status !== "PRIVATE_SALE" && metaState.status !== "PUBLIC_SALE",
+		isDisabled: metaState.status !== "PRIVATE_SALE",
 	});
 
 	const inc = getIncrementButtonProps();
@@ -78,24 +77,6 @@ function BuyDoge() {
 		logLocation();
 	};
 
-	const PublicSale = async () => {
-		let check = await checkSmartContract(metaState.accountLogin);
-		// let wallet = (await getUserRecord(metaState.accountLogin)) >= 5;
-
-		if (!check) {
-			toast("error", "Failed to check smart contract");
-			return;
-		}
-		// if (wallet) {
-		//   toast("error", "Confirm error , each wallet only 5 nft");
-		//   return;
-		// }
-		toast("success", "Confirm successfully! Please wait about 30 seconds");
-		// await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice());
-		queryClient.invalidateQueries("_getUserRecord");
-		// await logLocation(cookies);
-	};
-
 	const handleConfirm = async () => {
 		setIsLoadingBtn(true);
 		try {
@@ -106,9 +87,6 @@ function BuyDoge() {
 				} else {
 					if (metaState.status === "PRIVATE_SALE") {
 						await PrivateSale();
-						setIsLoadingBtn(false);
-					} else if (metaState.status === "PUBLIC_SALE") {
-						await PublicSale();
 						setIsLoadingBtn(false);
 					} else {
 						toast("error", "End Sale");
@@ -127,30 +105,16 @@ function BuyDoge() {
 	};
 
 	return (
-		<Flex
-			fontSize={{
-				base: "1rem",
-				sm: "1rem",
-				md: "1rem",
-				xl: "1rem",
-				xxl: "1.2rem",
-				xxxl: "2rem",
-			}}
-			p="2"
-			flexDir="column"
-			w="100%"
-		>
+		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
 			<Flex alignItems="center" flexDir="row" justifyContent="space-between">
 				<MyHeading textAlign="left" color="yellow.500">
 					{metaState.status === "NOT_FOR_SALE"
 						? "WAITING FOR PRIVATE SALE"
 						: metaState.status === "PRIVATE_SALE"
 						? "PRIVATE SALE SIPHER NFT"
-						: metaState.status === "PUBLIC_SALE"
-						? "PUBLIC SALE SIPHER NFT"
 						: metaState.status === "END_SALE"
 						? "NO SALE AVAILABLE YET"
-						: "TRY AGAIN"}
+						: "NO SALE AVAILABLE YET"}
 				</MyHeading>
 				{/* {!isLoadingWhiteList && isWhiteList && (
           <chakra.span
@@ -171,8 +135,6 @@ function BuyDoge() {
 				{metaState.status === "END_SALE"
 					? "Comeback later!"
 					: metaState.status === "PRIVATE_SALE"
-					? "Are you feeling lucky today ?"
-					: metaState.status === "PUBLIC_SALE"
 					? "Are you feeling lucky today ?"
 					: "Patience leads to success"}
 			</MyText>
@@ -210,7 +172,7 @@ function BuyDoge() {
 					</Flex>
 				</Flex>
 			</Box>
-			<Flex pos="relative" fontSize={["sm", "md", "lg"]} mt="4" w="100%" flexDir="row" alignItems="center">
+			<Flex pos="relative" fontSize={["sm", "sm", "md", "lg"]} mt="4" w="100%" flexDir="row" alignItems="center">
 				<chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
 					You will pay:
 					<MyText mx="2" color="yellow.500">
