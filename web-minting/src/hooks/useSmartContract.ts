@@ -1,15 +1,13 @@
-import { useContext } from "react";
 import Web3 from "web3";
 import { useQuery } from "react-query";
 import { SMARTCONTRACT_SALE, SMARTCONTRACT_INU } from "../utils/key_auth";
-import INU from "@src/contract/INU.json";
-import SALE from "@src/contract/SALE.json";
+import INU from "../contract/INU";
+import SALE from "../contract/SALE";
 import { checkgas } from "../api/user";
 import { useWalletContext } from "@hooks/storeWallet/store";
 
-const provider = window !== undefined && window.ethereum;
+const provider = typeof window !== "undefined" && window.ethereum;
 const web3 = new Web3(provider);
-
 export const useSmartContract = () => {
 	const { values, setValue } = useWalletContext();
 

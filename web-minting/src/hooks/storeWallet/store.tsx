@@ -1,4 +1,4 @@
-import useFormCore from "@src/hooks/useFormCore";
+import useFormCore from "@hooks/useFormCore";
 import { createContext, useContext, useReducer } from "react";
 
 interface TypeState {

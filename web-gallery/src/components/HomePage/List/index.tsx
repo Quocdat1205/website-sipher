@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { SimpleGrid, Grid, chakra, Flex, Heading, Box, CircularProgress, Image } from "@chakra-ui/react";
+import { Heading, SimpleGrid, chakra, Flex, Box, CircularProgress, Image } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery } from "react-query";
@@ -8,7 +8,7 @@ import { getAllNFTs } from "@api/nfts";
 import Card from "./Card";
 import Filter from "./Filter";
 import BorderLine from "@components/BorderLine";
-import { MyButton, MyText } from "@sipher/web-components";
+import { MyButton, MyHeading, MyText } from "@sipher/web-components";
 import { useStoreActions, useStoreState } from "@src/store";
 interface Props {}
 
@@ -45,7 +45,7 @@ const HomeList = (props: Props) => {
 	}, [search, setQueryTitle]);
 
 	const handleClick = (id: string) => {
-		router.push(`/list/${id}`);
+		router.push(`/${id}`);
 	};
 	return (
 		<Flex

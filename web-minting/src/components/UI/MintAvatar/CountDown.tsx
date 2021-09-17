@@ -1,5 +1,5 @@
 import { Box, chakra, HStack, Text } from "@chakra-ui/react";
-import { useMetamask } from "@src/hooks/useMetamask";
+import { useMetamask } from "@hooks/useMetamask";
 import React, { useEffect, useState } from "react";
 
 function CountDown() {
