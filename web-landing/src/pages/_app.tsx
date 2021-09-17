@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                         <meta name="theme-color" content="#000000" />
                         <meta name="description" content="NFTs & games project" />
                         <link rel="apple-touch-icon" href="/images/general/logo_web.ico" />
-                        <title>Sipher</title>
+                        <title>Welcome to Sipher</title>
                         <meta
                             name="description"
                             content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon!  "
