@@ -104,7 +104,7 @@ export const faqContent: FaqItem[] = [
 export const atlas = [
     {
         title: "Sipher Atlas",
-        icon: "/logo/logo_web.jpg",
+        icon: "/images/general/logo_web.ico",
         path: "https://sipher.gitbook.io/sipher-atlas/",
     },
 ]
