@@ -3,7 +3,6 @@
 import { Flex, chakra, SimpleGrid } from "@chakra-ui/react"
 import { TextContainer, ViewContainer, MotionContainer, BackgroundContainer } from "@components/shared"
 import { roadmapContent, sipherTeamContent } from "@constant/content/roadmapAndTeam"
-import useDevice from "@hooks/useDevice"
 import MemberCard from "./MemberCard"
 import TimelineCard from "./TimelineCard"
 interface HomeBodyProps {
@@ -11,7 +10,6 @@ interface HomeBodyProps {
 }
 
 const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
-    const device = useDevice()
     return (
         <MotionContainer>
             <BackgroundContainer>
@@ -25,7 +23,15 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                             }
                             maxW="60rem"
                         >
-                            <SimpleGrid columns={device === "phone" ? 1 : 3} spacing={8}>
+                            <SimpleGrid
+                                columns={3}
+                                spacing={8}
+                                sx={{
+                                    "@media (max-width: 480px)": {
+                                        gridTemplateColumns: "repeat(1, minmax(0, 1fr))",
+                                    },
+                                }}
+                            >
                                 {roadmapContent.map(item => (
                                     <TimelineCard key={item.tag} item={item} />
                                 ))}
@@ -43,7 +49,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                             }
                             maxW="60rem"
                         >
-                            <SimpleGrid minChildWidth={device === "phone" ? "6rem" : "12rem"} spacing={8}>
+                            <SimpleGrid minChildWidth={"16rem"} spacing={8}>
                                 {sipherTeamContent.map(item => (
                                     <MemberCard key={item.id} item={item} />
                                 ))}

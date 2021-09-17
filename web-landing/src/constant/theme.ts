@@ -53,6 +53,7 @@ const theme = extendTheme({
             baseStyle: {
                 fontFamily: "Chakra Petch",
                 letterSpacing: "1px",
+                color: "whiteAlpha.900",
             },
         },
         Text: {

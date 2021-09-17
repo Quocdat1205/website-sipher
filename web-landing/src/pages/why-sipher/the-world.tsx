@@ -3,6 +3,7 @@ import { ReactElement } from "react"
 import WhySipherUI from "@components/UI/WhySipherPage"
 import TheWorld from "@components/UI/WhySipherPage/TheWorld"
 import Head from "next/head"
+import MainLayout from "@components/UI/MainLayout"
 const WhySipherPage: NextPageWithLayout = () => {
     return <TheWorld />
 }
@@ -13,7 +14,9 @@ WhySipherPage.getLayout = (page: ReactElement) => {
             <Head>
                 <title>Why Sipher</title>
             </Head>
-            <WhySipherUI>{page}</WhySipherUI>
+            <MainLayout>
+                <WhySipherUI>{page}</WhySipherUI>
+            </MainLayout>
         </>
     )
 }

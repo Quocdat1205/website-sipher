@@ -4,7 +4,6 @@ import { Flex, SimpleGrid } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { MotionContainer, TextContainer, ViewContainer, BackgroundContainer, Paragraph } from "@components/shared"
 import { factionsContent } from "@constant/content/why"
-import useDevice from "@hooks/useDevice"
 import useWhySipherPageContext from "../useWhySipherPage"
 import FactionCard from "./FactionCard"
 
@@ -12,7 +11,6 @@ interface FactionsProps {}
 
 const Factions = ({}: FactionsProps) => {
     const setSelectedAnchor = useWhySipherPageContext()
-    const device = useDevice()
     return (
         <MotionContainer>
             <BackgroundContainer>
@@ -22,7 +20,15 @@ const Factions = ({}: FactionsProps) => {
                             {factionsContent.main.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
-                            <SimpleGrid columns={device === "phone" ? 1 : 3} spacing={4}>
+                            <SimpleGrid
+                                columns={3}
+                                spacing={8}
+                                sx={{
+                                    "@media (max-width: 480px)": {
+                                        gridTemplateColumns: "repeat(1, minmax(0, 1fr))",
+                                    },
+                                }}
+                            >
                                 <FactionCard
                                     headline="Maximalist Templars"
                                     image="/images/pc/why/faction1.png"

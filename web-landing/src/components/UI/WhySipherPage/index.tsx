@@ -1,7 +1,6 @@
 // * DESCRIPTION:
 
 import { Flex, Box, HStack } from "@chakra-ui/react"
-import useDevice from "@hooks/useDevice"
 import { useRouter } from "next/dist/client/router"
 import React, { useState } from "react"
 import { textToPath } from "src/utils"
@@ -15,7 +14,6 @@ interface WhySipherUIProps {
 
 const WhySipherUI = ({ children }: WhySipherUIProps) => {
     const [selectedAnchor, setSelectedAnchor] = useState("world-block-category")
-    const device = useDevice()
     const router = useRouter()
     const getActiveId = () =>
         WhySipherSideBarMenu.find(item => router.pathname.includes(`/why-sipher/${textToPath(item.id)}`))?.id || ""
@@ -26,18 +24,26 @@ const WhySipherUI = ({ children }: WhySipherUIProps) => {
                     <SideBar selectedAnchor={selectedAnchor} setSelectedAnchor={setSelectedAnchor} />
                 </Box>
                 <Flex direction="column" flex={1} overflow="hidden">
-                    {device === "phone" && (
-                        <HStack justify="space-evenly" py={2}>
-                            {WhySipherSideBarMenu.map(item => (
-                                <TabButton
-                                    key={item.id}
-                                    type={item.id}
-                                    onClick={() => router.push(`${textToPath(item.id)}`)}
-                                    active={item.id === getActiveId()}
-                                />
-                            ))}
-                        </HStack>
-                    )}
+                    <HStack
+                        justify="space-evenly"
+                        bgGradient="linear(to-b, black, blackAlpha.100)"
+                        py={1}
+                        display="none"
+                        sx={{
+                            "@media (max-width: 960px)": {
+                                display: "flex",
+                            },
+                        }}
+                    >
+                        {WhySipherSideBarMenu.map(item => (
+                            <TabButton
+                                key={item.id}
+                                type={item.id}
+                                onClick={() => router.push(`${textToPath(item.id)}`)}
+                                active={item.id === getActiveId()}
+                            />
+                        ))}
+                    </HStack>
                     <Box flex={1} overflow="hidden">
                         {children}
                     </Box>

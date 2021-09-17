@@ -1,14 +1,23 @@
 // * DESCRIPTION:
 
-import { Box, BoxProps } from "@chakra-ui/layout"
+import { Box, BoxProps, chakra, Spinner, Grid, Text, Flex } from "@chakra-ui/react"
 
 interface SpecialButtonProps extends BoxProps {
     text: React.ReactNode
     as?: BoxProps["as"]
     href?: string
+    isLoading?: boolean
+    loadingText?: string
 }
 
-export const SpecialButton = ({ text, as = "button", href, ...rest }: SpecialButtonProps) => {
+export const SpecialButton = ({
+    text,
+    as = "button",
+    href,
+    isLoading,
+    loadingText = "Submitting",
+    ...rest
+}: SpecialButtonProps) => {
     return (
         <Box
             as={as}
@@ -24,9 +33,18 @@ export const SpecialButton = ({ text, as = "button", href, ...rest }: SpecialBut
             color="white"
             shadow="base"
             letterSpacing="1px"
+            pos="relative"
             {...rest}
         >
-            {text}
+            {isLoading && (
+                <Grid pos="absolute" top={0} left={0} w="full" h="full" placeItems="center">
+                    <Flex align="center">
+                        <Spinner size="sm" thickness="3px" />
+                        <Text ml={4}>{loadingText}</Text>
+                    </Flex>
+                </Grid>
+            )}
+            <chakra.span color={isLoading ? "transparent" : "inherit"}>{text}</chakra.span>
         </Box>
     )
 }

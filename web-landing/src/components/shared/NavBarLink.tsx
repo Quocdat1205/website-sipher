@@ -13,10 +13,11 @@ interface NavBarLinkProps {
 export const NavBarLink = ({ onClick, text, active, href }: NavBarLinkProps) => {
     const router = useRouter()
     return (
-        <Box onClick={onClick} color="white" pos="relative" minW="6rem" cursor="pointer">
+        <Box onClick={onClick} color="white" pos="relative" cursor="pointer">
             <MyText
                 variant="unstyled"
-                fontSize={["sm", "md", "lg"]}
+                fontSize={["sm", "sm", "md", "lg"]}
+                minW={["4rem", "4rem", "6rem"]}
                 fontWeight="bold"
                 w="full"
                 textAlign="center"
