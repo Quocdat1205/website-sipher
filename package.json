@@ -1,21 +1,25 @@
 {
-	"name": "sipher",
-	"version": "1.0.0",
-	"description": "Sipher web project",
-	"main": "index.js",
-	"repository": "https://github.com/quocanhbk/sipher",
-	"author": "La Quoc Anh",
-	"license": "MIT",
-	"private": true,
-	"workspaces": [
-		"web-landing",
-		"web-gallery",
-		"web-components",
-		"web-minting"
-	],
-	"scripts": {
-		"build-components": "cd web-components && yarn && yarn build",
-		"build-landing-page": "cd web-landing && yarn build",
-		"install-landing-page": "yarn build-components && cd web-components && yarn install"
-	}
+    "name": "sipher",
+    "version": "1.0.0",
+    "description": "Sipher web project",
+    "main": "index.js",
+    "repository": "https://github.com/quocanhbk/sipher",
+    "author": "La Quoc Anh",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "web-landing",
+        "web-gallery",
+        "web-components",
+        "web-minting"
+    ],
+    "scripts": {
+        "build-components": "cd web-components && yarn && yarn build",
+        "install-landing-page": "yarn build-components && cd web-landing && yarn",
+        "build-landing-page": "cd web-landing && yarn build",
+        "install-minting-page": "yarn build-components && cd web-minting && yarn",
+        "build-minting-page": "cd web-minting && yarn build",
+        "install-gallery-page": "yarn build-components && cd web-gallery && yarn",
+        "build-gallery-page": "cd web-gallery && yarn build"
+    }
 }
