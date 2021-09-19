@@ -100,7 +100,7 @@ const HomeList = (props: Props) => {
 					}}
 				>
 					{data ? (
-						<SimpleGrid columns={[5, 6, 7]} spacing={4}>
+						<SimpleGrid columns={[4, 5, 5, 6]} spacing={4}>
 							{data.pages.map((page, i) => (
 								<Fragment key={i}>
 									{page.map((item) => (
