@@ -23,10 +23,8 @@ const WorldAsBlockModal = ({ isOpen, onClose }: WorldAsBlockModalProps) => {
                     <Img src="/images/pc/why/world_as_blocks_1.png" w="full" maxW="15rem" />
                 </Flex>
                 {content2.map(c => (
-                    <Box mb={4}>
-                        <Paragraph key={c.id} mb={2}>
-                            {c.id}
-                        </Paragraph>
+                    <Box mb={4} key={c.id}>
+                        <Paragraph mb={2}>{c.id}</Paragraph>
                         {c.paragraphs.map(paragraph => (
                             <Paragraph key={paragraph.boldText} size="medium" mb={2}>
                                 <chakra.span fontWeight="bold">{paragraph.boldText}</chakra.span>{" "}
