@@ -15,7 +15,7 @@ import { usePostSubscribe } from "@hooks/api/subscribe"
 import useChakraToast from "@hooks/useChakraToast"
 import useFormCore from "@hooks/useFormCore"
 import { useStoreActions, useStoreState } from "@store"
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { isEmail } from "src/utils"
 import { Paragraph, SpecialButton, TextFormControl } from "."
 
@@ -24,6 +24,7 @@ interface SubscribeModalProps {}
 export const SubscribeModal = ({}: SubscribeModalProps) => {
     const subscribeModal = useStoreState(state => state.subscribeModal)
     const setSubscribeModal = useStoreActions(action => action.setSubscribeModal)
+    const inputRef = useRef<HTMLInputElement>(null)
     const { values, setValue, errors, setError, initForm } = useFormCore({
         email: "",
         full_name: "",
@@ -60,7 +61,7 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
     }
 
     return (
-        <Modal isOpen={subscribeModal} onClose={() => setSubscribeModal(false)} isCentered>
+        <Modal isOpen={subscribeModal} onClose={() => setSubscribeModal(false)} isCentered initialFocusRef={inputRef}>
             <ModalOverlay />
             <ModalContent
                 bg="red.300"
@@ -87,6 +88,7 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
                                 onChange={newValue => setValue("email", newValue)}
                                 error={errors.email}
                                 isRequired
+                                inputRef={inputRef}
                             />
                             <TextFormControl
                                 label="Name"
