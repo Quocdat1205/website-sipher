@@ -10,7 +10,7 @@ interface Props {
 
 const AccountAddress = ({ account = "", signOut }: Props) => {
 	return (
-		<Flex borderLeft="1px" pl="3" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
+		<Flex borderLeft="1px" ml="4" pl="3" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
 			<Box
 				zIndex="1"
 				bg="black"
@@ -65,13 +65,13 @@ const AccountAddress = ({ account = "", signOut }: Props) => {
 										...
 										{account.slice(account.length - 4, account.length)}
 									</Text>
-									<Text color="blue.500" fontSize="0.8rem">
+									<Text cursor="pointer" color="blue.500" fontSize="0.8rem">
 										Set display name
 									</Text>
 								</Box>
 								<CopyClipboard />
 							</Flex>
-							<MenuItem minH="48px" _hover={{ bg: "gray.700" }}>
+							<MenuItem minH="48px" _focus={{ bg: "none" }} _hover={{ bg: "gray.700" }}>
 								<span>My Account</span>
 							</MenuItem>
 							<MenuItem minH="48px" _hover={{ bg: "gray.700" }}>

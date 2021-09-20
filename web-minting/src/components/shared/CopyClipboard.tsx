@@ -18,7 +18,7 @@ const CopyClipboard = (props: Props) => {
 			aria-label="copy-clipboard"
 			onClick={handleCopy}
 			_hover={{ bg: "none" }}
-			icon={<AiFillCopy fontSize="24px" />}
+			icon={<AiFillCopy fontSize="20px" />}
 		/>
 	);
 };

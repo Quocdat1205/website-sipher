@@ -1,10 +1,11 @@
 // * DESCRIPTION:
-import { Flex, HStack, Img } from "@chakra-ui/react";
+import { Text, Flex, HStack, Img } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NavBarLink } from "./NavBarLink";
 import { useMetamask } from "@hooks/useMetamask";
 import useChakraToast from "@hooks/useChakraToast";
 import AccountAddress from "./AccountAddress";
+import TotalSupplyNFTs from "./TotalSupplyNFTs";
 
 interface NavBarProps {}
 
@@ -46,6 +47,7 @@ export const NavBar = ({}: NavBarProps) => {
 					/>
 				))}
 			</HStack>
+			<TotalSupplyNFTs />
 			<AccountAddress signOut={signOut} account={metaState.accountLogin} />
 		</Flex>
 	);
