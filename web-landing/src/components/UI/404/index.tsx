@@ -21,7 +21,7 @@ const NotFoundUI = ({}: NotFoundUIProps) => {
         >
             <Flex direction="column" align="center">
                 <Box h="8rem" mb={4} overflow="hidden" cursor="pointer" onClick={() => router.push("/")}>
-                    <Img src="/logo/logo192.png" h="full" />
+                    <Img src="/images/general/logo512.png" h="full" />
                 </Box>
                 <MyText fontSize={["xl", "2xl"]} textTransform="uppercase" color="main.yellow" fontWeight="bold" mb={4}>
                     {`Look like you've lost!`}

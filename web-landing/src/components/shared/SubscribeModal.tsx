@@ -17,7 +17,7 @@ import useFormCore from "@hooks/useFormCore"
 import { useStoreActions, useStoreState } from "@store"
 import React, { useEffect, useRef } from "react"
 import { isEmail } from "src/utils"
-import { Paragraph, SpecialButton, TextFormControl } from "."
+import { ChakraModal, Paragraph, SpecialButton, TextFormControl } from "."
 
 interface SubscribeModalProps {}
 
@@ -61,57 +61,41 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
     }
 
     return (
-        <Modal isOpen={subscribeModal} onClose={() => setSubscribeModal(false)} isCentered initialFocusRef={inputRef}>
-            <ModalOverlay />
-            <ModalContent
-                bg="red.300"
-                rounded="0"
-                bgGradient="linear(to-r, main.purple, main.pinkRed, main.yellow)"
-                p={1}
-            >
-                <ModalCloseButton color="main.darkRed" _focus={{ border: "0px" }} />
-                <ModalBody bg="black">
-                    <Flex direction="column" align="center" px={2} py={4} pt={6}>
-                        <Heading
-                            color="whiteAlpha.900"
-                            fontSize={["sm", "md", "lg"]}
-                            fontWeight="semibold"
-                            textTransform="uppercase"
-                            mb={4}
-                        >
-                            Sign up to receive <chakra.span color="main.darkRed">Sipherian News</chakra.span>
-                        </Heading>
-                        <Box w="full">
-                            <TextFormControl
-                                label="Email address"
-                                value={values.email}
-                                onChange={newValue => setValue("email", newValue)}
-                                error={errors.email}
-                                isRequired
-                                inputRef={inputRef}
-                            />
-                            <TextFormControl
-                                label="Name"
-                                value={values.full_name}
-                                onChange={newValue => setValue("full_name", newValue)}
-                            />
-                        </Box>
-                        <Box>
-                            <Paragraph size="small">
-                                <chakra.span as="b">Attention:</chakra.span> Signing up meaning you agree to our Privacy
-                                Policy. We take privacy very seriously and will not spam our fellow Sipherians.
-                            </Paragraph>
-                        </Box>
-                        <SpecialButton
-                            text="Subscribe"
-                            onClick={submit}
-                            isLoading={isLoading}
-                            loadingText="Subscribing"
-                        />
-                    </Flex>
-                </ModalBody>
-            </ModalContent>
-        </Modal>
+        <ChakraModal isOpen={subscribeModal} onClose={() => setSubscribeModal(false)} initialFocusRef={inputRef}>
+            <Flex direction="column" align="center" px={2} py={4} pt={6}>
+                <Heading
+                    color="whiteAlpha.900"
+                    fontSize={["sm", "md", "lg"]}
+                    fontWeight="semibold"
+                    textTransform="uppercase"
+                    mb={4}
+                >
+                    Sign up to receive <chakra.span color="main.darkRed">Sipherian News</chakra.span>
+                </Heading>
+                <Box w="full">
+                    <TextFormControl
+                        label="Email address"
+                        value={values.email}
+                        onChange={newValue => setValue("email", newValue)}
+                        error={errors.email}
+                        isRequired
+                        inputRef={inputRef}
+                    />
+                    <TextFormControl
+                        label="Name"
+                        value={values.full_name}
+                        onChange={newValue => setValue("full_name", newValue)}
+                    />
+                </Box>
+                <Box>
+                    <Paragraph size="small">
+                        <chakra.span as="b">Attention:</chakra.span> Signing up meaning you agree to our Privacy Policy.
+                        We take privacy very seriously and will not spam our fellow Sipherians.
+                    </Paragraph>
+                </Box>
+                <SpecialButton text="Subscribe" onClick={submit} isLoading={isLoading} loadingText="Subscribing" />
+            </Flex>
+        </ChakraModal>
     )
 }
 

@@ -11,15 +11,20 @@ import {
     BackgroundContainer,
 } from "@components/shared"
 import { theWorldContent } from "@constant/content/why"
+import { useState } from "react"
 import useWhySipherPageContext from "../useWhySipherPage"
+import MoonBaseModal from "./MoonBaseModal"
+import WorldAsBlockModal from "./WorldAsBlockModal"
 interface TheWorldProps {}
 
 const TheWorld = ({}: TheWorldProps) => {
     const setSelectedAnchor = useWhySipherPageContext()
-
+    const [modal, setModal] = useState("")
     return (
         <MotionContainer>
             <BackgroundContainer>
+                <WorldAsBlockModal isOpen={modal === "WorldBlocks"} onClose={() => setModal("")} />
+                <MoonBaseModal isOpen={modal === "MoonBase"} onClose={() => setModal("")} />
                 <ViewContainer label="World Block Category" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
                         <TextContainer
@@ -34,7 +39,14 @@ const TheWorld = ({}: TheWorldProps) => {
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
                             <Paragraph>
-                                Learn more about <chakra.span color="main.yellow">World as Blocks</chakra.span>
+                                Learn more about{" "}
+                                <chakra.span
+                                    color="main.yellow"
+                                    cursor="pointer"
+                                    onClick={() => setModal("WorldBlocks")}
+                                >
+                                    World as Blocks
+                                </chakra.span>
                             </Paragraph>
                         </TextContainer>
                         <ResponsiveImg src="/images/pc/why/why1.png" alt="sipher-the-world-1" />
@@ -52,7 +64,10 @@ const TheWorld = ({}: TheWorldProps) => {
                         >
                             <Paragraph>{theWorldContent.gameCharactersAsNfts[0]}</Paragraph>
                             <Paragraph>
-                                Learn more about <chakra.span color="main.yellow">Moon Base Station</chakra.span>
+                                Learn more about{" "}
+                                <chakra.span color="main.yellow" cursor="pointer" onClick={() => setModal("MoonBase")}>
+                                    Moon Base Station
+                                </chakra.span>
                             </Paragraph>
                         </TextContainer>
                         <ResponsiveImg src="/images/pc/why/why2.png" alt="sipher-the-world-2" />
