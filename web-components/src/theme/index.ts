@@ -55,6 +55,10 @@ export const theme = extendTheme({
 				borderRadius: "99px",
 				background: "yellow.300",
 			},
+			":focus": {
+				boxShadow: "none",
+				outline: "none",
+			},
 		},
 	},
 });

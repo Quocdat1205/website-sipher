@@ -13,7 +13,10 @@ interface TypeState {
 	isSignature: boolean;
 	totalSupply: number;
 	time: number;
-	status: string;
+	status: {
+		private: string;
+		public: string;
+	};
 }
 
 const initialState: TypeState = {
@@ -25,7 +28,7 @@ const initialState: TypeState = {
 	isSignature: false,
 	totalSupply: 0,
 	time: 0,
-	status: "NOT_FOR_SALE",
+	status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
 };
 
 type IWalletContext = { values: TypeState; setValue: (field: keyof TypeState, value: any) => void };

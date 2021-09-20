@@ -2,7 +2,7 @@ import { Image } from "@chakra-ui/image";
 import { Flex } from "@chakra-ui/layout";
 import React from "react";
 import BuyDoge from "./BuyDoge";
-import HowtoMint from "./HowtoMint";
+import HowtoMint from "@components/shared/HowtoMint";
 
 interface Props {}
 
@@ -52,7 +52,7 @@ const PublicSale = (props: Props) => {
 				p="2%"
 				bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
 			>
-				<HowtoMint />
+				<HowtoMint activePublic />
 			</Flex>
 		</Flex>
 	);

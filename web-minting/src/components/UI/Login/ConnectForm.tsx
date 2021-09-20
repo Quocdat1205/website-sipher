@@ -18,9 +18,9 @@ const ConnectForm = () => {
 			(async () => {
 				try {
 					await connect();
-					setIsLoading(false);
 					router.push("/minting-private");
 					toast("success", "Connect successfully");
+					setIsLoading(false);
 				} catch (err: any) {
 					if (err.code === 4001) {
 						toast("error", "Please connect or signature to MetaMask");
@@ -37,6 +37,7 @@ const ConnectForm = () => {
 			if (metaState.isAvailable && metaState.isConnected) {
 				router.push("/minting-private");
 				toast("warning", "Metamask is connected.");
+				setIsLoading(false);
 			} else {
 				toast("error", "You don't have Metamask installed");
 				setIsLoading(false);

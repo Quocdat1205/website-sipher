@@ -23,16 +23,6 @@ function BuyDoge() {
 	//   }
 	// );
 
-	// const { data: isWhiteList, isLoading: isLoadingWhiteList } = useQuery(
-	//   "isWhiteList",
-	//   () => getWhiteList(metaState.accountLogin),
-	//   {
-	//     onError: (error) => {
-	//       console.log(error);
-	//     },
-	//   }
-	// );
-
 	const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
 		step: 1,
 		value: slot,

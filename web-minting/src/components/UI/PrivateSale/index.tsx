@@ -2,7 +2,7 @@ import React from "react";
 import { Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import BuyDoge from "./BuyDoge";
-import HowtoMint from "./HowtoMint";
+import HowtoMint from "@components/shared/HowtoMint";
 
 interface Props {}
 

@@ -25,7 +25,7 @@ export const NavBar = ({}: NavBarProps) => {
 	};
 
 	return (
-		<Flex px={4} py={4} bg="black" align="center" justify="space-between" overflow="hidden">
+		<Flex px={4} py={4} bg="black" align="center" justify="space-between">
 			<Flex
 				cursor="pointer"
 				mr="4"
