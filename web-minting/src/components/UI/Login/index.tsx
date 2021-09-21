@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDisclosure, SlideFade, Flex, Box } from "@chakra-ui/react";
 import FirstForm from "./FirstForm";
 import ConnectForm from "./ConnectForm";
+import NotSuport from "./NotSuport";
 
 interface Props {}
 
@@ -25,15 +26,25 @@ const Login = (props: Props) => {
 			color="whiteAlpha.800"
 		>
 			<Box
-				minH="450px"
+				minH={["200px", "250px", "450px", "450px"]}
 				w="600px"
 				rounded="0"
 				bgGradient="linear(to-r, main.purple, main.pinkRed, main.yellow)"
 				p="1"
 			>
-				<Flex align="center" justify="center" bg="black" p="4" minH="450px" w="full">
+				<Flex
+					align="center"
+					justify="center"
+					bg="black"
+					p="4"
+					minH={["200px", "250px", "450px", "450px"]}
+					w="full"
+				>
 					{!redirect ? (
-						<FirstForm handleRedirect={handleRedirect} />
+						<>
+							<FirstForm handleRedirect={handleRedirect} />
+							<NotSuport />
+						</>
 					) : (
 						<SlideFade style={{ width: "100%" }} in={isOpen} offsetX="50pSlideFadex">
 							<ConnectForm />

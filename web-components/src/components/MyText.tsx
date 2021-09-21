@@ -5,7 +5,7 @@ interface MyTextProps extends TextProps {}
 
 export const MyText = (props: MyTextProps) => {
 	return (
-		<Text fontSize={["sm", "sm", "md", "lg"]} {...props}>
+		<Text fontSize={["xs", "sm", "md", "lg"]} {...props}>
 			{props.children}
 		</Text>
 	);

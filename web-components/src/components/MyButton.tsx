@@ -5,7 +5,7 @@ interface MyButtonProps extends ButtonProps {}
 
 export const MyButton = (props: MyButtonProps) => {
 	return (
-		<Button fontSize={["sm", "sm", "md", "lg"]} {...props}>
+		<Button fontSize={["xs", "sm", "md", "lg"]} {...props}>
 			{props.children}
 		</Button>
 	);

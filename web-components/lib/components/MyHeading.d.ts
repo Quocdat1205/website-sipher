@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { HeadingProps } from "@chakra-ui/layout";
 interface MyHeadingProps extends HeadingProps {
 }

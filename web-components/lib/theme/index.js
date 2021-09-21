@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 export var theme = extendTheme({
-    breakpoints: ["0px", "768px", "960px", "1440px"],
+    breakpoints: ["0px", "480px", "960px", "1440px"],
     colors: {
         main: {
             yellow: "#F4B533",

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Heading, CircularProgress, Table, IconButton, Tbody, Tr, Box, Flex, chakra, Image } from "@chakra-ui/react";
+import { CircularProgress, Table, IconButton, Tbody, Tr, Box, Flex, chakra, Image } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { FiChevronLeft } from "react-icons/fi";
 import { useRouter } from "next/dist/client/router";
 
 import { getMerkle, getNFTId } from "@api/nfts";
 import { MyHeading, MyButton, MyText, MyTd } from "@sipher/web-components";
-import BorderLine from "@components/BorderLine";
+import BorderLine from "@components/shared/BorderLine";
 
 const HomeDetails = () => {
 	const [notFound, setNotFound] = useState(false);
@@ -54,29 +54,24 @@ const HomeDetails = () => {
 						onClick={() => router.push("/")}
 					/>
 				</Flex>
-				<Flex ml="4">
+				<Flex ml={[2, 4]}>
 					<chakra.a href="https://sipher.xyz" display="block" cursor="pointer">
-						<Image h="2rem" src="https://sipher.xyz/images/general/logo_pc.png" alt="" />
+						<Image
+							h={["1.5rem", "2rem", "2rem", "2rem"]}
+							src="https://sipher.xyz/images/general/logo_pc.png"
+							alt=""
+						/>
 					</chakra.a>
 				</Flex>
-				<Heading ml="4" size="xl" fontWeight="normal" flex="1" py="2" color="red.500">
+				<MyHeading ml="4" fontWeight="normal" flex="1" py="2" color="red.500">
 					Details
-				</Heading>
-				<MyButton
-					bgGradient="linear(180deg, #FF6795 0%, #FF710B 84.37%)"
-					colorScheme="orange"
-					color="whiteAlpha.800"
-					borderRadius="99"
-					onClick={() => (window.location.href = "https://sipher.xyz/")}
-				>
-					Back to home
-				</MyButton>
+				</MyHeading>
 			</Flex>
 			<BorderLine />
 			{!notFound ? (
 				!isLoading && infoNFT && merkle ? (
 					<Flex className="nice-scroll" overflow="auto" p="4" algin="center" flexDir="column">
-						<Flex py="2%" flexDir="row">
+						<Flex py="2%" flexDir={["column", "row"]}>
 							<Box flex="1">
 								<Box p="2" borderColor="whiteAlpha.600" border="1px">
 									<Image src={infoNFT.image} alt="" />
@@ -87,7 +82,7 @@ const HomeDetails = () => {
 									<chakra.span ml="0.5rem" h={["3px", "4px", "5px"]} flex="1" bg="whiteAlpha.300" />
 								</Flex>
 							</Box>
-							<Flex flexDir="column" flex="2" ml="4">
+							<Flex flexDir="column" flex="2" ml={[0, 4]}>
 								<Box>
 									<MyHeading borderBottom="1px" borderColor="whiteAlpha.700" pb="2">
 										{infoNFT.name}

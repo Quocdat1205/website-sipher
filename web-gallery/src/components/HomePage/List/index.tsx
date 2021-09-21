@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { Heading, SimpleGrid, chakra, Flex, Box, CircularProgress, Image } from "@chakra-ui/react";
+import { SimpleGrid, chakra, Flex, Box, CircularProgress, Image } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery } from "react-query";
@@ -7,7 +7,7 @@ import { useInfiniteQuery } from "react-query";
 import { getAllNFTs } from "@api/nfts";
 import Card from "./Card";
 import Filter from "./Filter";
-import BorderLine from "@components/BorderLine";
+import BorderLine from "@components/shared/BorderLine";
 import { MyButton, MyHeading, MyText } from "@sipher/web-components";
 import { useStoreActions, useStoreState } from "src/store";
 interface Props {}
@@ -59,21 +59,26 @@ const HomeList = (props: Props) => {
 			<Flex py="2" align="center" justify="space-between">
 				<Flex>
 					<chakra.a href="https://sipher.xyz" display="block" cursor="pointer">
-						<Image h="2rem" src="https://sipher.xyz/images/general/logo_pc.png" alt="" />
+						<Image
+							h={["1.5rem", "2rem", "2rem", "2rem"]}
+							src="https://sipher.xyz/images/general/logo_pc.png"
+							alt=""
+						/>
 					</chakra.a>
 				</Flex>
-				<Heading ml="4" size="xl" fontWeight="normal" flex="1" py="2" color="red.500">
+				<MyHeading ml="4" fontWeight="normal" flex="1" py="2" color="red.500">
 					NFTs Sipherian Surge List
-				</Heading>
-				<MyButton
+				</MyHeading>
+				{/* <MyButton
 					bgGradient="linear(180deg, #FF6795 0%, #FF710B 84.37%)"
 					colorScheme="orange"
 					color="whiteAlpha.800"
 					borderRadius="99"
+					p={[2, 4]}
 					onClick={() => (window.location.href = "https://sipher.xyz/")}
 				>
 					Back to home
-				</MyButton>
+				</MyButton> */}
 			</Flex>
 			<BorderLine />
 			<Filter setSearch={setSearch} />
@@ -100,7 +105,7 @@ const HomeList = (props: Props) => {
 					}}
 				>
 					{data ? (
-						<SimpleGrid columns={[4, 5, 5, 6]} spacing={4}>
+						<SimpleGrid columns={[1, 3, 5, 6]} spacing={4}>
 							{data.pages.map((page, i) => (
 								<Fragment key={i}>
 									{page.map((item) => (

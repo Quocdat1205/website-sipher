@@ -12,6 +12,6 @@ var __assign = (this && this.__assign) || function () {
 import { Heading } from "@chakra-ui/layout";
 import React from "react";
 export var MyHeading = function (props) {
-    return (React.createElement(Heading, __assign({ fontSize: ["lg", "xl", "2xl"] }, props), props.children));
+    return (React.createElement(Heading, __assign({ fontSize: ["md", "lg", "xl", "2xl"] }, props), props.children));
 };
 export default MyHeading;

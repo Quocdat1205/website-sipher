@@ -4,6 +4,6 @@ import React from "react";
 interface MyInputProps extends InputProps {}
 
 export const MyInput = (props: MyInputProps) => {
-	return <Input fontSize={["sm", "sm", "md", "lg"]} {...props} />;
+	return <Input fontSize={["xs", "sm", "md", "lg"]} {...props} />;
 };
 export default MyInput;

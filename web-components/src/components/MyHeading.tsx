@@ -5,7 +5,7 @@ interface MyHeadingProps extends HeadingProps {}
 
 export const MyHeading = (props: MyHeadingProps) => {
 	return (
-		<Heading fontSize={["lg", "xl", "2xl"]} {...props}>
+		<Heading fontSize={["md", "lg", "xl", "2xl"]} {...props}>
 			{props.children}
 		</Heading>
 	);

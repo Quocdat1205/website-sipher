@@ -5,7 +5,7 @@ interface MySelectProps extends SelectProps {}
 
 export const MySelect = (props: MySelectProps) => {
 	return (
-		<Select fontSize={["sm", "sm", "md", "lg"]} {...props}>
+		<Select fontSize={["xs", "sm", "md", "lg"]} {...props}>
 			{props.children}
 		</Select>
 	);

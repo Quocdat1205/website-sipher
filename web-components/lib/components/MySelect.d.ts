@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { SelectProps } from "@chakra-ui/react";
 interface MySelectProps extends SelectProps {
 }
