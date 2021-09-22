@@ -1,32 +1,39 @@
 // * DESCRIPTION:
 
-import { NavButton, BaseSideBar } from "@components/shared"
-import { textToPath } from "src/utils"
+import { NavButton, BaseSideBar } from "@components/shared";
+import { textToPath } from "src/utils";
 
-const HomeSideBarMenu = ["Home", "Sipheria The Universe", "First Fleet Sipherian Surge", "Game Characters As NFTs"]
+const HomeSideBarMenu = [
+	"Home",
+	"What is Sipher",
+	"Why is Sipher",
+	"Owner Benefits",
+	"Play to Earn",
+	"Join the Community",
+];
 
 interface SideBarProps {
-    selectedAnchor: string
-    setSelectedAnchor: (newAnchor: string) => void
+	selectedAnchor: string;
+	setSelectedAnchor: (newAnchor: string) => void;
 }
 
 const SideBar = ({ selectedAnchor, setSelectedAnchor }: SideBarProps) => {
-    return (
-        <BaseSideBar>
-            {HomeSideBarMenu.map(item => (
-                <NavButton
-                    key={item}
-                    text={item}
-                    onClick={() => {
-                        setSelectedAnchor(textToPath(item))
-                        history.replaceState(undefined, "", `#${textToPath(item)}`)
-                        document.querySelector(`#${textToPath(item)}`)?.scrollIntoView({ behavior: "smooth" })
-                    }}
-                    active={selectedAnchor === textToPath(item)}
-                />
-            ))}
-        </BaseSideBar>
-    )
-}
+	return (
+		<BaseSideBar>
+			{HomeSideBarMenu.map((item) => (
+				<NavButton
+					key={item}
+					text={item}
+					onClick={() => {
+						setSelectedAnchor(textToPath(item));
+						history.replaceState(undefined, "", `#${textToPath(item)}`);
+						document.querySelector(`#${textToPath(item)}`)?.scrollIntoView({ behavior: "smooth" });
+					}}
+					active={selectedAnchor === textToPath(item)}
+				/>
+			))}
+		</BaseSideBar>
+	);
+};
 
-export default SideBar
+export default SideBar;

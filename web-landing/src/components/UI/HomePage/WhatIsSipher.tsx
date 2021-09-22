@@ -2,14 +2,15 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { chakra } from "@chakra-ui/system";
 import HeadingGradient from "@components/UI/HomePage/HeadingGradient";
 import React from "react";
+import { FlexContainer } from "./FlexContainer";
 import IntroductionVideo from "./IntroductionVideo";
 
 interface Props {}
 
 const WhatIsSipher = (props: Props) => {
 	return (
-		<>
-			<Flex flexDir="column" textAlign="center" align="center" px="15rem" mb="3rem">
+		<FlexContainer>
+			<Flex flexDir="column" textAlign="center" align="center" mb="3rem">
 				<HeadingGradient title="What is Sipher" />
 				<Text>
 					Sipher is an ambitious casual fighting and exploration Game with an End-game goal of creating Open
@@ -17,8 +18,8 @@ const WhatIsSipher = (props: Props) => {
 				</Text>
 			</Flex>
 			<IntroductionVideo videoSrc="/video/video.mp4" imgSrc="/images/pc/home/nekoteaser.png" />
-			<Flex flexDir="column" align="center" justify="center" mt="3rem">
-				<Flex w="70%" flexDir="row">
+			<Flex flexDir="column" px="4" align="center" justify="center" mt="3rem">
+				<Flex flexDir={["column", "column", "row"]}>
 					<Box flex="1">
 						<Text fontWeight="bold" ml="-4">
 							Immersive storyline
@@ -31,7 +32,7 @@ const WhatIsSipher = (props: Props) => {
 							</chakra.li>
 						</chakra.ul>
 					</Box>
-					<Box ml="8" flex="1">
+					<Box ml={[0, 4, 8]} mt={[4, 0, 0]} flex="1">
 						<Text fontWeight="bold" ml="-4">
 							Form Guilds
 						</Text>
@@ -47,7 +48,7 @@ const WhatIsSipher = (props: Props) => {
 						</chakra.ul>
 					</Box>
 				</Flex>
-				<Flex w="70%" mt="8" flexDir="row">
+				<Flex mt="8" flexDir={["column", "column", "row"]}>
 					<Box flex="1">
 						<Text fontWeight="bold" ml="-4">
 							Quests and story events
@@ -60,7 +61,7 @@ const WhatIsSipher = (props: Props) => {
 							</chakra.li>
 						</chakra.ul>
 					</Box>
-					<Box ml="8" flex="1">
+					<Box ml={[0, 4, 8]} mt={[4, 0, 0]} flex="1">
 						<Text fontWeight="bold" ml="-4">
 							MarketPlace
 						</Text>
@@ -76,7 +77,7 @@ const WhatIsSipher = (props: Props) => {
 					</Box>
 				</Flex>
 			</Flex>
-		</>
+		</FlexContainer>
 	);
 };
 

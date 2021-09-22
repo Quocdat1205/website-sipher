@@ -25,6 +25,7 @@ const theme = extendTheme({
 			darkRed3: "#D72F48",
 			darkGrey: "#242424",
 			white: "#FFFFFF",
+			lightGray: "#111111",
 		},
 		bgGradient: {
 			orange: "#FF6795 0%, #FF710B 84.37%",
