@@ -18,6 +18,7 @@ import WhatIsSipher from "./WhatIsSipher";
 import WhySipherNFT from "./WhySipherNFT";
 import OwnerBenefits from "./OwnerBenefits";
 import PlayToEarn from "./PlayToEarn";
+import JoinTheComunity from "./JoinTheComunity";
 interface HomeBodyProps {
 	setSelectedAnchor: (newAnchor: string) => void;
 }
@@ -102,6 +103,23 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
 				<ViewContainer onView={setSelectedAnchor} label="First Fleet Sipherian Surge" mb={[14, 14, 28]}>
 					<Grid p={"4rem"} h="100%" placeItems="center">
 						<PlayToEarn />
+					</Grid>
+				</ViewContainer>
+				<ViewContainer onView={setSelectedAnchor} label="First Fleet Sipherian Surge" mb={[14, 14, 28]}>
+					<Grid
+						bg="url(./images/pc/home/bannerhome.png)"
+						bgSize="100%"
+						bgRepeat="no-repeat"
+						py={["4rem", "8rem", "12rem"]}
+						sx={{
+							"@media (min-width: 1920px)": {
+								py: "16rem",
+							},
+						}}
+						h="100%"
+						placeItems="center"
+					>
+						<JoinTheComunity />
 					</Grid>
 				</ViewContainer>
 			</BackgroundContainer>

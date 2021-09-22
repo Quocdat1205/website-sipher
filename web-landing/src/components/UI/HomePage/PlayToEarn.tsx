@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
-import HeadingGradient from "@components/shared/HeadingGradient";
+import HeadingGradient from "@components/UI/HomePage/HeadingGradient";
 import React from "react";
 
 interface Props {}

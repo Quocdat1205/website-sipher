@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { chakra } from "@chakra-ui/system";
-import HeadingGradient from "@components/shared/HeadingGradient";
+import HeadingGradient from "@components/UI/HomePage/HeadingGradient";
 import React from "react";
 import IntroductionVideo from "./IntroductionVideo";
 

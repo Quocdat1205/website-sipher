@@ -1,6 +1,6 @@
 import { Flex, Heading, Wrap } from "@chakra-ui/layout";
-import IconBenefit from "@components/shared/IconBenefit";
 import React from "react";
+import IconBenefit from "./IconBenefit";
 
 interface Props {}
 
