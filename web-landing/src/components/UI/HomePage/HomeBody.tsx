@@ -13,11 +13,11 @@ import {
 	BackgroundContainer,
 } from "@components/shared";
 import IntroductionVideo from "./IntroductionVideo";
-import homeContent from "@constant/content/home";
 import { SaleMechanic } from "./SaleMechanic";
 import WhatIsSipher from "./WhatIsSipher";
 import WhySipherNFT from "./WhySipherNFT";
 import OwnerBenefits from "./OwnerBenefits";
+import PlayToEarn from "./PlayToEarn";
 interface HomeBodyProps {
 	setSelectedAnchor: (newAnchor: string) => void;
 }
@@ -42,10 +42,15 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
 						bgSize="100%"
 						h="100%"
 						placeItems="center"
-						py={["12rem", "15rem"]}
+						py={["4rem", "8rem", "12rem"]}
+						sx={{
+							"@media (min-width: 1920px)": {
+								py: "16rem",
+							},
+						}}
 					>
 						<Flex direction="column" align="center">
-							<Img src="/images/pc/home/logohome.png" maxH="6rem" alt="sipher-logo" />
+							<Img src="/images/pc/home/logohome.png" maxH="5rem" alt="sipher-logo" />
 							<Heading color="whiteAlpha.900" fontWeight="thin">
 								SOLD OUT
 							</Heading>
@@ -65,7 +70,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
 							/>
 						</Flex>
 					</Grid>
-					<Grid py={["4rem", "5.5rem"]} h="100%" placeItems="center">
+					<Grid py={["4rem"]} h="100%" placeItems="center">
 						<SaleMechanic />
 					</Grid>
 				</ViewContainer>
@@ -92,6 +97,11 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
 						placeItems="center"
 					>
 						<OwnerBenefits />
+					</Grid>
+				</ViewContainer>
+				<ViewContainer onView={setSelectedAnchor} label="First Fleet Sipherian Surge" mb={[14, 14, 28]}>
+					<Grid p={"4rem"} h="100%" placeItems="center">
+						<PlayToEarn />
 					</Grid>
 				</ViewContainer>
 			</BackgroundContainer>
