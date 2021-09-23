@@ -33,7 +33,7 @@ function CountDown({ deadline }) {
 		};
 	};
 
-	const countdown = useMemo(getCoundown, [currentTime]);
+	const countdown = useMemo(() => getCoundown, [currentTime]);
 
 	useEffect(() => {
 		const timeouts = setTimeout(() => {

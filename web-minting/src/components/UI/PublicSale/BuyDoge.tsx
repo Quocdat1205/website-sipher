@@ -29,7 +29,7 @@ function BuyDoge() {
 		min: 0,
 		// max: 5 - ((userRecord ? userRecord.publicBought : 0) + (userRecord ? userRecord.whitelistBought : 0)) || 0,
 		onChange: (v) => setSlot(parseInt(v)),
-		isDisabled: metaState.status !== "PUBLIC_SALE",
+		isDisabled: metaState.status.public !== "PUBLIC_SALE",
 	});
 
 	const inc = getIncrementButtonProps();
@@ -66,7 +66,7 @@ function BuyDoge() {
 					toast("error", "Please check your balance can not mint");
 					setIsLoadingBtn(false);
 				} else {
-					if (metaState.status === "PUBLIC_SALE") {
+					if (metaState.status.public === "PUBLIC_SALE") {
 						await PublicSale();
 						setIsLoadingBtn(false);
 					} else {
@@ -89,11 +89,11 @@ function BuyDoge() {
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
 			<Flex alignItems="center" flexDir="row" justifyContent="space-between">
 				<MyHeading textAlign="left" color="yellow.500">
-					{metaState.status === "NOT_FOR_SALE"
+					{metaState.status.public === "NOT_FOR_SALE"
 						? "WAITING FOR PUBLIC SALE"
-						: metaState.status === "PUBLIC_SALE"
+						: metaState.status.public === "PUBLIC_SALE"
 						? "PUBLIC SALE SIPHER NFT"
-						: metaState.status === "END_SALE"
+						: metaState.status.public === "END_SALE"
 						? "NO SALE AVAILABLE YET"
 						: "NO SALE AVAILABLE YET"}
 				</MyHeading>
@@ -113,9 +113,9 @@ function BuyDoge() {
         )} */}
 			</Flex>
 			<MyText textAlign="left" color="red.500">
-				{metaState.status === "END_SALE"
+				{metaState.status.public === "END_SALE"
 					? "Comeback later!"
-					: metaState.status === "PUBLIC_SALE"
+					: metaState.status.public === "PUBLIC_SALE"
 					? "Are you feeling lucky today ?"
 					: "Patience leads to success"}
 			</MyText>
@@ -157,7 +157,7 @@ function BuyDoge() {
 				<chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
 					You will pay:
 					<MyText mx="2" color="yellow.500">
-						{metaState.status !== "END_SALE" ? calculateSlotPrice() : 0}
+						{metaState.status.public !== "END_SALE" ? calculateSlotPrice() : 0}
 					</MyText>
 					ETH
 				</chakra.span>
@@ -177,15 +177,15 @@ function BuyDoge() {
 					onClick={() => handleConfirm()}
 					disabled={
 						!isLoadingBtn && slot > 0
-							? metaState.status === "NOT_FOR_SALE" || metaState.status === "END_SALE"
+							? metaState.status.public === "NOT_FOR_SALE" || metaState.status.public === "END_SALE"
 							: true
 					}
 				>
 					{!isLoadingBtn ? (
 						<>
-							{metaState.status === "NOT_FOR_SALE"
+							{metaState.status.public === "NOT_FOR_SALE"
 								? "STARTING SOON"
-								: metaState.status === "END_SALE"
+								: metaState.status.public === "END_SALE"
 								? "NOT YET AVAILABLE"
 								: "MINT NOW"}
 						</>
