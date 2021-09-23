@@ -17,7 +17,7 @@ const IntroductionVideo = ({ imgSrc, videoSrc }: IntroductionVideoProps) => {
 		else videoRef.current?.pause();
 	}, [isPlaying]);
 	return (
-		<Flex pos="relative" justify="center" maxW="45rem">
+		<Flex pos="relative" justify="center" maxW="40rem">
 			{!isPlaying && (
 				<Image
 					src={imgSrc}
