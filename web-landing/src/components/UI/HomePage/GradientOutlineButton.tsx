@@ -2,7 +2,7 @@
 
 import { Box, BoxProps, chakra, Spinner, Grid, Text, Flex } from "@chakra-ui/react"
 
-interface SpecialButtonProps extends BoxProps {
+interface GradientOutlineButtonProps extends BoxProps {
     text: React.ReactNode
     as?: BoxProps["as"]
     href?: string
@@ -11,7 +11,7 @@ interface SpecialButtonProps extends BoxProps {
     rel?: string
 }
 
-export const SpecialButton = ({
+export const GradientOutlineButton = ({
     text,
     as = "button",
     href,
@@ -19,7 +19,7 @@ export const SpecialButton = ({
     loadingText = "Submitting",
     rel,
     ...rest
-}: SpecialButtonProps) => {
+}: GradientOutlineButtonProps) => {
     return (
         <Box
             as={as}
@@ -27,14 +27,13 @@ export const SpecialButton = ({
             target="_blank"
             rel={rel}
             textTransform="uppercase"
-            w="full"
             rounded="md"
             py={2}
             px={6}
-            bgGradient="linear(to-b, bgGradient.orange)"
-            _hover={{ bgGradient: "linear(to-t, bgGradient.orange)" }}
-            fontSize="sm"
-            fontWeight="bold"
+            bg="linear-gradient(#111, #111) padding-box, linear-gradient(180deg, #FF6795 0%, #FF710B 84.37%) border-box"
+            borderRadius="99"
+            border="1px solid transparent"
+            fontWeight="semibold"
             color="white"
             shadow="base"
             letterSpacing="1px"

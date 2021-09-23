@@ -2,6 +2,7 @@
 
 import { Box, Text, BoxProps } from "@chakra-ui/react"
 import React from "react"
+import GradientHeading from "./GradientHeading"
 
 interface SecondaryTextContainerProps extends BoxProps {
     headline: React.ReactNode
@@ -11,9 +12,12 @@ interface SecondaryTextContainerProps extends BoxProps {
 export const SecondaryTextContainer = ({ headline, children }: SecondaryTextContainerProps) => {
     return (
         <Box mb={8}>
-            <Text fontWeight="bold" color="main.darkRed" fontSize="lg" textTransform="uppercase">
+            {/* <Text fontWeight="bold" color="white" fontSize="lg" textTransform="uppercase">
                 {headline}
-            </Text>
+            </Text> */}
+            <GradientHeading fontSize="lg" fontWeight="bold">
+                {headline}
+            </GradientHeading>
             <Box>{children}</Box>
         </Box>
     )

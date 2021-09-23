@@ -16,7 +16,7 @@ const Factions = ({}: FactionsProps) => {
             <BackgroundContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Factions" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer headline={<chakra.span color="main.darkRed"> Factions</chakra.span>}>
+                        <TextContainer headline={<chakra.span> Factions</chakra.span>}>
                             {factionsContent.main.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}

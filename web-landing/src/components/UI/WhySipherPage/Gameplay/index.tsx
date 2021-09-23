@@ -21,14 +21,7 @@ const TheWorld = ({}: TheWorldProps) => {
             <BackgroundContainer>
                 <ViewContainer label="Game Category" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Game
-                                    <chakra.span color="main.darkRed"> Category</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Game Category</chakra.span>}>
                             <Flex justify="center">
                                 <ResponsiveImg src="/images/pc/why/gameplay1.png" alt="sipher-gameplay-1" />
                             </Flex>
@@ -43,14 +36,7 @@ const TheWorld = ({}: TheWorldProps) => {
                 </ViewContainer>
                 <ViewContainer label="Meaningful End-game Content" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Meaningful
-                                    <chakra.span color="main.darkRed"> End-game Content</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Meaningful End-game Content</chakra.span>}>
                             {gameplayContent.meaningfulEndgameContent.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
@@ -63,14 +49,7 @@ const TheWorld = ({}: TheWorldProps) => {
                 </ViewContainer>
                 <ViewContainer label="Immersive Storyline" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Immersive
-                                    <chakra.span color="main.darkRed"> Storyline</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Immersive Storyline</chakra.span>}>
                             {gameplayContent.immersiveStoryline.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
@@ -80,14 +59,7 @@ const TheWorld = ({}: TheWorldProps) => {
                 </ViewContainer>
                 <ViewContainer label="Classes & Skills" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Class
-                                    <chakra.span color="main.darkRed"> {`& Skills`}</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>{`Class & Skills`}</chakra.span>}>
                             <Flex w="full" justify="center">
                                 <ResponsiveImg src="/images/pc/why/gameplay4.png" alt="sipher-gameplay-4" />
                             </Flex>

@@ -15,14 +15,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
             <BackgroundContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Roadmap" mb={[14, 14, 28]} threshold={0.1}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Sipher <chakra.span color="main.darkRed"> Roadmap</chakra.span>
-                                </chakra.span>
-                            }
-                            maxW="60rem"
-                        >
+                        <TextContainer headline={<chakra.span>Sipher Roadmap</chakra.span>} maxW="60rem">
                             <SimpleGrid
                                 columns={3}
                                 spacing={8}
@@ -41,14 +34,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Team" mb={[14, 14, 28]} threshold={0.1}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Sipher <chakra.span color="main.darkRed"> Team</chakra.span>
-                                </chakra.span>
-                            }
-                            maxW="60rem"
-                        >
+                        <TextContainer headline={<chakra.span>Sipher Team</chakra.span>} maxW="60rem">
                             <SimpleGrid minChildWidth={"16rem"} spacing={8}>
                                 {sipherTeamContent.map(item => (
                                     <MemberCard key={item.id} item={item} />

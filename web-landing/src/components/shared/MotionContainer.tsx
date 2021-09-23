@@ -28,7 +28,7 @@ export const MotionContainer = ({ children }: MotionContainerProps) => {
             variants={pageVatiants}
             transition={pageTransition}
         >
-            <Box h="full" className="motion-box" overflow="auto">
+            <Box h="full" className="motion-box" overflow="overlay">
                 {children}
             </Box>
         </motion.div>

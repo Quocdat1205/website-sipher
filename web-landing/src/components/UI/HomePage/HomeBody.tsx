@@ -8,7 +8,7 @@ import WhatIsSipher from "./WhatIsSipher"
 import WhySipherNFT from "./WhySipherNFT"
 import OwnerBenefits from "./OwnerBenefits"
 import PlayToEarn from "./PlayToEarn"
-import JoinTheComunity from "./JoinTheComunity"
+import JoinTheCommunity from "./JoinTheCommunity"
 import Footer from "./Footer"
 import { FlexContainer } from "./FlexContainer"
 interface HomeBodyProps {
@@ -20,6 +20,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
         <MotionContainer>
             <BackgroundContainer
                 py={0}
+                px={0}
                 sx={{
                     backgroundImage: `url("/images/pc/home/homenew2.png")`,
                     backgroundRepeat: "repeat",
@@ -28,22 +29,18 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                     },
                 }}
             >
-                <ViewContainer onView={setSelectedAnchor} label="Home" mb={[14, 14, 20]}>
+                <ViewContainer onView={setSelectedAnchor} label="Home" mb={[14, 14, 20]} threshold={0.2}>
                     <Grid
                         bg="url('/images/pc/home/homenew1.png')"
                         bgRepeat="no-repeat"
                         bgSize="100%"
                         h="100%"
                         placeItems="center"
-                        py={["4rem", "8rem", "10rem"]}
-                        sx={{
-                            "@media (min-width: 1920px)": {
-                                py: "16rem",
-                            },
-                        }}
+                        py={["4rem", "8rem", "10rem", "16rem"]}
+                        px={4}
                     >
                         <Flex direction="column" align="center">
-                            <Img src="/images/pc/home/logohome.png" maxH="5rem" alt="sipher-logo" />
+                            <Img src="/images/pc/home/logohome.png" h={["3rem", "4rem", "5rem"]} alt="sipher-logo" />
                             <Heading color="whiteAlpha.900" fontWeight="thin">
                                 SOLD OUT
                             </Heading>
@@ -63,30 +60,30 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                             />
                         </Flex>
                     </Grid>
-                    <Center py="4rem">
+                    <Center px={4}>
                         <SaleMechanic />
                     </Center>
-                    <Flex py="2rem" justify="center">
+                    <Center px={4}>
                         <IntroductionVideo videoSrc="/video/video.mp4" imgSrc="/images/pc/home/nekoteaser.png" />
-                    </Flex>
+                    </Center>
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="What is Sipher" mb={[14, 14, 20]}>
-                    <Center py="4rem">
+                    <Center px={4}>
                         <WhatIsSipher />
                     </Center>
                 </ViewContainer>
-                <ViewContainer onView={setSelectedAnchor} label="Why is Sipher" mb={[14, 14, 20]}>
-                    <Center py="4rem">
+                <ViewContainer onView={setSelectedAnchor} label="Why Sipher NFT" mb={[14, 14, 20]}>
+                    <Center px={4}>
                         <WhySipherNFT />
                     </Center>
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Owner Benefits" mb={[14, 14, 20]}>
-                    <Center py="4rem" bgGradient="linear(180deg, #EF6F38 0%, #150800 84.37%)" h="100%">
+                    <Center bgGradient="linear(180deg, #EF6F38 0%, #150800 84.37%)" h="100%" py={8}>
                         <OwnerBenefits />
                     </Center>
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Play to Earn" mb={[14, 14, 20]}>
-                    <Center py="4rem" h="100%">
+                    <Center px={4}>
                         <PlayToEarn />
                     </Center>
                 </ViewContainer>
@@ -95,16 +92,10 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                         bg="url(./images/pc/home/bannerhome.png)"
                         bgSize="100%"
                         bgRepeat="no-repeat"
-                        py={["4rem", "8rem"]}
-                        sx={{
-                            "@media (min-width: 1920px)": {
-                                py: "12rem",
-                            },
-                        }}
-                        h="100%"
-                        placeItems="center"
+                        py={["4rem", "8rem", "12rem"]}
+                        px={4}
                     >
-                        <JoinTheComunity />
+                        <JoinTheCommunity />
                     </Center>
                     <Footer />
                 </ViewContainer>

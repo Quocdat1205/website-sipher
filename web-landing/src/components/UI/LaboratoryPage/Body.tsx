@@ -21,7 +21,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
             <BackgroundContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Laboratory" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer headline={<chakra.span color="main.darkRed">Laboratory</chakra.span>}>
+                        <TextContainer headline={<chakra.span>Laboratory</chakra.span>}>
                             {laboratoryContent.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
@@ -31,13 +31,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Smart Contract" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Smart <chakra.span color="main.darkRed">Contract</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Smart Contract</chakra.span>}>
                             {smartContractContent.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}

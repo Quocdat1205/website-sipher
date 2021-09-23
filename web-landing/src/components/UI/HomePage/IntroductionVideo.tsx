@@ -1,24 +1,24 @@
 // * DESCRIPTION:
 
-import { Flex, Image } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { Flex, Image } from "@chakra-ui/react"
+import { useEffect, useRef, useState } from "react"
 
 interface IntroductionVideoProps {
-	imgSrc: string;
-	videoSrc: string;
+    imgSrc: string
+    videoSrc: string
 }
 
 const IntroductionVideo = ({ imgSrc, videoSrc }: IntroductionVideoProps) => {
-	const videoRef = useRef<HTMLVideoElement>(null);
-	const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null)
+    const [isPlaying, setIsPlaying] = useState(false)
 
-	useEffect(() => {
-		if (isPlaying) videoRef.current?.play();
-		else videoRef.current?.pause();
-	}, [isPlaying]);
-	return (
-		<Flex pos="relative" justify="center" maxW="40rem">
-			{!isPlaying && (
+    useEffect(() => {
+        if (isPlaying) videoRef.current?.play()
+        else videoRef.current?.pause()
+    }, [isPlaying])
+    return (
+        <Flex pos="relative" justify="center" maxW="40rem">
+            {/* {!isPlaying && (
 				<Image
 					src={imgSrc}
 					pos="absolute"
@@ -27,10 +27,10 @@ const IntroductionVideo = ({ imgSrc, videoSrc }: IntroductionVideoProps) => {
 					onClick={() => setIsPlaying(true)}
 					alt="sipher-video-thumbnail"
 				/>
-			)}
-			<video src={videoSrc} controls={true} ref={videoRef} onPause={() => setIsPlaying(false)} />
-		</Flex>
-	);
-};
+			)} */}
+            <video src={videoSrc} controls={true} ref={videoRef} onPause={() => setIsPlaying(false)} />
+        </Flex>
+    )
+}
 
-export default IntroductionVideo;
+export default IntroductionVideo

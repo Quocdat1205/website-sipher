@@ -16,7 +16,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
             <BackgroundContainer>
                 <ViewContainer onView={setSelectedAnchor} label="FAQ" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer headline={<chakra.span color="main.darkRed">FAQ</chakra.span>}>
+                        <TextContainer headline={<chakra.span>FAQ</chakra.span>}>
                             {faqContent.map(item => (
                                 <FaqBox key={item.id} item={item} />
                             ))}
@@ -25,13 +25,7 @@ const HomeBody = ({ setSelectedAnchor }: HomeBodyProps) => {
                 </ViewContainer>
                 <ViewContainer onView={setSelectedAnchor} label="Useful Links" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Useful <chakra.span color="main.darkRed">Links</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Useful Links</chakra.span>}>
                             <SecondaryTextContainer headline="Official Document">
                                 <SimpleGrid minChildWidth="8rem" spacing={4} mt={4}>
                                     {atlas.map(item => (

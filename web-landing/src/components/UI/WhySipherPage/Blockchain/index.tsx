@@ -23,18 +23,7 @@ const Blockchain = ({}: BlockchainProps) => {
                 <ViewContainer onView={setSelectedAnchor} label="Blockchain" mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
                         {blockchainContent.map(section => (
-                            <TextContainer
-                                key={section.id}
-                                headline={
-                                    <chakra.span>
-                                        {section.id.split(" ")[0]}
-                                        <chakra.span color="main.darkRed">
-                                            {" "}
-                                            {" " + section.id.split(" ")[1]}
-                                        </chakra.span>
-                                    </chakra.span>
-                                }
-                            >
+                            <TextContainer key={section.id} headline={<chakra.span>{section.id}</chakra.span>}>
                                 <Paragraph>{section.content}</Paragraph>
                             </TextContainer>
                         ))}

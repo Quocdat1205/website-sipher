@@ -27,14 +27,7 @@ const TheWorld = ({}: TheWorldProps) => {
                 <MoonBaseModal isOpen={modal === "MoonBase"} onClose={() => setModal("")} />
                 <ViewContainer label="World Block Category" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    World Block
-                                    <chakra.span color="main.darkRed"> Category</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>World Block Category</chakra.span>}>
                             {theWorldContent.worldBlockCategory.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
@@ -54,14 +47,7 @@ const TheWorld = ({}: TheWorldProps) => {
                 </ViewContainer>
                 <ViewContainer label="Game Characters As Nfts" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Game Characters
-                                    <chakra.span color="main.darkRed"> As Nfts</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Game Characters As Nfts</chakra.span>}>
                             <Paragraph>{theWorldContent.gameCharactersAsNfts[0]}</Paragraph>
                             <Paragraph>
                                 Learn more about{" "}
@@ -75,14 +61,7 @@ const TheWorld = ({}: TheWorldProps) => {
                 </ViewContainer>
                 <ViewContainer label="Trading At Bazaar" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Trading At
-                                    <chakra.span color="main.darkRed"> Bazaar</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Trading At Bazaar</chakra.span>}>
                             {theWorldContent.tradingAsBazaar.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}
@@ -92,13 +71,7 @@ const TheWorld = ({}: TheWorldProps) => {
                 </ViewContainer>
                 <ViewContainer label="Land Ownership" onView={setSelectedAnchor} mb={[14, 14, 28]}>
                     <Flex direction="column" align="center">
-                        <TextContainer
-                            headline={
-                                <chakra.span>
-                                    Land <chakra.span color="main.darkRed">Ownership</chakra.span>
-                                </chakra.span>
-                            }
-                        >
+                        <TextContainer headline={<chakra.span>Land Ownership</chakra.span>}>
                             {theWorldContent.landOwnership.map(paragraph => (
                                 <Paragraph key={paragraph}>{paragraph}</Paragraph>
                             ))}

@@ -1,17 +1,14 @@
-import { Box, Heading, Text } from "@chakra-ui/layout"
-import { MyText } from "@components/shared"
-import GradientHeading from "@components/shared/GradientHeading"
+import { Box, Heading } from "@chakra-ui/layout"
+import { MyText, TextContainer } from "@components/shared"
 import React from "react"
-import { FlexContainer } from "./FlexContainer"
 
 interface Props {}
 
 export const SaleMechanic = (props: Props) => {
     return (
-        <FlexContainer>
-            <GradientHeading textAlign="center" title="Sale mechanic" />
-            <Box mt="8" textAlign="center">
-                <Heading mb="2" fontSize="2xl" textTransform="uppercase">
+        <TextContainer headline="Sale Mechanic">
+            <Box mt={[4, 8]} textAlign="center">
+                <Heading mb="2" fontSize={["xl", "2xl"]} textTransform="uppercase">
                     Private sale
                 </Heading>
                 <MyText size="medium">
@@ -19,8 +16,8 @@ export const SaleMechanic = (props: Props) => {
                     slots
                 </MyText>
             </Box>
-            <Box mt="8" textAlign="center">
-                <Heading mb="2" fontSize="2xl" textTransform="uppercase">
+            <Box mt={[4, 8]} textAlign="center">
+                <Heading mb="2" fontSize={["xl", "2xl"]} textTransform="uppercase">
                     Public sale
                 </Heading>
                 <MyText size="medium">
@@ -30,6 +27,6 @@ export const SaleMechanic = (props: Props) => {
                     500/10,000 will be minted to team wallet for community events, team members & partners
                 </MyText>
             </Box>
-        </FlexContainer>
+        </TextContainer>
     )
 }
