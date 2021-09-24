@@ -11,12 +11,16 @@ interface TypeState {
 	isConnected: boolean;
 	web3: any;
 	isSignature: boolean;
-	totalSupply: number;
-	time: number;
+	isSmartContract: "NOT_CONNECT" | "CONNECT" | "ERROR";
+	time: {
+		private: number;
+		public: number;
+	};
 	status: {
 		private: string;
 		public: string;
 	};
+	proof: any;
 }
 
 const initialState: TypeState = {
@@ -26,9 +30,10 @@ const initialState: TypeState = {
 	isConnected: false,
 	web3: null,
 	isSignature: false,
-	totalSupply: 0,
-	time: 0,
+	isSmartContract: "NOT_CONNECT",
+	time: { private: 0, public: 0 },
 	status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
+	proof: [],
 };
 
 type IWalletContext = { values: TypeState; setValue: (field: keyof TypeState, value: any) => void };

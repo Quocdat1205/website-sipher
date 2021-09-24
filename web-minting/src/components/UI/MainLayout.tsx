@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/layout";
 import Loading from "@components/shared/Loading";
-import { useMetamask } from "@hooks/useMetamask";
+import { useSmartContract } from "@hooks/useSmartContract";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavBar } from "../shared/NavBar";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const MainLayout = ({ children }: Props) => {
-	const { metaState } = useMetamask();
+	const { metaState } = useSmartContract();
 	const router = useRouter();
 
 	useEffect(() => {

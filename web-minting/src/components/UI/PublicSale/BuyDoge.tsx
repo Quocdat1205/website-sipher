@@ -6,6 +6,7 @@ import { useMetamask } from "@hooks/useMetamask";
 import useChakraToast from "@hooks/useChakraToast";
 import { CHAIN_ID } from "@utils/key_auth";
 import { MyButton, MyHeading, MyInput, MyText } from "@sipher/web-components";
+import Processbar from "@components/shared/Processbar";
 
 function BuyDoge() {
 	// const { sendSmartContract, getUserRecord, getWhiteList } = useSmartContract();
@@ -119,6 +120,7 @@ function BuyDoge() {
 					? "Are you feeling lucky today ?"
 					: "Patience leads to success"}
 			</MyText>
+			<Processbar />
 			<MyText mt="2" textAlign="left">
 				Choose quantity
 			</MyText>

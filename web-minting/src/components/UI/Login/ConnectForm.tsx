@@ -8,7 +8,7 @@ import CardConnect from "./CardConnect";
 
 const ConnectForm = () => {
 	const router = useRouter();
-	const { metaState, connect } = useMetamask();
+	const { metaState, connect, setMetaState } = useMetamask();
 	const toast = useChakraToast();
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -19,6 +19,11 @@ const ConnectForm = () => {
 				try {
 					await connect();
 					router.push("/minting-private");
+					// if (metaState.proof.length > 0) {
+					// 	router.push("/minting-private");
+					// } else {
+					// 	router.push("/minting-public");
+					// }
 					toast("success", "Connect successfully");
 					setIsLoading(false);
 				} catch (err: any) {

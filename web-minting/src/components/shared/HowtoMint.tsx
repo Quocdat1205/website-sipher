@@ -59,7 +59,7 @@ function HowtoMint({ activePublic = false }: Props) {
 						""
 					)}
 				</chakra.ul>
-				{/* {metaState.time !== 0 && metaState.status.private !== "END_SALE" && <CountDown />} */}
+				<CountDown deadline={1632471810000} />
 				<Box mt="2">
 					<MyText>GUIDE</MyText>
 					<chakra.ol px="4">

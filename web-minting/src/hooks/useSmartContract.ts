@@ -8,11 +8,11 @@ import { useWalletContext } from "@hooks/storeWallet/store";
 
 const provider = typeof window !== "undefined" && window.ethereum;
 const web3 = new Web3(provider);
+
 export const useSmartContract = () => {
 	const { values, setValue } = useWalletContext();
 
 	const ContractProviderNFT = new web3.eth.Contract(SALE.abiNFT, SMARTCONTRACT_SALE);
-
 	const ContractProviderINU = new web3.eth.Contract(INU.apiINU, SMARTCONTRACT_INU);
 
 	useQuery("NFT-sale", () => ContractProviderNFT.methods.getSaleConfig().call(), {
@@ -20,39 +20,50 @@ export const useSmartContract = () => {
 		onError: () => ErrorGetTimer(),
 	});
 
-	useQuery("NFT-supply", () => ContractProviderINU.methods.totalSupply().call(), {
-		onSuccess: (data) => getTotal(data),
-		onError: () => console.log("Something went wrong! getTotalSupply"),
-	});
+	// useQuery("NFT-supply", () => ContractProviderINU.methods.totalSupply().call(), {
+	// 	onSuccess: (data) => getTotal(data),
+	// 	onError: () => console.log("Something went wrong! getTotalSupply"),
+	// });
 
 	// get total supply nft
-	const getTotal = (data) => {
-		setValue("totalSupply", parseInt(data));
+	const getTotalSupply = async () => {
+		try {
+			const data = await ContractProviderINU.methods.totalSupply().call();
+			if (data) {
+				setValue("isSmartContract", "CONNECT");
+				return parseInt(data);
+			}
+		} catch (error) {
+			console.log(error);
+			setValue("isSmartContract", "ERROR");
+		}
 	};
 
 	const ErrorGetTimer = () => {
 		console.log("Something went wrong! getPreSales");
-		setValue("time", 0);
+		setValue("time", { private: 0, public: 0 });
 	};
 
 	const getStatus = (data) => {
-		// let now = new Date();
-		// let nowTimestamp = moment(now).unix() * 1000;
-		// if (nowTimestamp < parseInt(data[0]) * 1000) {
-		//   dispatch({ type: "SET_TIME", payload: parseInt(data[0]) * 1000 });
-		//   dispatch({ type: "SET_STATUS", payload: "NOT_FOR_SALE" });
-		// } else if (nowTimestamp < parseInt(data[1]) * 1000) {
-		//   dispatch({ type: "SET_TIME", payload: parseInt(data[1]) * 1000 });
-		//   dispatch({ type: "SET_STATUS", payload: "PRIVATE_SALE" });
-		// } else if (nowTimestamp < parseInt(data[2]) * 1000) {
-		//   dispatch({ type: "SET_TIME", payload: parseInt(data[2]) * 1000 });
-		//   dispatch({ type: "SET_STATUS", payload: "PUBLIC_SALE" });
-		// } else if (nowTimestamp > parseInt(data[2]) * 1000) {
-		//   dispatch({ type: "SET_TIME", payload: parseInt(data[2]) * 1000 });
-		if (data) {
-			setValue("status", "END_SAVE");
+		//data[0] -> data[1]: private
+		//data[1] -> data[2]: public
+		let now = new Date();
+		if (now < new Date(parseInt(data[0]) * 1000)) {
+			setValue("time", { private: parseInt(data[0]) * 1000, public: parseInt(data[1]) * 1000 });
+			setValue("status", { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" });
+		} else if (now < new Date(parseInt(data[1]) * 1000)) {
+			setValue("time", { private: parseInt(data[1]) * 1000, public: parseInt(data[1]) * 1000 });
+			setValue("status", { private: "PRIVATE_SALE", public: "NOT_FOR_SALE" });
+		} else if (now < new Date(parseInt(data[2]) * 1000)) {
+			setValue("time", { private: now, public: parseInt(data[2]) * 1000 });
+			setValue("status", { private: "END_SALE", public: "PUBLIC_SALE" });
+		} else if (now > new Date(parseInt(data[2]) * 1000)) {
+			setValue("time", { private: now, public: now });
+			setValue("status", "END_SALE");
+		} else {
+			setValue("time", { private: now, public: now });
+			setValue("status", "END_SALE");
 		}
-		setValue("status", "END_SAVE");
 		// }
 	};
 
@@ -69,8 +80,8 @@ export const useSmartContract = () => {
 				? 2
 				: parseInt(gaseth.data.ProposeGasPrice) - parseInt(gaseth.data.suggestBaseFee)
 		);
-		console.log(maxPriorityFeePerGas);
-		await ContractProviderNFT.methods.buy(slot).send({
+
+		await ContractProviderNFT.methods.buy(slot, values.proof).send({
 			from: account,
 			value: web3.utils.toHex(web3.utils.toWei(slotPrice, "ether")),
 			// gasLimit: web3.utils.toHex(_gaslimit),
@@ -107,6 +118,8 @@ export const useSmartContract = () => {
 		getBalanceOf,
 		getUserRecord,
 		getWhiteList,
+		getTotalSupply,
+		setContractState: setValue,
 		metaState: { ...values, isAvailable: !!provider },
 	};
 };

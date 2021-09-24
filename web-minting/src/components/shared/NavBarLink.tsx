@@ -12,6 +12,7 @@ interface NavBarLinkProps {
 
 export const NavBarLink = ({ onClick, text, active, href }: NavBarLinkProps) => {
 	const router = useRouter();
+
 	return (
 		<Box onClick={onClick} color="white" pos="relative" cursor="pointer">
 			<MyText

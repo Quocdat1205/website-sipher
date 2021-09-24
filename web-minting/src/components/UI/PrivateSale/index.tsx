@@ -3,11 +3,14 @@ import { Flex } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import BuyDoge from "./BuyDoge";
 import HowtoMint from "@components/shared/HowtoMint";
+import { useSmartContract } from "@hooks/useSmartContract";
+import Loading from "@components/shared/Loading";
 
 interface Props {}
 
 const PrivateSale = (props: Props) => {
-	return (
+	const { metaState } = useSmartContract();
+	return metaState.isSmartContract === "CONNECT" ? (
 		<Flex
 			className="nice-scroll"
 			overflow="auto"
@@ -55,6 +58,8 @@ const PrivateSale = (props: Props) => {
 				<HowtoMint />
 			</Flex>
 		</Flex>
+	) : (
+		<Loading />
 	);
 };
 export default PrivateSale;

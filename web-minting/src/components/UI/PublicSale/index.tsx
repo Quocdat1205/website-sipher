@@ -3,11 +3,15 @@ import { Flex } from "@chakra-ui/layout";
 import React from "react";
 import BuyDoge from "./BuyDoge";
 import HowtoMint from "@components/shared/HowtoMint";
+import { useSmartContract } from "@hooks/useSmartContract";
+import Loading from "@components/shared/Loading";
 
 interface Props {}
 
 const PublicSale = (props: Props) => {
-	return (
+	const { metaState } = useSmartContract();
+
+	return metaState.isSmartContract === "CONNECT" ? (
 		<Flex
 			className="nice-scroll"
 			overflow="auto"
@@ -55,6 +59,8 @@ const PublicSale = (props: Props) => {
 				<HowtoMint activePublic />
 			</Flex>
 		</Flex>
+	) : (
+		<Loading />
 	);
 };
 export default PublicSale;
