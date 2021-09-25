@@ -1,46 +1,46 @@
-import { Box, chakra, HStack, Text } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
-import { differenceInSeconds } from "date-fns";
-import { MyText } from "@sipher/web-components";
+import { Box, chakra, HStack, Text } from "@chakra-ui/react"
+import React, { useEffect, useRef, useState } from "react"
+import { differenceInSeconds } from "date-fns"
+import { MyText } from "@sipher/web-components"
 
-const ONE_DAY = 60 * 60 * 24;
-const ONE_HOUR = 60 * 60;
-const ONE_MINUTE = 60;
+const ONE_DAY = 60 * 60 * 24
+const ONE_HOUR = 60 * 60
+const ONE_MINUTE = 60
 
 interface CountDownProps {
-	deadline: number;
+	deadline: number
 }
 
 const CountDown = ({ deadline }: CountDownProps) => {
-	const runTimeOut = useRef(true);
+	const runTimeOut = useRef(true)
 	const timeToCountdown = () => {
-		const currentTime = new Date().getTime();
-		const diffInSeconds = differenceInSeconds(deadline, currentTime);
+		const currentTime = new Date().getTime()
+		const diffInSeconds = differenceInSeconds(deadline, currentTime)
 		if (diffInSeconds <= 1) {
-			runTimeOut.current = false;
+			runTimeOut.current = false
 			return {
 				days: 0,
 				hours: 0,
 				minutes: 0,
 				seconds: 0,
-			};
+			}
 		}
 		return {
 			days: Math.floor(diffInSeconds / ONE_DAY),
 			hours: Math.floor((diffInSeconds % ONE_DAY) / ONE_HOUR),
 			minutes: Math.floor((diffInSeconds % ONE_HOUR) / ONE_MINUTE),
 			seconds: Math.floor(diffInSeconds % ONE_MINUTE),
-		};
-	};
-	const [countdown, setCountdown] = useState(timeToCountdown());
+		}
+	}
+	const [countdown, setCountdown] = useState(timeToCountdown())
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
-			runTimeOut.current && setCountdown(timeToCountdown());
-		}, 1000);
+			runTimeOut.current && setCountdown(timeToCountdown())
+		}, 1000)
 
-		return () => clearTimeout(timeout);
-	});
+		return () => clearTimeout(timeout)
+	})
 
 	return (
 		<>
@@ -160,7 +160,7 @@ const CountDown = ({ deadline }: CountDownProps) => {
 				</Box>
 			</HStack>
 		</>
-	);
-};
+	)
+}
 
-export default CountDown;
+export default CountDown

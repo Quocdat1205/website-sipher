@@ -1,15 +1,15 @@
-import { Image } from "@chakra-ui/image";
-import { Flex } from "@chakra-ui/layout";
-import React from "react";
-import BuyDoge from "./BuyDoge";
-import HowtoMint from "@components/shared/HowtoMint";
-import { useSmartContract } from "@hooks/useSmartContract";
-import Loading from "@components/shared/Loading";
+import { Image } from "@chakra-ui/image"
+import { Flex } from "@chakra-ui/layout"
+import React from "react"
+import BuyDoge from "./BuyDoge"
+import HowtoMint from "@components/shared/HowtoMint"
+import { useSmartContract } from "@hooks/useSmartContract"
+import Loading from "@components/shared/Loading"
 
 interface Props {}
 
 const PublicSale = (props: Props) => {
-	const { metaState } = useSmartContract();
+	const { metaState } = useSmartContract()
 
 	return metaState.isSmartContract === "CONNECT" ? (
 		<Flex
@@ -51,7 +51,8 @@ const PublicSale = (props: Props) => {
 			<Flex
 				mt="4"
 				w="70%"
-				flexDir="column"s
+				flexDir="column"
+				s
 				alignItems="center"
 				p="2%"
 				bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
@@ -61,6 +62,6 @@ const PublicSale = (props: Props) => {
 		</Flex>
 	) : (
 		<Loading />
-	);
-};
-export default PublicSale;
+	)
+}
+export default PublicSale

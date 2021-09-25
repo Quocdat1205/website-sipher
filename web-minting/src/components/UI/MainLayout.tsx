@@ -1,24 +1,24 @@
-import { Flex } from "@chakra-ui/layout";
-import Loading from "@components/shared/Loading";
-import { useMetamask } from "@hooks/useMetamask";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { NavBar } from "../shared/NavBar";
+import { Flex } from "@chakra-ui/layout"
+import Loading from "@components/shared/Loading"
+import { useMetamask } from "@hooks/useMetamask"
+import { useRouter } from "next/router"
+import React, { useEffect, useState } from "react"
+import { NavBar } from "../shared/NavBar"
 
 interface Props {
-	children: React.ReactNode;
+	children: React.ReactNode
 }
 
 const MainLayout = ({ children }: Props) => {
-	const { metaState, UpdateAccount } = useMetamask();
-	const router = useRouter();
+	const { metaState, UpdateAccount } = useMetamask()
+	const router = useRouter()
 
 	useEffect(() => {
 		if (!metaState.isConnected && !metaState.isSignature) {
-			router.push("/");
+			router.push("/")
 		}
-		UpdateAccount();
-	}, [metaState.isConnected, metaState.isSignature, router, UpdateAccount]);
+		UpdateAccount()
+	}, [metaState.isConnected, metaState.isSignature, router, UpdateAccount])
 
 	return metaState.isConnected ? (
 		<Flex
@@ -37,6 +37,6 @@ const MainLayout = ({ children }: Props) => {
 		</Flex>
 	) : (
 		<Loading />
-	);
-};
-export default MainLayout;
+	)
+}
+export default MainLayout

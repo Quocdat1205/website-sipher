@@ -1,27 +1,26 @@
-import { Box, chakra, Flex, CircularProgress, Input, HStack, useNumberInput } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
-import { checkSmartContract } from "@api/index";
-import { useMetamask } from "@hooks/useMetamask";
-import useChakraToast from "@hooks/useChakraToast";
-import { CHAIN_ID } from "@utils/key_auth";
-import { MyButton, MyHeading, MyText } from "@sipher/web-components";
-import Processbar from "@components/shared/Processbar";
-import { useSmartContract } from "@hooks/useSmartContract";
+import { Box, chakra, Flex, CircularProgress, Input, HStack, useNumberInput } from "@chakra-ui/react"
+import React, { useState } from "react"
+import { useQuery, useQueryClient } from "react-query"
+import { checkSmartContract } from "@api/index"
+import { useMetamask } from "@hooks/useMetamask"
+import useChakraToast from "@hooks/useChakraToast"
+import { CHAIN_ID } from "@utils/key_auth"
+import { MyButton, MyHeading, MyText } from "@sipher/web-components"
+import { useSmartContract } from "@hooks/useSmartContract"
 
 function BuyDoge() {
-	const { sendSmartContract, getUserRecord } = useSmartContract();
-	const { metaState, getBalanceMetaMask } = useMetamask();
-	const queryClient = useQueryClient();
-	const [isLoadingBtn, setIsLoadingBtn] = useState(false);
-	const [slot, setSlot] = useState(0);
+	const { sendSmartContract, getUserRecord } = useSmartContract()
+	const { metaState, getBalanceMetaMask } = useMetamask()
+	const queryClient = useQueryClient()
+	const [isLoadingBtn, setIsLoadingBtn] = useState(false)
+	const [slot, setSlot] = useState(0)
 	const { data: userRecord, isLoading: isLoadingRecord } = useQuery(
 		"_getUserRecord",
 		() => getUserRecord(metaState.accountLogin),
 		{
 			onError: console.log,
 		}
-	);
+	)
 
 	const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
 		step: 1,
@@ -30,49 +29,49 @@ function BuyDoge() {
 		max: 5 - ((userRecord ? userRecord.publicBought : 0) + (userRecord ? userRecord.whitelistBought : 0)) || 0,
 		onChange: (v) => setSlot(parseInt(v)),
 		isDisabled: metaState.status.public !== "PUBLIC_SALE",
-	});
+	})
 
-	const toast = useChakraToast();
+	const toast = useChakraToast()
 	const calculateSlotPrice = () => {
-		return parseFloat((slot * 0.1).toFixed(1).toString());
-	};
+		return parseFloat((slot * 0.1).toFixed(1).toString())
+	}
 
 	const PublicSale = async () => {
 		if (userRecord && userRecord.publicBought + userRecord.whitelistBought >= 5) {
-			toast("error", "Confirm error , each wallet only 5 nft");
-			return;
+			toast("error", "Confirm error , each wallet only 5 nft")
+			return
 		}
-		toast("success", "Confirm successfully! Please wait about 30 seconds");
-		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof);
-		queryClient.invalidateQueries("_getUserRecord");
-	};
+		toast("success", "Confirm successfully! Please wait about 30 seconds")
+		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof)
+		queryClient.invalidateQueries("_getUserRecord")
+	}
 
 	const handleConfirm = async () => {
-		setIsLoadingBtn(true);
+		setIsLoadingBtn(true)
 		try {
 			if (metaState.chain.id === CHAIN_ID) {
 				if ((await getBalanceMetaMask()) < calculateSlotPrice()) {
-					toast("error", "Please check your balance can not mint");
-					setIsLoadingBtn(false);
+					toast("error", "Please check your balance can not mint")
+					setIsLoadingBtn(false)
 				} else {
 					if (metaState.status.public === "PUBLIC_SALE") {
-						await PublicSale();
-						setIsLoadingBtn(false);
+						await PublicSale()
+						setIsLoadingBtn(false)
 					} else {
-						toast("error", "End Sale");
-						setIsLoadingBtn(false);
+						toast("error", "End Sale")
+						setIsLoadingBtn(false)
 					}
 				}
 			} else {
-				toast("error", "Wrong network selected, please switch to Ethereum Mainnet.");
-				setIsLoadingBtn(false);
+				toast("error", "Wrong network selected, please switch to Ethereum Mainnet.")
+				setIsLoadingBtn(false)
 			}
 		} catch (error) {
-			console.log(error);
-			toast("error", "Confirm error, please try again later");
-			setIsLoadingBtn(false);
+			console.log(error)
+			toast("error", "Confirm error, please try again later")
+			setIsLoadingBtn(false)
 		}
-	};
+	}
 
 	return (
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
@@ -92,7 +91,6 @@ function BuyDoge() {
 					? "Are you feeling lucky today ?"
 					: "Patience leads to success"}
 			</MyText>
-			<Processbar />
 			<MyText mt="2" textAlign="left">
 				Choose quantity
 			</MyText>
@@ -179,7 +177,7 @@ function BuyDoge() {
 				)}{" "}
 			</Flex>
 		</Flex>
-	);
+	)
 }
 
-export default BuyDoge;
+export default BuyDoge
