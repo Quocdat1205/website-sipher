@@ -48,8 +48,8 @@ export const getListNFT = async (publicAddress, page) => {
 };
 
 //get info nft by id
-export const getInfoNFT = async (publicAddress, id) => {
-	const { data } = await axios.get(`/nft/get-nft?publicAddress=${publicAddress}&id=${id}`, config);
+export const getInfoNFT = async (publicAddress, id, type) => {
+	const { data } = await axios.get(`/nft/get-nft?publicAddress=${publicAddress}&id=${id}&race=${type}`, config);
 	if (data.success) return data.message;
 };
 
@@ -87,8 +87,11 @@ export const getMerkle = async (id) => {
 
 //check whitelist
 export const CheckIsWhitelisted = async (publicAddress) => {
-	const { data } = await axios.get(`/whitelist?walletaddres=${publicAddress}`);
-
+	const { data } = await axios.get(
+		`/neko-sc/checkWhiteList?saleContractAddress=${SMARTCONTRACT_SALE}&WalletAddress=${publicAddress}`,
+		config
+	);
+	console.log(data);
 	return data.message;
 };
 
@@ -112,13 +115,14 @@ export const logLocation = async (cookies) => {
 };
 
 //change emotion
-export const changeEmotion = async (cookies, id, emotion) => {
-	const accessToken = cookies[LS_KEY];
+export const changeEmotion = async (accessToken, id, emotion, publicAddress, race) => {
 	const { data } = await axios.post(
 		`/nft/change-emotion`,
 		{
 			id,
 			emotion,
+			publicAddress,
+			race,
 		},
 		{
 			baseURL: config.baseURL,

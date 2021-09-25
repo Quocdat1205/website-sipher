@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import { useQuery } from "react-query";
-import { SMARTCONTRACT_SALE, SMARTCONTRACT_INU } from "../utils/key_auth";
-import INU from "../contract/INU";
+import { SMARTCONTRACT_SALE, SMARTCONTRACT_NFT } from "../utils/key_auth";
+import NFT from "../contract/NFT";
 import SALE from "../contract/SALE";
 import { checkgas } from "../api/user";
 import { useWalletContext } from "@hooks/storeWallet/store";
@@ -12,10 +12,10 @@ const web3 = new Web3(provider);
 export const useSmartContract = () => {
 	const { values, setValue } = useWalletContext();
 
-	const ContractProviderNFT = new web3.eth.Contract(SALE.abiNFT, SMARTCONTRACT_SALE);
-	const ContractProviderINU = new web3.eth.Contract(INU.apiINU, SMARTCONTRACT_INU);
+	const ContractProviderSALE = new web3.eth.Contract(SALE.abiSale, SMARTCONTRACT_SALE);
+	const ContractProviderNFT = new web3.eth.Contract(NFT.apiNFT, SMARTCONTRACT_NFT);
 
-	useQuery("NFT-sale", () => ContractProviderNFT.methods.getSaleConfig().call(), {
+	useQuery("NFT-sale", () => ContractProviderSALE.methods.getSaleConfig().call(), {
 		onSuccess: (data) => getStatus(data),
 		onError: () => ErrorGetTimer(),
 	});
@@ -28,7 +28,7 @@ export const useSmartContract = () => {
 	// get total supply nft
 	const getTotalSupply = async () => {
 		try {
-			const data = await ContractProviderINU.methods.totalSupply().call();
+			const data = await ContractProviderNFT.methods.totalSupply().call();
 			if (data) {
 				setValue("isSmartContract", "CONNECT");
 				return parseInt(data);
@@ -81,7 +81,7 @@ export const useSmartContract = () => {
 				: parseInt(gaseth.data.ProposeGasPrice) - parseInt(gaseth.data.suggestBaseFee)
 		);
 
-		await ContractProviderNFT.methods.buy(slot, values.proof).send({
+		await ContractProviderSALE.methods.buy(slot, values.proof).send({
 			from: account,
 			value: web3.utils.toHex(web3.utils.toWei(slotPrice, "ether")),
 			// gasLimit: web3.utils.toHex(_gaslimit),
@@ -95,29 +95,29 @@ export const useSmartContract = () => {
 
 	// get balane of account (nft)
 	const getBalanceOf = async (publicAddress) => {
-		const data = await ContractProviderINU.methods.balanceOf(publicAddress).call();
+		const data = await ContractProviderNFT.methods.balanceOf(publicAddress).call();
 		return parseInt(data);
 	};
 
 	// get balane of account (nft)
 	const getUserRecord = async (publicAddress) => {
-		const data = await ContractProviderNFT.methods.getUserRecord(publicAddress).call();
+		const data = await ContractProviderSALE.methods.getUserRecord(publicAddress).call();
 		return {
 			whitelistBought: parseInt(data[0]),
 			publicBought: parseInt(data[1]),
 		};
 	};
 
-	const getWhiteList = async (publicAddress) => {
-		const isWhiteList = await ContractProviderNFT.methods.isWhitelistedAddress(publicAddress).call();
-		return isWhiteList;
-	};
+	// const getWhiteList = async (publicAddress) => {
+	// 	const isWhiteList = await ContractProviderNFT.methods.isWhitelistedAddress(publicAddress).call();
+	// 	return isWhiteList;
+	// };
 
 	return {
 		sendSmartContract,
 		getBalanceOf,
 		getUserRecord,
-		getWhiteList,
+		// getWhiteList,
 		getTotalSupply,
 		setContractState: setValue,
 		metaState: { ...values, isAvailable: !!provider },

@@ -1,5 +1,5 @@
-const data: { apiINU: any } = {
-	apiINU: [
+const data: { apiNFT: any } = {
+	apiNFT: [
 		{
 			inputs: [],
 			stateMutability: "nonpayable",

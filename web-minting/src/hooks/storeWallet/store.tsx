@@ -21,6 +21,7 @@ interface TypeState {
 		public: string;
 	};
 	proof: any;
+	accessToken: string;
 }
 
 const initialState: TypeState = {
@@ -34,6 +35,7 @@ const initialState: TypeState = {
 	time: { private: 0, public: 0 },
 	status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
 	proof: [],
+	accessToken: "",
 };
 
 type IWalletContext = { values: TypeState; setValue: (field: keyof TypeState, value: any) => void };
