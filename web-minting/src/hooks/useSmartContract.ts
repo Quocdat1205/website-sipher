@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Web3 from "web3"
 import { useQuery } from "react-query"
 import { SMARTCONTRACT_SALE, SMARTCONTRACT_INU } from "../utils/key_auth"
@@ -5,6 +6,15 @@ import INU from "../contract/INU"
 import SALE from "../contract/SALE"
 import { checkgas } from "../api/user"
 import { useWalletContext } from "@hooks/storeWallet/store"
+=======
+import Web3 from "web3";
+import { useQuery } from "react-query";
+import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "../utils/key_auth";
+import NFT from "../contract/NFT";
+import SALE from "../contract/SALE";
+import { checkgas } from "../api/user";
+import { useWalletContext } from "@hooks/storeWallet/store";
+>>>>>>> 9cac1146a1d281030d9193587742ac457159d7c4
 
 const provider = typeof window !== "undefined" && window.ethereum
 const web3 = new Web3(provider)
@@ -12,6 +22,7 @@ const web3 = new Web3(provider)
 export const useSmartContract = () => {
     const { values, setValue } = useWalletContext()
 
+<<<<<<< HEAD
     const ContractProviderNFT = new web3.eth.Contract(SALE.abiNFT, SMARTCONTRACT_SALE)
     const ContractProviderINU = new web3.eth.Contract(INU.apiINU, SMARTCONTRACT_INU)
 
@@ -19,12 +30,22 @@ export const useSmartContract = () => {
         onSuccess: data => getStatus(data),
         onError: () => ErrorGetTimer(),
     })
+=======
+	const ContractProviderSALE = new web3.eth.Contract(SALE.abiSale, SMARTCONTRACT_SALE_NEKO);
+	const ContractProviderNFT = new web3.eth.Contract(NFT.apiNFT, SMARTCONTRACT_NEKO);
+
+	useQuery("NFT-sale", () => ContractProviderSALE.methods.getSaleConfig().call(), {
+		onSuccess: (data) => getStatus(data),
+		onError: () => ErrorGetTimer(),
+	});
+>>>>>>> 9cac1146a1d281030d9193587742ac457159d7c4
 
     // useQuery("NFT-supply", () => ContractProviderINU.methods.totalSupply().call(), {
     // 	onSuccess: (data) => getTotal(data),
     // 	onError: () => console.log("Something went wrong! getTotalSupply"),
     // });
 
+<<<<<<< HEAD
     // get total supply nft
     const getTotalSupply = async () => {
         try {
@@ -38,6 +59,21 @@ export const useSmartContract = () => {
             setValue("isSmartContract", "ERROR")
         }
     }
+=======
+	// get total supply nft
+	const getTotalSupply = async () => {
+		try {
+			const data = await ContractProviderNFT.methods.totalSupply().call();
+			if (data) {
+				setValue("isSmartContract", "CONNECT");
+				return parseInt(data);
+			}
+		} catch (error) {
+			console.log(error);
+			setValue("isSmartContract", "ERROR");
+		}
+	};
+>>>>>>> 9cac1146a1d281030d9193587742ac457159d7c4
 
     const ErrorGetTimer = () => {
         console.log("Something went wrong! getPreSales")
@@ -81,6 +117,7 @@ export const useSmartContract = () => {
                 : parseInt(gaseth.data.ProposeGasPrice) - parseInt(gaseth.data.suggestBaseFee)
         )
 
+<<<<<<< HEAD
         await ContractProviderNFT.methods.buy(slot, values.proof).send({
             from: account,
             value: web3.utils.toHex(web3.utils.toWei(slotPrice, "ether")),
@@ -123,3 +160,47 @@ export const useSmartContract = () => {
         metaState: { ...values, isAvailable: !!provider },
     }
 }
+=======
+		await ContractProviderSALE.methods.buy(slot, values.proof).send({
+			from: account,
+			value: web3.utils.toHex(web3.utils.toWei(slotPrice, "ether")),
+			// gasLimit: web3.utils.toHex(_gaslimit),
+			// maxPriorityFeePerGas: web3.utils.toHex(web3.utils.toWei((Math.round(_gasprice/100000000000*2)).toString(), "gwei")),
+			// maxFeePerGas: null,
+			gasLimit: web3.utils.toHex(_gaslimit),
+			maxPriorityFeePerGas: web3.utils.toHex(web3.utils.toWei(maxPriorityFeePerGas.toString(), "gwei")),
+			maxFeePerGas: web3.utils.toHex(web3.utils.toWei(maxFeePerGas.toString(), "gwei")),
+		});
+	};
+
+	// get balane of account (nft)
+	const getBalanceOf = async (publicAddress) => {
+		const data = await ContractProviderNFT.methods.balanceOf(publicAddress).call();
+		return parseInt(data);
+	};
+
+	// get balane of account (nft)
+	const getUserRecord = async (publicAddress) => {
+		const data = await ContractProviderSALE.methods.getUserRecord(publicAddress).call();
+		return {
+			whitelistBought: parseInt(data[0]),
+			publicBought: parseInt(data[1]),
+		};
+	};
+
+	// const getWhiteList = async (publicAddress) => {
+	// 	const isWhiteList = await ContractProviderNFT.methods.isWhitelistedAddress(publicAddress).call();
+	// 	return isWhiteList;
+	// };
+
+	return {
+		sendSmartContract,
+		getBalanceOf,
+		getUserRecord,
+		// getWhiteList,
+		getTotalSupply,
+		setContractState: setValue,
+		metaState: { ...values, isAvailable: !!provider },
+	};
+};
+>>>>>>> 9cac1146a1d281030d9193587742ac457159d7c4

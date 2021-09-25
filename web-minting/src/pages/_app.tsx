@@ -21,11 +21,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 		<Provider>
 			<Head>
 				<meta charSet="utf-8" />
-				<link rel="icon" href="/images/general/logo_web.ico" />
+				{/* <link rel="icon" href="/images/general/logo_web.ico" /> */}
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="theme-color" content="#000000" />
 				<meta name="description" content="NFTs & games project" />
-				<link rel="apple-touch-icon" href="/images/general/logo_web.ico" />
+				{/* <link rel="apple-touch-icon" href="/images/general/logo_web.ico" /> */}
 				<title>Sipher</title>
 				<meta
 					name="description"
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 					itemProp="description"
 					content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon!  "
 				/>
-				<meta itemProp="image" content="/images/general/logo_web.ico" />
+				{/* <meta itemProp="image" content="/images/general/logo_web.ico" /> */}
 				<meta property="og:url" content="https://sipher.xyz" />
 				<meta property="og:type" content="website" />
 				<meta property="og:title" content="Welcome to Sipher" />

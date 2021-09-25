@@ -13,11 +13,20 @@ const MainLayout = ({ children }: Props) => {
     const { metaState } = useSmartContract()
     const router = useRouter()
 
+<<<<<<< HEAD
     useEffect(() => {
         if (!metaState.isConnected) {
             router.push("/")
         }
     }, [metaState.isConnected, router])
+=======
+	useEffect(() => {
+		if (!metaState.isConnected && !metaState.isSignature) {
+			router.push("/");
+		}
+	}, [metaState.isConnected, metaState.isSignature, router]);
+	console.log(metaState);
+>>>>>>> 9cac1146a1d281030d9193587742ac457159d7c4
 
     return metaState.isConnected ? (
         <Flex

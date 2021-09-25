@@ -1,5 +1,5 @@
-const data: { abiNFT: any } = {
-	abiNFT: [
+const data: { abiSale: any } = {
+	abiSale: [
 		{
 			inputs: [
 				{
@@ -23,14 +23,9 @@ const data: { abiNFT: any } = {
 					type: "uint64",
 				},
 				{
-					internalType: "uint64",
+					internalType: "uint32",
 					name: "_maxSupply",
-					type: "uint64",
-				},
-				{
-					internalType: "uint256",
-					name: "_maxWhitelistSize",
-					type: "uint256",
+					type: "uint32",
 				},
 			],
 			stateMutability: "nonpayable",
@@ -47,9 +42,9 @@ const data: { abiNFT: any } = {
 				},
 				{
 					indexed: false,
-					internalType: "uint256",
+					internalType: "uint32",
 					name: "amount",
-					type: "uint256",
+					type: "uint32",
 				},
 				{
 					indexed: false,
@@ -91,9 +86,9 @@ const data: { abiNFT: any } = {
 				},
 				{
 					indexed: false,
-					internalType: "uint256",
+					internalType: "uint32",
 					name: "amount",
-					type: "uint256",
+					type: "uint32",
 				},
 				{
 					indexed: false,
@@ -136,12 +131,12 @@ const data: { abiNFT: any } = {
 			inputs: [
 				{
 					indexed: false,
-					internalType: "uint64",
-					name: "endTime",
-					type: "uint64",
+					internalType: "bytes32",
+					name: "whitelistedMerkelRoot",
+					type: "bytes32",
 				},
 			],
-			name: "UpdateSaleEndTime",
+			name: "SetWhitelistedMerkleRoot",
 			type: "event",
 		},
 		{
@@ -149,18 +144,12 @@ const data: { abiNFT: any } = {
 			inputs: [
 				{
 					indexed: false,
-					internalType: "address",
-					name: "account",
-					type: "address",
-				},
-				{
-					indexed: false,
-					internalType: "bool",
-					name: "isWhitelisted",
-					type: "bool",
+					internalType: "uint64",
+					name: "endTime",
+					type: "uint64",
 				},
 			],
-			name: "UpdateWhitelistedAddress",
+			name: "UpdateSaleEndTime",
 			type: "event",
 		},
 		{
@@ -174,9 +163,9 @@ const data: { abiNFT: any } = {
 				},
 				{
 					indexed: false,
-					internalType: "uint256",
+					internalType: "uint32",
 					name: "amount",
-					type: "uint256",
+					type: "uint32",
 				},
 				{
 					indexed: false,
@@ -212,9 +201,9 @@ const data: { abiNFT: any } = {
 			name: "CAP_PER_ADDRESS",
 			outputs: [
 				{
-					internalType: "uint64",
+					internalType: "uint32",
 					name: "",
-					type: "uint64",
+					type: "uint32",
 				},
 			],
 			stateMutability: "view",
@@ -225,9 +214,9 @@ const data: { abiNFT: any } = {
 			name: "CAP_PER_WHITELISTED_ADDRESS",
 			outputs: [
 				{
-					internalType: "uint64",
+					internalType: "uint32",
 					name: "",
-					type: "uint64",
+					type: "uint32",
 				},
 			],
 			stateMutability: "view",
@@ -238,9 +227,9 @@ const data: { abiNFT: any } = {
 			name: "MAX_OWNER_BOUGHT_INITIAL",
 			outputs: [
 				{
-					internalType: "uint64",
+					internalType: "uint32",
 					name: "",
-					type: "uint64",
+					type: "uint32",
 				},
 			],
 			stateMutability: "view",
@@ -248,7 +237,46 @@ const data: { abiNFT: any } = {
 		},
 		{
 			inputs: [],
-			name: "SALE_PRICE",
+			name: "SALE_AUCTION_PRICE_LEVEL",
+			outputs: [
+				{
+					internalType: "uint256",
+					name: "",
+					type: "uint256",
+				},
+			],
+			stateMutability: "view",
+			type: "function",
+		},
+		{
+			inputs: [],
+			name: "SALE_AUCTION_TIME_INTERVAL",
+			outputs: [
+				{
+					internalType: "uint32",
+					name: "",
+					type: "uint32",
+				},
+			],
+			stateMutability: "view",
+			type: "function",
+		},
+		{
+			inputs: [],
+			name: "SALE_BASE_PRICE",
+			outputs: [
+				{
+					internalType: "uint256",
+					name: "",
+					type: "uint256",
+				},
+			],
+			stateMutability: "view",
+			type: "function",
+		},
+		{
+			inputs: [],
+			name: "SALE_PUBLIC_STARTING_PRICE",
 			outputs: [
 				{
 					internalType: "uint256",
@@ -262,14 +290,45 @@ const data: { abiNFT: any } = {
 		{
 			inputs: [
 				{
-					internalType: "uint64",
+					internalType: "uint32",
 					name: "amount",
-					type: "uint64",
+					type: "uint32",
+				},
+				{
+					internalType: "bytes32[]",
+					name: "proofs",
+					type: "bytes32[]",
 				},
 			],
 			name: "buy",
 			outputs: [],
 			stateMutability: "payable",
+			type: "function",
+		},
+		{
+			inputs: [],
+			name: "getElapsedPublicSaleTime",
+			outputs: [
+				{
+					internalType: "uint256",
+					name: "",
+					type: "uint256",
+				},
+			],
+			stateMutability: "view",
+			type: "function",
+		},
+		{
+			inputs: [],
+			name: "getPublicSaleCurrentPrice",
+			outputs: [
+				{
+					internalType: "uint256",
+					name: "",
+					type: "uint256",
+				},
+			],
+			stateMutability: "view",
 			type: "function",
 		},
 		{
@@ -294,9 +353,9 @@ const data: { abiNFT: any } = {
 							type: "uint64",
 						},
 						{
-							internalType: "uint64",
+							internalType: "uint32",
 							name: "maxSupply",
-							type: "uint64",
+							type: "uint32",
 						},
 					],
 					internalType: "struct ISipherNFTSale.SaleConfig",
@@ -314,24 +373,24 @@ const data: { abiNFT: any } = {
 				{
 					components: [
 						{
-							internalType: "uint64",
+							internalType: "uint32",
 							name: "totalSold",
-							type: "uint64",
+							type: "uint32",
 						},
 						{
-							internalType: "uint64",
+							internalType: "uint32",
 							name: "ownerBought",
-							type: "uint64",
+							type: "uint32",
 						},
 						{
-							internalType: "uint64",
+							internalType: "uint32",
 							name: "totalWhitelistSold",
-							type: "uint64",
+							type: "uint32",
 						},
 						{
-							internalType: "uint64",
+							internalType: "uint32",
 							name: "totalPublicSold",
-							type: "uint64",
+							type: "uint32",
 						},
 					],
 					internalType: "struct ISipherNFTSale.SaleRecord",
@@ -355,14 +414,14 @@ const data: { abiNFT: any } = {
 				{
 					components: [
 						{
-							internalType: "uint64",
+							internalType: "uint32",
 							name: "whitelistBought",
-							type: "uint64",
+							type: "uint32",
 						},
 						{
-							internalType: "uint64",
+							internalType: "uint32",
 							name: "publicBought",
-							type: "uint64",
+							type: "uint32",
 						},
 					],
 					internalType: "struct ISipherNFTSale.UserRecord",
@@ -376,54 +435,14 @@ const data: { abiNFT: any } = {
 		{
 			inputs: [
 				{
-					internalType: "uint256",
-					name: "index",
-					type: "uint256",
-				},
-			],
-			name: "getWhitelistedAddressAt",
-			outputs: [
-				{
 					internalType: "address",
-					name: "account",
+					name: "buyer",
 					type: "address",
 				},
-			],
-			stateMutability: "view",
-			type: "function",
-		},
-		{
-			inputs: [],
-			name: "getWhitelistedGroup",
-			outputs: [
 				{
-					internalType: "address[]",
-					name: "accounts",
-					type: "address[]",
-				},
-			],
-			stateMutability: "view",
-			type: "function",
-		},
-		{
-			inputs: [],
-			name: "getWhitelistedGroupLength",
-			outputs: [
-				{
-					internalType: "uint256",
-					name: "length",
-					type: "uint256",
-				},
-			],
-			stateMutability: "view",
-			type: "function",
-		},
-		{
-			inputs: [
-				{
-					internalType: "address",
-					name: "account",
-					type: "address",
+					internalType: "bytes32[]",
+					name: "proofs",
+					type: "bytes32[]",
 				},
 			],
 			name: "isWhitelistedAddress",
@@ -432,19 +451,6 @@ const data: { abiNFT: any } = {
 					internalType: "bool",
 					name: "",
 					type: "bool",
-				},
-			],
-			stateMutability: "view",
-			type: "function",
-		},
-		{
-			inputs: [],
-			name: "maxWhitelistSize",
-			outputs: [
-				{
-					internalType: "uint256",
-					name: "",
-					type: "uint256",
 				},
 			],
 			stateMutability: "view",
@@ -519,6 +525,19 @@ const data: { abiNFT: any } = {
 		{
 			inputs: [
 				{
+					internalType: "bytes32",
+					name: "_whitelistedRoot",
+					type: "bytes32",
+				},
+			],
+			name: "setWhitelistedMerkleRoot",
+			outputs: [],
+			stateMutability: "nonpayable",
+			type: "function",
+		},
+		{
+			inputs: [
+				{
 					internalType: "address",
 					name: "newOwner",
 					type: "address",
@@ -543,21 +562,16 @@ const data: { abiNFT: any } = {
 			type: "function",
 		},
 		{
-			inputs: [
+			inputs: [],
+			name: "whitelistedMerkelRoot",
+			outputs: [
 				{
-					internalType: "address[]",
-					name: "accounts",
-					type: "address[]",
-				},
-				{
-					internalType: "bool",
-					name: "isWhitelisted",
-					type: "bool",
+					internalType: "bytes32",
+					name: "",
+					type: "bytes32",
 				},
 			],
-			name: "updateWhitelistedGroup",
-			outputs: [],
-			stateMutability: "nonpayable",
+			stateMutability: "view",
 			type: "function",
 		},
 		{

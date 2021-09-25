@@ -1,6 +1,6 @@
 import axios from "axios";
 import config from "./config";
-import { SMARTCONTRACT_SALE, SMARTCONTRACT_INU, LS_KEY } from "../utils/key_auth";
+import { SMARTCONTRACT_SALE, SMARTCONTRACT_NFT, LS_KEY } from "../utils/key_auth";
 
 //get data user on address
 export const getUsersByAddress = async (publicAddress) => {
@@ -48,8 +48,8 @@ export const getListNFT = async (publicAddress, page) => {
 };
 
 //get info nft by id
-export const getInfoNFT = async (publicAddress, id) => {
-	const { data } = await axios.get(`/nft/get-nft?publicAddress=${publicAddress}&id=${id}`, config);
+export const getInfoNFT = async (publicAddress, id, type) => {
+	const { data } = await axios.get(`/nft/get-nft?publicAddress=${publicAddress}&id=${id}&race=${type}`, config);
 	if (data.success) return data.message;
 };
 
@@ -58,67 +58,61 @@ export const checkSmartContract = async (publicAddress) => {
 	let address = publicAddress.toLowerCase();
 
 	const { data } = await axios.get(
-		`/sc/checkSC?nftContractAddress=${SMARTCONTRACT_INU}&saleContractAddress=${SMARTCONTRACT_SALE}&WalletAddress=${address}`,
+		`/sc/checkSC?nftContractAddress=${SMARTCONTRACT_NFT}&saleContractAddress=${SMARTCONTRACT_SALE}&WalletAddress=${address}`,
 		config
 	);
 
-	return data.message;
-};
-
-//check whitelist on private sale
-export const checkWhiteList = async (publicAddress) => {
-	const { data } = await axios.get(
-		`/sc/checkWhiteList?saleContractAddress=${SMARTCONTRACT_SALE}&WalletAddress=${publicAddress}`,
-		config
-	);
 	return data.message;
 };
 
 //check whitelist on private sale
 export const checkgas = async () => {
-	const { data } = await axios.get(`/sc/checkgas`, config);
+	const { data } = await axios.get(`/neko-sc/checkgas`, config);
 	return data.message;
 };
 
 export const getMerkle = async (id) => {
-	const { data } = await axios.get(`/sc/merkle/${id}`, config);
+	const { data } = await axios.get(`/neko-sc/merkle/${id}`, config);
 	return data;
 };
 
-//check whitelist
-export const CheckIsWhitelisted = async (publicAddress) => {
-	const { data } = await axios.get(`/whitelist?walletaddres=${publicAddress}`);
-
+//check whitelisted
+export const checkIsWhitelisted = async (publicAddress) => {
+	const { data } = await axios.get(
+		`/neko-sc/checkWhiteList?saleContractAddress=${SMARTCONTRACT_SALE}&WalletAddress=${publicAddress}`,
+		config
+	);
+	console.log(data);
 	return data.message;
 };
 
-//change emotion
-export const logLocation = async (cookies) => {
-	const accessToken = cookies[LS_KEY];
-	const ipdata = await axios.get("https://geolocation-db.com/json/");
-	const { data } = await axios.put(
-		`/log`,
-		{
-			ip: ipdata.data.IPv4,
-		},
-		{
-			baseURL: config.baseURL,
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-			},
-		}
-	);
-	return data;
-};
+// export const logLocation = async (cookies) => {
+// 	const accessToken = cookies[LS_KEY];
+// 	const ipdata = await axios.get("https://geolocation-db.com/json/");
+// 	const { data } = await axios.put(
+// 		`/log`,
+// 		{
+// 			ip: ipdata.data.IPv4,
+// 		},
+// 		{
+// 			baseURL: config.baseURL,
+// 			headers: {
+// 				Authorization: `Bearer ${accessToken}`,
+// 			},
+// 		}
+// 	);
+// 	return data;
+// };
 
 //change emotion
-export const changeEmotion = async (cookies, id, emotion) => {
-	const accessToken = cookies[LS_KEY];
+export const changeEmotion = async (accessToken, id, emotion, publicAddress, race) => {
 	const { data } = await axios.post(
 		`/nft/change-emotion`,
 		{
 			id,
 			emotion,
+			publicAddress,
+			race,
 		},
 		{
 			baseURL: config.baseURL,
