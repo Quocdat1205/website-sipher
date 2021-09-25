@@ -10,8 +10,8 @@ import TotalSupplyNFTs from "./TotalSupplyNFTs";
 interface NavBarProps {}
 
 export const navMenus = [
-	{ id: "Private Sale", path: "/minting-private" },
-	{ id: "Public Sale", path: "/minting-public" },
+	{ id: "Private Sale", path: "/private-minting" },
+	{ id: "Public Sale", path: "/public-minting" },
 	{ id: "Inventory", path: "/inventory" },
 ];
 
@@ -22,6 +22,8 @@ export const NavBar = ({}: NavBarProps) => {
 
 	const signOut = () => {
 		setMetaState("isConnected", false);
+		setMetaState("isSignature", false);
+		setMetaState("proof", "");
 		toast("success", "Logout successfully");
 	};
 

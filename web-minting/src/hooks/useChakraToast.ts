@@ -1,8 +1,8 @@
-import { useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react"
 // import Toast from "../components/Toast";
 
-const useChakraToast = () => {
-	const toast = useToast();
+export const useChakraToast = () => {
+	const toast = useToast()
 	return (status, title, description?) =>
 		toast({
 			status,
@@ -13,7 +13,7 @@ const useChakraToast = () => {
 			// render: () => (
 			//   <Toast title={title}/>
 			// ),
-		});
-};
+		})
+}
 
-export default useChakraToast;
+export default useChakraToast

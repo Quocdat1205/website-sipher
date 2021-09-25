@@ -51,12 +51,12 @@ const PublicSale = (props: Props) => {
 			<Flex
 				mt="4"
 				w="70%"
-				flexDir="column"
+				flexDir="column"s
 				alignItems="center"
 				p="2%"
 				bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
 			>
-				<HowtoMint activePublic />
+				<HowtoMint isPublic />
 			</Flex>
 		</Flex>
 	) : (

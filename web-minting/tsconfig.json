@@ -23,6 +23,6 @@
             "@hooks/*": ["src/hooks/*"],
         }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/api/baseUrl.js", "src/api/config.ts", "src/api/user.ts"],
   "exclude": ["node_modules"]
 }

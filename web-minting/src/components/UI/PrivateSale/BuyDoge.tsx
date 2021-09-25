@@ -1,11 +1,11 @@
-import { Box, chakra, Flex, CircularProgress, HStack, useNumberInput } from "@chakra-ui/react";
+import { Box, chakra, Flex, CircularProgress, Input, HStack, useNumberInput } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { checkSmartContract } from "@api/user";
 import { useMetamask } from "@hooks/useMetamask";
 import useChakraToast from "@hooks/useChakraToast";
 import { CHAIN_ID } from "@utils/key_auth";
-import { MyButton, MyHeading, MyInput, MyText } from "@sipher/web-components";
+import { MyButton, MyHeading, MyText } from "@sipher/web-components";
 import { useSmartContract } from "@hooks/useSmartContract";
 
 function BuyDoge() {
@@ -33,27 +33,23 @@ function BuyDoge() {
 		isDisabled: metaState.status.private !== "PRIVATE_SALE",
 	});
 
-	const inc = getIncrementButtonProps();
-	const dec = getDecrementButtonProps();
 	const input = getInputProps({ readOnly: true });
 	const toast = useChakraToast();
-	const calculateSlotPrice = () => {
-		return parseFloat((slot * 0.1).toString()).toFixed(1);
+	const calculateSlotPrice = (): number => {
+		return parseFloat((slot * 0.1).toFixed(2).toString());
 	};
 
 	const PrivateSale = async () => {
-		queryClient.invalidateQueries("_getUserRecord");
-		let checkSC = await checkSmartContract(metaState.accountLogin);
-
-		if (!checkSC) {
-			toast("error", "Failed to check smart contract");
-			return;
-		}
+		// let checkSC = await checkSmartContract(metaState.accountLogin);
+		// if (!checkSC) {
+		// 	toast("error", "Failed to check smart contract");
+		// 	return;
+		// }
 		if (userRecord?.whitelistBought && userRecord.whitelistBought > 0) {
 			toast("error", "Confirm error , each wallet only 1 nft");
 			return;
 		}
-		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice());
+		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof);
 		toast("success", "Confirm successfully! Please wait about 30 seconds");
 		queryClient.invalidateQueries("_getUserRecord");
 	};
@@ -62,7 +58,8 @@ function BuyDoge() {
 		setIsLoadingBtn(true);
 		try {
 			if (metaState.chain.id === CHAIN_ID) {
-				if ((await getBalanceMetaMask()) < calculateSlotPrice()) {
+				const balance = await getBalanceMetaMask();
+				if (balance < calculateSlotPrice()) {
 					toast("error", "Please check your balance can not mint");
 					setIsLoadingBtn(false);
 				} else {
@@ -87,17 +84,16 @@ function BuyDoge() {
 
 	return (
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
-			<Flex alignItems="center" flexDir="row" justifyContent="space-between">
-				<MyHeading textAlign="left" color="yellow.500">
-					{metaState.status.private === "NOT_FOR_SALE"
-						? "WAITING FOR PRIVATE SALE"
-						: metaState.status.private === "PRIVATE_SALE"
-						? "PRIVATE SALE SIPHER NFT"
-						: metaState.status.private === "END_SALE"
-						? "NO SALE AVAILABLE YET"
-						: "NO SALE AVAILABLE YET"}
-				</MyHeading>
-				{metaState.proof.length > 0 && (
+			<MyHeading textAlign="left" color="yellow.500">
+				{metaState.status.private === "NOT_FOR_SALE"
+					? "WAITING FOR PRIVATE SALE"
+					: metaState.status.private === "PRIVATE_SALE"
+					? "PRIVATE SALE SIPHER NFT"
+					: metaState.status.private === "END_SALE"
+					? "NO SALE AVAILABLE YET"
+					: "NO SALE AVAILABLE YET"}
+			</MyHeading>
+			{/* {metaState.proof.length > 0 && (
 					<chakra.span
 						fontSize="1.2rem"
 						bg="#43a81e"
@@ -110,8 +106,7 @@ function BuyDoge() {
 					>
 						Whitelisted
 					</chakra.span>
-				)}
-			</Flex>
+				)} */}
 			<MyText textAlign="left" color="red.500">
 				{metaState.status.private === "END_SALE"
 					? "Comeback later!"
@@ -123,11 +118,17 @@ function BuyDoge() {
 				Choose quantity
 			</MyText>
 			<HStack mt="1" w="100%">
-				<MyButton colorScheme="yellow" bg="yellow.400" {...dec}>
+				<MyButton colorScheme="yellow" bg="yellow.400" {...getDecrementButtonProps()}>
 					-
 				</MyButton>
-				<MyInput textAlign="center" borderColor="yellow.400" w="100%" {...input} />
-				<MyButton colorScheme="yellow" bg="yellow.400" {...inc}>
+				<Input
+					fontSize={["xs", "sm", "md", "lg"]}
+					textAlign="center"
+					borderColor="yellow.400"
+					w="100%"
+					{...input}
+				/>
+				<MyButton colorScheme="yellow" bg="yellow.400" {...getIncrementButtonProps()}>
 					+
 				</MyButton>
 			</HStack>

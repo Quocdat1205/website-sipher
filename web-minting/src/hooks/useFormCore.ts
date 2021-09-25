@@ -1,29 +1,29 @@
-import { useCallback, useReducer } from "react";
+import { useCallback, useReducer } from "react"
 
 interface IOption {
-	clearErrorOnValueChange: boolean;
+	clearErrorOnValueChange: boolean
 }
 
-const useFormCore = <IForm extends Record<string, any>>(
+export const useFormCore = <IForm extends Record<string, any>>(
 	initialValues: IForm,
 	options: IOption = {
 		clearErrorOnValueChange: true,
 	}
 ) => {
 	type SetAction = {
-		type: "SET";
-		field: string;
-		value: any;
-	};
+		type: "SET"
+		field: string
+		value: any
+	}
 
 	type InitAction<T> = {
-		type: "INIT";
-		payload: T;
-	};
+		type: "INIT"
+		payload: T
+	}
 
-	type Action<T> = SetAction | InitAction<T>;
-	type IFormError = Record<keyof IForm, string>;
-	const initialError: IFormError = Object.assign({}, ...Object.keys(initialValues).map((key) => ({ [key]: "" })));
+	type Action<T> = SetAction | InitAction<T>
+	type IFormError = Record<keyof IForm, string>
+	const initialError: IFormError = Object.assign({}, ...Object.keys(initialValues).map((key) => ({ [key]: "" })))
 
 	// generate reducer base on initial value input
 	const genReducer = <P extends Record<string, any>>(initValues: P): [(state: P, action: Action<P>) => P, P] => {
@@ -33,35 +33,35 @@ const useFormCore = <IForm extends Record<string, any>>(
 					return {
 						...state,
 						[action.field]: action.value,
-					};
+					}
 				case "INIT":
-					return action.payload;
+					return action.payload
 				default:
-					return state;
+					return state
 			}
-		};
-		return [reducer, initValues];
-	};
+		}
+		return [reducer, initValues]
+	}
 
-	const [values, dispatch] = useReducer(...genReducer<IForm>(initialValues));
+	const [values, dispatch] = useReducer(...genReducer<IForm>(initialValues))
 
-	const [errors, dispatchError] = useReducer(...genReducer<IFormError>(initialError));
+	const [errors, dispatchError] = useReducer(...genReducer<IFormError>(initialError))
 
 	const setError = useCallback(
 		(field: keyof IFormError, value: string) => dispatchError({ type: "SET", field: field as string, value }),
 		[dispatchError]
-	);
+	)
 	const setValue = useCallback(
 		(field: keyof IForm, value: any) => {
-			dispatch({ type: "SET", field: field as string, value });
-			if (options.clearErrorOnValueChange) setError(field, "");
+			dispatch({ type: "SET", field: field as string, value })
+			if (options.clearErrorOnValueChange) setError(field, "")
 		},
 		[dispatch, setError, options.clearErrorOnValueChange]
-	);
+	)
 
-	const initForm = (payload: IForm = initialValues) => dispatch({ type: "INIT", payload });
+	const initForm = (payload: IForm = initialValues) => dispatch({ type: "INIT", payload })
 
-	return { values, setValue, initForm, errors, setError };
-};
+	return { values, setValue, initForm, errors, setError }
+}
 
-export default useFormCore;
+export default useFormCore

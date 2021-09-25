@@ -1,7 +1,7 @@
 import {
 	Box,
 	Flex,
-	Heading,
+	SimpleGrid,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -10,25 +10,29 @@ import {
 	ModalOverlay,
 	useDisclosure,
 	CircularProgress,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import Card from "./Card";
-import Pagination from "./Pagination";
-import PopupModal from "./PopupModal";
-import { getListNFT } from "@api/user";
-import { useQuery } from "react-query";
-import { useMetamask } from "@hooks/useMetamask";
+} from "@chakra-ui/react"
+import React, { useState } from "react"
+import Card from "./Card"
+import Pagination from "./Pagination"
+import PopupModal from "./PopupModal"
+import { getListNFT } from "@api/index"
+import { useQuery } from "react-query"
+import { useMetamask } from "@hooks/useMetamask"
+import { MyHeading } from "@sipher/web-components"
 
 function Inventory() {
-	const [currentPage, setCurrentPage] = useState(1);
-	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [selectId, setSelectId] = useState();
+	const [currentPage, setCurrentPage] = useState(1)
+	const { isOpen, onOpen, onClose } = useDisclosure()
+	const [selectId, setSelectId] = useState({
+		id: "",
+		race: "",
+	})
 	const [filter, setFilter] = useState({
 		tab: "",
 		select: "Later",
 		search: "",
-	});
-	const { metaState } = useMetamask();
+	})
+	const { metaState } = useMetamask()
 	//radio Button
 	// const options = ["All", "Available"];
 	// const { getRootProps, getRadioProps } = useRadioGroup({
@@ -44,11 +48,11 @@ function Inventory() {
 		() => getListNFT(metaState.accountLogin, currentPage),
 		{
 			onError: (error) => {
-				console.log(error);
-				onOpen();
+				console.log(error)
+				onOpen()
 			},
 		}
-	);
+	)
 
 	// const handleSearch = useCallback(
 	//   (e) => {
@@ -56,15 +60,14 @@ function Inventory() {
 	//   },
 	//   [filter]
 	// );
-	const handleFilter = (dt) => dt.name.toUpperCase().includes(filter.search.toUpperCase().trim());
+	const handleFilter = (dt) => dt.name.toUpperCase().includes(filter.search.toUpperCase().trim())
 
-	const handleClick = async (id) => {
-		await setSelectId(id);
-		onOpen();
-	};
+	const handleClick = async (id, race) => {
+		await setSelectId({ id, race })
+		onOpen()
+	}
 
 	//Pagination
-
 	return (
 		<Flex
 			flexDir="column"
@@ -75,40 +78,28 @@ function Inventory() {
 			w="100%"
 			h="100%"
 		>
-			<Heading
-				fontFamily="Chakra Petch"
-				fontSize={{
-					base: "1rem",
-					sm: "1.2rem",
-					md: "1.5rem",
-					xl: "1.5rem",
-					xxl: "1.8rem",
-					xxxl: "2rem",
-				}}
-				textAlign="right"
-				textTransform="uppercase"
-				w="95%"
-				color="#B70F28"
-			>
+			<MyHeading fontFamily="Chakra Petch" textAlign="right" textTransform="uppercase" color="#B70F28" w="full">
 				Inventory
-				<Box
-					w="100%"
-					h="1px"
-					bg="#6f111f"
-					pos="relative"
-					_before={{
-						pos: "absolute",
-						content: "''",
-						h: "2px",
-						w: "10px",
-						bottom: 0,
-						left: 0,
-						bgColor: "red.500",
-					}}
-				/>
-			</Heading>
-			<Flex w="100%" p="4" flexDir="column" flex="1" overflow="hidden" h="90%">
-				<Text textAlign="right">You currently have {dataNFT ? dataNFT.total : 0} Sipher NFTs</Text>
+			</MyHeading>
+			<Box
+				w="100%"
+				h="1px"
+				bg="#6f111f"
+				pos="relative"
+				_before={{
+					pos: "absolute",
+					content: "''",
+					h: "2px",
+					w: "10px",
+					bottom: 0,
+					left: 0,
+					bgColor: "red.500",
+				}}
+			/>
+			<Flex w="100%" p="4" flexDir="column" flex="1" overflow="hidden">
+				<Text p="2" textAlign="right">
+					You currently have {dataNFT ? dataNFT.total : 0} Sipher NFTs
+				</Text>
 				{/* <Flex mb="4" flexDir="row">
                   <HStack {...group}>
                     {options.map((value) => {
@@ -175,16 +166,20 @@ function Inventory() {
             onChange={handleSearch}
           />
         </Flex> */}
-				<Flex ml="-2%" h="95%" overflow="auto" flexWrap="wrap">
+				<Flex h="95%" overflow="hidden" flexDir="column">
 					{isLoading ? (
-						<Flex flexDir="column" alignItems="center" justifyContent="center" w="100%">
+						<Flex flexDir="column" alignItems="center" justifyContent="center" w="100%" h="100%">
 							<CircularProgress size="4rem" isIndeterminate color="yellow.300" />
 							Loading ...
 						</Flex>
 					) : dataNFT.data ? (
-						dataNFT.data.filter(handleFilter).map((item) => {
-							return <Card onClick={() => handleClick(item.id)} key={item.id} item={item} />;
-						})
+						<SimpleGrid p="2" columns={[1, 3, 5, 6]} spacing={4} overflow="auto" className="nice-scroll">
+							{dataNFT.data.filter(handleFilter).map((item) => {
+								return (
+									<Card onClick={() => handleClick(item.id, item.race)} key={item.id} item={item} />
+								)
+							})}
+						</SimpleGrid>
 					) : (
 						<Flex alignItems="center" justifyContent="center" w="100%">
 							<Text>No Data</Text>
@@ -232,7 +227,7 @@ function Inventory() {
 				</Modal>
 			</Flex>
 		</Flex>
-	);
+	)
 }
 
-export default Inventory;
+export default Inventory

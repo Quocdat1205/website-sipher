@@ -1,5 +1,5 @@
 import { Box, chakra, HStack, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { differenceInSeconds } from "date-fns";
 import { MyText } from "@sipher/web-components";
 
@@ -12,17 +12,19 @@ interface CountDownProps {
 }
 
 const CountDown = ({ deadline }: CountDownProps) => {
+	const runTimeOut = useRef(true);
 	const timeToCountdown = () => {
 		const currentTime = new Date().getTime();
 		const diffInSeconds = differenceInSeconds(deadline, currentTime);
-		// if (diffInSeconds <= 1) {
-		// 	return {
-		// 		days: 0,
-		// 		hours: 0,
-		// 		minutes: 0,
-		// 		seconds: 0,
-		// 	};
-		// }
+		if (diffInSeconds <= 1) {
+			runTimeOut.current = false;
+			return {
+				days: 0,
+				hours: 0,
+				minutes: 0,
+				seconds: 0,
+			};
+		}
 		return {
 			days: Math.floor(diffInSeconds / ONE_DAY),
 			hours: Math.floor((diffInSeconds % ONE_DAY) / ONE_HOUR),
@@ -34,7 +36,7 @@ const CountDown = ({ deadline }: CountDownProps) => {
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
-			setCountdown(timeToCountdown());
+			runTimeOut.current && setCountdown(timeToCountdown());
 		}, 1000);
 
 		return () => clearTimeout(timeout);

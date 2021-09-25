@@ -3,12 +3,12 @@ import { MyText } from "@sipher/web-components";
 import useChakraToast from "@hooks/useChakraToast";
 import { useMetamask } from "@hooks/useMetamask";
 import { useRouter } from "next/dist/client/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardConnect from "./CardConnect";
 
 const ConnectForm = () => {
 	const router = useRouter();
-	const { metaState, connect, setMetaState } = useMetamask();
+	const { metaState, connect } = useMetamask();
 	const toast = useChakraToast();
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -18,11 +18,6 @@ const ConnectForm = () => {
 			(async () => {
 				try {
 					await connect();
-					if (metaState.proof.length > 0) {
-						router.push("/minting-private");
-					} else {
-						router.push("/minting-public");
-					}
 					toast("success", "Connect successfully");
 					setIsLoading(false);
 				} catch (err: any) {
@@ -60,7 +55,7 @@ const ConnectForm = () => {
 			<Box p="4">
 				<CardConnect
 					isLoading={isLoading}
-					active={metaState.accountLogin !== ""}
+					active={metaState.isSignature && metaState.accountLogin !== ""}
 					onClick={() => handleConnectMetaMask()}
 					src="/images/icons/metaMask.png"
 					title="MetaMask"

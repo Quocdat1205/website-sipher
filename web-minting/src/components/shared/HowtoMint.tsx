@@ -5,17 +5,16 @@ import React from "react";
 import CountDown from "@components/shared/CountDown";
 
 interface Props {
-	activePublic?: boolean;
+	isPublic?: boolean;
 }
 
-function HowtoMint({ activePublic = false }: Props) {
+function HowtoMint({ isPublic = false }: Props) {
 	const { metaState } = useMetamask();
-
 	return (
 		<Flex flexDir="row" w="100%" px="4" justifyContent="space-between">
 			<Box flex="1" textAlign="left" fontSize={["sm", "sm", "md", "lg"]} borderRight="1px" borderColor="gray.600">
 				<MyText>
-					{activePublic
+					{isPublic
 						? metaState.status.public === "PUBLIC_SALE"
 							? "PUBLIC SALE"
 							: metaState.status.public === "END_SALE"
@@ -28,7 +27,7 @@ function HowtoMint({ activePublic = false }: Props) {
 						: ""}
 				</MyText>
 				<chakra.ul px="4">
-					{activePublic ? (
+					{isPublic ? (
 						metaState.status.public === "NOT_FOR_SALE" ? (
 							<>
 								<li>Available for whitelisted addresses only.</li>
@@ -59,7 +58,13 @@ function HowtoMint({ activePublic = false }: Props) {
 						""
 					)}
 				</chakra.ul>
-				<CountDown deadline={1632471810000} />
+				{isPublic
+					? metaState.status.public !== "END_SALE" && (
+							<CountDown deadline={metaState.time && metaState.time.public} />
+					  )
+					: metaState.status.private !== "END_SALE" && (
+							<CountDown deadline={metaState.time && metaState.time.private} />
+					  )}
 				<Box mt="2">
 					<MyText>GUIDE</MyText>
 					<chakra.ol px="4">
@@ -72,7 +77,7 @@ function HowtoMint({ activePublic = false }: Props) {
 			<Box flex="1" textAlign="left" ml="2%" fontSize={["sm", "sm", "md", "lg"]}>
 				<MyText>NOTE</MyText>
 				<chakra.ul px="4">
-					{activePublic ? (
+					{isPublic ? (
 						metaState.status.public !== "END_SALE" ? (
 							<>
 								<li>

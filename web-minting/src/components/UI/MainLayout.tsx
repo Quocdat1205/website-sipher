@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/layout";
 import Loading from "@components/shared/Loading";
-import { useSmartContract } from "@hooks/useSmartContract";
+import { useMetamask } from "@hooks/useMetamask";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { NavBar } from "../shared/NavBar";
@@ -10,15 +10,15 @@ interface Props {
 }
 
 const MainLayout = ({ children }: Props) => {
-	const { metaState } = useSmartContract();
+	const { metaState, UpdateAccount } = useMetamask();
 	const router = useRouter();
 
 	useEffect(() => {
 		if (!metaState.isConnected && !metaState.isSignature) {
 			router.push("/");
 		}
-	}, [metaState.isConnected, metaState.isSignature, router]);
-	console.log(metaState);
+		UpdateAccount();
+	}, [metaState.isConnected, metaState.isSignature, router, UpdateAccount]);
 
 	return metaState.isConnected ? (
 		<Flex
