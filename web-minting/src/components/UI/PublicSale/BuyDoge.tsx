@@ -46,6 +46,11 @@ function BuyDoge() {
 	}
 
 	const PublicSale = async () => {
+		let checkSC = await checkSmartContract(metaState.accountLogin)
+		if (!checkSC) {
+			toast("error", "Failed to check smart contract")
+			return
+		}
 		if (userRecord && userRecord.publicBought + userRecord.whitelistBought >= 7) {
 			toast("error", "Confirm error , each wallet only 5 nft")
 			return

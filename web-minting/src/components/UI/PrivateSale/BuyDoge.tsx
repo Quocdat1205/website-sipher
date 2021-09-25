@@ -40,13 +40,13 @@ function BuyDoge() {
 	}
 
 	const PrivateSale = async () => {
-		// let checkSC = await checkSmartContract(metaState.accountLogin);
-		// if (!checkSC) {
-		// 	toast("error", "Failed to check smart contract");
-		// 	return;
-		// }
-		if (userRecord?.whitelistBought && userRecord.whitelistBought > 0) {
-			toast("error", "Confirm error , each wallet only 1 nft")
+		let checkSC = await checkSmartContract(metaState.accountLogin)
+		if (!checkSC) {
+			toast("error", "Failed to check smart contract")
+			return
+		}
+		if (userRecord?.whitelistBought && userRecord.whitelistBought > 2) {
+			toast("error", "Confirm error , each wallet only 2 nft")
 			return
 		}
 		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof)
