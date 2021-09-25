@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import Web3 from "web3";
-import { authenticateUser, CheckIsWhitelisted, getUsersByAddress, signupUser } from "@api/user";
+import { authenticateUser, checkIsWhitelisted, getUsersByAddress, signupUser } from "@api/user";
 import { useWalletContext } from "@hooks/storeWallet/store";
 
 declare global {
@@ -90,7 +90,7 @@ export const useMetamask = () => {
 		}
 		//check token on cookies
 		const token = await handleAuthenticate(accountSignup);
-		const proof = await CheckIsWhitelisted(accountSignup.publicAddress);
+		const proof = await checkIsWhitelisted(accountSignup.publicAddress);
 
 		setValue("isSignature", !!token && !!proof ? true : false);
 		setValue("accessToken", token);

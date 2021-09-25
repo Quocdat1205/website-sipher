@@ -1,6 +1,6 @@
 import Web3 from "web3";
 import { useQuery } from "react-query";
-import { SMARTCONTRACT_SALE, SMARTCONTRACT_NFT } from "../utils/key_auth";
+import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "../utils/key_auth";
 import NFT from "../contract/NFT";
 import SALE from "../contract/SALE";
 import { checkgas } from "../api/user";
@@ -12,8 +12,8 @@ const web3 = new Web3(provider);
 export const useSmartContract = () => {
 	const { values, setValue } = useWalletContext();
 
-	const ContractProviderSALE = new web3.eth.Contract(SALE.abiSale, SMARTCONTRACT_SALE);
-	const ContractProviderNFT = new web3.eth.Contract(NFT.apiNFT, SMARTCONTRACT_NFT);
+	const ContractProviderSALE = new web3.eth.Contract(SALE.abiSale, SMARTCONTRACT_SALE_NEKO);
+	const ContractProviderNFT = new web3.eth.Contract(NFT.apiNFT, SMARTCONTRACT_NEKO);
 
 	useQuery("NFT-sale", () => ContractProviderSALE.methods.getSaleConfig().call(), {
 		onSuccess: (data) => getStatus(data),

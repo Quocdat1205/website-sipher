@@ -38,14 +38,16 @@ export const NavBar = ({}: NavBarProps) => {
 				<Img src="/images/logo_pc.png" h={["10%", "2rem", "2.5rem"]} mx={[0, 0, "auto"]} />
 			</Flex>
 			<HStack spacing={[6, 8, 10, 12]} flex={3} justify="flex-start">
-				{navMenus.map((menu) => (
-					<NavBarLink
-						key={menu.id}
-						text={menu.id}
-						href={menu.path}
-						active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
-					/>
-				))}
+				{navMenus
+					.filter((item) => item.id !== "Private Sale" || metaState.proof.length > 0)
+					.map((menu) => (
+						<NavBarLink
+							key={menu.id}
+							text={menu.id}
+							href={menu.path}
+							active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
+						/>
+					))}
 			</HStack>
 			<TotalSupplyNFTs />
 			<AccountAddress signOut={signOut} account={metaState.accountLogin} />

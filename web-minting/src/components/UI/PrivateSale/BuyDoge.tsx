@@ -1,7 +1,7 @@
 import { Box, chakra, Flex, CircularProgress, HStack, useNumberInput } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
-import { checkSmartContract, checkWhiteList, logLocation } from "@api/user";
+import { checkSmartContract } from "@api/user";
 import { useMetamask } from "@hooks/useMetamask";
 import useChakraToast from "@hooks/useChakraToast";
 import { CHAIN_ID } from "@utils/key_auth";
@@ -43,14 +43,10 @@ function BuyDoge() {
 
 	const PrivateSale = async () => {
 		queryClient.invalidateQueries("_getUserRecord");
-		let check = await checkSmartContract(metaState.accountLogin);
+		let checkSC = await checkSmartContract(metaState.accountLogin);
 
-		if (!check) {
+		if (!checkSC) {
 			toast("error", "Failed to check smart contract");
-			return;
-		}
-		if (metaState.proof.length === 0) {
-			toast("error", "You cannot buy at this time");
 			return;
 		}
 		if (userRecord?.whitelistBought && userRecord.whitelistBought > 0) {
@@ -60,7 +56,6 @@ function BuyDoge() {
 		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice());
 		toast("success", "Confirm successfully! Please wait about 30 seconds");
 		queryClient.invalidateQueries("_getUserRecord");
-		logLocation();
 	};
 
 	const handleConfirm = async () => {
