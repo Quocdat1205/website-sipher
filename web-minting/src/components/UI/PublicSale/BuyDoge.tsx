@@ -7,9 +7,18 @@ import useChakraToast from "@hooks/useChakraToast"
 import { CHAIN_ID } from "@utils/key_auth"
 import { MyButton, MyHeading, MyText } from "@sipher/web-components"
 import { useSmartContract } from "@hooks/useSmartContract"
+import ProgressBar from "@components/shared/ProgressBar"
 
 function BuyDoge() {
 	const { sendSmartContract, getUserRecord } = useSmartContract()
+	//Processbar infomation
+	const publicSaleTime = 1632664977000
+	const startPrice = 1
+	const priceStep = 0.01
+	const duration = 900 * 60
+	const [currentTime, setCurrentTime] = useState(new Date().getTime())
+	const currentPrice = Math.max(startPrice - Math.round((currentTime - publicSaleTime) / duration) * priceStep, 0.1)
+	//
 	const { metaState, getBalanceMetaMask } = useMetamask()
 	const queryClient = useQueryClient()
 	const [isLoadingBtn, setIsLoadingBtn] = useState(false)
@@ -26,7 +35,7 @@ function BuyDoge() {
 		step: 1,
 		value: slot,
 		min: 0,
-		max: 5 - ((userRecord ? userRecord.publicBought : 0) + (userRecord ? userRecord.whitelistBought : 0)) || 0,
+		max: 7 - ((userRecord ? userRecord.publicBought : 0) + (userRecord ? userRecord.whitelistBought : 0)) || 0,
 		onChange: (v) => setSlot(parseInt(v)),
 		isDisabled: metaState.status.public !== "PUBLIC_SALE",
 	})
@@ -37,12 +46,12 @@ function BuyDoge() {
 	}
 
 	const PublicSale = async () => {
-		if (userRecord && userRecord.publicBought + userRecord.whitelistBought >= 5) {
+		if (userRecord && userRecord.publicBought + userRecord.whitelistBought >= 7) {
 			toast("error", "Confirm error , each wallet only 5 nft")
 			return
 		}
 		toast("success", "Confirm successfully! Please wait about 30 seconds")
-		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof)
+		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), [])
 		queryClient.invalidateQueries("_getUserRecord")
 	}
 
@@ -75,6 +84,14 @@ function BuyDoge() {
 
 	return (
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
+			<Flex justify="flex-start" p="4">
+				<ProgressBar
+					currentPrice={currentPrice}
+					publicSaleTime={publicSaleTime}
+					currentTime={currentTime}
+					setCurrentTime={setCurrentTime}
+				/>
+			</Flex>
 			<MyHeading textAlign="left" color="yellow.500">
 				{metaState.status.public === "NOT_FOR_SALE"
 					? "WAITING FOR PUBLIC SALE"
@@ -121,7 +138,7 @@ function BuyDoge() {
 					pt="2"
 				>
 					<Flex justifyContent="space-between" w="100%" alignItems="center">
-						<MyText>Unit price: 0.1 ETH</MyText>
+						<MyText>Unit price: {currentPrice} ETH</MyText>
 						<MyText>
 							You have purchased: 0
 							{!isLoadingRecord && userRecord

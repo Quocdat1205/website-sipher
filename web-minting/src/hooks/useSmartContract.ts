@@ -49,28 +49,30 @@ export const useSmartContract = () => {
 		//data[1] -> data[2]: public
 		let now = new Date()
 		if (now < new Date(parseInt(data[0]) * 1000)) {
+			//set timestamp countdown
 			setValue("time", { private: parseInt(data[0]) * 1000, public: parseInt(data[1]) * 1000 })
+			//set status sale
 			setValue("status", { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" })
 		} else if (now < new Date(parseInt(data[1]) * 1000)) {
+			//set timestamp countdown
 			setValue("time", { private: parseInt(data[1]) * 1000, public: parseInt(data[1]) * 1000 })
+			//set status sale
 			setValue("status", { private: "PRIVATE_SALE", public: "NOT_FOR_SALE" })
 		} else if (now < new Date(parseInt(data[2]) * 1000)) {
+			//set timestamp countdown
 			setValue("time", { private: now, public: parseInt(data[2]) * 1000 })
 			setValue("status", { private: "END_SALE", public: "PUBLIC_SALE" })
-		} else if (now > new Date(parseInt(data[2]) * 1000)) {
-			setValue("time", { private: now, public: now })
-			setValue("status", "END_SALE")
 		} else {
+			//set timestamp countdown
 			setValue("time", { private: now, public: now })
-			setValue("status", "END_SALE")
+			setValue("status", { private: "END_SALE", public: "END_SALE" })
 		}
 		// }
 	}
 
 	//buy NFT
-	const sendSmartContract = async (account, slot, slotPrice) => {
-		const _gaslimit =
-			slot === "1" ? 296656 : slot === "2" ? 438147 : slot === "3" ? 612987 : slot === "4" ? 787828 : 962668
+	const sendSmartContract = async (accountLogin, slot: number, slotPrice: number, proof: string[]) => {
+		const _gaslimit = slot === 1 ? 296656 : slot === 2 ? 438147 : slot === 3 ? 612987 : slot === 4 ? 787828 : 962668
 		// const _gasprice = await web3.eth.getGasPrice();
 		const gaseth = await checkgas()
 
@@ -80,13 +82,9 @@ export const useSmartContract = () => {
 				? 2
 				: parseInt(gaseth.data.ProposeGasPrice) - parseInt(gaseth.data.suggestBaseFee)
 		)
-
-		await ContractProviderSALE.methods.buy(slot, values.proof).send({
-			from: account,
-			value: web3.utils.toHex(web3.utils.toWei(slotPrice, "ether")),
-			// gasLimit: web3.utils.toHex(_gaslimit),
-			// maxPriorityFeePerGas: web3.utils.toHex(web3.utils.toWei((Math.round(_gasprice/100000000000*2)).toString(), "gwei")),
-			// maxFeePerGas: null,
+		await ContractProviderSALE.methods.buy(slot, proof).send({
+			from: accountLogin,
+			value: web3.utils.toHex(web3.utils.toWei(slotPrice.toString(), "ether")),
 			gasLimit: web3.utils.toHex(_gaslimit),
 			maxPriorityFeePerGas: web3.utils.toHex(web3.utils.toWei(maxPriorityFeePerGas.toString(), "gwei")),
 			maxFeePerGas: web3.utils.toHex(web3.utils.toWei(maxFeePerGas.toString(), "gwei")),
@@ -112,6 +110,7 @@ export const useSmartContract = () => {
 		sendSmartContract,
 		getBalanceOf,
 		getUserRecord,
+		// getWhiteList,
 		getTotalSupply,
 		setContractState: setValue,
 		metaState: { ...values, isAvailable: !!provider },
