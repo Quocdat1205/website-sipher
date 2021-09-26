@@ -1,8 +1,7 @@
 import { Flex } from "@chakra-ui/layout"
 import Loading from "@components/shared/Loading"
 import { useMetamask } from "@hooks/useMetamask"
-import { useRouter } from "next/router"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { NavBar } from "../shared/NavBar"
 
 interface Props {
@@ -11,14 +10,13 @@ interface Props {
 
 const MainLayout = ({ children }: Props) => {
 	const { metaState, UpdateAccount } = useMetamask()
-	const router = useRouter()
 
 	useEffect(() => {
 		UpdateAccount()
-		if (!metaState.isConnected) {
-			router.push("/")
+		if (!metaState.isConnected && metaState.accountLogin === "") {
+			window.location.href = "/"
 		}
-	}, [metaState.isConnected, router, UpdateAccount])
+	}, [metaState.isConnected, metaState.accountLogin, UpdateAccount])
 
 	return metaState.isConnected ? (
 		<Flex
@@ -31,7 +29,7 @@ const MainLayout = ({ children }: Props) => {
 			pos="relative"
 		>
 			<NavBar />
-			<Flex flex={1} overflow="hidden">
+			<Flex flex={1} p={1} overflow="hidden">
 				{children}
 			</Flex>
 		</Flex>

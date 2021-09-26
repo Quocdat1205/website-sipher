@@ -70,6 +70,7 @@ export const useMetamask = () => {
 		provider.on("accountsChanged", async (accounts) => {
 			if (accounts.length) {
 				setValue("account", accounts[0])
+				setValue("accountLogin", "")
 				setValue("isConnected", false)
 				setValue("isSignature", false)
 			}

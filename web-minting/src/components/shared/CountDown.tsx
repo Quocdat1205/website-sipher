@@ -17,7 +17,6 @@ const CountDown = ({ deadline }: CountDownProps) => {
 		const currentTime = new Date().getTime()
 		const diffInSeconds = differenceInSeconds(deadline, currentTime)
 		if (diffInSeconds <= 1) {
-			runTimeOut.current = false
 			return {
 				days: 0,
 				hours: 0,

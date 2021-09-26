@@ -15,11 +15,10 @@ const PublicSale = (props: Props) => {
 		<Flex
 			className="nice-scroll"
 			overflow="auto"
-			p="2"
-			w="100%"
 			flexDir="column"
 			alignItems="center"
 			justifyContent="center"
+			w="100%"
 			h="100%"
 		>
 			<Flex
@@ -53,7 +52,7 @@ const PublicSale = (props: Props) => {
 				w="70%"
 				flexDir="column"
 				alignItems="center"
-				p="2%"
+				p="1.5%"
 				bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
 			>
 				<HowtoMint isPublic />

@@ -1,20 +1,19 @@
-import React from "react";
-import { Flex } from "@chakra-ui/layout";
-import { Image } from "@chakra-ui/image";
-import BuyDoge from "./BuyDoge";
-import HowtoMint from "@components/shared/HowtoMint";
-import { useSmartContract } from "@hooks/useSmartContract";
-import Loading from "@components/shared/Loading";
+import React from "react"
+import { Flex } from "@chakra-ui/layout"
+import { Image } from "@chakra-ui/image"
+import BuyDoge from "./BuyDoge"
+import HowtoMint from "@components/shared/HowtoMint"
+import { useSmartContract } from "@hooks/useSmartContract"
+import Loading from "@components/shared/Loading"
 
 interface Props {}
 
 const PrivateSale = (props: Props) => {
-	const { metaState } = useSmartContract();
+	const { metaState } = useSmartContract()
 	return metaState.isSmartContract === "CONNECT" ? (
 		<Flex
 			className="nice-scroll"
 			overflow="auto"
-			p="2"
 			w="100%"
 			flexDir="column"
 			alignItems="center"
@@ -52,7 +51,7 @@ const PrivateSale = (props: Props) => {
 				w="70%"
 				flexDir="column"
 				alignItems="center"
-				p="2%"
+				p="1.5%"
 				bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
 			>
 				<HowtoMint />
@@ -60,6 +59,6 @@ const PrivateSale = (props: Props) => {
 		</Flex>
 	) : (
 		<Loading />
-	);
-};
-export default PrivateSale;
+	)
+}
+export default PrivateSale

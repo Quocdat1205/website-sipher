@@ -36,7 +36,7 @@ function BuyDoge() {
 	const input = getInputProps({ readOnly: true })
 	const toast = useChakraToast()
 	const calculateSlotPrice = (): number => {
-		return parseFloat((slot * 0.1).toFixed(2).toString())
+		return parseFloat((slot * 0.1).toString())
 	}
 
 	const PrivateSale = async () => {
@@ -146,7 +146,7 @@ function BuyDoge() {
 					<Flex justifyContent="space-between" w="100%" alignItems="center">
 						<MyText>Unit price: 0.1 ETH</MyText>
 						<MyText>
-							You have purchased: 0
+							You have purchased:{" "}
 							{!isLoadingRecord && userRecord
 								? userRecord.publicBought + userRecord.whitelistBought
 								: "..."}

@@ -98,7 +98,7 @@ function Inventory() {
 			/>
 			<Flex w="100%" p="2" flexDir="column" flex="1" overflow="hidden">
 				<Text p="2" textAlign="right">
-					You currently have {dataNFT ? dataNFT.total : 0} Sipher NFTs
+					You currently have {dataNFT && dataNFT.total ? dataNFT.total : 0} Sipher NFTs
 				</Text>
 				{/* <Flex mb="4" flexDir="row">
                   <HStack {...group}>
@@ -175,7 +175,7 @@ function Inventory() {
 					) : dataNFT.data ? (
 						<SimpleGrid
 							p="2"
-							columns={[1, 3, 5, 6]}
+							columns={[1, 3, 4, 5]}
 							spacing={4}
 							overflow="auto"
 							w="100%"

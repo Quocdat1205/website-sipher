@@ -10,7 +10,7 @@ import { useSmartContract } from "@hooks/useSmartContract"
 import ProgressBar from "@components/shared/ProgressBar"
 
 function BuyDoge() {
-	const { sendSmartContract, getUserRecord } = useSmartContract()
+	const { sendSmartContract, getUserRecord, getPublicCurrentPrice, metaState } = useSmartContract()
 	//Processbar infomation
 	const publicSaleTime = 1632664977000
 	const startPrice = 1
@@ -22,8 +22,7 @@ function BuyDoge() {
 		1
 	)
 	//
-	const { metaState, getBalanceMetaMask } = useMetamask()
-	const { getPublicCurrentPrice } = useSmartContract()
+	const { getBalanceMetaMask } = useMetamask()
 
 	const queryClient = useQueryClient()
 	const [isLoadingBtn, setIsLoadingBtn] = useState(false)
@@ -47,7 +46,7 @@ function BuyDoge() {
 
 	const toast = useChakraToast()
 	const calculateSlotPrice = () => {
-		return parseFloat((slot * currentPrice).toFixed(1).toString())
+		return parseFloat((slot * currentPrice).toString())
 	}
 
 	const PublicSale = async () => {
@@ -98,7 +97,7 @@ function BuyDoge() {
 	return (
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
 			{metaState.status.public !== "END_SALE" && (
-				<Flex justify="flex-start" p="4">
+				<Flex p="2">
 					<ProgressBar
 						currentPrice={currentPrice}
 						publicSaleTime={publicSaleTime}
@@ -155,7 +154,7 @@ function BuyDoge() {
 					<Flex justifyContent="space-between" w="100%" alignItems="center">
 						<MyText>Unit price: {currentPrice} ETH</MyText>
 						<MyText>
-							You have purchased: 0
+							You have purchased:{" "}
 							{!isLoadingRecord && userRecord
 								? userRecord.publicBought + userRecord.whitelistBought
 								: "..."}
