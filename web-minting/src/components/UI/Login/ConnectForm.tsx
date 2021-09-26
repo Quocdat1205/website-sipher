@@ -1,48 +1,43 @@
-import { Box, Flex } from "@chakra-ui/react";
-import { MyText } from "@sipher/web-components";
-import useChakraToast from "@hooks/useChakraToast";
-import { useMetamask } from "@hooks/useMetamask";
-import { useRouter } from "next/dist/client/router";
-import { useEffect, useState } from "react";
-import CardConnect from "./CardConnect";
+import { Box, Flex } from "@chakra-ui/react"
+import { MyText } from "@sipher/web-components"
+import useChakraToast from "@hooks/useChakraToast"
+import { useMetamask } from "@hooks/useMetamask"
+import { useRouter } from "next/dist/client/router"
+import { useState } from "react"
+import CardConnect from "./CardConnect"
 
 const ConnectForm = () => {
-	const router = useRouter();
-	const { metaState, connect } = useMetamask();
-	const toast = useChakraToast();
-	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter()
+	const { metaState, connect } = useMetamask()
+	const toast = useChakraToast()
+	const [isLoading, setIsLoading] = useState(false)
 
 	const handleConnectMetaMask = async () => {
-		setIsLoading(true);
+		setIsLoading(true)
 		if (metaState.isAvailable && !metaState.isConnected) {
-			(async () => {
+			;(async () => {
 				try {
-					await connect();
-					toast("success", "Connect successfully");
-					setIsLoading(false);
+					await connect()
+					toast("success", "Connect successfully")
+					setIsLoading(false)
 				} catch (err: any) {
 					if (err.code === 4001) {
-						toast("error", "Please connect or signature to MetaMask");
-						setIsLoading(false);
+						toast("error", "Please connect or signature to MetaMask")
+						setIsLoading(false)
 					} else if (err.code === -32002) {
-						toast("error", "Please unclock MetaMask");
-						setIsLoading(false);
+						toast("error", "Please unclock MetaMask")
+						setIsLoading(false)
 					} else {
-						console.error(err);
+						toast("error", "Error connect")
+						console.error(err)
 					}
 				}
-			})();
+			})()
 		} else {
-			if (metaState.isAvailable && metaState.isConnected) {
-				router.push("/minting-private");
-				toast("warning", "Metamask is connected.");
-				setIsLoading(false);
-			} else {
-				toast("error", "You don't have Metamask installed");
-				setIsLoading(false);
-			}
+			toast("error", "You don't have Metamask installed")
+			setIsLoading(false)
 		}
-	};
+	}
 
 	return (
 		<Flex flexDir="column" p="4">
@@ -64,6 +59,6 @@ const ConnectForm = () => {
 				<CardConnect disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" />
 			</Box>
 		</Flex>
-	);
-};
-export default ConnectForm;
+	)
+}
+export default ConnectForm
