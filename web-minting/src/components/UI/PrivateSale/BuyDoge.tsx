@@ -50,7 +50,8 @@ function BuyDoge() {
 			return
 		}
 		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof)
-		toast("success", "Confirm successfully! Please wait about 30 seconds")
+		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
+		setSlot(0)
 		queryClient.invalidateQueries("_getUserRecord")
 	}
 

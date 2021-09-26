@@ -12,15 +12,12 @@ import ProgressBar from "@components/shared/ProgressBar"
 function BuyDoge() {
 	const { sendSmartContract, getUserRecord, getPublicCurrentPrice, metaState } = useSmartContract()
 	//Processbar infomation
-	const publicSaleTime = 1632664977000
+	const publicSaleTime = 1632646800000
 	const startPrice = 1
-	const priceStep = 0.01
-	const duration = 900 * 60
+	const priceStep = 0.08
+	const duration = 1000 * 60 * 10
 	const [currentTime, setCurrentTime] = useState(new Date().getTime())
-	const currentPrice = Math.min(
-		Math.max(startPrice - Math.round((currentTime - publicSaleTime) / duration - 0.5) * priceStep, 0.1),
-		1
-	)
+	const currentPrice = Math.max(startPrice - Math.round((currentTime - publicSaleTime) / duration) * priceStep, 0.1)
 	//
 	const { getBalanceMetaMask } = useMetamask()
 
@@ -46,13 +43,13 @@ function BuyDoge() {
 
 	const toast = useChakraToast()
 	const calculateSlotPrice = () => {
-		return parseFloat((slot * currentPrice).toString())
+		return parseFloat((slot * currentPrice).toFixed(2).toString())
 	}
 
 	const PublicSale = async () => {
 		let checkSC = await checkSmartContract(metaState.accountLogin)
 		let currentPrice = await getPublicCurrentPrice()
-		let totalPrice = currentPrice * slot
+		let totalPrice = await parseFloat((slot * currentPrice).toString())
 
 		if (!checkSC) {
 			toast("error", "Failed to check smart contract")
@@ -62,8 +59,9 @@ function BuyDoge() {
 			toast("error", "Confirm error , each wallet only 5 nft")
 			return
 		}
-		toast("success", "Confirm successfully! Please wait about 30 seconds")
 		await sendSmartContract(metaState.accountLogin, slot, totalPrice, [])
+		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
+		setSlot(0)
 		queryClient.invalidateQueries("_getUserRecord")
 	}
 
