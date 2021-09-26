@@ -12,15 +12,7 @@ const PublicSale = (props: Props) => {
 	const { metaState } = useSmartContract()
 
 	return metaState.isSmartContract === "CONNECT" ? (
-		<Flex
-			className="nice-scroll"
-			overflow="auto"
-			flexDir="column"
-			alignItems="center"
-			justifyContent="center"
-			w="100%"
-			h="100%"
-		>
+		<Flex flexDir="column" alignItems="center" justifyContent="center" w="100%" flex={1}>
 			<Flex
 				flexDir="row"
 				w="70%"

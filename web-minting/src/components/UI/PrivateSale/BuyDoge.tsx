@@ -52,6 +52,7 @@ function BuyDoge() {
 		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof)
 		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
 		setSlot(0)
+		queryClient.invalidateQueries("totalSupplyNFTs")
 		queryClient.invalidateQueries("_getUserRecord")
 	}
 
@@ -85,13 +86,13 @@ function BuyDoge() {
 
 	return (
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
-			<MyHeading textAlign="left" color="yellow.500">
+			<MyHeading textTransform="uppercase" textAlign="left" color="yellow.500">
 				{metaState.status.private === "NOT_FOR_SALE"
 					? "WAITING FOR PRIVATE SALE"
 					: metaState.status.private === "PRIVATE_SALE"
 					? "PRIVATE SALE SIPHER NFT"
 					: metaState.status.private === "END_SALE"
-					? "NO SALE AVAILABLE YET"
+					? "Private sale has ended"
 					: "NO SALE AVAILABLE YET"}
 			</MyHeading>
 			{/* {metaState.proof.length > 0 && (

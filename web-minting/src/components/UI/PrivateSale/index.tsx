@@ -11,15 +11,7 @@ interface Props {}
 const PrivateSale = (props: Props) => {
 	const { metaState } = useSmartContract()
 	return metaState.isSmartContract === "CONNECT" ? (
-		<Flex
-			className="nice-scroll"
-			overflow="auto"
-			w="100%"
-			flexDir="column"
-			alignItems="center"
-			justifyContent="center"
-			h="100%"
-		>
+		<Flex w="100%" flexDir="column" alignItems="center" justifyContent="center" flex={1}>
 			<Flex
 				flexDir="row"
 				w="70%"
