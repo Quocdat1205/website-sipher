@@ -1,13 +1,12 @@
-import { Heading, HeadingProps } from "@chakra-ui/layout";
-import React from "react";
+import { Heading, HeadingProps } from "@chakra-ui/layout"
+import React from "react"
 
-interface MyHeadingProps extends HeadingProps {}
+interface MyHeadingProps extends HeadingProps {
+    size?: "small" | "medium" | "large"
+}
 
-export const MyHeading = (props: MyHeadingProps) => {
-	return (
-		<Heading fontSize={["md", "lg", "xl", "2xl"]} {...props}>
-			{props.children}
-		</Heading>
-	);
-};
-export default MyHeading;
+export const MyHeading = ({ size = "medium", ...rest }: MyHeadingProps) => {
+    const fontSize = size === "small" ? ["md", "lg"] : size === "medium" ? ["lg", "xl"] : ["xl", "2xl"]
+    return <Heading fontSize={fontSize} {...rest} />
+}
+export default MyHeading

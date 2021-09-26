@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react"
 
-export const chakraTheme = extendTheme({
+export const theme = extendTheme({
     colors: {
         main: {
             yellow: "#F4B533",
@@ -25,6 +25,10 @@ export const chakraTheme = extendTheme({
             darkRed3: "#D72F48",
             darkGrey: "#242424",
             white: "#FFFFFF",
+            lightGray: "#111111",
+        },
+        bgGradient: {
+            orange: "#FF6795 0%, #FF710B 84.37%",
         },
     },
     styles: {
@@ -40,7 +44,7 @@ export const chakraTheme = extendTheme({
                 background: "transparent",
             },
             "div::-webkit-scrollbar-thumb": {
-                background: "linear-gradient(to bottom, #391798, #F44A67, #F4B533)",
+                background: "linear-gradient(to bottom, #FF6795 0%, #FF710B 84.37%)",
             },
             ".motion-container": {
                 overflow: "hidden",
@@ -65,4 +69,4 @@ export const chakraTheme = extendTheme({
     breakpoints: ["0px", "480px", "960px", "1440px"],
 })
 
-export default chakraTheme
+export default theme

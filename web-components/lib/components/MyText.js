@@ -9,9 +9,22 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 import { Text } from "@chakra-ui/layout";
 import React from "react";
-export var MyText = function (props) {
-    return (React.createElement(Text, __assign({ fontSize: ["xs", "sm", "md", "lg"] }, props), props.children));
+export var MyText = function (_a) {
+    var _b = _a.size, size = _b === void 0 ? "medium" : _b, rest = __rest(_a, ["size"]);
+    var fontSize = size === "small" ? ["xs", "sm"] : size === "medium" ? ["sm", "md"] : ["lg", "xl", "2xl"];
+    return React.createElement(Text, __assign({ fontSize: fontSize }, rest));
 };
 export default MyText;
