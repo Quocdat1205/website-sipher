@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react"
-import theme from "@constant/theme"
+import { theme } from "@sipher/web-components"
 import store from "@store"
 import { StoreProvider } from "easy-peasy"
 import { NextPage } from "next"
