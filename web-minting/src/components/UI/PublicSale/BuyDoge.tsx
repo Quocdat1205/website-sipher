@@ -49,8 +49,7 @@ function BuyDoge() {
 	const PublicSale = async () => {
 		let checkSC = await checkSmartContract(metaState.accountLogin)
 		let currentPrice = await getPublicCurrentPrice()
-		let totalPrice = await parseFloat((slot * currentPrice).toString())
-
+		let totalPrice = parseFloat((slot * currentPrice).toString())
 		if (!checkSC) {
 			toast("error", "Failed to check smart contract")
 			return
@@ -62,6 +61,7 @@ function BuyDoge() {
 		await sendSmartContract(metaState.accountLogin, slot, totalPrice, [])
 		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
 		setSlot(0)
+		queryClient.invalidateQueries("totalSupplyNFTs")
 		queryClient.invalidateQueries("_getUserRecord")
 	}
 
@@ -150,7 +150,7 @@ function BuyDoge() {
 					pt="2"
 				>
 					<Flex justifyContent="space-between" w="100%" alignItems="center">
-						<MyText>Unit price: {currentPrice} ETH</MyText>
+						<MyText>Unit price: {currentPrice.toFixed(2)} ETH</MyText>
 						<MyText>
 							You have purchased:{" "}
 							{!isLoadingRecord && userRecord

@@ -52,6 +52,7 @@ function BuyDoge() {
 		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof)
 		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
 		setSlot(0)
+		queryClient.invalidateQueries("totalSupplyNFTs")
 		queryClient.invalidateQueries("_getUserRecord")
 	}
 
