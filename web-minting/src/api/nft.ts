@@ -1,26 +1,26 @@
-import config from "./config";
-import axios from "axios";
+import config from "./config"
+import axios from "axios"
 
 export const getListNFT = async (publicAddress, page) => {
-	const { data } = await axios.get(`/nft/get-list-nft?publicAddress=${publicAddress}&page=${page}`, config);
+	const { data } = await axios.get(`/nft/get-list-nft?publicAddress=${publicAddress}&page=${page}`, config)
 	if (data.success && data.message.data.length > 0) {
-		return data.message;
+		return data.message
 	} else {
-		return [];
+		return []
 	}
-};
+}
 
 //get info nft by id
 export const getInfoNFT = async (publicAddress, id, type) => {
-	const { data } = await axios.get(`/nft/get-nft?publicAddress=${publicAddress}&id=${id}&race=${type}`, config);
+	const { data } = await axios.get(`/nft/get-nft?publicAddress=${publicAddress}&id=${id}&race=${type}`, config)
 
-	return data.message;
-};
+	return data.message
+}
 
 export const getMerkle = async (id) => {
-	const { data } = await axios.get(`/neko-sc/merkle/${id}`, config);
-	return data;
-};
+	const { data } = await axios.get(`/neko-sc/merkle/${id}`, config)
+	return data
+}
 
 //change emotion
 export const changeEmotion = async (accessToken, id, emotion, publicAddress, race) => {
@@ -38,6 +38,6 @@ export const changeEmotion = async (accessToken, id, emotion, publicAddress, rac
 				Authorization: `Bearer ${accessToken}`,
 			},
 		}
-	);
-	return data;
-};
+	)
+	return data
+}

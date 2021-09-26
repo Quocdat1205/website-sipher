@@ -1,5 +1,5 @@
 import { Box, chakra, Flex, CircularProgress, Input, HStack, useNumberInput } from "@chakra-ui/react"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useQuery, useQueryClient } from "react-query"
 import { checkSmartContract } from "@api/index"
 import { useMetamask } from "@hooks/useMetamask"
@@ -17,9 +17,14 @@ function BuyDoge() {
 	const priceStep = 0.01
 	const duration = 900 * 60
 	const [currentTime, setCurrentTime] = useState(new Date().getTime())
-	const currentPrice = Math.max(startPrice - Math.round((currentTime - publicSaleTime) / duration) * priceStep, 0.1)
+	const currentPrice = Math.min(
+		Math.max(startPrice - Math.round((currentTime - publicSaleTime) / duration - 0.5) * priceStep, 0.1),
+		1
+	)
 	//
 	const { metaState, getBalanceMetaMask } = useMetamask()
+	const { getPublicCurrentPrice } = useSmartContract()
+
 	const queryClient = useQueryClient()
 	const [isLoadingBtn, setIsLoadingBtn] = useState(false)
 	const [slot, setSlot] = useState(0)
@@ -42,11 +47,14 @@ function BuyDoge() {
 
 	const toast = useChakraToast()
 	const calculateSlotPrice = () => {
-		return parseFloat((slot * 0.1).toFixed(1).toString())
+		return parseFloat((slot * currentPrice).toFixed(1).toString())
 	}
 
 	const PublicSale = async () => {
 		let checkSC = await checkSmartContract(metaState.accountLogin)
+		let currentPrice = await getPublicCurrentPrice()
+		let totalPrice = currentPrice * slot
+
 		if (!checkSC) {
 			toast("error", "Failed to check smart contract")
 			return
@@ -56,7 +64,7 @@ function BuyDoge() {
 			return
 		}
 		toast("success", "Confirm successfully! Please wait about 30 seconds")
-		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), [])
+		await sendSmartContract(metaState.accountLogin, slot, totalPrice, [])
 		queryClient.invalidateQueries("_getUserRecord")
 	}
 
@@ -89,14 +97,16 @@ function BuyDoge() {
 
 	return (
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
-			<Flex justify="flex-start" p="4">
-				<ProgressBar
-					currentPrice={currentPrice}
-					publicSaleTime={publicSaleTime}
-					currentTime={currentTime}
-					setCurrentTime={setCurrentTime}
-				/>
-			</Flex>
+			{metaState.status.public !== "END_SALE" && (
+				<Flex justify="flex-start" p="4">
+					<ProgressBar
+						currentPrice={currentPrice}
+						publicSaleTime={publicSaleTime}
+						currentTime={currentTime}
+						setCurrentTime={setCurrentTime}
+					/>
+				</Flex>
+			)}
 			<MyHeading textAlign="left" color="yellow.500">
 				{metaState.status.public === "NOT_FOR_SALE"
 					? "WAITING FOR PUBLIC SALE"
@@ -196,7 +206,7 @@ function BuyDoge() {
 							</>
 						)}
 					</MyButton>
-				)}{" "}
+				)}
 			</Flex>
 		</Flex>
 	)

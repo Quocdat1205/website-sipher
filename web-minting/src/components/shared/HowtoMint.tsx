@@ -1,15 +1,15 @@
-import { Box, chakra, Flex } from "@chakra-ui/react";
-import { MyText } from "@sipher/web-components";
-import { useMetamask } from "@hooks/useMetamask";
-import React from "react";
-import CountDown from "@components/shared/CountDown";
+import { Box, chakra, Flex } from "@chakra-ui/react"
+import { MyText } from "@sipher/web-components"
+import { useMetamask } from "@hooks/useMetamask"
+import React from "react"
+import CountDown from "@components/shared/CountDown"
 
 interface Props {
-	isPublic?: boolean;
+	isPublic?: boolean
 }
 
 function HowtoMint({ isPublic = false }: Props) {
-	const { metaState } = useMetamask();
+	const { metaState } = useMetamask()
 	return (
 		<Flex flexDir="row" w="100%" px="4" justifyContent="space-between">
 			<Box flex="1" textAlign="left" fontSize={["sm", "sm", "md", "lg"]} borderRight="1px" borderColor="gray.600">
@@ -59,12 +59,8 @@ function HowtoMint({ isPublic = false }: Props) {
 					)}
 				</chakra.ul>
 				{isPublic
-					? metaState.status.public !== "END_SALE" && (
-							<CountDown deadline={metaState.time && metaState.time.public} />
-					  )
-					: metaState.status.private !== "END_SALE" && (
-							<CountDown deadline={metaState.time && metaState.time.private} />
-					  )}
+					? metaState.status.public !== "END_SALE" && <CountDown deadline={metaState.time.public} />
+					: metaState.status.private !== "END_SALE" && <CountDown deadline={metaState.time.private} />}
 				<Box mt="2">
 					<MyText>GUIDE</MyText>
 					<chakra.ol px="4">
@@ -134,7 +130,7 @@ function HowtoMint({ isPublic = false }: Props) {
 				</chakra.ul>
 			</Box>
 		</Flex>
-	);
+	)
 }
 
-export default HowtoMint;
+export default HowtoMint

@@ -31,7 +31,12 @@ export const useSmartContract = () => {
 			const data = await ContractProviderNFT.methods.totalSupply().call()
 			if (data) {
 				setValue("isSmartContract", "CONNECT")
-				return parseInt(data)
+				if (parseInt(data) >= 10000) {
+					setValue("status", { private: "END_SALE", public: "END_SALE" })
+					return parseInt(data)
+				} else {
+					return parseInt(data)
+				}
 			}
 		} catch (error) {
 			console.log(error)
@@ -106,11 +111,17 @@ export const useSmartContract = () => {
 		}
 	}
 
+	//get current price
+	const getPublicCurrentPrice = async () => {
+		const data = await ContractProviderSALE.methods.getPublicSaleCurrentPrice().call()
+		return data / 10 ** 18
+	}
+
 	return {
 		sendSmartContract,
 		getBalanceOf,
 		getUserRecord,
-		// getWhiteList,
+		getPublicCurrentPrice,
 		getTotalSupply,
 		setContractState: setValue,
 		metaState: { ...values, isAvailable: !!provider },

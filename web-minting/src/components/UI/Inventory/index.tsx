@@ -73,7 +73,7 @@ function Inventory() {
 			flexDir="column"
 			justifyContent="center"
 			alignItems="center"
-			py="4"
+			p="4"
 			bg="rgba(0, 0, 0, 0.8)"
 			w="100%"
 			h="100%"
@@ -96,7 +96,7 @@ function Inventory() {
 					bgColor: "red.500",
 				}}
 			/>
-			<Flex w="100%" p="4" flexDir="column" flex="1" overflow="hidden">
+			<Flex w="100%" p="2" flexDir="column" flex="1" overflow="hidden">
 				<Text p="2" textAlign="right">
 					You currently have {dataNFT ? dataNFT.total : 0} Sipher NFTs
 				</Text>
@@ -173,7 +173,15 @@ function Inventory() {
 							Loading ...
 						</Flex>
 					) : dataNFT.data ? (
-						<SimpleGrid p="2" columns={[1, 3, 5, 6]} spacing={4} overflow="auto" className="nice-scroll">
+						<SimpleGrid
+							p="2"
+							columns={[1, 3, 5, 6]}
+							spacing={4}
+							overflow="auto"
+							w="100%"
+							h="100%"
+							className="nice-scroll"
+						>
 							{dataNFT.data.filter(handleFilter).map((item) => {
 								return (
 									<Card onClick={() => handleClick(item.id, item.race)} key={item.id} item={item} />
@@ -181,7 +189,7 @@ function Inventory() {
 							})}
 						</SimpleGrid>
 					) : (
-						<Flex alignItems="center" justifyContent="center" w="100%">
+						<Flex alignItems="center" justifyContent="center" w="100%" h="100%">
 							<Text>No Data</Text>
 						</Flex>
 					)}

@@ -3,6 +3,8 @@ import { BsExclamationTriangle } from "react-icons/bs"
 import { MyHeading, MyButton, GradientButton } from "@sipher/web-components"
 import DesciptionLogin from "./DesciptionLogin"
 
+const connectWalletSteps = ["Select a wallet provider MetaMask"]
+
 const FirstForm = ({ handleRedirect }) => {
     return (
         <Flex

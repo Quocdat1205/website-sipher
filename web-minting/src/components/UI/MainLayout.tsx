@@ -14,11 +14,11 @@ const MainLayout = ({ children }: Props) => {
 	const router = useRouter()
 
 	useEffect(() => {
-		if (!metaState.isConnected && !metaState.isSignature) {
+		UpdateAccount()
+		if (!metaState.isConnected) {
 			router.push("/")
 		}
-		UpdateAccount()
-	}, [metaState.isConnected, metaState.isSignature, router, UpdateAccount])
+	}, [metaState.isConnected, router, UpdateAccount])
 
 	return metaState.isConnected ? (
 		<Flex
