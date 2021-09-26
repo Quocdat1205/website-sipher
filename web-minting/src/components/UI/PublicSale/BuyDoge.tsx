@@ -21,7 +21,6 @@ function BuyDoge() {
 		startPrice - Math.round((currentTime - duration - publicSaleTime) / duration) * priceStep,
 		0.1
 	)
-	console.log(currentPrice)
 	//
 	const { getBalanceMetaMask } = useMetamask()
 
@@ -108,13 +107,13 @@ function BuyDoge() {
 					/>
 				</Flex>
 			)}
-			<MyHeading textAlign="left" color="yellow.500">
+			<MyHeading textTransform="uppercase" textAlign="left" color="yellow.500">
 				{metaState.status.public === "NOT_FOR_SALE"
 					? "WAITING FOR PUBLIC SALE"
 					: metaState.status.public === "PUBLIC_SALE"
 					? "PUBLIC SALE SIPHER NFT"
 					: metaState.status.public === "END_SALE"
-					? "NO SALE AVAILABLE YET"
+					? "Public sale has ended"
 					: "NO SALE AVAILABLE YET"}
 			</MyHeading>
 			<MyText textAlign="left" color="red.500">
