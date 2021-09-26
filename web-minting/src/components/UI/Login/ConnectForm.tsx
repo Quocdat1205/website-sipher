@@ -4,7 +4,7 @@ import useChakraToast from "@hooks/useChakraToast"
 import { useMetamask } from "@hooks/useMetamask"
 import { useRouter } from "next/dist/client/router"
 import { useState } from "react"
-import CardConnect from "./CardConnect"
+import WalletCard from "./WalletCard"
 
 const ConnectForm = () => {
 	const router = useRouter()
@@ -48,15 +48,15 @@ const ConnectForm = () => {
 				</MyText>
 			</Box>
 			<Box p="4">
-				<CardConnect
+				<WalletCard
 					isLoading={isLoading}
 					active={metaState.isSignature && metaState.accountLogin !== ""}
 					onClick={() => handleConnectMetaMask()}
 					src="/images/icons/metaMask.png"
 					title="MetaMask"
 				/>
-				<CardConnect disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" />
-				<CardConnect disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" />
+				<WalletCard disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" />
+				<WalletCard disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" />
 			</Box>
 		</Flex>
 	)
