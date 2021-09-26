@@ -17,7 +17,11 @@ function BuyDoge() {
 	const priceStep = 0.08
 	const duration = 1000 * 60 * 10
 	const [currentTime, setCurrentTime] = useState(new Date().getTime())
-	const currentPrice = Math.max(startPrice - Math.round((currentTime - publicSaleTime) / duration) * priceStep, 0.1)
+	const currentPrice = Math.max(
+		startPrice - Math.round((currentTime - duration - publicSaleTime) / duration) * priceStep,
+		0.1
+	)
+	console.log(currentPrice)
 	//
 	const { getBalanceMetaMask } = useMetamask()
 
@@ -133,7 +137,7 @@ function BuyDoge() {
 					borderColor="yellow.400"
 					w="100%"
 					{...getInputProps({ readOnly: true })}
-				/>{" "}
+				/>
 				<MyButton colorScheme="yellow" bg="yellow.400" {...getIncrementButtonProps()}>
 					+
 				</MyButton>
