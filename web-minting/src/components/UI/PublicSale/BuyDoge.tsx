@@ -55,7 +55,7 @@ function BuyDoge() {
 			return
 		}
 		if (userRecord && userRecord.publicBought + userRecord.whitelistBought >= 7) {
-			toast("error", "Confirm error , each wallet only 5 nft")
+			toast("error", "Confirm error , each wallet only 7 nft")
 			return
 		}
 		await sendSmartContract(metaState.accountLogin, slot, totalPrice, [])
