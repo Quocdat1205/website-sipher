@@ -1,12 +1,10 @@
 import React, { useState } from "react"
 import { useDisclosure, SlideFade, Flex, Box } from "@chakra-ui/react"
 import FirstForm from "./FirstForm"
-import ConnectForm from "./ConnectForm"
+import ConnectWalletForm from "./ConnectWalletForm"
 import NotSuport from "./NotSuport"
 
-interface Props {}
-
-const Login = (props: Props) => {
+const Login = () => {
     const [redirect, setRedirect] = useState(false)
     const { isOpen, onToggle } = useDisclosure()
 
@@ -23,23 +21,10 @@ const Login = (props: Props) => {
             bgSize="100% 100%"
             w="100%"
             h="100vh"
-            color="whiteAlpha.800"
+            color="whiteAlpha.900"
         >
-            <Box
-                minH={["200px", "250px", "450px", "450px"]}
-                w="600px"
-                rounded="0"
-                bgGradient="linear(to-r, main.purple, main.pinkRed, main.yellow)"
-                p="1"
-            >
-                <Flex
-                    align="center"
-                    justify="center"
-                    bg="black"
-                    p="4"
-                    minH={["200px", "250px", "450px", "450px"]}
-                    w="full"
-                >
+            <Box maxW="100%" w="32rem" bgGradient="linear(to-b, bgGradient.orange)" p="1">
+                <Flex align="center" justify="center" bg="black" p="4" w="full">
                     {!redirect ? (
                         <>
                             <FirstForm handleRedirect={handleRedirect} />
@@ -47,7 +32,7 @@ const Login = (props: Props) => {
                         </>
                     ) : (
                         <SlideFade style={{ width: "100%" }} in={isOpen} offsetX="50pSlideFadex">
-                            <ConnectForm />
+                            <ConnectWalletForm />
                         </SlideFade>
                     )}
                 </Flex>

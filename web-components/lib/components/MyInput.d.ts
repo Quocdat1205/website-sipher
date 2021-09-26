@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { InputProps } from "@chakra-ui/react";
 interface MyInputProps extends InputProps {
 }
