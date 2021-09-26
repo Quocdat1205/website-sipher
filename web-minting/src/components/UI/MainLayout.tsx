@@ -29,7 +29,7 @@ const MainLayout = ({ children }: Props) => {
 			pos="relative"
 		>
 			<NavBar />
-			<Flex flex={1} p={1} overflow="hidden">
+			<Flex flex={1} className="nice-scroll" overflow="auto">
 				{children}
 			</Flex>
 		</Flex>

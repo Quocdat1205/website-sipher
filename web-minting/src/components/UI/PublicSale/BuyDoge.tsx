@@ -4,7 +4,7 @@ import { useQuery, useQueryClient } from "react-query"
 import { checkSmartContract } from "@api/index"
 import { useMetamask } from "@hooks/useMetamask"
 import useChakraToast from "@hooks/useChakraToast"
-import { CHAIN_ID } from "@utils/key_auth"
+import { CHAIN_ID, duration, priceStep, publicSaleTime, startPrice } from "@utils/key_auth"
 import { MyButton, MyHeading, MyText } from "@sipher/web-components"
 import { useSmartContract } from "@hooks/useSmartContract"
 import ProgressBar from "@components/shared/ProgressBar"
@@ -12,10 +12,7 @@ import ProgressBar from "@components/shared/ProgressBar"
 function BuyDoge() {
 	const { sendSmartContract, getUserRecord, getPublicCurrentPrice, metaState } = useSmartContract()
 	//Processbar infomation
-	const publicSaleTime = 1632646800000
-	const startPrice = 1
-	const priceStep = 0.08
-	const duration = 1000 * 60 * 10
+
 	const [currentTime, setCurrentTime] = useState(new Date().getTime())
 	const currentPrice = Math.max(
 		startPrice - Math.round((currentTime - duration - publicSaleTime) / duration) * priceStep,
@@ -97,16 +94,6 @@ function BuyDoge() {
 
 	return (
 		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
-			{metaState.status.public !== "END_SALE" && (
-				<Flex p="2">
-					<ProgressBar
-						currentPrice={currentPrice}
-						publicSaleTime={publicSaleTime}
-						currentTime={currentTime}
-						setCurrentTime={setCurrentTime}
-					/>
-				</Flex>
-			)}
 			<MyHeading textTransform="uppercase" textAlign="left" color="yellow.500">
 				{metaState.status.public === "NOT_FOR_SALE"
 					? "WAITING FOR PUBLIC SALE"
@@ -123,6 +110,16 @@ function BuyDoge() {
 					? "Are you feeling lucky today ?"
 					: "Patience leads to success"}
 			</MyText>
+			{metaState.status.public !== "END_SALE" && (
+				<Flex p="2" pt="8">
+					<ProgressBar
+						currentPrice={currentPrice}
+						publicSaleTime={publicSaleTime}
+						currentTime={currentTime}
+						setCurrentTime={setCurrentTime}
+					/>
+				</Flex>
+			)}
 			<MyText mt="2" textAlign="left">
 				Choose quantity
 			</MyText>

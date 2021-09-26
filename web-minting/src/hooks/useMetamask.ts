@@ -4,6 +4,7 @@ import { authenticateUser, getUsersByAddress, IUser, signupUser, checkIsWhitelis
 import { useWalletContext } from "@hooks/storeWallet/store"
 import router from "next/router"
 import { useIsMounted } from "."
+import { endTime, publicSaleTime } from "@utils/key_auth"
 
 declare global {
 	interface Window {
@@ -54,7 +55,15 @@ export const useMetamask = () => {
 		setValue("accessToken", !!token && token)
 		setValue("proof", !!proof && proof)
 		_isConnectCalled.current = false
-		router.push(proof.length > 0 ? "private-minting" : "public-minting")
+
+		let now = new Date().getTime()
+		if (now > publicSaleTime) {
+			router.push("public-minting")
+		} else if (now > endTime) {
+			router.push("inventory")
+		} else {
+			router.push(proof.length > 0 ? "private-minting" : "public-minting")
+		}
 	}
 
 	//change wallet or change network return account wallet new and chain network
@@ -93,7 +102,6 @@ export const useMetamask = () => {
 		const token = await handleAuthenticate(accountSignup)
 		const proof = await checkIsWhitelisted(publicAddress)
 		setValue("accountLogin", publicAddress)
-
 		return [token, proof]
 	}
 
