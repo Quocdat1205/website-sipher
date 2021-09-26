@@ -27,7 +27,7 @@ const Card = ({ item, onClick }: CardProps) => {
 			borderColor="whiteAlpha.300"
 			borderRadius="md"
 			color="whiteAlpha.800"
-			p="4"
+			p={[2, 3]}
 		>
 			<Image p="1" w="100%" border="1px" borderColor="whiteAlpha.900" src={image_url} alt="" />
 			<Flex my="2" maxW="60%">

@@ -111,10 +111,10 @@ export const useSmartContract = () => {
 		}
 	}
 
+	//get current price
 	const getPublicCurrentPrice = async () => {
 		const data = await ContractProviderSALE.methods.getPublicSaleCurrentPrice().call()
-		console.log(data)
-		return data
+		return data / 10 ** 18
 	}
 
 	return {

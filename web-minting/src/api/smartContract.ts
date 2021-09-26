@@ -5,7 +5,6 @@ import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "../utils/key_auth"
 //check smartcontract in BE
 export const checkSmartContract = async (publicAddress) => {
 	let address = publicAddress.toLowerCase()
-
 	const { data } = await axios.get(
 		`/neko-sc/checkSC?nftContractAddress=${SMARTCONTRACT_NEKO}&saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${address}`,
 		config
