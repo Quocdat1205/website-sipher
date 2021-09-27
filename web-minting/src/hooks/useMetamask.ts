@@ -57,10 +57,10 @@ export const useMetamask = () => {
 		_isConnectCalled.current = false
 
 		let now = new Date().getTime()
-		if (now > publicSaleTime) {
-			router.push("public-minting")
-		} else if (now > endTime) {
+		if (now > endTime) {
 			router.push("inventory")
+		} else if (now > publicSaleTime) {
+			router.push("public-minting")
 		} else {
 			router.push(proof.length > 0 ? "private-minting" : "public-minting")
 		}

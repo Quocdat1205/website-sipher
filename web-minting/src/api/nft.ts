@@ -1,8 +1,11 @@
 import config from "./config"
 import axios from "axios"
 
-export const getListNFT = async (publicAddress, page) => {
-	const { data } = await axios.get(`/nft/get-list-nft?publicAddress=${publicAddress}&page=${page}`, config)
+export const getListNFT = async (publicAddress, from, to, type) => {
+	const { data } = await axios.get(
+		`/nft/get-list-nft?publicAddress=${publicAddress}&min=${from}&max=${to}&type=${type}`,
+		config
+	)
 	if (data.success && data.message.data.length > 0) {
 		return data.message
 	} else {
