@@ -3,7 +3,7 @@ import axios from "axios"
 import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "../utils/key_auth"
 
 //check smartcontract in BE
-export const checkSmartContract = async (publicAddress) => {
+export const checkSmartContract = async (publicAddress: string): Promise<boolean> => {
 	let address = publicAddress.toLowerCase()
 	const { data } = await axios.get(
 		`/neko-sc/checkSC?nftContractAddress=${SMARTCONTRACT_NEKO}&saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${address}`,
@@ -20,7 +20,7 @@ export const checkgas = async () => {
 }
 
 //check whitelisted
-export const checkIsWhitelisted = async (publicAddress) => {
+export const checkIsWhitelisted = async (publicAddress: string): Promise<string[]> => {
 	const { data } = await axios.get(
 		`/neko-sc/checkWhiteList?saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${publicAddress}`,
 		config

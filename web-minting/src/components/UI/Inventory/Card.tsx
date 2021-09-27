@@ -35,22 +35,10 @@ const Card = ({ item, onClick }: CardProps) => {
 				<chakra.span ml="0.5rem" h={["3px", "4px", "5px"]} flex="1" bg="whiteAlpha.300" />
 				<chakra.span ml="0.5rem" h={["3px", "4px", "5px"]} flex="1" bg="whiteAlpha.300" />
 			</Flex>
-			<MyText
-				fontWeight="bold"
-				color="red.500"
-				fontSize={{
-					base: "1rem",
-					sm: "1rem",
-					md: "1rem",
-					xl: "1rem",
-					xxl: "1.2rem",
-					xxxl: "1.5rem",
-				}}
-			>
+			<MyText fontWeight="bold" color="red.500">
 				{name}
 			</MyText>
 			<MyText color="yellow.400">{origin}</MyText>
-			{/* <Text fontSize="0.9rem" fontWeight="bold">{name}</Text> */}
 		</Flex>
 	)
 }

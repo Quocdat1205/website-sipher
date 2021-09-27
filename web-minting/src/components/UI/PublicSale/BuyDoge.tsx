@@ -49,7 +49,7 @@ function BuyDoge() {
 	const PublicSale = async () => {
 		let checkSC = await checkSmartContract(metaState.accountLogin)
 		let currentPrice = await getPublicCurrentPrice()
-		let totalPrice = parseFloat((Math.round(slot * currentPrice*100)/100).toString())
+		let totalPrice = parseFloat(Math.round(slot * currentPrice).toFixed(2))
 		if (!checkSC) {
 			toast("error", "Failed to check smart contract")
 			return
