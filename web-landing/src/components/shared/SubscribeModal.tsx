@@ -5,8 +5,8 @@ import { usePostSubscribe } from "@hooks/api/subscribe"
 import { useStoreActions, useStoreState } from "@store"
 import React, { useEffect, useRef } from "react"
 import { isEmail } from "src/utils"
-import { Paragraph, SpecialButton, TextFormControl } from "."
-import { useFormCore, useChakraToast, GradientHeading, ChakraModal } from "@sipher/web-components"
+import { Paragraph, TextFormControl } from "."
+import { useFormCore, useChakraToast, GradientHeading, ChakraModal, GradientButton } from "@sipher/web-components"
 
 interface SubscribeModalProps {}
 
@@ -24,17 +24,23 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
     }, [subscribeModal, initForm])
 
     const { mutate, isLoading } = usePostSubscribe({
-        onError: error => console.log("error json", error),
+        onError: () => {
+            toast("error", "Something went wrong!", "Try again later.")
+        },
         onSuccess: data => {
             if (!data.message) {
                 initForm()
-                setSubscribeModal(false)
-                toast("Stay tuned & subscribe to our community for woofing perks and exclusive news.")
+                toast(
+                    "success",
+                    "Congrats!",
+                    "Stay tuned & subscribe to our community for woofing perks and exclusive news."
+                )
             } else {
                 if (data.message === "email exists") setError("email", "Email was already subscribed!")
                 else setError("email", "Something went wrong!")
             }
         },
+        onSettled: () => setSubscribeModal(false),
     })
 
     const submit = () => {
@@ -76,7 +82,7 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
                         We take privacy very seriously and will not spam our fellow Sipherians.
                     </Paragraph>
                 </Box>
-                <SpecialButton text="Subscribe" onClick={submit} isLoading={isLoading} loadingText="Subscribing" />
+                <GradientButton text="Subscribe" onClick={submit} isLoading={isLoading} loadingText="Subscribing" />
             </Flex>
         </ChakraModal>
     )
