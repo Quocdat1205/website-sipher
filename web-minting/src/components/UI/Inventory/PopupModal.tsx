@@ -74,7 +74,7 @@ const PopupModal = ({ selectId }: PopupProps) => {
 		}
 	)
 
-	const { data: merkle } = useQuery(["MerkleId", selectId], () => getMerkle(selectId), {
+	const { data: merkle } = useQuery(["MerkleId", selectId], () => getMerkle(selectId.id, selectId.race), {
 		onError: (error) => {
 			console.log(error)
 		},

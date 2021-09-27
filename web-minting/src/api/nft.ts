@@ -20,8 +20,8 @@ export const getInfoNFT = async (publicAddress, id, type) => {
 	return data.message
 }
 
-export const getMerkle = async (id) => {
-	const { data } = await axios.get(`/neko-sc/merkle/${id}`, config)
+export const getMerkle = async (type,id) => {
+	const { data } = await axios.get(`/${type.toLowerCase()}-sc/merkle/${id}`, config)
 	return data
 }
 
