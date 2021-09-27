@@ -76,7 +76,15 @@ const NFTList = ({ type }: Props) => {
 				}}
 			>
 				{data ? (
-					<SimpleGrid columns={[1, 3, 4, 5]} spacing={4}>
+					<SimpleGrid
+						columns={[1, 3, 5, 6]}
+						spacing={4}
+						sx={{
+							"@media (min-width: 2560px)": {
+								gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
+							},
+						}}
+					>
 						{data.pages.map((page, i) => (
 							<Fragment key={i}>
 								{page.map((item) => (

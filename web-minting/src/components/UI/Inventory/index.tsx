@@ -42,22 +42,26 @@ function Inventory() {
 				<Tabs display="flex" flexDirection="column" overflow="hidden">
 					<TabList borderColor="whiteAlpha.300" color="gray.500">
 						<Tab
+							fontWeight="bold"
 							fontSize={["sm", "md", "lg"]}
 							_selected={{
 								color: "yellow.500",
 								borderBottomColor: "yellow.500",
 							}}
 							_focus={{ boxShadow: "none" }}
+							px="6"
 						>
 							INU
 						</Tab>
 						<Tab
+							fontWeight="bold"
 							fontSize={["sm", "md", "lg"]}
 							_selected={{
 								color: "yellow.500",
 								borderBottomColor: "yellow.500",
 							}}
 							_focus={{ boxShadow: "none" }}
+							px="6"
 						>
 							NEKO
 						</Tab>
