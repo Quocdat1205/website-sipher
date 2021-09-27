@@ -74,18 +74,22 @@ const PopupModal = ({ selectId }: PopupProps) => {
 		}
 	)
 
-	const { data: merkle } = useQuery(["MerkleId", selectId], () => getMerkle(selectId.id, selectId.race), {
-		onError: (error) => {
-			console.log(error)
-		},
-	})
+	const { data: merkle } = useQuery(
+		["MerkleId", selectId],
+		() => getMerkle(selectId.id, selectId.race.toLowerCase()),
+		{
+			onError: (error) => {
+				console.log(error)
+			},
+		}
+	)
 
 	const { mutate } = useMutation(
 		() => changeEmotion(metaState.accessToken, selectId.id, currentEmotion, metaState.accountLogin, selectId.race),
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries(["NFTId", selectId])
-				queryClient.invalidateQueries(["NFT"])
+				queryClient.invalidateQueries([`${selectId.race}-NFT`])
 				toast("success", "Change emotion successfully")
 			},
 			onError: () => {},
