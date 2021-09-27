@@ -11,7 +11,7 @@ const OwnerBenefits = (props: Props) => {
         <TextContainer headline={<chakra.span color="white">Genesis Sipher Owner Benefits</chakra.span>}>
             <SimpleGrid columns={[1, 2, 3]} spacing="2rem" mt={8}>
                 {content.map(item => (
-                    <BenefitTag key={item.text} icon={item.icon} text={item.text} />
+                    <BenefitTag key={item.text} icon={item.icon} text={item.text} linkText={item.linkText} />
                 ))}
             </SimpleGrid>
         </TextContainer>

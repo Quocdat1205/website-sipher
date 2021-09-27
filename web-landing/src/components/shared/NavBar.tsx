@@ -28,8 +28,8 @@ export const NavBar = ({}: NavBarProps) => {
             </Flex>
             <HStack
                 spacing={[2, 2, 2, 4]}
-                flex={3}
-                justify="space-evenly"
+                flex={1}
+                justify="center"
                 sx={{
                     "@media (max-width: 960px)": {
                         display: "none",

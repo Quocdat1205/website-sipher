@@ -35,6 +35,8 @@ const MenuDrawer = ({}: MenuDrawerProps) => {
                                 text={menu.id}
                                 active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
                                 onClick={() => setIsSideBarOn(false)}
+                                size="large"
+                                w="full"
                             />
                         ))}
                     </BaseSideBar>

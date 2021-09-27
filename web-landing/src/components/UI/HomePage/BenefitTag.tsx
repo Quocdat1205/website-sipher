@@ -6,9 +6,10 @@ import React from "react"
 interface BenefitTagProps extends FlexProps {
     icon: string
     text: string
+    linkText?: string
 }
 
-const BenefitTag = ({ icon, text, ...rest }: BenefitTagProps) => {
+const BenefitTag = ({ icon, text, linkText, ...rest }: BenefitTagProps) => {
     return (
         <Flex flex="1 1 10rem" px="4" flexDir="column" align="center" {...rest}>
             <Image maxH="3.5rem" src={icon} alt={text} />
@@ -21,6 +22,9 @@ const BenefitTag = ({ icon, text, ...rest }: BenefitTagProps) => {
                 letterSpacing="2px"
             >
                 {text}
+            </MyText>
+            <MyText size="small" as="u" fontWeight="bold" mt={4}>
+                {linkText}
             </MyText>
         </Flex>
     )

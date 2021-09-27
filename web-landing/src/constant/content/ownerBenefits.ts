@@ -14,10 +14,12 @@ const content = [
     {
         icon: "/images/icons/genesis_4.png",
         text: "Early access to the game",
+        linkText: "View Benefits",
     },
     {
         icon: "./images/icons/genesis_5.png",
         text: "Guildmaster program",
+        linkText: "View Guildmaster Program",
     },
     {
         icon: "./images/icons/genesis_6.png",
