@@ -1,7 +1,7 @@
 import { Heading, HeadingProps } from "@chakra-ui/layout"
 import React from "react"
 
-interface MyHeadingProps extends HeadingProps {
+export interface MyHeadingProps extends HeadingProps {
     size?: "small" | "medium" | "large"
 }
 

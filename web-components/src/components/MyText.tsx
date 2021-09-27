@@ -1,7 +1,7 @@
 import { Text, TextProps } from "@chakra-ui/layout"
 import React from "react"
 
-interface MyTextProps extends TextProps {
+export interface MyTextProps extends TextProps {
     size?: "small" | "medium" | "large"
 }
 

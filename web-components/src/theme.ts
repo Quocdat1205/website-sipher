@@ -26,6 +26,7 @@ export const theme = extendTheme({
             darkGrey: "#242424",
             white: "#FFFFFF",
             lightGray: "#111111",
+            orange: "#FF710B",
         },
         bgGradient: {
             orange: "#FF6795 0%, #FF710B 84.37%",
