@@ -2,8 +2,8 @@ const content = [
     {
         id: "Immersive storyline",
         paragraphs: [
-            "Acquire, level up and fight with your Sipher characters.",
-            "Collect and level up multiple characters with different strengths, skills and attributes.",
+            "Learn the deep and hidden secrets of Sipheria by adventuring with your Sipher characters.",
+            "Discover relics of the past then build and develop your character in different ways with various strengths, skills and attributes.",
         ],
     },
     {
@@ -14,17 +14,17 @@ const content = [
         ],
     },
     {
-        id: "Quests and story events",
+        id: "Complete Quests and Earn Rewards",
         paragraphs: [
-            "Casual MOBA 3v3 and Battle Royale fighting.",
+            "Battle monsters and bosses, complete dungeons, and battle others in 3v3 MOBA (and Battle Royale).",
             "Engage in battles against each other, conquer daily challenges for dual rewards ($SIPHER & $ATHER).",
         ],
     },
     {
         id: "MarketPlace",
         paragraphs: [
-            "Using $ATHERs to craft, fuse, and owe rare items and pets that will a part of your living legacy.",
-            "Earn $SIPHER through play, and become part of our community-based governance.",
+            "Using $ATHER to craft, fuse, and owe rare items and pets that will a part of your living legacy.",
+            "Experience the thrill of playing an immersive game while earning $SIPHER.",
         ],
     },
 ]

@@ -14,8 +14,8 @@ interface ViewContainerProps extends BoxProps {
 export const ViewContainer = ({ label, onView, threshold, ...rest }: ViewContainerProps) => {
     const { ref, isInView } = useObserver(threshold)
     useEffect(() => {
-        if (isInView && onView) {
-            onView(textToPath(label))
+        if (isInView) {
+            onView && onView(textToPath(label))
             history.replaceState(undefined, "", `#${textToPath(label)}`)
         }
     }, [isInView, label, onView])

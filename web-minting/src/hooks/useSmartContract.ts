@@ -89,8 +89,8 @@ export const useSmartContract = () => {
 				: slot === 5
 				? 962668
 				: slot === 6
-				? 110000
-				: 1363270
+				? 1155201
+				: 1386241
 		// const _gasprice = await web3.eth.getGasPrice();
 		const gaseth = await checkgas()
 
@@ -127,6 +127,8 @@ export const useSmartContract = () => {
 	//get current price
 	const getPublicCurrentPrice = async () => {
 		const data = await ContractProviderSALE.methods.getPublicSaleCurrentPrice().call()
+		console.log(data);
+		
 		return data / 10 ** 18
 	}
 

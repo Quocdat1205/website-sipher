@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions } from "@store"
 import { useRouter } from "next/router"
+import { GradientButton } from "@sipher/web-components"
 interface NavBarProps {}
 
 export const navMenus = [
@@ -22,20 +23,8 @@ export const NavBar = ({}: NavBarProps) => {
     const router = useRouter()
     return (
         <Flex px={4} py={4} bg="black" align="center" justify="space-between" overflow="hidden">
-            <Flex
-                mr="4"
-                w={["auto", "auto", "18rem"]}
-                flexShrink={0}
-                align="center"
-                onClick={() => router.push("/")}
-                cursor="pointer"
-            >
-                <Img
-                    src="/images/general/logo_pc.png"
-                    h={["1.5rem", "2rem", "2.5rem"]}
-                    mx={[0, 0, "auto"]}
-                    alt="sipher-logo"
-                />
+            <Flex mr="2" flexShrink={0} align="center" onClick={() => router.push("/")} cursor="pointer">
+                <Img src="/images/general/logo.png" h={["1.5rem", "2rem", "2.5rem"]} alt="sipher-logo" />
             </Flex>
             <HStack
                 spacing={[2, 2, 2, 4]}
@@ -46,6 +35,7 @@ export const NavBar = ({}: NavBarProps) => {
                         display: "none",
                     },
                 }}
+                mr={2}
             >
                 {navMenus.map(menu => (
                     <NavBarLink
@@ -56,6 +46,18 @@ export const NavBar = ({}: NavBarProps) => {
                     />
                 ))}
             </HStack>
+            <GradientButton
+                text="Join Our Discord Community"
+                rounded="full"
+                w="fit-content"
+                fontSize="xs"
+                px={4}
+                sx={{
+                    "@media (max-width: 960px)": {
+                        display: "none",
+                    },
+                }}
+            />
             <Grid
                 rounded="full"
                 color="main.darkRed"
