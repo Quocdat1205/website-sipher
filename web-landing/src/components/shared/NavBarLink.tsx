@@ -2,7 +2,7 @@
 
 import { Flex } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
-import { MyText } from "@sipher/web-components"
+import { GradientText, MyText } from "@sipher/web-components"
 interface NavBarLinkProps {
     onClick?: () => void
     active?: boolean
@@ -20,8 +20,6 @@ export const NavBarLink = ({ onClick, text, active, href }: NavBarLinkProps) => 
             cursor="pointer"
             minW={["4rem", "4rem", "6rem"]}
             justify="center"
-            borderBottom={active ? "2px" : "0"}
-            borderColor="whiteAlpha.900"
         >
             <MyText
                 fontWeight="black"
@@ -29,6 +27,8 @@ export const NavBarLink = ({ onClick, text, active, href }: NavBarLinkProps) => 
                 isTruncated
                 onClick={() => router.push(href)}
                 textTransform="uppercase"
+                letterSpacing="2px"
+                color={active ? "#FF710B" : "white"}
             >
                 {text}
             </MyText>

@@ -1,14 +1,13 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/layout"
-import { useState } from "react"
 import HomeBody from "./HomeBody"
 
 interface HomeUIProps {}
 
 const HomeUI = ({}: HomeUIProps) => {
     return (
-        <Flex bg="black" w="full" className="home-page" direction="column">
+        <Flex bg="black" direction="column">
             <HomeBody />
         </Flex>
     )

@@ -20,5 +20,5 @@ export const ViewContainer = ({ label, onView, threshold, ...rest }: ViewContain
         }
     }, [isInView, label, onView])
 
-    return <Box id={textToPath(label)} ref={ref} {...rest} />
+    return <Box id={textToPath(label)} ref={ref} py={4} mb={[8, 8, 16]} {...rest} />
 }

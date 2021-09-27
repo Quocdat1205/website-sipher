@@ -1,8 +1,9 @@
 // * DESCRIPTION:
 
 import { Flex, chakra, Box, Img } from "@chakra-ui/react"
-import { ChakraModal, Paragraph, SecondaryTextContainer } from "@components/shared"
+import { Paragraph, SecondaryTextContainer } from "@components/shared"
 import content, { content2 } from "@constant/content/worldAsBlocks"
+import { ChakraModal } from "@sipher/web-components"
 interface WorldAsBlockModalProps {
     isOpen: boolean
     onClose: () => void

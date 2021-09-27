@@ -1,6 +1,7 @@
 // * DESCRIPTION:
 
-import { Img, Flex, Text } from "@chakra-ui/react"
+import { Img, Stack, Text } from "@chakra-ui/react"
+import { MyText } from "@sipher/web-components"
 
 interface TabButtonProps {
     type: string
@@ -16,12 +17,16 @@ const TabButton = ({ type, onClick, active }: TabButtonProps) => {
         return ["/images/icons/ws_4_false.png", "/images/icons/ws_4_true.png"]
     }
     return (
-        <Flex direction="column" align="center" cursor="pointer" onClick={onClick}>
+        <Stack
+            direction={["column", "row", "row"]}
+            spacing={[0, 1, 2]}
+            align="center"
+            cursor="pointer"
+            onClick={onClick}
+        >
             <Img src={active ? genImage()[1] : genImage()[0]} h="12" alt="" />
-            <Text fontSize="xs" isTruncated>
-                {type}
-            </Text>
-        </Flex>
+            <MyText isTruncated>{type}</MyText>
+        </Stack>
     )
 }
 

@@ -1,11 +1,11 @@
 // * DESCRIPTION:
 
 import { TextProps } from "@chakra-ui/layout"
-import { MyText } from "."
+import { MyText, MyTextProps } from "@sipher/web-components"
 
 interface ParagraphProps extends TextProps {
     children: React.ReactNode
-    size?: string
+    size?: MyTextProps["size"]
 }
 
 export const Paragraph = ({ size = "large", ...props }: ParagraphProps) => {

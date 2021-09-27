@@ -48,19 +48,21 @@ export const NavBar = ({}: NavBarProps) => {
             </HStack>
             <GradientButton
                 text="Join Our Discord Community"
+                as="a"
+                href="https://discord.com/invite/dRqdSxUSmd"
                 rounded="full"
                 w="fit-content"
                 fontSize="xs"
                 px={4}
                 sx={{
-                    "@media (max-width: 960px)": {
+                    "@media (max-width: 1280px)": {
                         display: "none",
                     },
                 }}
             />
             <Grid
                 rounded="full"
-                color="main.darkRed"
+                color="main.orange"
                 px={0}
                 placeItems="center"
                 onClick={() => setSideBarOn(true)}

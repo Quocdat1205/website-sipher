@@ -2,7 +2,7 @@
 
 import { Img } from "@chakra-ui/image"
 import { Box, Flex, Grid } from "@chakra-ui/layout"
-import { MyText, SpecialButton } from "@components/shared"
+import { MyText, GradientButton } from "@sipher/web-components"
 import { useRouter } from "next/router"
 
 interface NotFoundUIProps {}
@@ -15,7 +15,7 @@ const NotFoundUI = ({}: NotFoundUIProps) => {
             w="full"
             placeItems="center"
             h="100vh"
-            bgImage="/images/pc/background.jpg"
+            bgImage="/images/pc/home/homenew2.png"
             bgSize="contain"
             align="center"
         >
@@ -26,7 +26,7 @@ const NotFoundUI = ({}: NotFoundUIProps) => {
                 <MyText fontSize={["xl", "2xl"]} textTransform="uppercase" color="main.yellow" fontWeight="bold" mb={4}>
                     {`Look like you've lost!`}
                 </MyText>
-                <SpecialButton text="Home" onClick={() => router.push("/")} />
+                <GradientButton text="Home" onClick={() => router.push("/")} />
             </Flex>
         </Grid>
     )

@@ -9,7 +9,7 @@ export const SaleSchedule = (props: Props) => {
     return (
         <TextContainer headline="Sale Mechanic">
             <Box mt={[4, 8]} textAlign="center">
-                <MyText size="large" mb="2" textTransform="uppercase" fontWeight="bold">
+                <MyText size="large" mb="2" textTransform="uppercase" fontWeight="bold" letterSpacing="2px">
                     Private sale
                 </MyText>
                 <MyText>
@@ -18,7 +18,7 @@ export const SaleSchedule = (props: Props) => {
                 </MyText>
             </Box>
             <Box mt={[4, 8]} textAlign="center">
-                <MyText size="large" mb={2} textTransform="uppercase" fontWeight="bold">
+                <MyText size="large" mb={2} textTransform="uppercase" fontWeight="bold" letterSpacing="2px">
                     Public sale
                 </MyText>
                 <MyText mb={2}>
@@ -29,3 +29,5 @@ export const SaleSchedule = (props: Props) => {
         </TextContainer>
     )
 }
+
+export default SaleSchedule

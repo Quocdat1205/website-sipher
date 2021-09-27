@@ -1,24 +1,12 @@
 // * DESCRIPTION:
 
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalCloseButton,
-    ModalBody,
-    Flex,
-    Heading,
-    chakra,
-    Box,
-} from "@chakra-ui/react"
+import { Flex, chakra, Box } from "@chakra-ui/react"
 import { usePostSubscribe } from "@hooks/api/subscribe"
-import useChakraToast from "@hooks/useChakraToast"
-import useFormCore from "@hooks/useFormCore"
 import { useStoreActions, useStoreState } from "@store"
 import React, { useEffect, useRef } from "react"
 import { isEmail } from "src/utils"
-import { ChakraModal, Paragraph, SpecialButton, TextFormControl } from "."
-import GradientHeading from "./GradientHeading"
+import { Paragraph, SpecialButton, TextFormControl } from "."
+import { useFormCore, useChakraToast, GradientHeading, ChakraModal } from "@sipher/web-components"
 
 interface SubscribeModalProps {}
 

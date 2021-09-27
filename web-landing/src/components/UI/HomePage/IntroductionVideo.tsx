@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Flex, Image } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import { useEffect, useRef, useState } from "react"
 
 interface IntroductionVideoProps {

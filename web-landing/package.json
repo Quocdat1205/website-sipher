@@ -12,7 +12,6 @@
         "@chakra-ui/react": "^1.6.7",
         "@emotion/react": "^11",
         "@emotion/styled": "^11",
-        "@sipher/web-components": "1.0.0",
         "axios": "^0.21.4",
         "easy-peasy": "^5.0.3",
         "framer-motion": "^4",

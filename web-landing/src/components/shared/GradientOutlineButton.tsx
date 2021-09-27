@@ -1,8 +1,9 @@
 // * DESCRIPTION:
 
 import { Box, BoxProps, chakra, Spinner, Grid, Text, Flex } from "@chakra-ui/react"
+import { MyText } from "@sipher/web-components"
 
-interface GradientButtonProps extends BoxProps {
+interface GradientOutlineButtonProps extends BoxProps {
     text: React.ReactNode
     as?: BoxProps["as"]
     href?: string
@@ -11,15 +12,24 @@ interface GradientButtonProps extends BoxProps {
     rel?: string
 }
 
-export const GradientButton = ({
+export const GradientOutlineButton = ({
     text,
     as = "button",
     href,
     isLoading,
     loadingText = "Submitting",
     rel,
+    backgroundColor = "black",
+    p,
+    px = 6,
+    py = 2,
+    pt,
+    pb,
+    pl,
+    pr,
     ...rest
-}: GradientButtonProps) => {
+}: GradientOutlineButtonProps) => {
+    const padding = { p, px, py, pt, pb, pl, pr }
     return (
         <Box
             as={as}
@@ -27,12 +37,12 @@ export const GradientButton = ({
             target="_blank"
             rel={rel}
             textTransform="uppercase"
-            w="full"
             rounded="md"
-            p={2}
-            bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
-            fontSize="sm"
-            fontWeight="semibold"
+            // bg="linear-gradient(#111, #111) padding-box, linear-gradient(180deg, #FF6795 0%, #FF710B 84.37%) border-box"
+            bgGradient="linear(to-b, bgGradient.orange)"
+            borderRadius="99"
+            p="1px"
+            fontWeight="bold"
             color="white"
             shadow="base"
             letterSpacing="1px"
@@ -40,15 +50,16 @@ export const GradientButton = ({
             textAlign="center"
             {...rest}
         >
-            {isLoading && (
-                <Grid pos="absolute" top={0} left={0} w="full" h="full" placeItems="center" pointerEvents="none">
+            <Box bg={backgroundColor} rounded="full" w="full" {...padding}>
+                {isLoading ? (
                     <Flex align="center">
                         <Spinner size="sm" thickness="3px" />
-                        <Text ml={4}>{loadingText}</Text>
+                        <MyText ml={4}>{loadingText}</MyText>
                     </Flex>
-                </Grid>
-            )}
-            <chakra.span color={isLoading ? "transparent" : "inherit"}>{text}</chakra.span>
+                ) : (
+                    <MyText>{text}</MyText>
+                )}
+            </Box>
         </Box>
     )
 }

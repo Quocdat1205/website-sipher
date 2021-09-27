@@ -2,7 +2,6 @@
 
 import { chakra, Flex } from "@chakra-ui/react"
 import {
-    MotionContainer,
     ResponsiveImg,
     SignUpButton,
     TextContainer,
@@ -12,76 +11,68 @@ import {
 } from "@components/shared"
 import { theWorldContent } from "@constant/content/why"
 import { useState } from "react"
-import useWhySipherPageContext from "../useWhySipherPage"
 import MoonBaseModal from "./MoonBaseModal"
 import WorldAsBlockModal from "./WorldAsBlockModal"
 interface TheWorldProps {}
 
 const TheWorld = ({}: TheWorldProps) => {
-    const setSelectedAnchor = useWhySipherPageContext()
     const [modal, setModal] = useState("")
     return (
-        <MotionContainer>
-            <BackgroundContainer>
-                <WorldAsBlockModal isOpen={modal === "WorldBlocks"} onClose={() => setModal("")} />
-                <MoonBaseModal isOpen={modal === "MoonBase"} onClose={() => setModal("")} />
-                <ViewContainer label="World Block Category" onView={setSelectedAnchor} mb={[14, 14, 28]}>
-                    <Flex direction="column" align="center">
-                        <TextContainer headline={<chakra.span>World Block Category</chakra.span>}>
-                            {theWorldContent.worldBlockCategory.map(paragraph => (
-                                <Paragraph key={paragraph}>{paragraph}</Paragraph>
-                            ))}
-                            <Paragraph>
-                                Learn more about{" "}
-                                <chakra.span
-                                    color="main.yellow"
-                                    cursor="pointer"
-                                    onClick={() => setModal("WorldBlocks")}
-                                >
-                                    World as Blocks
-                                </chakra.span>
-                            </Paragraph>
-                        </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why1.png" alt="sipher-the-world-1" />
-                    </Flex>
-                </ViewContainer>
-                <ViewContainer label="Game Characters As Nfts" onView={setSelectedAnchor} mb={[14, 14, 28]}>
-                    <Flex direction="column" align="center">
-                        <TextContainer headline={<chakra.span>Game Characters As Nfts</chakra.span>}>
-                            <Paragraph>{theWorldContent.gameCharactersAsNfts[0]}</Paragraph>
-                            <Paragraph>
-                                Learn more about{" "}
-                                <chakra.span color="main.yellow" cursor="pointer" onClick={() => setModal("MoonBase")}>
-                                    Moon Base Station
-                                </chakra.span>
-                            </Paragraph>
-                        </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why2.png" alt="sipher-the-world-2" />
-                    </Flex>
-                </ViewContainer>
-                <ViewContainer label="Trading At Bazaar" onView={setSelectedAnchor} mb={[14, 14, 28]}>
-                    <Flex direction="column" align="center">
-                        <TextContainer headline={<chakra.span>Trading At Bazaar</chakra.span>}>
-                            {theWorldContent.tradingAsBazaar.map(paragraph => (
-                                <Paragraph key={paragraph}>{paragraph}</Paragraph>
-                            ))}
-                        </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why3.png" alt="sipher-the-world-3" />
-                    </Flex>
-                </ViewContainer>
-                <ViewContainer label="Land Ownership" onView={setSelectedAnchor} mb={[14, 14, 28]}>
-                    <Flex direction="column" align="center">
-                        <TextContainer headline={<chakra.span>Land Ownership</chakra.span>}>
-                            {theWorldContent.landOwnership.map(paragraph => (
-                                <Paragraph key={paragraph}>{paragraph}</Paragraph>
-                            ))}
-                        </TextContainer>
-                        <ResponsiveImg src="/images/pc/why/why4.png" alt="sipher-the-world-4" />
-                        <SignUpButton />
-                    </Flex>
-                </ViewContainer>
-            </BackgroundContainer>
-        </MotionContainer>
+        <BackgroundContainer>
+            <WorldAsBlockModal isOpen={modal === "WorldBlocks"} onClose={() => setModal("")} />
+            <MoonBaseModal isOpen={modal === "MoonBase"} onClose={() => setModal("")} />
+            <ViewContainer label="World Block Category">
+                <Flex direction="column" align="center">
+                    <TextContainer headline={<chakra.span>World Block Category</chakra.span>}>
+                        {theWorldContent.worldBlockCategory.map(paragraph => (
+                            <Paragraph key={paragraph}>{paragraph}</Paragraph>
+                        ))}
+                        <Paragraph>
+                            Learn more about{" "}
+                            <chakra.span color="main.yellow" cursor="pointer" onClick={() => setModal("WorldBlocks")}>
+                                World as Blocks
+                            </chakra.span>
+                        </Paragraph>
+                    </TextContainer>
+                    <ResponsiveImg src="/images/pc/why/why1.png" alt="sipher-the-world-1" />
+                </Flex>
+            </ViewContainer>
+            <ViewContainer label="Game Characters As Nfts">
+                <Flex direction="column" align="center">
+                    <TextContainer headline={<chakra.span>Game Characters As Nfts</chakra.span>}>
+                        <Paragraph>{theWorldContent.gameCharactersAsNfts[0]}</Paragraph>
+                        <Paragraph>
+                            Learn more about{" "}
+                            <chakra.span color="main.yellow" cursor="pointer" onClick={() => setModal("MoonBase")}>
+                                Moon Base Station
+                            </chakra.span>
+                        </Paragraph>
+                    </TextContainer>
+                    <ResponsiveImg src="/images/pc/why/why2.png" alt="sipher-the-world-2" />
+                </Flex>
+            </ViewContainer>
+            <ViewContainer label="Trading At Bazaar">
+                <Flex direction="column" align="center">
+                    <TextContainer headline={<chakra.span>Trading At Bazaar</chakra.span>}>
+                        {theWorldContent.tradingAsBazaar.map(paragraph => (
+                            <Paragraph key={paragraph}>{paragraph}</Paragraph>
+                        ))}
+                    </TextContainer>
+                    <ResponsiveImg src="/images/pc/why/why3.png" alt="sipher-the-world-3" />
+                </Flex>
+            </ViewContainer>
+            <ViewContainer label="Land Ownership">
+                <Flex direction="column" align="center">
+                    <TextContainer headline={<chakra.span>Land Ownership</chakra.span>}>
+                        {theWorldContent.landOwnership.map(paragraph => (
+                            <Paragraph key={paragraph}>{paragraph}</Paragraph>
+                        ))}
+                    </TextContainer>
+                    <ResponsiveImg src="/images/pc/why/why4.png" alt="sipher-the-world-4" />
+                    <SignUpButton />
+                </Flex>
+            </ViewContainer>
+        </BackgroundContainer>
     )
 }
 

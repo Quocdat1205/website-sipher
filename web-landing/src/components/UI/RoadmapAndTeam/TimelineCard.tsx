@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Img, UnorderedList, ListItem, Box, Flex } from "@chakra-ui/react"
-import { MyText } from "@components/shared"
+import { MyText } from "@sipher/web-components"
 import { RoadmapAndTeamItem } from "@constant/content/roadmapAndTeam"
 import React from "react"
 

@@ -1,13 +1,12 @@
 import { Box, Stack } from "@chakra-ui/layout"
-import { TextContainer } from "@components/shared"
+import { TextContainer, GradientOutlineButton } from "@components/shared"
 import { MyText } from "@sipher/web-components"
 import React from "react"
-import { GradientOutlineButton } from "./GradientOutlineButton"
 import content from "@constant/content/playToEarn"
 const PlayToEarn = () => {
     return (
         <TextContainer headline="Play To Earn">
-            <MyText textAlign="center" textTransform="uppercase" fontWeight="bold" size="large">
+            <MyText textAlign="center" textTransform="uppercase" fontWeight="bold" size="large" letterSpacing="2px">
                 A whole new world awaits in two main game modes:
             </MyText>
             <Stack mt="8" direction={["column", "column", "row"]} spacing={[8, 8, 16]}>

@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Box, BoxProps, Flex, chakra } from "@chakra-ui/react"
-import { MyText } from "@components/shared"
+import { MyText } from "@sipher/web-components"
 
 interface SocialTagProps extends BoxProps {
     headline: string

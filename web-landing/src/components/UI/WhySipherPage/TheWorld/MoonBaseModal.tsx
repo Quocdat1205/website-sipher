@@ -1,8 +1,9 @@
 // * DESCRIPTION:
 
 import { Flex, chakra, Box, Img } from "@chakra-ui/react"
-import { ChakraModal, Paragraph, SecondaryTextContainer } from "@components/shared"
+import { Paragraph, SecondaryTextContainer } from "@components/shared"
 import content from "@constant/content/moonBaseStation"
+import { ChakraModal } from "@sipher/web-components"
 interface MoonBaseModalProps {
     isOpen: boolean
     onClose: () => void

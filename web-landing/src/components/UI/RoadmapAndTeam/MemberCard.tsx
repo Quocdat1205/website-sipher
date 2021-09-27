@@ -1,10 +1,9 @@
 // * DESCRIPTION:
 
-import { Flex, Text, Box, HStack, Img } from "@chakra-ui/react"
-import { MyText } from "@components/shared"
+import { Flex, Box, HStack, Img } from "@chakra-ui/react"
 import { SipherTeamItem } from "@constant/content/roadmapAndTeam"
 import { FaLinkedin, FaTelegram, FaTwitter } from "react-icons/fa"
-
+import { MyText } from "@sipher/web-components"
 interface MemberCardProps {
     item: SipherTeamItem
 }
@@ -40,13 +39,13 @@ const MemberCard = ({ item }: MemberCardProps) => {
             <Box my={2}>
                 <Img src={item.image} w="full" />
             </Box>
-            <Text fontSize="sm" textAlign="justify" mb={2}>
+            <MyText size="small" textAlign="justify" mb={2}>
                 {item.description}
-            </Text>
+            </MyText>
             {item.quote && (
-                <Text as="i" fontSize="sm" textAlign="justify" color="main.brightRed">
+                <MyText as="i" size="small" textAlign="justify" color="main.brightRed">
                     {`"${item.quote}"`}
-                </Text>
+                </MyText>
             )}
         </Flex>
     )

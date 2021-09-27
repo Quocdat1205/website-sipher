@@ -1,15 +1,21 @@
-import { Box, Wrap, Text, UnorderedList, ListItem, Flex } from "@chakra-ui/react"
+import { Box, Wrap, UnorderedList, ListItem, Flex } from "@chakra-ui/react"
 import { TextContainer } from "@components/shared"
 import React from "react"
 import IntroductionVideo from "./IntroductionVideo"
 import content from "@constant/content/whatIsSipher"
 import { MyText } from "@sipher/web-components"
-interface Props {}
 
-const WhatIsSipher = (props: Props) => {
+const WhatIsSipher = () => {
     return (
         <TextContainer headline="What is Sipher">
-            <MyText textAlign="center" mb={4} size="large" textTransform="uppercase" fontWeight="bold">
+            <MyText
+                textAlign="center"
+                mb={4}
+                size="large"
+                textTransform="uppercase"
+                fontWeight="bold"
+                letterSpacing="2px"
+            >
                 Sipher is an ambitious casual fighting and exploration Game with an End-game goal of creating Open World
                 Social experience, built on the Ethereum blockchain
             </MyText>

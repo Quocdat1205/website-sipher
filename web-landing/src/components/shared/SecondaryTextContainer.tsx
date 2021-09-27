@@ -1,8 +1,8 @@
 // * DESCRIPTION:
 
-import { Box, Text, BoxProps } from "@chakra-ui/react"
+import { Box, BoxProps } from "@chakra-ui/react"
 import React from "react"
-import GradientHeading from "./GradientHeading"
+import { GradientHeading } from "@sipher/web-components"
 
 interface SecondaryTextContainerProps extends BoxProps {
     headline: React.ReactNode

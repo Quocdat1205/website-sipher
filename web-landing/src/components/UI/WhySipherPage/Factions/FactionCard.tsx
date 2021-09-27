@@ -1,6 +1,7 @@
 // * DESCRIPTION:
 
-import { Flex, Heading, Img, Text, chakra } from "@chakra-ui/react"
+import { Flex, Heading, Img, chakra } from "@chakra-ui/react"
+import { GradientText, MyText } from "@sipher/web-components"
 
 interface FactionCardProps {
     headline: string
@@ -11,15 +12,20 @@ interface FactionCardProps {
 const FactionCard = ({ headline, image, content }: FactionCardProps) => {
     return (
         <Flex direction="column" bgImage="/images/pc/why/bgcard.png" backgroundSize="100% 100%" p={4}>
-            <Heading fontSize="md" fontWeight="semibold" textTransform="uppercase">
-                {headline.split(" ")[0]}
-                <chakra.span color="main.darkRed">{" " + headline.split(" ")[1]}</chakra.span>
-            </Heading>
+            <GradientText
+                size="large"
+                fontWeight="bold"
+                textTransform="uppercase"
+                letterSpacing="1px"
+                textAlign="center"
+            >
+                {headline}
+            </GradientText>
 
             <Img src={image} alt={headline} />
-            <Text textAlign="justify" fontSize="sm">
+            <MyText textAlign="justify" size="medium">
                 {content}
-            </Text>
+            </MyText>
         </Flex>
     )
 }
