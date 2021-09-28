@@ -147,12 +147,19 @@ function BuyDoge() {
 					</Flex>
 				</Flex>
 			</Box>
-			<Flex pos="relative" fontSize={["sm", "sm", "md", "lg"]} mt="4" w="100%" flexDir="row" alignItems="center">
-				<chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
+			<Flex pos="relative" mt="4" w="100%" flexDir="row" alignItems="center">
+				<chakra.span
+					fontSize={["md", "lg", "xl"]}
+					fontWeight="bold"
+					alignItems="center"
+					display="flex"
+					flexWrap="wrap"
+					flex="1"
+				>
 					You will pay:
-					<MyText mx="2" color="yellow.500">
+					<chakra.p mx="2" color="yellow.500">
 						{metaState.status.private !== "END_SALE" ? calculateSlotPrice() : 0}
-					</MyText>
+					</chakra.p>
 					ETH
 				</chakra.span>
 				{metaState.isWhitelisted.proof.length > 0 && !isLoadingRecord && (

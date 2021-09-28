@@ -15,7 +15,7 @@ function BuyDoge() {
 
 	const [currentTime, setCurrentTime] = useState(new Date().getTime())
 	const currentPrice = Math.max(
-		startPrice - Math.round((currentTime - duration - publicSaleTime) / duration) * priceStep,
+		startPrice - Math.round((currentTime - duration / 2 - publicSaleTime) / duration) * priceStep,
 		0.1
 	)
 	//
@@ -36,7 +36,7 @@ function BuyDoge() {
 		step: 1,
 		value: slot,
 		min: 0,
-		max: 5 - (userRecord ? userRecord.publicBought : 0) || 0,
+		max: 5 - (userRecord ? userRecord.publicBought : 0),
 		onChange: (v) => setSlot(parseInt(v)),
 		isDisabled: metaState.status.public !== "PUBLIC_SALE",
 	})
@@ -162,12 +162,19 @@ function BuyDoge() {
 					</Flex>
 				</Flex>
 			</Box>
-			<Flex pos="relative" fontSize={["sm", "sm", "md", "lg"]} mt="4" w="100%" flexDir="row" alignItems="center">
-				<chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
+			<Flex pos="relative" mt="4" w="100%" flexDir="row" alignItems="center">
+				<chakra.span
+					fontSize={["md", "lg", "xl"]}
+					fontWeight="bold"
+					alignItems="center"
+					display="flex"
+					flexWrap="wrap"
+					flex="1"
+				>
 					You will pay:
-					<MyText mx="2" color="yellow.500">
+					<chakra.p mx="2" color="yellow.500">
 						{metaState.status.public !== "END_SALE" ? calculateSlotPrice() : 0}
-					</MyText>
+					</chakra.p>
 					ETH
 				</chakra.span>
 				{!isLoadingRecord && (
