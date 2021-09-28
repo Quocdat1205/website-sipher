@@ -14,10 +14,7 @@ function BuyDoge() {
 	//Processbar infomation
 
 	const [currentTime, setCurrentTime] = useState(new Date().getTime())
-	const currentPrice = Math.max(
-		startPrice - Math.round((currentTime - duration / 2 - publicSaleTime) / duration) * priceStep,
-		0.1
-	)
+	const currentPrice = Math.max(startPrice - Math.floor((currentTime - publicSaleTime) / duration) * priceStep, 0.1)
 	//
 	const { getBalanceMetaMask } = useMetamask()
 
