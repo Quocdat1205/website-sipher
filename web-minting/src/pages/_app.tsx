@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app"
 import Provider from "@components/Provider"
-import { ReactElement, ReactNode } from "react"
+import { ReactElement, ReactNode, useEffect } from "react"
 import { NextPage } from "next"
 import Head from "next/head"
 import Script from "next/script"
@@ -15,7 +15,6 @@ type AppPropsWithLayout = AppProps & {
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout || (page => page)
-
     return (
         <Provider>
             <Head>

@@ -4,7 +4,7 @@ import { QueryClientProvider, QueryClient } from "react-query"
 import { ChakraProvider } from "@chakra-ui/react"
 import { theme } from "@sipher/web-components"
 import store from "../store"
-import { WalletProvider } from "@hooks/storeWallet/store"
+import { WalletProvider } from "@hooks/useWalletContext"
 
 interface ProviderProps {
     children: React.ReactNode
@@ -19,13 +19,13 @@ const queryClient = new QueryClient({
 })
 const Provider: FC<ProviderProps> = ({ children }) => {
     return (
-        <StoreProvider store={store}>
-            <WalletProvider>
-                <QueryClientProvider client={queryClient}>
-                    <ChakraProvider theme={theme}>{children}</ChakraProvider>
-                </QueryClientProvider>
-            </WalletProvider>
-        </StoreProvider>
+        <ChakraProvider theme={theme}>
+            <QueryClientProvider client={queryClient}>
+                <StoreProvider store={store}>
+                    <WalletProvider>{children}</WalletProvider>
+                </StoreProvider>
+            </QueryClientProvider>
+        </ChakraProvider>
     )
 }
 

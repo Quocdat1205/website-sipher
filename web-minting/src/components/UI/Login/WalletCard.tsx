@@ -21,7 +21,8 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
             py="2"
             px="8"
             onClick={onClick}
-            bgGradient={active ? "linear(to-b, bgGradient.orange)" : "linear(to-b, main.darkGrey, main.darkGrey)"}
+            // bgGradient={active ? "linear(to-b, bgGradient.orange)" : "linear(to-b, main.darkGrey, main.darkGrey)"}
+            bgColor="main.darkGrey"
             alignItems="center"
             pos="relative"
             justify="space-between"
@@ -35,7 +36,7 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
                     top={0}
                     left={0}
                     h="full"
-                    bgGradient="linear(to-b, bgGradient.orange)"
+                    bgColor="main.darkGrey"
                 >
                     <Spinner size="sm" thickness="3px" />
                     <MyText ml={2}>Connecting...</MyText>

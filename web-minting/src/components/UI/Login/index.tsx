@@ -1,17 +1,21 @@
-import React, { useState } from "react"
-import { useDisclosure, SlideFade, Flex, Box } from "@chakra-ui/react"
-import FirstForm from "./FirstForm"
+import React, { useEffect, useState } from "react"
+import { SlideFade, Flex, Box } from "@chakra-ui/react"
+import MetaMaskTutorial from "./MetaMaskTutorial"
 import ConnectWalletForm from "./ConnectWalletForm"
 import NotSuport from "./NotSuport"
 
 const Login = () => {
     const [redirect, setRedirect] = useState(false)
-    const { isOpen, onToggle } = useDisclosure()
 
-    const handleRedirect = () => {
-        onToggle()
+    const onConnectClick = () => {
+        //People only see the tutorial one time
+        localStorage.setItem("connect-wallet", "true")
         setRedirect(true)
     }
+
+    useEffect(() => {
+        setRedirect(localStorage.getItem("connect-wallet") === "true")
+    }, [])
 
     return (
         <Flex
@@ -27,11 +31,11 @@ const Login = () => {
                 <Flex align="center" justify="center" bg="black" p="4" w="full">
                     {!redirect ? (
                         <>
-                            <FirstForm handleRedirect={handleRedirect} />
+                            <MetaMaskTutorial onConnectClick={onConnectClick} />
                             <NotSuport />
                         </>
                     ) : (
-                        <SlideFade style={{ width: "100%" }} in={isOpen} offsetX="50pSlideFadex">
+                        <SlideFade style={{ width: "100%" }} in={redirect} offsetX="50pSlideFadex">
                             <ConnectWalletForm />
                         </SlideFade>
                     )}

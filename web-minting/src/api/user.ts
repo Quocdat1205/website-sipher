@@ -1,30 +1,32 @@
-import axios from "axios";
-import config from "./config";
-
-//get data user on address
-export const getUsersByAddress = async (publicAddress: string) => {
-	const { data } = await axios.get(`/login?publicAddress=${publicAddress}`, config);
-	return data;
-};
-
-//user not data then user signup
+import axios from "axios"
+import config from "./config"
 export interface IUser {
-	publicAddress: string;
-	nonce: number;
+    address: string
+    nonce: number
 }
 
-export const signupUser = async (publicAddress: string): Promise<IUser> => {
-	const { data } = await axios.post(`/login`, { publicAddress }, config);
-	return data;
-};
+/** Get user from address */
+export const getUsersByAddress = async (address: string): Promise<IUser> => {
+    const { data } = await axios.get(`/login?publicAddress=${address}`, config)
+    return {
+        nonce: data.nonce,
+        address: data.publicAddress,
+    }
+}
 
-//request token on user
-export const authenticateUser = async (publicAddress: string, signature: string): Promise<string> => {
-	const {
-		data: { accessToken },
-	} = await axios.post("/login/authentication", { publicAddress, signature }, config);
-	return accessToken;
-};
+/** Sign up user by wallet address */
+export const signupUser = async (address: string): Promise<IUser> => {
+    const { data } = await axios.post(`/login`, { publicAddress: address }, config)
+    return data
+}
+
+/** Authenticate user by address and signature */
+export const authenticateUser = async (address: string, signature: string): Promise<string> => {
+    const {
+        data: { accessToken },
+    } = await axios.post("/login/authentication", { publicAddress: address, signature }, config)
+    return accessToken
+}
 
 // export const logLocation = async (cookies) => {
 // 	const accessToken = cookies[LS_KEY];

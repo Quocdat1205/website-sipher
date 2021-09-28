@@ -1,198 +1,122 @@
-import { useEffect, useRef } from "react"
-import Web3 from "web3"
-import { authenticateUser, getUsersByAddress, IUser, signupUser, checkIsWhitelisted } from "@api/index"
-import { useWalletContext } from "@hooks/storeWallet/store"
+import { useEffect, useState } from "react"
 import router from "next/router"
-import { useIsMounted } from "."
 import { endTime, publicSaleTime } from "@utils/key_auth"
+import { useChakraToast, useFormCore } from "@sipher/web-components"
+import { getChainName, metaMaskProvider, connectWallet } from "src/helper/metamask"
 
 declare global {
-	interface Window {
-		ethereum: any
-	}
+    interface Window {
+        ethereum: any
+    }
 }
 
-const provider = typeof window !== "undefined" && window.ethereum
-const web3 = new Web3(provider)
-
-const getNetwork = (networkId: string) => {
-	if (!!Number(networkId) && networkId.length > 9) {
-		return "local"
-	}
-	switch (networkId) {
-		case "1":
-			return "mainnet"
-		case "3":
-			return "ropsten"
-		case "4":
-			return "rinkeby"
-		case "5":
-			return "goerli"
-		case "42":
-			return "kovan"
-		default:
-			return `unknown`
-	}
+interface TypeState {
+    accountLogin: string
+    chain: {
+        id: string | null
+        name: string
+    } | null
+    isConnected: boolean
+    isSignature: boolean
+    isSmartContract: "NOT_CONNECT" | "CONNECT" | "ERROR"
+    time: {
+        private: number
+        public: number
+    }
+    status: {
+        private: string
+        public: string
+    }
+    isWhitelisted: {
+        proof: string[]
+        cap: number
+    }
+    accessToken: string
 }
 
 export const useMetamask = () => {
-	const { values, setValue } = useWalletContext()
-	const _isConnectCalled = useRef(false)
-	const isMounted = useIsMounted()
+    const initialState: TypeState = {
+        accountLogin: "",
+        chain: null,
+        isConnected: false,
+        isSignature: false,
+        isSmartContract: "NOT_CONNECT",
+        time: { private: 0, public: 0 },
+        status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
+        isWhitelisted: {
+            proof: [],
+            cap: 0,
+        },
+        accessToken: "",
+    }
+    const [isConnecting, setIsConnecting] = useState(false)
+    const { values, setValue, initForm } = useFormCore<TypeState>(initialState)
+    const toast = useChakraToast(4500)
 
-	//conect metamask
-	const connect = async () => {
-		if (!provider) throw Error("Metamask is not available.")
-		if (!isMounted) throw Error("Component is not mounted.")
-		if (_isConnectCalled.current) throw Error("Connect method already called.")
-		_isConnectCalled.current = true
-		setValue("web3", web3)
-		const accounts = await getAccounts()
-		const publicAddress = await accounts[0].toLowerCase()
-		await getChain()
-		const [token, proof] = await getToken(publicAddress)
-		setValue("isSignature", !!token && !!proof ? true : false)
-		setValue("accessToken", !!token && token)
-		setValue("proof", !!proof && proof)
-		_isConnectCalled.current = false
+    const connect = async () => {
+        try {
+            if (!metaMaskProvider) {
+                toast("error", "MetaMask not found!", "Please install MetaMask extension.")
+                return
+            }
+            if (isConnecting) {
+                toast("warning", "MetaMask is connecting!")
+                return
+            }
+            setIsConnecting(true)
+            const { account, chainInfo, token, whitelistInfo } = await connectWallet()
+            initForm({
+                ...values,
+                isConnected: true,
+                chain: chainInfo,
+                accessToken: token,
+                isWhitelisted: whitelistInfo,
+                accountLogin: account.address,
+            })
+            let now = new Date().getTime()
+            if (now > endTime) {
+                router.push("inventory")
+            } else if (now > publicSaleTime) {
+                router.push("public-minting")
+            } else {
+                router.push(whitelistInfo.proof.length > 0 ? "private-minting" : "public-minting")
+            }
+            setIsConnecting(false)
+            toast("success", "Connected to MetaMask!")
+        } catch (error: any) {
+            if (error.code === 4001) {
+                toast("error", "User denied message signature", "Please sign the message to continue!")
+            } else {
+                toast("error", "Something went wrong!", "Try again later.")
+            }
+            setIsConnecting(false)
+        }
+    }
 
-		let now = new Date().getTime()
-		if (now > endTime) {
-			router.push("inventory")
-		} else if (now > publicSaleTime) {
-			router.push("public-minting")
-		} else {
-			router.push(proof.length > 0 ? "private-minting" : "public-minting")
-		}
-	}
+    useEffect(() => {
+        if (metaMaskProvider) {
+            metaMaskProvider.on("chainChanged", async chainId => {
+                const _chainId = parseInt(chainId, 16).toString()
+                const _chainInfo = { id: _chainId, name: getChainName(_chainId) }
+                setValue("chain", _chainInfo)
+            })
 
-	//change wallet or change network return account wallet new and chain network
-	const UpdateAccount = () => {
-		//check chain network change
-		provider.on("chainChanged", async (chainId) => {
-			const _chainId = parseInt(chainId, 16).toString()
-			const _chainInfo = { id: _chainId, name: getNetwork(_chainId) }
-			setValue("chain", _chainInfo)
-		})
+            //check account wallet change
+            metaMaskProvider.on("accountsChanged", async accounts => {
+                if (accounts.length) {
+                    setValue("accountLogin", "")
+                    setValue("isConnected", false)
+                    setValue("isSignature", false)
+                }
+            })
+        }
+    }, [])
 
-		//check account wallet change
-		provider.on("accountsChanged", async (accounts) => {
-			if (accounts.length) {
-				setValue("account", accounts[0])
-				setValue("accountLogin", "")
-				setValue("isConnected", false)
-				setValue("isSignature", false)
-			}
-		})
-	}
-
-	const getToken = async (publicAddress: string) => {
-		//check info user
-		//info user return true
-		const user = await getUsersByAddress(publicAddress)
-		//info user return false (signup user)
-		let accountSignup
-		if (user) {
-			accountSignup = user
-		} else {
-			//Register an account if not in the data
-			accountSignup = await signupUser(publicAddress)
-		}
-		//check token on cookies
-		const token = await handleAuthenticate(accountSignup)
-		const proof = await checkIsWhitelisted(publicAddress)
-		setValue("accountLogin", publicAddress)
-		return [token, proof]
-	}
-
-	//get account wallet metamask
-	const getAccounts = async () => {
-		if (!provider) {
-			console.warn("Metamask is not available.")
-			return
-		}
-		try {
-			const accounts = await provider.request({
-				method: "eth_requestAccounts",
-				params: [],
-			})
-			if (accounts.length) {
-				setValue("isConnected", true)
-				setValue("account", accounts[0])
-			}
-			return accounts
-		} catch (error: any) {
-			throw Error(error)
-		}
-	}
-
-	// get network chain in metamask
-	const getChain = async () => {
-		if (!provider) {
-			console.warn("Metamask is not available.")
-			return
-		}
-		try {
-			const chainId = await provider.request({
-				method: "net_version",
-				params: [],
-			})
-			const _chainInfo = { id: chainId, name: getNetwork(chainId) }
-			setValue("chain", _chainInfo)
-			return _chainInfo
-		} catch (error: any) {
-			throw Error(error)
-		}
-	}
-
-	//get balance metamask
-	const getMetamaskBalance = async (): Promise<number> => {
-		if (values.account.length && values.isConnected && values.web3) {
-			let _balance
-			if (values.web3?.eth) {
-				_balance = await values.web3.eth.getBalance(values.accountLogin)
-			} else {
-				_balance = await values.web3.getBalance(values.accountLogin)
-			}
-			return parseFloat((_balance / 10 ** 18).toFixed(2).toString())
-		}
-		return 0
-	}
-
-	//auth accountLogin return token
-	const handleAuthenticate = async (accountSignup: IUser): Promise<string> => {
-		const { publicAddress, nonce } = accountSignup
-		const signature = await handleSignMessage(publicAddress, nonce)
-		const token = await authenticateUser(publicAddress, signature)
-		// setCookie("login-with-metamask:auth", token, {
-		// 	path: "/",
-		// 	maxAge: 60 * 60 * 1,
-		// });
-		return token
-	}
-
-	// signature accountLogin return hash code
-	const handleSignMessage = async (publicAddress: string, nonce: number) => {
-		try {
-			const signature = await web3.eth.personal.sign(
-				`I am signing my one-time nonce: ${nonce}`,
-				publicAddress,
-				"" // MetaMask will ignore the password argument here
-			)
-			return signature
-		} catch (err) {
-			throw new Error("You need to sign the message to be able to log in.")
-		}
-	}
-
-	return {
-		connect,
-		getAccounts,
-		getChain,
-		UpdateAccount,
-		handleAuthenticate,
-		getBalanceMetaMask: getMetamaskBalance,
-		setMetaState: setValue,
-		metaState: { ...values, isAvailable: !!provider },
-	}
+    return {
+        connect,
+        setMetaState: setValue,
+        metaState: { ...values, isAvailable: !!metaMaskProvider },
+        isConnecting,
+        toast,
+    }
 }
