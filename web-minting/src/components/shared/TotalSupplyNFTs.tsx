@@ -1,20 +1,20 @@
-import { Flex, IconButton, Text } from "@chakra-ui/react";
-import { IoRefreshCircle } from "react-icons/io5";
-import { useQuery, useQueryClient } from "react-query";
-import React from "react";
-import { useSmartContract } from "@hooks/useSmartContract";
+import { Flex, IconButton, Text } from "@chakra-ui/react"
+import { IoRefreshCircle } from "react-icons/io5"
+import { useQuery, useQueryClient } from "react-query"
+import React from "react"
+import { useSmartContract } from "@hooks/useSmartContract"
 
 interface Props {}
 
 const TotalSupplyNFTs = (props: Props) => {
-	const queryClient = useQueryClient();
-	const { getTotalSupply, setContractState } = useSmartContract();
+	const queryClient = useQueryClient()
+	const { getTotalSupply, setContractState } = useSmartContract()
 	const { data: totalSupply, isLoading } = useQuery("totalSupplyNFTs", () => getTotalSupply(), {
 		onError: (error) => {
-			console.log(error);
-			setContractState("isSmartContract", "ERROR");
+			console.log(error)
+			setContractState("isSmartContract", "ERROR")
 		},
-	});
+	})
 
 	return (
 		<Flex
@@ -42,7 +42,7 @@ const TotalSupplyNFTs = (props: Props) => {
 				{!isLoading ? (totalSupply ? totalSupply : 0) : "..."}/ 10000 NFTs
 			</Text>
 		</Flex>
-	);
-};
+	)
+}
 
-export default TotalSupplyNFTs;
+export default TotalSupplyNFTs

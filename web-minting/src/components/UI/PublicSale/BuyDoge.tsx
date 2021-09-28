@@ -58,11 +58,9 @@ function BuyDoge() {
 			toast("error", "Confirm error , each wallet only 5 nft")
 			return
 		}
-		await sendSmartContract(metaState.accountLogin, slot, totalPrice, metaState.isWhitelisted)
 		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
+		await sendSmartContract(metaState.accountLogin, slot, totalPrice, metaState.isWhitelisted)
 		setSlot(0)
-		queryClient.invalidateQueries("totalSupplyNFTs")
-		queryClient.invalidateQueries("_getUserRecord")
 	}
 
 	const handleConfirm = async () => {
@@ -76,6 +74,8 @@ function BuyDoge() {
 					if (metaState.status.public === "PUBLIC_SALE") {
 						await PublicSale()
 						setIsLoadingBtn(false)
+						queryClient.invalidateQueries("totalSupplyNFTs")
+						queryClient.invalidateQueries("_getUserRecord")
 					} else {
 						toast("error", "End Sale")
 						setIsLoadingBtn(false)
