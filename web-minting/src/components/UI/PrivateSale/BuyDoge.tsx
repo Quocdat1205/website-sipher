@@ -1,205 +1,253 @@
-import { Box, chakra, Flex, CircularProgress, Input, HStack, useNumberInput } from "@chakra-ui/react"
-import React, { useState } from "react"
-import { useQuery, useQueryClient } from "react-query"
-import { checkSmartContract } from "@api/index"
-import { useMetamask } from "@hooks/useMetamask"
-import useChakraToast from "@hooks/useChakraToast"
-import { CHAIN_ID } from "@utils/key_auth"
-import { MyButton, MyHeading, MyText } from "@sipher/web-components"
-import { useSmartContract } from "@hooks/useSmartContract"
+import {
+  Box,
+  chakra,
+  Flex,
+  CircularProgress,
+  Input,
+  HStack,
+  useNumberInput,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useQuery, useQueryClient } from "react-query";
+import { checkSmartContract } from "@api/index";
+import { useMetamask } from "@hooks/useMetamask";
+import useChakraToast from "@hooks/useChakraToast";
+import { CHAIN_ID } from "@utils/key_auth";
+import { MyButton, MyHeading, MyText } from "@sipher/web-components";
+import { useSmartContract } from "@hooks/useSmartContract";
 
 function BuyDoge() {
-	const { sendSmartContract, getUserRecord } = useSmartContract()
-	const { metaState, getBalanceMetaMask } = useMetamask()
-	const queryClient = useQueryClient()
-	const [isLoadingBtn, setIsLoadingBtn] = useState(false)
-	const [slot, setSlot] = useState(0)
-	const { data: userRecord, isLoading: isLoadingRecord } = useQuery(
-		"_getUserRecord",
-		() => getUserRecord(metaState.accountLogin),
-		{
-			onError: (error) => {
-				console.log(error)
-			},
-		}
-	)
+  const { sendSmartContract, getUserRecord } = useSmartContract();
+  const { metaState, getBalanceMetaMask } = useMetamask();
+  const queryClient = useQueryClient();
+  const [isLoadingBtn, setIsLoadingBtn] = useState(false);
+  const [slot, setSlot] = useState(0);
+  const { data: userRecord, isLoading: isLoadingRecord } = useQuery(
+    "_getUserRecord",
+    () => getUserRecord(metaState.accountLogin),
+    {
+      onError: (error) => {
+        console.log(error);
+      },
+    }
+  );
 
-	const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
-		step: 1,
-		value: slot,
-		min: 0,
-		max:
-			metaState.status.private === "PRIVATE_SALE"
-				? userRecord
-					? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought,0)
-					: 0
-				: 0,
-		onChange: (v) => setSlot(parseInt(v)),
-		isDisabled: metaState.status.private !== "PRIVATE_SALE",
-	})
+  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
+    useNumberInput({
+      step: 1,
+      value: slot,
+      min: 0,
+      max:
+        metaState.status.private === "PRIVATE_SALE"
+          ? userRecord
+            ? Math.max(
+                metaState.isWhitelisted.cap - userRecord.whitelistBought,
+                0
+              )
+            : 0
+          : 0,
+      onChange: (v) => setSlot(parseInt(v)),
+      isDisabled: metaState.status.private !== "PRIVATE_SALE",
+    });
 
-	console.log(metaState.isWhitelisted.cap)
+  console.log(metaState.isWhitelisted.cap);
 
-	const input = getInputProps({ readOnly: true })
-	const toast = useChakraToast()
-	const calculateSlotPrice = (): number => {
-		return parseFloat(
-			Math.round(slot * 0.1*100)/100
-				.toFixed(2)
-				.toString()
-		)
-	}
+  const input = getInputProps({ readOnly: true });
+  const toast = useChakraToast();
+  const calculateSlotPrice = (): number => {
+    return parseFloat((slot * 0.1).toFixed(2).toString());
+  };
 
-	const PrivateSale = async () => {
-		let checkSC = await checkSmartContract(metaState.accountLogin)
-		if (!checkSC) {
-			toast("error", "Failed to check smart contract")
-			return
-		}
-		if (userRecord?.whitelistBought && userRecord.whitelistBought >= metaState.isWhitelisted.cap) {
-			toast("error", `Confirm error , each wallet only ${metaState.isWhitelisted.cap} nft`)
-			return
-		}
-		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.isWhitelisted)
-		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
-		setSlot(0)
-		queryClient.invalidateQueries("totalSupplyNFTs")
-		queryClient.invalidateQueries("_getUserRecord")
-	}
+  const PrivateSale = async () => {
+    let checkSC = await checkSmartContract(metaState.accountLogin);
+    if (!checkSC) {
+      toast("error", "Failed to check smart contract");
+      return;
+    }
+    if (
+      userRecord?.whitelistBought &&
+      userRecord.whitelistBought >= metaState.isWhitelisted.cap
+    ) {
+      toast(
+        "error",
+        `Confirm error , each wallet only ${metaState.isWhitelisted.cap} nft`
+      );
+      return;
+    }
+    await sendSmartContract(
+      metaState.accountLogin,
+      slot,
+      calculateSlotPrice(),
+      metaState.isWhitelisted
+    );
+    toast(
+      "success",
+      "Confirm successfully! Please wait about 30 seconds",
+      "",
+      6000
+    );
+    setSlot(0);
+    queryClient.invalidateQueries("totalSupplyNFTs");
+    queryClient.invalidateQueries("_getUserRecord");
+  };
 
-	const handleConfirm = async () => {
-		setIsLoadingBtn(true)
-		try {
-			if (metaState.chain.id === CHAIN_ID) {
-				const balance = await getBalanceMetaMask()
-				if (balance < calculateSlotPrice()) {
-					toast("error", "Please check your balance can not mint")
-					setIsLoadingBtn(false)
-				} else {
-					if (metaState.status.private === "PRIVATE_SALE") {
-						await PrivateSale()
-						setIsLoadingBtn(false)
-					} else {
-						toast("error", "End Sale")
-						setIsLoadingBtn(false)
-					}
-				}
-			} else {
-				toast("error", "Wrong network selected, please switch to Ethereum Mainnet.")
-				setIsLoadingBtn(false)
-			}
-		} catch (error) {
-			console.log(error)
-			toast("error", "Confirm error, please try again later")
-			setIsLoadingBtn(false)
-		}
-	}
+  const handleConfirm = async () => {
+    setIsLoadingBtn(true);
+    try {
+      if (metaState.chain.id === CHAIN_ID) {
+        const balance = await getBalanceMetaMask();
+        if (balance < calculateSlotPrice()) {
+          toast("error", "Please check your balance can not mint");
+          setIsLoadingBtn(false);
+        } else {
+          if (metaState.status.private === "PRIVATE_SALE") {
+            await PrivateSale();
+            setIsLoadingBtn(false);
+          } else {
+            toast("error", "End Sale");
+            setIsLoadingBtn(false);
+          }
+        }
+      } else {
+        toast(
+          "error",
+          "Wrong network selected, please switch to Ethereum Mainnet."
+        );
+        setIsLoadingBtn(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast("error", "Confirm error, please try again later");
+      setIsLoadingBtn(false);
+    }
+  };
 
-	return (
-		<Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
-			<MyHeading textTransform="uppercase" textAlign="left" color="yellow.500">
-				{metaState.status.private === "NOT_FOR_SALE"
-					? "WAITING FOR PRIVATE SALE"
-					: metaState.status.private === "PRIVATE_SALE"
-					? "PRIVATE SALE SIPHER NFT"
-					: metaState.status.private === "END_SALE"
-					? "Private sale has ended"
-					: "NO SALE AVAILABLE YET"}
-			</MyHeading>
-			<MyText textAlign="left" color="red.500">
-				{metaState.status.private === "END_SALE"
-					? "Comeback later!"
-					: metaState.status.private === "PRIVATE_SALE"
-					? "Are you feeling lucky today ?"
-					: "Patience leads to success"}
-			</MyText>
-			<MyText mt="2" textAlign="left">
-				Choose quantity
-			</MyText>
-			<HStack mt="1" w="100%">
-				<MyButton colorScheme="yellow" bg="yellow.400" {...getDecrementButtonProps()}>
-					-
-				</MyButton>
-				<Input
-					fontSize={["xs", "sm", "md", "lg"]}
-					textAlign="center"
-					borderColor="yellow.400"
-					w="100%"
-					{...input}
-				/>
-				<MyButton colorScheme="yellow" bg="yellow.400" {...getIncrementButtonProps()}>
-					+
-				</MyButton>
-			</HStack>
-			<Box w="100%">
-				<Flex
-					flexDir="row"
-					justifyContent="space-between"
-					borderTop="1px"
-					alignItems="center"
-					borderColor="whiteAlpha.600"
-					mt="4"
-					w="100%"
-					pt="2"
-				>
-					<Flex justifyContent="space-between" w="100%" alignItems="center">
-						<MyText>Unit price: 0.1 ETH</MyText>
-						<MyText>
-							You have purchased:{" "}
-							{!isLoadingRecord && userRecord
-								? userRecord.publicBought + userRecord.whitelistBought
-								: "..."}
-						</MyText>
-					</Flex>
-				</Flex>
-			</Box>
-			<Flex pos="relative" fontSize={["sm", "sm", "md", "lg"]} mt="4" w="100%" flexDir="row" alignItems="center">
-				<chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
-					You will pay:
-					<MyText mx="2" color="yellow.500">
-						{metaState.status.private !== "END_SALE" ? calculateSlotPrice() : 0}
-					</MyText>
-					ETH
-				</chakra.span>
-				{metaState.isWhitelisted.proof.length > 0 && !isLoadingRecord && (
-					<MyButton
-						flex="1"
-						colorScheme="red"
-						borderColor="whiteAplha.800"
-						border="1px"
-						borderTopLeftRadius="0"
-						borderBottomRightRadius="0"
-						borderTopRightRadius="1rem"
-						borderBottomLeftRadius="1rem"
-						w="full"
-						color="whiteAlpha.800"
-						bgGradient="linear(to-r, #580e19, #880e21, #be112b, #880e21 , #580e19)"
-						onClick={() => handleConfirm()}
-						disabled={
-							!isLoadingBtn && slot > 0
-								? metaState.status.private === "NOT_FOR_SALE" || metaState.status.private === "END_SALE"
-								: true
-						}
-					>
-						{!isLoadingBtn ? (
-							<>
-								{metaState.status.private === "NOT_FOR_SALE"
-									? "STARTING SOON"
-									: metaState.status.private === "END_SALE"
-									? "NOT YET AVAILABLE"
-									: "MINT NOW"}
-							</>
-						) : (
-							<>
-								<CircularProgress mr="4" isIndeterminate size="1.5rem" color="yellow.400" />
-								Please wait
-							</>
-						)}
-					</MyButton>
-				)}
-			</Flex>
-		</Flex>
-	)
+  return (
+    <Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
+      <MyHeading textTransform="uppercase" textAlign="left" color="yellow.500">
+        {metaState.status.private === "NOT_FOR_SALE"
+          ? "WAITING FOR PRIVATE SALE"
+          : metaState.status.private === "PRIVATE_SALE"
+          ? "PRIVATE SALE SIPHER NFT"
+          : metaState.status.private === "END_SALE"
+          ? "Private sale has ended"
+          : "NO SALE AVAILABLE YET"}
+      </MyHeading>
+      <MyText textAlign="left" color="red.500">
+        {metaState.status.private === "END_SALE"
+          ? "Comeback later!"
+          : metaState.status.private === "PRIVATE_SALE"
+          ? "Are you feeling lucky today ?"
+          : "Patience leads to success"}
+      </MyText>
+      <MyText mt="2" textAlign="left">
+        Choose quantity
+      </MyText>
+      <HStack mt="1" w="100%">
+        <MyButton
+          colorScheme="yellow"
+          bg="yellow.400"
+          {...getDecrementButtonProps()}
+        >
+          -
+        </MyButton>
+        <Input
+          fontSize={["xs", "sm", "md", "lg"]}
+          textAlign="center"
+          borderColor="yellow.400"
+          w="100%"
+          {...input}
+        />
+        <MyButton
+          colorScheme="yellow"
+          bg="yellow.400"
+          {...getIncrementButtonProps()}
+        >
+          +
+        </MyButton>
+      </HStack>
+      <Box w="100%">
+        <Flex
+          flexDir="row"
+          justifyContent="space-between"
+          borderTop="1px"
+          alignItems="center"
+          borderColor="whiteAlpha.600"
+          mt="4"
+          w="100%"
+          pt="2"
+        >
+          <Flex justifyContent="space-between" w="100%" alignItems="center">
+            <MyText>Unit price: 0.1 ETH</MyText>
+            <MyText>
+              You have purchased:{" "}
+              {!isLoadingRecord && userRecord
+                ? userRecord.publicBought + userRecord.whitelistBought
+                : "..."}
+            </MyText>
+          </Flex>
+        </Flex>
+      </Box>
+      <Flex
+        pos="relative"
+        fontSize={["sm", "sm", "md", "lg"]}
+        mt="4"
+        w="100%"
+        flexDir="row"
+        alignItems="center"
+      >
+        <chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
+          You will pay:
+          <MyText mx="2" color="yellow.500">
+            {metaState.status.private !== "END_SALE" ? calculateSlotPrice() : 0}
+          </MyText>
+          ETH
+        </chakra.span>
+        {metaState.isWhitelisted.proof.length > 0 && !isLoadingRecord && (
+          <MyButton
+            flex="1"
+            colorScheme="red"
+            borderColor="whiteAplha.800"
+            border="1px"
+            borderTopLeftRadius="0"
+            borderBottomRightRadius="0"
+            borderTopRightRadius="1rem"
+            borderBottomLeftRadius="1rem"
+            w="full"
+            color="whiteAlpha.800"
+            bgGradient="linear(to-r, #580e19, #880e21, #be112b, #880e21 , #580e19)"
+            onClick={() => handleConfirm()}
+            disabled={
+              !isLoadingBtn && slot > 0
+                ? metaState.status.private === "NOT_FOR_SALE" ||
+                  metaState.status.private === "END_SALE"
+                : true
+            }
+          >
+            {!isLoadingBtn ? (
+              <>
+                {metaState.status.private === "NOT_FOR_SALE"
+                  ? "STARTING SOON"
+                  : metaState.status.private === "END_SALE"
+                  ? "NOT YET AVAILABLE"
+                  : "MINT NOW"}
+              </>
+            ) : (
+              <>
+                <CircularProgress
+                  mr="4"
+                  isIndeterminate
+                  size="1.5rem"
+                  color="yellow.400"
+                />
+                Please wait
+              </>
+            )}
+          </MyButton>
+        )}
+      </Flex>
+    </Flex>
+  );
 }
 
-export default BuyDoge
+export default BuyDoge;
