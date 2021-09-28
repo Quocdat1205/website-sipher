@@ -76,7 +76,14 @@ export const useSmartContract = () => {
 	}
 
 	//buy NFT
-	const sendSmartContract = async (accountLogin, slot: number, slotPrice: number, proof: string[]) => {
+	const sendSmartContract = async (
+		accountLogin,
+		slot: number,
+		slotPrice: number,
+		isWhiteListed: { proof: any; cap: number }
+	) => {
+		const { proof, cap } = isWhiteListed
+
 		const _gaslimit =
 			slot === 1
 				? 296656
@@ -100,7 +107,7 @@ export const useSmartContract = () => {
 				? 2
 				: parseInt(gaseth.data.ProposeGasPrice) - parseInt(gaseth.data.suggestBaseFee)
 		)
-		await ContractProviderSALE.methods.buy(slot, proof).send({
+		await ContractProviderSALE.methods.buy(slot, cap, proof).send({
 			from: accountLogin,
 			value: web3.utils.toHex(web3.utils.toWei(slotPrice.toString(), "ether")),
 			gasLimit: web3.utils.toHex(_gaslimit),
@@ -127,8 +134,8 @@ export const useSmartContract = () => {
 	//get current price
 	const getPublicCurrentPrice = async () => {
 		const data = await ContractProviderSALE.methods.getPublicSaleCurrentPrice().call()
-		console.log(data);
-		
+		console.log(data)
+
 		return data / 10 ** 18
 	}
 

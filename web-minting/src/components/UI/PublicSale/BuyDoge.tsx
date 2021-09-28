@@ -37,7 +37,7 @@ function BuyDoge() {
 		step: 1,
 		value: slot,
 		min: 0,
-		max: 7 - ((userRecord ? userRecord.publicBought : 0) + (userRecord ? userRecord.whitelistBought : 0)) || 0,
+		max: 5 - (userRecord ? userRecord.publicBought : 0) || 0,
 		onChange: (v) => setSlot(parseInt(v)),
 		isDisabled: metaState.status.public !== "PUBLIC_SALE",
 	})
@@ -55,11 +55,11 @@ function BuyDoge() {
 			toast("error", "Failed to check smart contract")
 			return
 		}
-		if (userRecord && userRecord.publicBought + userRecord.whitelistBought >= 7) {
-			toast("error", "Confirm error , each wallet only 7 nft")
+		if (userRecord && userRecord.publicBought >= 5) {
+			toast("error", "Confirm error , each wallet only 5 nft")
 			return
 		}
-		await sendSmartContract(metaState.accountLogin, slot, totalPrice, [])
+		await sendSmartContract(metaState.accountLogin, slot, totalPrice, metaState.isWhitelisted)
 		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
 		setSlot(0)
 		queryClient.invalidateQueries("totalSupplyNFTs")
@@ -121,7 +121,7 @@ function BuyDoge() {
 					/>
 				</Flex>
 			)} */}
-			{metaState.status.public === "END_SALE" && (
+			{metaState.status.public !== "END_SALE" && (
 				<Flex flexDir="column" p="2" pt="8">
 					<ProgressBarNew
 						currentPrice={currentPrice}

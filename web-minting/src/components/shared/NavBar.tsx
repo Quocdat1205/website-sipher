@@ -41,7 +41,7 @@ export const NavBar = ({}: NavBarProps) => {
 			</Flex>
 			<HStack spacing={[6, 8, 10, 12]} flex={3} justify="flex-start">
 				{navMenus
-					.filter((item) => item.id !== "Private Sale" || metaState.proof.length > 0)
+					.filter((item) => item.id !== "Private Sale" || metaState.isWhitelisted.proof.length > 0)
 					.map((menu) => (
 						<NavBarLink
 							key={menu.id}

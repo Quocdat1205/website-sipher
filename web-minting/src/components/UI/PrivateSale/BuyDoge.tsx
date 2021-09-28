@@ -28,7 +28,12 @@ function BuyDoge() {
 		step: 1,
 		value: slot,
 		min: 0,
-		max: metaState.status.private === "PRIVATE_SALE" ? (userRecord ? 2 - userRecord.whitelistBought : 0) : 0,
+		max:
+			metaState.status.private === "PRIVATE_SALE"
+				? userRecord
+					? metaState.isWhitelisted.cap - userRecord.whitelistBought
+					: 0
+				: 0,
 		onChange: (v) => setSlot(parseInt(v)),
 		isDisabled: metaState.status.private !== "PRIVATE_SALE",
 	})
@@ -45,11 +50,11 @@ function BuyDoge() {
 			toast("error", "Failed to check smart contract")
 			return
 		}
-		if (userRecord?.whitelistBought && userRecord.whitelistBought > 2) {
-			toast("error", "Confirm error , each wallet only 2 nft")
+		if (userRecord?.whitelistBought && userRecord.whitelistBought >= metaState.isWhitelisted.cap) {
+			toast("error", `Confirm error , each wallet only ${metaState.isWhitelisted.cap} nft`)
 			return
 		}
-		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.proof)
+		await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.isWhitelisted)
 		toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
 		setSlot(0)
 		queryClient.invalidateQueries("totalSupplyNFTs")
@@ -95,20 +100,6 @@ function BuyDoge() {
 					? "Private sale has ended"
 					: "NO SALE AVAILABLE YET"}
 			</MyHeading>
-			{/* {metaState.proof.length > 0 && (
-					<chakra.span
-						fontSize="1.2rem"
-						bg="#43a81e"
-						border="1px"
-						borderColor="whiteAlpha.800"
-						px="6"
-						py="2"
-						mt="1"
-						borderRadius="99"
-					>
-						Whitelisted
-					</chakra.span>
-				)} */}
 			<MyText textAlign="left" color="red.500">
 				{metaState.status.private === "END_SALE"
 					? "Comeback later!"
@@ -164,7 +155,7 @@ function BuyDoge() {
 					</MyText>
 					ETH
 				</chakra.span>
-				{metaState.proof.length > 0 && !isLoadingRecord && (
+				{metaState.isWhitelisted.proof.length > 0 && !isLoadingRecord && (
 					<MyButton
 						flex="1"
 						colorScheme="red"

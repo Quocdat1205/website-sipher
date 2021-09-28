@@ -50,12 +50,11 @@ export const useMetamask = () => {
 		const accounts = await getAccounts()
 		const publicAddress = await accounts[0].toLowerCase()
 		await getChain()
-		const [token, proof] = await getToken(publicAddress)
+		const [token, proof, cap] = await getToken(publicAddress)
 		setValue("isSignature", !!token && !!proof ? true : false)
 		setValue("accessToken", !!token && token)
-		setValue("proof", !!proof && proof)
+		setValue("isWhitelisted", !!proof && { proof, cap })
 		_isConnectCalled.current = false
-
 		let now = new Date().getTime()
 		if (now > endTime) {
 			router.push("inventory")
@@ -100,9 +99,9 @@ export const useMetamask = () => {
 		}
 		//check token on cookies
 		const token = await handleAuthenticate(accountSignup)
-		const proof = await checkIsWhitelisted(publicAddress)
+		const { proof, cap } = await checkIsWhitelisted(publicAddress)
 		setValue("accountLogin", publicAddress)
-		return [token, proof]
+		return [token, proof, cap]
 	}
 
 	//get account wallet metamask

@@ -20,10 +20,10 @@ export const checkgas = async () => {
 }
 
 //check whitelisted
-export const checkIsWhitelisted = async (publicAddress: string): Promise<string[]> => {
+export const checkIsWhitelisted = async (publicAddress: string): Promise<{ proof: any; cap: number }> => {
 	const { data } = await axios.get(
 		`/neko-sc/checkWhiteList?saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${publicAddress}`,
 		config
 	)
-	return data.message.proof
+	return { proof: data.message.proof, cap: data.message.cap }
 }
