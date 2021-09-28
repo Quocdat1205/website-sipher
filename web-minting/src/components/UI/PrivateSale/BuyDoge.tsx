@@ -41,7 +41,7 @@ function BuyDoge() {
 	const input = getInputProps({ readOnly: true })
 	const toast = useChakraToast()
 	const calculateSlotPrice = (): number => {
-		return parseFloat((slot * 0.1).toString())
+		return parseFloat((slot * 0.1).toFixed(2).toString())
 	}
 
 	const PrivateSale = async () => {
