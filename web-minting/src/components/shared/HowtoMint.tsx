@@ -31,12 +31,12 @@ function HowtoMint({ isPublic = false }: Props) {
 						metaState.status.public === "NOT_FOR_SALE" ? (
 							<>
 								<li>Available for whitelisted addresses only.</li>
-								<li>Each address will be able to mint 01 NFT.</li>
+								<li>Each address will be able to mint 02 NFT.</li>
 								<li>Start at 08:00 AM Sep 07, 2021 UTC+7.</li>
 							</>
 						) : metaState.status.public === "PUBLIC_SALE" ? (
 							<>
-								<li>Each address will be able to mint maximum 05 NFTs.</li>
+								<li>Each address will be able to mint maximum 07 NFTs.</li>
 								<li>Public sale end time.</li>
 							</>
 						) : (
@@ -45,13 +45,13 @@ function HowtoMint({ isPublic = false }: Props) {
 					) : metaState.status.private === "NOT_FOR_SALE" ? (
 						<>
 							<li>Available for whitelisted addresses only.</li>
-							<li>Each address will be able to mint 01 NFT.</li>
+							<li>Each address will be able to mint 02 NFT.</li>
 							<li>Start at 08:00 AM Sep 07, 2021 UTC+7.</li>
 						</>
 					) : metaState.status.private === "PRIVATE_SALE" ? (
 						<>
 							<li>Available for whitelisted addresses only.</li>
-							<li>Each address will be able to mint 01 NFT.</li>
+							<li>Each address will be able to mint 02 NFT.</li>
 							<li>Pre-sale end time.</li>
 						</>
 					) : (

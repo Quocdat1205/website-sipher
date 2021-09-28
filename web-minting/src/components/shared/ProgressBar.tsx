@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Box, Flex, Img } from "@chakra-ui/react"
-import { SetStateAction, useEffect, useState } from "react"
+import { SetStateAction, useEffect } from "react"
 
 interface ProgressBarProps {
 	startPrice?: number
@@ -24,6 +24,7 @@ const ProgressBar = ({ currentPrice, setCurrentTime, startPrice = 1, basePrice =
 		}, 1000)
 		return () => clearTimeout(timeout)
 	})
+
 	return (
 		<Box h="0.5rem" w="full" pos="relative">
 			<Flex

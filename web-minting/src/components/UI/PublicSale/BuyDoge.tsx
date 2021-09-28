@@ -8,6 +8,7 @@ import { CHAIN_ID, duration, priceStep, publicSaleTime, startPrice } from "@util
 import { MyButton, MyHeading, MyText } from "@sipher/web-components"
 import { useSmartContract } from "@hooks/useSmartContract"
 import ProgressBar from "@components/shared/ProgressBar"
+import ProgressBarNew from "@components/shared/ProgressBarNew"
 
 function BuyDoge() {
 	const { sendSmartContract, getUserRecord, getPublicCurrentPrice, metaState } = useSmartContract()
@@ -110,9 +111,19 @@ function BuyDoge() {
 					? "Are you feeling lucky today ?"
 					: "Patience leads to success"}
 			</MyText>
-			{metaState.status.public !== "END_SALE" && (
+			{/* {metaState.status.public !== "END_SALE" && (
 				<Flex p="2" pt="8">
 					<ProgressBar
+						currentPrice={currentPrice}
+						publicSaleTime={publicSaleTime}
+						currentTime={currentTime}
+						setCurrentTime={setCurrentTime}
+					/>
+				</Flex>
+			)} */}
+			{metaState.status.public === "END_SALE" && (
+				<Flex flexDir="column" p="2" pt="8">
+					<ProgressBarNew
 						currentPrice={currentPrice}
 						publicSaleTime={publicSaleTime}
 						currentTime={currentTime}
