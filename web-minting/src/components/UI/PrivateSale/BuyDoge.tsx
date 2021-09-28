@@ -31,7 +31,7 @@ function BuyDoge() {
 		max:
 			metaState.status.private === "PRIVATE_SALE"
 				? userRecord
-					? metaState.isWhitelisted.cap - userRecord.whitelistBought
+					? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought,0)
 					: 0
 				: 0,
 		onChange: (v) => setSlot(parseInt(v)),
