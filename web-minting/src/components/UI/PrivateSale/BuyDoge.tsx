@@ -38,10 +38,16 @@ function BuyDoge() {
 		isDisabled: metaState.status.private !== "PRIVATE_SALE",
 	})
 
+	console.log(metaState.isWhitelisted.cap)
+
 	const input = getInputProps({ readOnly: true })
 	const toast = useChakraToast()
 	const calculateSlotPrice = (): number => {
-		return parseFloat((slot * 0.1).toFixed(2).toString())
+		return parseFloat(
+			Math.round(slot * 0.1*100)/100
+				.toFixed(2)
+				.toString()
+		)
 	}
 
 	const PrivateSale = async () => {
