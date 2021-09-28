@@ -1,22 +1,33 @@
-import { Box, Flex, VStack } from "@chakra-ui/react"
-import { MyText, useChakraToast } from "@sipher/web-components"
+import { Box, Flex, VStack, Grid, chakra } from "@chakra-ui/react"
+import { MyText } from "@sipher/web-components"
 import WalletCard from "./WalletCard"
 import useWalletContext from "@hooks/useWalletContext"
 
 const ConnectWalletForm = () => {
     const { metaState, connect, isConnecting } = useWalletContext()
-    // const toast = useChakraToast()
-
-    // const handleConnectMetaMask = async () => {
-    //     if (metaState.isAvailable && !metaState.isConnected) {
-    //         await connect()
-    //     } else {
-    //         toast("error", "You don't have Metamask installed")
-    //     }
-    // }
 
     return (
-        <Flex flexDir="column" p="4">
+        <Flex direction="column" p="4" pos="relative">
+            <Grid
+                pos="absolute"
+                bg="black"
+                zIndex="overlay"
+                placeItems="center"
+                top={0}
+                left={0}
+                w="full"
+                h="full"
+                display="none"
+                sx={{
+                    "@media (max-width: 960px)": {
+                        display: "grid",
+                    },
+                }}
+            >
+                <MyText size="large" fontWeight="bold" color="main.brightRed">
+                    NOT AVAILABLE <chakra.pre display="inline">(x_x)!</chakra.pre>
+                </MyText>
+            </Grid>
             <Box mb="6" textAlign="center">
                 <MyText size="large" fontWeight="bold">
                     CONNECT TO YOUR WALLET

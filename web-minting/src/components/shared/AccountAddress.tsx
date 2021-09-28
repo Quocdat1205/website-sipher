@@ -1,95 +1,74 @@
-import { Box, Flex, Button, chakra, Menu, MenuButton, MenuList, MenuItem, Text } from "@chakra-ui/react";
-import React from "react";
-import { BiWallet, BiChevronDown, BiChevronUp } from "react-icons/bi";
-import CopyClipboard from "./CopyClipboard";
+import { Box, Flex, Button, useOutsideClick, Text, Collapse } from "@chakra-ui/react"
+import React, { useRef, useState } from "react"
+import { BiWallet } from "react-icons/bi"
+import AddressCopier from "./AddressCopier"
+import useWalletContext from "@hooks/useWalletContext"
+import { GradientButton, MyText } from "@sipher/web-components"
+import { BsChevronDown, BsChevronUp } from "react-icons/bs"
 
-interface Props {
-	account?: string | "";
-	signOut?: () => void;
+const AccountAddress = () => {
+    const {
+        metaState: { accountLogin },
+        logout,
+    } = useWalletContext()
+
+    const [popup, setPopup] = useState(false)
+    const btnRef = useRef<HTMLDivElement>(null)
+    useOutsideClick({
+        ref: btnRef,
+        handler: () => setPopup(false),
+    })
+    return (
+        <Flex borderLeft="1px" ml="4" pl="3" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
+            <Box zIndex="1" bg="black" color="main.yellow" p={[0, 1, 1.5, 2]} borderRadius="99" ref={btnRef}>
+                <Flex cursor="pointer" align="center" userSelect="none" onClick={() => setPopup(!popup)}>
+                    <Box p={1} rounded="full" border="1px" borderColor="main.yellow">
+                        <BiWallet size="1.2rem" />
+                    </Box>
+                    <MyText ml={2}>
+                        {accountLogin !== "" && accountLogin.slice(0, 6)}
+                        ...
+                        {accountLogin.slice(accountLogin.length - 4, accountLogin.length)}
+                    </MyText>
+                    <Box ml={4}>{popup ? <BsChevronUp /> : <BsChevronDown />}</Box>
+                </Flex>
+                <Box pos="absolute" right={0} bottom={0} transform="translateY(100%)">
+                    <Collapse in={popup}>
+                        <Box w="14rem" bg="blackAlpha.900" rounded="md" p={4} shadow="base">
+                            <MyText fontWeight="bold" color="main.lightGreen" textTransform="uppercase">
+                                Connected
+                            </MyText>
+                            <Flex align="center" mt={4}>
+                                <Box p={1} rounded="full" border="1px" borderColor="main.yellow">
+                                    <BiWallet size="1.2rem" />
+                                </Box>
+                                <Text ml={2}>
+                                    {accountLogin !== "" && accountLogin.slice(0, 6)}
+                                    ...
+                                    {accountLogin.slice(accountLogin.length - 4, accountLogin.length)}
+                                </Text>
+                                <Box ml="auto">
+                                    <AddressCopier />
+                                </Box>
+                            </Flex>
+
+                            <MyText
+                                mt={4}
+                                textAlign="center"
+                                p={2}
+                                bg="whiteAlpha.50"
+                                cursor="pointer"
+                                rounded="md"
+                                _hover={{ bg: "whiteAlpha.200" }}
+                            >
+                                My NFTs
+                            </MyText>
+                            <GradientButton text="Log Out" onClick={logout} mt={4} />
+                        </Box>
+                    </Collapse>
+                </Box>
+            </Box>
+        </Flex>
+    )
 }
-
-const AccountAddress = ({ account = "", signOut }: Props) => {
-	return (
-		<Flex borderLeft="1px" ml="4" pl="3" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
-			<Box
-				zIndex="1"
-				bg="black"
-				border="1px"
-				borderColor="yellow.400"
-				p={[0, 1, 1.5, 2]}
-				borderRadius="99"
-				fontSize={["sm", "sm", "md", "lg"]}
-			>
-				<BiWallet color="#ecc94b" />
-			</Box>
-			<Menu>
-				{({ isOpen }) => (
-					<>
-						<MenuButton
-							_hover={{ bg: "none" }}
-							_active={{ bg: "none" }}
-							as={Button}
-							variant="ghost"
-							rightIcon={isOpen ? <BiChevronUp fontSize="24px" /> : <BiChevronDown fontSize="24px" />}
-						>
-							{account !== "" && account.slice(0, 6)}
-							...
-							{account.slice(account.length - 4, account.length)}
-						</MenuButton>
-						<MenuList borderColor="gray.800" bg="gray.800">
-							<Text p="2">Connected</Text>
-							<Flex
-								px="2"
-								align="center"
-								mt="2"
-								justify="space-between"
-								minH="48px"
-								_focus={{ bg: "none" }}
-								cursor="unset"
-								_hover={{ bg: "none" }}
-							>
-								<Box
-									zIndex="1"
-									bg="transparent"
-									border="1px"
-									borderColor="yellow.400"
-									p={[0, 1, 1.5, 2]}
-									borderRadius="99"
-									fontSize={["sm", "sm", "md", "lg"]}
-								>
-									<BiWallet color="#ecc94b" />
-								</Box>
-								<Box ml="2">
-									<Text>
-										{account !== "" && account.slice(0, 6)}
-										...
-										{account.slice(account.length - 4, account.length)}
-									</Text>
-									<Text cursor="pointer" color="blue.500" fontSize="0.8rem">
-										Set display name
-									</Text>
-								</Box>
-								<CopyClipboard />
-							</Flex>
-							<MenuItem minH="48px" _focus={{ bg: "none" }} _hover={{ bg: "gray.700" }}>
-								<span>My Account</span>
-							</MenuItem>
-							<MenuItem minH="48px" _hover={{ bg: "gray.700" }}>
-								<span>My NFTs</span>
-							</MenuItem>
-							<MenuItem minH="48px" _hover={{ bg: "gray.700" }}>
-								<span>Preferences</span>
-							</MenuItem>
-							<Box px="2" mt="2">
-								<Button w="full" onClick={signOut} minH="48px" colorScheme="red">
-									Exit
-								</Button>
-							</Box>
-						</MenuList>
-					</>
-				)}
-			</Menu>
-		</Flex>
-	);
-};
-export default AccountAddress;
+export default AccountAddress

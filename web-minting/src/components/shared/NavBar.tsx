@@ -1,8 +1,5 @@
 // * DESCRIPTION:
-import { Flex, HStack, Img } from "@chakra-ui/react"
-import { useRouter } from "next/router"
-import { NavBarLink } from "./NavBarLink"
-import { useChakraToast } from "@sipher/web-components"
+import { BaseNavigationBar } from "@sipher/web-components"
 import AccountAddress from "./AccountAddress"
 import TotalSupplyNFTs from "./TotalSupplyNFTs"
 import useWalletContext from "@hooks/useWalletContext"
@@ -16,43 +13,15 @@ export const navMenus = [
 ]
 
 export const NavBar = ({}: NavBarProps) => {
-    const { metaState, setMetaState } = useWalletContext()
-    const router = useRouter()
-    const toast = useChakraToast()
-
-    const signOut = () => {
-        setMetaState("isConnected", false)
-        setMetaState("isSignature", false)
-        setMetaState("accountLogin", "")
-        toast("success", "Logout successfully")
-    }
+    const { metaState } = useWalletContext()
 
     return (
-        <Flex px={4} py={4} bg="black" align="center" justify="space-between">
-            <Flex
-                cursor="pointer"
-                mr="4"
-                w={["auto", "auto", "18rem"]}
-                flexShrink={0}
-                align="center"
-                onClick={() => window.open("https://sipher.xyz", "_blank")}
-            >
-                <Img src="/images/logo_pc.png" h={["10%", "2rem", "2.5rem"]} mx={[0, 0, "auto"]} />
-            </Flex>
-            <HStack spacing={[6, 8, 10, 12]} flex={3} justify="flex-start">
-                {navMenus
-                    .filter(item => item.id !== "Private Sale" || metaState.isWhitelisted.proof.length > 0)
-                    .map(menu => (
-                        <NavBarLink
-                            key={menu.id}
-                            text={menu.id}
-                            href={menu.path}
-                            active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
-                        />
-                    ))}
-            </HStack>
+        <BaseNavigationBar
+            logoPath="/images/mainlogo.png"
+            menus={navMenus.filter(item => item.id !== "Private Sale" || metaState.isWhitelisted.proof.length > 0)}
+        >
             <TotalSupplyNFTs />
-            <AccountAddress signOut={signOut} account={metaState.accountLogin} />
-        </Flex>
+            <AccountAddress />
+        </BaseNavigationBar>
     )
 }

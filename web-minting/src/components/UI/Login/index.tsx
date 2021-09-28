@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { SlideFade, Flex, Box } from "@chakra-ui/react"
 import MetaMaskTutorial from "./MetaMaskTutorial"
 import ConnectWalletForm from "./ConnectWalletForm"
-import NotSuport from "./NotSuport"
 
 const Login = () => {
     const [redirect, setRedirect] = useState(false)
@@ -30,10 +29,7 @@ const Login = () => {
             <Box maxW="100%" w="32rem" bgGradient="linear(to-b, bgGradient.orange)" p="1">
                 <Flex align="center" justify="center" bg="black" p="4" w="full">
                     {!redirect ? (
-                        <>
-                            <MetaMaskTutorial onConnectClick={onConnectClick} />
-                            <NotSuport />
-                        </>
+                        <MetaMaskTutorial onConnectClick={onConnectClick} />
                     ) : (
                         <SlideFade style={{ width: "100%" }} in={redirect} offsetX="50pSlideFadex">
                             <ConnectWalletForm />

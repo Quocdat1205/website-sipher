@@ -35,8 +35,8 @@ const HomeBody = ({}: HomeBodyProps) => {
                         bgGradient="linear(to-b, blackAlpha.900, transparent, blackAlpha.900)"
                     >
                         <Flex direction="column" align="center">
-                            <Img src="/images/pc/home/logohome.png" h={["3rem", "5rem", "7rem"]} alt="sipher-logo" />
-                            <MyHeading color="whiteAlpha.900" fontWeight="thin" fontSize="4xl">
+                            <Img src="/images/mainlogo.png" h={["3rem", "4.5rem", "6rem"]} alt="sipher-logo" mb={4} />
+                            <MyHeading color="whiteAlpha.900" fontWeight="thin" fontSize={["2xl", "3xl", "4xl"]}>
                                 SOLD OUT
                             </MyHeading>
                             <MyText textAlign="center">Thanks to all of our early adopters and our community</MyText>

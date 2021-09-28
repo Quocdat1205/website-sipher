@@ -9,3 +9,5 @@ export * from "./GradientText";
 export * from "./GradientHeading";
 export * from "./Toast";
 export * from "./ChakraModal";
+export * from "./NavBarLink";
+export * from "./BaseNavigationBar";

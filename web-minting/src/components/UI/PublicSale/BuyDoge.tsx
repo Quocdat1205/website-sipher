@@ -21,12 +21,8 @@ function BuyDoge() {
     const queryClient = useQueryClient()
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
     const [slot, setSlot] = useState(0)
-    const { data: userRecord, isLoading: isLoadingRecord } = useQuery(
-        "user-record",
-        () => getUserRecord(metaState.accountLogin),
-        {
-            onError: console.log,
-        }
+    const { data: userRecord, isLoading: isLoadingRecord } = useQuery("user-record", () =>
+        getUserRecord(metaState.accountLogin)
     )
 
     const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({

@@ -1,5 +1,4 @@
-import { Image } from "@chakra-ui/image"
-import { Spinner, Flex } from "@chakra-ui/react"
+import { Spinner, Flex, Box, Img } from "@chakra-ui/react"
 import { MyText } from "@sipher/web-components"
 import React from "react"
 
@@ -15,6 +14,7 @@ interface WalletCardProps {
 const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading = false }: WalletCardProps) => {
     return (
         <Flex
+            flex={1}
             opacity={disabled ? "0.4" : "1"}
             pointerEvents={disabled ? "none" : "unset"}
             cursor={disabled ? "not-allowed" : "pointer"}
@@ -42,8 +42,8 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
                     <MyText ml={2}>Connecting...</MyText>
                 </Flex>
             )}
-            <MyText>{title}</MyText>
-            <Image src={src} alt="" />
+            <MyText color={active ? "main.lightGreen" : "inherit"}>{title}</MyText>
+            <Img src={src} alt={title} />
         </Flex>
     )
 }

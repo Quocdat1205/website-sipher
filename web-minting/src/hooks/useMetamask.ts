@@ -3,6 +3,8 @@ import router from "next/router"
 import { endTime, publicSaleTime } from "@utils/key_auth"
 import { useChakraToast, useFormCore } from "@sipher/web-components"
 import { getChainName, metaMaskProvider, connectWallet } from "src/helper/metamask"
+import { getSaleConfig, getTotalSupply } from "@helper/smartContract"
+import { useMutation, useQuery } from "react-query"
 
 declare global {
     interface Window {
@@ -34,21 +36,22 @@ interface TypeState {
     accessToken: string
 }
 
+const initialState: TypeState = {
+    accountLogin: "",
+    chain: null,
+    isConnected: false,
+    isSignature: false,
+    isSmartContract: "NOT_CONNECT",
+    time: { private: 0, public: 0 },
+    status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
+    isWhitelisted: {
+        proof: [],
+        cap: 0,
+    },
+    accessToken: "",
+}
+
 export const useMetamask = () => {
-    const initialState: TypeState = {
-        accountLogin: "",
-        chain: null,
-        isConnected: false,
-        isSignature: false,
-        isSmartContract: "NOT_CONNECT",
-        time: { private: 0, public: 0 },
-        status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
-        isWhitelisted: {
-            proof: [],
-            cap: 0,
-        },
-        accessToken: "",
-    }
     const [isConnecting, setIsConnecting] = useState(false)
     const { values, setValue, initForm } = useFormCore<TypeState>(initialState)
     const toast = useChakraToast(4500)
@@ -92,7 +95,17 @@ export const useMetamask = () => {
             setIsConnecting(false)
         }
     }
+    const logout = () => {
+        initForm({
+            ...values,
+            isConnected: false,
+            isSignature: false,
+            accountLogin: "",
+        })
+        toast("success", "Logged out successfully!")
+    }
 
+    // ethereum wallet listener
     useEffect(() => {
         if (metaMaskProvider) {
             metaMaskProvider.on("chainChanged", async chainId => {
@@ -112,8 +125,49 @@ export const useMetamask = () => {
         }
     }, [])
 
+    useQuery("sale-config", getSaleConfig, {
+        onSuccess: data => getStatus(data),
+        onError: () => {
+            toast("error", "Failed to get sale config!", "Try again later")
+            setValue("time", { private: 0, public: 0 })
+        },
+    })
+
+    useQuery("total-supply", getTotalSupply, {
+        onSuccess: totalSupply => {
+            setValue("isSmartContract", "CONNECT")
+            if (totalSupply >= 10000) {
+                setValue("status", { private: "END_SALE", public: "END_SALE" })
+            }
+        },
+        onError: () => {
+            toast("error", "Failed to get total suppply!", "Try again later")
+            setValue("isSmartContract", "ERROR")
+        },
+    })
+
+    const getStatus = (data: [number, number, number]) => {
+        //data[0] -> data[1]: private
+        //data[1] -> data[2]: public
+        let now = new Date()
+        if (now < new Date(data[0] * 1000)) {
+            setValue("time", { private: data[0] * 1000, public: data[1] * 1000 })
+            setValue("status", { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" })
+        } else if (now < new Date(data[1] * 1000)) {
+            setValue("time", { private: data[1] * 1000, public: data[1] * 1000 })
+            setValue("status", { private: "PRIVATE_SALE", public: "NOT_FOR_SALE" })
+        } else if (now < new Date(data[2] * 1000)) {
+            setValue("time", { private: now, public: data[2] * 1000 })
+            setValue("status", { private: "END_SALE", public: "PUBLIC_SALE" })
+        } else {
+            setValue("time", { private: now, public: now })
+            setValue("status", { private: "END_SALE", public: "END_SALE" })
+        }
+    }
+
     return {
         connect,
+        logout,
         setMetaState: setValue,
         metaState: { ...values, isAvailable: !!metaMaskProvider },
         isConnecting,

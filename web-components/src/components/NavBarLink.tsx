@@ -1,8 +1,9 @@
 // * DESCRIPTION:
 
+import React from "react"
 import { Flex, FlexProps } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
-import { MyText, MyTextProps } from "@sipher/web-components"
+import { MyText, MyTextProps } from "."
 interface NavBarLinkProps extends FlexProps {
     onClick?: () => void
     active?: boolean
@@ -14,7 +15,7 @@ interface NavBarLinkProps extends FlexProps {
 export const NavBarLink = ({ onClick, size, text, active, href, ...rest }: NavBarLinkProps) => {
     const router = useRouter()
     return (
-        <Flex onClick={onClick} color="white" pos="relative" cursor="pointer" px={4} justify="center" {...rest}>
+        <Flex onClick={onClick} color="white" pos="relative" cursor="pointer" px={2} justify="center" {...rest}>
             <MyText
                 fontWeight="black"
                 textAlign="center"
