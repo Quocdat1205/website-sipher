@@ -1,11 +1,12 @@
-import { Box, Flex, Button, chakra, Menu, MenuButton, MenuList, MenuItem, Text } from "@chakra-ui/react";
-import React from "react";
-import { BiWallet, BiChevronDown, BiChevronUp } from "react-icons/bi";
-import CopyClipboard from "./CopyClipboard";
+import { Box, Flex, Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react"
+import { MyText } from "@sipher/web-components"
+import React from "react"
+import { BiWallet, BiChevronDown, BiChevronUp } from "react-icons/bi"
+import CopyClipboard from "./CopyClipboard"
 
 interface Props {
-	account?: string | "";
-	signOut?: () => void;
+	account?: string | ""
+	signOut?: () => void
 }
 
 const AccountAddress = ({ account = "", signOut }: Props) => {
@@ -37,7 +38,7 @@ const AccountAddress = ({ account = "", signOut }: Props) => {
 							{account.slice(account.length - 4, account.length)}
 						</MenuButton>
 						<MenuList borderColor="gray.800" bg="gray.800">
-							<Text p="2">Connected</Text>
+							<MyText p="2">Connected</MyText>
 							<Flex
 								px="2"
 								align="center"
@@ -60,26 +61,17 @@ const AccountAddress = ({ account = "", signOut }: Props) => {
 									<BiWallet color="#ecc94b" />
 								</Box>
 								<Box ml="2">
-									<Text>
+									<MyText>
 										{account !== "" && account.slice(0, 6)}
 										...
 										{account.slice(account.length - 4, account.length)}
-									</Text>
-									<Text cursor="pointer" color="blue.500" fontSize="0.8rem">
-										Set display name
-									</Text>
+									</MyText>
 								</Box>
 								<CopyClipboard />
 							</Flex>
-							<MenuItem minH="48px" _focus={{ bg: "none" }} _hover={{ bg: "gray.700" }}>
-								<span>My Account</span>
-							</MenuItem>
-							<MenuItem minH="48px" _hover={{ bg: "gray.700" }}>
+							{/* <MenuItem minH="48px" _hover={{ bg: "gray.700" }}>
 								<span>My NFTs</span>
-							</MenuItem>
-							<MenuItem minH="48px" _hover={{ bg: "gray.700" }}>
-								<span>Preferences</span>
-							</MenuItem>
+							</MenuItem> */}
 							<Box px="2" mt="2">
 								<Button w="full" onClick={signOut} minH="48px" colorScheme="red">
 									Exit
@@ -90,6 +82,6 @@ const AccountAddress = ({ account = "", signOut }: Props) => {
 				)}
 			</Menu>
 		</Flex>
-	);
-};
-export default AccountAddress;
+	)
+}
+export default AccountAddress
