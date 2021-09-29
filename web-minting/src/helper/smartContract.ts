@@ -18,9 +18,16 @@ export const getTotalSupply = async (): Promise<number> => {
  * @param address: ether address to buy from
  * @param slot: number of NFT to buy
  * @param slotPrice: price of each NFT
+ * @param caps: whitelist cap
  * @param proof: used by whitelisted address
  */
-export const sendSmartContract = async (address: string, slot: number, slotPrice: number, proof: string[]) => {
+export const sendSmartContract = async (
+    address: string,
+    slot: number,
+    slotPrice: number,
+    cap: number,
+    proof: string[]
+) => {
     console.log("senc sc", address, slot, slotPrice, proof)
     const _gaslimit =
         slot === 1
@@ -44,7 +51,7 @@ export const sendSmartContract = async (address: string, slot: number, slotPrice
             ? 2
             : parseInt(gaseth.data.ProposeGasPrice) - parseInt(gaseth.data.suggestBaseFee)
     )
-    await ContractProviderSALE.methods.buy(slot, proof).send({
+    await ContractProviderSALE.methods.buy(slot, cap, proof).send({
         from: address,
         value: web3.utils.toHex(web3.utils.toWei(slotPrice.toString(), "ether")),
         gasLimit: web3.utils.toHex(_gaslimit),
