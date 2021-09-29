@@ -19,7 +19,6 @@ interface TypeState {
         name: string
     } | null
     isConnected: boolean
-    isSignature: boolean
     isSmartContract: "NOT_CONNECT" | "CONNECT" | "ERROR"
     time: {
         private: number
@@ -40,7 +39,6 @@ const initialState: TypeState = {
     accountLogin: "",
     chain: null,
     isConnected: false,
-    isSignature: false,
     isSmartContract: "NOT_CONNECT",
     time: { private: 0, public: 0 },
     status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
@@ -81,7 +79,6 @@ export const useMetamask = () => {
             initForm({
                 ...values,
                 isConnected: true,
-                isSignature: true,
                 chain: chainInfo,
                 accessToken: token,
                 isWhitelisted: whitelistInfo,
@@ -110,7 +107,6 @@ export const useMetamask = () => {
         initForm({
             ...values,
             isConnected: false,
-            isSignature: false,
             accountLogin: "",
         })
         toast("success", "Logged out successfully!")
@@ -130,8 +126,8 @@ export const useMetamask = () => {
             metaMaskProvider.on("accountsChanged", async accounts => {
                 if (accounts.length) {
                     setValue("accountLogin", "")
+                    setValue("accessToken", "")
                     setValue("isConnected", false)
-                    setValue("isSignature", false)
                 }
             })
         }
