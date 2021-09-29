@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import router from "next/router"
-import { endTime, publicSaleTime } from "@utils/key_auth"
 import { useChakraToast, useFormCore } from "@sipher/web-components"
 import { getChainName, metaMaskProvider, connectWallet } from "src/helper/metamask"
 import { getSaleConfig, getTotalSupply } from "@helper/smartContract"
@@ -60,7 +59,6 @@ export const useMetamask = () => {
         end: 0,
     })
     const toast = useChakraToast(4500)
-
     const connect = async () => {
         try {
             if (!metaMaskProvider) {
@@ -82,9 +80,9 @@ export const useMetamask = () => {
                 accountLogin: account.address,
             })
             let now = new Date().getTime()
-            if (now > endTime) {
+            if (now > saleTime.end) {
                 router.push("inventory")
-            } else if (now > publicSaleTime) {
+            } else if (now > saleTime.public) {
                 router.push("public-minting")
             } else {
                 router.push(whitelistInfo.proof.length > 0 ? "private-minting" : "public-minting")

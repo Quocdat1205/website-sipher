@@ -1,5 +1,5 @@
 import { web3 } from "./metamask"
-import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "@utils/key_auth"
+import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "@constant/index"
 import { NFT, SALE } from "../contract"
 import { checkGas } from "@api/smartContract"
 

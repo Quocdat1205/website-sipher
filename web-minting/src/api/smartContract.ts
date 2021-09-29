@@ -1,6 +1,6 @@
 import config from "./config"
 import axios from "axios"
-import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "../utils/key_auth"
+import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "@constant/index"
 
 /** Check smart contract! I don't know about this */
 export const checkSmartContract = async (publicAddress: string): Promise<boolean> => {

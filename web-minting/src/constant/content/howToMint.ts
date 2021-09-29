@@ -6,11 +6,11 @@ export const sale = {
     private: {
         NOT_FOR_SALE: [
             "Available for whitelisted address only. The purchase limit will be based on contribution history to Sipher community.",
-            "Private sale start time.",
+            "Private sale start time:",
         ],
         SALE: [
             "Available for whitelisted address only. The purchase limit will be based on contribution history to Sipher community.",
-            "Private sale end time.",
+            "Private sale end time:",
         ],
     },
 }

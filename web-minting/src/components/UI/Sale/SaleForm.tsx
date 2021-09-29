@@ -106,7 +106,6 @@ const SaleForm = ({ mode }: SaleFormProps) => {
         : userRecord
         ? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought, 0)
         : 0
-    console.log("DATE", new Date(1632904927139 + 3000000))
     return (
         <Flex flex={1} flexDir="column" ml={4}>
             <MyHeading textTransform="uppercase" textAlign="left" color="main.yellow">
@@ -141,7 +140,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 value={slot}
                 maxValue={getMaxSlot()}
                 onChange={setSlot}
-                // isDisabled={metaState.status[mode] !== "SALE"}
+                isDisabled={metaState.status[mode] !== "SALE"}
             />
             <Flex
                 justify="space-between"
