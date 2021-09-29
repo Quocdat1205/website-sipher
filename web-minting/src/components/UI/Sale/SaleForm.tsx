@@ -1,14 +1,14 @@
 import { Button, chakra, Flex } from "@chakra-ui/react"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useQuery, useQueryClient } from "react-query"
 import { checkSmartContract } from "@api/index"
-import { CHAIN_ID, INTERVAL, PRICE_STEP, START_PRICE, PUBLIC_CAP } from "@constant/index"
+import { CHAIN_ID, INTERVAL, PRICE_STEP, START_PRICE, PUBLIC_CAP, BASE_PRICE } from "@constant/index"
 import { MyHeading, MyText } from "@sipher/web-components"
-import ProgressBar from "@components/shared/ProgressBar"
+import ProgressBar from "@components/UI/Sale/ProgressBar"
 import useWalletContext from "@hooks/useWalletContext"
 import { getPublicCurrentPrice, getUserRecord, sendSmartContract } from "src/helper/smartContract"
 import { getMetamaskBalance } from "src/helper/metamask"
-import Counter from "@components/shared/Counter"
+import Counter from "@components/UI/Sale/Counter"
 
 interface SaleFormProps {
     mode: "private" | "public"
@@ -18,11 +18,9 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const { metaState, toast, saleTime } = useWalletContext()
     const queryClient = useQueryClient()
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
-    const [currentTime, setCurrentTime] = useState(new Date().getTime())
-    const currentPrice =
-        mode === "public"
-            ? Math.max(START_PRICE - Math.floor((currentTime - saleTime.public) / INTERVAL) * PRICE_STEP, 0.1)
-            : 0.1
+    const [currentPrice, setCurrentPrice] = useState(0.1)
+    const [slot, setSlot] = useState(0)
+
     const getCurrentPrice = async () => {
         let price = 0
         if (mode === "public") {
@@ -30,12 +28,11 @@ const SaleForm = ({ mode }: SaleFormProps) => {
         } else price = 0.1
         return price
     }
-    const [slot, setSlot] = useState(0)
     const { data: userRecord, isLoading: isLoadingRecord } = useQuery("user-record", () =>
         getUserRecord(metaState.accountLogin)
     )
     const calculateSlotPrice = () => {
-        return parseFloat((slot * currentPrice).toFixed(2).toString())
+        return parseFloat((slot * currentPrice).toFixed(2))
     }
 
     const mint = async () => {
@@ -44,6 +41,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             return
         } else if (userRecord && userRecord.whitelistBought >= metaState.isWhitelisted.cap) {
             toast("error", "Confirmation error!", `You can only buy up to ${metaState.isWhitelisted.cap} NFTs`)
+            return
         }
 
         let currentPrice = await getCurrentPrice()
@@ -102,6 +100,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             : userRecord
             ? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought, 0)
             : 0
+    console.log("DATE", new Date(1632904927139 + 3000000))
     return (
         <Flex flex={1} flexDir="column" ml={4}>
             <MyHeading textTransform="uppercase" textAlign="left" color="main.yellow">
@@ -117,14 +116,21 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             {mode === "public" && metaState.status.public !== "END_SALE" && (
                 <Flex p="2" pt="8">
                     <ProgressBar
-                        currentPrice={currentPrice}
-                        publicSaleTime={saleTime.public}
-                        currentTime={currentTime}
-                        setCurrentTime={setCurrentTime}
+                        startPrice={START_PRICE}
+                        basePrice={BASE_PRICE}
+                        priceStep={PRICE_STEP}
+                        interval={INTERVAL}
+                        publicSaleTime={1632906825306}
+                        onPriceChange={setCurrentPrice}
                     />
                 </Flex>
             )}
-            <MyText mt="2">Choose quantity</MyText>
+            <Flex justify="space-between" mt="2">
+                <MyText>Choose quantity</MyText>
+                <MyText>{`${userRecord && userRecord[mode === "public" ? "publicBought" : "whitelistBought"]} / ${
+                    mode === "public" ? PUBLIC_CAP : metaState.isWhitelisted.cap
+                }`}</MyText>
+            </Flex>
             <Counter
                 value={slot}
                 maxValue={getMaxSlot()}
@@ -135,32 +141,30 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 justify="space-between"
                 borderTop="1px"
                 alignItems="center"
-                borderColor="whiteAlpha.600"
+                borderColor="whiteAlpha.300"
                 mt="4"
                 w="100%"
                 pt="2"
             >
-                {metaState.status[mode] === "SALE" && <MyText>{`Unit price: ${currentPrice.toFixed(2)} ETH`}</MyText>}
+                <MyText>{`Unit price: ${parseFloat(currentPrice.toFixed(2))} ETH`}</MyText>
                 <MyText ml="auto">
                     You have purchased: {userRecord ? userRecord.publicBought + userRecord.whitelistBought : "..."}
                 </MyText>
             </Flex>
             <Flex pos="relative" mt="4" w="100%" align="center" justify="space-between">
-                {metaState.status[mode] === "SALE" && (
-                    <MyText size="large">
-                        You will pay:
-                        <chakra.span mx="2" color="main.yellow" fontWeight="bold">
-                            {metaState.status[mode] !== "END_SALE" ? calculateSlotPrice() : 0}
-                        </chakra.span>
-                        ETH
-                    </MyText>
-                )}
+                <MyText size="large">
+                    You will pay:
+                    <chakra.span mx="2" color="main.yellow" fontWeight="bold">
+                        {metaState.status[mode] !== "END_SALE" ? calculateSlotPrice() : 0}
+                    </chakra.span>
+                    ETH
+                </MyText>
                 <Button
                     ml="auto"
                     bg="red.500"
                     fontSize="sm"
                     isLoading={isLoadingBtn}
-                    w="10rem"
+                    w="12rem"
                     loadingText="MINTING"
                     _hover={{ bg: "red.400" }}
                     _active={{ bg: "red.600" }}

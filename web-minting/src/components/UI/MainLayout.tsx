@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/layout"
 import Loading from "@components/shared/Loading"
 import useWalletContext from "@hooks/useWalletContext"
 import React, { useEffect } from "react"
-import { NavBar } from "../shared/NavBar"
+import { NavBar } from "./NavigationBar/NavBar"
 
 interface Props {
     children: React.ReactNode

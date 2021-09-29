@@ -6,6 +6,8 @@ export const SMARTCONTRACT_NEKO = "0x829e3c35c128c509F7E68a8C12c7d8E7514D66DC"
 export const CHAIN_ID = "4"
 // Starting price of public sale
 export const START_PRICE = 1
+// Base price of public sale
+export const BASE_PRICE = 0.1
 // Price step
 export const PRICE_STEP = 0.08
 // Interval: 10 MINUTES

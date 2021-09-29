@@ -17,7 +17,7 @@ const ConnectWalletForm = () => {
                 left={0}
                 w="full"
                 h="full"
-                // display="none"
+                display="none"
                 sx={{
                     "@media (max-width: 960px)": {
                         display: "grid",
