@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import React from "react"
 import { changeEmotion, getInfoNFT, getMerkle } from "@api/index"
-import { useMetamask } from "@hooks/useMetamask"
 import { useChakraToast } from "@sipher/web-components"
 import { Box, Tooltip, chakra, Flex, Tbody, Tr, IconButton, Image, Text, Table } from "@chakra-ui/react"
 import { ImHappy2, ImSmile2, ImAngry2, ImEvil2, ImNeutral2, ImSad2 } from "react-icons/im"
 import { useState } from "react"
 import { MyButton, MyHeading, MyTd, MyText } from "@sipher/web-components"
+import useWalletContext from "@hooks/useWalletContext"
 
 const icon = [
     {
@@ -43,7 +43,7 @@ interface PopupProps {
 }
 
 const PopupModal = ({ selectId }: PopupProps) => {
-    const { metaState } = useMetamask()
+    const { metaState } = useWalletContext()
     const queryClient = useQueryClient()
     const toast = useChakraToast()
     const [currentEmotion, setCurrentEmotion] = useState("DEFAULT")

@@ -15,16 +15,16 @@ import { useInfiniteQuery } from "react-query"
 import Card from "./Card"
 import PopupModal from "./PopupModal"
 import { getListNFT } from "@api/index"
-import { useMetamask } from "@hooks/useMetamask"
 import { MyText } from "@sipher/web-components"
 import { useStoreActions } from "src/store"
+import useWalletContext from "@hooks/useWalletContext"
 
 interface Props {
     type: "INU" | "NEKO"
 }
 
 const NFTList = ({ type }: Props) => {
-    const { metaState } = useMetamask()
+    const { metaState } = useWalletContext()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [scroll, setScroll] = useState(0)
     const setTotal = useStoreActions(_ => _.setTotal)

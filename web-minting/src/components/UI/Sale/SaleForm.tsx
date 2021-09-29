@@ -94,12 +94,18 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             : "No Sale Available"
         ).toUpperCase()
 
-    const getMaxSlot = () =>
-        mode === "public"
-            ? PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
-            : userRecord
-            ? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought, 0)
-            : 0
+    const getMaxSlot = () => {
+        if (mode === "public") {
+            return PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
+        } else {
+            return userRecord ? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought, 0) : 0
+        }
+    }
+    mode === "public"
+        ? PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
+        : userRecord
+        ? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought, 0)
+        : 0
     console.log("DATE", new Date(1632904927139 + 3000000))
     return (
         <Flex flex={1} flexDir="column" ml={4}>
@@ -135,7 +141,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 value={slot}
                 maxValue={getMaxSlot()}
                 onChange={setSlot}
-                isDisabled={metaState.status[mode] !== "SALE"}
+                // isDisabled={metaState.status[mode] !== "SALE"}
             />
             <Flex
                 justify="space-between"
