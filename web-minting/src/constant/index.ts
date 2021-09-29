@@ -9,8 +9,8 @@ export const START_PRICE = 1
 // Base price of public sale
 export const BASE_PRICE = 0.1
 // Price step
-export const PRICE_STEP = 0.08
+export const PRICE_STEP = 0.1
 // Interval: 10 MINUTES
-export const INTERVAL = 1000 * 60 * 10
+export const INTERVAL = 180 * 1000
 // Public slot cap
 export const PUBLIC_CAP = 5

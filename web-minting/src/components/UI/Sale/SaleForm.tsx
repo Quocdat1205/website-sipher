@@ -34,11 +34,12 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const calculateSlotPrice = () => {
         return parseFloat((slot * currentPrice).toFixed(2))
     }
-
     const mint = async () => {
-        if (mode === "public" && userRecord && userRecord.publicBought >= PUBLIC_CAP) {
-            toast("error", "Confirmation error!", "You can only buy up to 5 NFTs")
-            return
+        if (mode === "public") {
+            if (userRecord && userRecord.publicBought >= PUBLIC_CAP) {
+                toast("error", "Confirmation error!", "You can only buy up to 5 NFTs")
+                return
+            }
         } else if (userRecord && userRecord.whitelistBought >= metaState.isWhitelisted.cap) {
             toast("error", "Confirmation error!", `You can only buy up to ${metaState.isWhitelisted.cap} NFTs`)
             return
@@ -46,7 +47,6 @@ const SaleForm = ({ mode }: SaleFormProps) => {
 
         let currentPrice = await getCurrentPrice()
         let totalPrice = parseFloat((slot * currentPrice).toFixed(2))
-        console.log("total price", totalPrice)
         await sendSmartContract(
             metaState.accountLogin,
             slot,

@@ -57,7 +57,6 @@ export const useMetamask = () => {
         public: 0,
         end: 0,
     })
-    console.log(values)
     const toast = useChakraToast(4500)
     const connect = async () => {
         try {
@@ -131,6 +130,20 @@ export const useMetamask = () => {
                 }
             })
         }
+        return () => {
+            if (metaMaskProvider) {
+                metaMaskProvider.removeListener("chainChanged", async () => {
+                    window.location.reload()
+                })
+                metaMaskProvider.removeListener("accountsChanged", async accounts => {
+                    if (accounts.length) {
+                        setValue("accountLogin", "")
+                        setValue("accessToken", "")
+                        setValue("isConnected", false)
+                    }
+                })
+            }
+        }
     }, [])
 
     useQuery("sale-config", getSaleConfig, {
@@ -146,6 +159,9 @@ export const useMetamask = () => {
         onError: () => {
             toast("error", "Failed to get sale config!", "Try again later")
             setValue("time", { private: 0, public: 0 })
+        },
+        onSettled: () => {
+            console.log("validate")
         },
     })
 
