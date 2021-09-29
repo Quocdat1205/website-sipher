@@ -19,7 +19,9 @@ function HowtoMint({ mode }: Props) {
                     )}
                     <UnorderedList fontWeight="thin">
                         {(sale[mode][metaState.status[mode]] || []).map(p => (
-                            <ListItem key={p}>{p}</ListItem>
+                            <ListItem key={p}>
+                                <MyText size="small">{p}</MyText>
+                            </ListItem>
                         ))}
                     </UnorderedList>
                     {metaState.status[mode] !== "END_SALE" && <CountDown deadline={metaState.time[mode]} />}

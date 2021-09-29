@@ -23,7 +23,10 @@ const ProgressBar = ({
 }: ProgressBarProps) => {
     const [currentTime, setCurrentTime] = useState(new Date().getTime())
     const currentPrice = parseFloat(
-        Math.max(startPrice - Math.floor((currentTime - publicSaleTime) / interval) * priceStep, 0.1).toFixed(2)
+        Math.min(
+            Math.max(startPrice - Math.floor((currentTime - publicSaleTime) / interval) * priceStep, 0.1),
+            1
+        ).toFixed(2)
     )
 
     useEffect(() => {
@@ -37,7 +40,7 @@ const ProgressBar = ({
     useEffect(() => {
         onPriceChange && onPriceChange(currentPrice)
     }, [currentPrice])
-    if (publicSaleTime > currentTime) return null
+    // if (publicSaleTime > currentTime) return null
 
     return (
         <Box h="0.5rem" w="full" pos="relative" mb={2}>

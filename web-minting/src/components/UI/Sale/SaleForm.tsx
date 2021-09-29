@@ -45,7 +45,8 @@ const SaleForm = ({ mode }: SaleFormProps) => {
         }
 
         let currentPrice = await getCurrentPrice()
-        let totalPrice = parseFloat(Math.round(slot * currentPrice).toFixed(2))
+        let totalPrice = parseFloat((slot * currentPrice).toFixed(2))
+        console.log("total price", totalPrice)
         await sendSmartContract(metaState.accountLogin, slot, totalPrice, metaState.isWhitelisted.proof)
         toast("success", "Transaction created successfully!")
         setSlot(0)
@@ -93,7 +94,6 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             ? `${mode} sale has ended`
             : "No Sale Available"
         ).toUpperCase()
-
     const getMaxSlot = () => {
         if (mode === "public") {
             return PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
@@ -125,7 +125,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                         basePrice={BASE_PRICE}
                         priceStep={PRICE_STEP}
                         interval={INTERVAL}
-                        publicSaleTime={1632906825306}
+                        publicSaleTime={saleTime.public}
                         onPriceChange={setCurrentPrice}
                     />
                 </Flex>
@@ -176,7 +176,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                     _focus={{ shadow: "none" }}
                     onClick={handleConfirm}
                     isDisabled={
-                        !isLoadingRecord ||
+                        isLoadingRecord ||
                         slot === 0 ||
                         metaState.status[mode] === "NOT_FOR_SALE" ||
                         metaState.status[mode] === "END_SALE"

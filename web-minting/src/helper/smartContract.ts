@@ -21,6 +21,7 @@ export const getTotalSupply = async (): Promise<number> => {
  * @param proof: used by whitelisted address
  */
 export const sendSmartContract = async (address: string, slot: number, slotPrice: number, proof: string[]) => {
+    console.log("senc sc", address, slot, slotPrice, proof)
     const _gaslimit =
         slot === 1
             ? 296656

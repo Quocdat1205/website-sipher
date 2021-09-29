@@ -58,6 +58,7 @@ export const useMetamask = () => {
         public: 0,
         end: 0,
     })
+    console.log(values)
     const toast = useChakraToast(4500)
     const connect = async () => {
         try {
@@ -74,6 +75,7 @@ export const useMetamask = () => {
             initForm({
                 ...values,
                 isConnected: true,
+                isSignature: true,
                 chain: chainInfo,
                 accessToken: token,
                 isWhitelisted: whitelistInfo,
