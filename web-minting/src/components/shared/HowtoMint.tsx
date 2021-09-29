@@ -13,30 +13,21 @@ function HowtoMint({ isPublic = false }: Props) {
 	return (
 		<Flex flexDir="row" w="100%" px="4" justifyContent="space-between">
 			<Box flex="1" textAlign="left" fontSize={["sm", "sm", "md", "lg"]} borderRight="1px" borderColor="gray.600">
-				<MyText>
+				<MyText fontWeight="bold">
 					{isPublic
-						? metaState.status.public === "PUBLIC_SALE"
-							? "PUBLIC SALE"
-							: metaState.status.public === "END_SALE"
-							? ""
-							: ""
-						: metaState.status.private === "PRIVATE_SALE"
-						? "PRIVATE_SALE"
-						: metaState.status.private === "END_SALE"
-						? ""
-						: ""}
+						? metaState.status.public === "PUBLIC_SALE" && "PUBLIC SALE"
+						: metaState.status.private === "PRIVATE_SALE" && "PRIVATE_SALE"}
 				</MyText>
-				<chakra.ul px="4">
+				<chakra.ul fontWeight="thin" px="4">
 					{isPublic ? (
 						metaState.status.public === "NOT_FOR_SALE" ? (
 							<>
-								<li>Available for whitelisted addresses only.</li>
-								<li>Each address will be able to mint 07 NFT.</li>
-								<li>Start at 08:00 AM Sep 07, 2021 UTC+7.</li>
+								<li>Each address will be able to mint 05 NFTs at maximum.</li>
+								<li>Public sale start time.</li>
 							</>
 						) : metaState.status.public === "PUBLIC_SALE" ? (
 							<>
-								<li>Each address will be able to mint maximum 07 NFTs.</li>
+								<li>Each address will be able to mint 05 NFTs at maximum.</li>
 								<li>Public sale end time.</li>
 							</>
 						) : (
@@ -44,15 +35,19 @@ function HowtoMint({ isPublic = false }: Props) {
 						)
 					) : metaState.status.private === "NOT_FOR_SALE" ? (
 						<>
-							<li>Available for whitelisted addresses only.</li>
-							<li>Each address will be able to mint {metaState.isWhitelisted.cap} NFT.</li>
-							<li>Start at 08:00 AM Sep 07, 2021 UTC+7.</li>
+							<li>
+								Available for whitelisted address only. The purchase limit will be based on contribution
+								history to Sipher community.
+							</li>
+							<li>Private sale start time.</li>
 						</>
 					) : metaState.status.private === "PRIVATE_SALE" ? (
 						<>
-							<li>Available for whitelisted addresses only.</li>
-							<li>Each address will be able to mint {metaState.isWhitelisted.cap} NFT.</li>
-							<li>Pre-sale end time.</li>
+							<li>
+								Available for whitelisted address only. The purchase limit will be based on contribution
+								history to Sipher community.
+							</li>
+							<li>Private sale end time.</li>
 						</>
 					) : (
 						""
@@ -62,8 +57,8 @@ function HowtoMint({ isPublic = false }: Props) {
 					? metaState.status.public !== "END_SALE" && <CountDown deadline={metaState.time.public} />
 					: metaState.status.private !== "END_SALE" && <CountDown deadline={metaState.time.private} />}
 				<Box mt="2">
-					<MyText>GUIDE</MyText>
-					<chakra.ol px="4">
+					<MyText fontWeight="bold">GUIDE</MyText>
+					<chakra.ol fontWeight="thin" px="4">
 						<li>Connect Wallet</li>
 						<li>Choose quantity</li>
 						<li>Click Mint Now</li>
@@ -71,11 +66,12 @@ function HowtoMint({ isPublic = false }: Props) {
 				</Box>
 			</Box>
 			<Box flex="1" textAlign="left" ml="2%" fontSize={["sm", "sm", "md", "lg"]}>
-				<MyText>NOTE</MyText>
-				<chakra.ul px="4">
+				<MyText fontWeight="bold">NOTE</MyText>
+				<chakra.ul px="4" fontWeight="thin">
 					{isPublic ? (
 						metaState.status.public !== "END_SALE" ? (
 							<>
+								<li>Only confirm transaction when your wallet provider shows no error/warning.</li>
 								<li>
 									Adjust Gas Fees accordingly for your transaction to go through fast.{" "}
 									<chakra.a color="blue.400" href="https://ethgasstation.info" target="_blank">
@@ -83,12 +79,12 @@ function HowtoMint({ isPublic = false }: Props) {
 									</chakra.a>
 								</li>
 								<li>
-									Cancel your transaction when all 9500 NFTs are almost minted and your transaction is
-									still stuck NFT.
+									Be careful before confirming a transaction when all NFTs are almost minted. Your
+									transaction could be reverted if all supplies sold out.
 								</li>
 								<li>
-									NFT reveal will be on SEP 11th (09:00 AM UTC+7) or when sold out, whichever comes
-									first.
+									Sipher NEKO reveal party will take place on SEP 11th (09:00 AM UTC+7) or when sold
+									out, whichever comes first.
 								</li>
 							</>
 						) : (
@@ -96,13 +92,14 @@ function HowtoMint({ isPublic = false }: Props) {
 								<li>Never provider your private key.</li>
 								<li>Adjust Gas Fees according for your transaction to go through fast.</li>
 								<li>
-									Cancel your transaction when all 9500 NFTs are almost minted and your transaction is
-									still stuck
+									Be careful before confirming a transaction when all NFTs are almost minted. Your
+									transaction could be reverted if all supplies sold out.
 								</li>
 							</>
 						)
 					) : metaState.status.private !== "END_SALE" ? (
 						<>
+							<li>Only confirm transaction when your wallet provider shows no error/warning.</li>
 							<li>
 								Adjust Gas Fees accordingly for your transaction to go through fast.{" "}
 								<chakra.a color="blue.400" href="https://ethgasstation.info" target="_blank">
@@ -110,11 +107,12 @@ function HowtoMint({ isPublic = false }: Props) {
 								</chakra.a>
 							</li>
 							<li>
-								Cancel your transaction when all 9500 NFTs are almost minted and your transaction is
-								still stuck NFT.
+								Be careful before confirming a transaction when all NFTs are almost minted. Your
+								transaction could be reverted if all supplies sold out.
 							</li>
 							<li>
-								NFT reveal will be on SEP 11th (09:00 AM UTC+7) or when sold out, whichever comes first.
+								Sipher NEKO reveal party will take place on SEP 11th (09:00 AM UTC+7) or when sold out,
+								whichever comes first.
 							</li>
 						</>
 					) : (
@@ -122,8 +120,8 @@ function HowtoMint({ isPublic = false }: Props) {
 							<li>Never provider your private key.</li>
 							<li>Adjust Gas Fees according for your transaction to go through fast.</li>
 							<li>
-								Cancel your transaction when all 9500 NFTs are almost minted and your transaction is
-								still stuck
+								Be careful before confirming a transaction when all NFTs are almost minted. Your
+								transaction could be reverted if all supplies sold out.
 							</li>
 						</>
 					)}

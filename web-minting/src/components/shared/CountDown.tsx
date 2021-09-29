@@ -1,6 +1,7 @@
 import { Box, chakra, HStack, Text } from "@chakra-ui/react"
 import React, { useEffect, useRef, useState } from "react"
 import { differenceInSeconds } from "date-fns"
+import { useQueryClient } from "react-query"
 import { MyText } from "@sipher/web-components"
 
 const ONE_DAY = 60 * 60 * 24
@@ -13,16 +14,13 @@ interface CountDownProps {
 
 const CountDown = ({ deadline }: CountDownProps) => {
 	const runTimeOut = useRef(true)
+	const queryClient = useQueryClient()
+
 	const timeToCountdown = () => {
 		const currentTime = new Date().getTime()
 		const diffInSeconds = differenceInSeconds(deadline, currentTime)
 		if (diffInSeconds <= 1) {
-			return {
-				days: 0,
-				hours: 0,
-				minutes: 0,
-				seconds: 0,
-			}
+			queryClient.invalidateQueries("NFT-sale")
 		}
 		return {
 			days: Math.floor(diffInSeconds / ONE_DAY),
