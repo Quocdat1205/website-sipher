@@ -198,19 +198,6 @@ const data: { abiSale: any } = {
     },
     {
       inputs: [],
-      name: "CAP_PER_ADDRESS",
-      outputs: [
-        {
-          internalType: "uint32",
-          name: "",
-          type: "uint32",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
       name: "CAP_PER_WHITELISTED_ADDRESS",
       outputs: [
         {
@@ -225,6 +212,19 @@ const data: { abiSale: any } = {
     {
       inputs: [],
       name: "MAX_OWNER_BOUGHT_INITIAL",
+      outputs: [
+        {
+          internalType: "uint32",
+          name: "",
+          type: "uint32",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "PUBLIC_SALE_CAP_PER_ADDRESS",
       outputs: [
         {
           internalType: "uint32",
@@ -292,6 +292,11 @@ const data: { abiSale: any } = {
         {
           internalType: "uint32",
           name: "amount",
+          type: "uint32",
+        },
+        {
+          internalType: "uint32",
+          name: "cap",
           type: "uint32",
         },
         {
@@ -438,6 +443,11 @@ const data: { abiSale: any } = {
           internalType: "address",
           name: "buyer",
           type: "address",
+        },
+        {
+          internalType: "uint32",
+          name: "cap",
+          type: "uint32",
         },
         {
           internalType: "bytes32[]",

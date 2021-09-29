@@ -1,57 +1,45 @@
-import { Box, chakra, Flex, CircularProgress, Input, HStack, useNumberInput } from "@chakra-ui/react"
-import React, { useEffect, useState } from "react"
+import { Button, chakra, Flex } from "@chakra-ui/react"
+import React, { useState } from "react"
 import { useQuery, useQueryClient } from "react-query"
 import { checkSmartContract } from "@api/index"
-import { CHAIN_ID, duration, priceStep, publicSaleTime, startPrice } from "@utils/key_auth"
-import { MyButton, MyHeading, MyText } from "@sipher/web-components"
+import { CHAIN_ID, INTERVAL, PRICE_STEP, PUBLIC_CAP, START_PRICE } from "@constant/index"
+import { MyHeading, MyText } from "@sipher/web-components"
 import ProgressBar from "@components/shared/ProgressBar"
 import useWalletContext from "@hooks/useWalletContext"
 import { getPublicCurrentPrice, getUserRecord, sendSmartContract } from "src/helper/smartContract"
 import { getMetamaskBalance } from "src/helper/metamask"
-
+import Counter from "@components/shared/Counter"
 function BuyDoge() {
-    const { metaState, toast } = useWalletContext()
-    //Processbar infomation
-
-    const [currentTime, setCurrentTime] = useState(new Date().getTime())
-    const currentPrice = Math.max(
-        startPrice - Math.round((currentTime - duration - publicSaleTime) / duration) * priceStep,
-        0.1
-    )
+    const { metaState, toast, saleTime } = useWalletContext()
     const queryClient = useQueryClient()
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
+    const [currentTime, setCurrentTime] = useState(new Date().getTime())
+    const currentPrice = Math.max(
+        START_PRICE - Math.floor((currentTime - saleTime.public) / INTERVAL) * PRICE_STEP,
+        0.1
+    )
     const [slot, setSlot] = useState(0)
     const { data: userRecord, isLoading: isLoadingRecord } = useQuery("user-record", () =>
         getUserRecord(metaState.accountLogin)
     )
-
-    const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
-        step: 1,
-        value: slot,
-        min: 0,
-        max: 7 - ((userRecord ? userRecord.publicBought : 0) + (userRecord ? userRecord.whitelistBought : 0)) || 0,
-        onChange: v => setSlot(parseInt(v)),
-        isDisabled: metaState.status.public !== "PUBLIC_SALE",
-    })
-
     const calculateSlotPrice = () => {
         return parseFloat((slot * currentPrice).toFixed(2).toString())
     }
 
     const PublicSale = async () => {
         let checkSC = await checkSmartContract(metaState.accountLogin)
+        if (!checkSC) {
+            toast("error", "Failed to check smart contract!")
+            return
+        }
+        if (userRecord && userRecord.publicBought >= PUBLIC_CAP) {
+            toast("error", "Confirmation error!", "Each wallet can only buy up to 5 NFTs")
+            return
+        }
         let currentPrice = await getPublicCurrentPrice()
         let totalPrice = parseFloat(Math.round(slot * currentPrice).toFixed(2))
-        if (!checkSC) {
-            toast("error", "Failed to check smart contract")
-            return
-        }
-        if (userRecord && userRecord.publicBought + userRecord.whitelistBought >= 7) {
-            toast("error", "Confirm error , each wallet only 7 nft")
-            return
-        }
         await sendSmartContract(metaState.accountLogin, slot, totalPrice, [])
-        toast("success", "Transaction created successfully!!")
+        toast("success", "Transaction created successfully!")
         setSlot(0)
         queryClient.invalidateQueries("total-supply")
         queryClient.invalidateQueries("user-record")
@@ -61,14 +49,15 @@ function BuyDoge() {
         setIsLoadingBtn(true)
         try {
             if (metaState.chain?.id === CHAIN_ID) {
-                const balance = await getMetamaskBalance(metaState.accountLogin)
-                if (balance < calculateSlotPrice()) {
-                    toast("error", "Please check your balance can not mint")
+                if ((await getMetamaskBalance(metaState.accountLogin)) < calculateSlotPrice()) {
+                    toast("error", "Insufficient balance!")
                     setIsLoadingBtn(false)
                 } else {
                     if (metaState.status.public === "PUBLIC_SALE") {
                         await PublicSale()
                         setIsLoadingBtn(false)
+                        queryClient.invalidateQueries("total-supply")
+                        queryClient.invalidateQueries("user-record")
                     } else {
                         toast("error", "End Sale")
                         setIsLoadingBtn(false)
@@ -79,123 +68,95 @@ function BuyDoge() {
                 setIsLoadingBtn(false)
             }
         } catch (error) {
-            console.log(error)
-            toast("error", "Confirm error, please try again later")
+            toast("error", "Something went wrong!", "Try again later.")
             setIsLoadingBtn(false)
         }
     }
 
     return (
-        <Flex fontSize={["sm", "sm", "md", "lg"]} p="2" flexDir="column" w="100%">
-            <MyHeading textTransform="uppercase" textAlign="left" color="yellow.500">
+        <Flex flex={1} flexDir="column" ml={4}>
+            <MyHeading textTransform="uppercase" textAlign="left" color="main.yellow">
                 {metaState.status.public === "NOT_FOR_SALE"
                     ? "WAITING FOR PUBLIC SALE"
                     : metaState.status.public === "PUBLIC_SALE"
-                    ? "PUBLIC SALE SIPHER NFT"
+                    ? "SIPHER NFT PUBLIC SALE"
                     : metaState.status.public === "END_SALE"
                     ? "Public sale has ended"
                     : "NO SALE AVAILABLE YET"}
             </MyHeading>
-            <MyText textAlign="left" color="red.500">
+            <MyText color="main.brightRed">
                 {metaState.status.public === "END_SALE"
                     ? "Comeback later!"
                     : metaState.status.public === "PUBLIC_SALE"
-                    ? "Are you feeling lucky today ?"
-                    : "Patience leads to success"}
+                    ? "Are you feeling lucky today?"
+                    : "Patience leads to success!"}
             </MyText>
             {metaState.status.public !== "END_SALE" && (
                 <Flex p="2" pt="8">
                     <ProgressBar
                         currentPrice={currentPrice}
-                        publicSaleTime={publicSaleTime}
+                        publicSaleTime={saleTime.public}
                         currentTime={currentTime}
                         setCurrentTime={setCurrentTime}
                     />
                 </Flex>
             )}
-            <MyText mt="2" textAlign="left">
-                Choose quantity
-            </MyText>
-            <HStack mt="1" w="100%">
-                <MyButton colorScheme="yellow" bg="yellow.400" {...getDecrementButtonProps()}>
-                    -
-                </MyButton>
-                <Input
-                    fontSize={["xs", "sm", "md", "lg"]}
-                    textAlign="center"
-                    borderColor="yellow.400"
-                    w="100%"
-                    {...getInputProps({ readOnly: true })}
-                />
-                <MyButton colorScheme="yellow" bg="yellow.400" {...getIncrementButtonProps()}>
-                    +
-                </MyButton>
-            </HStack>
-            <Box w="100%">
-                <Flex
-                    flexDir="row"
-                    justifyContent="space-between"
-                    borderTop="1px"
-                    alignItems="center"
-                    borderColor="whiteAlpha.600"
-                    mt="4"
-                    w="100%"
-                    pt="2"
-                >
-                    <Flex justifyContent="space-between" w="100%" alignItems="center">
-                        <MyText>Unit price: {currentPrice.toFixed(2)} ETH</MyText>
-                        <MyText>
-                            You have purchased:{" "}
-                            {!isLoadingRecord && userRecord
-                                ? userRecord.publicBought + userRecord.whitelistBought
-                                : "..."}
-                        </MyText>
-                    </Flex>
-                </Flex>
-            </Box>
-            <Flex pos="relative" fontSize={["sm", "sm", "md", "lg"]} mt="4" w="100%" flexDir="row" alignItems="center">
-                <chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
+            <MyText mt="2">Choose quantity</MyText>
+            <Counter
+                value={slot}
+                maxValue={5 - (userRecord ? userRecord.publicBought : 0)}
+                onChange={setSlot}
+                isDisabled={metaState.status.public !== "PUBLIC_SALE"}
+            />
+            <Flex
+                justify="space-between"
+                borderTop="1px"
+                alignItems="center"
+                borderColor="whiteAlpha.600"
+                mt="4"
+                w="100%"
+                pt="2"
+            >
+                <MyText>
+                    Unit price: {metaState.status.public === "PUBLIC_SALE" ? currentPrice.toFixed(2) : 0} ETH
+                </MyText>
+                <MyText>
+                    You have purchased: {userRecord ? userRecord.publicBought + userRecord.whitelistBought : "..."}
+                </MyText>
+            </Flex>
+            <Flex pos="relative" mt="4" w="100%" align="center" justify="space-between">
+                <MyText size="large">
                     You will pay:
-                    <MyText mx="2" color="yellow.500">
+                    <chakra.span mx="2" color="main.yellow" fontWeight="bold">
                         {metaState.status.public !== "END_SALE" ? calculateSlotPrice() : 0}
-                    </MyText>
+                    </chakra.span>
                     ETH
-                </chakra.span>
+                </MyText>
                 {!isLoadingRecord && (
-                    <MyButton
-                        flex="1"
-                        colorScheme="red"
-                        borderColor="whiteAplha.800"
-                        border="1px"
-                        borderTopLeftRadius="0"
-                        borderBottomRightRadius="0"
-                        borderTopRightRadius="1rem"
-                        borderBottomLeftRadius="1rem"
-                        w="full"
-                        color="whiteAlpha.800"
-                        bgGradient="linear(to-r, #580e19, #880e21, #be112b, #880e21 , #580e19)"
-                        onClick={() => handleConfirm()}
-                        disabled={
-                            !isLoadingBtn && slot > 0
-                                ? metaState.status.public === "NOT_FOR_SALE" || metaState.status.public === "END_SALE"
-                                : true
+                    <Button
+                        text="Not yet available"
+                        bg="red.500"
+                        fontSize="sm"
+                        bgGradient=""
+                        isLoading={isLoadingBtn}
+                        w="10rem"
+                        loadingText="MINTING"
+                        _hover={{ bg: "red.400" }}
+                        _active={{ bg: "red.600" }}
+                        _focus={{ shadow: "none" }}
+                        onClick={handleConfirm}
+                        isDisabled={
+                            slot === 0 ||
+                            metaState.status.public === "NOT_FOR_SALE" ||
+                            metaState.status.public === "END_SALE"
                         }
                     >
-                        {!isLoadingBtn ? (
-                            <>
-                                {metaState.status.public === "NOT_FOR_SALE"
-                                    ? "STARTING SOON"
-                                    : metaState.status.public === "END_SALE"
-                                    ? "NOT YET AVAILABLE"
-                                    : "MINT NOW"}
-                            </>
-                        ) : (
-                            <>
-                                <CircularProgress mr="4" isIndeterminate size="1.5rem" color="yellow.400" />
-                                Please wait
-                            </>
-                        )}
-                    </MyButton>
+                        {metaState.status.public === "NOT_FOR_SALE"
+                            ? "STARTING SOON"
+                            : metaState.status.public === "END_SALE"
+                            ? "NOT YET AVAILABLE"
+                            : "MINT NOW"}
+                    </Button>
                 )}
             </Flex>
         </Flex>

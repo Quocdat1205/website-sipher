@@ -6,11 +6,8 @@ export const getListNFT = async (publicAddress: string, from: number, to: number
 		`/nft/get-list-nft?publicAddress=${publicAddress}&min=${from}&max=${to}&type=${type}`,
 		config
 	)
-	if (data.success && data.message.data.length > 0) {
-		return data.message
-	} else {
-		return []
-	}
+
+	return data.message
 }
 
 //get info nft by id

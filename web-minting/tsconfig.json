@@ -23,7 +23,8 @@
             "@utils/*": ["src/utils/*"],
             "@hooks/*": ["src/hooks/*"],
             "@contract/*": ["src/contract/*"],
-            "@helper/*": ["src/helper/*"]
+            "@helper/*": ["src/helper/*"],
+            "@constant/*": ["src/constant/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

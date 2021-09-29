@@ -5,48 +5,18 @@ import BuyDoge from "./BuyDoge"
 import HowtoMint from "@components/shared/HowtoMint"
 import Loading from "@components/shared/Loading"
 import useWalletContext from "@hooks/useWalletContext"
+import SaleForm from "@components/shared/SaleForm"
 
-interface Props {}
-
-const PublicSale = (props: Props) => {
+const PublicSale = () => {
     const { metaState } = useWalletContext()
 
     return metaState.isSmartContract === "CONNECT" ? (
-        <Flex flexDir="column" alignItems="center" justifyContent="center" w="100%" flex={1}>
-            <Flex
-                flexDir="row"
-                w="70%"
-                p="1.5%"
-                alignItems="center"
-                justifyContent="center"
-                bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
-            >
-                <Image
-                    w="25%"
-                    h="auto"
-                    border="5px solid"
-                    borderColor="whiteAlpha.800"
-                    src="/images/Minting.gif"
-                    alt=""
-                />
-                <Flex
-                    w="100%"
-                    flexDir="column"
-                    alignItems="center"
-                    p="1.5%"
-                    sx={{ h4: { fontSize: "1.5rem", color: "yellow.500" } }}
-                >
-                    <BuyDoge />
-                </Flex>
+        <Flex direction="column" align="center" justify="center" w="100%" flex={1}>
+            <Flex flexDir="row" w="full" maxW="48rem" bg="blackAlpha.900" p={8}>
+                <Image w="25%" borderColor="whiteAlpha.800" src="/images/Minting.gif" alt="sipher-minting" />
+                <SaleForm mode="public" />
             </Flex>
-            <Flex
-                mt="4"
-                w="70%"
-                flexDir="column"
-                alignItems="center"
-                p="1.5%"
-                bgGradient="linear(to-r, rgba(0,0,0,0.7), rgba(0,0,0,0.8),  rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.9), rgba(0,0,0,0.8), rgba(0,0,0,0.7))"
-            >
+            <Flex mt="4" w="full" maxW="48rem" flexDir="column" alignItems="center" p={8} bg="blackAlpha.900">
                 <HowtoMint isPublic />
             </Flex>
         </Flex>

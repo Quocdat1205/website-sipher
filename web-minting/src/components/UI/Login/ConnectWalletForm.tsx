@@ -17,7 +17,7 @@ const ConnectWalletForm = () => {
                 left={0}
                 w="full"
                 h="full"
-                display="none"
+                // display="none"
                 sx={{
                     "@media (max-width: 960px)": {
                         display: "grid",
@@ -25,7 +25,7 @@ const ConnectWalletForm = () => {
                 }}
             >
                 <MyText size="large" fontWeight="bold" color="main.brightRed">
-                    NOT AVAILABLE <chakra.pre display="inline">(x_x)!</chakra.pre>
+                    NOT AVAILABLE <chakra.span fontFamily="monospace">(x_x)!</chakra.span>
                 </MyText>
             </Grid>
             <Box mb="6" textAlign="center">

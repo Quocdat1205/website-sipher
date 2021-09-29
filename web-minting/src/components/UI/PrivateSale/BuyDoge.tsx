@@ -27,14 +27,19 @@ function BuyDoge() {
         step: 1,
         value: slot,
         min: 0,
-        max: metaState.status.private === "PRIVATE_SALE" ? (userRecord ? 2 - userRecord.whitelistBought : 0) : 0,
+        max:
+            metaState.status.private === "PRIVATE_SALE"
+                ? userRecord
+                    ? Math.max(metaState.isWhitelisted.cap - userRecord.whitelistBought, 0)
+                    : 0
+                : 0,
         onChange: v => setSlot(parseInt(v)),
         isDisabled: metaState.status.private !== "PRIVATE_SALE",
     })
 
     const input = getInputProps({ readOnly: true })
     const calculateSlotPrice = (): number => {
-        return parseFloat((slot * 0.1).toString())
+        return parseFloat((slot * 0.1).toFixed(2).toString())
     }
 
     const PrivateSale = async () => {
@@ -43,15 +48,13 @@ function BuyDoge() {
             toast("error", "Failed to check smart contract")
             return
         }
-        if (userRecord?.whitelistBought && userRecord.whitelistBought > 2) {
-            toast("error", "Confirm error , each wallet only 2 nft")
+        if (userRecord?.whitelistBought && userRecord.whitelistBought >= metaState.isWhitelisted.cap) {
+            toast("error", `Confirm error , each wallet only ${metaState.isWhitelisted.cap} nft`)
             return
         }
+        toast("success", "Confirm successfully! Please wait about 30 seconds", "", 6000)
         await sendSmartContract(metaState.accountLogin, slot, calculateSlotPrice(), metaState.isWhitelisted.proof)
-        toast("success", "Transaction created successfully!")
         setSlot(0)
-        queryClient.invalidateQueries("total-supply")
-        queryClient.invalidateQueries("user-record")
     }
 
     const handleConfirm = async () => {
@@ -66,6 +69,8 @@ function BuyDoge() {
                     if (metaState.status.private === "PRIVATE_SALE") {
                         await PrivateSale()
                         setIsLoadingBtn(false)
+                        queryClient.invalidateQueries("totalSupplyNFTs")
+                        queryClient.invalidateQueries("_getUserRecord")
                     } else {
                         toast("error", "End Sale")
                         setIsLoadingBtn(false)
@@ -93,20 +98,6 @@ function BuyDoge() {
                     ? "Private sale has ended"
                     : "NO SALE AVAILABLE YET"}
             </MyHeading>
-            {/* {metaState.proof.length > 0 && (
-					<chakra.span
-						fontSize="1.2rem"
-						bg="#43a81e"
-						border="1px"
-						borderColor="whiteAlpha.800"
-						px="6"
-						py="2"
-						mt="1"
-						borderRadius="99"
-					>
-						Whitelisted
-					</chakra.span>
-				)} */}
             <MyText textAlign="left" color="red.500">
                 {metaState.status.private === "END_SALE"
                     ? "Comeback later!"
@@ -154,12 +145,19 @@ function BuyDoge() {
                     </Flex>
                 </Flex>
             </Box>
-            <Flex pos="relative" fontSize={["sm", "sm", "md", "lg"]} mt="4" w="100%" flexDir="row" alignItems="center">
-                <chakra.span fontWeight="bold" display="flex" flexWrap="wrap" flex="1">
+            <Flex pos="relative" mt="4" w="100%" flexDir="row" alignItems="center">
+                <chakra.span
+                    fontSize={["md", "lg", "xl"]}
+                    fontWeight="bold"
+                    alignItems="center"
+                    display="flex"
+                    flexWrap="wrap"
+                    flex="1"
+                >
                     You will pay:
-                    <MyText mx="2" color="yellow.500">
+                    <chakra.p mx="2" color="yellow.500">
                         {metaState.status.private !== "END_SALE" ? calculateSlotPrice() : 0}
-                    </MyText>
+                    </chakra.p>
                     ETH
                 </chakra.span>
                 {metaState.isWhitelisted.proof.length > 0 && !isLoadingRecord && (

@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Box, BoxProps, Spinner, Flex } from "@chakra-ui/react"
+import { Box, BoxProps, Spinner, Flex, TextProps } from "@chakra-ui/react"
 import { MyText } from "."
 
 interface GradientButtonProps extends BoxProps {
@@ -11,6 +11,8 @@ interface GradientButtonProps extends BoxProps {
     isLoading?: boolean
     loadingText?: string
     rel?: string
+    fontSize?: TextProps["fontSize"]
+    disabled?: boolean
 }
 
 export const GradientButton = ({
@@ -20,6 +22,8 @@ export const GradientButton = ({
     isLoading,
     loadingText = "Submitting",
     rel,
+    fontSize,
+    disabled,
     ...rest
 }: GradientButtonProps) => {
     return (
@@ -40,15 +44,18 @@ export const GradientButton = ({
             letterSpacing="1px"
             pos="relative"
             textAlign="center"
+            pointerEvents={disabled ? "none" : "all"}
             {...rest}
         >
             {isLoading ? (
                 <Flex align="center" justify="center">
                     <Spinner size="sm" thickness="3px" />
-                    <MyText ml={4}>{loadingText}</MyText>
+                    <MyText fontSize={fontSize} ml={4}>
+                        {loadingText}
+                    </MyText>
                 </Flex>
             ) : (
-                <MyText>{text}</MyText>
+                <MyText fontSize={fontSize}>{text}</MyText>
             )}
         </Box>
     )

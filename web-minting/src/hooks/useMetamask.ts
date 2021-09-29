@@ -4,7 +4,7 @@ import { endTime, publicSaleTime } from "@utils/key_auth"
 import { useChakraToast, useFormCore } from "@sipher/web-components"
 import { getChainName, metaMaskProvider, connectWallet } from "src/helper/metamask"
 import { getSaleConfig, getTotalSupply } from "@helper/smartContract"
-import { useMutation, useQuery } from "react-query"
+import { useQuery } from "react-query"
 
 declare global {
     interface Window {
@@ -54,6 +54,11 @@ const initialState: TypeState = {
 export const useMetamask = () => {
     const [isConnecting, setIsConnecting] = useState(false)
     const { values, setValue, initForm } = useFormCore<TypeState>(initialState)
+    const [saleTime, setSaleTime] = useState({
+        private: 0,
+        public: 0,
+        end: 0,
+    })
     const toast = useChakraToast(4500)
 
     const connect = async () => {
@@ -126,7 +131,14 @@ export const useMetamask = () => {
     }, [])
 
     useQuery("sale-config", getSaleConfig, {
-        onSuccess: data => getStatus(data),
+        onSuccess: data => {
+            getStatus(data)
+            setSaleTime({
+                private: data[0] * 1000,
+                public: data[1] * 1000,
+                end: data[2] * 1000,
+            })
+        },
         onError: () => {
             toast("error", "Failed to get sale config!", "Try again later")
             setValue("time", { private: 0, public: 0 })
@@ -155,10 +167,10 @@ export const useMetamask = () => {
             setValue("status", { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" })
         } else if (now < new Date(data[1] * 1000)) {
             setValue("time", { private: data[1] * 1000, public: data[1] * 1000 })
-            setValue("status", { private: "PRIVATE_SALE", public: "NOT_FOR_SALE" })
+            setValue("status", { private: "SALE", public: "NOT_FOR_SALE" })
         } else if (now < new Date(data[2] * 1000)) {
             setValue("time", { private: now, public: data[2] * 1000 })
-            setValue("status", { private: "END_SALE", public: "PUBLIC_SALE" })
+            setValue("status", { private: "END_SALE", public: "SALE" })
         } else {
             setValue("time", { private: now, public: now })
             setValue("status", { private: "END_SALE", public: "END_SALE" })
@@ -172,5 +184,6 @@ export const useMetamask = () => {
         metaState: { ...values, isAvailable: !!metaMaskProvider },
         isConnecting,
         toast,
+        saleTime,
     }
 }
