@@ -47,7 +47,13 @@ const SaleForm = ({ mode }: SaleFormProps) => {
         let currentPrice = await getCurrentPrice()
         let totalPrice = parseFloat((slot * currentPrice).toFixed(2))
         console.log("total price", totalPrice)
-        await sendSmartContract(metaState.accountLogin, slot, totalPrice, metaState.isWhitelisted.proof)
+        await sendSmartContract(
+            metaState.accountLogin,
+            slot,
+            totalPrice,
+            metaState.isWhitelisted.cap,
+            metaState.isWhitelisted.proof
+        )
         toast("success", "Transaction created successfully!")
         setSlot(0)
         queryClient.invalidateQueries("total-supply")
