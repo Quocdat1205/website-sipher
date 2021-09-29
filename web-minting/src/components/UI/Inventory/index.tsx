@@ -35,10 +35,8 @@ function Inventory() {
 					bgColor: "red.500",
 				}}
 			/>
-			<Flex w="100%" p="2" flexDir="column" flex="1" overflow="hidden">
-				<MyText p="2" textAlign="right">
-					You currently have {total} Sipher NFTs
-				</MyText>
+			<Flex w="100%" p="4" flexDir="column" flex="1" overflow="hidden">
+				<MyText textAlign="right">You currently have {total} Sipher NFTs</MyText>
 				<Tabs display="flex" flexDirection="column" overflow="hidden">
 					<TabList borderColor="whiteAlpha.300" color="gray.500">
 						<Tab
