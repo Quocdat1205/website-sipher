@@ -15,10 +15,10 @@ const Sale = ({ mode }: SaleProps) => {
 
     return metaState.isSmartContract === "CONNECT" ? (
         <Grid w="full" placeItems="center" p={4} overflow="auto">
-            <Flex direction="column" align="center" justify="center" w="100%" maxW="48rem">
+            <Flex direction="column" align="center" justify="center" w="100%" maxW="52rem">
                 <Flex w="full" bg="blackAlpha.900" p={4}>
                     <Box>
-                        <Image h="15rem" src="/images/Minting.gif" alt="sipher-minting" />
+                        <Image h="18rem" src="/images/Minting.gif" alt="sipher-minting" />
                     </Box>
                     <SaleForm mode={mode} />
                 </Flex>

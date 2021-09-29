@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import router from "next/router"
 import { useChakraToast, useFormCore } from "@sipher/web-components"
-import { getChainName, metaMaskProvider, connectWallet } from "src/helper/metamask"
+import { metaMaskProvider, connectWallet } from "src/helper/metamask"
 import { getSaleConfig, getTotalSupply } from "@helper/smartContract"
 import { useQuery } from "react-query"
+import { CHAIN_ID } from "@constant/index"
 
 declare global {
     interface Window {
@@ -72,6 +73,11 @@ export const useMetamask = () => {
             }
             setIsConnecting(true)
             const { account, chainInfo, token, whitelistInfo } = await connectWallet()
+            if (chainInfo.id !== CHAIN_ID) {
+                toast("error", "Wrong network!")
+                setIsConnecting(false)
+                return
+            }
             initForm({
                 ...values,
                 isConnected: true,
@@ -113,10 +119,11 @@ export const useMetamask = () => {
     // ethereum wallet listener
     useEffect(() => {
         if (metaMaskProvider) {
-            metaMaskProvider.on("chainChanged", async chainId => {
-                const _chainId = parseInt(chainId, 16).toString()
-                const _chainInfo = { id: _chainId, name: getChainName(_chainId) }
-                setValue("chain", _chainInfo)
+            metaMaskProvider.on("chainChanged", async () => {
+                // const _chainId = parseInt(chainId, 16).toString()
+                // const _chainInfo = { id: _chainId, name: getChainName(_chainId) }
+                // setValue("chain", _chainInfo)
+                window.location.reload()
             })
 
             //check account wallet change
@@ -131,6 +138,7 @@ export const useMetamask = () => {
     }, [])
 
     useQuery("sale-config", getSaleConfig, {
+        enabled: !!metaMaskProvider,
         onSuccess: data => {
             getStatus(data)
             setSaleTime({
@@ -146,6 +154,7 @@ export const useMetamask = () => {
     })
 
     useQuery("total-supply", getTotalSupply, {
+        enabled: !!metaMaskProvider,
         onSuccess: totalSupply => {
             setValue("isSmartContract", "CONNECT")
             if (totalSupply >= 10000) {

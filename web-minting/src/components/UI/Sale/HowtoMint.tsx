@@ -20,7 +20,7 @@ function HowtoMint({ mode }: Props) {
                     <UnorderedList fontWeight="thin">
                         {(sale[mode][metaState.status[mode]] || []).map(p => (
                             <ListItem key={p}>
-                                <MyText size="small">{p}</MyText>
+                                <MyText>{p}</MyText>
                             </ListItem>
                         ))}
                     </UnorderedList>
@@ -32,10 +32,10 @@ function HowtoMint({ mode }: Props) {
                 <UnorderedList fontWeight="thin">
                     {(metaState.status[mode] !== "END_SALE" ? note.END_SALE : note.NOT_END_SALE).map(p => (
                         <ListItem key={p.text}>
-                            <MyText size="small">{p.text}</MyText>{" "}
+                            <MyText>{p.text}</MyText>{" "}
                             {p.link && (
                                 <chakra.a color="blue.400" href={p.link.path} target="_blank">
-                                    <MyText size="small">{p.link.text}</MyText>
+                                    <MyText>{p.link.text}</MyText>
                                 </chakra.a>
                             )}
                         </ListItem>

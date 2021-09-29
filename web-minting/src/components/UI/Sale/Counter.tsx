@@ -40,7 +40,13 @@ const Counter = ({ onChange, value, maxValue, minValue = 0, isDisabled }: Counte
                 readOnly={true}
                 fontSize="lg"
                 rounded="0"
-                _hover={{ bg: "inherit" }}
+                _hover={{
+                    bgColor: "transparent",
+                    bgGradient: "linear(to-b, blackAlpha.900, blackAlpha.500, blackAlpha.900)",
+                }}
+                _focus={{
+                    shadow: "none",
+                }}
                 fontWeight="bold"
                 color="whiteAlpha.900"
                 textAlign="center"
