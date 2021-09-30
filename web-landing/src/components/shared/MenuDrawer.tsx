@@ -3,7 +3,8 @@
 import { Drawer, DrawerOverlay, DrawerContent, DrawerBody } from "@chakra-ui/react"
 import { useStoreActions, useStoreState } from "@store"
 import React from "react"
-import { BaseSideBar, NavBarLink, navMenus } from "."
+import { BaseSideBar, navMenus } from "."
+import { NavBarLink } from "@sipher/web-components"
 import { useRouter } from "next/dist/client/router"
 interface MenuDrawerProps {}
 
