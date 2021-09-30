@@ -4,27 +4,32 @@ import { Box, Flex, Img } from "@chakra-ui/react"
 import useWalletContext from "@hooks/useWalletContext"
 import { MyText, useChakraToast } from "@sipher/web-components"
 import { format } from "date-fns"
-import { useEffect, useState } from "react"
-
+import { useEffect, useRef, useState } from "react"
+import { START_PRICE, BASE_PRICE, PRICE_STEP, INTERVAL, TRANSITION } from "@constant/index"
 interface ProgressBarProps {
     status: string
-    startPrice: number
-    basePrice: number
-    priceStep: number
-    interval: number
+    startPrice?: number
+    basePrice?: number
+    priceStep?: number
+    interval?: number
+    transitionTime?: number
     publicSaleTime: number
     onPriceChange?: (price: number) => void
+    setIsBtnDisabled: (value: boolean) => void
 }
 
 const ProgressBar = ({
     status,
-    startPrice,
-    basePrice,
-    priceStep,
-    interval,
+    startPrice = START_PRICE,
+    basePrice = BASE_PRICE,
+    priceStep = PRICE_STEP,
+    interval = INTERVAL,
+    transitionTime = TRANSITION,
     publicSaleTime,
     onPriceChange,
+    setIsBtnDisabled,
 }: ProgressBarProps) => {
+    const firstTime = useRef(true)
     const [currentTime, setCurrentTime] = useState(new Date().getTime())
     const { saleTime } = useWalletContext()
     const currentPrice = parseFloat(
@@ -42,9 +47,37 @@ const ProgressBar = ({
     })
 
     useEffect(() => {
-        onPriceChange && onPriceChange(currentPrice)
-        status === "PUBLIC_SALE" && toast({ title: "NFT price has changed!" })
-    }, [currentPrice, onPriceChange, status])
+        console.log("Checking price...")
+        if (currentTime > saleTime.public + ((startPrice - basePrice) / priceStep) * interval) return
+        const cycleTime = (currentTime - publicSaleTime) % interval
+        console.log((currentTime - publicSaleTime) % interval)
+        if (interval - cycleTime < transitionTime) {
+            console.log("Set true")
+            setIsBtnDisabled(true)
+        } else if (cycleTime > transitionTime) {
+            console.log("Set false")
+            setIsBtnDisabled(false)
+        }
+    }, [
+        currentTime,
+        basePrice,
+        interval,
+        priceStep,
+        publicSaleTime,
+        saleTime.public,
+        startPrice,
+        transitionTime,
+        setIsBtnDisabled,
+    ])
+
+    useEffect(() => {
+        if (firstTime.current) {
+            firstTime.current = false
+        } else {
+            onPriceChange && onPriceChange(currentPrice)
+            status === "SALE" && toast({ title: "NFT price has changed!" })
+        }
+    }, [currentPrice, onPriceChange, status, toast])
 
     const priceToPercent = (price: number) => {
         const pct = (((price - basePrice) / priceStep) * interval * 100) / (saleTime.end - saleTime.public)
@@ -111,10 +144,11 @@ const ProgressBar = ({
                 color="main.yellow"
                 left={0}
                 top={"-0.25rem"}
-                transform="translate(-50%, -100%)"
+                transform="translate(-10%, -100%)"
                 fontWeight="bold"
+                fontSize="sm"
             >
-                {`${startPrice}`}
+                {`${startPrice} ETH`}
             </Box>
             <Box pos="absolute" fontSize="xs" left={0} transform="translate(-10%, 10%)" color="main.brightRed">
                 {format(new Date(publicSaleTime), "H:mm d/M")}
@@ -128,8 +162,9 @@ const ProgressBar = ({
                 top={"-0.25rem"}
                 transform="translate(-50%, -100%)"
                 fontWeight="bold"
+                fontSize="sm"
             >
-                {`${basePrice}`}
+                {`${basePrice} ETH`}
             </Box>
             <Box
                 pos="absolute"
@@ -145,10 +180,11 @@ const ProgressBar = ({
             <Box
                 pos="absolute"
                 color="main.yellow"
-                left="100%"
+                right={0}
                 top={"-0.25rem"}
-                transform="translate(-50%, -100%)"
+                transform="translate(-0%, -100%)"
                 fontWeight="bold"
+                fontSize="sm"
             >
                 END
             </Box>

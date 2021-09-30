@@ -32,7 +32,7 @@ export const note: INote = {
             text: "Be careful before confirming a transaction when all NFTs are almost minted. Your transaction could be reverted if all supplies sold out.",
         },
         {
-            text: "Sipher NEKO reveal party will take place on SEP 11th (09:00 AM UTC+7) or when sold out, whichever comes first.",
+            text: "Sipher NEKO reveal party will take place on ...",
         },
     ],
     END_SALE: [

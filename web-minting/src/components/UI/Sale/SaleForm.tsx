@@ -20,9 +20,9 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
     const [currentPrice, setCurrentPrice] = useState(0.1)
     const [slot, setSlot] = useState(0)
-
+    const [isBtnDisabled, setIsBtnDisabled] = useState(false)
     const handlePriceChange = useCallback((value: number) => setCurrentPrice(value), [])
-
+    const handleSetButton = useCallback((value: boolean) => setIsBtnDisabled(value), [])
     const getCurrentPrice = async () => {
         let price = 0
         if (mode === "public") {
@@ -130,12 +130,13 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 <Flex p="2" pt="8">
                     <ProgressBar
                         status={metaState.status.public}
-                        startPrice={START_PRICE}
-                        basePrice={BASE_PRICE}
-                        priceStep={PRICE_STEP}
-                        interval={INTERVAL}
+                        // startPrice={START_PRICE}
+                        // basePrice={BASE_PRICE}
+                        // priceStep={PRICE_STEP}
+                        // interval={INTERVAL}
                         publicSaleTime={saleTime.public}
                         onPriceChange={handlePriceChange}
+                        setIsBtnDisabled={handleSetButton}
                     />
                 </Flex>
             )}
@@ -177,14 +178,15 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                     ml="auto"
                     bg="red.500"
                     fontSize="sm"
-                    isLoading={isLoadingBtn}
+                    isLoading={isLoadingBtn || isBtnDisabled}
                     w="12rem"
-                    loadingText="MINTING"
+                    loadingText={isBtnDisabled ? "PRICE IS CHANGING" : "MINTING"}
                     _hover={{ bg: "red.400" }}
                     _active={{ bg: "red.600" }}
                     _focus={{ shadow: "none" }}
                     onClick={handleConfirm}
                     isDisabled={
+                        isBtnDisabled ||
                         isLoadingRecord ||
                         slot === 0 ||
                         metaState.status[mode] === "NOT_FOR_SALE" ||
