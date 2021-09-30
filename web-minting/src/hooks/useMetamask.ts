@@ -111,6 +111,7 @@ export const useMetamask = () => {
 			...values,
 			isConnected: false,
 			accountLogin: "",
+			accessToken: "",
 		})
 		toast({ status: "success", title: "Logged out successfully!" })
 	}
