@@ -28,7 +28,6 @@ const SaleForm = ({ mode }: SaleFormProps) => {
         if (mode === "public") {
             price = await getPublicCurrentPrice()
         } else price = 0.1
-        console.log("current price", price)
         return price
     }
 

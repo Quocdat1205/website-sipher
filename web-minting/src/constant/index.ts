@@ -15,4 +15,4 @@ export const INTERVAL = 300 * 1000
 // Public slot cap
 export const PUBLIC_CAP = 5
 // Transition time between price change
-export const TRANSITION = 5000
+export const TRANSITION = 15000
