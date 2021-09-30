@@ -22,7 +22,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children }: Ba
             <HStack
                 spacing={[2, 2, 2, 4]}
                 flex={1}
-                justify="center"
+                justify="space-evenly"
                 sx={{
                     "@media (max-width: 960px)": {
                         display: "none",
