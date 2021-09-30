@@ -85,7 +85,7 @@ const ProgressBar = ({
                 transform="translate(-50%, -100%)"
                 fontWeight="bold"
             >
-                {startPrice}
+                {`${startPrice} ETH`}
             </Box>
             <Box pos="absolute" fontSize="sm" left={0} transform="translate(-10%, 10%)" color="main.brightRed">
                 <MyText color="main.brightRed" size="small">
@@ -102,7 +102,7 @@ const ProgressBar = ({
                 transform="translate(-50%, -100%)"
                 fontWeight="bold"
             >
-                {0.5}
+                {"0.5 ETH"}
             </Box>
 
             <Box pos="absolute" fontSize="sm" left={priceToPercent(0.5)} transform="translate(-50%, 10%)">
@@ -120,7 +120,7 @@ const ProgressBar = ({
                 transform="translate(-50%, -100%)"
                 fontWeight="bold"
             >
-                {basePrice}
+                {`${basePrice} ETH`}
             </Box>
             <Box
                 pos="absolute"
