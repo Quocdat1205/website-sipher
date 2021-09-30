@@ -21,7 +21,7 @@ export const NavBar = ({}: NavBarProps) => {
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
     return (
-        <BaseNavigationBar logoPath="/images/mainlogo.png" menus={navMenus} onLogoClick={() => router.push("/")}>
+        <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
             <GradientButton
                 text="Join Our Discord Community"
                 as="a"
