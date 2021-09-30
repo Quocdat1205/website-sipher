@@ -149,7 +149,6 @@ export const useMetamask = () => {
 	useQuery("sale-config", getSaleConfig, {
 		enabled: !!metaMaskProvider,
 		onSuccess: (data) => {
-			console.log(data)
 			getStatus(data)
 			setSaleTime({
 				private: data[0] * 1000,
