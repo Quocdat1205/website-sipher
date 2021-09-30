@@ -21,9 +21,8 @@ const CountDown = ({ deadline }: CountDownProps) => {
         const diffInSeconds = differenceInSeconds(deadline, currentTime)
         if (diffInSeconds <= 1) {
             queryClient.invalidateQueries("sale-config")
+            console.log("success")
         }
-        queryClient.invalidateQueries("sale-config")
-
         return {
             days: Math.floor(diffInSeconds / ONE_DAY),
             hours: Math.floor((diffInSeconds % ONE_DAY) / ONE_HOUR),
