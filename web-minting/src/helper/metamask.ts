@@ -5,7 +5,9 @@ import Web3 from "web3"
 export const metaMaskProvider = typeof window !== "undefined" && window.ethereum
 export const web3 = new Web3(metaMaskProvider)
 
-/** Get accounts from MetaMask */
+/** Get accounts from MetaMask
+ * @returns List of addresses
+ */
 export const getMetaMaskAccounts = async (): Promise<string[]> => {
     if (!metaMaskProvider) {
         console.warn("MetaMask is not available.")

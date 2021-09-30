@@ -37,24 +37,26 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const mint = async () => {
         if (mode === "public") {
             if (userRecord && userRecord.publicBought >= PUBLIC_CAP) {
-                toast("error", "Confirmation error!", "You can only buy up to 5 NFTs")
+                toast({ status: "error", title: "Confirmation error!", message: "You can only buy up to 5 NFTs" })
                 return
             }
         } else if (userRecord && userRecord.whitelistBought >= metaState.isWhitelisted.cap) {
-            toast("error", "Confirmation error!", `You can only buy up to ${metaState.isWhitelisted.cap} NFTs`)
+            toast({
+                status: "error",
+                title: "Confirmation error!",
+                message: `You can only buy up to ${metaState.isWhitelisted.cap} NFTs`,
+            })
             return
         }
 
         let currentPrice = await getCurrentPrice()
-        let totalPrice = parseFloat((slot * currentPrice).toFixed(2))
-        await sendSmartContract(
-            metaState.accountLogin,
-            slot,
-            totalPrice,
-            metaState.isWhitelisted.cap,
-            metaState.isWhitelisted.proof
-        )
-        toast("success", "Transaction created successfully!")
+        let slotPrice = parseFloat((slot * currentPrice).toFixed(2))
+        const {
+            accountLogin: address,
+            isWhitelisted: { cap, proof },
+        } = metaState
+        await sendSmartContract({ address, slot, slotPrice, cap, proof })
+        toast({ status: "success", title: "Transaction created successfully!", duration: 6000 })
         setSlot(0)
         queryClient.invalidateQueries("total-supply")
         queryClient.invalidateQueries("user-record")
@@ -62,21 +64,21 @@ const SaleForm = ({ mode }: SaleFormProps) => {
 
     const handleConfirm = async () => {
         if (metaState.chain?.id !== CHAIN_ID) {
-            toast("error", "Wrong ethereum network!", "Please switch to Ethereum Mainnet.")
+            toast({ status: "error", title: "Wrong ethereum network!", message: "Please switch to Ethereum Mainnet." })
             return
         }
         if (metaState.status[mode] !== "SALE") {
-            toast("error", "NFT is not on sale!", "Please comeback later.")
+            toast({ status: "error", title: "NFT is not on sale!", message: "Please comeback later." })
             return
         }
         const balance = await getMetamaskBalance(metaState.accountLogin)
         if (balance < calculateSlotPrice()) {
-            toast("error", "Insufficient balance!")
+            toast({ status: "error", title: "Insufficient balance!" })
             return
         }
         let checkSC = await checkSmartContract(metaState.accountLogin)
         if (!checkSC) {
-            toast("error", "Failed to check smart contract!")
+            toast({ status: "error", title: "Failed to check smart contract!" })
             return
         }
         try {
@@ -86,7 +88,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             queryClient.invalidateQueries("total-supply")
             queryClient.invalidateQueries("user-record")
         } catch (error) {
-            toast("error", "Something went wrong!", "Try again later.")
+            toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
             setIsLoadingBtn(false)
         }
     }

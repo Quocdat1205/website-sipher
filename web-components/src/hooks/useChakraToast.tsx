@@ -2,19 +2,31 @@ import React from "react"
 import { useToast, ToastOptions } from "@chakra-ui/react"
 import { Toast } from ".."
 
-export const useChakraToast = (duration: number | undefined = 2000) => {
+type UseChakraToastOptions = {
+    defaultDuration: number
+}
+
+type ChakraToastOptions = {
+    status?: ToastOptions["status"]
+    title: string
+    message?: string
+    duration?: number
+}
+
+export const useChakraToast = ({ defaultDuration }: UseChakraToastOptions = { defaultDuration: 2500 }) => {
     const toast = useToast()
 
-    return (status: ToastOptions["status"], title: string, message?: string, dur: number = duration) =>
+    return (options: ChakraToastOptions) => {
+        const { status = "default", title, message, duration = defaultDuration } = options
         setTimeout(
             () =>
                 toast({
-                    title: message,
-                    duration: dur,
+                    duration,
                     render: () => <Toast status={status} title={title} message={message} />,
                 }),
             250
         )
+    }
 }
 
 export default useChakraToast

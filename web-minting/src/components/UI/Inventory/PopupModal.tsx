@@ -76,7 +76,7 @@ const PopupModal = ({ selectId }: PopupProps) => {
             onSuccess: () => {
                 queryClient.invalidateQueries([`${selectId.race}-NFTId`, selectId])
                 queryClient.invalidateQueries([`${selectId.race}-NFT`])
-                toast("success", "Change emotion successfully")
+                toast({ status: "success", title: "Change emotion successfully!" })
             },
             onError: () => {},
         }
