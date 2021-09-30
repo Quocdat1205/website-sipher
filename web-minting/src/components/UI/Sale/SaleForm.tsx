@@ -1,5 +1,5 @@
 import { Button, chakra, Flex } from "@chakra-ui/react"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { useQuery, useQueryClient } from "react-query"
 import { checkSmartContract } from "@api/index"
 import { CHAIN_ID, INTERVAL, PRICE_STEP, START_PRICE, PUBLIC_CAP, BASE_PRICE } from "@constant/index"
@@ -20,6 +20,8 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
     const [currentPrice, setCurrentPrice] = useState(0.1)
     const [slot, setSlot] = useState(0)
+
+    const handlePriceChange = useCallback((value: number) => setCurrentPrice(value), [])
 
     const getCurrentPrice = async () => {
         let price = 0
@@ -102,6 +104,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             ? `${mode} sale has ended`
             : "No Sale Available"
         ).toUpperCase()
+
     const getMaxSlot = () => {
         if (mode === "public") {
             return PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
@@ -134,7 +137,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                         priceStep={PRICE_STEP}
                         interval={INTERVAL}
                         publicSaleTime={saleTime.public}
-                        onPriceChange={setCurrentPrice}
+                        onPriceChange={handlePriceChange}
                     />
                 </Flex>
             )}
