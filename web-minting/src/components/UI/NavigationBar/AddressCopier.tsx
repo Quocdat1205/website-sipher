@@ -8,7 +8,7 @@ const AddressCopier = () => {
 
     const handleCopy = async () => {
         await navigator.clipboard.writeText(metaState.accountLogin)
-        toast("success", "Copied address to clipboard", "", 1500)
+        toast({ status: "success", title: "Copied address to clipboard", message: "", duration: 1500 })
     }
 
     return (

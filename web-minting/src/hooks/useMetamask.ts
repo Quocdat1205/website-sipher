@@ -57,21 +57,21 @@ export const useMetamask = () => {
 		public: 0,
 		end: 0,
 	})
-	const toast = useChakraToast(4500)
+	const toast = useChakraToast()
 	const connect = async () => {
 		try {
 			if (!metaMaskProvider) {
-				toast("error", "MetaMask not found!", "Please install MetaMask extension.")
+				toast({ status: "error", title: "MetaMask not found!", message: "Please install MetaMask extension." })
 				return
 			}
 			if (isConnecting) {
-				toast("warning", "MetaMask is connecting!")
+				toast({ status: "warning", title: "MetaMask is connecting!" })
 				return
 			}
 			setIsConnecting(true)
 			const { account, chainInfo, token, whitelistInfo } = await connectWallet()
 			if (chainInfo.id !== CHAIN_ID) {
-				toast("error", "Wrong network!")
+				toast({ status: "error", title: "Wrong network!" })
 				setIsConnecting(false)
 				return
 			}
@@ -92,12 +92,16 @@ export const useMetamask = () => {
 				router.push(whitelistInfo.proof.length > 0 ? "private-minting" : "public-minting")
 			}
 			setIsConnecting(false)
-			toast("success", "Connected to MetaMask!")
+			toast({ status: "success", title: "Connected to MetaMask!" })
 		} catch (error: any) {
 			if (error.code === 4001) {
-				toast("error", "User denied message signature", "Please sign the message to continue!")
+				toast({
+					status: "error",
+					title: "User denied message signature",
+					message: "Please sign the message to continue!",
+				})
 			} else {
-				toast("error", "Something went wrong!", "Try again later.")
+				toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
 			}
 			setIsConnecting(false)
 		}
@@ -108,7 +112,7 @@ export const useMetamask = () => {
 			isConnected: false,
 			accountLogin: "",
 		})
-		toast("success", "Logged out successfully!")
+		toast({ status: "success", title: "Logged out successfully!" })
 	}
 
 	// ethereum wallet listener
@@ -157,7 +161,7 @@ export const useMetamask = () => {
 			})
 		},
 		onError: () => {
-			toast("error", "Failed to get sale config!", "Try again later")
+			toast({ status: "error", title: "Failed to get sale config!", message: "Try again later" })
 			setValue("time", { private: 0, public: 0 })
 		},
 		onSettled: () => {
@@ -174,7 +178,7 @@ export const useMetamask = () => {
 			}
 		},
 		onError: () => {
-			toast("error", "Failed to get total suppply!", "Try again later")
+			toast({ status: "error", title: "Failed to get total suppply!", message: "Try again later" })
 			setValue("isSmartContract", "ERROR")
 		},
 	})

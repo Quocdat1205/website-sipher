@@ -10,25 +10,24 @@ export const ContractProviderNFT = new web3.eth.Contract(NFT.apiNFT, SMARTCONTRA
  * @returns totalSupply: number
  */
 export const getTotalSupply = async (): Promise<number> => {
-    console.log("total spply call")
     const supply = await ContractProviderNFT.methods.totalSupply().call()
     return parseInt(supply)
 }
 
-/** Buy NFT
- * @param address: ether address to buy from
- * @param slot: number of NFT to buy
- * @param slotPrice: price of each NFT
- * @param caps: whitelist cap
- * @param proof: used by whitelisted address
- */
-export const sendSmartContract = async (
-    address: string,
-    slot: number,
-    slotPrice: number,
-    cap: number,
+interface SendSCInput {
+    address: string
+    slot: number
+    slotPrice: number
+    cap: number
     proof: string[]
-) => {
+}
+
+/** Buy NFT
+ * @param input: includes address, slot, slotPrice, cap and proof
+ */
+export const sendSmartContract = async (input: SendSCInput) => {
+    const { address, slot, slotPrice, cap, proof } = input
+
     const _gaslimit =
         slot === 1
             ? 296656
@@ -87,7 +86,6 @@ export const getPublicCurrentPrice = async () => {
  * @returns [PRIVATE_SALE_TIME, PUBLIC_SALE_TIME, END_TIME]
  */
 export const getSaleConfig = async (): Promise<[number, number, number]> => {
-    console.log("config call")
     const data = await ContractProviderSALE.methods.getSaleConfig().call()
     return [parseInt(data[0]), parseInt(data[1]), parseInt(data[2])]
 }

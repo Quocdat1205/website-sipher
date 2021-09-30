@@ -25,16 +25,16 @@ export const SubscribeModal = ({}: SubscribeModalProps) => {
 
     const { mutate, isLoading } = usePostSubscribe({
         onError: () => {
-            toast("error", "Something went wrong!", "Try again later.")
+            toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
         },
         onSuccess: data => {
             if (!data.message) {
                 initForm()
-                toast(
-                    "success",
-                    "Congrats!",
-                    "Stay tuned & subscribe to our community for woofing perks and exclusive news."
-                )
+                toast({
+                    status: "success",
+                    title: "Congrats!",
+                    message: "Stay tuned & subscribe to our community for woofing perks and exclusive news.",
+                })
             } else {
                 if (data.message === "email exists") setError("email", "Email was already subscribed!")
                 else setError("email", "Something went wrong!")
