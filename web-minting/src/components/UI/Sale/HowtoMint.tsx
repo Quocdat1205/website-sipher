@@ -1,7 +1,7 @@
 import { Box, chakra, HStack, UnorderedList, ListItem, Flex } from "@chakra-ui/react"
 import { MyText } from "@sipher/web-components"
 import React from "react"
-import CountDown from "@components/shared/CountDown"
+import NewCountDown from "@components/UI/CountDown"
 import useWalletContext from "@hooks/useWalletContext"
 import { sale, note } from "@constant/content/howToMint"
 interface Props {
@@ -24,7 +24,7 @@ function HowtoMint({ mode }: Props) {
                             </ListItem>
                         ))}
                     </UnorderedList>
-                    {metaState.status[mode] !== "END_SALE" && <CountDown deadline={metaState.time[mode]} />}
+                    {metaState.status[mode] !== "END_SALE" && <NewCountDown deadline={metaState.time[mode]} />}
                 </Box>
             )}
             <Flex direction="column" flex="3" overflow="auto" h="full">

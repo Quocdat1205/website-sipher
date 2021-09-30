@@ -11,7 +11,7 @@ interface NavBarLinkProps extends FlexProps {
     href: string
     size?: MyTextProps["size"]
 }
-
+// hehe
 export const NavBarLink = ({ onClick, size, text, active, href, ...rest }: NavBarLinkProps) => {
     const router = useRouter()
     return (
@@ -25,6 +25,11 @@ export const NavBarLink = ({ onClick, size, text, active, href, ...rest }: NavBa
                 letterSpacing="2px"
                 color={active ? "#FF710B" : "white"}
                 size={size}
+                px={2}
+                py={1}
+                bgGradient={active ? "linear(to-t, whiteAlpha.100, transparent)" : ""}
+                borderBottom="2px"
+                borderColor={active ? "main.orange" : "transparent"}
             >
                 {text}
             </MyText>
