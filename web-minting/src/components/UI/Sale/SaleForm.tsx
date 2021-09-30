@@ -18,7 +18,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const { metaState, toast, saleTime } = useWalletContext()
     const queryClient = useQueryClient()
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
-    const [currentPrice, setCurrentPrice] = useState(0.1)
+    const [currentPrice, setCurrentPrice] = useState(0)
     const [slot, setSlot] = useState(0)
     const [isBtnDisabled, setIsBtnDisabled] = useState(false)
     const handlePriceChange = useCallback((value: number) => setCurrentPrice(value), [])
@@ -31,6 +31,15 @@ const SaleForm = ({ mode }: SaleFormProps) => {
         console.log("current price", price)
         return price
     }
+
+    useEffect(() => {
+        const fetcher = async () => {
+            let price = await getCurrentPrice()
+            setCurrentPrice(price)
+        }
+        fetcher()
+    }, [])
+
     const { data: userRecord, isLoading: isLoadingRecord } = useQuery("user-record", () =>
         getUserRecord(metaState.accountLogin)
     )
