@@ -17,13 +17,11 @@ interface CountDownProps {
 const CountDown = ({ deadline }: CountDownProps) => {
     const runTimeOut = useRef(true)
     const queryClient = useQueryClient()
-    console.log("Deadline", deadline)
     const timeToCountdown = () => {
         const currentTime = new Date().getTime()
         const diffInSeconds = differenceInSeconds(deadline, currentTime)
         if (diffInSeconds <= 1) {
             queryClient.invalidateQueries("sale-config")
-            console.log("success")
             return {
                 days: 0,
                 hours: 0,

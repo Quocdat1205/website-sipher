@@ -18,7 +18,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const { metaState, toast } = useWalletContext()
     const queryClient = useQueryClient()
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
-    const [currentPrice, setCurrentPrice] = useState(0.1)
+    const [currentPrice, setCurrentPrice] = useState(mode === "private" ? 0.1 : 1)
     const [slot, setSlot] = useState(0)
     const fetched = useRef(false)
     // const handlePriceChange = useCallback((value: number) => setCurrentPrice(value), [])
@@ -32,7 +32,6 @@ const SaleForm = ({ mode }: SaleFormProps) => {
 
     const { isFetching } = useQuery("current-price", getCurrentPrice, {
         enabled: metaState.status.public === "SALE",
-        initialData: 0.1,
         refetchInterval: mode === "public" ? FETCHING_INTERVAL : false,
         onSuccess: price => {
             setCurrentPrice(price)

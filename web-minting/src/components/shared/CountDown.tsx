@@ -15,7 +15,6 @@ interface CountDownProps {
 const CountDown = ({ deadline }: CountDownProps) => {
     const runTimeOut = useRef(true)
     const queryClient = useQueryClient()
-    console.log("Deadline", deadline)
     const timeToCountdown = () => {
         const currentTime = new Date().getTime()
         const diffInSeconds = differenceInSeconds(deadline, currentTime)

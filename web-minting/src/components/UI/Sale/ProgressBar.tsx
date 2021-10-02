@@ -67,6 +67,7 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
         for (let i = 1; i < START_PRICE / BASE_PRICE; i++) {
             blocks.push(
                 <Box
+                    key={i}
                     h="full"
                     flex={1}
                     bg={i % 2 === 0 ? "blackAlpha.200" : "whiteAlpha.500"}

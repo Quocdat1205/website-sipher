@@ -144,7 +144,6 @@ export const useMetamask = () => {
         enabled: !!metaMaskProvider,
         onSuccess: data => {
             getStatus(data)
-            console.log("SALE TIME", data)
             setSaleTime({
                 private: data[0] * 1000,
                 public: data[1] * 1000,
