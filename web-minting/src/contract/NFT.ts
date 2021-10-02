@@ -53,6 +53,13 @@ const NFT_ABI: any = [
     },
     {
         inputs: [],
+        name: "ENABLE_TRANSFER_TIME",
+        outputs: [{ internalType: "uint64", name: "", type: "uint64" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
         name: "MAX_GENESIS_SUPPLY",
         outputs: [{ internalType: "uint64", name: "", type: "uint64" }],
         stateMutability: "view",

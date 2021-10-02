@@ -43,7 +43,7 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
                 </Flex>
             )}
             <MyText color={active ? "main.lightGreen" : "inherit"}>{title}</MyText>
-            <Img src={src} alt={title} />
+            <Img src={src} alt={title} h="2rem" />
         </Flex>
     )
 }

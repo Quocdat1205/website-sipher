@@ -1,7 +1,7 @@
 export const sale = {
     public: {
-        NOT_FOR_SALE: ["Each address will be able to mint 05 NFTs at maximum.", "Public sale start time."],
-        SALE: ["Each address will be able to mint 05 NFTs at maximum.", "Public sale end time."],
+        NOT_FOR_SALE: ["Each address will be able to mint 05 NFTs at maximum.", "Public sale start time:"],
+        SALE: ["Each address will be able to mint 05 NFTs at maximum.", "Public sale end time:"],
     },
     private: {
         NOT_FOR_SALE: [

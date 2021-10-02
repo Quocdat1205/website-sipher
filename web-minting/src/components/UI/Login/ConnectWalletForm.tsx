@@ -1,4 +1,4 @@
-import { Box, Flex, VStack, Grid, chakra } from "@chakra-ui/react"
+import { Box, Flex, VStack, Grid, chakra, Button } from "@chakra-ui/react"
 import { MyText } from "@sipher/web-components"
 import WalletCard from "./WalletCard"
 import useWalletContext from "@hooks/useWalletContext"
@@ -29,6 +29,7 @@ const ConnectWalletForm = () => {
                     src="/images/icons/metaMask.png"
                     title="MetaMask"
                 />
+                <WalletCard src="/images/icons/ConnectWallet.png" title="WalletConnect" />
                 <WalletCard disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" />
                 <WalletCard disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" />
             </VStack>

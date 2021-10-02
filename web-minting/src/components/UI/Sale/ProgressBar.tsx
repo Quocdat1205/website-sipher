@@ -53,7 +53,7 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
             firstTime.current = false
         } else {
             onPriceChange && onPriceChange(currentPrice)
-            status === "SALE" && toast({ title: "NFT price has changed!" })
+            // status === "SALE" && toast({ title: "NFT price has changed!" })
         }
     }, [currentPrice, onPriceChange, status, toast])
 

@@ -1,5 +1,5 @@
 import { Button, chakra, Flex, Spinner } from "@chakra-ui/react"
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useQuery, useQueryClient } from "react-query"
 import { checkSmartContract } from "@api/index"
 import { CHAIN_ID, FETCHING_INTERVAL, PUBLIC_CAP } from "@constant/index"
@@ -18,8 +18,9 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     const { metaState, toast } = useWalletContext()
     const queryClient = useQueryClient()
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
-    const [currentPrice, setCurrentPrice] = useState(0)
+    const [currentPrice, setCurrentPrice] = useState(0.1)
     const [slot, setSlot] = useState(0)
+    const fetched = useRef(false)
     // const handlePriceChange = useCallback((value: number) => setCurrentPrice(value), [])
     const getCurrentPrice = async () => {
         let price = 0
@@ -30,9 +31,13 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     }
 
     const { isFetching } = useQuery("current-price", getCurrentPrice, {
-        initialData: 0,
+        enabled: metaState.status.public === "SALE",
+        initialData: 0.1,
         refetchInterval: mode === "public" ? FETCHING_INTERVAL : false,
-        onSuccess: setCurrentPrice,
+        onSuccess: price => {
+            setCurrentPrice(price)
+            if (!fetched.current) fetched.current = true
+        },
     })
 
     // useEffect(() => {
@@ -42,6 +47,13 @@ const SaleForm = ({ mode }: SaleFormProps) => {
     //     }
     //     fetcher()
     // }, [])
+
+    useEffect(() => {
+        if (mode === "private") return
+        if (fetched.current) {
+            toast({ title: "NFT price has changed!" })
+        }
+    }, [currentPrice])
 
     const { data: userRecord, isLoading: isLoadingRecord } = useQuery(
         "user-record",

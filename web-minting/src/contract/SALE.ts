@@ -41,6 +41,12 @@ const SALE_ABI: any = [
     },
     {
         anonymous: false,
+        inputs: [{ indexed: false, internalType: "uint256", name: "refundAmount", type: "uint256" }],
+        name: "Refund",
+        type: "event",
+    },
+    {
+        anonymous: false,
         inputs: [{ indexed: true, internalType: "address", name: "trigger", type: "address" }],
         name: "RollStartIndex",
         type: "event",
