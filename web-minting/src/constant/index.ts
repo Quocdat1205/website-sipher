@@ -16,3 +16,5 @@ export const INTERVAL = 300 * 1000
 export const PUBLIC_CAP = 5
 // Transition time between price change
 export const TRANSITION = 15000
+// Price fetching interval
+export const FETCHING_INTERVAL = 15000

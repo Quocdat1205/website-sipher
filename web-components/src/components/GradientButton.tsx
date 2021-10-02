@@ -33,12 +33,12 @@ export const GradientButton = ({
             target="_blank"
             rel={rel}
             textTransform="uppercase"
-            w="full"
             rounded="md"
-            p={2}
+            py={3}
+            px={8}
+            bgColor="white"
             bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
-            fontSize="sm"
-            fontWeight="semibold"
+            fontSize="xs"
             color="white"
             shadow="base"
             letterSpacing="1px"
@@ -50,12 +50,14 @@ export const GradientButton = ({
             {isLoading ? (
                 <Flex align="center" justify="center">
                     <Spinner size="sm" thickness="3px" />
-                    <MyText fontSize={fontSize} ml={4}>
+                    <MyText fontSize={fontSize} ml={4} fontWeight="bold">
                         {loadingText}
                     </MyText>
                 </Flex>
             ) : (
-                <MyText fontSize={fontSize}>{text}</MyText>
+                <MyText fontSize={fontSize} letterSpacing="2px" fontWeight="bold">
+                    {text}
+                </MyText>
             )}
         </Box>
     )

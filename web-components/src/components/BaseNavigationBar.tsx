@@ -15,14 +15,14 @@ interface BaseNavigationBarProps {
 export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children }: BaseNavigationBarProps) => {
     const router = useRouter()
     return (
-        <Flex px={4} py={4} bg="black" align="center" justify="space-between" overflow="visible">
+        <Flex px={4} py={4} bg="blackAlpha.900" align="center" justify="space-between" overflow="visible">
             <Flex mr="2" flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
                 <Img src={logoPath} h={["1.5rem", "2rem"]} alt="sipher-logo" />
             </Flex>
             <HStack
                 spacing={[2, 2, 2, 4]}
                 flex={1}
-                justify="space-evenly"
+                justify="center"
                 sx={{
                     "@media (max-width: 960px)": {
                         display: "none",

@@ -53,23 +53,25 @@ export const Footer = () => {
     }
 
     return (
-        <Flex align="center" justify="center" w="full" bg="main.lightGray" py={4} pt={6} direction="column">
+        <Flex align="center" justify="center" w="full" bg="main.lightGray" pb={4} pt={8} direction="column">
             <Flex direction="column" maxW="48rem" align="center" px="4">
-                <MyText size="large" fontWeight="bold" textTransform="uppercase">
+                <MyText size="large" fontWeight="bold" textTransform="uppercase" letterSpacing="3px">
                     Stay in touch with us
                 </MyText>
-                <Stack mt={4} align="center" direction={["column", "row"]} spacing={4} px={8} py={2} w="full">
+                <Stack mt={4} align="center" direction={["column", "row"]} spacing={4} px={[0, 4, 8]} py={2} w="full">
+                    <TextFormControl
+                        label="Your name"
+                        value={values.full_name}
+                        onChange={newValue => setValue("full_name", newValue)}
+                        w={["full", "15rem"]}
+                    />
                     <TextFormControl
                         label="Email address"
                         value={values.email}
                         onChange={newValue => setValue("email", newValue)}
                         error={errors.email}
                         inputRef={inputRef}
-                    />
-                    <TextFormControl
-                        label="Name"
-                        value={values.full_name}
-                        onChange={newValue => setValue("full_name", newValue)}
+                        w={["full", "20rem"]}
                     />
                     <GradientOutlineButton
                         w={["full", "auto"]}
@@ -83,11 +85,11 @@ export const Footer = () => {
             </Flex>
             <Stack
                 direction={["column", "row"]}
-                px={[4, 8, 16]}
+                px={[4, 16, 24]}
                 py={2}
                 justify="space-between"
                 spacing={4}
-                mt={[4, 8, 12]}
+                mt={[4, 6, 8]}
                 w="full"
             >
                 <Stack

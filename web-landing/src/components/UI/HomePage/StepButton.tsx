@@ -1,16 +1,19 @@
 import { Box, Flex, Img, Text } from "@chakra-ui/react"
 import React from "react"
+import IconData from "@components/shared/CommunityIcon/IconData"
+import CommunityIcon from "@components/shared/CommunityIcon"
 
 interface StepButtonProps {
-    imgSrc: string
+    icon: keyof typeof IconData
     title: string
     position?: "first" | "middle" | "last"
 }
 
-const StepButton = ({ imgSrc, title, position = "middle" }: StepButtonProps) => {
+const StepButton = ({ icon, title, position = "middle" }: StepButtonProps) => {
     return (
         <Flex
             zIndex="1"
+            flex={1}
             w={["full", "full", "7rem"]}
             px={[4, 4, 0]}
             flexDir="column"
@@ -31,7 +34,9 @@ const StepButton = ({ imgSrc, title, position = "middle" }: StepButtonProps) => 
                 overflow="hidden"
                 py={[2, 2, 0]}
             >
-                <Img bg="black" boxSize="3.5rem" src={imgSrc} alt={title} />
+                <Box>
+                    <CommunityIcon icon={icon} />
+                </Box>
                 <Box
                     h="2px"
                     bgGradient="linear(to-b, bgGradient.orange)"
@@ -52,8 +57,16 @@ const StepButton = ({ imgSrc, title, position = "middle" }: StepButtonProps) => 
                     }}
                 />
             </Flex>
-            <Box px={2} py={[2]}>
-                <Text textAlign={["left", "left", "center"]} fontSize="sm">
+            <Box
+                mt={4}
+                sx={{
+                    "@media (max-width: 960px)": {
+                        mt: 0,
+                        ml: 4,
+                    },
+                }}
+            >
+                <Text textAlign={["left", "left", "center"]} fontSize="sm" px={4}>
                     {title}
                 </Text>
             </Box>

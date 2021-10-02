@@ -1,4 +1,4 @@
-import NFT from "./NFT"
-import SALE from "./SALE"
+import NFT_ABI from "./NFT"
+import SALE_ABI from "./SALE"
 
-export { NFT, SALE }
+export { NFT_ABI, SALE_ABI }

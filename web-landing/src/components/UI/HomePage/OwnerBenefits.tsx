@@ -8,7 +8,13 @@ interface Props {}
 
 const OwnerBenefits = (props: Props) => {
     return (
-        <TextContainer headline={<chakra.span color="white">Genesis Sipher Owner Benefits</chakra.span>}>
+        <TextContainer
+            headline={
+                <chakra.span color="white" fontWeight="inherit" fontFamily="inherit">
+                    Genesis Sipher Owner Benefits
+                </chakra.span>
+            }
+        >
             <SimpleGrid columns={[1, 2, 3]} spacing="2rem" mt={8}>
                 {content.map(item => (
                     <BenefitTag key={item.text} icon={item.icon} text={item.text} linkText={item.linkText} />

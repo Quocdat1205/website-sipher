@@ -7,7 +7,7 @@ interface CommunityIconsProps extends StackProps {
 }
 
 const CommunityIcons = ({ size = "medium", ...props }: CommunityIconsProps) => {
-    const imgSize = size === "small" ? 6 : 8
+    const imgSize = size === "small" ? 8 : 10
     return (
         <HStack spacing={size === "small" ? 6 : 8} justify="center" {...props}>
             <Box as="a" href="https://twitter.com/Sipherxyz" rel="noreferrer" target="_blank">

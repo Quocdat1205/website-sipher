@@ -9,7 +9,7 @@ import { ReactElement, ReactNode } from "react"
 import Script from "next/script"
 import SubscribeModal from "@components/shared/SubscribeModal"
 import { QueryClient, QueryClientProvider } from "react-query"
-
+import "../style.css"
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode
 }

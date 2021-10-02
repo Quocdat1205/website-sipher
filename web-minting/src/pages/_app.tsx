@@ -4,6 +4,7 @@ import { ReactElement, ReactNode, useEffect } from "react"
 import { NextPage } from "next"
 import Head from "next/head"
 import Script from "next/script"
+import "../style.css"
 
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode

@@ -54,10 +54,14 @@ export const GradientOutlineButton = ({
                 {isLoading ? (
                     <Flex align="center" justify="center">
                         <Spinner size="sm" thickness="3px" />
-                        <MyText ml={4}>{loadingText}</MyText>
+                        <MyText ml={4} fontWeight="bold" letterSpacing="2px">
+                            {loadingText}
+                        </MyText>
                     </Flex>
                 ) : (
-                    <MyText>{text}</MyText>
+                    <MyText fontWeight="bold" letterSpacing="2px">
+                        {text}
+                    </MyText>
                 )}
             </Box>
         </Box>

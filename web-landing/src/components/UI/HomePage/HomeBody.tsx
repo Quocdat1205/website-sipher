@@ -2,7 +2,7 @@
 
 import { Grid, Flex, Center, Img, Box } from "@chakra-ui/react"
 import { GradientButton, MyHeading, MyText } from "@sipher/web-components"
-import { ViewContainer, BackgroundContainer } from "@components/shared"
+import { ViewContainer, BackgroundContainer, CountDown } from "@components/shared"
 import IntroductionVideo from "./IntroductionVideo"
 import SaleSchedule from "./SaleSchedule"
 import WhatIsSipher from "./WhatIsSipher"
@@ -10,6 +10,7 @@ import OwnerBenefits from "./OwnerBenefits"
 import PlayToEarn from "./PlayToEarn"
 import JoinTheCommunity from "./JoinTheCommunity"
 import Backers from "./Backers"
+import NekoTeaser from "./NekoTeaser"
 interface HomeBodyProps {}
 
 const HomeBody = ({}: HomeBodyProps) => {
@@ -26,40 +27,58 @@ const HomeBody = ({}: HomeBodyProps) => {
             }}
         >
             <ViewContainer label="Home" mb={mb} p={0} threshold={0.2}>
-                <Box bg="url('/images/pc/home/homenew1.png') " bgRepeat="no-repeat" bgSize="100%" mb={8}>
+                <Box
+                    bg="url('/images/pc/home/homenew1.png') "
+                    bgRepeat="no-repeat"
+                    bgSize="100%"
+                    mb={8}
+                    bgPosition="center"
+                    backgroundSize="cover"
+                    pt={[24, 0, 0]}
+                >
                     <Grid
                         h="100%"
                         placeItems="center"
                         py={["4rem", "8rem"]}
                         px={4}
-                        bgGradient="linear(to-b, blackAlpha.900, transparent, blackAlpha.900)"
+                        bgGradient="linear(to-b, transparent, blackAlpha.900)"
                     >
                         <Flex direction="column" align="center">
-                            <Img src="/images/mainlogo.png" h={["3rem", "4.5rem", "6rem"]} alt="sipher-logo" mb={4} />
-                            <MyHeading color="whiteAlpha.900" fontWeight="thin" fontSize={["2xl", "3xl", "4xl"]}>
-                                SOLD OUT
-                            </MyHeading>
-                            <MyText textAlign="center">Thanks to all of our early adopters and our community</MyText>
-                            <MyText textAlign="center">Sipher Inus are now available on OpenSea</MyText>
+                            <Img
+                                src="/images/mainlogo.svg"
+                                h={["6.5rem", "7rem", "8.5rem", "10rem"]}
+                                alt="sipher-logo"
+                                mb={6}
+                            />
+                            <MyText
+                                color="whiteAlpha.900"
+                                fontWeight="500"
+                                size="large"
+                                letterSpacing="2px"
+                                textAlign="center"
+                            >
+                                OFFICIAL NEKO LAUNCH 09/09/2021 - 09:00AM GMT+7
+                            </MyText>
+                            <CountDown deadline={1633975965271} />
                             <GradientButton
                                 as="a"
                                 rounded="full"
                                 text="Buy Sipher On OpenSea"
+                                fontWeight="bold"
                                 w="fit-content"
-                                px={[6, 6, 10]}
-                                py={[2, 2, 3]}
-                                mt={4}
+                                mt={6}
+                                px={12}
                                 href="https://opensea.io/collection/sipheriansurge"
                                 rel="noreferrer"
                             />
                         </Flex>
                     </Grid>
                 </Box>
-                <Center px={4} mb={8}>
+                <Center px={4} mb={8} mt={24}>
                     <SaleSchedule />
                 </Center>
                 <Center px={4}>
-                    <IntroductionVideo videoSrc="/video/video.mp4" imgSrc="/images/pc/home/nekoteaser.png" />
+                    <NekoTeaser />
                 </Center>
             </ViewContainer>
             <ViewContainer label="What is Sipher" mb={mb}>
@@ -88,7 +107,9 @@ const HomeBody = ({}: HomeBodyProps) => {
                     bg="url(./images/pc/home/bannerhome.png)"
                     bgSize="100%"
                     bgRepeat="no-repeat"
-                    py={["4rem", "6rem"]}
+                    bgPosition="center"
+                    backgroundSize="cover"
+                    pt={"12rem"}
                     px={4}
                 >
                     <JoinTheCommunity />

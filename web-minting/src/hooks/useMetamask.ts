@@ -18,16 +18,12 @@ interface TypeState {
         id: string | null
         name: string
     } | null
-    isConnected: boolean
     isSmartContract: "NOT_CONNECT" | "CONNECT" | "ERROR"
     time: {
         private: number
         public: number
     }
-    status: {
-        private: string
-        public: string
-    }
+    status: Record<"private" | "public", "NOT_FOR_SALE" | "SALE" | "END_SALE">
     isWhitelisted: {
         proof: string[]
         cap: number
@@ -38,7 +34,6 @@ interface TypeState {
 const initialState: TypeState = {
     accountLogin: "",
     chain: null,
-    isConnected: false,
     isSmartContract: "NOT_CONNECT",
     time: { private: 0, public: 0 },
     status: { private: "NOT_FOR_SALE", public: "NOT_FOR_SALE" },
@@ -77,7 +72,6 @@ export const useMetamask = () => {
             }
             initForm({
                 ...values,
-                isConnected: true,
                 chain: chainInfo,
                 accessToken: token,
                 isWhitelisted: whitelistInfo,
@@ -109,7 +103,6 @@ export const useMetamask = () => {
     const logout = () => {
         initForm({
             ...values,
-            isConnected: false,
             accountLogin: "",
             accessToken: "",
         })
@@ -120,18 +113,14 @@ export const useMetamask = () => {
     useEffect(() => {
         if (metaMaskProvider) {
             metaMaskProvider.on("chainChanged", async () => {
-                // const _chainId = parseInt(chainId, 16).toString()
-                // const _chainInfo = { id: _chainId, name: getChainName(_chainId) }
-                // setValue("chain", _chainInfo)
                 window.location.reload()
             })
 
             //check account wallet change
-            metaMaskProvider.on("accountsChanged", async accounts => {
+            metaMaskProvider.on("accountsChanged", async (accounts: string[]) => {
                 if (accounts.length) {
                     setValue("accountLogin", "")
                     setValue("accessToken", "")
-                    setValue("isConnected", false)
                 }
             })
         }
@@ -140,11 +129,10 @@ export const useMetamask = () => {
                 metaMaskProvider.removeListener("chainChanged", async () => {
                     window.location.reload()
                 })
-                metaMaskProvider.removeListener("accountsChanged", async accounts => {
+                metaMaskProvider.removeListener("accountsChanged", async (accounts: string[]) => {
                     if (accounts.length) {
                         setValue("accountLogin", "")
                         setValue("accessToken", "")
-                        setValue("isConnected", false)
                     }
                 })
             }

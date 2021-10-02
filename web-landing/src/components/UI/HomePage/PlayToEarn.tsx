@@ -9,14 +9,14 @@ const PlayToEarn = () => {
             <MyText textAlign="center" textTransform="uppercase" fontWeight="bold" size="large" letterSpacing="2px">
                 A whole new world awaits in two main game modes:
             </MyText>
-            <Stack mt="8" direction={["column", "column", "row"]} spacing={[8, 8, 16]}>
+            <Stack mt="8" direction={["column", "column", "row"]} spacing={6}>
                 {content.map(section => (
                     <Box key={section.title} flex={1}>
                         <GradientOutlineButton text={section.title} w="full" />
                         <Box mt={4}>
                             <MyText fontWeight="bold">{section.headline}</MyText>
                             {section.paragraphs.map(p => (
-                                <MyText key={p} mt={[2, 4]}>
+                                <MyText key={p} mb={6} textAlign="justify" fontWeight={300}>
                                     {p}
                                 </MyText>
                             ))}

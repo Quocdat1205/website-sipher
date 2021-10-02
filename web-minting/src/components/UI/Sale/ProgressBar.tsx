@@ -2,39 +2,26 @@
 
 import { Box, Flex, Img } from "@chakra-ui/react"
 import useWalletContext from "@hooks/useWalletContext"
-import { MyText, useChakraToast } from "@sipher/web-components"
+import { useChakraToast } from "@sipher/web-components"
 import { format } from "date-fns"
 import { useEffect, useRef, useState } from "react"
-import { START_PRICE, BASE_PRICE, PRICE_STEP, INTERVAL, TRANSITION } from "@constant/index"
+import { START_PRICE, BASE_PRICE, PRICE_STEP, INTERVAL } from "@constant/index"
 interface ProgressBarProps {
-    status: string
-    startPrice?: number
-    basePrice?: number
-    priceStep?: number
-    interval?: number
-    transitionTime?: number
-    publicSaleTime: number
     onPriceChange?: (price: number) => void
-    setIsBtnDisabled: (value: boolean) => void
 }
 
-const ProgressBar = ({
-    status,
-    startPrice = START_PRICE,
-    basePrice = BASE_PRICE,
-    priceStep = PRICE_STEP,
-    interval = INTERVAL,
-    transitionTime = TRANSITION,
-    publicSaleTime,
-    onPriceChange,
-    setIsBtnDisabled,
-}: ProgressBarProps) => {
+const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
     const firstTime = useRef(true)
     const [currentTime, setCurrentTime] = useState(new Date().getTime())
-    const { saleTime } = useWalletContext()
+    const {
+        saleTime,
+        metaState: {
+            status: { public: status },
+        },
+    } = useWalletContext()
     const currentPrice = parseFloat(
         Math.min(
-            Math.max(startPrice - Math.floor((currentTime - publicSaleTime) / interval) * priceStep, 0.1),
+            Math.max(START_PRICE - Math.floor((currentTime - saleTime.public) / INTERVAL) * PRICE_STEP, 0.1),
             1
         ).toFixed(2)
     )
@@ -46,29 +33,20 @@ const ProgressBar = ({
         return () => clearTimeout(timeout)
     })
 
-    useEffect(() => {
-        console.log("Checking price...")
-        if (currentTime > saleTime.public + ((startPrice - basePrice) / priceStep) * interval) return
-        const cycleTime = (currentTime - publicSaleTime) % interval
-        console.log((currentTime - publicSaleTime) % interval)
-        if (interval - cycleTime < transitionTime) {
-            console.log("Set true")
-            setIsBtnDisabled(true)
-        } else if (cycleTime > transitionTime) {
-            console.log("Set false")
-            setIsBtnDisabled(false)
-        }
-    }, [
-        currentTime,
-        basePrice,
-        interval,
-        priceStep,
-        publicSaleTime,
-        saleTime.public,
-        startPrice,
-        transitionTime,
-        setIsBtnDisabled,
-    ])
+    // useEffect(() => {
+    //     // * When the time go over the auction time, stop checking
+    //     if (currentTime > saleTime.public + ((START_PRICE - BASE_PRICE) / PRICE_STEP) * INTERVAL) return
+
+    //     // * Split time into cycles
+    //     const cycleTime = (currentTime - saleTime.public) % INTERVAL
+    //     // * At "TRANSITION" seconds before cycle end, disable mint button
+    //     if (INTERVAL - cycleTime < TRANSITION) {
+    //         if (!mintable) setMintable(true)
+    //         // * At "TRANSITION" seconds after cycle start, enable mint button
+    //     } else if (cycleTime > TRANSITION) {
+    //         if (mintable) setMintable(false)
+    //     }
+    // }, [currentTime, saleTime.public, mintable, setMintable])
 
     useEffect(() => {
         if (firstTime.current) {
@@ -80,13 +58,13 @@ const ProgressBar = ({
     }, [currentPrice, onPriceChange, status, toast])
 
     const priceToPercent = (price: number) => {
-        const pct = (((price - basePrice) / priceStep) * interval * 100) / (saleTime.end - saleTime.public)
+        const pct = (((price - BASE_PRICE) / PRICE_STEP) * INTERVAL * 100) / (saleTime.end - saleTime.public)
         return `${pct}%`
     }
 
     const generateBlock = () => {
         let blocks: React.ReactNode[] = []
-        for (let i = 1; i < startPrice / basePrice; i++) {
+        for (let i = 1; i < START_PRICE / BASE_PRICE; i++) {
             blocks.push(
                 <Box
                     h="full"
@@ -102,7 +80,7 @@ const ProgressBar = ({
     return (
         <Box h="0.5rem" w="full" pos="relative" mb={2}>
             <Flex
-                w={priceToPercent(startPrice)}
+                w={priceToPercent(START_PRICE)}
                 h="full"
                 pos="absolute"
                 top={0}
@@ -148,32 +126,32 @@ const ProgressBar = ({
                 fontWeight="bold"
                 fontSize="sm"
             >
-                {`${startPrice} ETH`}
+                {`${START_PRICE} ETH`}
             </Box>
             <Box pos="absolute" fontSize="xs" left={0} transform="translate(-10%, 10%)" color="main.brightRed">
-                {format(new Date(publicSaleTime), "H:mm d/M")}
+                {format(new Date(saleTime.public), "H:mm d/M")}
             </Box>
 
             {/* 0.1 */}
             <Box
                 pos="absolute"
                 color="main.yellow"
-                left={priceToPercent(startPrice)}
+                left={priceToPercent(START_PRICE)}
                 top={"-0.25rem"}
                 transform="translate(-50%, -100%)"
                 fontWeight="bold"
                 fontSize="sm"
             >
-                {`${basePrice} ETH`}
+                {`${BASE_PRICE} ETH`}
             </Box>
             <Box
                 pos="absolute"
-                left={priceToPercent(startPrice)}
+                left={priceToPercent(START_PRICE)}
                 transform="translate(-50%, 10%)"
                 color="main.brightRed"
                 fontSize="xs"
             >
-                {format(new Date(publicSaleTime + ((1 - 0.1) / priceStep) * interval), "H:mm d/M")}
+                {format(new Date(saleTime.public + ((1 - 0.1) / PRICE_STEP) * INTERVAL), "H:mm d/M")}
             </Box>
 
             {/* END SALE */}
@@ -196,23 +174,3 @@ const ProgressBar = ({
 }
 
 export default ProgressBar
-
-{
-    /* 0.5
-            <Box
-                pos="absolute"
-                color="main.yellow"
-                left={priceToPercent(0.5)}
-                top={"-0.25rem"}
-                transform="translate(-50%, -100%)"
-                fontWeight="bold"
-            >
-                {"0.5 ETH"}
-            </Box>
-
-            <Box pos="absolute" fontSize="sm" left={priceToPercent(0.5)} transform="translate(-50%, 10%)">
-                <MyText color="main.brightRed" size="small">
-                    {format(new Date(publicSaleTime + ((1 - 0.5) / priceStep) * interval), "H:mm d/M")}
-                </MyText>
-            </Box> */
-}

@@ -6,7 +6,7 @@ export const theme = extendTheme({
             yellow: "#F4B533",
             amber: "#B75473",
             purple: "#391798",
-            gray: "#4C4C4C",
+            gray: "#828282",
             teal: "#4C4C4C",
             powerPink: "#DD9EED",
             greenGray: "#6D7779",
@@ -35,7 +35,7 @@ export const theme = extendTheme({
     styles: {
         global: {
             "*": {
-                fontFamily: "Chakra Petch",
+                fontFamily: "Mark Pro",
                 color: "inherit",
             },
             "div::-webkit-scrollbar": {
@@ -56,14 +56,16 @@ export const theme = extendTheme({
     components: {
         Heading: {
             baseStyle: {
-                fontFamily: "Chakra Petch",
+                fontFamily: "Brandon",
                 letterSpacing: "1px",
                 color: "whiteAlpha.900",
             },
         },
         Text: {
             baseStyle: {
+                fontFamily: "Mark Pro",
                 color: "whiteAlpha.900",
+                fontWeight: 300,
             },
         },
     },

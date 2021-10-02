@@ -13,10 +13,10 @@ export const TextContainer = ({ headline, children, maxW = "48rem", ...rest }: T
         <Box w="full" maxW={maxW} {...rest}>
             <GradientHeading
                 textTransform="uppercase"
+                fontWeight="normal"
                 w="full"
                 textAlign="center"
-                fontWeight="semibold"
-                fontSize={["2xl", "3xl", "4xl"]}
+                fontSize={["4xl", "5xl"]}
                 letterSpacing={["1px", "2px", "4px"]}
                 mb={4}
             >

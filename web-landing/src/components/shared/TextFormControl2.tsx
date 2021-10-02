@@ -26,9 +26,9 @@ export const TextFormControl = ({ label, value, onChange, error, type, inputRef,
                 rounded="full"
                 borderColor="main.gray"
                 _focus={{
-                    borderColor: "main.yellow",
+                    borderColor: "main.orange",
                 }}
-                fontSize={["sm", "md", "lg"]}
+                fontSize={["sm", "md"]}
                 color="whiteAlpha.900"
                 px={6}
                 ref={inputRef}

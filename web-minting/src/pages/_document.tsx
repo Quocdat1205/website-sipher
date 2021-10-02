@@ -12,6 +12,11 @@ class MyDocument extends Document {
                         href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
                         rel="stylesheet"
                     />
+                    <link rel="preload" href="/fonts/BrandonGrotesque/main.otf" as="font" crossOrigin="" />
+                    <link rel="preload" href="/fonts/MarkPro/MARKPRO-BOLD.OTF" as="font" crossOrigin="" />
+                    <link rel="preload" href="/fonts/MarkPro/MARKPRO-MEDIUM.OTF" as="font" crossOrigin="" />
+                    <link rel="preload" href="/fonts/MarkPro/MARKPRO-REGULAR.OTF" as="font" crossOrigin="" />
+                    <link rel="preload" href="/fonts/MarkPro/MARKPRO-BOOK.OTF" as="font" crossOrigin="" />
                 </Head>
                 <body>
                     <Main />

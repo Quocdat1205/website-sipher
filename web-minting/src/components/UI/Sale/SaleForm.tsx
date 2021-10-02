@@ -1,8 +1,8 @@
-import { Button, chakra, Flex } from "@chakra-ui/react"
-import React, { useCallback, useEffect, useState } from "react"
+import { Button, chakra, Flex, Spinner } from "@chakra-ui/react"
+import React, { useState } from "react"
 import { useQuery, useQueryClient } from "react-query"
 import { checkSmartContract } from "@api/index"
-import { CHAIN_ID, INTERVAL, PRICE_STEP, START_PRICE, PUBLIC_CAP, BASE_PRICE } from "@constant/index"
+import { CHAIN_ID, FETCHING_INTERVAL, PUBLIC_CAP } from "@constant/index"
 import { MyHeading, MyText } from "@sipher/web-components"
 import ProgressBar from "@components/UI/Sale/ProgressBar"
 import useWalletContext from "@hooks/useWalletContext"
@@ -15,14 +15,12 @@ interface SaleFormProps {
 }
 
 const SaleForm = ({ mode }: SaleFormProps) => {
-    const { metaState, toast, saleTime } = useWalletContext()
+    const { metaState, toast } = useWalletContext()
     const queryClient = useQueryClient()
     const [isLoadingBtn, setIsLoadingBtn] = useState(false)
     const [currentPrice, setCurrentPrice] = useState(0)
     const [slot, setSlot] = useState(0)
-    const [isBtnDisabled, setIsBtnDisabled] = useState(false)
-    const handlePriceChange = useCallback((value: number) => setCurrentPrice(value), [])
-    const handleSetButton = useCallback((value: boolean) => setIsBtnDisabled(value), [])
+    // const handlePriceChange = useCallback((value: number) => setCurrentPrice(value), [])
     const getCurrentPrice = async () => {
         let price = 0
         if (mode === "public") {
@@ -31,16 +29,29 @@ const SaleForm = ({ mode }: SaleFormProps) => {
         return price
     }
 
-    useEffect(() => {
-        const fetcher = async () => {
-            let price = await getCurrentPrice()
-            setCurrentPrice(price)
-        }
-        fetcher()
-    }, [])
+    const { isFetching } = useQuery("current-price", getCurrentPrice, {
+        initialData: 0,
+        refetchInterval: mode === "public" ? FETCHING_INTERVAL : false,
+        onSuccess: setCurrentPrice,
+    })
 
-    const { data: userRecord, isLoading: isLoadingRecord } = useQuery("user-record", () =>
-        getUserRecord(metaState.accountLogin)
+    // useEffect(() => {
+    //     const fetcher = async () => {
+    //         let price = await getCurrentPrice()
+    //         setCurrentPrice(price)
+    //     }
+    //     fetcher()
+    // }, [])
+
+    const { data: userRecord, isLoading: isLoadingRecord } = useQuery(
+        "user-record",
+        () => getUserRecord(metaState.accountLogin),
+        {
+            initialData: {
+                publicBought: 0,
+                whitelistBought: 0,
+            },
+        }
     )
     const calculateSlotPrice = () => {
         return parseFloat((slot * currentPrice).toFixed(2))
@@ -136,16 +147,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
             </MyText>
             {mode === "public" && metaState.status.public !== "END_SALE" && (
                 <Flex p="2" pt="8">
-                    <ProgressBar
-                        status={metaState.status.public}
-                        // startPrice={START_PRICE}
-                        // basePrice={BASE_PRICE}
-                        // priceStep={PRICE_STEP}
-                        // interval={INTERVAL}
-                        publicSaleTime={saleTime.public}
-                        onPriceChange={handlePriceChange}
-                        setIsBtnDisabled={handleSetButton}
-                    />
+                    <ProgressBar />
                 </Flex>
             )}
             <Flex justify="space-between" mt="2">
@@ -169,7 +171,10 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 w="100%"
                 pt="2"
             >
-                <MyText>{`Unit price: ${parseFloat(currentPrice.toFixed(2))} ETH`}</MyText>
+                <MyText>
+                    {`Unit price: ${parseFloat(currentPrice.toFixed(2))} ETH`}
+                    {isFetching && <Spinner size="xs" ml={2} thickness="1px" />}
+                </MyText>
                 <MyText ml="auto">
                     You have purchased: {userRecord ? userRecord.publicBought + userRecord.whitelistBought : "..."}
                 </MyText>
@@ -186,15 +191,14 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                     ml="auto"
                     bg="red.500"
                     fontSize="sm"
-                    isLoading={isLoadingBtn || isBtnDisabled}
+                    isLoading={isLoadingBtn}
                     w="12rem"
-                    loadingText={isBtnDisabled ? "PRICE IS CHANGING" : "MINTING"}
+                    loadingText={"MINTING"}
                     _hover={{ bg: "red.400" }}
                     _active={{ bg: "red.600" }}
                     _focus={{ shadow: "none" }}
                     onClick={handleConfirm}
                     isDisabled={
-                        isBtnDisabled ||
                         isLoadingRecord ||
                         slot === 0 ||
                         metaState.status[mode] === "NOT_FOR_SALE" ||
