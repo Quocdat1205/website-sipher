@@ -11,11 +11,10 @@ interface NavBarProps {}
 
 export const navMenus = [
 	{ id: "Home", path: "/" },
-	{ id: "Why Sipher", path: "/why-sipher/the-world" },
-	{ id: "Sales", path: "/sales" },
 	{ id: "About Us", path: "/about-us/vision-and-roadmap" },
-	{ id: "Laboratory", path: "/laboratory" },
-	{ id: "FAQ & Social", path: "/faq-and-social" },
+	{ id: "World Of Sipher", path: "/world-of-sipher" },
+	{ id: "News", path: "/news" },
+	{ id: "NFT", path: "/nft" },
 ]
 
 export const NavBar = ({}: NavBarProps) => {
