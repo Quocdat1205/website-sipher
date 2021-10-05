@@ -12,10 +12,11 @@ const HeaderBackground = ({ title, description }: Props) => {
 			justify="center"
 			bg="url(/images/pc/bg-title.png)"
 			bgRepeat="no-repeat"
-			bgSize="100%"
+			bgSize="cover"
 			pt="11rem"
 			pb="7rem"
 			flexDir="column"
+			h="100%"
 		>
 			<Heading letterSpacing="10px" fontSize={["xl", "2xl", "3xl", "4xl"]}>
 				{title}

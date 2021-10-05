@@ -1,9 +1,9 @@
 import { NextPageWithLayout } from "@pages/_app"
 import { ReactElement } from "react"
 import Head from "next/head"
-import MainLayout from "@components/UI/MainLayout"
 import AboutUsUI from "@components/UI/AboutUsPage"
 import TeamAndCulture from "@components/UI/AboutUsPage/TeamAndCulture"
+import AboutUsLayout from "@components/UI/AboutUsLayout"
 const AboutUsPage: NextPageWithLayout = () => {
 	return <TeamAndCulture />
 }
@@ -14,9 +14,9 @@ AboutUsPage.getLayout = (page: ReactElement) => {
 			<Head>
 				<title>Team And Culture</title>
 			</Head>
-			<MainLayout>
+			<AboutUsLayout>
 				<AboutUsUI>{page}</AboutUsUI>
-			</MainLayout>
+			</AboutUsLayout>
 		</>
 	)
 }

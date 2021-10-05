@@ -10,7 +10,7 @@ interface AboutUsUIProps {
 
 const AboutUsUI = ({ children }: AboutUsUIProps) => {
 	return (
-		<Flex direction="column">
+		<Flex flex={1} direction="column">
 			<HeaderBackground title="ABOUT US" description="DONEC VIVERRA, METUS EU CONDIMENTUM" />
 			<Box flex={1} w="100%">
 				{children}
