@@ -1,6 +1,6 @@
 import React from "react"
 import { TextContainer } from "@components/shared"
-import { Grid } from "@chakra-ui/layout"
+import { SimpleGrid } from "@chakra-ui/layout"
 import VisionCard from "./VisionCard"
 
 interface Props {}
@@ -8,7 +8,7 @@ interface Props {}
 const Vision = (props: Props) => {
 	return (
 		<TextContainer headline="VISION">
-			<Grid templateColumns="repeat(3, 1fr)" gap={4}>
+			<SimpleGrid columns={[1, 3]} gap={4}>
 				<VisionCard
 					srcImg="/images/pc/about/vision1.png"
 					title="a community - driven game"
@@ -24,7 +24,7 @@ const Vision = (props: Props) => {
 					title="Blockchain technology knowledge"
 					description={`Bring blockchain technology to the mass - knowledge can be absorbed through "the state of fun n play"`}
 				/>
-			</Grid>
+			</SimpleGrid>
 		</TextContainer>
 	)
 }

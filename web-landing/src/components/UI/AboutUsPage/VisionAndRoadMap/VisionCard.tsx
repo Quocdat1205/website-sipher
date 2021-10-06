@@ -13,7 +13,7 @@ const VisionCard = ({ title, description, srcImg }: VisionCardProps) => {
 			<Box h="4rem">
 				<Image h="full" m="0 auto" src={srcImg} alt="" />
 			</Box>
-			<MyHeading h="4.5rem" textTransform="uppercase">
+			<MyHeading h={["2rem", "4.5rem"]} textTransform="uppercase">
 				{title}
 			</MyHeading>
 			<MyText flex={1} color="about.textGray">
