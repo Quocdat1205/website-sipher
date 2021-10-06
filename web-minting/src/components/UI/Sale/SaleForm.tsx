@@ -71,13 +71,15 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 toast({ status: "error", title: "Confirmation error!", message: "You can only buy up to 5 NFTs" })
                 return
             }
-        } else if (mode === "private" && userRecord && userRecord.whitelistBought >= states.isWhitelisted.privateCap) {
-            toast({
-                status: "error",
-                title: "Confirmation error!",
-                message: `You can only buy up to ${states.isWhitelisted.privateCap} NFTs`,
-            })
-            return
+        } else if (mode === "private") {
+            if (userRecord && userRecord.whitelistBought >= states.isWhitelisted.privateCap) {
+                toast({
+                    status: "error",
+                    title: "Confirmation error!",
+                    message: `You can only buy up to ${states.isWhitelisted.privateCap} NFTs`,
+                })
+                return
+            }
         } else if (userRecord && userRecord.freeMintBought >= states.isWhitelisted.freeMintCap) {
             toast({
                 status: "error",
