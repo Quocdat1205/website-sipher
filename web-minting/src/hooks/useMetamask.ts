@@ -49,7 +49,7 @@ const initialState: TypeState = {
 export const useMetamask = () => {
     const [isConnecting, setIsConnecting] = useState(false)
     const { values: states, setValue: setState, initForm } = useFormCore<TypeState>(initialState)
-
+    console.log(states.isWhitelisted)
     const toast = useChakraToast()
     const connect = async () => {
         try {
@@ -76,13 +76,14 @@ export const useMetamask = () => {
                 accountLogin: account.address,
             })
             let now = new Date().getTime()
-            if (now > states.saleConfig.endTime) {
-                router.push("inventory")
-            } else if (now > states.saleConfig.publicTime) {
-                router.push("public-minting")
-            } else {
-                router.push(whitelistInfo.proof.length > 0 ? "private-minting" : "public-minting")
-            }
+            if (now)
+                if (now > states.saleConfig.endTime) {
+                    router.push("inventory")
+                } else if (now > states.saleConfig.publicTime) {
+                    router.push("public-minting")
+                } else {
+                    router.push(whitelistInfo.proof.length > 0 ? "private-minting" : "public-minting")
+                }
             setIsConnecting(false)
             toast({ status: "success", title: "Connected to MetaMask!" })
         } catch (error: any) {
