@@ -6,24 +6,27 @@ import data from "./CommunityIcon/IconData"
 
 interface MenuChildProps extends CenterProps {
 	menus: Record<"id" | "path", string>[]
+	isMobile?: boolean
 }
 
-const MenuChild = ({ menus, ...rest }: MenuChildProps) => {
+const MenuChild = ({ isMobile = false, menus, ...rest }: MenuChildProps) => {
 	const router = useRouter()
 
 	return (
-		<Center px={4} py={4} bg="rgba(21, 21, 21, 0.8)" overflow="visible" w="full" {...rest}>
-			<HStack
-				mr={8}
-				spacing={4}
-				flex={1}
-				justify="center"
-				sx={{
-					"@media (max-width: 960px)": {
-						display: "none",
-					},
-				}}
-			>
+		<Center
+			sx={{
+				"@media (max-width: 960px)": {
+					display: isMobile ? "flex" : "none",
+				},
+			}}
+			px={4}
+			py={4}
+			bg="rgba(21, 21, 21, 0.8)"
+			overflow="visible"
+			w="full"
+			{...rest}
+		>
+			<HStack display={["column", "row"]} spacing={4} flex={1} justify="center">
 				{menus.map((menu, index) => (
 					<NavBarLink
 						lastChild={index === menus.length - 1}

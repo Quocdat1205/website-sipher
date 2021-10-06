@@ -8,7 +8,7 @@ interface Props {}
 const Vision = (props: Props) => {
 	return (
 		<TextContainer headline="VISION">
-			<Grid templateColumns="repeat(3, 1fr)" gap={4}>
+			<Grid templateColumns={["repeat(1, 1fr)", "repeat(3, 1fr)"]} gap={4}>
 				<VisionCard
 					srcImg="/images/pc/about/vision1.png"
 					title="a community - driven game"

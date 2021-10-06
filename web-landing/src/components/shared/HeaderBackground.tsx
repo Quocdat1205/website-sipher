@@ -15,6 +15,7 @@ const HeaderBackground = ({ title, description }: Props) => {
 			bgSize="cover"
 			pt="11rem"
 			pb="7rem"
+			px="2rem"
 			flexDir="column"
 			h="100%"
 		>

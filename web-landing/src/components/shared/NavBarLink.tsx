@@ -28,7 +28,7 @@ export const NavBarLink = ({
 	return (
 		<Flex
 			onClick={onClick}
-			borderRight={isChild ? (lastChild ? "none" : "1px") : "none"}
+			borderRight={isChild ? (lastChild ? "none" : ["none", "1px"]) : "none"}
 			pr={isChild ? "4" : "0"}
 			color="white"
 			pos="relative"
@@ -38,7 +38,7 @@ export const NavBarLink = ({
 		>
 			<MyText
 				fontWeight={isChild ? "normal" : "bold"}
-				size="small"
+				size={"small"}
 				textAlign="center"
 				isTruncated
 				onClick={() => router.push(href)}
@@ -46,7 +46,7 @@ export const NavBarLink = ({
 				letterSpacing="3px"
 				color={active ? "#FF710B" : "white"}
 				px={1}
-				py={isChild ? 0 : 1}
+				py={isChild ? [1, 0] : 1}
 				bgGradient={!isChild && active ? "linear(to-t, whiteAlpha.100, transparent)" : ""}
 				borderBottom={isChild ? "none" : "2px"}
 				borderColor={active ? "main.orange" : "transparent"}

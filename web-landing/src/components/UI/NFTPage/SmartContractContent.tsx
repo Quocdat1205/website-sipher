@@ -6,8 +6,8 @@ interface Props {}
 
 const SmartContractContent = (props: Props) => {
 	return (
-		<Flex flexDir="row" w="full" maxW="48rem" align="center">
-			<Box p={2} flex={1}>
+		<Flex flexDir={["column", "row"]} w="full" maxW="48rem" align="center">
+			<Box p={4} mb={[4, 0]} flex={1}>
 				<GradientHeading
 					textTransform="uppercase"
 					fontWeight="normal"
@@ -25,7 +25,7 @@ const SmartContractContent = (props: Props) => {
 					project, our characters and our items, growing together with Sipheria.
 				</MyText>
 			</Box>
-			<Box ml={4} flex={1}>
+			<Box ml={[0, 4]} flex={1}>
 				<Image src="/images/pc/nft/banner.png" alt="" />
 			</Box>
 		</Flex>
