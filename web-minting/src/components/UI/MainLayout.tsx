@@ -9,15 +9,15 @@ interface Props {
 }
 
 const MainLayout = ({ children }: Props) => {
-    const { metaState } = useWalletContext()
+    const { states } = useWalletContext()
 
     useEffect(() => {
-        if (metaState.accessToken === "") {
+        if (states.accessToken === "") {
             window.location.href = "/"
         }
-    }, [metaState.accessToken])
+    }, [states.accessToken])
 
-    return metaState.accessToken !== "" ? (
+    return states.accessToken !== "" ? (
         <Flex
             color="whiteAlpha.900"
             bg="url(/images/bgMinting.png) no-repeat"

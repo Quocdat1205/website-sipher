@@ -7,14 +7,15 @@ import useWalletContext from "@hooks/useWalletContext"
 import SaleForm from "./SaleForm"
 import Image from "next/image"
 import mintGif from "./Minting.gif"
+import { ISalePhase } from "@@types"
 interface SaleProps {
-    mode: "public" | "private"
+    mode: ISalePhase
 }
 
 const Sale = ({ mode }: SaleProps) => {
-    const { metaState } = useWalletContext()
+    const { states } = useWalletContext()
 
-    return metaState.isSmartContract === "CONNECT" ? (
+    return states.isSmartContract === "CONNECT" ? (
         <Grid w="full" placeItems="center" p={4} overflow="auto">
             <Flex direction="column" align="center" justify="center" w="100%" maxW="52rem">
                 <Flex w="full" bg="blackAlpha.900" p={4}>

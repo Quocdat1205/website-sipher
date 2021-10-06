@@ -4,10 +4,10 @@ import React from "react"
 import { AiFillCopy } from "react-icons/ai"
 
 const AddressCopier = () => {
-    const { metaState, toast } = useWalletContext()
+    const { states, toast } = useWalletContext()
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(metaState.accountLogin)
+        await navigator.clipboard.writeText(states.accountLogin)
         toast({ status: "success", title: "Copied address to clipboard", message: "", duration: 1500 })
     }
 

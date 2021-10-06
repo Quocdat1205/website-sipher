@@ -2,8 +2,9 @@ const SALE_ABI: any = [
     {
         inputs: [
             { internalType: "contract ISipherNFT", name: "_nft", type: "address" },
-            { internalType: "uint64", name: "_whitelistTime", type: "uint64" },
             { internalType: "uint64", name: "_publicTime", type: "uint64" },
+            { internalType: "uint64", name: "_privateTime", type: "uint64" },
+            { internalType: "uint64", name: "_freeMintTime", type: "uint64" },
             { internalType: "uint64", name: "_endTime", type: "uint64" },
             { internalType: "uint32", name: "_maxSupply", type: "uint32" },
         ],
@@ -104,6 +105,13 @@ const SALE_ABI: any = [
     },
     {
         inputs: [],
+        name: "MAX_PUBLIC_BOUGHT",
+        outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
         name: "PUBLIC_SALE_CAP_PER_ADDRESS",
         outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
         stateMutability: "view",
@@ -111,15 +119,15 @@ const SALE_ABI: any = [
     },
     {
         inputs: [],
-        name: "SALE_AUCTION_PRICE_LEVEL",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        name: "REDUCE_PRICE_INTERVAL",
+        outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
         stateMutability: "view",
         type: "function",
     },
     {
         inputs: [],
-        name: "SALE_AUCTION_TIME_INTERVAL",
-        outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
+        name: "REDUCE_PRICE_LEVEL",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
         type: "function",
     },
@@ -138,9 +146,17 @@ const SALE_ABI: any = [
         type: "function",
     },
     {
+        inputs: [],
+        name: "WHITELISTED_ADDRESS_FREE_MINT_CAP",
+        outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
         inputs: [
             { internalType: "uint32", name: "amount", type: "uint32" },
-            { internalType: "uint32", name: "cap", type: "uint32" },
+            { internalType: "uint32", name: "privateCap", type: "uint32" },
+            { internalType: "uint32", name: "freeMintCap", type: "uint32" },
             { internalType: "bytes32[]", name: "proofs", type: "bytes32[]" },
         ],
         name: "buy",
@@ -168,8 +184,9 @@ const SALE_ABI: any = [
         outputs: [
             {
                 components: [
-                    { internalType: "uint64", name: "whitelistTime", type: "uint64" },
                     { internalType: "uint64", name: "publicTime", type: "uint64" },
+                    { internalType: "uint64", name: "privateTime", type: "uint64" },
+                    { internalType: "uint64", name: "freeMintTime", type: "uint64" },
                     { internalType: "uint64", name: "endTime", type: "uint64" },
                     { internalType: "uint32", name: "maxSupply", type: "uint32" },
                 ],
@@ -189,8 +206,9 @@ const SALE_ABI: any = [
                 components: [
                     { internalType: "uint32", name: "totalSold", type: "uint32" },
                     { internalType: "uint32", name: "ownerBought", type: "uint32" },
-                    { internalType: "uint32", name: "totalWhitelistSold", type: "uint32" },
                     { internalType: "uint32", name: "totalPublicSold", type: "uint32" },
+                    { internalType: "uint32", name: "totalWhitelistSold", type: "uint32" },
+                    { internalType: "uint32", name: "totalFreeMintSold", type: "uint32" },
                 ],
                 internalType: "struct ISipherNFTSale.SaleRecord",
                 name: "record",
@@ -206,8 +224,9 @@ const SALE_ABI: any = [
         outputs: [
             {
                 components: [
-                    { internalType: "uint32", name: "whitelistBought", type: "uint32" },
                     { internalType: "uint32", name: "publicBought", type: "uint32" },
+                    { internalType: "uint32", name: "whitelistBought", type: "uint32" },
+                    { internalType: "uint32", name: "freeMintBought", type: "uint32" },
                 ],
                 internalType: "struct ISipherNFTSale.UserRecord",
                 name: "record",
@@ -220,7 +239,8 @@ const SALE_ABI: any = [
     {
         inputs: [
             { internalType: "address", name: "buyer", type: "address" },
-            { internalType: "uint32", name: "cap", type: "uint32" },
+            { internalType: "uint32", name: "privateCap", type: "uint32" },
+            { internalType: "uint32", name: "freeMintCap", type: "uint32" },
             { internalType: "bytes32[]", name: "proofs", type: "bytes32[]" },
         ],
         name: "isWhitelistedAddress",

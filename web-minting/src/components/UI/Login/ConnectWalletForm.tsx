@@ -4,7 +4,7 @@ import WalletCard from "./WalletCard"
 import useWalletContext from "@hooks/useWalletContext"
 import isMobile from "is-mobile"
 const ConnectWalletForm = () => {
-    const { metaState, connect, isConnecting } = useWalletContext()
+    const { states, connect, isConnecting } = useWalletContext()
 
     return (
         <Flex direction="column" p="4" pos="relative">
@@ -24,12 +24,11 @@ const ConnectWalletForm = () => {
             <VStack p="4" align="stretch" spacing={4}>
                 <WalletCard
                     isLoading={isConnecting}
-                    active={!!metaState.accessToken}
+                    active={!!states.accessToken}
                     onClick={connect}
                     src="/images/icons/metaMask.png"
                     title="MetaMask"
                 />
-                <WalletCard src="/images/icons/ConnectWallet.png" title="WalletConnect" />
                 <WalletCard disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" />
                 <WalletCard disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" />
             </VStack>

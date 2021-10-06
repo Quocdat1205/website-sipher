@@ -14,14 +14,14 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
     const firstTime = useRef(true)
     const [currentTime, setCurrentTime] = useState(new Date().getTime())
     const {
-        saleTime,
-        metaState: {
+        states: {
             status: { public: status },
+            saleConfig,
         },
     } = useWalletContext()
     const currentPrice = parseFloat(
         Math.min(
-            Math.max(START_PRICE - Math.floor((currentTime - saleTime.public) / INTERVAL) * PRICE_STEP, 0.1),
+            Math.max(START_PRICE - Math.floor((currentTime - saleConfig.publicTime) / INTERVAL) * PRICE_STEP, 0.1),
             1
         ).toFixed(2)
     )
@@ -58,7 +58,8 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
     }, [currentPrice, onPriceChange, status, toast])
 
     const priceToPercent = (price: number) => {
-        const pct = (((price - BASE_PRICE) / PRICE_STEP) * INTERVAL * 100) / (saleTime.end - saleTime.public)
+        const pct =
+            (((price - BASE_PRICE) / PRICE_STEP) * INTERVAL * 100) / (saleConfig.privateTime - saleConfig.publicTime)
         return `${pct}%`
     }
 
@@ -96,7 +97,9 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
                 <Box
                     h="full"
                     w={`${Math.round(
-                        100 - ((currentTime - saleTime.public) / (saleTime.end - saleTime.public)) * 100
+                        100 -
+                            ((currentTime - saleConfig.publicTime) / (saleConfig.privateTime - saleConfig.publicTime)) *
+                                100
                     ).toString()}%`}
                     bg="orange.500"
                     bgGradient="linear(to-b,#FF6795 0%, #FF710B 84.37%)"
@@ -130,7 +133,7 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
                 {`${START_PRICE} ETH`}
             </Box>
             <Box pos="absolute" fontSize="xs" left={0} transform="translate(-10%, 10%)" color="main.brightRed">
-                {format(new Date(saleTime.public), "H:mm d/M")}
+                {format(new Date(saleConfig.publicTime), "H:mm d/M")}
             </Box>
 
             {/* 0.1 */}
@@ -152,7 +155,7 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
                 color="main.brightRed"
                 fontSize="xs"
             >
-                {format(new Date(saleTime.public + ((1 - 0.1) / PRICE_STEP) * INTERVAL), "H:mm d/M")}
+                {format(new Date(saleConfig.publicTime + ((1 - 0.1) / PRICE_STEP) * INTERVAL), "H:mm d/M")}
             </Box>
 
             {/* END SALE */}
@@ -168,7 +171,7 @@ const ProgressBar = ({ onPriceChange }: ProgressBarProps) => {
                 END
             </Box>
             <Box pos="absolute" fontSize="xs" right={0} transform="translate(-0%, 10%)" color="main.brightRed">
-                {format(new Date(saleTime.end), "H:mm d/M")}
+                {format(new Date(saleConfig.privateTime), "H:mm d/M")}
             </Box>
         </Box>
     )

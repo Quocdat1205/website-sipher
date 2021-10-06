@@ -1,21 +1,21 @@
 import Head from "next/head"
-import MainLayout from "@components/UI/MainLayout"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "@pages/_app"
+import MainLayout from "@components/UI/MainLayout"
 import Sale from "@components/UI/Sale"
 
-const MintingPublic: NextPageWithLayout = () => {
+const FreeMinting: NextPageWithLayout = () => {
     return (
         <>
             <Head>
-                <title>Public Sale</title>
+                <title>Free Minting</title>
             </Head>
-            <Sale mode="public" />
+            <Sale mode="freeMint" />
         </>
     )
 }
 
-MintingPublic.getLayout = (page: ReactElement) => {
+FreeMinting.getLayout = (page: ReactElement) => {
     return <MainLayout>{page}</MainLayout>
 }
-export default MintingPublic
+export default FreeMinting

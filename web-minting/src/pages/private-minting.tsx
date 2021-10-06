@@ -16,10 +16,6 @@ const MintingPrivate: NextPageWithLayout = () => {
 }
 
 MintingPrivate.getLayout = (page: ReactElement) => {
-    return (
-        <>
-            <MainLayout>{page}</MainLayout>
-        </>
-    )
+    return <MainLayout>{page}</MainLayout>
 }
 export default MintingPrivate

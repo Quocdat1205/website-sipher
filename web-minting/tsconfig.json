@@ -24,7 +24,8 @@
             "@hooks/*": ["src/hooks/*"],
             "@contract/*": ["src/contract/*"],
             "@helper/*": ["src/helper/*"],
-            "@constant/*": ["src/constant/*"]
+            "@constant/*": ["src/constant/*"],
+            "@@types": ["src/types/index"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -13,6 +13,16 @@ export const sale = {
             "Private sale end time:",
         ],
     },
+    freeMint: {
+        NOT_FOR_SALE: [
+            "Available for whitelisted address only. The purchase limit will be based on contribution history to Sipher community.",
+            "Free minting start time:",
+        ],
+        SALE: [
+            "Available for whitelisted address only. The purchase limit will be based on contribution history to Sipher community.",
+            "Free minting end time:",
+        ],
+    },
 }
 type INote = Record<"NOT_END_SALE" | "END_SALE", { text: string; link?: { path: string; text: string } }[]>
 

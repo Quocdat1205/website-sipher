@@ -1,13 +1,13 @@
 // Sale contract address
-export const SMARTCONTRACT_SALE_NEKO = "0x6eA76d8399fd5c1593E4f73e9ac994Bda0470ee2"
+export const SMARTCONTRACT_SALE_NEKO = "0xa90F8396A893cdA06f24f45C7aB56637FB655E68"
 // Neko contract address
-export const SMARTCONTRACT_NEKO = "0xB5d34856B7A709B1feC5180D2EBBee4E1577cCa8"
+export const SMARTCONTRACT_NEKO = "0xba87E4Ab4fdBFDE202D75E7e868dC9d877B326A7"
 // Rinkeby chain id
 export const CHAIN_ID = "4"
 // Starting price of public sale
-export const START_PRICE = 1
+export const START_PRICE = 0.9
 // Base price of public sale
-export const BASE_PRICE = 0.1
+export const BASE_PRICE = 0.15
 // Price step
 export const PRICE_STEP = 0.05
 // Interval: 10 MINUTES

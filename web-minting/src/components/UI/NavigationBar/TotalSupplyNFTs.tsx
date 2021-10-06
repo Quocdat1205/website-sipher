@@ -10,10 +10,10 @@ interface Props {}
 
 const TotalSupplyNFTs = (props: Props) => {
     const queryClient = useQueryClient()
-    const { setMetaState } = useWalletContext()
+    const { setState } = useWalletContext()
     const { data: totalSupply, isLoading } = useQuery("total-supply", getTotalSupply, {
         onError: () => {
-            setMetaState("isSmartContract", "ERROR")
+            setState("isSmartContract", "ERROR")
         },
     })
 

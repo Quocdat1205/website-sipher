@@ -4,34 +4,35 @@ import React from "react"
 import NewCountDown from "@components/UI/CountDown"
 import useWalletContext from "@hooks/useWalletContext"
 import { sale, note } from "@constant/content/howToMint"
+import { ISalePhase } from "@@types"
 interface Props {
-    mode: "public" | "private"
+    mode: ISalePhase
 }
 
 function HowtoMint({ mode }: Props) {
-    const { metaState } = useWalletContext()
+    const { states } = useWalletContext()
     return (
         <HStack w="100%" justifyContent="space-between" spacing={4} align="flex-start" h="16rem" overflow="hidden">
-            {(metaState.status[mode] === "SALE" || (sale[mode][metaState.status[mode]] || []).length > 0) && (
+            {(states.status[mode] === "SALE" || (sale[mode][states.status[mode]] || []).length > 0) && (
                 <Box flex="2" borderRight="1px" borderColor="gray.600" h="full">
-                    {metaState.status[mode] === "SALE" && (
+                    {states.status[mode] === "SALE" && (
                         <MyText fontWeight="bold">{`${mode.toUpperCase()} SALE`}</MyText>
                     )}
                     <UnorderedList fontWeight="thin">
-                        {(sale[mode][metaState.status[mode]] || []).map(p => (
+                        {(sale[mode][states.status[mode]] || []).map(p => (
                             <ListItem key={p}>
                                 <MyText>{p}</MyText>
                             </ListItem>
                         ))}
                     </UnorderedList>
-                    {metaState.status[mode] !== "END_SALE" && <NewCountDown deadline={metaState.time[mode]} />}
+                    {states.status[mode] !== "END_SALE" && <NewCountDown deadline={states.saleConfig[`${mode}Time`]} />}
                 </Box>
             )}
             <Flex direction="column" flex="3" overflow="auto" h="full">
                 <MyText fontWeight="bold">NOTE</MyText>
                 <Box flex={1} overflow="auto">
                     <UnorderedList fontWeight="thin">
-                        {(metaState.status[mode] !== "END_SALE" ? note.NOT_END_SALE : note.END_SALE).map(p => (
+                        {(states.status[mode] !== "END_SALE" ? note.NOT_END_SALE : note.END_SALE).map(p => (
                             <ListItem key={p.text}>
                                 <MyText>{p.text}</MyText>{" "}
                                 {p.link && (

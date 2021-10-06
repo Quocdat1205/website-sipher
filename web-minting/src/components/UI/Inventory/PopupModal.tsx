@@ -43,13 +43,13 @@ interface PopupProps {
 }
 
 const PopupModal = ({ selectId }: PopupProps) => {
-    const { metaState } = useWalletContext()
+    const { states } = useWalletContext()
     const queryClient = useQueryClient()
     const toast = useChakraToast()
     const [currentEmotion, setCurrentEmotion] = useState("DEFAULT")
     const { data: infoNFT, isLoading } = useQuery(
         [`${selectId.race}-NFTId`, selectId && selectId.id],
-        () => getInfoNFT(metaState.accountLogin, selectId.id, selectId.race),
+        () => getInfoNFT(states.accountLogin, selectId.id, selectId.race),
         {
             onError: error => {
                 console.log(error)
@@ -71,7 +71,7 @@ const PopupModal = ({ selectId }: PopupProps) => {
     )
 
     const { mutate } = useMutation(
-        () => changeEmotion(metaState.accessToken, selectId.id, currentEmotion, metaState.accountLogin, selectId.race),
+        () => changeEmotion(states.accessToken, selectId.id, currentEmotion, states.accountLogin, selectId.race),
         {
             onSuccess: () => {
                 queryClient.invalidateQueries([`${selectId.race}-NFTId`, selectId])
@@ -124,7 +124,7 @@ const PopupModal = ({ selectId }: PopupProps) => {
                                     </Flex>
                                     <Flex fontSize="1rem" justifyContent="space-between" alignItems="center">
                                         <Text color="#EFE9D3">. Owner</Text>
-                                        <Text color="purple.500">{metaState.accountLogin}</Text>
+                                        <Text color="purple.500">{states.accountLogin}</Text>
                                     </Flex>
                                     {/* <Flex
                     fontSize={{

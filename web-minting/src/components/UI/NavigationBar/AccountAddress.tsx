@@ -8,7 +8,7 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs"
 
 const AccountAddress = () => {
     const {
-        metaState: { accountLogin },
+        states: { accountLogin },
         logout,
     } = useWalletContext()
 

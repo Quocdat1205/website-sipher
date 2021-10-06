@@ -52,11 +52,15 @@ const NFT_ABI: any = [
         type: "event",
     },
     {
-        inputs: [],
-        name: "ENABLE_TRANSFER_TIME",
-        outputs: [{ internalType: "uint64", name: "", type: "uint64" }],
-        stateMutability: "view",
-        type: "function",
+        anonymous: false,
+        inputs: [
+            { indexed: false, internalType: "uint256", name: "ID", type: "uint256" },
+            { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
+            { indexed: false, internalType: "address", name: "to", type: "address" },
+            { indexed: false, internalType: "uint256", name: "unitPrice", type: "uint256" },
+        ],
+        name: "mintRecord",
+        type: "event",
     },
     {
         inputs: [],
@@ -152,6 +156,7 @@ const NFT_ABI: any = [
         inputs: [
             { internalType: "uint256", name: "amount", type: "uint256" },
             { internalType: "address", name: "to", type: "address" },
+            { internalType: "uint256", name: "unitPrice", type: "uint256" },
         ],
         name: "mintGenesis",
         outputs: [],
