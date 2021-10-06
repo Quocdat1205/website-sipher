@@ -71,7 +71,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 toast({ status: "error", title: "Confirmation error!", message: "You can only buy up to 5 NFTs" })
                 return
             }
-        } else if (userRecord && userRecord.whitelistBought >= states.isWhitelisted.privateCap) {
+        } else if (mode === "private" && userRecord && userRecord.whitelistBought >= states.isWhitelisted.privateCap) {
             toast({
                 status: "error",
                 title: "Confirmation error!",
@@ -196,10 +196,7 @@ const SaleForm = ({ mode }: SaleFormProps) => {
                 w="100%"
                 pt="2"
             >
-                <MyText>
-                    {`Unit price: ${parseFloat(currentPrice.toFixed(2))} ETH`}
-                    {isFetching && <Spinner size="xs" ml={2} thickness="1px" />}
-                </MyText>
+                <MyText>{`Unit price: ${parseFloat(currentPrice.toFixed(2))} ETH`}</MyText>
                 <MyText ml="auto">
                     You have purchased: {userRecord ? userRecord.publicBought + userRecord.whitelistBought : "..."}
                 </MyText>

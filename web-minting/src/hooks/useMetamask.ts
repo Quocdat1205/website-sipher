@@ -49,10 +49,10 @@ const initialState: TypeState = {
 export const useMetamask = () => {
     const [isConnecting, setIsConnecting] = useState(false)
     const { values: states, setValue: setState, initForm } = useFormCore<TypeState>(initialState)
-    console.log(states.isWhitelisted)
     const toast = useChakraToast()
     const connect = async () => {
         try {
+            console.log("0. Start connecting!")
             if (!metaMaskProvider) {
                 toast({ status: "error", title: "MetaMask not found!", message: "Please install MetaMask extension." })
                 return
