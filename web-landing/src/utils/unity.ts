@@ -5,6 +5,10 @@ export const unityContext = new UnityContext({
     dataUrl: "/unity/unity.data",
     frameworkUrl: "/unity/unity.framework.js",
     codeUrl: "/unity/unity.wasm",
+    webglContextAttributes: {
+        powerPreference: "low-power",
+        preserveDrawingBuffer: true,
+    },
 })
 // const unityContext = new UnityContext({
 //     loaderUrl: "https://sipherstorage.s3.ap-southeast-1.amazonaws.com/web3d/demo/unity.loader.js",

@@ -17,7 +17,7 @@ const Loader = ({ isVisible }: LoaderProps) => {
                 <MotionBox
                     animate={{ scale: 1 }}
                     exit={{ y: -999, opacity: 0.2 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.25 }}
                     pos="absolute"
                     top={0}
                     left={0}
@@ -33,13 +33,13 @@ const Loader = ({ isVisible }: LoaderProps) => {
                                 rotate: [0, 0, 360, 360, 0],
                             }}
                             transition={{
-                                delay: 0.5,
+                                delay: 0.25,
                                 duration: 2,
                                 ease: "easeInOut",
                                 times: [0, 0.2, 0.5, 0.8, 1],
                             }}
                         >
-                            <Image src={logo} height={80} width={80} />
+                            <Image src={logo} height={80} width={80} alt="loading-logo" />
                         </MotionBox>
                     </Grid>
                 </MotionBox>
