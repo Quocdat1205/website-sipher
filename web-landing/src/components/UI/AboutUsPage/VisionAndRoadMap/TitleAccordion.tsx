@@ -11,7 +11,7 @@ interface Props {
 
 const TitleAccordion = ({ title1, title2 = "", isExpanded }: Props) => {
 	return (
-		<Flex pos="relative" pl="8" w="full" flexDir={["column", "row"]} align={["flex-start", "center"]}>
+		<Flex pos="relative" pl="12" w="full" flexDir={["column", "row"]} align={["flex-start", "center"]}>
 			<MyHeading textAlign="left" flex={1}>
 				{title1}
 			</MyHeading>

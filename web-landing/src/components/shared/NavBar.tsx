@@ -14,7 +14,7 @@ interface NavBarProps {
 export const navMenus = [
 	{ id: "Home", path: "/" },
 	{ id: "About Us", path: "/about-us/vision-and-roadmap" },
-	{ id: "World Of Sipher", path: "/world-of-sipher" },
+	{ id: "World Of Sipher", path: "/world-of-sipher/the-world" },
 	{ id: "News", path: "/news" },
 	{ id: "NFT", path: "/nft" },
 ]

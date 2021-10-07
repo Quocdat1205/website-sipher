@@ -80,7 +80,7 @@ export const personEmployee: PersonCardProps[] = [
 		srcImg: "/images/avatars/15.png",
 	},
 	{
-		name: "Ai Nguyen",
+		name: "Duyen Nguyen",
 		job: "HR Recruitment",
 		srcImg: "/images/avatars/16.png",
 	},

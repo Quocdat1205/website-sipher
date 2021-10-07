@@ -10,7 +10,7 @@ interface ContentAccordionProps extends FlexProps {
 
 const ContentAccordion = ({ title, children, ...rest }: ContentAccordionProps) => {
 	return (
-		<Flex justifySelf="flex-start" w="full" flexDir={["column", "row"]} {...rest}>
+		<Flex pl="12" justifySelf="flex-start" w="full" flexDir={["column", "row"]} {...rest}>
 			<MyHeading textTransform="uppercase" textAlign="left" flex={1}>
 				{title}
 			</MyHeading>
