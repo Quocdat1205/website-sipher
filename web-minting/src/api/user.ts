@@ -8,6 +8,8 @@ export interface IUser {
 /** Get user from address */
 export const getUsersByAddress = async (address: string): Promise<IUser> => {
     const { data } = await axios.get(`/login?publicAddress=${address}`, config)
+    console.log("Get user by address", data)
+
     return {
         nonce: data.nonce,
         address: data.publicAddress,

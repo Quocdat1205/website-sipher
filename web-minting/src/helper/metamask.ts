@@ -76,9 +76,6 @@ export const getAccessToken = async (user: IUser): Promise<string> => {
 /** Sign user up or log user in with address */
 export const getUser = async (address: string) => {
     let account = await getUsersByAddress(address)
-    if (!account) {
-        account = await signupUser(address)
-    }
     return account
 }
 
@@ -104,10 +101,14 @@ export const getMetamaskBalance = async (address: string): Promise<number> => {
 /** Connect to metask, return bunch of info */
 export const connectWallet = async () => {
     const accounts = await getMetaMaskAccounts()
+    console.log("1. Accounts", accounts)
     const address = accounts[0]
     const chainInfo = await getChainInfo()
+    console.log("2. Chain:", chainInfo)
     const account = await getUser(address)
+    console.log("3. User:", account)
     const token = await getAccessToken(account)
+    console.log("4. Access Token:", token)
     const whitelistInfo = await checkIsWhitelisted(address)
 
     return {

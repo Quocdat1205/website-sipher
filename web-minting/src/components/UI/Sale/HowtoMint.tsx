@@ -1,6 +1,6 @@
 import { Box, chakra, HStack, UnorderedList, ListItem, Flex } from "@chakra-ui/react"
 import { MyText } from "@sipher/web-components"
-import React from "react"
+import React, { useMemo } from "react"
 import NewCountDown from "@components/UI/CountDown"
 import useWalletContext from "@hooks/useWalletContext"
 import { sale, note } from "@constant/content/howToMint"
@@ -11,6 +11,17 @@ interface Props {
 
 function HowtoMint({ mode }: Props) {
     const { states } = useWalletContext()
+    const endTime = useMemo(
+        () =>
+            mode === "public"
+                ? states.saleConfig.privateTime
+                : mode === "private"
+                ? states.saleConfig.freeMintTime
+                : states.saleConfig.endTime,
+        []
+    )
+    const startTime = useMemo(() => states.saleConfig[`${mode}Time`], [])
+
     return (
         <HStack w="100%" justifyContent="space-between" spacing={4} align="flex-start" h="16rem" overflow="hidden">
             {(states.status[mode] === "SALE" || (sale[mode][states.status[mode]] || []).length > 0) && (
@@ -25,7 +36,9 @@ function HowtoMint({ mode }: Props) {
                             </ListItem>
                         ))}
                     </UnorderedList>
-                    {states.status[mode] !== "END_SALE" && <NewCountDown deadline={states.saleConfig[`${mode}Time`]} />}
+                    {states.status[mode] !== "END_SALE" && (
+                        <NewCountDown deadline={states.status[mode] === "NOT_FOR_SALE" ? startTime : endTime} />
+                    )}
                 </Box>
             )}
             <Flex direction="column" flex="3" overflow="auto" h="full">

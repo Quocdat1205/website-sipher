@@ -12,6 +12,7 @@ const TotalSupplyNFTs = (props: Props) => {
     const queryClient = useQueryClient()
     const { setState } = useWalletContext()
     const { data: totalSupply, isLoading } = useQuery("total-supply", getTotalSupply, {
+        refetchInterval: 1000,
         onError: () => {
             setState("isSmartContract", "ERROR")
         },
