@@ -5,6 +5,8 @@ export interface StoreModel {
     setSidebarOn: Action<StoreModel, boolean>
     subscribeModal: boolean
     setSubscribeModal: Action<StoreModel, boolean>
+    initialLoading: boolean
+    setInitialLoading: Action<StoreModel, boolean>
 }
 
 const store = createStore<StoreModel>({
@@ -15,6 +17,10 @@ const store = createStore<StoreModel>({
     subscribeModal: false,
     setSubscribeModal: action((state, payload) => {
         state.subscribeModal = payload
+    }),
+    initialLoading: true,
+    setInitialLoading: action((state, payload) => {
+        state.initialLoading = payload
     }),
 })
 

@@ -1,9 +1,7 @@
 // * DESCRIPTION:
 
-import { Grid, Flex, Center, Img, Box } from "@chakra-ui/react"
-import { GradientButton, MyHeading, MyText } from "@sipher/web-components"
-import { ViewContainer, BackgroundContainer, CountDown } from "@components/shared"
-import IntroductionVideo from "./IntroductionVideo"
+import { Center } from "@chakra-ui/react"
+import { ViewContainer, BackgroundContainer } from "@components/shared"
 import SaleSchedule from "./SaleSchedule"
 import WhatIsSipher from "./WhatIsSipher"
 import OwnerBenefits from "./OwnerBenefits"
@@ -11,6 +9,7 @@ import PlayToEarn from "./PlayToEarn"
 import JoinTheCommunity from "./JoinTheCommunity"
 import Backers from "./Backers"
 import NekoTeaser from "./NekoTeaser"
+import Hero from "./Hero"
 interface HomeBodyProps {}
 
 const HomeBody = ({}: HomeBodyProps) => {
@@ -27,53 +26,7 @@ const HomeBody = ({}: HomeBodyProps) => {
             }}
         >
             <ViewContainer label="Home" mb={mb} p={0} threshold={0.2}>
-                <Box
-                    bg="url('/images/pc/home/homenew1.png') "
-                    bgRepeat="no-repeat"
-                    bgSize="100%"
-                    mb={8}
-                    bgPosition="center"
-                    backgroundSize="cover"
-                    pt={[24, 0, 0]}
-                >
-                    <Grid
-                        h="100%"
-                        placeItems="center"
-                        py={["4rem", "8rem"]}
-                        px={4}
-                        bgGradient="linear(to-b, transparent, blackAlpha.900)"
-                    >
-                        <Flex direction="column" align="center">
-                            <Img
-                                src="/images/mainlogo.svg"
-                                h={["6.5rem", "7rem", "8.5rem", "10rem"]}
-                                alt="sipher-logo"
-                                mb={6}
-                            />
-                            <MyText
-                                color="whiteAlpha.900"
-                                fontWeight="500"
-                                size="large"
-                                letterSpacing="2px"
-                                textAlign="center"
-                            >
-                                OFFICIAL NEKO LAUNCH 09/09/2021 - 09:00AM GMT+7
-                            </MyText>
-                            <CountDown deadline={1633975965271} />
-                            <GradientButton
-                                as="a"
-                                rounded="full"
-                                text="Buy Sipher On OpenSea"
-                                fontWeight="bold"
-                                w="fit-content"
-                                mt={6}
-                                px={12}
-                                href="https://opensea.io/collection/sipheriansurge"
-                                rel="noreferrer"
-                            />
-                        </Flex>
-                    </Grid>
-                </Box>
+                <Hero />
                 <Center px={4} mb={8} mt={24}>
                     <SaleSchedule />
                 </Center>

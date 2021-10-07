@@ -20,7 +20,7 @@ const WhatIsSipher = () => {
                 Social experience, built on the Ethereum blockchain
             </MyText>
             <Flex w="full" justify="center" mb={4}>
-                <IntroductionVideo videoSrc="/video/video.mp4" imgSrc="/images/pc/home/nekoteaser.png" />
+                <IntroductionVideo videoSrc="/video/video.mp4" />
             </Flex>
             <Wrap spacing={8}>
                 {content.map(item => (
