@@ -1,4 +1,4 @@
-import { Center, CenterProps, Flex } from "@chakra-ui/react"
+import { Center, CenterProps, SimpleGrid } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import React from "react"
 import { CardMenuWorld } from "./CardMenuWorld"
@@ -16,8 +16,16 @@ const MenuWorld = ({ ...rest }: MenuWorldProps) => {
 	const router = useRouter()
 
 	return (
-		<Center px={4} py={4} bg="url(/images/pc/home/homenew2.png)" overflow="visible" w="full" {...rest}>
-			<Flex align="center" flexDir={["column", "row"]} flex={1} maxW="35rem" p={4}>
+		<Center
+			order={[1, 2]}
+			pt={4}
+			pb={[4, 0]}
+			bg="url(/images/pc/home/homenew2.png)"
+			overflow="visible"
+			w="full"
+			{...rest}
+		>
+			<SimpleGrid columns={[1, 4]} flex={1}>
 				{menuWorld.map((menu, index) => (
 					<CardMenuWorld
 						lastChild={index === menuWorld.length - 1}
@@ -28,7 +36,7 @@ const MenuWorld = ({ ...rest }: MenuWorldProps) => {
 						active={router.pathname.split("/")[2] === menu.path.split("/")[2]}
 					/>
 				))}
-			</Flex>
+			</SimpleGrid>
 		</Center>
 	)
 }

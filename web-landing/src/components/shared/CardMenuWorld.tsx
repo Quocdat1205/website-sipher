@@ -19,21 +19,23 @@ export const CardMenuWorld = ({ lastChild = false, size, text, active, icon, hre
 	const router = useRouter()
 	return (
 		<Stack
-			boxSize="7.5rem"
+			// boxSize="6.5rem"
+			p={2}
 			bgGradient={active ? "linear(to-t, bgGradient.orange)" : ""}
 			onClick={() => router.push(href)}
 			color="white"
 			pos="relative"
 			cursor="pointer"
 			justify="center"
+			align="center"
 			{...rest}
 		>
-			<Box h="2.5rem">
+			<Box h="2.4rem">
 				<Image display="block" h="full" m="0 auto" src={icon} alt="" />
 			</Box>
 			<MyText
 				fontWeight="normal"
-				fontSize="xs"
+				fontSize="xx-small"
 				textAlign="center"
 				isTruncated
 				letterSpacing="3px"

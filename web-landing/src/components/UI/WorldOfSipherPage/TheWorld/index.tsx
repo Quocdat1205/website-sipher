@@ -4,6 +4,7 @@ import { Center } from "@chakra-ui/layout"
 import { ViewContainer, BackgroundContainer } from "@components/shared"
 import { MyText } from "@sipher/web-components"
 import HeaderContent from "../HeaderContent"
+import UseOfFunds from "./UseOfFunds"
 
 interface TheWolrdProps {}
 
@@ -22,6 +23,9 @@ const TheWorld = ({}: TheWolrdProps) => {
 							always own their characters and items without exception.
 						</MyText>
 					</HeaderContent>
+				</Center>
+				<Center pt={10}>
+					<UseOfFunds />
 				</Center>
 			</ViewContainer>
 		</BackgroundContainer>
