@@ -12,8 +12,8 @@ const variants = {
         hidden: { opacity: 0, y: 1000 },
     },
     zoom: {
-        visible: { opacity: 1, scaleX: 1 },
-        hidden: { opacity: 0, scaleX: 0 },
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 },
     },
 }
 
