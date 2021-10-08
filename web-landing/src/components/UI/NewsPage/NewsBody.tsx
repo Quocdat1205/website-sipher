@@ -24,7 +24,7 @@ const NewsBody = (props: Props) => {
 		<BackgroundContainer>
 			<ViewContainer label="News" mb={mb} py={20} threshold={0.2}>
 				<Center>
-					<SimpleGrid spacing={4} maxW="48rem" columns={3}>
+					<SimpleGrid spacing={4} maxW="48rem" columns={[1, 3]}>
 						{news?.map((item) => (
 							<Card
 								onClick={() => {

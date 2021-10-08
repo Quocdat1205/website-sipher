@@ -24,15 +24,15 @@ const PopupCard = ({ selected }: Props) => {
 	)
 	const createDate = new Date(timestamp)
 	return (
-		<HStack overflow="hidden" h="full" spacing={[4, 6, 8]} flexDir={["column", "row"]}>
+		<HStack p={[4, 0]} overflow="hidden" h="full" spacing={[4, 6, 8]} flexDir={["column", "row"]}>
 			<Image
-				maxH="40rem"
-				maxW="40rem"
+				maxH={["20rem", "40rem"]}
+				maxW={["20rem", "40rem"]}
 				src={attachments.length > 0 ? attachments : "/images/pc/news.png"}
 				alt=""
 			/>
-			<Flex overflow="hidden" h="full" alignSelf="flex-start" flexDir="column" flex={1} color="white">
-				<Box p={4}>
+			<Flex pt={[4, 0]} overflow="hidden" h="full" alignSelf="flex-start" flexDir="column" flex={1} color="white">
+				<Box p={[0, 4]}>
 					{contentArr &&
 						contentArr.map((line, index) => {
 							return (
@@ -42,7 +42,7 @@ const PopupCard = ({ selected }: Props) => {
 							)
 						})}
 				</Box>
-				<Box textAlign="right" p={4}>
+				<Box textAlign="right" p={[0, 4]}>
 					<MyText>
 						{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
 					</MyText>
