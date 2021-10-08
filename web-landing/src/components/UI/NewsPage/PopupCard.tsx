@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/image"
-import { Box, Flex } from "@chakra-ui/layout"
+import { Box, HStack, Flex } from "@chakra-ui/layout"
 import { MyText } from "@sipher/web-components"
 import React from "react"
 import ReactMarkdown from "react-markdown"
@@ -24,24 +24,31 @@ const PopupCard = ({ selected }: Props) => {
 	)
 	const createDate = new Date(timestamp)
 	return (
-		<Flex>
-			<Image flex={1} src={attachments ? attachments : "/images/pc/laboratory/laboratory2.png"} alt="" />{" "}
-			<Box ml={4} flex={2} color="white">
-				{contentArr &&
-					contentArr.map((line, index) => {
-						return (
-							<ReactMarkdown className="line-clamp-3" key={index}>
-								{line}
-							</ReactMarkdown>
-						)
-					})}
-			</Box>
-			<Box mt="auto">
-				<MyText>
-					{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
-				</MyText>
-			</Box>
-		</Flex>
+		<HStack overflow="hidden" h="full" spacing={[4, 6, 8]} flexDir={["column", "row"]}>
+			<Image
+				maxH="40rem"
+				maxW="40rem"
+				src={attachments.length > 0 ? attachments : "/images/pc/news.png"}
+				alt=""
+			/>
+			<Flex overflow="hidden" h="full" alignSelf="flex-start" flexDir="column" flex={1} color="white">
+				<Box p={4}>
+					{contentArr &&
+						contentArr.map((line, index) => {
+							return (
+								<ReactMarkdown className="line-clamp-3" key={index}>
+									{line}
+								</ReactMarkdown>
+							)
+						})}
+				</Box>
+				<Box textAlign="right" p={4}>
+					<MyText>
+						{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
+					</MyText>
+				</Box>
+			</Flex>
+		</HStack>
 	)
 }
 

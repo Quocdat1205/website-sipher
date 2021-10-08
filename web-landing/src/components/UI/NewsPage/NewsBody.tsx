@@ -38,36 +38,9 @@ const NewsBody = (props: Props) => {
 					</SimpleGrid>
 					<Modal scrollBehavior="inside" size="6xl" isOpen={isOpen} isCentered onClose={onClose}>
 						<ModalOverlay bg="blackAlpha.900" />
-						<ModalContent
-							justifyContent="center"
-							alignItems="center"
-							borderRadius="0"
-							p="0.5"
-							pos="relative"
-							_before={{
-								content: "''",
-								w: "100%",
-								h: "100%",
-								transform: "scale(1.01)",
-								zIndex: "-1",
-								bgSize: "500%",
-								pos: "absolute",
-								bg: "linear-gradient(45deg, #FCD11F, #200B9F, #DF6767, rgb(106, 6, 153), #FCD11F)",
-							}}
-							_after={{
-								content: "''",
-								w: "100%",
-								h: "100%",
-								transform: "scale(1.01)",
-								zIndex: "-1",
-								bgSize: "500%",
-								pos: "absolute",
-								filter: "blur(20px)",
-								bg: "linear-gradient(45deg, #FCD11F, #200B9F, #DF6767, rgb(106, 6, 153), #FCD11F)",
-							}}
-						>
+						<ModalContent p={0}>
 							<ModalCloseButton color="red" fontSize="1.3rem" />
-							<ModalBody w="100%" h="70vh" bg="#000" p="4">
+							<ModalBody p={0} borderRadius="lg" bg="about.cardGray">
 								<PopupCard selected={selected} />
 							</ModalBody>
 						</ModalContent>

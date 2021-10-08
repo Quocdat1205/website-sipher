@@ -38,18 +38,13 @@ const Card = ({ item, onClick }: Props) => {
 			overflow="hidden"
 		>
 			<Box>
-				<Image
-					w="full"
-					h="auto"
-					src={attachments ? attachments : "/images/pc/laboratory/laboratory2.png"}
-					alt=""
-				/>
+				<Image w="full" h="auto" src={attachments.length > 0 ? attachments : "/images/pc/news.png"} alt="" />
 			</Box>
 			<Box>
 				<Box py={2}>
 					<Image m="0 auto" src="/images/icons/discord.png" alt="" h="2rem" />
 				</Box>
-				<Box maxH="10rem" overflow="hidden" px={4} mb={4}>
+				<Box overflow="hidden" px={4} mb={4}>
 					{contentArr &&
 						contentArr
 							.filter((_, index) => index <= 3)
@@ -74,7 +69,7 @@ const Card = ({ item, onClick }: Props) => {
 				<Text fontSize={["xs", "sm"]}>
 					{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
 				</Text>
-				<Text fontSize={["xs", "sm"]}>Share</Text>
+				<Text fontSize={["xs", "sm"]}></Text>
 			</Flex>
 		</Flex>
 	)
