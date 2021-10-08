@@ -10,9 +10,9 @@ import { useInView } from "react-intersection-observer"
 import { variants } from "."
 import unityContext from "src/utils/unity"
 
-interface Screen1Props {}
+interface FirstScreenProps {}
 
-const Screen1 = ({}: Screen1Props) => {
+const FirstScreen = ({}: FirstScreenProps) => {
     const controls = useAnimation()
     const initialLoading = useStoreState(s => s.initialLoading)
     const [ref, inView] = useInView({
@@ -41,7 +41,7 @@ const Screen1 = ({}: Screen1Props) => {
             w="full"
             flexShrink={0}
             bg="blackAlpha.300"
-            sx={{ scrollSnapAlign: "start" }}
+            p={4}
         >
             <MotionFlex direction="column" align="center" ref={ref}>
                 <MotionBox animate={controls} initial="hidden" variants={variants} custom={1}>
@@ -62,4 +62,4 @@ const Screen1 = ({}: Screen1Props) => {
     )
 }
 
-export default Screen1
+export default FirstScreen
