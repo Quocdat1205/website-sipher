@@ -32,7 +32,7 @@ const PopupCard = ({ selected }: Props) => {
 				alt=""
 			/>
 			<Flex pt={[4, 0]} overflow="hidden" h="full" alignSelf="flex-start" flexDir="column" flex={1} color="white">
-				<Box p={[0, 4]}>
+				<Box p={[0, 4]} overflow="auto" maxH="70vh">
 					{contentArr &&
 						contentArr.map((line, index) => {
 							return (
