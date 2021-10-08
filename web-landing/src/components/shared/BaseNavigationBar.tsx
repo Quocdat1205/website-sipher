@@ -11,7 +11,7 @@ interface BaseNavigationBarProps extends FlexProps {
     onLogoClick?: () => void
     children: React.ReactNode
 }
-
+// fixed
 export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...rest }: BaseNavigationBarProps) => {
     const router = useRouter()
     return (
