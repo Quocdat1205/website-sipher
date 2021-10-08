@@ -27,18 +27,27 @@ const Loader = ({ isVisible }: LoaderProps) => {
                     zIndex="overlay"
                 >
                     <Grid w="full" placeItems="center" h="100vh">
-                        <MotionBox
-                            animate={{
-                                scale: [1, 1.2, 1.2, 1, 1],
-                                rotate: [0, 0, 360, 360, 0],
-                            }}
-                            transition={{
-                                delay: 0.25,
-                                duration: 2,
-                                ease: "easeInOut",
-                                times: [0, 0.2, 0.5, 0.8, 1],
-                            }}
-                        >
+                        <MotionBox pos="relative" rounded="full" overflow="hidden">
+                            <MotionBox
+                                position="absolute"
+                                left={0}
+                                top="-50%"
+                                h="150%"
+                                w="20px"
+                                bgGradient="linear(to-r, transparent, whiteAlpha.400, transparent)"
+                                animate={{
+                                    x: [-20, -20, 80, 80],
+                                    y: [-20, -20, 80, 80],
+                                    opacity: [0.2, 0.4, 0.6, 1],
+                                    rotate: [45, 45],
+                                }}
+                                transition={{
+                                    delay: 1,
+                                    duration: 3,
+                                    ease: "easeOut",
+                                    loop: Infinity,
+                                }}
+                            ></MotionBox>
                             <Image src={logo} height={80} width={80} alt="loading-logo" />
                         </MotionBox>
                     </Grid>
