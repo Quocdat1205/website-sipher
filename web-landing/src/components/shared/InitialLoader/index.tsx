@@ -13,7 +13,7 @@ const MotionBox = motion<Omit<BoxProps, "transition">>(Box)
 const Loader = ({ isVisible }: LoaderProps) => {
     return (
         <AnimatePresence>
-            {true && (
+            {isVisible && (
                 <MotionBox
                     animate={{ scale: 1 }}
                     exit={{ y: -999, opacity: 0 }}
