@@ -22,7 +22,7 @@ const Screen2 = ({}: Screen2Props) => {
         if (inView) {
             countdownControl.start("visible").then(() => textControl.start("visible"))
         }
-    }, [countdownControl, inView])
+    }, [countdownControl, textControl, inView])
     useEffect(() => {
         unityContext.send("Main Camera", "angle", 2)
     }, [inView])
