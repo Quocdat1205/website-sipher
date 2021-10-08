@@ -13,11 +13,11 @@ const MotionBox = motion<Omit<BoxProps, "transition">>(Box)
 const Loader = ({ isVisible }: LoaderProps) => {
     return (
         <AnimatePresence>
-            {isVisible && (
+            {true && (
                 <MotionBox
                     animate={{ scale: 1 }}
-                    exit={{ y: -999, opacity: 0.2 }}
-                    transition={{ duration: 0.25 }}
+                    exit={{ y: -999, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
                     pos="absolute"
                     top={0}
                     left={0}
@@ -27,27 +27,19 @@ const Loader = ({ isVisible }: LoaderProps) => {
                     zIndex="overlay"
                 >
                     <Grid w="full" placeItems="center" h="100vh">
-                        <MotionBox pos="relative" rounded="full" overflow="hidden">
-                            <MotionBox
-                                position="absolute"
-                                left={0}
-                                top="-50%"
-                                h="150%"
-                                w="20px"
-                                bgGradient="linear(to-r, transparent, whiteAlpha.400, transparent)"
-                                animate={{
-                                    x: [-20, -20, 80, 80],
-                                    y: [-20, -20, 80, 80],
-                                    opacity: [0.2, 0.4, 0.6, 1],
-                                    rotate: [45, 45],
-                                }}
-                                transition={{
-                                    delay: 1,
-                                    duration: 3,
-                                    ease: "easeOut",
-                                    loop: Infinity,
-                                }}
-                            ></MotionBox>
+                        <MotionBox
+                            pos="relative"
+                            rounded="full"
+                            overflow="hidden"
+                            animate={{
+                                scale: [1, 1.2, 1.5, 1],
+                            }}
+                            transition={{
+                                duration: 1.25,
+                                loop: Infinity,
+                                repeatDelay: 0.25,
+                            }}
+                        >
                             <Image src={logo} height={80} width={80} alt="loading-logo" />
                         </MotionBox>
                     </Grid>
