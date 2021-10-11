@@ -5,6 +5,7 @@ import { ViewContainer, BackgroundContainer } from "@components/shared"
 import { MyText } from "@sipher/web-components"
 import HeaderContent from "../HeaderContent"
 import UseOfFunds from "./UseOfFunds"
+import { theWorldContent } from "@constant/content/why"
 
 interface TheWolrdProps {}
 
@@ -16,12 +17,7 @@ const TheWorld = ({}: TheWolrdProps) => {
 			<ViewContainer label="The World" mb={mb} py={20} threshold={0.2}>
 				<Center>
 					<HeaderContent headline="The World">
-						<MyText>
-							All player&lsquo; characters, weapons, cosmetic and functional in-game items, resources and
-							achievements in Sipheria are represented by non-fungible tokens, known as NFTs. That&lsquo;s
-							why you truly own your digital assets in Sipheria. Because of the blockchain, players will
-							always own their characters and items without exception.
-						</MyText>
+						<MyText>{theWorldContent.worldBlockCategory}</MyText>
 					</HeaderContent>
 				</Center>
 				<Center pt={10}>

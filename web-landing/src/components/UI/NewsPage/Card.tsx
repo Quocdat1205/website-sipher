@@ -1,6 +1,5 @@
 import { Image } from "@chakra-ui/image"
 import { Flex, Box, Text } from "@chakra-ui/layout"
-import { MyText } from "@sipher/web-components"
 import ReactMarkdown from "react-markdown"
 import React from "react"
 
@@ -23,8 +22,11 @@ const Card = ({ item, onClick }: Props) => {
 			.join(" ")
 	)
 	const createDate = new Date(timestamp)
+
 	return (
 		<Flex
+			gridRowEnd={contentArr.length > 15 ? "span 33" : "span 45"}
+			m="2"
 			onClick={onClick}
 			cursor="pointer"
 			_hover={{

@@ -21,7 +21,9 @@ export const CardMenuWorld = ({ lastChild = false, size, text, active, icon, hre
 		<Stack
 			// boxSize="6.5rem"
 			p={2}
-			bgGradient={active ? "linear(to-t, bgGradient.orange)" : ""}
+			bgGradient={active ? "linear(to-t, bgGradient.orange)" : "linear(to-r, #171717, #171717)"}
+			borderColor="#383838"
+			border="1px"
 			onClick={() => router.push(href)}
 			color="white"
 			pos="relative"
@@ -30,7 +32,7 @@ export const CardMenuWorld = ({ lastChild = false, size, text, active, icon, hre
 			align="center"
 			{...rest}
 		>
-			<Box h="2.4rem">
+			<Box h="2.3rem">
 				<Image display="block" h="full" m="0 auto" src={icon} alt="" />
 			</Box>
 			<MyText
