@@ -1,32 +1,34 @@
+import { IconButton } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
 import { Flex, Box, Text } from "@chakra-ui/layout"
-import ReactMarkdown from "react-markdown"
 import React from "react"
+import { FiShare2 } from "react-icons/fi"
 
 interface Props {
 	item: {
-		attachments: string
-		content: string
-		timestamp: string
+		type: "medium" | "twitter"
+		link: string
+		title: string
+		published: string
+		thumbnail?: string
 	}
 	onClick: () => void
 }
-const regex = new RegExp(/^<.*>$/)
+// const regex = new RegExp(/^<.*>$/)
 
 const Card = ({ item, onClick }: Props) => {
-	const { attachments, content, timestamp } = item
-	const contentArr = content.split("\n").map((line) =>
-		line
-			.split(" ")
-			.filter((word) => !regex.test(word))
-			.join(" ")
-	)
-	const createDate = new Date(timestamp)
-
+	const { type, thumbnail, title, published, link } = item
+	// const contentArr = content.split("\n").map((line) =>
+	// 	line
+	// 		.split(" ")
+	// 		.filter((word) => !regex.test(word))
+	// 		.join(" ")
+	// )
+	const createDate = new Date(published)
 	return (
 		<Flex
-			gridRowEnd={contentArr.length > 15 ? "span 33" : "span 45"}
 			m="2"
+			zIndex="1"
 			onClick={onClick}
 			cursor="pointer"
 			_hover={{
@@ -40,39 +42,30 @@ const Card = ({ item, onClick }: Props) => {
 			overflow="hidden"
 		>
 			<Box>
-				<Image w="full" h="auto" src={attachments.length > 0 ? attachments : "/images/pc/news.png"} alt="" />
+				<Image w="full" h="auto" src={thumbnail !== "" ? thumbnail : "/images/pc/news.png"} alt="" />
 			</Box>
 			<Box>
-				<Box py={2}>
-					<Image m="0 auto" src="/images/icons/discord.png" alt="" h="2rem" />
+				<Box p={4}>
+					<Image
+						zIndex="2"
+						onClick={(e) => {
+							e.stopPropagation()
+							window.open(link, "_blank")
+						}}
+						display="block"
+						m="0 auto"
+						src={`/images/icons/${type === "medium" ? "medium" : "twitter"}.png`}
+						alt=""
+						h="2rem"
+					/>
 				</Box>
 				<Box overflow="hidden" px={4} mb={4}>
-					{contentArr &&
-						contentArr
-							.filter((_, index) => index <= 3)
-							.map((line, index) => {
-								return (
-									<ReactMarkdown className="line-clamp-3" key={index}>
-										{line}
-									</ReactMarkdown>
-								)
-							})}
+					{title}
 				</Box>
 			</Box>
-			<Flex
-				mt="auto"
-				align="center"
-				flexDir="row"
-				justifyContent="space-between"
-				borderTop="1px"
-				borderColor="gray.600"
-				p={4}
-			>
-				<Text fontSize={["xs", "sm"]}>
-					{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
-				</Text>
-				<Text fontSize={["xs", "sm"]}></Text>
-			</Flex>
+			<Text mt="auto" p={4} fontSize={["xs", "sm"]}>
+				{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
+			</Text>
 		</Flex>
 	)
 }

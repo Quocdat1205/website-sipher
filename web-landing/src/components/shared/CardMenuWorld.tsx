@@ -22,8 +22,8 @@ export const CardMenuWorld = ({ lastChild = false, size, text, active, icon, hre
 			// boxSize="6.5rem"
 			p={2}
 			bgGradient={active ? "linear(to-t, bgGradient.orange)" : "linear(to-r, #171717, #171717)"}
-			borderColor="#383838"
-			border="1px"
+			borderColor="#383838!important"
+			border="1px solid"
 			onClick={() => router.push(href)}
 			color="white"
 			pos="relative"

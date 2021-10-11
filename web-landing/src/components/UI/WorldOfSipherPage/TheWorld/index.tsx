@@ -4,7 +4,7 @@ import { Center } from "@chakra-ui/layout"
 import { ViewContainer, BackgroundContainer } from "@components/shared"
 import { MyText } from "@sipher/web-components"
 import HeaderContent from "../HeaderContent"
-import UseOfFunds from "./UseOfFunds"
+import BodyContent from "./BodyContent"
 import { theWorldContent } from "@constant/content/why"
 
 interface TheWolrdProps {}
@@ -16,12 +16,12 @@ const TheWorld = ({}: TheWolrdProps) => {
 		<BackgroundContainer>
 			<ViewContainer label="The World" mb={mb} py={20} threshold={0.2}>
 				<Center>
-					<HeaderContent headline="The World">
+					<HeaderContent srcImg="/images/pc/why/why1.png" headline="The World">
 						<MyText>{theWorldContent.worldBlockCategory}</MyText>
 					</HeaderContent>
 				</Center>
 				<Center pt={10}>
-					<UseOfFunds />
+					<BodyContent />
 				</Center>
 			</ViewContainer>
 		</BackgroundContainer>

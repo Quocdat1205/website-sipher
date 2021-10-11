@@ -5,10 +5,11 @@ import React from "react"
 
 interface HeaderContentProps {
 	headline: string
+	srcImg?: string
 	children: React.ReactChild
 }
 
-const HeaderContent = ({ headline, children }: HeaderContentProps) => {
+const HeaderContent = ({ headline, srcImg = "/images/pc/nft/banner.png", children }: HeaderContentProps) => {
 	return (
 		<Flex flexDir={["column", "row"]} w="full" maxW="48rem">
 			<Flex flexDir="column" justifyContent="space-between" mb={[4, 0]} flex={1}>
@@ -29,7 +30,7 @@ const HeaderContent = ({ headline, children }: HeaderContentProps) => {
 				<MenuWorld />
 			</Flex>
 			<Box ml={[0, 4]} flex={1}>
-				<Image w="full" h="full" src="/images/pc/nft/banner.png" alt="" />
+				<Image w="full" h="full" src={srcImg} alt="" />
 			</Box>
 		</Flex>
 	)
