@@ -20,16 +20,9 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     }, [router.pathname])
 
     return (
-        <Flex h="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
+        <Flex  w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
             <NavBar />
-            <Flex
-                flex={1}
-                overflow="overlay"
-                direction="column"
-                id="body"
-                ref={ctnRef}
-                onScroll={() => console.log("hehe")}
-            >
+            <Flex flex={1} overflow="overlay" direction="column" id="body" ref={ctnRef}>
                 {children}
                 <Footer />
             </Flex>

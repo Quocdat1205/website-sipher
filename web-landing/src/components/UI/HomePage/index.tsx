@@ -23,6 +23,12 @@ const HomeUI = ({}: HomeUIProps) => {
             ctnRef.current.scrollTop = 0
         }
     }, [router.pathname])
+
+    useEffect(() => {
+        if (initialLoading) document.body.style.overflow = "hidden"
+        else document.body.style.overflow = "initial"
+    }, [initialLoading])
+
     return (
         <Flex flex={1} overflow="overlay" direction="column" id="body" bg="black" ref={ctnRef}>
             <Loader isVisible={initialLoading} />

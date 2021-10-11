@@ -6,7 +6,12 @@ export interface MyTextProps extends TextProps {
 }
 
 export const MyText = ({ size = "medium", ...rest }: MyTextProps) => {
-    const fontSize = size === "small" ? ["xs", "sm"] : size === "medium" ? ["sm", "md"] : ["md", "lg", "xl"]
+    const fontSize =
+        size === "small"
+            ? ["xs", "sm", "sm", "md"]
+            : size === "medium"
+            ? ["sm", "md", "md", "xl"]
+            : ["md", "lg", "lg", "2xl"]
     return <Text fontSize={fontSize} {...rest} />
 }
 export default MyText

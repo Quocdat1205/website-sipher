@@ -35,7 +35,7 @@ export const CountDown = ({ deadline }: CountDownProps) => {
     })
 
     return (
-        <HStack mt="2" justifyContent="center" width="100%" align="center">
+        <HStack mt="2" justifyContent="flex-start" width="100%" align="center">
             <TimeCell value={countdown.days} unit="days" />
             <Colon />
             <TimeCell value={countdown.hours} unit="hours" />

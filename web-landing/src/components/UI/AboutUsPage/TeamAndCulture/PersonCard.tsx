@@ -1,36 +1,26 @@
 import { Flex, Box, Stack, Image } from "@chakra-ui/react"
-import { MyHeading, MyText } from "@sipher/web-components"
+import { Typo } from "@components/shared"
 import React from "react"
 
 export interface PersonCardProps {
-	name: string
-	job: string
-	srcImg: string
-	isEmployee?: boolean
+    name: string
+    job: string
+    srcImg: string
+    isEmployee?: boolean
 }
 
 const PersonCard = ({ isEmployee, name, job, srcImg }: PersonCardProps) => {
-	return (
-		<Stack p={4} spacing={6} borderRadius="lg" bg="about.cardGray" align="center" textAlign="center">
-			<Box
-				overflow="hidden"
-				bg="about.textGray"
-				borderRadius="99"
-				h={isEmployee ? "6rem" : "9rem"}
-				w={isEmployee ? "6rem" : "9rem"}
-			>
-				<Image display="block" w="full" h="full" src={srcImg} alt="" />
-			</Box>
-			<Flex flex={1} flexDir="column">
-				<MyHeading flex={1} textTransform="uppercase">
-					{name}
-				</MyHeading>
-				<MyText flexShrink={0} mt="auto">
-					{job}
-				</MyText>
-			</Flex>
-		</Stack>
-	)
+    return (
+        <Flex direction="column" p={6} rounded="2xl" bg="#131313" align="center">
+            <Box overflow="hidden" bg="about.textGray" rounded="full" boxSize={isEmployee ? "6rem" : "9rem"} mb={4}>
+                <Image display="block" w="full" h="full" src={srcImg} alt="" />
+            </Box>
+            <Typo.BoldText textTransform="uppercase" textAlign="center">
+                {name}
+            </Typo.BoldText>
+            <Typo.Text textAlign="center">{job}</Typo.Text>
+        </Flex>
+    )
 }
 
 export default PersonCard

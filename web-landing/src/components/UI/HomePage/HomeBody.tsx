@@ -15,13 +15,7 @@ interface HomeBodyProps {}
 const HomeBody = ({}: HomeBodyProps) => {
     const mb = [8, 8, 16]
     return (
-        <BackgroundContainer
-            p={0}
-            overflow="overlay"
-            sx={{
-                scrollSnapType: "y mandatory",
-            }}
-        >
+        <BackgroundContainer p={0} overflow="overlay">
             <Hero />
             <Box
                 sx={{

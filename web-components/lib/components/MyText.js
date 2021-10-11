@@ -24,7 +24,11 @@ import { Text } from "@chakra-ui/layout";
 import React from "react";
 export var MyText = function (_a) {
     var _b = _a.size, size = _b === void 0 ? "medium" : _b, rest = __rest(_a, ["size"]);
-    var fontSize = size === "small" ? ["xs", "sm"] : size === "medium" ? ["sm", "md"] : ["md", "lg", "xl"];
+    var fontSize = size === "small"
+        ? ["xs", "sm", "sm", "md"]
+        : size === "medium"
+            ? ["sm", "md", "md", "xl"]
+            : ["md", "lg", "lg", "2xl"];
     return React.createElement(Text, __assign({ fontSize: fontSize }, rest));
 };
 export default MyText;

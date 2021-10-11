@@ -1,13 +1,12 @@
-// * DESCRIPTION:
-
 import { Box, Flex } from "@chakra-ui/react"
-import Unity from "react-unity-webgl"
 import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
 import FirstScreen from "./FirstScreen"
 import HeroScreen from "./HeroScreen"
 import CountDown from "./CountDown"
-import { SpecialHeading } from "@components/shared"
+import { Typo } from "@components/shared"
+import Unity from "react-unity-webgl"
+import { MouseEvent, MouseEventHandler, useEffect, useState } from "react"
 interface HeroProps {}
 
 const content =
@@ -20,33 +19,72 @@ export const variants = {
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-
     unityContext.on("loaded", () =>
         setTimeout(() => {
             setInitialLoading(false)
         }, 2000)
     )
     unityContext.send("Main Camera", "next", 2)
+
+    const [delay, setDelay] = useState(false)
+
+    useEffect(() => {
+        let timeout: NodeJS.Timeout
+        if (delay) {
+            timeout = setTimeout(() => {
+                setDelay(false)
+            }, 500)
+        }
+        return () => clearTimeout(timeout)
+    }, [delay, setDelay])
+
+    const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+        if (delay) return
+        else {
+            console.log("Handle Mouse Move", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
+            unityContext.send("Main Camera", "test", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
+            setDelay(true)
+        }
+    }
+
     return (
-        <Box pt={[24, 0, 0]} pos="relative" zIndex={0} overflowX="hidden">
+        <Box pt={[24, 0, 0]} pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove}>
             <Flex direction="column" w="full">
                 <FirstScreen />
-                <HeroScreen position="L" heading={<CountDown deadline={1634783320355} />} content={content} angle={2} />
+                <HeroScreen
+                    position="L"
+                    heading={<CountDown deadline={1634783320355} />}
+                    content={content}
+                    angle={2}
+                    heading2=""
+                />
                 <HeroScreen
                     position="R"
-                    heading={<SpecialHeading textAlign="left">10000</SpecialHeading>}
+                    heading={
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize="5rem" mb={0}>
+                            10000
+                        </Typo.Heading>
+                    }
                     content={content}
                     angle={3}
                 />
                 <HeroScreen
                     position="L"
-                    heading={<SpecialHeading textAlign="left">Benefits</SpecialHeading>}
+                    heading={
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize="5rem" mb={0}>
+                            Benefits
+                        </Typo.Heading>
+                    }
                     content={content}
                     angle={4}
                 />
                 <HeroScreen
                     position="R"
-                    heading={<SpecialHeading textAlign="left">Play to earn</SpecialHeading>}
+                    heading={
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize="5rem" mb={0}>
+                            Play to earn
+                        </Typo.Heading>
+                    }
                     content={content}
                     angle={5}
                 />
