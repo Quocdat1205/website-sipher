@@ -3,6 +3,7 @@ import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
 import FirstScreen from "./FirstScreen"
 import HeroScreen from "./HeroScreen"
+import AmountScreen from "./AmountScreen"
 import CountDown from "./CountDown"
 import { Typo } from "@components/shared"
 import Unity from "react-unity-webgl"
@@ -24,7 +25,6 @@ const Hero = ({}: HeroProps) => {
             setInitialLoading(false)
         }, 2000)
     )
-    unityContext.send("Main Camera", "next", 2)
 
     const [delay, setDelay] = useState(false)
 
@@ -33,7 +33,7 @@ const Hero = ({}: HeroProps) => {
         if (delay) {
             timeout = setTimeout(() => {
                 setDelay(false)
-            }, 500)
+            }, 250)
         }
         return () => clearTimeout(timeout)
     }, [delay, setDelay])
@@ -41,8 +41,13 @@ const Hero = ({}: HeroProps) => {
     const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         if (delay) return
         else {
-            console.log("Handle Mouse Move", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
-            unityContext.send("Main Camera", "test", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
+            console.log(
+                "Mouse Event:",
+                Math.floor(e.clientX / (window.innerWidth / 3)) - 1,
+                Math.floor(e.clientY / (window.innerHeight / 3)) - 1
+            )
+            unityContext.send("Main Camera", "effectNekoX", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
+            unityContext.send("Main Camera", "effectNekoY", Math.floor(e.clientY / (window.innerHeight / 3)) - 1)
             setDelay(true)
         }
     }
@@ -53,25 +58,16 @@ const Hero = ({}: HeroProps) => {
                 <FirstScreen />
                 <HeroScreen
                     position="L"
-                    heading={<CountDown deadline={1634783320355} />}
+                    heading={<CountDown deadline={1635645600000} />}
                     content={content}
                     angle={2}
                     heading2=""
                 />
-                <HeroScreen
-                    position="R"
-                    heading={
-                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize="5rem" mb={0}>
-                            10000
-                        </Typo.Heading>
-                    }
-                    content={content}
-                    angle={3}
-                />
+                <AmountScreen />
                 <HeroScreen
                     position="L"
                     heading={
-                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize="5rem" mb={0}>
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={["4rem", "5rem"]} mb={0}>
                             Benefits
                         </Typo.Heading>
                     }
@@ -81,7 +77,7 @@ const Hero = ({}: HeroProps) => {
                 <HeroScreen
                     position="R"
                     heading={
-                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize="5rem" mb={0}>
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={["4rem", "5rem"]} mb={0}>
                             Play to earn
                         </Typo.Heading>
                     }

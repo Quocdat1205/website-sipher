@@ -1,65 +1,79 @@
-import { useDisclosure } from "@chakra-ui/hooks"
-import { Center, Grid, SimpleGrid } from "@chakra-ui/layout"
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay } from "@chakra-ui/modal"
-import { BackgroundContainer, ViewContainer } from "@components/shared"
+import { Center, Grid, Box } from "@chakra-ui/layout"
+import { BackgroundContainer } from "@components/shared"
 import { getListNews } from "@hooks/api/news"
 import { useRouter } from "next/router"
-import React, { useState } from "react"
+import React from "react"
 import { useQuery } from "react-query"
 import Card from "./Card"
 import PopupCard from "./PopupCard"
+import PinterestGrid from "rc-pinterest-grid"
 
 interface Props {}
+const breakPoints = [
+	{
+		minScreenWidth: 0,
+		maxScreenWidth: 480,
+		columns: 1,
+		columnWidth: 200,
+	},
+	{
+		minScreenWidth: 480,
+		maxScreenWidth: 960,
+		columns: 2,
+		columnWidth: 200,
+	},
+	{
+		maxScreenWidth: 1440,
+		minScreenWidth: 960,
+		columns: 3,
+		columnWidth: 200,
+	},
+	{
+		maxScreenWidth: Infinity,
+		minScreenWidth: 1440,
+		columns: 3,
+		columnWidth: 200,
+	},
+]
+
+const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 const NewsBody = (props: Props) => {
-	const { data: news } = useQuery("News", () => getListNews(1, 10))
-	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { data: news, isLoading } = useQuery("News", getListNews)
 	const router = useRouter()
 
-	const [selected, setSelected] = useState({
-		attachments: "",
-		content: "",
-		timestamp: "",
-	})
-
 	const handleSelect = (item) => {
-		setSelected(item)
-		router.push(`news?${item.id}`)
-		onOpen()
+		router.push(`news?type=${item.type}&published=${item.published}`)
 	}
-
 	const mb = [8, 8, 16]
+
 	return (
 		<BackgroundContainer>
-			<ViewContainer label="News" mb={mb} py={20} threshold={0.2}>
+			<Box mb={mb} py={20}>
 				<Center pos="relative">
-					<Grid
-						overflow="hidden"
-						maxW="48rem"
-						gridTemplateColumns="repeat(auto-fill, 250px)"
-						gridAutoColumns="1rem"
-					>
-						{news?.map((item) => (
-							<Card
-								onClick={() => {
-									handleSelect(item)
-								}}
-								key={item.id}
-								item={item}
-							/>
-						))}
-					</Grid>
-					<Modal scrollBehavior="inside" size="6xl" isOpen={isOpen} isCentered onClose={onClose}>
-						<ModalOverlay bg="blackAlpha.900" />
-						<ModalContent p={0}>
-							<ModalCloseButton color="red" fontSize="1.3rem" />
-							<ModalBody p={0} borderRadius="lg" bg="about.cardGray">
-								<PopupCard selected={selected} />
-							</ModalBody>
-						</ModalContent>
-					</Modal>
+					<PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
+						{!isLoading
+							? typeof window !== "undefined" &&
+							  news?.map((item) => (
+									<Card
+										onClick={() => {
+											handleSelect(item)
+										}}
+										key={item.title}
+										item={item}
+									/>
+							  ))
+							: "Loading ..."}
+						{/* {list.map((item, index) => (
+							<Box bg="red" key={index}>
+								{item}
+							</Box>
+						))} */}
+					</PinterestGrid>
+
+					<PopupCard />
 				</Center>
-			</ViewContainer>
+			</Box>
 		</BackgroundContainer>
 	)
 }

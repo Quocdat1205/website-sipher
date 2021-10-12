@@ -1,8 +1,14 @@
 import config from "./config"
 import axios from "axios"
 
-export const getListNews = async (to: number, from: number) => {
-	const { data } = await axios.get(`/discord?min=${to}&max=${from}`, config)
+export const getListNews = async () => {
+	const { data } = await axios.get(`/communication`, config)
 
-	return data.success ? data.data : []
+	return data
+}
+
+export const getDetailsNews = async (type, published) => {
+	const { data } = await axios.get(`/communication/details?type=${type}&published=${published}`, config)
+
+	return data
 }

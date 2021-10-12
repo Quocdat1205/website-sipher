@@ -53,7 +53,16 @@ export const Footer = () => {
     }
 
     return (
-        <Flex align="center" justify="center" w="full" bg="main.lightGray" pb={4} pt={8} direction="column">
+        <Flex
+            align="center"
+            justify="center"
+            w="full"
+            bg="main.lightGray"
+            pb={4}
+            pt={8}
+            direction="column"
+            zIndex="overlay"
+        >
             <Flex direction="column" maxW="48rem" align="center" px="4">
                 <MyText size="large" fontWeight="bold" textTransform="uppercase" letterSpacing="3px">
                     Stay in touch with us

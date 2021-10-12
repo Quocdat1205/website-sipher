@@ -25,7 +25,7 @@ const MenuWorld = ({ ...rest }: MenuWorldProps) => {
 			w="full"
 			{...rest}
 		>
-			<SimpleGrid columns={[1, 4]} flex={1} spacing={2}>
+			<SimpleGrid columns={[1, 4]} flex={1} spacing={4}>
 				{menuWorld.map((menu, index) => (
 					<CardMenuWorld
 						lastChild={index === menuWorld.length - 1}

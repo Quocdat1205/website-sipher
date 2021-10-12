@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/react"
-import { NavBar } from "@components/shared"
+import { Footer, NavBar } from "@components/shared"
 
 interface HomeLayoutProps {
     children: React.ReactNode
@@ -9,9 +9,10 @@ interface HomeLayoutProps {
 
 const HomeLayout = ({ children }: HomeLayoutProps) => {
     return (
-        <Flex  w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
+        <Flex w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
             <NavBar />
             {children}
+            <Footer />
         </Flex>
     )
 }

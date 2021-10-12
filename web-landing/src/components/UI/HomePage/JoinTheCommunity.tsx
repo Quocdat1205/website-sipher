@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react"
 import React from "react"
 import StepButton from "./StepButton"
-import { TextContainer } from "@components/shared"
+import { TextContainer, Typo } from "@components/shared"
 import { GradientButton, MyText } from "@sipher/web-components"
 import CommunityIcons from "@components/shared/CommunityIcons"
 
@@ -10,9 +10,9 @@ interface Props {}
 const JoinTheCommunity = (props: Props) => {
     return (
         <TextContainer headline="Join The Community" maxW="64rem">
-            <MyText textAlign="center" textTransform="uppercase" fontWeight="bold" size="large" letterSpacing="2px">
+            <Typo.BoldText textTransform="uppercase" textAlign="center">
                 Become a part of our community for a drooling perks and exclusive games!
-            </MyText>
+            </Typo.BoldText>
             <CommunityIcons mt={8} />
             <Flex justify="center" mt={12} w="full">
                 <Flex
@@ -30,17 +30,6 @@ const JoinTheCommunity = (props: Props) => {
                     <StepButton title="Engage in community quest & contest!" icon="Engage" />
                     <StepButton position="last" title="Become our Ambassador for amazing benefits!" icon="Become" />
                 </Flex>
-            </Flex>
-
-            <Flex w="full" justify="center" mt={8}>
-                <GradientButton
-                    text="Join Our Discord Community"
-                    rounded="full"
-                    as="a"
-                    href="https://discord.com/invite/dRqdSxUSmd"
-                    rel="noreferrer"
-                    w="fit-content"
-                />
             </Flex>
         </TextContainer>
     )

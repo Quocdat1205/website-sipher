@@ -5,6 +5,7 @@ import { ViewContainer, BackgroundContainer } from "@components/shared"
 import { MyText } from "@sipher/web-components"
 import HeaderContent from "../HeaderContent"
 import { factionsContent } from "@constant/content/why"
+import BodyContent from "./BodyContent"
 
 interface FactionsProps {}
 
@@ -18,6 +19,9 @@ const Factions = ({}: FactionsProps) => {
 					<HeaderContent headline="Factions">
 						<MyText>{factionsContent.main}</MyText>
 					</HeaderContent>
+				</Center>
+				<Center pt={10}>
+					<BodyContent />
 				</Center>
 			</ViewContainer>
 		</BackgroundContainer>

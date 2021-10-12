@@ -2,7 +2,8 @@
 
 import { Box, Flex } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
-import { useAnimation } from "framer-motion"
+import useTypeWriter from "@hooks/useTypeWriter"
+import { motion, useAnimation } from "framer-motion"
 import React, { useEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"
 import unityContext from "src/utils/unity"
@@ -10,6 +11,7 @@ import variants from "./variants"
 
 interface HeroScreenProps {
     position?: "L" | "R"
+    label?: string
     heading: React.ReactNode
     heading2?: React.ReactNode
     content: string
@@ -22,22 +24,39 @@ const HeroScreen = ({
     heading2 = "Lorem ipsum, dolor sit amet consectetur adipisicing.",
     content,
     angle,
+    label,
 }: HeroScreenProps) => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
         threshold: 0.8,
     })
-    const [running, setRunning] = useState(false)
+
+    const contentControl = useAnimation()
+
+    let generateContent = () => {
+        return content.split("").map((char, i) => (
+            <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
+                {char}
+            </motion.span>
+        ))
+    }
 
     useEffect(() => {
         if (inView) {
-            headingControl.start("visible").then(() => textControl.start("visible").then(() => setRunning(true)))
+            headingControl.start("visible").then(() =>
+                textControl.start("visible").then(() =>
+                    contentControl.start(i => ({
+                        opacity: 1,
+                        transition: { delay: i * 0.005 },
+                    }))
+                )
+            )
         }
     }, [headingControl, textControl, inView])
     useEffect(() => {
         unityContext.send("Main Camera", "angle", angle)
-    }, [inView])
+    }, [inView, angle])
 
     return (
         <Flex h="100vh" maxH="720px" justify="center" w="full" flexShrink={0} bg="blackAlpha.300" zIndex={2}>
@@ -48,7 +67,7 @@ const HeroScreen = ({
                     left={position === "L" ? ["auto", "20%"] : "auto"}
                     maxW={["full", "30rem", "45rem"]}
                     bottom="20%"
-                    w="45%"
+                    // w="45%"
                     p={4}
                     ref={ref}
                 >
@@ -75,7 +94,7 @@ const HeroScreen = ({
                                 {heading2}
                             </Typo.BoldText>
                         )}
-                        <Typo.Text>{content}</Typo.Text>
+                        <Typo.Text>{generateContent()}</Typo.Text>
                     </MotionBox>
                 </Box>
             </Box>

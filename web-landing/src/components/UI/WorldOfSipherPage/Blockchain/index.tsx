@@ -5,6 +5,7 @@ import { ViewContainer, BackgroundContainer } from "@components/shared"
 import { MyText } from "@sipher/web-components"
 import HeaderContent from "../HeaderContent"
 import { blockchainContent } from "@constant/content/why"
+import BodyContent from "./BodyContent"
 
 interface BlockchainProps {}
 
@@ -18,6 +19,9 @@ const Blockchain = ({}: BlockchainProps) => {
 					<HeaderContent headline="Blockchain">
 						<MyText>{blockchainContent[0].content}</MyText>
 					</HeaderContent>
+				</Center>
+				<Center pt={10}>
+					<BodyContent />
 				</Center>
 			</ViewContainer>
 		</BackgroundContainer>

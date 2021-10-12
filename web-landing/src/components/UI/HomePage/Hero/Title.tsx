@@ -23,7 +23,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
             initial="hidden"
             variants={letterVariants}
             animate={control}
-            fontSize="11rem"
+            fontSize={["5rem", "7rem", "11rem"]}
             fontWeight={900}
             mb={0}
             lineHeight={1}
@@ -43,7 +43,7 @@ const Title = ({}: TitleProps) => {
         if (!initialLoading) {
             controls.start(i => ({
                 ...letterVariants.visible,
-                transition: { delay: i * 0.1 + 0.5, duration: 1 },
+                transition: { delay: i * 0.15 + 0.5, duration: 1 },
             }))
         }
     }, [controls, initialLoading])
