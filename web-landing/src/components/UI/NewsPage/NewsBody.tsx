@@ -1,4 +1,4 @@
-import { Center, Grid, Box } from "@chakra-ui/layout"
+import { Center, Box } from "@chakra-ui/layout"
 import { BackgroundContainer, GradientOutlineButton } from "@components/shared"
 import { getListNews } from "@hooks/api/news"
 import { useRouter } from "next/router"
@@ -57,6 +57,7 @@ const NewsBody = (props: Props) => {
 		queryClient.invalidateQueries("News")
 		setLoadMore(false)
 	}
+	console.log(news)
 
 	return (
 		<BackgroundContainer>
@@ -64,26 +65,23 @@ const NewsBody = (props: Props) => {
 				<Center pos="relative">
 					<PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
 						{!isLoading
-							? news?.map((item) => (
-									<Card
-										onClick={() => {
-											handleSelect(item)
-										}}
-										key={item.title}
-										item={item}
-									/>
-							  ))
+							? news && news.data?.length > 0
+								? news.data?.map((item) => (
+										<Card
+											onClick={() => {
+												handleSelect(item)
+											}}
+											key={item.title}
+											item={item}
+										/>
+								  ))
+								: "No data"
 							: "Loading ..."}
-						{/* {list.map((item, index) => (
-							<Box bg="red" key={index}>
-								{item}
-							</Box>
-						))} */}
 					</PinterestGrid>
 					<PopupCard />
 				</Center>
 				<Box my={[4, 8]} textAlign="center">
-					{step.current < 50 && (
+					{news?.count > step.current && (
 						<GradientOutlineButton
 							onClick={() => loadMore()}
 							text="Load More News"

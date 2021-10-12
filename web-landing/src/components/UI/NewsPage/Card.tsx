@@ -1,9 +1,7 @@
-import { IconButton } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
-import { Flex, Box, Text } from "@chakra-ui/layout"
+import { Flex, Box } from "@chakra-ui/layout"
 import { MyText } from "@sipher/web-components"
 import React from "react"
-import { FiShare2 } from "react-icons/fi"
 
 interface Props {
 	item: {
