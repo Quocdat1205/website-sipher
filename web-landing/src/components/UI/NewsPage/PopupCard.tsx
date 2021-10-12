@@ -1,60 +1,51 @@
-import { Image } from "@chakra-ui/image"
-import { Box, HStack, Flex } from "@chakra-ui/layout"
 import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from "@chakra-ui/react"
 import React from "react"
 import { useRouter } from "next/router"
 import { useQuery } from "react-query"
 import { getDetailsNews } from "@hooks/api/news"
-import ReactHtmlParser from "react-html-parser"
-import { MyHeading } from "@sipher/web-components"
+import LayoutMedium from "./LayoutMedium"
+import LayoutTwitter from "./LayoutTwitter"
 
 interface Props {}
+
+export interface DetailsNewsProps {
+	thumbnail: string
+	title: string
+	content: string
+	description: string
+}
 
 const PopupCard = ({}: Props) => {
 	// const createDate = new Date(timestamp)
 	const router = useRouter()
-	const { type, published } = router.query
-	const { data: details, isLoading } = useQuery(["news", type, published], () => getDetailsNews(type, published), {
+	const { published } = router.query
+	const { data: details, isLoading } = useQuery(["news", published], () => getDetailsNews(published), {
 		onError: (error) => {
 			console.log(error)
 		},
-		enabled: !!type && !!published,
+		enabled: !!published,
 	})
 
 	return (
 		<Modal
 			scrollBehavior="inside"
 			size="6xl"
-			isOpen={!!router.query.published && !!router.query.type}
+			isOpen={!!router.query.published}
 			isCentered
 			onClose={() => router.push("news")}
 		>
 			<ModalOverlay bg="blackAlpha.900" />
 			<ModalContent p={0}>
-				<ModalCloseButton color="red" fontSize="1.3rem" />
+				<ModalCloseButton color="white" zIndex="9" bg="red.500" _hover={{ bg: "red" }} fontSize="1.3rem" />
 				<ModalBody p={0} borderRadius="lg" bg="about.cardGray">
 					{!isLoading && details ? (
-						<Flex flexDir={["column", "row"]}>
-							{details.type !== "medium" && (
-								<Box flex={1}>
-									<Image
-										w="full"
-										h="auto"
-										src={details.thumbnail !== "" ? details.thumbnail : "/images/pc/news.png"}
-										alt=""
-									/>
-								</Box>
-							)}
-							<Box flex={1} p={details.type !== "medium" ? 4 : 8}>
-								<MyHeading>{details.title}</MyHeading>
-								<Box sx={{ img: { m: "0 auto" } }} color="white">
-									{ReactHtmlParser(details.content && details.content)}
-								</Box>
-								<Box sx={{ img: { m: "0 auto" } }} color="white">
-									{ReactHtmlParser(details.description && details.description)}
-								</Box>
-							</Box>
-						</Flex>
+						details.type === "medium" ? (
+							<LayoutMedium details={details} />
+						) : details.type === "twitter" ? (
+							<LayoutTwitter details={details} />
+						) : (
+							"Not Found"
+						)
 					) : (
 						"Loading ..."
 					)}

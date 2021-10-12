@@ -1,6 +1,7 @@
 import { IconButton } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
 import { Flex, Box, Text } from "@chakra-ui/layout"
+import { MyText } from "@sipher/web-components"
 import React from "react"
 import { FiShare2 } from "react-icons/fi"
 
@@ -9,7 +10,7 @@ interface Props {
 		type: "medium" | "twitter"
 		link: string
 		title: string
-		published: string
+		updatedAt: string
 		thumbnail?: string
 	}
 	onClick: () => void
@@ -17,14 +18,14 @@ interface Props {
 // const regex = new RegExp(/^<.*>$/)
 
 const Card = ({ item, onClick }: Props) => {
-	const { type, thumbnail, title, published, link } = item
+	const { type, thumbnail, title, updatedAt, link } = item
 	// const contentArr = content.split("\n").map((line) =>
 	// 	line
 	// 		.split(" ")
 	// 		.filter((word) => !regex.test(word))
 	// 		.join(" ")
 	// )
-	const createDate = new Date(published)
+	const createDate = new Date(updatedAt)
 	return (
 		<Flex
 			m="2"
@@ -56,16 +57,18 @@ const Card = ({ item, onClick }: Props) => {
 						m="0 auto"
 						src={`/images/icons/${type === "medium" ? "medium" : "twitter"}.png`}
 						alt=""
-						h="2rem"
+						h="1.8rem"
 					/>
 				</Box>
-				<Box overflow="hidden" px={4} mb={4}>
+				<Box overflow="hidden" color="about.textGray" px={4} mb={4}>
 					{title}
 				</Box>
 			</Box>
-			<Text mt="auto" p={4} fontSize={["xs", "sm"]}>
-				{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
-			</Text>
+			<Box mt="auto" p={4} borderTop="1px" borderColor="about.textGray">
+				<MyText size="small" color="about.textGray">
+					{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
+				</MyText>
+			</Box>
 		</Flex>
 	)
 }

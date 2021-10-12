@@ -9,7 +9,7 @@ interface VisionCardProps {
 
 const VisionCard = ({ title, description, srcImg }: VisionCardProps) => {
 	return (
-		<Stack p="4" spacing={6} borderRadius="lg" bg="about.cardGray" textAlign="center">
+		<Stack p={[6, 8]} spacing={6} borderRadius="lg" bg="about.cardGray" textAlign="center">
 			<Box h="4rem">
 				<Image h="full" m="0 auto" src={srcImg} alt="" />
 			</Box>
