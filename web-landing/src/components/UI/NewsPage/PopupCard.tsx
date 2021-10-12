@@ -13,16 +13,13 @@ interface Props {}
 const PopupCard = ({}: Props) => {
 	// const createDate = new Date(timestamp)
 	const router = useRouter()
-	const { data: details, isLoading } = useQuery(
-		`${router.query.type}-News-${router.query.published}`,
-		() => getDetailsNews(router.query.type, router.query.published),
-		{
-			onError: (error) => {
-				console.log(error)
-			},
-			enabled: !!router.query.type && !!router.query.published,
-		}
-	)
+	const { type, published } = router.query
+	const { data: details, isLoading } = useQuery(["news", type, published], () => getDetailsNews(type, published), {
+		onError: (error) => {
+			console.log(error)
+		},
+		enabled: !!type && !!published,
+	})
 
 	return (
 		<Modal

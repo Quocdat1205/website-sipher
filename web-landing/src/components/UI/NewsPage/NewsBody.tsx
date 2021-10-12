@@ -6,7 +6,7 @@ import React from "react"
 import { useQuery } from "react-query"
 import Card from "./Card"
 import PopupCard from "./PopupCard"
-import PinterestGrid from "rc-pinterest-grid"
+import dynamic from "next/dynamic"
 
 interface Props {}
 const breakPoints = [
@@ -14,29 +14,29 @@ const breakPoints = [
 		minScreenWidth: 0,
 		maxScreenWidth: 480,
 		columns: 1,
-		columnWidth: 200,
+		columnWidth: 250,
 	},
 	{
 		minScreenWidth: 480,
 		maxScreenWidth: 960,
 		columns: 2,
-		columnWidth: 200,
+		columnWidth: 250,
 	},
 	{
 		maxScreenWidth: 1440,
 		minScreenWidth: 960,
 		columns: 3,
-		columnWidth: 200,
+		columnWidth: 250,
 	},
 	{
 		maxScreenWidth: Infinity,
 		minScreenWidth: 1440,
 		columns: 3,
-		columnWidth: 200,
+		columnWidth: 250,
 	},
 ]
 
-const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+const PinterestGrid = dynamic<any>(() => import("rc-pinterest-grid" as any) as Promise<any>, { ssr: false })
 
 const NewsBody = (props: Props) => {
 	const { data: news, isLoading } = useQuery("News", getListNews)
@@ -53,8 +53,7 @@ const NewsBody = (props: Props) => {
 				<Center pos="relative">
 					<PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
 						{!isLoading
-							? typeof window !== "undefined" &&
-							  news?.map((item) => (
+							? news?.map((item) => (
 									<Card
 										onClick={() => {
 											handleSelect(item)
