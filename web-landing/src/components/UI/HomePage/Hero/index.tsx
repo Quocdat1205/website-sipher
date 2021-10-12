@@ -33,7 +33,7 @@ const Hero = ({}: HeroProps) => {
         if (delay) {
             timeout = setTimeout(() => {
                 setDelay(false)
-            }, 50)
+            }, 250)
         }
         return () => clearTimeout(timeout)
     }, [delay, setDelay])
@@ -41,17 +41,23 @@ const Hero = ({}: HeroProps) => {
     const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         if (delay) return
         else {
-            console.log(
-                "Mouse Event:",
-                Math.floor(e.clientX / (window.innerWidth / 3)) - 1,
-                Math.floor(e.clientY / (window.innerHeight / 3)) - 1
-            )
+            // console.log(
+            //     "Mouse Event:",
+            //     Math.floor(e.clientX / (window.innerWidth / 3)) - 1,
+            //     Math.floor(e.clientY / (window.innerHeight / 3)) - 1
+            // )
             // unityContext.send("Main Camera", "effectNekoX", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
             // unityContext.send("Main Camera", "effectNekoY", Math.floor(e.clientY / (window.innerHeight / 3)) - 1)
-            
-            unityContext.send("Main Camera", "effectNekoX", - (e.clientX / (window.innerWidth/24) - 12))
-            unityContext.send("Main Camera", "effectNekoY", - (e.clientY / (window.innerHeight/50)  - 25))
             // setDelay(true)
+
+            console.log(
+                    "Mouse Event:",
+                    (e.clientX / (window.innerWidth) ),
+                    (e.clientY / (window.innerHeight)  )
+                )
+            unityContext.send("Main Camera", "effectNekoX", (e.clientX / (window.innerWidth) ))
+            unityContext.send("Main Camera", "effectNekoY", 1-(e.clientY / (window.innerHeight)  ))
+            setDelay(true)
         }
     }
 
