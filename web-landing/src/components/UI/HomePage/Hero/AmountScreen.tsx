@@ -88,8 +88,8 @@ const AmountScreen = () => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={["auto", "20%"]}
-                    maxW={["full", "30rem", "45rem"]}
+                    right={["auto", "15%"]}
+                    maxW={["full", "30rem", "30rem", "30rem", "40rem"]}
                     bottom="20%"
                     p={4}
                     ref={ref}

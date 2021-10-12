@@ -59,13 +59,13 @@ const HeroScreen = ({
     }, [inView, angle])
 
     return (
-        <Flex h="100vh" maxH="720px" justify="center" w="full" flexShrink={0} bg="blackAlpha.300" zIndex={2}>
+        <Flex h="100vh" maxH="1080px" justify="center" w="full" flexShrink={0} bg="blackAlpha.300" zIndex={2}>
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={position === "R" ? ["auto", "20%"] : "auto"}
-                    left={position === "L" ? ["auto", "20%"] : "auto"}
-                    maxW={["full", "30rem", "45rem"]}
+                    right={position === "R" ? ["auto", "15%"] : "auto"}
+                    left={position === "L" ? ["auto", "15%"] : "auto"}
+                    maxW={["full", "30rem", "30rem", "30rem", "40rem"]}
                     bottom="20%"
                     // w="45%"
                     p={4}
