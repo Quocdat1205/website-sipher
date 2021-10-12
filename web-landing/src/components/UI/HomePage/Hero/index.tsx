@@ -33,7 +33,7 @@ const Hero = ({}: HeroProps) => {
         if (delay) {
             timeout = setTimeout(() => {
                 setDelay(false)
-            }, 250)
+            }, 50)
         }
         return () => clearTimeout(timeout)
     }, [delay, setDelay])
@@ -46,9 +46,12 @@ const Hero = ({}: HeroProps) => {
                 Math.floor(e.clientX / (window.innerWidth / 3)) - 1,
                 Math.floor(e.clientY / (window.innerHeight / 3)) - 1
             )
-            unityContext.send("Main Camera", "effectNekoX", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
-            unityContext.send("Main Camera", "effectNekoY", Math.floor(e.clientY / (window.innerHeight / 3)) - 1)
-            setDelay(true)
+            // unityContext.send("Main Camera", "effectNekoX", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
+            // unityContext.send("Main Camera", "effectNekoY", Math.floor(e.clientY / (window.innerHeight / 3)) - 1)
+            
+            unityContext.send("Main Camera", "effectNekoX", - (e.clientX / (window.innerWidth/24) - 12))
+            unityContext.send("Main Camera", "effectNekoY", - (e.clientY / (window.innerHeight/50)  - 25))
+            // setDelay(true)
         }
     }
 
