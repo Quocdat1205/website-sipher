@@ -53,7 +53,7 @@ const HeroScreen = ({
                 )
             )
         }
-    }, [headingControl, textControl, inView])
+    }, [headingControl, textControl, contentControl, inView])
     useEffect(() => {
         unityContext.send("Main Camera", "angle", angle)
     }, [inView, angle])
