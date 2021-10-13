@@ -4,10 +4,12 @@ import { useStoreActions } from "@store"
 import FirstScreen from "./FirstScreen"
 import HeroScreen from "./HeroScreen"
 import AmountScreen from "./AmountScreen"
-import CountDown from "./CountDown"
 import { Typo } from "@components/shared"
 import Unity from "react-unity-webgl"
-import { MouseEvent, MouseEventHandler, useEffect, useState, useRef } from "react"
+import { MouseEvent, useEffect, useState, useRef } from "react"
+import CountDownScreen from "./CountDownScreen"
+import BenefitsScreen from "./BenefitsScreen"
+import PlayScreen from "./PlayScreen"
 interface HeroProps {}
 
 const content =
@@ -38,7 +40,7 @@ const Hero = ({}: HeroProps) => {
     }, [delay, setDelay])
 
     const ctnRef = useRef<HTMLDivElement>(null)
-    const handleMouseMWheel = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    const handleMouseWheel = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         if (ctnRef.current)
             unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5)
     }
@@ -47,7 +49,6 @@ const Hero = ({}: HeroProps) => {
         else {
             unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth)
             unityContext.send("Main Camera", "effectNekoY", 1 - e.clientY / window.innerHeight)
-            // setDelay(true)
         }
     }
 
@@ -58,36 +59,15 @@ const Hero = ({}: HeroProps) => {
             zIndex={0}
             overflowX="hidden"
             onMouseMove={handleMouseMove}
-            onWheel={handleMouseMWheel}
+            onWheel={handleMouseWheel}
             ref={ctnRef}
         >
             <Flex direction="column" w="full">
                 <FirstScreen />
-                <HeroScreen
-                    position="L"
-                    heading={<CountDown deadline={1635645600000} />}
-                    content={content}
-                    heading2=""
-                />
+                <CountDownScreen />
                 <AmountScreen />
-                <HeroScreen
-                    position="L"
-                    heading={
-                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={["4rem", "5rem"]} mb={0}>
-                            Benefits
-                        </Typo.Heading>
-                    }
-                    content={content}
-                />
-                <HeroScreen
-                    position="R"
-                    heading={
-                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={["4rem", "5rem"]} mb={0}>
-                            Play to earn
-                        </Typo.Heading>
-                    }
-                    content={content}
-                />
+                <BenefitsScreen />
+                <PlayScreen />
             </Flex>
             <Box pos="fixed" top={0} left={0} h="full" w="full">
                 <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />

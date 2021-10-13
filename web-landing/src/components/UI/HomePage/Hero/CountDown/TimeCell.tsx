@@ -29,7 +29,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         transition={{ type: "tween", duration: 0.5 }}
                         textAlign="center"
                         fontWeight={900}
-                        fontSize={["3.5rem", "5rem"]}
+                        fontSize={["4rem", "4.5rem", "4.5rem", "5rem"]}
                         position="absolute"
                         left={0}
                         top={0}
