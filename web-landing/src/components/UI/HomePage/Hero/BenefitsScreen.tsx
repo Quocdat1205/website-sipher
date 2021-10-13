@@ -44,7 +44,7 @@ const BenefitsScreen = () => {
                         borderBottom="1px"
                         borderColor="main.orange"
                         animate={contentControl}
-                        initial={{ opacity: 0, borderBottom: "0px" }}
+                        initial={{ opacity: 0 }}
                         custom={i + p1.length}
                     >
                         {char}
@@ -72,7 +72,7 @@ const BenefitsScreen = () => {
                     borderBottom="1px"
                     borderColor="main.orange"
                     animate={contentControl}
-                    initial={{ opacity: 0, borderBottom: "0px" }}
+                    initial={{ opacity: 0 }}
                     custom={i + p1.length + p2.length + p3.length}
                 >
                     {char}
