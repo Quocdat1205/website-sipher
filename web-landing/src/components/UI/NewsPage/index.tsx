@@ -10,7 +10,7 @@ interface NewsUIProps {}
 
 const NewsUI = ({}: NewsUIProps) => {
     return (
-        <BackgroundContainer px={0} className="news-ui" backgroundColor="blue.400">
+        <BackgroundContainer px={0}>
             <HeaderBackground
                 isChangeBG
                 title="NEWS"

@@ -1,5 +1,5 @@
-import { Center, Box, Flex } from "@chakra-ui/layout"
-import { BackgroundContainer, GradientOutlineButton } from "@components/shared"
+import { Box, Flex } from "@chakra-ui/layout"
+import { GradientOutlineButton, Typo } from "@components/shared"
 import { getListNews } from "@hooks/api/news"
 import { useRouter } from "next/router"
 import React, { useRef, useState } from "react"
@@ -7,6 +7,7 @@ import { useQueryClient, useQuery } from "react-query"
 import Card from "./Card"
 import PopupCard from "./PopupCard"
 import dynamic from "next/dynamic"
+import Loading from "./Loading"
 
 interface Props {}
 const breakPoints = [
@@ -60,22 +61,28 @@ const NewsBody = (props: Props) => {
     }
 
     return (
-        <Flex direction="column" align="center" py={24} flex={1}>
-            <PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
-                {!isLoading
-                    ? news && news.data?.length > 0
-                        ? news.data?.map(item => (
-                              <Card
-                                  onClick={() => {
-                                      handleSelect(item)
-                                  }}
-                                  key={item.title}
-                                  item={item}
-                              />
-                          ))
-                        : "No data"
-                    : "Loading ..."}
-            </PinterestGrid>
+        <Flex w="full" py={24} px={4} align="center">
+            {!isLoading ? (
+                news && news.data?.length > 0 ? (
+                    <PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
+                        {news.data?.map(item => (
+                            <Card
+                                onClick={() => {
+                                    handleSelect(item)
+                                }}
+                                key={item.title}
+                                item={item}
+                            />
+                        ))}
+                    </PinterestGrid>
+                ) : (
+                    <Typo.BoldText w="full" textAlign="center" color="about.textGray">
+                        Data not found! (x_x)
+                    </Typo.BoldText>
+                )
+            ) : (
+                <Loading />
+            )}
             <PopupCard />
             <Box my={[4, 8]} textAlign="center">
                 {news?.count > step.current && (
