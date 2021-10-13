@@ -1,5 +1,4 @@
 export * from "./BackgroundContainer"
-export * from "./BaseSideBar"
 export * from "./Li"
 export * from "./MotionContainer"
 export * from "./NavBar"

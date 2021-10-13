@@ -1,9 +1,9 @@
 // * DESCRIPTION:
 
-import { Drawer, DrawerOverlay, DrawerContent, DrawerBody } from "@chakra-ui/react"
+import { Drawer, DrawerOverlay, DrawerContent, DrawerBody, VStack, Flex } from "@chakra-ui/react"
 import { useStoreActions, useStoreState } from "@store"
 import React from "react"
-import { BaseSideBar, navMenus } from "."
+import { navMenus } from "."
 import { NavBarLink } from "@sipher/web-components"
 import { useRouter } from "next/dist/client/router"
 interface MenuDrawerProps {}
@@ -20,7 +20,7 @@ const MenuDrawer = ({}: MenuDrawerProps) => {
             onClose={() => setIsSideBarOn(false)}
             initialFocusRef={undefined}
         >
-            <DrawerOverlay />
+            <DrawerOverlay zIndex="popover" />
             <DrawerContent
                 // bgImage="/images/pc/home/homenew2.png"
                 bgSize="contain"
@@ -28,19 +28,21 @@ const MenuDrawer = ({}: MenuDrawerProps) => {
                 // bgGradient="linear(to-b, bgGradient.orange)"
             >
                 <DrawerBody p={0}>
-                    <BaseSideBar inDrawer>
-                        {navMenus.map(menu => (
-                            <NavBarLink
-                                key={menu.id}
-                                href={menu.path}
-                                text={menu.id}
-                                active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
-                                onClick={() => setIsSideBarOn(false)}
-                                size="large"
-                                w="full"
-                            />
-                        ))}
-                    </BaseSideBar>
+                    <Flex w="full" align="center" justify="center" h="full">
+                        <VStack h="20rem" my="auto" justify="space-between">
+                            {navMenus.map(menu => (
+                                <NavBarLink
+                                    key={menu.id}
+                                    href={menu.path}
+                                    text={menu.id}
+                                    active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
+                                    onClick={() => setIsSideBarOn(false)}
+                                    size="large"
+                                    w="full"
+                                />
+                            ))}
+                        </VStack>
+                    </Flex>
                 </DrawerBody>
             </DrawerContent>
         </Drawer>

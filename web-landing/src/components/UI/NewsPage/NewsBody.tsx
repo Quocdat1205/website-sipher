@@ -1,5 +1,5 @@
-import { Center, Box } from "@chakra-ui/layout"
-import { BackgroundContainer, GradientOutlineButton } from "@components/shared"
+import { Box, Flex } from "@chakra-ui/layout"
+import { GradientOutlineButton, Typo } from "@components/shared"
 import { getListNews } from "@hooks/api/news"
 import { useRouter } from "next/router"
 import React, { useRef, useState } from "react"
@@ -7,6 +7,7 @@ import { useQueryClient, useQuery } from "react-query"
 import Card from "./Card"
 import PopupCard from "./PopupCard"
 import dynamic from "next/dynamic"
+import Loading from "./Loading"
 
 interface Props {}
 const breakPoints = [
@@ -46,8 +47,9 @@ const NewsBody = (props: Props) => {
         enabled: !loadmore,
     })
     const router = useRouter()
+
     const handleSelect = item => {
-        router.push(`news?published=${item.published}`)
+        router.push(`?published=${item.published}`, undefined, { scroll: false })
     }
     const mb = [8, 8, 16]
 
@@ -57,41 +59,42 @@ const NewsBody = (props: Props) => {
         queryClient.invalidateQueries("News")
         setLoadMore(false)
     }
-    console.log(news)
 
     return (
-        <BackgroundContainer>
-            <Box mb={mb} py={20}>
-                <Center pos="relative">
+        <Flex direction="column" w="full" py={24} px={4} align="center">
+            {!isLoading ? (
+                news && news.data?.length > 0 ? (
                     <PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
-                        {!isLoading
-                            ? news && news.data?.length > 0
-                                ? news.data?.map(item => (
-                                      <Card
-                                          onClick={() => {
-                                              handleSelect(item)
-                                          }}
-                                          key={item.title}
-                                          item={item}
-                                      />
-                                  ))
-                                : "No data"
-                            : "Loading ..."}
+                        {news.data?.map(item => (
+                            <Card
+                                onClick={() => {
+                                    handleSelect(item)
+                                }}
+                                key={item.title}
+                                item={item}
+                            />
+                        ))}
                     </PinterestGrid>
-                    <PopupCard />
-                </Center>
-                <Box my={[4, 8]} textAlign="center">
-                    {news?.count > step.current && (
-                        <GradientOutlineButton
-                            onClick={() => loadMore()}
-                            text="Load More News"
-                            isLoading={isLoading && !loadmore}
-                            loadingText="Loading ..."
-                        />
-                    )}
-                </Box>
+                ) : (
+                    <Typo.BoldText w="full" textAlign="center" color="about.textGray">
+                        Data not found! (x_x)
+                    </Typo.BoldText>
+                )
+            ) : (
+                <Loading />
+            )}
+            <PopupCard />
+            <Box my={[4, 8]} textAlign="center">
+                {news?.count > step.current && (
+                    <GradientOutlineButton
+                        onClick={() => loadMore()}
+                        text="Load More"
+                        isLoading={isLoading && !loadmore}
+                        loadingText="Loading ..."
+                    />
+                )}
             </Box>
-        </BackgroundContainer>
+        </Flex>
     )
 }
 

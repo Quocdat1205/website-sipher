@@ -14,12 +14,12 @@ const VisionCard = ({ headline, description, icon }: VisionCardProps) => {
             <Box h="4rem">
                 <Image h="full" m="0 auto" src={icon} alt="" />
             </Box>
-            <Typo.BoldText h={["2rem", "4.5rem"]} textTransform="uppercase">
+            <Typo.BoldText h={["2rem", "4.5rem", "5rem", "5.5rem"]} textTransform="uppercase">
                 {headline}
             </Typo.BoldText>
-            <MyText flex={1} color="about.textGray">
+            <Typo.Text flex={1} color="about.textGray">
                 {description}
-            </MyText>
+            </Typo.Text>
         </Stack>
     )
 }
