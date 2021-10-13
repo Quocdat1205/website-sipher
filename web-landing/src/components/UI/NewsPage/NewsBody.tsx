@@ -46,9 +46,11 @@ const NewsBody = (props: Props) => {
         enabled: !loadmore,
     })
     const router = useRouter()
+
     const handleSelect = item => {
-        router.push(`news?published=${item.published}`)
+        router.push(`?published=${item.published}`, undefined, { scroll: false })
     }
+    const mb = [8, 8, 16]
 
     const loadMore = async () => {
         setLoadMore(true)
@@ -58,7 +60,7 @@ const NewsBody = (props: Props) => {
     }
 
     return (
-        <Flex direction="column" align="center" py={24}>
+        <Flex direction="column" align="center" py={24} flex={1}>
             <PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
                 {!isLoading
                     ? news && news.data?.length > 0

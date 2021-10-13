@@ -10,6 +10,7 @@ import TheWorldContent from "./TheWorldContent"
 import GameplayContent from "./GameplayContent"
 import FactionsContent from "./FactionsContent"
 import BlockchainContent from "./BlockchainContent"
+import { GradientButton } from "@sipher/web-components"
 
 interface WorldOfSipherUIProps {}
 
@@ -48,7 +49,7 @@ const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
     return (
         <BackgroundContainer px={0}>
             <HeaderBackground title="WORLD OF SIPHER" description="DONEC VIVERRA, METUS EU CONDIMENTUM" />
-            <Flex flex={1} direction="column" align="center" py={24}>
+            <Flex flex={1} direction="column" w="full" align="center" py={24} px={4}>
                 <MainContent
                     srcImg={renderImage()}
                     headline={renderHeadline()}
@@ -66,6 +67,15 @@ const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
                         <BlockchainContent />
                     )}
                 </MainContent>
+                <GradientButton
+                    text="Join Our Discord Community"
+                    rounded="full"
+                    as="a"
+                    href="https://discord.com/invite/dRqdSxUSmd"
+                    rel="noreferrer"
+                    w="fit-content"
+                    mt={16}
+                />
             </Flex>
         </BackgroundContainer>
     )

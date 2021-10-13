@@ -16,9 +16,7 @@ export interface DetailsNewsProps {
     link: string
     type: "medium" | "twitter"
 }
-
 const PopupCard = ({}: Props) => {
-    // const createDate = new Date(timestamp)
     const router = useRouter()
     const { published } = router.query
     const { data: details, isLoading } = useQuery(["news", published], () => getDetailsNews(published), {
@@ -34,12 +32,12 @@ const PopupCard = ({}: Props) => {
             size="6xl"
             isOpen={!!router.query.published}
             isCentered
-            onClose={() => router.push("news")}
+            onClose={() => router.push("news", undefined, { scroll: false })}
         >
             <ModalOverlay bg="blackAlpha.900" />
-            <ModalContent p={0} border="1px" borderColor="about.textGray" overflow="hidden">
-                <ModalCloseButton color="red.500" _focus={{ shadow: "none" }} />
-                <ModalBody p={0} bg="about.cardGray">
+            <ModalContent p={0}>
+                <ModalCloseButton color="red" _focus={{ shadow: "none" }} />
+                <ModalBody p={0} borderRadius="lg" bg="about.cardGray">
                     {!isLoading && details ? (
                         details.type === "medium" ? (
                             <LayoutMedium details={details} />

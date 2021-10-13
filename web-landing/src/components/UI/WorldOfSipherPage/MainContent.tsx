@@ -22,7 +22,7 @@ const MainContent = ({
 }: MainContentProps) => {
     return (
         <VStack maxW={["48rem", "48rem", "48rem", "56rem", "72rem"]} spacing={16}>
-            <Stack direction={["column-reverse", "column-reverse", "row"]} spacing={4} w="full">
+            <Stack direction={["column-reverse", "column-reverse", "row"]} spacing={[8, 8, 4]} w="full">
                 <VStack justifyContent="space-between" flex={1} spacing={4}>
                     <Flex flexDir="column" flex={1}>
                         <Typo.Heading isGradient textAlign={["center", "center", "left"]}>
