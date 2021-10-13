@@ -37,10 +37,8 @@ export const CardMenuWorld = ({ lastChild = false, size, text, active, icon, hre
 			</Box>
 			<MyText
 				fontWeight="normal"
-				fontSize="xx-small"
 				textAlign="center"
 				isTruncated
-				letterSpacing="3px"
 				color={active ? "white" : "#9c8e83"}
 				px={1}
 				py={1}

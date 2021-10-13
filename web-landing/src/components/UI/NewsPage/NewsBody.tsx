@@ -1,12 +1,12 @@
-import { Center, Grid, Box } from "@chakra-ui/layout"
-import { BackgroundContainer } from "@components/shared"
+import { Center, Box } from "@chakra-ui/layout"
+import { BackgroundContainer, GradientOutlineButton } from "@components/shared"
 import { getListNews } from "@hooks/api/news"
 import { useRouter } from "next/router"
-import React from "react"
-import { useQuery } from "react-query"
+import React, { useRef, useState } from "react"
+import { useQueryClient, useQuery } from "react-query"
 import Card from "./Card"
 import PopupCard from "./PopupCard"
-import PinterestGrid from "rc-pinterest-grid"
+import dynamic from "next/dynamic"
 
 interface Props {}
 const breakPoints = [
@@ -14,38 +14,50 @@ const breakPoints = [
 		minScreenWidth: 0,
 		maxScreenWidth: 480,
 		columns: 1,
-		columnWidth: 200,
+		columnWidth: 320,
 	},
 	{
 		minScreenWidth: 480,
 		maxScreenWidth: 960,
 		columns: 2,
-		columnWidth: 200,
+		columnWidth: 250,
 	},
 	{
 		maxScreenWidth: 1440,
 		minScreenWidth: 960,
 		columns: 3,
-		columnWidth: 200,
+		columnWidth: 300,
 	},
 	{
 		maxScreenWidth: Infinity,
 		minScreenWidth: 1440,
 		columns: 3,
-		columnWidth: 200,
+		columnWidth: 340,
 	},
 ]
 
-const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+const PinterestGrid = dynamic<any>(() => import("rc-pinterest-grid" as any) as Promise<any>, { ssr: false })
 
 const NewsBody = (props: Props) => {
-	const { data: news, isLoading } = useQuery("News", getListNews)
+	const step = useRef(9)
+	const queryClient = useQueryClient()
+	const [loadmore, setLoadMore] = useState(false)
+	const { data: news, isLoading } = useQuery("News", () => getListNews(1, step.current > 50 ? 50 : step.current), {
+		enabled: !loadmore,
+	})
 	const router = useRouter()
-
 	const handleSelect = (item) => {
-		router.push(`news?type=${item.type}&published=${item.published}`)
+		router.push(`news?published=${item.published}`)
 	}
 	const mb = [8, 8, 16]
+
+	const loadMore = async () => {
+		setLoadMore(true)
+		await (step.current = step.current + 6)
+		queryClient.invalidateQueries("News")
+		setLoadMore(false)
+	}
+	console.log(news)
 
 	return (
 		<BackgroundContainer>
@@ -53,26 +65,31 @@ const NewsBody = (props: Props) => {
 				<Center pos="relative">
 					<PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
 						{!isLoading
-							? typeof window !== "undefined" &&
-							  news?.map((item) => (
-									<Card
-										onClick={() => {
-											handleSelect(item)
-										}}
-										key={item.title}
-										item={item}
-									/>
-							  ))
+							? news && news.data?.length > 0
+								? news.data?.map((item) => (
+										<Card
+											onClick={() => {
+												handleSelect(item)
+											}}
+											key={item.title}
+											item={item}
+										/>
+								  ))
+								: "No data"
 							: "Loading ..."}
-						{/* {list.map((item, index) => (
-							<Box bg="red" key={index}>
-								{item}
-							</Box>
-						))} */}
 					</PinterestGrid>
-
 					<PopupCard />
 				</Center>
+				<Box my={[4, 8]} textAlign="center">
+					{news?.count > step.current && (
+						<GradientOutlineButton
+							onClick={() => loadMore()}
+							text="Load More News"
+							isLoading={isLoading && !loadmore}
+							loadingText="Loading ..."
+						/>
+					)}
+				</Box>
 			</Box>
 		</BackgroundContainer>
 	)

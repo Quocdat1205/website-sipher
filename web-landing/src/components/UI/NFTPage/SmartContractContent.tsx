@@ -6,7 +6,7 @@ interface Props {}
 
 const SmartContractContent = (props: Props) => {
 	return (
-		<Flex flexDir={["column", "row"]} w="full" maxW="48rem" align="center">
+		<Flex flexDir={["column", "row"]} w="full" maxW="64rem" align="center">
 			<Box p={4} mb={[4, 0]} flex={1}>
 				<GradientHeading
 					textTransform="uppercase"
@@ -26,7 +26,7 @@ const SmartContractContent = (props: Props) => {
 				</MyText>
 			</Box>
 			<Box ml={[0, 4]} flex={1}>
-				<Image src="/images/pc/nft/banner.png" alt="" />
+				<Image src="/images/pc/laboratory/laboratory1.png" alt="" />
 			</Box>
 		</Flex>
 	)
