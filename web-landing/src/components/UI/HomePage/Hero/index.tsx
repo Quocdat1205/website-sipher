@@ -53,7 +53,7 @@ const Hero = ({}: HeroProps) => {
             console.log("Mouse Event:", e.clientX / window.innerWidth, e.clientY / window.innerHeight)
             unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth)
             unityContext.send("Main Camera", "effectNekoY", 1 - e.clientY / window.innerHeight)
-            setDelay(true)
+            // setDelay(true)
         }
     }
 
