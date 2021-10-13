@@ -24,9 +24,13 @@ const HeaderBackground = ({ isChangeBG = false, srcImg = "/images/pc/bg-title.pn
             h="100%"
             pos="relative"
         >
-            <Typo.Heading mb={2}>{title}</Typo.Heading>
-            <Typo.BoldText textAlign="center">{description}</Typo.BoldText>
-            {isChangeBG && <Box pos="absolute" top="0" left="0" w="100%" h="100%" bg="blackAlpha.700" />}
+            {isChangeBG && (
+                <Box pos="absolute" zIndex="1" content="''" top="0" left="0" w="100%" h="100%" bg="blackAlpha.700" />
+            )}
+            <Typo.Heading zIndex={1} mb={2}>
+                {title}
+            </Typo.Heading>
+            <Typo.BoldText zIndex={1}>{description}</Typo.BoldText>
         </Flex>
     )
 }

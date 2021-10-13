@@ -1,20 +1,20 @@
-import MainLayout from "@components/UI/MainLayout"
+import NewsLayout from "@components/UI/NewsLayout"
 import NewsUI from "@components/UI/NewsPage"
 import Head from "next/head"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "./_app"
 
-const NFTPage: NextPageWithLayout = () => {
+const NewsPage: NextPageWithLayout = () => {
 	return <NewsUI />
 }
-NFTPage.getLayout = (page: ReactElement) => {
+NewsPage.getLayout = (page: ReactElement) => {
 	return (
 		<>
 			<Head>
 				<title>News</title>
 			</Head>
-			<MainLayout>{page}</MainLayout>
+			<NewsLayout>{page}</NewsLayout>
 		</>
 	)
 }
-export default NFTPage
+export default NewsPage

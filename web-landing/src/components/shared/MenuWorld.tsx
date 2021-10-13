@@ -1,19 +1,20 @@
 import { Center, CenterProps, SimpleGrid } from "@chakra-ui/react"
-import { useRouter } from "next/router"
+import { useStoreActions, useStoreState } from "@store"
 import React from "react"
 import { CardMenuWorld } from "./CardMenuWorld"
 
 interface MenuWorldProps extends CenterProps {}
 
 export const menuWorld = [
-	{ id: "The world", path: "/world-of-sipher/the-world", icon: "/images/icons/theworld.png" },
-	{ id: "Gameplay", path: "/world-of-sipher/gameplay", icon: "/images/icons/gameplay.png" },
-	{ id: "Factions", path: "/world-of-sipher/factions", icon: "/images/icons/factions.png" },
-	{ id: "Blockchain", path: "/world-of-sipher/blockchain", icon: "/images/icons/blockchain.png" },
+	{ id: "The world", path: "/world-of-sipher#theworld", icon: "/images/icons/theworld.png" },
+	{ id: "Gameplay", path: "/world-of-sipher#gameplay", icon: "/images/icons/gameplay.png" },
+	{ id: "Factions", path: "/world-of-sipher#factions", icon: "/images/icons/factions.png" },
+	{ id: "Blockchain", path: "/world-of-sipher#blockchain", icon: "/images/icons/blockchain.png" },
 ]
 
 const MenuWorld = ({ ...rest }: MenuWorldProps) => {
-	const router = useRouter()
+	const setWorldSipherPage = useStoreActions((action) => action.setWorldSipherPage)
+	const worldSipherPage = useStoreState((state) => state.worldSipherPage)
 
 	return (
 		<Center
@@ -31,9 +32,10 @@ const MenuWorld = ({ ...rest }: MenuWorldProps) => {
 						lastChild={index === menuWorld.length - 1}
 						key={menu.id}
 						text={menu.id}
+						setWorldSipherPage={setWorldSipherPage}
 						href={menu.path}
 						icon={menu.icon}
-						active={router.pathname.split("/")[2] === menu.path.split("/")[2]}
+						active={worldSipherPage === menu.path.split("#")[1]}
 					/>
 				))}
 			</SimpleGrid>
