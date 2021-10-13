@@ -31,7 +31,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
     return (
-        <Flex flexDir="column" position="fixed" zIndex="tooltip" w="full">
+        <Flex flexDir="column" position="fixed" zIndex="toast" w="full">
             <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Grid
                     rounded="full"

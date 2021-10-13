@@ -20,7 +20,7 @@ const MenuDrawer = ({}: MenuDrawerProps) => {
             onClose={() => setIsSideBarOn(false)}
             initialFocusRef={undefined}
         >
-            <DrawerOverlay />
+            <DrawerOverlay zIndex="popover" />
             <DrawerContent
                 // bgImage="/images/pc/home/homenew2.png"
                 bgSize="contain"

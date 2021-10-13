@@ -61,7 +61,7 @@ const NewsBody = (props: Props) => {
     }
 
     return (
-        <Flex w="full" py={24} px={4} align="center">
+        <Flex direction="column" w="full" py={24} px={4} align="center">
             {!isLoading ? (
                 news && news.data?.length > 0 ? (
                     <PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
@@ -88,7 +88,7 @@ const NewsBody = (props: Props) => {
                 {news?.count > step.current && (
                     <GradientOutlineButton
                         onClick={() => loadMore()}
-                        text="Load More News"
+                        text="Load More"
                         isLoading={isLoading && !loadmore}
                         loadingText="Loading ..."
                     />
