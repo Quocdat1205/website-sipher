@@ -15,7 +15,6 @@ interface HeroScreenProps {
     heading: React.ReactNode
     heading2?: React.ReactNode
     content: string
-    angle: number
 }
 
 const HeroScreen = ({
@@ -23,8 +22,6 @@ const HeroScreen = ({
     heading,
     heading2 = "Lorem ipsum, dolor sit amet consectetur adipisicing.",
     content,
-    angle,
-    label,
 }: HeroScreenProps) => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
@@ -54,9 +51,6 @@ const HeroScreen = ({
             )
         }
     }, [headingControl, textControl, contentControl, inView])
-    useEffect(() => {
-        unityContext.send("Main Camera", "angle", angle)
-    }, [inView, angle])
 
     return (
         <Flex h="100vh" maxH="1080px" justify="center" w="full" flexShrink={0} bg="blackAlpha.300" zIndex={2}>

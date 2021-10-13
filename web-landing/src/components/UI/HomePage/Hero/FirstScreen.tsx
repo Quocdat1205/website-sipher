@@ -30,10 +30,6 @@ const FirstScreen = ({}: FirstScreenProps) => {
         }
     }, [inView, initialLoading, logoControl, descriptionControl])
 
-    useEffect(() => {
-        unityContext.send("Main Camera", "angle", 1)
-    }, [inView])
-
     return (
         <Flex
             direction="column"
