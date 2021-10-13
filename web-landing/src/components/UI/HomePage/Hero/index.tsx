@@ -19,48 +19,44 @@ export const variants = {
 };
 
 const Hero = ({}: HeroProps) => {
-  const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-  unityContext.on("loaded", () =>
-    setTimeout(() => {
-      setInitialLoading(false);
-    }, 2000)
-  );
-  const [scrollY, setScrollY] = useState(0);
-  const [delay, setDelay] = useState(false);
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (delay) {
-      timeout = setTimeout(() => {
-        setDelay(false);
-      }, 50);
-    }
-    return () => clearTimeout(timeout);
-  }, [delay, setDelay]);
+    const setInitialLoading = useStoreActions(action => action.setInitialLoading)
+    unityContext.on("loaded", () =>
+        setTimeout(() => {
+            setInitialLoading(false)
+        }, 2000)
+    )
+    // const [scrollY, setScrollY] = useState(0)
+    const [delay, setDelay] = useState(false)
+    useEffect(() => {
+        let timeout: NodeJS.Timeout
+        if (delay) {
+            timeout = setTimeout(() => {
+                setDelay(false)
+            }, 50)
+        }
+        return () => clearTimeout(timeout)
+    }, [delay, setDelay])
 
-  const [scrollDelay, setScrollDelay] = useState(false);
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (scrollDelay) {
-      timeout = setTimeout(() => {
-        setScrollDelay(false);
-      }, 500);
-    }
-    return () => clearTimeout(timeout);
-  }, [scrollDelay, setScrollDelay]);
+    // const [scrollDelay, setScrollDelay] = useState(false)
+    // useEffect(() => {
+    //     let timeout: NodeJS.Timeout
+    //     if (scrollDelay) {
+    //         timeout = setTimeout(() => {
+    //             setScrollDelay(false)
+    //         }, 500)
+    //     }
+    //     return () => clearTimeout(timeout)
+    // }, [scrollDelay, setScrollDelay])
 
-  // useEffect(() => {
-  //     console.log("Scroll Y:", scrollY)
-  //     if (scrollDelay) return
-  //     else if (ctnRef.current) {
-  //         console.log("Scroll", scrollY, "Height", ctnRef.current.getBoundingClientRect().height)
-  //         unityContext.send("Main Camera", "angle", (scrollY / ctnRef.current.getBoundingClientRect().height) * 5)
-  //         setScrollDelay(true)
-  //     }
-  // }, [scrollY])
-
-  const handleMouseMWheel = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-    unityContext.send("Main Camera", "angle", scrollY / ctnRef.current.clientHeight);
-  };
+    // useEffect(() => {
+    //     console.log("Scroll Y:", scrollY)
+    //     if (scrollDelay) return
+    //     else if (ctnRef.current) {
+    //         console.log("Scroll", scrollY, "Height", ctnRef.current.getBoundingClientRect().height)
+    //         unityContext.send("Main Camera", "angle", (scrollY / ctnRef.current.getBoundingClientRect().height) * 5)
+    //         setScrollDelay(true)
+    //     }
+    // }, [scrollY])
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
     if (delay) return;
@@ -72,15 +68,15 @@ const Hero = ({}: HeroProps) => {
   };
   const ctnRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScrollY(window.scrollY);
-    });
-    return () =>
-      window.removeEventListener("scroll", () => {
-        setScrollY(window.scrollY);
-      });
-  }, [scrollY]);
+    // useEffect(() => {
+    //     window.addEventListener("scroll", () => {
+    //         setScrollY(window.scrollY)
+    //     })
+    //     return () =>
+    //         window.removeEventListener("scroll", () => {
+    //             setScrollY(window.scrollY)
+    //         })
+    // }, [scrollY])
 
   return (
     <Box

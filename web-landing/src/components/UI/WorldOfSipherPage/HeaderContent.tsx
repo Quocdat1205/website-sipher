@@ -11,7 +11,7 @@ interface HeaderContentProps {
 
 const HeaderContent = ({ headline, srcImg = "/images/pc/nft/banner.png", children }: HeaderContentProps) => {
 	return (
-		<Flex flexDir={["column", "row"]} w="full" maxW="48rem">
+		<Flex flexDir={["column", "row"]} w="full" maxW="64rem">
 			<Flex flexDir="column" justifyContent="space-between" mb={[4, 0]} flex={1}>
 				<Flex flexDir="column" flex={1} order={[2, 1]}>
 					<GradientHeading

@@ -1,7 +1,6 @@
 export const theWorldContent = {
 	worldBlockCategory: [
-		"All player's characters, weapons, cosmetic and functional in-game items, resources and achievements in Sipheria are represented by non-fungible tokens, known as NFTs. That's why you truly own your digital assets in Sipheria. ",
-		"Because of the blockchain, players will always own their characters and items without exception; even the us, the developers are unable to take back once they've been acquired.",
+		"All player's characters, weapons, cosmetic and functional in-game items, resources and achievements in Sipheria are represented by non-fungible tokens, known as NFTs. That's why you truly own your digital assets in Sipheria. Because of the blockchain, players will always own their characters and items without exception.",
 	],
 	gameCharactersAsNfts: [
 		"Moon Base Station is purposely built as a base for explorations and expeditions, with facilities supporting our Siphers for all kinds of activities such as Mercenary Guild, Crafting stations, Bar, Hall of Fame and more!",
@@ -16,7 +15,7 @@ export const theWorldContent = {
 }
 export const gameplayContent = {
 	gameCategory: [
-		"Classified as top secret, the blueprint of World Block Genesis is still a mystery, however rumors have it that this first World will be built with multiple cities, outposts, full of resources, arenas, quests that will require the best adventurers to conquer.",
+		`Sipher has a deep story to be told. You'll face tough challenges, meet vastly different races and characters, and make new friends when you venture forth discovering new worlds. Sipher is built around the philosophy of "casual to start, fun to play, hard to master" and will feature challenging end-game PVE, PvP, a living economy, and much more!`,
 	],
 	meaningfulEndgameContent: [
 		'Strongly focused with Players in mind and community generated content, Sipher is built around the philosophy of "casual to start, hard to master", "casual to start, fun to play, hard to master" and will feature challenging end-game PVE, PvP, a living economy, and much more!',
@@ -34,7 +33,7 @@ export const gameplayContent = {
 }
 export const factionsContent = {
 	main: [
-		"Each factions in Sipheria carries their own ethos and views of the world. They all want to mold and shape Sipheria into the vision of their imagination. Which faction will you align with and what will you bring unto this world?",
+		"Each factions in Sipheria carries their own ethos and views of the world. They all want to mold and shape Sipheria into the vision of their imagination. Which faction will you align with and what will you bring unto this world? - MAXIMALIST TEMPLARS: total dominance for the sake of stability - CENTURION SCHOLARS: Priotizing scientific research and exploration - SHADE BROTHERHOOD: influence the world through guises and double-speak.",
 	],
 	maximalistTemplars: [
 		"Descendants of Knights of the Templars, this organization take dominance view on things. They gravitate towards the total dominance for the sake of stability over innovative explorations and risk adventures. For the templars, only their view is worth pursuing for the sake of the greater goods.",
@@ -47,25 +46,30 @@ export const factionsContent = {
 	],
 }
 
-export const blockchainContent = [
-	{
-		id: "Non-fungible Tokens (NFTS)",
-		content:
-			"All cosmetic items & commercial tiles in Sipheria are represented by non-fungible tokens, known as NFTs. That's why you truly own your digital assets in Sipheria.",
-	},
-	{
-		id: "True Ownership",
-		content:
-			"Because of the blockchain, players will always own their cosmetics without exception; even the us, Not even the developers are able to take back cosmetics once they've been handed out.",
-	},
-	{
-		id: "Truly Collectible",
-		content:
-			"Each player item has an item history attached to it. If your weapon and character were the first to complete a new hardcore expedition, or defeat a new boss, that feat will be recorded on the item or modeler and the hall of fame, making it truly unique and immersive.",
-	},
-	{
-		id: "Transparent Rarity",
-		content:
-			"Each costume item, weapon and skill will be numbered. For instance, 21 out of 500. This shows there will never be more than 500 of this particular asset. Even us, Not even the developers are able to generate more of the same item.",
-	},
-]
+export const blockchainContent = {
+	main: [
+		"Because of the blockchain, players will always own their digital assets without exception; even the us, Not even the developers are able to take back digital assets once they've been handed out. Each player item has an item history attached to it, making it truly unique and immersive",
+	],
+	content: [
+		{
+			id: "Non-fungible Tokens (NFTS)",
+			content:
+				"All cosmetic items & commercial tiles in Sipheria are represented by non-fungible tokens, known as NFTs. That's why you truly own your digital assets in Sipheria.",
+		},
+		{
+			id: "True Ownership",
+			content:
+				"Because of the blockchain, players will always own their cosmetics without exception; even the us, Not even the developers are able to take back cosmetics once they've been handed out.",
+		},
+		{
+			id: "Truly Collectible",
+			content:
+				"Each player item has an item history attached to it. If your weapon and character were the first to complete a new hardcore expedition, or defeat a new boss, that feat will be recorded on the item or modeler and the hall of fame, making it truly unique and immersive.",
+		},
+		{
+			id: "Transparent Rarity",
+			content:
+				"Each costume item, weapon and skill will be numbered. For instance, 21 out of 500. This shows there will never be more than 500 of this particular asset. Even us, Not even the developers are able to generate more of the same item.",
+		},
+	],
+}

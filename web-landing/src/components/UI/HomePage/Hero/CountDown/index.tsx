@@ -17,6 +17,7 @@ export const CountDown = ({ deadline }: CountDownProps) => {
     const timeToCountdown = () => {
         const currentTime = new Date().getTime()
         const diffInSeconds = differenceInSeconds(deadline, currentTime)
+        if (diffInSeconds <= 1) runTimeOut.current = false
         return {
             days: Math.floor(diffInSeconds / ONE_DAY),
             hours: Math.floor((diffInSeconds % ONE_DAY) / ONE_HOUR),
@@ -29,7 +30,7 @@ export const CountDown = ({ deadline }: CountDownProps) => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             runTimeOut.current && setCountdown(timeToCountdown())
-        }, 1000)
+        }, 200)
 
         return () => clearTimeout(timeout)
     })
