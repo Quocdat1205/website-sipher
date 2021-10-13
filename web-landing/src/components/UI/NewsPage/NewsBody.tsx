@@ -46,8 +46,9 @@ const NewsBody = (props: Props) => {
 		enabled: !loadmore,
 	})
 	const router = useRouter()
+
 	const handleSelect = (item) => {
-		router.push(`news?published=${item.published}`)
+		router.push(`?published=${item.published}`, undefined, { scroll: false })
 	}
 	const mb = [8, 8, 16]
 
