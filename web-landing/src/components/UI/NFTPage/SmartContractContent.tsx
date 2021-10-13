@@ -26,7 +26,7 @@ const SmartContractContent = (props: Props) => {
 				</MyText>
 			</Box>
 			<Box ml={[0, 4]} flex={1}>
-				<Image src="/images/pc/nft/banner.png" alt="" />
+				<Image src="/images/pc/laboratory/laboratory1.png" alt="" />
 			</Box>
 		</Flex>
 	)
