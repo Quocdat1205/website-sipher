@@ -14,7 +14,7 @@ const TheWorld = ({}: TheWolrdProps) => {
 
 	return (
 		<BackgroundContainer>
-			<ViewContainer label="The World" mb={mb} py={20} threshold={0.2}>
+			<ViewContainer label="Theworld" mb={mb} py={20} threshold={0.2}>
 				<Center>
 					<HeaderContent srcImg="/images/pc/why/why1.png" headline="The World">
 						<MyText>{theWorldContent.worldBlockCategory}</MyText>

@@ -1,28 +1,30 @@
 import { Image } from "@chakra-ui/image"
-import { Flex, Box } from "@chakra-ui/layout"
+import { Flex, Box, HStack } from "@chakra-ui/layout"
 import { MyText } from "@sipher/web-components"
 import React from "react"
+import UrlCopier from "./UrlCopier"
 
 interface Props {
 	item: {
 		type: "medium" | "twitter"
 		link: string
-		title: string
+		title?: string
 		updatedAt: string
 		thumbnail?: string
+		published: string
 	}
 	onClick: () => void
 }
 // const regex = new RegExp(/^<.*>$/)
-
+// const contentArr = content.split("\n").map((line) =>
+// 	line
+// 		.split(" ")
+// 		.filter((word) => !regex.test(word))
+// 		.join(" ")
+// )
 const Card = ({ item, onClick }: Props) => {
-	const { type, thumbnail, title, updatedAt, link } = item
-	// const contentArr = content.split("\n").map((line) =>
-	// 	line
-	// 		.split(" ")
-	// 		.filter((word) => !regex.test(word))
-	// 		.join(" ")
-	// )
+	const { type, thumbnail, title, updatedAt, link, published } = item
+
 	const createDate = new Date(updatedAt)
 	return (
 		<Flex
@@ -62,11 +64,12 @@ const Card = ({ item, onClick }: Props) => {
 					{title}
 				</Box>
 			</Box>
-			<Box mt="auto" p={4} borderTop="1px" borderColor="about.textGray">
+			<HStack spacing={8} p={4} justifyContent="space-between" borderTop="1px" borderColor="about.textGray">
 				<MyText size="small" color="about.textGray">
 					{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
 				</MyText>
-			</Box>
+				<UrlCopier size="small" url={`${window.location.href}?published=${published}`} />
+			</HStack>
 		</Flex>
 	)
 }

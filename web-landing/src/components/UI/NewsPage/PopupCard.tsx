@@ -9,10 +9,12 @@ import LayoutTwitter from "./LayoutTwitter"
 interface Props {}
 
 export interface DetailsNewsProps {
-	thumbnail: string
-	title: string
-	content: string
-	description: string
+	thumbnail?: string
+	title?: string
+	content?: string
+	description?: string
+	link: string
+	type: "medium" | "twitter"
 }
 
 const PopupCard = ({}: Props) => {

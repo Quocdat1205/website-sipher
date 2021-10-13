@@ -1,7 +1,7 @@
 import { Box, Flex, Image } from "@chakra-ui/react"
 import { GradientHeading } from "@sipher/web-components"
 import MenuWorld from "@components/shared/MenuWorld"
-import React from "react"
+import React, { useState } from "react"
 
 interface HeaderContentProps {
 	headline: string
