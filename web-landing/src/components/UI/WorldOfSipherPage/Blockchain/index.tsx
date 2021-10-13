@@ -16,8 +16,8 @@ const Blockchain = ({}: BlockchainProps) => {
 		<BackgroundContainer>
 			<ViewContainer label="Blockchain" mb={mb} py={20} threshold={0.2}>
 				<Center>
-					<HeaderContent headline="Blockchain">
-						<MyText>{blockchainContent[0].content}</MyText>
+					<HeaderContent srcImg="/images/pc/news.png" headline="Blockchain">
+						<MyText>{blockchainContent.main}</MyText>
 					</HeaderContent>
 				</Center>
 				<Center pt={10}>

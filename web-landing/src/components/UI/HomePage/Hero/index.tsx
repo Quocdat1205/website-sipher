@@ -25,7 +25,7 @@ const Hero = ({}: HeroProps) => {
             setInitialLoading(false)
         }, 2000)
     )
-    const [scrollY, setScrollY] = useState(0)
+    // const [scrollY, setScrollY] = useState(0)
     const [delay, setDelay] = useState(false)
     useEffect(() => {
         let timeout: NodeJS.Timeout
@@ -37,26 +37,26 @@ const Hero = ({}: HeroProps) => {
         return () => clearTimeout(timeout)
     }, [delay, setDelay])
 
-    const [scrollDelay, setScrollDelay] = useState(false)
-    useEffect(() => {
-        let timeout: NodeJS.Timeout
-        if (scrollDelay) {
-            timeout = setTimeout(() => {
-                setScrollDelay(false)
-            }, 500)
-        }
-        return () => clearTimeout(timeout)
-    }, [scrollDelay, setScrollDelay])
+    // const [scrollDelay, setScrollDelay] = useState(false)
+    // useEffect(() => {
+    //     let timeout: NodeJS.Timeout
+    //     if (scrollDelay) {
+    //         timeout = setTimeout(() => {
+    //             setScrollDelay(false)
+    //         }, 500)
+    //     }
+    //     return () => clearTimeout(timeout)
+    // }, [scrollDelay, setScrollDelay])
 
-    useEffect(() => {
-        console.log("Scroll Y:", scrollY)
-        if (scrollDelay) return
-        else if (ctnRef.current) {
-            console.log("Scroll", scrollY, "Height", ctnRef.current.getBoundingClientRect().height)
-            unityContext.send("Main Camera", "angle", (scrollY / ctnRef.current.getBoundingClientRect().height) * 5)
-            setScrollDelay(true)
-        }
-    }, [scrollY])
+    // useEffect(() => {
+    //     console.log("Scroll Y:", scrollY)
+    //     if (scrollDelay) return
+    //     else if (ctnRef.current) {
+    //         console.log("Scroll", scrollY, "Height", ctnRef.current.getBoundingClientRect().height)
+    //         unityContext.send("Main Camera", "angle", (scrollY / ctnRef.current.getBoundingClientRect().height) * 5)
+    //         setScrollDelay(true)
+    //     }
+    // }, [scrollY])
 
     const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         if (delay) return
@@ -68,15 +68,15 @@ const Hero = ({}: HeroProps) => {
     }
     const ctnRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
-            setScrollY(window.scrollY)
-        })
-        return () =>
-            window.removeEventListener("scroll", () => {
-                setScrollY(window.scrollY)
-            })
-    }, [scrollY])
+    // useEffect(() => {
+    //     window.addEventListener("scroll", () => {
+    //         setScrollY(window.scrollY)
+    //     })
+    //     return () =>
+    //         window.removeEventListener("scroll", () => {
+    //             setScrollY(window.scrollY)
+    //         })
+    // }, [scrollY])
 
     return (
         <Box pt={[24, 0, 0]} pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove} ref={ctnRef}>
