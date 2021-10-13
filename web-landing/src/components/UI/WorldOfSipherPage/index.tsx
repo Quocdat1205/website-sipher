@@ -1,77 +1,74 @@
 // * DESCRIPTION:
 
-import { Flex, Box, Center } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import HeaderBackground from "@components/shared/HeaderBackground"
 import { blockchainContent, factionsContent, gameplayContent, theWorldContent } from "@constant/content/why"
-import { MyText } from "@sipher/web-components"
-import { useStoreState } from "@store"
-import React from "react"
-import NotFoundUI from "../404"
-import Blockchain from "./Blockchain"
-import Factions from "./Factions"
-import Gameplay from "./Gameplay"
-import HeaderContent from "./HeaderContent"
-import TheWorld from "./TheWorld"
+import React, { useState } from "react"
+import MainContent from "./MainContent"
 import BackgroundContainer from "@components/shared/BackgroundContainer"
+import TheWorldContent from "./TheWorldContent"
+import GameplayContent from "./GameplayContent"
+import FactionsContent from "./FactionsContent"
+import BlockchainContent from "./BlockchainContent"
 
 interface WorldOfSipherUIProps {}
 
 const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
-	const worldSipherPage = useStoreState((state) => state.worldSipherPage)
-	const py = [8, 8, 16]
+    const [currentPage, setCurrentPage] = useState<"theworld" | "gameplay" | "factions" | "blockchain">("theworld")
 
-	return (
-		<Flex flex={1} direction="column">
-			<HeaderBackground title="WORLD OF SIPHER" description="DONEC VIVERRA, METUS EU CONDIMENTUM" />
-			<Box flex={1} w="100%">
-				<BackgroundContainer>
-					<Center pt={py}>
-						<HeaderContent
-							srcImg={`/images/pc/${
-								worldSipherPage === "theworld"
-									? "why/why1.png"
-									: worldSipherPage === "gameplay"
-									? "why/gameplay1.png"
-									: worldSipherPage === "factions"
-									? "nft/banner.png"
-									: "news.png"
-							}`}
-							headline={
-								worldSipherPage === "theworld"
-									? "The world"
-									: worldSipherPage === "gameplay"
-									? "Gameplay"
-									: worldSipherPage === "factions"
-									? "Factions"
-									: "Blockchain"
-							}
-						>
-							<MyText>
-								{worldSipherPage === "theworld"
-									? theWorldContent.worldBlockCategory
-									: worldSipherPage === "gameplay"
-									? gameplayContent.gameCategory
-									: worldSipherPage === "factions"
-									? factionsContent.main
-									: blockchainContent.main}
-							</MyText>
-						</HeaderContent>
-					</Center>
-					{worldSipherPage === "theworld" ? (
-						<TheWorld />
-					) : worldSipherPage === "gameplay" ? (
-						<Gameplay />
-					) : worldSipherPage === "factions" ? (
-						<Factions />
-					) : worldSipherPage === "blockchain" ? (
-						<Blockchain />
-					) : (
-						<NotFoundUI />
-					)}
-				</BackgroundContainer>
-			</Box>
-		</Flex>
-	)
+    const renderImage = () =>
+        `/images/pc/${
+            currentPage === "theworld"
+                ? "why/why1.png"
+                : currentPage === "gameplay"
+                ? "why/gameplay1.png"
+                : currentPage === "factions"
+                ? "nft/banner.png"
+                : "news.png"
+        }`
+
+    const renderHeadline = () =>
+        currentPage === "theworld"
+            ? "The world"
+            : currentPage === "gameplay"
+            ? "Gameplay"
+            : currentPage === "factions"
+            ? "Factions"
+            : "Blockchain"
+
+    const renderContent = () =>
+        currentPage === "theworld"
+            ? theWorldContent.worldBlockCategory
+            : currentPage === "gameplay"
+            ? gameplayContent.gameCategory
+            : currentPage === "factions"
+            ? factionsContent.main
+            : blockchainContent.main
+
+    return (
+        <BackgroundContainer px={0}>
+            <HeaderBackground title="WORLD OF SIPHER" description="DONEC VIVERRA, METUS EU CONDIMENTUM" />
+            <Flex flex={1} direction="column" align="center" py={24}>
+                <MainContent
+                    srcImg={renderImage()}
+                    headline={renderHeadline()}
+                    content={renderContent()}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                >
+                    {currentPage === "theworld" ? (
+                        <TheWorldContent />
+                    ) : currentPage === "gameplay" ? (
+                        <GameplayContent />
+                    ) : currentPage === "factions" ? (
+                        <FactionsContent />
+                    ) : (
+                        <BlockchainContent />
+                    )}
+                </MainContent>
+            </Flex>
+        </BackgroundContainer>
+    )
 }
 
 export default WorldOfSipherUI
