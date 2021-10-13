@@ -7,6 +7,8 @@ import { useQueryClient, useQuery } from "react-query"
 import Card from "./Card"
 import PopupCard from "./PopupCard"
 import dynamic from "next/dynamic"
+import Nodata from "./Nodata"
+import Loading from "./Loading"
 
 interface Props {}
 const breakPoints = [
@@ -63,21 +65,29 @@ const NewsBody = (props: Props) => {
 		<BackgroundContainer>
 			<Box mb={mb} py={20}>
 				<Center pos="relative">
-					<PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
-						{!isLoading
-							? news && news.data?.length > 0
-								? news.data?.map((item) => (
-										<Card
-											onClick={() => {
-												handleSelect(item)
-											}}
-											key={item.title}
-											item={item}
-										/>
-								  ))
-								: "No data"
-							: "Loading ..."}
-					</PinterestGrid>
+					{!isLoading ? (
+						news && news.data?.length > 0 ? (
+							<PinterestGrid
+								gutterWidth={10}
+								gutterHeight={10}
+								responsive={{ customBreakPoints: breakPoints }}
+							>
+								{news.data?.map((item) => (
+									<Card
+										onClick={() => {
+											handleSelect(item)
+										}}
+										key={item.title}
+										item={item}
+									/>
+								))}
+							</PinterestGrid>
+						) : (
+							<Nodata />
+						)
+					) : (
+						<Loading />
+					)}
 					<PopupCard />
 				</Center>
 				<Box my={[4, 8]} textAlign="center">
