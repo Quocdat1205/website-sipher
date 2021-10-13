@@ -7,7 +7,7 @@ import AmountScreen from "./AmountScreen"
 import CountDown from "./CountDown"
 import { Typo } from "@components/shared"
 import Unity from "react-unity-webgl"
-import { MouseEvent, MouseEventHandler, useEffect, useState } from "react"
+import { MouseEvent, MouseEventHandler, useEffect, useState, useRef } from "react"
 interface HeroProps {}
 
 const content =
@@ -25,9 +25,8 @@ const Hero = ({}: HeroProps) => {
             setInitialLoading(false)
         }, 2000)
     )
-
+    const [scrollY, setScrollY] = useState(0)
     const [delay, setDelay] = useState(false)
-
     useEffect(() => {
         let timeout: NodeJS.Timeout
         if (delay) {
@@ -38,34 +37,55 @@ const Hero = ({}: HeroProps) => {
         return () => clearTimeout(timeout)
     }, [delay, setDelay])
 
+    const [scrollDelay, setScrollDelay] = useState(false)
+    useEffect(() => {
+        let timeout: NodeJS.Timeout
+        if (scrollDelay) {
+            timeout = setTimeout(() => {
+                setScrollDelay(false)
+            }, 500)
+        }
+        return () => clearTimeout(timeout)
+    }, [scrollDelay, setScrollDelay])
+
+    useEffect(() => {
+        console.log("Scroll Y:", scrollY)
+        if (scrollDelay) return
+        else if (ctnRef.current) {
+            console.log("Scroll", scrollY, "Height", ctnRef.current.getBoundingClientRect().height)
+            unityContext.send("Main Camera", "angle", (scrollY / ctnRef.current.getBoundingClientRect().height) * 5)
+            setScrollDelay(true)
+        }
+    }, [scrollY])
+
     const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         if (delay) return
         else {
-            // console.log(
-            //     "Mouse Event:",
-            //     Math.floor(e.clientX / (window.innerWidth / 3)) - 1,
-            //     Math.floor(e.clientY / (window.innerHeight / 3)) - 1
-            // )
-            // unityContext.send("Main Camera", "effectNekoX", Math.floor(e.clientX / (window.innerWidth / 3)) - 1)
-            // unityContext.send("Main Camera", "effectNekoY", Math.floor(e.clientY / (window.innerHeight / 3)) - 1)
-            // setDelay(true)
-
-            console.log("Mouse Event:", e.clientX / window.innerWidth, e.clientY / window.innerHeight)
             unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth)
             unityContext.send("Main Camera", "effectNekoY", 1 - e.clientY / window.innerHeight)
             // setDelay(true)
         }
     }
+    const ctnRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            setScrollY(window.scrollY)
+        })
+        return () =>
+            window.removeEventListener("scroll", () => {
+                setScrollY(window.scrollY)
+            })
+    }, [scrollY])
 
     return (
-        <Box pt={[24, 0, 0]} pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove}>
+        <Box pt={[24, 0, 0]} pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove} ref={ctnRef}>
             <Flex direction="column" w="full">
                 <FirstScreen />
                 <HeroScreen
                     position="L"
                     heading={<CountDown deadline={1635645600000} />}
                     content={content}
-                    angle={2}
                     heading2=""
                 />
                 <AmountScreen />
@@ -77,7 +97,6 @@ const Hero = ({}: HeroProps) => {
                         </Typo.Heading>
                     }
                     content={content}
-                    angle={4}
                 />
                 <HeroScreen
                     position="R"
@@ -87,7 +106,6 @@ const Hero = ({}: HeroProps) => {
                         </Typo.Heading>
                     }
                     content={content}
-                    angle={5}
                 />
             </Flex>
             <Box pos="fixed" top={0} left={0} h="full" w="full">

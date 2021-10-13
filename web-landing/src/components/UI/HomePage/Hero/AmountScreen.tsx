@@ -79,9 +79,6 @@ const AmountScreen = () => {
                 )
         }
     }, [letterControls, textControl, contentControl, inView])
-    useEffect(() => {
-        unityContext.send("Main Camera", "angle", 3)
-    }, [inView])
 
     return (
         <Flex h="100vh" maxH="720px" justify="center" w="full" flexShrink={0} bg="blackAlpha.300" zIndex={2}>
