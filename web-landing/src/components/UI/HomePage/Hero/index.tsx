@@ -44,6 +44,7 @@ const Hero = ({}: HeroProps) => {
         if (ctnRef.current)
             unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5)
     }
+
     const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
         if (delay) return
         else {
