@@ -8,18 +8,21 @@ import { MyHeading } from "@sipher/web-components"
 
 interface Props {
 	details: DetailsNewsProps
+	navbarHeight: number
 }
 
-const LayoutMedium = ({ details }: Props) => {
+const LayoutMedium = ({ details, navbarHeight }: Props) => {
+	const height = `calc(100vh - ${navbarHeight}px)`
+
 	return (
-		<Flex overflow="hidden" flexDir={["column", "row"]}>
-			<Flex overflow="hidden" flexDir="column" flex={1} py={[8]} px={[4, 8]}>
-				<Box flex={1} overflow="auto">
+		<Flex overflow="auto" flexDir="column"  h={height}>
+			<Flex flexDir="column" flex={1}  p={[4, 8]}>
+				<Box flex={1} >
 					<MyHeading textAlign="center" size="large">{details.title}</MyHeading>
-					<Box mt={[4, 6]} sx={{ img: { m: "0 auto", py: 8, maxHeight: "45rem" }}} color="about.textGray">
+					<Box sx={{ul:{listStylePos: "inside"} ,img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.content && details.content)}
 					</Box>
-					<Box sx={{ img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
+					<Box sx={{ul:{listStylePos: "inside"} ,img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.description && details.description)}
 					</Box>
 				</Box>

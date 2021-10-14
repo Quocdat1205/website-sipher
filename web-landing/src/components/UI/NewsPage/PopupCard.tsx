@@ -5,6 +5,7 @@ import { useQuery } from "react-query"
 import { getDetailsNews } from "@hooks/api/news"
 import LayoutMedium from "./LayoutMedium"
 import LayoutTwitter from "./LayoutTwitter"
+import { useStoreState } from "@store"
 
 interface Props {}
 
@@ -19,6 +20,7 @@ export interface DetailsNewsProps {
 const PopupCard = ({}: Props) => {
     const router = useRouter()
     const { published } = router.query
+    const navbarHeight = useStoreState(s => s.navbarHeight)
     const { data: details, isLoading } = useQuery(["news", published], () => getDetailsNews(published), {
         onError: error => {
             console.log(error)
@@ -28,21 +30,20 @@ const PopupCard = ({}: Props) => {
 
     return (
         <Modal
-            scrollBehavior="inside"
-            size="6xl"
+            size="full"
             isOpen={!!router.query.published}
             isCentered
             onClose={() => router.push("news", undefined, { scroll: false })}
         >
             <ModalOverlay bg="blackAlpha.900" />
-            <ModalContent p={0}>
-                <ModalCloseButton zIndex={1} color="main.darkRed" _hover={{color: "red"}} _focus={{ shadow: "none" }} />
-                <ModalBody  p={0} borderRadius="lg" bg="about.cardGray">
+            <ModalContent  overflow="hidden" pt={[`${navbarHeight}px`]}>
+                <ModalBody  pos="relative" overflow="hidden" h="100%" w="100%"  p={0} bg="about.cardGray">
+                <ModalCloseButton zIndex={1}  color="main.darkRed" size="lg" _hover={{color: "red"}} _focus={{ shadow: "none" }} />
                     {!isLoading && details ? (
                         details.type === "medium" ? (
-                            <LayoutMedium details={details} />
+                            <LayoutMedium navbarHeight={navbarHeight} details={details} />
                         ) : details.type === "twitter" ? (
-                            <LayoutTwitter details={details} />
+                            <LayoutTwitter navbarHeight={navbarHeight} details={details} />
                         ) : (
                             "Not Found"
                         )
