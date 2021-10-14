@@ -2,16 +2,14 @@
 
 import { Box, Flex } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
-import useTypeWriter from "@hooks/useTypeWriter"
 import { motion, useAnimation } from "framer-motion"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
-import unityContext from "src/utils/unity"
+import { fontSizes } from "."
 import variants from "./variants"
 
 const p1 =
     "Sipherian adventure (PVE) where you send your characters on adventures and collect rewards, crafts, upgrades and more and Sipherian Brawl (PVP) where the goal is to control characters and battle other players for rewards and prestige."
-
 const PlayScreen = () => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
@@ -39,6 +37,15 @@ const PlayScreen = () => {
                     }))
                 )
             )
+        } else {
+            headingControl.start("hidden").then(() => {
+                textControl.start("hidden").then(() => {
+                    contentControl.start({
+                        opacity: 0,
+                        transition: { duration: 0.25 },
+                    })
+                })
+            })
         }
     }, [headingControl, textControl, contentControl, inView])
 
@@ -50,7 +57,6 @@ const PlayScreen = () => {
                     right={["auto", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
-                    // w="45%"
                     p={4}
                     ref={ref}
                 >
@@ -62,13 +68,7 @@ const PlayScreen = () => {
                             duration: 0.5,
                         }}
                     >
-                        <Typo.Heading
-                            isGradient
-                            textAlign="left"
-                            fontWeight={900}
-                            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
-                            mb={0}
-                        >
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={fontSizes} mb={0}>
                             {"PLAY TO ENJOY & PARTICIPATE TO EARN"}
                         </Typo.Heading>
                     </MotionBox>
