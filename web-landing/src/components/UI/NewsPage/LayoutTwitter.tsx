@@ -12,7 +12,7 @@ interface Props {
 
 const LayoutTwitter = ({ details }: Props) => {
 	return (
-		<Flex flexDir={["column", "row"]} overflow="hidden">
+		<Flex flexDir={["column", "row"]} overflow="hidden" h="100%">
 			<Flex
 				align="center"
 				bg="black"
@@ -28,14 +28,14 @@ const LayoutTwitter = ({ details }: Props) => {
 					// w="full"
 					objectFit="contain"
 					h="auto"
-					maxH="71rem"
+					maxH={["45rem"]}	
 					src={details.thumbnail !== "" ? details.thumbnail : "/images/pc/news.png"}
 					alt=""
 				/>
 			</Flex>
 			<Flex flexDir="column" flex={1} overflow="hidden">
 				<Box flex={1} overflow="auto" py={[4, 12]} px={8}>
-					<MyHeading>{details.title}</MyHeading>
+					<MyHeading  size="large">{details.title}</MyHeading>
 					<Box mt={[4, 6]} sx={{ img: { m: "0 auto", maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.content && details.content)}
 					</Box>

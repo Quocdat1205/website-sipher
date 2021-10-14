@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
-import { MyText } from "@sipher/web-components"
+import { Typo } from "@components/shared"
 import React from "react"
 
 interface ButtonLinkToProps extends ButtonProps {
@@ -26,9 +26,9 @@ const ButtonLinkTo = ({ url, typeSocial, ...rest }: ButtonLinkToProps) => {
 				alt=""
 				h="1.5rem"
 			/>
-			<MyText color="about.textGray" ml={2}>
+			<Typo.Text color="about.textGray" ml={2}>
 				Link
-			</MyText>
+			</Typo.Text>
 		</Button>
 	)
 }
