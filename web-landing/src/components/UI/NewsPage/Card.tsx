@@ -1,6 +1,6 @@
 import { Image } from "@chakra-ui/image"
 import { Flex, Box, HStack } from "@chakra-ui/layout"
-import { MyText } from "@sipher/web-components"
+import { Typo } from "@components/shared"
 import React from "react"
 import UrlCopier from "./UrlCopier"
 
@@ -60,14 +60,14 @@ const Card = ({ item, onClick }: Props) => {
 						h="1.8rem"
 					/>
 				</Box>
-				<Box overflow="hidden" color="about.textGray" px={4} mb={4}>
-					{title}
+				<Box overflow="hidden"  px={4} mb={4}>
+					<Typo.Text size="small" color="about.textGray">{title}</Typo.Text>
 				</Box>
 			</Box>
 			<HStack spacing={8} p={4} justifyContent="space-between" borderTop="1px" borderColor="about.textGray">
-				<MyText size="small" color="about.textGray">
+				<Typo.Text size="small" color="about.textGray">
 					{createDate.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" })}
-				</MyText>
+				</Typo.Text>
 				<UrlCopier size="small" url={`${window.location.href}?published=${published}`} />
 			</HStack>
 		</Flex>

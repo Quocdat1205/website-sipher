@@ -36,8 +36,8 @@ const PopupCard = ({}: Props) => {
         >
             <ModalOverlay bg="blackAlpha.900" />
             <ModalContent p={0}>
-                <ModalCloseButton color="red" _focus={{ shadow: "none" }} />
-                <ModalBody p={0} borderRadius="lg" bg="about.cardGray">
+                <ModalCloseButton zIndex={1} bg="main.darkRed"  color="white" _hover={{bg: "red"}} _focus={{ shadow: "none" }} />
+                <ModalBody  p={0} borderRadius="lg" bg="about.cardGray">
                     {!isLoading && details ? (
                         details.type === "medium" ? (
                             <LayoutMedium details={details} />
