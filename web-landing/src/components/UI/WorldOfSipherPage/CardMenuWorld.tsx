@@ -1,10 +1,8 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Box, Image, Stack, StackProps } from "@chakra-ui/react"
+import { Box, Image, Stack } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
-import { MyText, MyTextProps } from "@sipher/web-components"
-import { ActionCreator } from "easy-peasy"
 import { Typo } from "@components/shared"
 interface CardMenuWorldProps {
     onClick?: () => void
@@ -14,7 +12,6 @@ interface CardMenuWorldProps {
 }
 // hehe
 export const CardMenuWorld = ({ text, active, icon, onClick }: CardMenuWorldProps) => {
-    const router = useRouter()
     return (
         <Stack
             p={2}

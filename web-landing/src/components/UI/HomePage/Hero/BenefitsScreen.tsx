@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Box, Flex, chakra, BoxProps } from "@chakra-ui/react"
+import { Box, Flex, chakra } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
 import { motion, useAnimation } from "framer-motion"
 import React, { useEffect, ComponentProps } from "react"

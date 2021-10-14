@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Img, Flex, SimpleGrid, Box, HStack, StackProps } from "@chakra-ui/react"
+import { Img, Flex, SimpleGrid, HStack, StackProps } from "@chakra-ui/react"
 import { TextContainer } from "@components/shared"
 import { motion } from "framer-motion"
 

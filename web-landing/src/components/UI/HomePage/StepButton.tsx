@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Text } from "@chakra-ui/react"
+import { Box, Flex, Text } from "@chakra-ui/react"
 import React from "react"
 import IconData from "@components/shared/CommunityIcon/IconData"
 import CommunityIcon from "@components/shared/CommunityIcon"

@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/react"
-import { NavBar, Footer, menuChild } from "@components/shared"
+import { NavBar, Footer } from "@components/shared"
 import HeaderBackground from "@components/shared/HeaderBackground"
 import { useRouter } from "next/router"
 import { useEffect, useRef } from "react"
