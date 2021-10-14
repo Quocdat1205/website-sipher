@@ -12,10 +12,10 @@ const NewsUI = ({}: NewsUIProps) => {
     return (
         <BackgroundContainer px={0}>
             <HeaderBackground
-                isChangeBG
+                isCoatedBg
                 title="NEWS"
                 srcImg="/images/pc/bg-title1.png"
-                description="DONEC VIVERRA, METUS EU CONDIMENTUM"
+                description="Sipheria worlds news at your fingertips!"
             />
             <NewsBody />
         </BackgroundContainer>

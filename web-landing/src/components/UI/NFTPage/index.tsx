@@ -12,7 +12,7 @@ interface NFTUIProps {}
 const NFTUI = ({}: NFTUIProps) => {
     return (
         <BackgroundContainer px={0}>
-            <HeaderBackground title="NFT" description="DONEC VIVERRA, METUS EU CONDIMENTUM" />
+            <HeaderBackground title="NFT" description="Where you'll find all of our characters in clicks!" />
             <VStack w="full" py={24} align="center" spacing={24}>
                 <SmartContractContent />
                 <GalleryCollection />
