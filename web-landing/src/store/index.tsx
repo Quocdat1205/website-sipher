@@ -9,6 +9,8 @@ export interface StoreModel {
 	setInitialLoading: Action<StoreModel, boolean>
 	worldSipherPage: string
 	setWorldSipherPage: Action<StoreModel, string>
+	navbarHeight: number
+	setNavbarHeight: Action<StoreModel, number>
 }
 
 const store = createStore<StoreModel>({
@@ -27,6 +29,10 @@ const store = createStore<StoreModel>({
 	worldSipherPage: "theworld",
 	setWorldSipherPage: action((state, payload) => {
 		state.worldSipherPage = payload
+	}),
+	navbarHeight: 64,
+	setNavbarHeight: action((state, payload) => {
+		state.navbarHeight = payload
 	}),
 })
 

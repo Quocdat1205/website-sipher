@@ -8,6 +8,7 @@ import { useRouter } from "next/router"
 import { BaseNavigationBar } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
+import { useEffect, useRef } from "react"
 interface NavBarProps {
     isChildMenu?: boolean
 }
@@ -29,9 +30,20 @@ export const menuChild = [
 export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const setBarOn = useStoreState(s => s.sidebarOn)
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
+    const setNavbarHeight = useStoreActions(action => action.setNavbarHeight)
     const router = useRouter()
+    const ref = useRef<HTMLDivElement>(null)
+
+    useEffect (() =>{
+        if(typeof ref.current?.clientHeight !== "undefined")
+        {
+            setNavbarHeight(ref.current?.clientHeight)
+        }
+    },[])
+
     return (
         <Flex
+            ref={ref}
             flexDir="column"
             position="fixed"
             zIndex="toast"

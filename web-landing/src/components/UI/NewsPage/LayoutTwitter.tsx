@@ -8,17 +8,20 @@ import ButtonLinkTo from "./ButtonLinkTo"
 
 interface Props {
 	details: DetailsNewsProps
+	navbarHeight : number
 }
 
-const LayoutTwitter = ({ details }: Props) => {
+const LayoutTwitter = ({ details, navbarHeight }: Props) => {
+	const height = `calc(100vh - ${navbarHeight}px)`
+
 	return (
-		<Flex flexDir={["column", "row"]} overflow="hidden" h="100%">
+		<Flex flexDir={["column", "row"]} overflow="hidden" minH={height} flexWrap="nowrap">
 			<Flex
 				align="center"
 				bg="black"
 				textAlign="center"
 				justifyContent="center"
-				flex={2}
+				flexGrow={[0, 1]}
 				pos="relative"
 				borderRight="1px"
 				borderColor="about.textGray"
@@ -28,18 +31,19 @@ const LayoutTwitter = ({ details }: Props) => {
 					// w="full"
 					objectFit="contain"
 					h="auto"
-					maxH={["45rem"]}	
+					minH={["30vh"]}
+					maxH={["30vh", height]}
 					src={details.thumbnail !== "" ? details.thumbnail : "/images/pc/news.png"}
 					alt=""
 				/>
 			</Flex>
-			<Flex flexDir="column" flex={1} overflow="hidden">
+			<Flex flexGrow={[1, 0]} flexDir="column" maxW={["100%", "400px"]} h={[`calc(100vh - 30vh - ${navbarHeight}px)`, height]} overflow="hidden">
 				<Box flex={1} overflow="auto" py={[4, 12]} px={8}>
 					<MyHeading  size="large">{details.title}</MyHeading>
 					<Box mt={[4, 6]} sx={{ img: { m: "0 auto", maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.content && details.content)}
 					</Box>
-					<Box sx={{ img: { m: "0 auto", maxHeight: "45rem" } }} color="about.textGray">
+					<Box sx={{ul:{listStylePos: "inside"} ,img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.description && details.description)}
 					</Box>
 				</Box>
