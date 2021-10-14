@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
-import { BaseNavigationBar } from "."
+import { BaseNavigationBar, LinkButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
 import { useEffect, useRef } from "react"
@@ -34,12 +34,11 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const router = useRouter()
     const ref = useRef<HTMLDivElement>(null)
 
-    useEffect (() =>{
-        if(typeof ref.current?.clientHeight !== "undefined")
-        {
+    useEffect(() => {
+        if (typeof ref.current?.clientHeight !== "undefined") {
             setNavbarHeight(ref.current?.clientHeight)
         }
-    },[])
+    }, [])
 
     return (
         <Flex
@@ -55,6 +54,15 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
             }}
         >
             <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
+                <LinkButton
+                    text="Join Our Discord Community"
+                    href="https://discord.com/invite/dRqdSxUSmd"
+                    sx={{
+                        "@media (max-width: 480px)": {
+                            display: "none",
+                        },
+                    }}
+                />
                 <Grid
                     rounded="full"
                     color="white"

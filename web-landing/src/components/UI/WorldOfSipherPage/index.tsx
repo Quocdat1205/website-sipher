@@ -11,6 +11,7 @@ import GameplayContent from "./GameplayContent"
 import FactionsContent from "./FactionsContent"
 import BlockchainContent from "./BlockchainContent"
 import { GradientButton } from "@sipher/web-components"
+import { LinkButton } from "@components/shared"
 
 interface WorldOfSipherUIProps {}
 
@@ -48,7 +49,10 @@ const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
 
     return (
         <BackgroundContainer px={0}>
-            <HeaderBackground title="WORLD OF SIPHER" description="Learn why we're the next awesome blockchain game you'll ever play!" />
+            <HeaderBackground
+                title="WORLD OF SIPHER"
+                description="Learn why we're the next awesome blockchain game you'll ever play!"
+            />
             <Flex flex={1} direction="column" w="full" align="center" py={24} px={4}>
                 <MainContent
                     srcImg={renderImage()}
@@ -67,14 +71,11 @@ const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
                         <BlockchainContent />
                     )}
                 </MainContent>
-                <GradientButton
-                    text="Join Our Discord Community"
-                    rounded="full"
-                    as="a"
+                <LinkButton
+                    text="View The Sipher Atlas"
                     href="https://discord.com/invite/dRqdSxUSmd"
-                    rel="noreferrer"
-                    w="fit-content"
-                    mt={16}
+                    size="large"
+                    mt={8}
                 />
             </Flex>
         </BackgroundContainer>

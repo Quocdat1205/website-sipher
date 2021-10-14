@@ -22,9 +22,6 @@ const PopupCard = ({}: Props) => {
     const { published } = router.query
     const navbarHeight = useStoreState(s => s.navbarHeight)
     const { data: details, isLoading } = useQuery(["news", published], () => getDetailsNews(published), {
-        onError: error => {
-            console.log(error)
-        },
         enabled: !!published,
     })
 
@@ -36,9 +33,15 @@ const PopupCard = ({}: Props) => {
             onClose={() => router.push("news", undefined, { scroll: false })}
         >
             <ModalOverlay bg="blackAlpha.900" />
-            <ModalContent  overflow="hidden" pt={[`${navbarHeight}px`]}>
-                <ModalBody  pos="relative" overflow="hidden" h="100%" w="100%"  p={0} bg="about.cardGray">
-                <ModalCloseButton zIndex={1}  color="main.darkRed" size="lg" _hover={{color: "red"}} _focus={{ shadow: "none" }} />
+            <ModalContent overflow="hidden" pt={[`${navbarHeight}px`]}>
+                <ModalBody pos="relative" overflow="hidden" h="100%" w="100%" p={0} bg="about.cardGray">
+                    <ModalCloseButton
+                        zIndex={1}
+                        color="main.darkRed"
+                        size="lg"
+                        _hover={{ color: "red" }}
+                        _focus={{ shadow: "none" }}
+                    />
                     {!isLoading && details ? (
                         details.type === "medium" ? (
                             <LayoutMedium navbarHeight={navbarHeight} details={details} />

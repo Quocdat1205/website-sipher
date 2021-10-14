@@ -13,6 +13,7 @@ interface GradientButtonProps extends BoxProps {
     rel?: string
     fontSize?: TextProps["fontSize"]
     disabled?: boolean
+    size?: "large" | "medium"
 }
 
 export const GradientButton = ({
@@ -24,8 +25,10 @@ export const GradientButton = ({
     rel,
     fontSize,
     disabled,
+    size = "medium",
     ...rest
 }: GradientButtonProps) => {
+    const [px, py] = size === "large" ? [3, 8] : [2, 6]
     return (
         <Box
             as={as}
@@ -34,8 +37,8 @@ export const GradientButton = ({
             rel={rel}
             textTransform="uppercase"
             rounded="md"
-            py={3}
-            px={8}
+            py={px}
+            px={py}
             bgColor="white"
             bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
             fontSize="xs"

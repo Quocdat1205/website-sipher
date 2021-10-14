@@ -17,7 +17,7 @@ const ChildMenu = ({ menus }: ChildMenuProps) => {
             justify="center"
             px={4}
             py={4}
-            bg="blackAlpha.800"
+            bg="blackAlpha.700"
             overflowX="auto"
             className="childmenu"
             display={sidebarOn ? "none" : "flex"}

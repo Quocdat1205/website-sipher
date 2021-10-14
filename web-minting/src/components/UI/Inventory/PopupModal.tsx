@@ -51,9 +51,6 @@ const PopupModal = ({ selectId }: PopupProps) => {
         [`${selectId.race}-NFTId`, selectId && selectId.id],
         () => getInfoNFT(states.accountLogin, selectId.id, selectId.race),
         {
-            onError: error => {
-                console.log(error)
-            },
             onSuccess: data => {
                 setCurrentEmotion(data.emotion.toUpperCase())
             },
@@ -63,11 +60,7 @@ const PopupModal = ({ selectId }: PopupProps) => {
     const { data: merkle } = useQuery(
         [`${selectId.race}-merkleId`, selectId],
         () => getMerkle(selectId.id, selectId.race.toLowerCase()),
-        {
-            onError: error => {
-                console.log(error)
-            },
-        }
+        {}
     )
 
     const { mutate } = useMutation(

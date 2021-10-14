@@ -1,10 +1,11 @@
 import { Center, Flex, VStack } from "@chakra-ui/react"
-import { BackgroundContainer } from "@components/shared"
+import { BackgroundContainer, LinkButton } from "@components/shared"
 import JoinTheCommunity from "./JoinTheCommunity"
 import Backers from "./Backers"
 import NekoTeaser from "./NekoTeaser"
 import Hero from "./Hero"
 import { GradientButton } from "@sipher/web-components"
+import BehindTheScenes from "./BehindTheScenes"
 
 interface HomeBodyProps {}
 
@@ -25,6 +26,7 @@ const HomeBody = ({}: HomeBodyProps) => {
             >
                 <VStack spacing={24} align="center" w="full">
                     <NekoTeaser />
+                    <BehindTheScenes />
                     <Backers />
                 </VStack>
                 <Center
@@ -40,14 +42,12 @@ const HomeBody = ({}: HomeBodyProps) => {
                 >
                     <JoinTheCommunity />
                 </Center>
-                <GradientButton
+
+                <LinkButton
+                    size="large"
                     text="Join Our Discord Community"
-                    rounded="full"
-                    as="a"
                     href="https://discord.com/invite/dRqdSxUSmd"
-                    rel="noreferrer"
-                    w="fit-content"
-                    mt={16}
+                    mt={8}
                 />
             </Flex>
         </BackgroundContainer>
