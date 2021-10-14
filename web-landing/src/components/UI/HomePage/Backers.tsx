@@ -14,7 +14,7 @@ const smallBackers = [
     { path: "/images/icons/backers/bitkraft.png", alt: "Bitkraft" },
     { path: "/images/icons/backers/delphi_digital.png", alt: "Delphi Digital" },
     { path: "/images/icons/backers/fenbushi_capital.png", alt: "Fenbushi Capital" },
-    { path: "/images/icons/backers/s.png", alt: "S" },
+    { path: "/images/icons/backers/sfermion.png", alt: "Sfermion" },
     { path: "/images/icons/backers/hyperchain.png", alt: "Hyperchain Capital" },
     { path: "/images/icons/backers/gbv.png", alt: "GBV" },
     { path: "/images/icons/backers/yield_guild.png", alt: "Yield Guild" },

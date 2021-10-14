@@ -20,20 +20,22 @@ const MotionStack = motion<Omit<StackProps, "transition">>(HStack)
 const BehindTheScenes = ({}: BehindTheScenesProps) => {
     return (
         <TextContainer headline="Behind The Scenes" overflowX="hidden" px={4}>
-            <SimpleGrid columns={[2, 3]} spacing={4}>
-                {images.map(image => (
-                    <Flex
-                        key={image.path}
-                        justify="center"
-                        h="10rem"
-                        border="1px"
-                        borderColor="whiteAlpha.100"
-                        bg="black"
-                    >
-                        <Img src={image.path} alt={image.alt} h="full" w="auto" />
-                    </Flex>
-                ))}
-            </SimpleGrid>
+            <Flex justify="center" w="full">
+                <SimpleGrid columns={[2, 3]} spacing={4} maxW="56rem">
+                    {images.map(image => (
+                        <Flex
+                            key={image.path}
+                            justify="center"
+                            h="10rem"
+                            border="1px"
+                            borderColor="whiteAlpha.100"
+                            bg="black"
+                        >
+                            <Img src={image.path} alt={image.alt} h="full" w="auto" />
+                        </Flex>
+                    ))}
+                </SimpleGrid>
+            </Flex>
         </TextContainer>
     )
 }
