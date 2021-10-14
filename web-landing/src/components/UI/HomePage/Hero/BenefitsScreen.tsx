@@ -32,6 +32,7 @@ const BenefitsScreen = () => {
                 </motion.span>
             )),
             <chakra.span
+                key={p1.length}
                 cursor="pointer"
                 bgGradient="linear(to-b, bgGradient.orange)"
                 bgClip="text"
@@ -40,7 +41,7 @@ const BenefitsScreen = () => {
             >
                 {p2.split("").map((char, i) => (
                     <MotionSpan
-                        key={i + p1.length}
+                        key={i}
                         borderBottom="1px"
                         borderColor="main.orange"
                         animate={contentControl}
@@ -53,7 +54,7 @@ const BenefitsScreen = () => {
             </chakra.span>,
             ...p3.split("").map((char, i) => (
                 <motion.span
-                    key={i + p1.length + p2.length}
+                    key={i + p1.length + 1}
                     animate={contentControl}
                     initial={{ opacity: 0 }}
                     custom={i + p1.length + p2.length}
@@ -65,20 +66,22 @@ const BenefitsScreen = () => {
     }
 
     let generateP4 = () => {
-        return p4.split("").map((char, i) => (
+        return (
             <chakra.span cursor="pointer" bgGradient="linear(to-b, bgGradient.orange)" bgClip="text" fontWeight={500}>
-                <MotionSpan
-                    key={i}
-                    borderBottom="1px"
-                    borderColor="main.orange"
-                    animate={contentControl}
-                    initial={{ opacity: 0 }}
-                    custom={i + p1.length + p2.length + p3.length}
-                >
-                    {char}
-                </MotionSpan>
+                {p4.split("").map((char, i) => (
+                    <MotionSpan
+                        key={i}
+                        borderBottom="1px"
+                        borderColor="main.orange"
+                        animate={contentControl}
+                        initial={{ opacity: 0 }}
+                        custom={i + p1.length + p2.length + p3.length}
+                    >
+                        {char}
+                    </MotionSpan>
+                ))}
             </chakra.span>
-        ))
+        )
     }
 
     useEffect(() => {
