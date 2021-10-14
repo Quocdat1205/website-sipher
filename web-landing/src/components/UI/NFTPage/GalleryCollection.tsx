@@ -17,7 +17,7 @@ const GalleryCollection = () => {
     return (
         <Flex direction="column" align="center" w="full">
             <TextContainer headline="Gallery Collection">
-                <MyText>
+                <MyText px={4}>
                     {`The first 10,000 Sipherians, SIPHER, are the combination of two ideals: Surrogates and Cipher. These are the adventurers in the world of Sipheria. The first of the races, INU, make up the 1st Fleet of the "Sipherian Surge" and were created by mad scientists as a product of animal CRISPR-genome extraction and ethereal elements.`}
                 </MyText>
                 <Box my={8} w="full" overflow="hidden">

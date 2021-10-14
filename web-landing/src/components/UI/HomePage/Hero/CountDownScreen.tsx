@@ -1,28 +1,19 @@
-// * DESCRIPTION:
-
-import { Box, Flex } from "@chakra-ui/react"
+import { Box, Flex, position } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
-import useTypeWriter from "@hooks/useTypeWriter"
-import { motion, useAnimation } from "framer-motion"
-import React, { useEffect, useState } from "react"
+import content from "@constant/content/moonBaseStation"
+import { useAnimation, motion } from "framer-motion"
+import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
-import unityContext from "src/utils/unity"
+import CountDown from "./CountDown"
+import HeroScreen from "./HeroScreen"
 import variants from "./variants"
 
-interface HeroScreenProps {
-    position?: "L" | "R"
-    label?: string
-    heading: React.ReactNode
-    heading2?: React.ReactNode
-    content: string
-}
+interface CountDownScreenProps {}
 
-const HeroScreen = ({
-    position = "L",
-    heading,
-    heading2 = "Lorem ipsum, dolor sit amet consectetur adipisicing.",
-    content,
-}: HeroScreenProps) => {
+const p1 = "Until Whitelisting will be open for minting. After this the Public Sale ill be available for minting."
+const p2 = "All traits and attributes will be revealed sometimes after the Public Sale."
+
+const CountDownScreen = ({}: CountDownScreenProps) => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -31,9 +22,16 @@ const HeroScreen = ({
 
     const contentControl = useAnimation()
 
-    let generateContent = () => {
-        return content.split("").map((char, i) => (
+    let generateP1 = () => {
+        return p1.split("").map((char, i) => (
             <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
+                {char}
+            </motion.span>
+        ))
+    }
+    let generateP2 = () => {
+        return p2.split("").map((char, i) => (
+            <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={p1.length + i}>
                 {char}
             </motion.span>
         ))
@@ -57,8 +55,7 @@ const HeroScreen = ({
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={position === "R" ? ["auto", "15%"] : "auto"}
-                    left={position === "L" ? ["auto", "15%"] : "auto"}
+                    left={["auto", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     // w="45%"
@@ -66,14 +63,14 @@ const HeroScreen = ({
                     ref={ref}
                 >
                     <MotionBox
-                        variants={position === "R" ? variants.slideFromRight : variants.slideFromLeft}
+                        variants={variants.slideFromLeft}
                         initial="hidden"
                         animate={headingControl}
                         transition={{
                             duration: 0.5,
                         }}
                     >
-                        {heading}
+                        <CountDown deadline={1635645600000} />
                     </MotionBox>
                     <MotionBox
                         w="full"
@@ -83,12 +80,8 @@ const HeroScreen = ({
                         animate={textControl}
                         transition={{ duration: 0.5 }}
                     >
-                        {heading && (
-                            <Typo.BoldText textTransform="uppercase" mb={2}>
-                                {heading2}
-                            </Typo.BoldText>
-                        )}
-                        <Typo.Text>{generateContent()}</Typo.Text>
+                        <Typo.Text mb={2}>{generateP1()}</Typo.Text>
+                        <Typo.Text>{generateP2()}</Typo.Text>
                     </MotionBox>
                 </Box>
             </Box>
@@ -96,4 +89,4 @@ const HeroScreen = ({
     )
 }
 
-export default HeroScreen
+export default CountDownScreen

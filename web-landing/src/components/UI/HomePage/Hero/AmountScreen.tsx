@@ -31,7 +31,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
         <MotionLetter
             initial={{ y: "100%" }}
             animate={control}
-            fontSize={["4rem", "5rem"]}
+            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
             bgClip={"text"}
             bgGradient={"linear(to-b,bgGradient.orange)"}
             fontWeight={900}
@@ -45,7 +45,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
 }
 
 const content =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptates inventore soluta rerum similique totam facilis cupiditate, cum aut incidunt quod. Consequatur eveniet, laborum, cumque itaque officiis rem inventore iste sequi dicta dolorum magnam reiciendis aut nemo, hic nam doloremque eius nostrum quisquam accusantium ducimus aliquid earum? Dignissimos, placeat velit?"
+    "10,000 Nekos will be available in the collection available split between the white list and public sale. The public sale will be a dutch Auction (more info) where each purchaser can purchase up to X Nekos per wallet."
 
 const AmountScreen = () => {
     const textControl = useAnimation()
@@ -86,7 +86,7 @@ const AmountScreen = () => {
                 <Box
                     pos="absolute"
                     right={["auto", "15%"]}
-                    maxW={["full", "30rem", "30rem", "30rem", "40rem"]}
+                    maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     p={4}
                     ref={ref}
@@ -107,7 +107,7 @@ const AmountScreen = () => {
                         transition={{ duration: 0.5 }}
                     >
                         <Typo.BoldText textTransform="uppercase" mb={2}>
-                            Lorem ipsum dolor sit amet.
+                            {`Beautifully handcrafted Nekos`}
                         </Typo.BoldText>
                         <Typo.Text>{generateContent()}</Typo.Text>
                     </MotionBox>

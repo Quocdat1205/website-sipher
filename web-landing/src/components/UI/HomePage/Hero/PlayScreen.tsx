@@ -9,20 +9,10 @@ import { useInView } from "react-intersection-observer"
 import unityContext from "src/utils/unity"
 import variants from "./variants"
 
-interface HeroScreenProps {
-    position?: "L" | "R"
-    label?: string
-    heading: React.ReactNode
-    heading2?: React.ReactNode
-    content: string
-}
+const p1 =
+    "Sipherian adventure (PVE) where you send your characters on adventures and collect rewards, crafts, upgrades and more and Sipherian Brawl (PVP) where the goal is to control characters and battle other players for rewards and prestige."
 
-const HeroScreen = ({
-    position = "L",
-    heading,
-    heading2 = "Lorem ipsum, dolor sit amet consectetur adipisicing.",
-    content,
-}: HeroScreenProps) => {
+const PlayScreen = () => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -32,7 +22,7 @@ const HeroScreen = ({
     const contentControl = useAnimation()
 
     let generateContent = () => {
-        return content.split("").map((char, i) => (
+        return p1.split("").map((char, i) => (
             <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
                 {char}
             </motion.span>
@@ -57,8 +47,7 @@ const HeroScreen = ({
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={position === "R" ? ["auto", "15%"] : "auto"}
-                    left={position === "L" ? ["auto", "15%"] : "auto"}
+                    right={["auto", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     // w="45%"
@@ -66,14 +55,22 @@ const HeroScreen = ({
                     ref={ref}
                 >
                     <MotionBox
-                        variants={position === "R" ? variants.slideFromRight : variants.slideFromLeft}
+                        variants={variants.slideFromRight}
                         initial="hidden"
                         animate={headingControl}
                         transition={{
                             duration: 0.5,
                         }}
                     >
-                        {heading}
+                        <Typo.Heading
+                            isGradient
+                            textAlign="left"
+                            fontWeight={900}
+                            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
+                            mb={0}
+                        >
+                            {"PLAY TO ENJOY & PARTICIPATE TO EARN"}
+                        </Typo.Heading>
                     </MotionBox>
                     <MotionBox
                         w="full"
@@ -83,11 +80,9 @@ const HeroScreen = ({
                         animate={textControl}
                         transition={{ duration: 0.5 }}
                     >
-                        {heading && (
-                            <Typo.BoldText textTransform="uppercase" mb={2}>
-                                {heading2}
-                            </Typo.BoldText>
-                        )}
+                        <Typo.BoldText textTransform="uppercase" mb={2}>
+                            {`A whole new world awaits in two main game modes:`}
+                        </Typo.BoldText>
                         <Typo.Text>{generateContent()}</Typo.Text>
                     </MotionBox>
                 </Box>
@@ -96,4 +91,4 @@ const HeroScreen = ({
     )
 }
 
-export default HeroScreen
+export default PlayScreen

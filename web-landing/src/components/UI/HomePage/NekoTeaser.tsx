@@ -32,7 +32,7 @@ const NekoTeaser = () => {
     }, [isPlaying])
 
     return (
-        <Box pos="relative" w="48rem" onClick={() => setIsPlaying(!isPlaying)}>
+        <Box pos="relative" w="48rem" maxW="100%" onClick={() => setIsPlaying(!isPlaying)}>
             <AnimatePresence>
                 {!isPlaying && (
                     <MotionGrid
@@ -53,7 +53,16 @@ const NekoTeaser = () => {
                                 <IoMdPlay size="3rem" />
                             </Box>
                             <Typo.Heading my={2}>BEFORE SIPHER THE GAME</Typo.Heading>
-                            <Typo.BoldText>{"A SNEAK PEEK OF WHAT'S COMING SOON"}</Typo.BoldText>
+                            <Typo.BoldText
+                                textAlign="center"
+                                sx={{
+                                    "@media (max-width: 480px)": {
+                                        display: "none",
+                                    },
+                                }}
+                            >
+                                {"A SNEAK PEEK OF WHAT'S COMING SOON"}
+                            </Typo.BoldText>
                         </Flex>
                     </MotionGrid>
                 )}
