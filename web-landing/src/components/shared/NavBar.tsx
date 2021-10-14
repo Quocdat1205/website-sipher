@@ -30,19 +30,10 @@ export const menuChild = [
 export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const setBarOn = useStoreState(s => s.sidebarOn)
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
-    const setNavbarHeight = useStoreActions(action => action.setNavbarHeight)
     const router = useRouter()
-    const ref = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        if (typeof ref.current?.clientHeight !== "undefined") {
-            setNavbarHeight(ref.current?.clientHeight)
-        }
-    }, [])
 
     return (
         <Flex
-            ref={ref}
             flexDir="column"
             position="fixed"
             zIndex="toast"
@@ -54,30 +45,33 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
             }}
         >
             <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
-                <LinkButton
-                    text="Join Our Discord Community"
-                    href="https://discord.com/invite/dRqdSxUSmd"
-                    sx={{
-                        "@media (max-width: 480px)": {
-                            display: "none",
-                        },
-                    }}
-                />
-                <Grid
-                    rounded="full"
-                    color="white"
-                    px={0}
-                    placeItems="center"
-                    onClick={() => setSideBarOn(!setBarOn)}
-                    display="none"
-                    sx={{
-                        "@media (max-width: 960px)": {
-                            display: "grid",
-                        },
-                    }}
-                >
-                    {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
-                </Grid>
+                <Flex>
+                    <LinkButton
+                        text="Join Our Discord Community"
+                        href="https://discord.com/invite/dRqdSxUSmd"
+                        sx={{
+                            "@media (max-width: 480px)": {
+                                display: "none",
+                            },
+                        }}
+                    />
+                    <Grid
+                        ml={4}
+                        rounded="full"
+                        color="white"
+                        px={0}
+                        placeItems="center"
+                        onClick={() => setSideBarOn(!setBarOn)}
+                        display="none"
+                        sx={{
+                            "@media (max-width: 960px)": {
+                                display: "grid",
+                            },
+                        }}
+                    >
+                        {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
+                    </Grid>
+                </Flex>
                 <MenuDrawer />
             </BaseNavigationBar>
             {isChildMenu && <ChildMenu menus={menuChild} />}
