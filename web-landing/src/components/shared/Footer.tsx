@@ -117,7 +117,11 @@ export const Footer = () => {
                     >
                         |
                     </MyText>
-                    <GradientText cursor="pointer" onClick={() => router.push("/term-and-condition")} fontWeight="bold">
+                    <GradientText
+                        cursor="pointer"
+                        onClick={() => router.push("/term-and-conditions")}
+                        fontWeight="bold"
+                    >
                         Terms & Conditions
                     </GradientText>
                 </Stack>
