@@ -26,8 +26,9 @@ const LayoutTwitter = ({ details }: Props) => {
 				<Image
 					display="block"
 					// w="full"
+					objectFit="contain"
 					h="auto"
-					maxH="40rem"
+					maxH="71rem"
 					src={details.thumbnail !== "" ? details.thumbnail : "/images/pc/news.png"}
 					alt=""
 				/>
@@ -35,10 +36,10 @@ const LayoutTwitter = ({ details }: Props) => {
 			<Flex flexDir="column" flex={1} overflow="hidden">
 				<Box flex={1} overflow="auto" py={[4, 12]} px={8}>
 					<MyHeading>{details.title}</MyHeading>
-					<Box mt={[4, 6]} sx={{ img: { m: "0 auto", maxHeight: "40rem" } }} color="about.textGray">
+					<Box mt={[4, 6]} sx={{ img: { m: "0 auto", maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.content && details.content)}
 					</Box>
-					<Box sx={{ img: { m: "0 auto", maxHeight: "40rem" } }} color="about.textGray">
+					<Box sx={{ img: { m: "0 auto", maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.description && details.description)}
 					</Box>
 				</Box>

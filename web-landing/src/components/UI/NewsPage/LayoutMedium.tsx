@@ -16,10 +16,10 @@ const LayoutMedium = ({ details }: Props) => {
 			<Flex overflow="hidden" flexDir="column" flex={1} py={[8]} px={[4, 8]}>
 				<Box flex={1} overflow="auto">
 					<MyHeading>{details.title}</MyHeading>
-					<Box mt={[4, 6]} sx={{ img: { m: "0 auto", py: 8, maxHeight: "40rem" } }} color="about.textGray">
+					<Box mt={[4, 6]} sx={{ img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.content && details.content)}
 					</Box>
-					<Box sx={{ img: { m: "0 auto", py: 8, maxHeight: "40rem" } }} color="about.textGray">
+					<Box sx={{ img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.description && details.description)}
 					</Box>
 				</Box>
