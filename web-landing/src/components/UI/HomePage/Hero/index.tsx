@@ -48,7 +48,7 @@ const Hero = ({}: HeroProps) => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollY(window.scrollY);
-      unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);
+      if (ctnRef.current) unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);
     });
     return () =>
       window.removeEventListener("scroll", () => {
