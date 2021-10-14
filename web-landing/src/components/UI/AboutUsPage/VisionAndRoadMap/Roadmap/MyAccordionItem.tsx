@@ -1,35 +1,38 @@
-import { AccordionButton, AccordionItem, AccordionItemProps, AccordionPanel } from "@chakra-ui/accordion"
-import { chakra } from "@chakra-ui/react"
+import { AccordionItem, AccordionItemProps, AccordionPanel, UnorderedList, ListItem } from "@chakra-ui/react"
 import React from "react"
-import ContentAccordion from "./ContentAccordion"
 import LeftBar from "./LeftBar"
 import AccordionTitle from "./AccordionTitle"
+import { Typo } from "@components/shared"
 
 interface MyAccordionItemProps extends AccordionItemProps {
-    month: string
-    name: string
-    phases: {
+    data: {
+        name: string
+        date: string
         content: string[]
-    }[]
+        completed?: boolean
+    }
 }
 
-const MyAccordionItem = ({ month, name, phases, ...rest }: MyAccordionItemProps) => {
+const MyAccordionItem = ({ data, ...rest }: MyAccordionItemProps) => {
     return (
         <AccordionItem {...rest} position="relative" border="none" bgGradient="linear(180deg, bgGradient.black)">
             {({ isExpanded }) => (
                 <>
                     <LeftBar isExpanded={isExpanded} />
-                    <AccordionTitle month={month} name={name} isExpanded={isExpanded} />
-                    <AccordionPanel>
-                        {phases.map((phase,index) => (
-                            <ContentAccordion key={index}>
-                                <chakra.ul color="about.textGray">
-                                    {phase.content.map(line => (
-                                        <chakra.li key={line}>{line}</chakra.li>
-                                    ))}
-                                </chakra.ul>
-                            </ContentAccordion>
-                        ))}
+                    <AccordionTitle
+                        date={data.date}
+                        name={data.name}
+                        completed={data.completed}
+                        isExpanded={isExpanded}
+                    />
+                    <AccordionPanel pl={16}>
+                        <UnorderedList>
+                            {data.content.map(line => (
+                                <ListItem key={line} mb={2}>
+                                    <Typo.Text>{line}</Typo.Text>
+                                </ListItem>
+                            ))}
+                        </UnorderedList>
                     </AccordionPanel>
                 </>
             )}
