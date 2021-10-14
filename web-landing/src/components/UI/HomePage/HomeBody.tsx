@@ -23,7 +23,7 @@ const HomeBody = ({}: HomeBodyProps) => {
                 zIndex="banner"
                 py={24}
             >
-                <VStack px={4} spacing={24} align="center">
+                <VStack spacing={24} align="center" w="full">
                     <NekoTeaser />
                     <Backers />
                 </VStack>

@@ -40,7 +40,7 @@ const BenefitsScreen = () => {
             >
                 {p2.split("").map((char, i) => (
                     <MotionSpan
-                        key={i}
+                        key={i + p1.length}
                         borderBottom="1px"
                         borderColor="main.orange"
                         animate={contentControl}
@@ -53,7 +53,7 @@ const BenefitsScreen = () => {
             </chakra.span>,
             ...p3.split("").map((char, i) => (
                 <motion.span
-                    key={i}
+                    key={i + p1.length + p2.length}
                     animate={contentControl}
                     initial={{ opacity: 0 }}
                     custom={i + p1.length + p2.length}
@@ -118,7 +118,7 @@ const BenefitsScreen = () => {
                             isGradient
                             textAlign="left"
                             fontWeight={900}
-                            fontSize={["4rem", "4.5rem", "4.5rem", "5rem"]}
+                            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
                             mb={0}
                         >
                             Benefits

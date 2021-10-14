@@ -12,6 +12,7 @@ const SmartContractContent = (props: Props) => {
             w="full"
             maxW={["48rem", "48rem", "48rem", "56rem", "72rem"]}
             align="center"
+            px={4}
         >
             <Box p={4} flex={1}>
                 <Typo.Heading isGradient textAlign={["center", "center", "left"]}>

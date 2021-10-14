@@ -20,14 +20,9 @@ const MenuDrawer = ({}: MenuDrawerProps) => {
             onClose={() => setIsSideBarOn(false)}
             initialFocusRef={undefined}
         >
-            <DrawerOverlay zIndex="1"/>
-            <DrawerContent
-                // bgImage="/images/pc/home/homenew2.png"
-                bgSize="contain"
-                bgColor="blackAlpha.900"
-                // bgGradient="linear(to-b, bgGradient.orange)"
-            >
-                <DrawerBody  p={0}>
+            <DrawerOverlay zIndex="1" />
+            <DrawerContent bgSize="contain" bgColor="blackAlpha.900">
+                <DrawerBody p={0}>
                     <Flex w="full" align="center" justify="center" h="full">
                         <VStack h="20rem" my="auto" justify="space-between">
                             {navMenus.map(menu => (

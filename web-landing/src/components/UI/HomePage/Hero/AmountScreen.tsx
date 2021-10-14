@@ -31,7 +31,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
         <MotionLetter
             initial={{ y: "100%" }}
             animate={control}
-            fontSize={["4rem", "4.5rem", "4.5rem", "5rem"]}
+            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
             bgClip={"text"}
             bgGradient={"linear(to-b,bgGradient.orange)"}
             fontWeight={900}

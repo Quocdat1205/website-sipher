@@ -29,11 +29,17 @@ export const NavBarLink = ({
         <Flex
             onClick={onClick}
             borderRight={isChild ? (lastChild ? "none" : ["none", "1px"]) : "none"}
-            pr={isChild ? "4" : "0"}
+            pr={isChild && !lastChild ? 4 : 0}
             color="white"
             pos="relative"
             cursor="pointer"
             justify="center"
+            sx={{
+                "@media (max-width: 480px)": {
+                    paddingRight: 0,
+                    borderRight: "0px",
+                },
+            }}
             {...rest}
         >
             <MyText

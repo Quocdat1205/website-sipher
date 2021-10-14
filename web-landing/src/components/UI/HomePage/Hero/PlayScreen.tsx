@@ -66,7 +66,7 @@ const PlayScreen = () => {
                             isGradient
                             textAlign="left"
                             fontWeight={900}
-                            fontSize={["4rem", "4.5rem", "4.5rem", "5rem"]}
+                            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
                             mb={0}
                         >
                             {"PLAY TO ENJOY & PARTICIPATE TO EARN"}

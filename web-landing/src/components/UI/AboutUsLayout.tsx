@@ -3,7 +3,6 @@
 import { Flex } from "@chakra-ui/react"
 import { NavBar, Footer, menuChild } from "@components/shared"
 import HeaderBackground from "@components/shared/HeaderBackground"
-import MenuAboutMobile from "@components/shared/MenuAboutMobile"
 import { useRouter } from "next/router"
 import { useEffect, useRef } from "react"
 
@@ -26,7 +25,6 @@ const AboutUsLayout = ({ children }: AboutUsLayoutProps) => {
             <NavBar isChildMenu />
             <Flex flex={1} overflow="overlay" direction="column" id="body" ref={ctnRef}>
                 <HeaderBackground title="ABOUT US" description="DONEC VIVERRA, METUS EU CONDIMENTUM" />
-                <MenuAboutMobile menus={menuChild}/>
                 {children}
                 <Footer />
             </Flex>

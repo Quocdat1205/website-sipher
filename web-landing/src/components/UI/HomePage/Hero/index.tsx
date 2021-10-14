@@ -54,13 +54,13 @@ const Hero = ({}: HeroProps) => {
 
     return (
         <Box
-            pt={[24, 0, 0]}
             pos="relative"
             zIndex={0}
             overflowX="hidden"
             onMouseMove={handleMouseMove}
             onWheel={handleMouseWheel}
             ref={ctnRef}
+            id="hero"
         >
             <Flex direction="column" w="full">
                 <FirstScreen />

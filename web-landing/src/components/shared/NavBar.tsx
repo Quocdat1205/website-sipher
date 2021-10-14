@@ -6,7 +6,7 @@ import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
 import { BaseNavigationBar } from "."
-import MenuChild from "./MenuChild"
+import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
 interface NavBarProps {
     isChildMenu?: boolean
@@ -31,7 +31,17 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
     return (
-        <Flex flexDir="column" position="fixed" zIndex="toast" w="full">
+        <Flex
+            flexDir="column"
+            position="fixed"
+            zIndex="toast"
+            w="full"
+            sx={{
+                ".childmenu::-webkit-scrollbar": {
+                    display: "none",
+                },
+            }}
+        >
             <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Grid
                     rounded="full"
@@ -50,7 +60,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                 </Grid>
                 <MenuDrawer />
             </BaseNavigationBar>
-            {isChildMenu && <MenuChild menus={menuChild} />}
+            {isChildMenu && <ChildMenu menus={menuChild} />}
         </Flex>
     )
 }

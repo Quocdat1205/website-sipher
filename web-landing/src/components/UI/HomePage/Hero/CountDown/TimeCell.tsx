@@ -17,7 +17,7 @@ const MotionText = motion<Omit<HeadingProps, "transition">>(Heading)
 const TimeCell = ({ value, unit }: TimeCellProps) => {
     return (
         <Flex direction="column" align="center" flex={1}>
-            <Box pos="relative" h={["4rem", "5rem"]} w={["4rem", "6.5rem"]} overflow="hidden">
+            <Box pos="relative" h={["4rem", "5rem"]} w={["4rem", "5rem", "5.5rem", "6.5rem"]} overflow="hidden">
                 <AnimatePresence initial={false}>
                     <MotionText
                         key={value.toString()}
@@ -29,7 +29,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         transition={{ type: "tween", duration: 0.5 }}
                         textAlign="center"
                         fontWeight={900}
-                        fontSize={["4rem", "4.5rem", "4.5rem", "5rem"]}
+                        fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
                         position="absolute"
                         left={0}
                         top={0}
