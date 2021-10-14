@@ -8,12 +8,12 @@ export const personLead: PersonCardProps[] = [
     },
     {
         name: "Loi Luu",
-        job: "Co-founder Advisor",
+        job: "Co-founding Advisor",
         srcImg: "/images/avatars/3.png",
     },
     {
         name: "Victor Tran",
-        job: "Co-founder Advisor",
+        job: "Co-founding Advisor",
         srcImg: "/images/avatars/2.png",
     },
 ]
@@ -21,23 +21,18 @@ export const personLead: PersonCardProps[] = [
 export const personEmployee: PersonCardProps[] = [
     {
         name: "Nghia Nguyen",
-        job: "Game Designer",
+        job: "Head of Community",
         srcImg: "/images/avatars/4.png",
     },
     {
         name: "Alain Dinh",
-        job: "Product Advisor",
+        job: "Head of Partnership",
         srcImg: "/images/avatars/5.png",
     },
     {
         name: "Justin Cohen",
-        job: "Marketing Advisor",
+        job: "Marketing Director",
         srcImg: "/images/avatars/6.png",
-    },
-    {
-        name: "TK Nguyen",
-        job: "ESports Advisor",
-        srcImg: "/images/avatars/7.png",
     },
     {
         name: "Duc Ho",
@@ -46,7 +41,7 @@ export const personEmployee: PersonCardProps[] = [
     },
     {
         name: "Thang Ho",
-        job: "Operation Lead",
+        job: "Office Manager Assistant",
         srcImg: "/images/avatars/9.png",
     },
     {
@@ -61,7 +56,7 @@ export const personEmployee: PersonCardProps[] = [
     },
     {
         name: "Vu Le",
-        job: "Full-stack Dev",
+        job: "Web Full-stack",
         srcImg: "/images/avatars/12.png",
     },
     {
@@ -76,27 +71,27 @@ export const personEmployee: PersonCardProps[] = [
     },
     {
         name: "Duyen Nguyen",
-        job: "HR Recruitment",
+        job: "HR Recruitment Senior",
         srcImg: "/images/avatars/15.png",
     },
     {
         name: "Anh Tran",
-        job: "3D Artist",
+        job: "3D Lead Artist",
         srcImg: "/images/avatars/16.png",
     },
     {
         name: "Vu Nguyen",
-        job: "2D Artist",
+        job: "2D Lead Artist",
         srcImg: "/images/avatars/17.png",
     },
     {
         name: "Thang Nguyen",
-        job: "Game Product",
+        job: "Game Product Lead",
         srcImg: "/images/avatars/18.png",
     },
     {
         name: "Loc Bui",
-        job: "Game Engineering",
+        job: "Game Engineering Lead",
         srcImg: "/images/avatars/19.png",
     },
     {
@@ -106,17 +101,12 @@ export const personEmployee: PersonCardProps[] = [
     },
     {
         name: "Son Huynh",
-        job: "Game Designer",
+        job: "Senior Game Designer",
         srcImg: "/images/avatars/21.png",
     },
     {
         name: "Lam Phung",
-        job: "Environment Artist",
+        job: "Environment Lead Artist",
         srcImg: "/images/avatars/22.png",
-    },
-    {
-        name: "Jindo",
-        job: "Metaverse Advisor",
-        srcImg: "/images/avatars/23.png",
     },
 ]

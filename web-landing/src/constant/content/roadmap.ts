@@ -1,79 +1,118 @@
 const content = [
-    {
-        name: "Sipherian surge",
-        year: "2021",
-        phases: [
-            {
-                id: "August",
-                content: [
-                    "Creation of the first Adventurers of Sipheria, the SIPHER INU",
-                    "Launch of Sipherian Laboratory (Web Portal)",
-                    "Launch of Sipherian Discord Channel for Sipher Game Community",
-                    "Release of Sipher Game Litepaper",
-                    "Release of Sipher Roadmap for next 18 months",
-                ],
-            },
-            {
-                id: "September",
-                content: [
-                    "Upgrade of Sipherian Laboratory (Web Portal)",
-                    "Launch of Sipherian Academy (Web Portal)",
-                    "Release of Concept Arts for 3 new races: NEKO, TORI & BURU",
-                ],
-            },
+  {
+    name: "Sipherian surge (Completed)",
+    month: "August 2021",
+    phases: [
+      {
+        content: ["Sipher Inu 10,000 Playable Character", "Launch of Sipherian Laboratory", "Social & Marketing"],
+      },
+    ],
+  },
+  {
+    name: "Sipherian Flash (Completed)",
+    month: "September 2021",
+    phases: [
+      {
+        content: ["Sipher Neko - 10,000 Playable Character", "Spaceship Loot"],
+      },
+    ],
+  },
+  {
+    name: "Sipherian Flash - Cont'd",
+    month: "October 2021",
+    phases: [
+      {
+        content: [
+          "Introduction of the Neko Website & Minting Mechanics",
+          "Introduction of the Sipher Community Program",
+          "Behind the Scenes of Game Development",
+          "Upgrade of Sipherian Laboratory",
         ],
-    },
-    {
-        name: "Awakening",
-        year: "2022",
-        phases: [
-            {
-                id: "October",
-                content: [
-                    "Launch of Sipherian Mercenary Outpost (Web Portal)",
-                    "Breeding (Forking, Sequencing, Cloning) INUs",
-                    "Sales of a new race: NEKOs - Cat",
-                ],
-            },
-            {
-                id: "November",
-                content: [
-                    "Sales of a new race: TORIs - Bird",
-                    "Launch of Sipherian Bazaar (Merchandise Gift Store)",
-                    "Video of Gameplay Demo",
-                ],
-            },
-            {
-                id: "December",
-                content: [
-                    "Sales of a new race: BURUs - Bull",
-                    "Launch of $SIPHER token",
-                    "Launch of $SIPHER staking pool. Stakers of $SIPHER, will receive $LP-SIPHER, will receive the Sipher Platform Revenue Rewards",
-                ],
-            },
+      },
+    ],
+  },
+  {
+    name: "Sipheria Comic Series",
+    month: "November - December 2021",
+    phases: [
+      {
+        content: ["World of Sipheria Comic Series", "Introduction of the Sipher Community Program", "Spaceship Loot"],
+      },
+    ],
+  },
+  {
+    name: "Sipherian Charge",
+    month: "January - March 2022",
+    phases: [
+      {
+        content: [
+          "Sipher Buru - 10,000 Playable Character",
+          "Upgrade of Sipherian Laboratory",
+          "World of Sipheria Comic Series",
+          "PvE Gameplay Playable Demo",
+          "Sipher Token Public Sale",
+          "Ather Token Public Sale & Emission",
         ],
-    },
-    {
-        name: "Dawn of the empire",
-        year: "2022",
-        phases: [
-            {
-                id: "March",
-                content: ["Lauch of Playable Demo", "Land Sales of BLOCK GENESIS"],
-            },
-            {
-                id: "June",
-                content: [
-                    "Lauch of Gameplay - Version 1.0",
-                    "Launch of playable and conquerable Block Genesis nick-named The First World, it is the First Game World that all Sipherians will venture into.",
-                ],
-            },
-            {
-                id: "September",
-                content: ["Launch of new 5th Playable Race: Tokage or Doragon - Lizards or Dragon"],
-            },
+      },
+    ],
+  },
+  {
+    name: "Sipherian Flight",
+    month: "April - May 2022",
+    phases: [
+      {
+        content: [
+          "Sipher Tori - 10,000 Playable Character",
+          "Upgrade of Sipherian Laboratory",
+          "Launch of Cloning Feature",
+          "Launch of Sipher Marketplace",
+          "PvP Gameplay Demo",
+          "Launch of Sipherian Adventure (MVP) PvE - A COOP Dungeon Gamemode",
         ],
-    },
-]
+      },
+    ],
+  },
+  {
+    name: "The Sipheria Land",
+    month: "June - September 2022",
+    phases: [
+      {
+        content: [
+          "World of Sipheria Comic Series",
+          "Launch of Ranked PvE Leaderboard",
+          "Launch of Crafting Feature",
+          "Launch of PvE Guild Wars",
+          "Launch of Sipherian Brawl (MVP) PvP - A Online Battle Arena Gamemode",
+          "Release information on Sipheria Land",
+        ],
+      },
+    ],
+  },
+  {
+    name: "The Sipheria Land - Cont'd",
+    month: "September - December 2022",
+    phases: [
+      {
+        content: [
+          "World of Sipheria Comic Series",
+          "Regular release of new in-game NFT Content",
+          "Launch of Sipher PvP Money Prize Tournaments",
+          "Launch of Ranked PvP Leaderboard",
+          "Launch of Sipher NFT Protocol",
+          "Launch of Sipheria Land",
+        ],
+      },
+    ],
+  },
+  {
+    name: "The Sipherian Worlds",
+    month: "January 2023 & Beyond",
+    phases: [
+      {
+        content: ["Regular release of new in-game NFT Content", "Launch of Sipherian Worlds"],
+      },
+    ],
+  },
+];
 
-export default content
+export default content;

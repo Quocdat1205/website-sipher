@@ -6,24 +6,23 @@ import LeftBar from "./LeftBar"
 import AccordionTitle from "./AccordionTitle"
 
 interface MyAccordionItemProps extends AccordionItemProps {
-    year: string
+    month: string
     name: string
     phases: {
-        id: string
         content: string[]
     }[]
 }
 
-const MyAccordionItem = ({ year, name, phases, ...rest }: MyAccordionItemProps) => {
+const MyAccordionItem = ({ month, name, phases, ...rest }: MyAccordionItemProps) => {
     return (
         <AccordionItem {...rest} position="relative" border="none" bgGradient="linear(180deg, bgGradient.black)">
             {({ isExpanded }) => (
                 <>
                     <LeftBar isExpanded={isExpanded} />
-                    <AccordionTitle year={year} name={name} isExpanded={isExpanded} />
+                    <AccordionTitle month={month} name={name} isExpanded={isExpanded} />
                     <AccordionPanel>
-                        {phases.map(phase => (
-                            <ContentAccordion key={phase.id} title={phase.id}>
+                        {phases.map((phase,index) => (
+                            <ContentAccordion key={index}>
                                 <chakra.ul color="about.textGray">
                                     {phase.content.map(line => (
                                         <chakra.li key={line}>{line}</chakra.li>

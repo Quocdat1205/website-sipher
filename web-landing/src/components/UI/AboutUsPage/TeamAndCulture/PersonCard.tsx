@@ -15,7 +15,7 @@ const PersonCard = ({ isEmployee, name, job, srcImg }: PersonCardProps) => {
             <Box overflow="hidden" bg="about.textGray" rounded="full" boxSize={isEmployee ? "6rem" : "9rem"} mb={4}>
                 <Image display="block" w="full" h="full" src={srcImg} alt="" />
             </Box>
-            <Typo.BoldText textTransform="uppercase" textAlign="center">
+            <Typo.BoldText size="medium" textTransform="uppercase" textAlign="center">
                 {name}
             </Typo.BoldText>
             <Typo.Text textAlign="center">{job}</Typo.Text>
