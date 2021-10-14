@@ -122,7 +122,7 @@ const BenefitsScreen = () => {
                 })
             })
         }
-    }, [headingControl, textControl, contentControl, inView])
+    }, [headingControl, textControl, contentControl, linkControl, inView])
 
     return (
         <Flex h="100vh" maxH="1080px" justify="center" w="full" flexShrink={0} bg="blackAlpha.300" zIndex={2}>
