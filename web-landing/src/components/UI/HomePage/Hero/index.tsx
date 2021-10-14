@@ -40,7 +40,7 @@ const Hero = ({}: HeroProps) => {
     }, [delay, setDelay])
 
     const ctnRef = useRef<HTMLDivElement>(null)
-    const handleMouseWheel = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    const handleMouseWheel = () => {
         if (ctnRef.current)
             unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5)
     }
@@ -52,13 +52,18 @@ const Hero = ({}: HeroProps) => {
         }
     }
 
+    useEffect(() => {
+        window.addEventListener("scroll", handleMouseWheel)
+        return () => window.removeEventListener("scroll", handleMouseWheel)
+    }, [])
+
     return (
         <Box
             pos="relative"
             zIndex={0}
             overflowX="hidden"
             onMouseMove={handleMouseMove}
-            onWheel={handleMouseWheel}
+            // onWheel={handleMouseWheel}
             ref={ctnRef}
             id="hero"
         >
