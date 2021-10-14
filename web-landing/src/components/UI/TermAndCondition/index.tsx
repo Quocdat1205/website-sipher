@@ -5,7 +5,7 @@ import Body from "./Body"
 
 interface HomeUIProps {}
 
-const HomeUI = ({}: HomeUIProps) => {
+const TermAndConditionsUI = ({}: HomeUIProps) => {
     return (
         <Flex bg="black" direction="column">
             <Body />
@@ -13,4 +13,4 @@ const HomeUI = ({}: HomeUIProps) => {
     )
 }
 
-export default HomeUI
+export default TermAndConditionsUI
