@@ -1,10 +1,10 @@
 import { UnityContext } from "react-unity-webgl"
 
 export const unityContext = new UnityContext({
-    loaderUrl: "/unity/unity2.loader.js",
-    dataUrl: "/unity/unity2.data",
-    frameworkUrl: "/unity/unity2.framework.js",
-    codeUrl: "/unity/unity2.wasm",
+    loaderUrl: "/unity/gz.loader.js",
+    dataUrl: "/unity/gz.data.gz",
+    frameworkUrl: "/unity/gz.framework.js.gz",
+    codeUrl: "/unity/gz.wasm.gz",
     webglContextAttributes: {
         powerPreference: "low-power",
         preserveDrawingBuffer: true,
