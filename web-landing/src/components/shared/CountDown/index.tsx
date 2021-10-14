@@ -22,7 +22,6 @@ export const CountDown = ({ deadline }: CountDownProps) => {
         const diffInSeconds = differenceInSeconds(deadline, currentTime)
         if (diffInSeconds <= 1) {
             queryClient.invalidateQueries("sale-config")
-            console.log("success")
             return {
                 days: 0,
                 hours: 0,

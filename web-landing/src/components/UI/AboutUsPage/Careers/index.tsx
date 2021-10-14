@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/layout"
-import { BackgroundContainer, TextContainer, Typo } from "@components/shared"
+import { BackgroundContainer, LinkButton, TextContainer, Typo } from "@components/shared"
 import { GradientButton, MyText } from "@sipher/web-components"
 
 interface CareesProps {}
@@ -17,16 +17,11 @@ const Careers = ({}: CareesProps) => {
                         consectetur, egestas elit at, dignissim enim. Proin id pulvinar ipsum. Nulla luctus malesuada
                         diam nec dapibus.
                     </Typo.Text>
-                    <Flex w="full" justify="center" mt={4}>
-                        <GradientButton
-                            text="Join Our Discord Community"
-                            as="a"
-                            href="https://discord.com/invite/dRqdSxUSmd"
-                            rounded="full"
-                            w="fit-content"
-                            fontSize="xs"
-                            px={4}
-                            py={2}
+                    <Flex w="full" justify="center" mt={8}>
+                        <LinkButton
+                            text="Join Us At Sipher"
+                            href="https://www.notion.so/sipherhq/Join-us-at-Sipher-1357e774e38d432bb7d06078a99b43e7"
+                            size="large"
                         />
                     </Flex>
                 </TextContainer>

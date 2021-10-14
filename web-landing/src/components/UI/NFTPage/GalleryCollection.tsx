@@ -1,5 +1,5 @@
 import { Img, Box, Center, Flex, HStack, StackProps } from "@chakra-ui/react"
-import { TextContainer } from "@components/shared"
+import { LinkButton, TextContainer } from "@components/shared"
 import { GradientButton, MyText } from "@sipher/web-components"
 import { motion } from "framer-motion"
 import React from "react"
@@ -51,19 +51,13 @@ const GalleryCollection = () => {
                     </Box>
                 </Box>
             </TextContainer>
-            <Center>
-                <GradientButton
-                    display="block"
-                    text="Check out the collection"
-                    as="a"
+            <Flex justify="center" w="full" mt={8}>
+                <LinkButton
+                    text="Check Out The Collection"
                     href="https://opensea.io/collection/sipheriansurge"
-                    rounded="full"
-                    w="fit-content"
-                    fontSize="xs"
-                    px={4}
-                    py={2}
+                    size="large"
                 />
-            </Center>
+            </Flex>
         </Flex>
     )
 }

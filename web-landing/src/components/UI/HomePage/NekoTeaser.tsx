@@ -13,7 +13,6 @@ const NekoTeaser = () => {
     useEffect(() => {
         let timeout = setInterval(() => {
             if (videoRef.current && isPlaying && videoRef.current.volume < 1) {
-                console.log("Set volume")
                 videoRef.current.volume = Math.min(1, videoRef.current.volume + 0.1)
             }
         }, 100)

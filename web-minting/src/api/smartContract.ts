@@ -35,7 +35,5 @@ export const checkIsWhitelisted = async (publicAddress: string): Promise<IWhitel
         `/neko-sc/checkWhiteList?saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${publicAddress}`,
         config
     )
-    //new change
-    console.log("Check whitelist", data.message)
     return { proof: data.message.proof, privateCap: data.message.privateCap, freeMintCap: data.message.freeMintCap }
 }
