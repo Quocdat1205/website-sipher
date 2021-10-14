@@ -20,7 +20,7 @@ const LayoutMedium = ({ details, navbarHeight }: Props) => {
 			<Flex flexDir="column" flex={1}  p={[4, 8]}>
 				<Box flex={1} >
 					<MyHeading textAlign="center" size="large">{details.title}</MyHeading>
-					<Box sx={{ul:{listStylePos: "inside"} ,img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
+					<Box mt={[4, 6]} sx={{ul:{listStylePos: "inside"} ,img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
 						{ReactHtmlParser(details.content && details.content)}
 					</Box>
 					<Box sx={{ul:{listStylePos: "inside"} ,img: { m: "0 auto", py: 8, maxHeight: "45rem" } }} color="about.textGray">
