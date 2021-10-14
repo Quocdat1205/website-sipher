@@ -2,11 +2,12 @@
 
 import { HStack, Heading, HeadingProps } from "@chakra-ui/react"
 import { AnimationControls, motion, useAnimation } from "framer-motion"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
+import { useInView } from "react-intersection-observer"
 import { useStoreState } from "@store"
 const letterVariants = {
-    hidden: { y: -500 },
-    visible: { y: 0 },
+    hidden: { y: "-100%" },
+    visible: { y: "0%" },
 }
 
 interface LetterProps {
@@ -37,22 +38,34 @@ const Letter = ({ char, control, custom }: LetterProps) => {
 interface TitleProps {}
 
 const Title = ({}: TitleProps) => {
+    const firstLoad = useRef(true)
     const controls = useAnimation()
+    const [ref, inView] = useInView({
+        threshold: 0.5,
+    })
+    console.log("view", inView)
     const initialLoading = useStoreState(s => s.initialLoading)
     useEffect(() => {
-        if (!initialLoading) {
+        if (!initialLoading && inView) {
             controls.start(i => ({
                 ...letterVariants.visible,
-                transition: { delay: i * 0.15 + 0.5, duration: 1 },
+                transition: { delay: i * 0.15 + (firstLoad.current ? 0.5 : 0), duration: 0.75, ease: "easeOut" },
+            }))
+            console.log(firstLoad.current)
+            firstLoad.current = false
+        } else if (!initialLoading && !inView) {
+            controls.start(i => ({
+                ...letterVariants.hidden,
+                transition: { delay: 0, duration: 0.2 },
             }))
         }
-    }, [controls, initialLoading])
+    }, [controls, initialLoading, inView])
     return (
-        <HStack align="baseline" spacing={6} overflow="hidden">
-            <Letter char="N" control={controls} custom={1} />
-            <Letter char="E" control={controls} custom={2} />
-            <Letter char="K" control={controls} custom={3} />
-            <Letter char="O" control={controls} custom={4} />
+        <HStack align="baseline" spacing={6} overflow="hidden" ref={ref}>
+            <Letter char="N" control={controls} custom={0} />
+            <Letter char="E" control={controls} custom={1} />
+            <Letter char="K" control={controls} custom={2} />
+            <Letter char="O" control={controls} custom={3} />
         </HStack>
     )
 }

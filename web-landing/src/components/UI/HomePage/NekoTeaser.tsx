@@ -67,7 +67,7 @@ const NekoTeaser = () => {
                     </MotionGrid>
                 )}
             </AnimatePresence>
-            <video src={"/video/inu_teaser.mp4"} controls={false} ref={videoRef} onPause={() => setIsPlaying(false)} />
+            <video src={"/video/neko_teaser.mp4"} controls={false} ref={videoRef} onPause={() => setIsPlaying(false)} />
         </Box>
     )
 }

@@ -47,6 +47,15 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
                     }))
                 )
             )
+        } else {
+            headingControl.start("hidden").then(() =>
+                textControl.start("hidden").then(() =>
+                    contentControl.start(i => ({
+                        opacity: 0,
+                        transition: { duration: 0.25 },
+                    }))
+                )
+            )
         }
     }, [headingControl, textControl, contentControl, inView])
 
@@ -78,7 +87,7 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
                         variants={variants.zoom}
                         initial="hidden"
                         animate={textControl}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.1 }}
                     >
                         <Typo.Text mb={2}>{generateP1()}</Typo.Text>
                         <Typo.Text>{generateP2()}</Typo.Text>

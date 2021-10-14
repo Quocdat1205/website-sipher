@@ -2,9 +2,7 @@ import { Box, Flex } from "@chakra-ui/react"
 import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
 import FirstScreen from "./FirstScreen"
-import HeroScreen from "./HeroScreen"
 import AmountScreen from "./AmountScreen"
-import { Typo } from "@components/shared"
 import Unity from "react-unity-webgl"
 import { MouseEvent, useEffect, useState, useRef } from "react"
 import CountDownScreen from "./CountDownScreen"
@@ -12,13 +10,7 @@ import BenefitsScreen from "./BenefitsScreen"
 import PlayScreen from "./PlayScreen"
 interface HeroProps {}
 
-const content =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptates inventore soluta rerum similique totam facilis cupiditate, cum aut incidunt quod. Consequatur eveniet, laborum, cumque itaque officiis rem inventore iste sequi dicta dolorum magnam reiciendis aut nemo, hic nam doloremque eius nostrum quisquam accusantium ducimus aliquid earum? Dignissimos, placeat velit?"
-
-export const variants = {
-    visible: { opacity: 1, y: 0, transformOrigin: "50% 100% 0" },
-    hidden: { opacity: 0, y: 100, transformOrigin: "50% 100% 0" },
-}
+export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)

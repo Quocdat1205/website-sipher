@@ -5,7 +5,7 @@ import { MotionBox, Typo } from "@components/shared"
 import { AnimationControls, motion, useAnimation } from "framer-motion"
 import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
-import unityContext from "src/utils/unity"
+import { fontSizes } from "."
 import variants from "./variants"
 
 const letterVariants = {
@@ -31,7 +31,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
         <MotionLetter
             initial={{ y: "100%" }}
             animate={control}
-            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
+            fontSize={fontSizes}
             bgClip={"text"}
             bgGradient={"linear(to-b,bgGradient.orange)"}
             fontWeight={900}
@@ -77,6 +77,20 @@ const AmountScreen = () => {
                         }))
                     )
                 )
+        } else {
+            letterControls
+                .start({
+                    y: "100%",
+                    transition: { delay: 0, duration: 0.25, type: "tween" },
+                })
+                .then(() => {
+                    textControl.start("hidden").then(() =>
+                        contentControl.start(i => ({
+                            opacity: 0,
+                            transition: { delay: 0.25 },
+                        }))
+                    )
+                })
         }
     }, [letterControls, textControl, contentControl, inView])
 

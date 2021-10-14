@@ -3,8 +3,9 @@
 import { Box, Flex, chakra, BoxProps } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
 import { motion, useAnimation } from "framer-motion"
-import React, { useEffect } from "react"
+import React, { useEffect, ComponentProps } from "react"
 import { useInView } from "react-intersection-observer"
+import { fontSizes } from "."
 import variants from "./variants"
 
 const p1 =
@@ -13,15 +14,14 @@ const p2 = "Guildmaster program"
 const p3 = ", and whitelist fast-track."
 const p4 = "View Benefits"
 
-const MotionSpan = motion<Omit<BoxProps, "transition">>(chakra.span)
-
+const MotionSpan = motion<Omit<ComponentProps<typeof chakra.span>, "transition">>(chakra.span)
 const BenefitsScreen = () => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
         threshold: 0.8,
     })
-
+    const linkControl = useAnimation()
     const contentControl = useAnimation()
 
     let generateP1 = () => {
@@ -31,27 +31,23 @@ const BenefitsScreen = () => {
                     {char}
                 </motion.span>
             )),
-            <chakra.span
+            <MotionSpan
                 key={p1.length}
+                animate={linkControl}
                 cursor="pointer"
-                bgGradient="linear(to-b, bgGradient.orange)"
-                bgClip="text"
                 fontWeight={500}
+                as="a"
+                href="https://sipherhq.notion.site/Sipher-Programs-and-Initatives-1afd93650c044a338758418f8132343c"
+                rel="noreferrer"
+                target="_blank"
                 borderColor="main.orange"
             >
                 {p2.split("").map((char, i) => (
-                    <MotionSpan
-                        key={i}
-                        borderBottom="1px"
-                        borderColor="main.orange"
-                        animate={contentControl}
-                        initial={{ opacity: 0 }}
-                        custom={i + p1.length}
-                    >
+                    <MotionSpan key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i + p1.length}>
                         {char}
                     </MotionSpan>
                 ))}
-            </chakra.span>,
+            </MotionSpan>,
             ...p3.split("").map((char, i) => (
                 <motion.span
                     key={i + p1.length + 1}
@@ -67,12 +63,19 @@ const BenefitsScreen = () => {
 
     let generateP4 = () => {
         return (
-            <chakra.span cursor="pointer" bgGradient="linear(to-b, bgGradient.orange)" bgClip="text" fontWeight={500}>
+            <MotionSpan
+                cursor="pointer"
+                animate={linkControl}
+                fontWeight={500}
+                as="a"
+                href="https://sipherhq.notion.site/Benefits-of-Owning-a-Genesis-Sipher-02e788d128ef4e80a6b2d66813acf2e7"
+                rel="noreferrer"
+                target="_blank"
+                borderColor="main.orange"
+            >
                 {p4.split("").map((char, i) => (
                     <MotionSpan
                         key={i}
-                        borderBottom="1px"
-                        borderColor="main.orange"
                         animate={contentControl}
                         initial={{ opacity: 0 }}
                         custom={i + p1.length + p2.length + p3.length}
@@ -80,7 +83,7 @@ const BenefitsScreen = () => {
                         {char}
                     </MotionSpan>
                 ))}
-            </chakra.span>
+            </MotionSpan>
         )
     }
 
@@ -88,12 +91,36 @@ const BenefitsScreen = () => {
         if (inView) {
             headingControl.start("visible").then(() =>
                 textControl.start("visible").then(() =>
-                    contentControl.start(i => ({
-                        opacity: 1,
-                        transition: { delay: i * 0.005, duration: 0.25 },
-                    }))
+                    contentControl
+                        .start(i => ({
+                            opacity: 1,
+                            transition: { delay: i * 0.005, duration: 0.25 },
+                        }))
+                        .then(() =>
+                            linkControl.start({
+                                color: "#FF710B",
+                                borderBottomWidth: "1px",
+                                transition: { duration: 0.25 },
+                            })
+                        )
                 )
             )
+        } else {
+            headingControl.start("hidden").then(() => {
+                textControl.start("hidden").then(() => {
+                    contentControl
+                        .start({
+                            opacity: 0,
+                            transition: { duration: 0.25 },
+                        })
+                        .then(() => {
+                            linkControl.start({
+                                color: "inherit",
+                                borderBottomWidth: "0px",
+                            })
+                        })
+                })
+            })
         }
     }, [headingControl, textControl, contentControl, inView])
 
@@ -117,13 +144,7 @@ const BenefitsScreen = () => {
                             duration: 0.5,
                         }}
                     >
-                        <Typo.Heading
-                            isGradient
-                            textAlign="left"
-                            fontWeight={900}
-                            fontSize={["3.5rem", "4rem", "4.5rem", "5rem"]}
-                            mb={0}
-                        >
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={fontSizes} mb={0}>
                             Benefits
                         </Typo.Heading>
                     </MotionBox>
