@@ -48,7 +48,7 @@ const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
 
     return (
         <BackgroundContainer px={0}>
-            <HeaderBackground title="WORLD OF SIPHER" description="DONEC VIVERRA, METUS EU CONDIMENTUM" />
+            <HeaderBackground title="WORLD OF SIPHER" description="Learn why we're the next awesome blockchain game you'll ever play!" />
             <Flex flex={1} direction="column" w="full" align="center" py={24} px={4}>
                 <MainContent
                     srcImg={renderImage()}

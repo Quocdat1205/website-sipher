@@ -6,10 +6,10 @@ interface Props {
     title?: string
     description?: string
     srcImg?: string
-    isChangeBG?: boolean
+    isCoatedBg?: boolean
 }
 
-const HeaderBackground = ({ isChangeBG = false, srcImg = "/images/pc/bg-title.png", title, description }: Props) => {
+const HeaderBackground = ({ isCoatedBg = false, srcImg = "/images/pc/bg-title.png", title, description }: Props) => {
     return (
         <Flex
             align="center"
@@ -23,13 +23,13 @@ const HeaderBackground = ({ isChangeBG = false, srcImg = "/images/pc/bg-title.pn
             direction="column"
             pos="relative"
         >
-            {isChangeBG && (
+            {isCoatedBg && (
                 <Box pos="absolute" zIndex="1" content="''" top="0" left="0" w="100%" h="100%" bg="blackAlpha.700" />
             )}
             <Typo.Heading zIndex={1} mb={2}>
                 {title}
             </Typo.Heading>
-            <Typo.BoldText zIndex={1} align="center">
+            <Typo.BoldText textTransform="uppercase" zIndex={1} align="center">
                 {description}
             </Typo.BoldText>
         </Flex>
