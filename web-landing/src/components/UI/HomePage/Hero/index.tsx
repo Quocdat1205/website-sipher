@@ -15,7 +15,11 @@ export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"];
 
 const Hero = ({}: HeroProps) => {
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-  unityContext.on("loaded", () => setInitialLoading(false));
+  if (browserName !== "Safari") {
+    unityContext.on("loaded", () => setInitialLoading(false));
+  } else {
+    setInitialLoading(false);    
+  }
   // const [scrollY, setScrollY] = useState(0)
   const [delay, setDelay] = useState(false);
   useEffect(() => {
@@ -52,7 +56,6 @@ const Hero = ({}: HeroProps) => {
       zIndex={0}
       overflowX="hidden"
       onMouseMove={handleMouseMove}
-      // onWheel={handleMouseWheel}
       ref={ctnRef}
       id="hero"
     >
@@ -63,19 +66,16 @@ const Hero = ({}: HeroProps) => {
         <BenefitsScreen />
         <PlayScreen />
       </Flex>
-      {/* {browserName !== "Chrome" && (
+      {browserName !== "Safari" && (
         <Box pos="fixed" top={0} left={0} h="full" w="full">
           <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
         </Box>
       )}
-      {browserName === "Chrome" && (
-        <Box pos="fixed" top={0} left={0} h="full" w="full">
-            <Img src="/images/mainlogo.svg" style={{ width: "100%", height: "100%" }} alt="sipher-logo" />
+      {browserName === "Safari" && (
+        <Box pos="fixed" top="5%" left="10%" h="80vh" w="80vw">
+          <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" />
         </Box>
-      )} */}
-      <Box pos="fixed" top={0} left={0} h="full" w="full">
-        <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-      </Box>
+      )}
     </Box>
   );
 };
