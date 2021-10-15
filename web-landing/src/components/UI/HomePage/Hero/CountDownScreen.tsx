@@ -81,7 +81,7 @@ const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
                             duration: 0.5,
                         }}
                     >
-                        <CountDown deadline={1635645600000} />
+                        <CountDown deadline={1635557400000} />
                     </MotionBox>
                     <MotionBox
                         w="full"

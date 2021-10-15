@@ -24,7 +24,7 @@ export const gameplayContent = {
         "Sipher has a deep story to be told. You'll face tough challenges, meet vastly different races and characters, all with their stories to be discovered, and make new friends when you venture forth discovering new worlds.",
     ],
     classesAndSkills: [
-        "Progression in Sipher is based on advancing your characters and their skills from level 0 to 50. Each class type has its own associated skill and so do other RPG elements like crafting, and researching blueprints that will give new skills to players.",
+        "Progression in Sipher is based on advancing your characters and their skills. Each class type has its own associated skill and so do other RPG elements like crafting, and researching blueprints that will give new skills to players.",
     ],
     expeditionMechanic: [
         "The Sipherian Surge are to gather the required resources and established key nodes for the construction of World Block Genesis.",
