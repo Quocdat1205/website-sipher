@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Grid } from "@chakra-ui/react"
+import { Box, Flex, Img } from "@chakra-ui/react"
 import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
 import FirstScreen from "./FirstScreen"
