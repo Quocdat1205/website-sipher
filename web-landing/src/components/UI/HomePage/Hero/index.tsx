@@ -19,7 +19,7 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
     const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent)
-    const isIOS = true //isIos || isIpad || isIphone || isSafari
+    const isIOS = isIos || isIpad || isIphone || isSafari
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
     unityContext.on("loaded", () => setInitialLoading(false))
     const ctnRef = useRef<HTMLDivElement>(null)
