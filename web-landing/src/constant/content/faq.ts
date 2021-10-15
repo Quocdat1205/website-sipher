@@ -18,7 +18,7 @@ export const overviewContent = [
     ],
   },
   {
-    title: "How can Players acquire new Sipher characters after 10,000 Origin INUs are sold out?",
+    title: "How can Players acquire new Sipher characters after Origin collections are sold out?",
     content: [
       "At the beginning, new players can choose to acquire from the secondary market from other owners",
       "As the game progress, our laboratory will be upgraded to clone characters for new players to acquire, however they will never be the exact copies as the Origins",
