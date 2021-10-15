@@ -70,7 +70,7 @@ const Hero = ({}: HeroProps) => {
                 </Box>
             ) : (
                 <Grid pos="fixed" top={0} left={0} h="full" w="full" placeItems="center">
-                    <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" />
+                    <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" w="full" maxW="35rem" />
                 </Grid>
             )}
         </Box>
