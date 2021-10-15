@@ -1,4 +1,4 @@
-import { browserName } from "react-device-detect"
+import { browserName, isIOS } from "react-device-detect"
 import { Box, Flex, Img, Grid } from "@chakra-ui/react"
 import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
@@ -15,7 +15,6 @@ export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-    unityContext.on("loaded", () => setInitialLoading(false))
 
     const ctnRef = useRef<HTMLDivElement>(null)
     const handleMouseWheel = () => {
@@ -28,7 +27,7 @@ const Hero = ({}: HeroProps) => {
     }
 
     useEffect(() => {
-        if (browserName === "Safari") setInitialLoading(false)
+        if (browserName === "Safari" || isIOS) setInitialLoading(false)
     }, [setInitialLoading])
 
     useEffect(() => {
@@ -45,14 +44,14 @@ const Hero = ({}: HeroProps) => {
                 <PlayForJoyScreen />
                 <PlayScreen />
             </Flex>
-            {browserName !== "Safari" ? (
-                <Box pos="fixed" top={0} left={0} h="full" w="full">
-                    <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-                </Box>
-            ) : (
+            {browserName === "Safari" || isIOS ? (
                 <Grid pos="fixed" top={0} left={0} h="full" w="full" placeItems="center">
                     <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" w="full" maxW="35rem" />
                 </Grid>
+            ) : (
+                <Box pos="fixed" top={0} left={0} h="full" w="full">
+                    <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
+                </Box>
             )}
         </Box>
     )
