@@ -145,7 +145,7 @@ const BenefitsScreen = () => {
                         }}
                     >
                         <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={fontSizes} mb={0}>
-                            Benefits
+                            Play For Fun
                         </Typo.Heading>
                     </MotionBox>
                     <MotionBox

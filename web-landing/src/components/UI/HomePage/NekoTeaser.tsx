@@ -31,13 +31,19 @@ const NekoTeaser = () => {
     }, [isPlaying])
 
     return (
-        <Box pos="relative" w="48rem" maxW="100%" onClick={() => setIsPlaying(!isPlaying)}>
+        <Box
+            pos="relative"
+            w={["48rem", "48rem", "56rem", "64rem", "72rem"]}
+            maxW="100%"
+            onClick={() => setIsPlaying(!isPlaying)}
+        >
             <AnimatePresence>
                 {!isPlaying && (
                     <MotionGrid
                         pos="absolute"
                         top={0}
                         left={0}
+                        p={4}
                         w="full"
                         h="full"
                         placeItems="center"

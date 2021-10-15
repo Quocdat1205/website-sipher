@@ -24,7 +24,7 @@ const AboutUsLayout = ({ children }: AboutUsLayoutProps) => {
         <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
             <NavBar isChildMenu />
             <Flex flex={1} overflow="overlay" direction="column" id="body" ref={ctnRef}>
-                <HeaderBackground title="ABOUT US" description="get to know us and SIPHER more!" />
+                <HeaderBackground title="ABOUT US" description="Get to know us and SIPHER more!" />
                 {children}
                 <Footer />
             </Flex>

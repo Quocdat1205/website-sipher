@@ -6,8 +6,8 @@ import AmountScreen from "./AmountScreen"
 import Unity from "react-unity-webgl"
 import { MouseEvent, useEffect, useState, useRef } from "react"
 import CountDownScreen from "./CountDownScreen"
-import BenefitsScreen from "./BenefitsScreen"
 import PlayScreen from "./PlayScreen"
+import PlayForJoyScreen from "./PlayForJoyScreen"
 interface HeroProps {}
 
 export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
@@ -64,7 +64,7 @@ const Hero = ({}: HeroProps) => {
                 <FirstScreen />
                 <CountDownScreen />
                 <AmountScreen />
-                <BenefitsScreen />
+                <PlayForJoyScreen />
                 <PlayScreen />
             </Flex>
             <Box pos="fixed" top={0} left={0} h="full" w="full">

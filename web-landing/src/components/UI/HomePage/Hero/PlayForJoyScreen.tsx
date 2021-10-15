@@ -1,17 +1,16 @@
+// * DESCRIPTION:
+
 import { Box, Flex } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
-import { useAnimation, motion } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
-import CountDown from "./CountDown"
+import { fontSizes } from "."
 import variants from "./variants"
 
-interface CountDownScreenProps {}
-
-const p1 = "Until Whitelisting will be open for minting. After this the Public Sale will be available for minting."
-const p2 = "All traits and attributes will be revealed sometimes after the Public Sale."
-
-const CountDownScreen = ({}: CountDownScreenProps) => {
+const p1 =
+    "Games are meant to invigorate, excite and bring people together. This is true for the most classic and for the most futurist of games. Sipheria will be an immersive world with great gameplay mechanics for all calibre of players."
+const PlayForJoyScreen = () => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -20,16 +19,9 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
 
     const contentControl = useAnimation()
 
-    let generateP1 = () => {
+    let generateContent = () => {
         return p1.split("").map((char, i) => (
             <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
-                {char}
-            </motion.span>
-        ))
-    }
-    let generateP2 = () => {
-        return p2.split("").map((char, i) => (
-            <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={p1.length + i}>
                 {char}
             </motion.span>
         ))
@@ -46,14 +38,14 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
                 )
             )
         } else {
-            headingControl.start("hidden").then(() =>
-                textControl.start("hidden").then(() =>
-                    contentControl.start(i => ({
+            headingControl.start("hidden").then(() => {
+                textControl.start("hidden").then(() => {
+                    contentControl.start({
                         opacity: 0,
                         transition: { duration: 0.25 },
-                    }))
-                )
-            )
+                    })
+                })
+            })
         }
     }, [headingControl, textControl, contentControl, inView])
 
@@ -62,22 +54,23 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    left={["auto", "15%"]}
+                    right={["auto", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
-                    // w="45%"
                     p={4}
                     ref={ref}
                 >
                     <MotionBox
-                        variants={variants.slideFromLeft}
+                        variants={variants.slideFromRight}
                         initial="hidden"
                         animate={headingControl}
                         transition={{
                             duration: 0.5,
                         }}
                     >
-                        <CountDown deadline={1635645600000} />
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={fontSizes} mb={0}>
+                            {"Play for joy"}
+                        </Typo.Heading>
                     </MotionBox>
                     <MotionBox
                         w="full"
@@ -85,10 +78,12 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
                         variants={variants.zoom}
                         initial="hidden"
                         animate={textControl}
-                        transition={{ duration: 0.1 }}
+                        transition={{ duration: 0.5 }}
                     >
-                        <Typo.Text mb={2}>{generateP1()}</Typo.Text>
-                        <Typo.Text>{generateP2()}</Typo.Text>
+                        <Typo.BoldText textTransform="uppercase" mb={2}>
+                            {`Games are meant to be fun & social`}
+                        </Typo.BoldText>
+                        <Typo.Text>{generateContent()}</Typo.Text>
                     </MotionBox>
                 </Box>
             </Box>
@@ -96,4 +91,4 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
     )
 }
 
-export default CountDownScreen
+export default PlayForJoyScreen
