@@ -9,12 +9,14 @@ import OwnerBenefits from "./OwnerBenefits"
 import DigitalCharacters from "./DigitalCharacters"
 import WhatIsSipher from "./WhatIsSipher"
 
-interface HomeBodyProps {}
+interface HomeBodyProps {
+    uaString: string
+}
 
-const HomeBody = ({}: HomeBodyProps) => {
+const HomeBody = ({ uaString }: HomeBodyProps) => {
     return (
         <BackgroundContainer p={0} overflow="overlay">
-            <Hero />
+            <Hero uaString={uaString} />
             <Flex
                 direction="column"
                 align="center"

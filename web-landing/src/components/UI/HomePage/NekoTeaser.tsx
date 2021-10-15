@@ -2,6 +2,7 @@ import { Box, Flex, Grid, GridProps } from "@chakra-ui/layout"
 import { MotionFlex, Typo } from "@components/shared"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
+import { getSelectorsByUserAgent } from "react-device-detect"
 import { IoMdPlay } from "react-icons/io"
 
 const NekoTeaser = () => {
@@ -27,7 +28,7 @@ const NekoTeaser = () => {
             }
         }
     }, [isPlaying])
-
+    const {} = getSelectorsByUserAgent("asd")
     return (
         <Box
             pos="relative"
@@ -77,7 +78,9 @@ const NekoTeaser = () => {
                 controls={true}
                 ref={videoRef}
                 onPause={() => setIsPlaying(false)}
-            />
+                data-reactid=".0.1.0.0"
+                datatype="video/mp4"
+            ></video>
         </Box>
     )
 }

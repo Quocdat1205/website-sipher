@@ -7,9 +7,11 @@ import { useRouter } from "next/router"
 import { useEffect, useRef } from "react"
 import HomeBody from "./HomeBody"
 
-interface HomeUIProps {}
+interface HomeUIProps {
+    uaString: string
+}
 
-const HomeUI = ({}: HomeUIProps) => {
+const HomeUI = ({ uaString }: HomeUIProps) => {
     const initialLoading = useStoreState(s => s.initialLoading)
     const setInitialLoading = useStoreActions(a => a.setInitialLoading)
     useEffect(() => {
@@ -31,7 +33,7 @@ const HomeUI = ({}: HomeUIProps) => {
     return (
         <Flex flex={1} overflow="overlay" direction="column" id="body" bg="black" ref={ctnRef}>
             <Loader isVisible={initialLoading} />
-            <HomeBody />
+            <HomeBody uaString={uaString} />
         </Flex>
     )
 }

@@ -26,7 +26,6 @@ const BehindTheScenes = ({}: BehindTheScenesProps) => {
                         <Flex
                             key={image.path}
                             justify="center"
-                            h={["6rem", "10rem", "15rem", "20rem"]}
                             w="full"
                             pos="relative"
                             border="1px"
@@ -36,7 +35,6 @@ const BehindTheScenes = ({}: BehindTheScenesProps) => {
                         >
                             <MotionFlex
                                 justify="center"
-                                h="full"
                                 w="full"
                                 whileHover={{ scale: 1.4 }}
                                 transition={{

@@ -1,4 +1,3 @@
-import { browserName, isIOS } from "react-device-detect"
 import { Box, Flex, Img, Grid } from "@chakra-ui/react"
 import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
@@ -9,11 +8,18 @@ import { MouseEvent, useEffect, useRef } from "react"
 import CountDownScreen from "./CountDownScreen"
 import PlayScreen from "./PlayScreen"
 import PlayForJoyScreen from "./PlayForJoyScreen"
-interface HeroProps {}
+
+import { useUserAgent } from "next-useragent"
 
 export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
-const Hero = ({}: HeroProps) => {
+interface HeroProps {
+    uaString: string
+}
+
+const Hero = ({ uaString }) => {
+    const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent)
+    const isIOS = isIos || isIpad || isIphone || isSafari
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
     unityContext.on("loaded", () => setInitialLoading(false))
     const ctnRef = useRef<HTMLDivElement>(null)
@@ -27,7 +33,7 @@ const Hero = ({}: HeroProps) => {
     }
 
     useEffect(() => {
-        if (browserName === "Safari" || isIOS) setInitialLoading(false)
+        if (isIOS) setInitialLoading(false)
     }, [setInitialLoading])
 
     useEffect(() => {
@@ -44,7 +50,7 @@ const Hero = ({}: HeroProps) => {
                 <PlayForJoyScreen />
                 <PlayScreen />
             </Flex>
-            {browserName === "Safari" || isIOS ? (
+            {isIOS ? (
                 <Flex align="center" justify="center" pos="fixed" top={0} left={0} h="full" w="full">
                     <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" w="full" maxW="36rem" />
                 </Flex>
