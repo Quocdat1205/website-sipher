@@ -1,11 +1,11 @@
-import { browserName } from "react-device-detect"
+import { browserName, isIOS } from "react-device-detect"
 import { Box, Flex, Img, Grid } from "@chakra-ui/react"
 import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
 import FirstScreen from "./FirstScreen"
 import AmountScreen from "./AmountScreen"
 import Unity from "react-unity-webgl"
-import { MouseEvent, useEffect, useState, useRef } from "react"
+import { MouseEvent, useEffect, useRef } from "react"
 import CountDownScreen from "./CountDownScreen"
 import PlayScreen from "./PlayScreen"
 import PlayForJoyScreen from "./PlayForJoyScreen"
@@ -15,23 +15,7 @@ export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-    if (browserName === "Safari") {
-        unityContext.on("loaded", () => setInitialLoading(false))
-    } else {
-        setInitialLoading(false)
-    }
-    // const [scrollY, setScrollY] = useState(0)
-    const [delay, setDelay] = useState(false)
-    useEffect(() => {
-        let timeout: NodeJS.Timeout
-        if (delay) {
-            timeout = setTimeout(() => {
-                setDelay(false)
-            }, 50)
-        }
-        return () => clearTimeout(timeout)
-    }, [delay, setDelay])
-
+    unityContext.on("loaded", () => setInitialLoading(false))
     const ctnRef = useRef<HTMLDivElement>(null)
     const handleMouseWheel = () => {
         if (ctnRef.current)
@@ -39,16 +23,12 @@ const Hero = ({}: HeroProps) => {
     }
 
     const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-        if (delay) return
-        else {
-            unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth)
-            // unityContext.send("Main Camera", "effectNekoY", 1 - e.clientY / window.innerHeight)
-        }
+        unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth)
     }
 
     useEffect(() => {
-        if (browserName === "Safari") setInitialLoading(false)
-    }, [browserName])
+        if (browserName === "Safari" || isIOS) setInitialLoading(false)
+    }, [setInitialLoading])
 
     useEffect(() => {
         window.addEventListener("scroll", handleMouseWheel)
@@ -64,14 +44,14 @@ const Hero = ({}: HeroProps) => {
                 <PlayForJoyScreen />
                 <PlayScreen />
             </Flex>
-            {browserName === "Safari" ? (
+            {browserName === "Safari" || isIOS ? (
+                <Flex align="center" justify="center" pos="fixed" top={0} left={0} h="full" w="full">
+                    <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" w="full" maxW="36rem" />
+                </Flex>
+            ) : (
                 <Box pos="fixed" top={0} left={0} h="full" w="full">
                     <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
                 </Box>
-            ) : (
-                <Grid pos="fixed" top={0} left={0} h="full" w="full" placeItems="center">
-                    <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" w="full" maxW="35rem" />
-                </Grid>
             )}
         </Box>
     )

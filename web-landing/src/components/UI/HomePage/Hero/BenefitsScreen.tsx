@@ -137,7 +137,7 @@ const BenefitsScreen = () => {
                     ref={ref}
                 >
                     <MotionBox
-                        variants={variants.slideFromRight}
+                        variants={variants.zoom}
                         initial="hidden"
                         animate={headingControl}
                         transition={{

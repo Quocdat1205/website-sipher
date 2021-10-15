@@ -8,16 +8,6 @@ import { useInView } from "react-intersection-observer"
 import { fontSizes } from "."
 import variants from "./variants"
 
-const letterVariants = {
-    hidden: { y: 100 },
-    visible: {
-        y: 0,
-        transition: {
-            duration: 0.5,
-            type: "tween",
-        },
-    },
-}
 interface LetterProps {
     char: string
     control: AnimationControls
@@ -47,6 +37,13 @@ const Letter = ({ char, control, custom }: LetterProps) => {
 const content =
     "10,000 Nekos will be available in this collection, split between a public sale, and a private sale. The public sale will occur on - Insert Date and Time- and will follow a Dutch Auction format. The private sale will occur on -Insert date and time- at a price of 0.1 ETH (plus gas)."
 
+const p1 = "10,000 Nekos will be available in this collection, split between a public sale, and a private sale."
+const p2 = "Public Sale"
+const p3 =
+    "The public sale will occur on Oct 30, 2021 at 1:30 AM UTC and will follow a Dutch Auction format. The auction will start at a price of 0.9ETH and will decrease by 0.05 ETH every 10 minutes, with the lowest purchase price being 0.1 ETH. Regardless of purchase price, each participant can purchase up to 5 Nekos per transaction, with a maximum of 5 per wallet."
+const p4 = "Private Sale"
+const p5 =
+    "The private sale will occur on Oct 30, 2021 right after the public sale ended, for a price of 0.1 ETH per Neko. Whitelisted members have up to 24 hours to mint. More information about the private sale is in our Discord channel."
 const AmountScreen = () => {
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -55,11 +52,60 @@ const AmountScreen = () => {
     const contentControl = useAnimation()
     const letterControls = useAnimation()
     let generateContent = () => {
-        return content.split("").map((char, i) => (
-            <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
-                {char}
-            </motion.span>
-        ))
+        return (
+            <>
+                <Typo.Text>
+                    {p1.split("").map((char, i) => (
+                        <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
+                            {char}
+                        </motion.span>
+                    ))}
+                </Typo.Text>
+                <Typo.Text mt={4} fontWeight="bold">
+                    {p2.split("").map((char, i) => (
+                        <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i + p1.length}>
+                            {char}
+                        </motion.span>
+                    ))}
+                </Typo.Text>
+                <Typo.Text>
+                    {p3.split("").map((char, i) => (
+                        <motion.span
+                            key={i}
+                            animate={contentControl}
+                            initial={{ opacity: 0 }}
+                            custom={i + p1.length + p2.length}
+                        >
+                            {char}
+                        </motion.span>
+                    ))}
+                </Typo.Text>
+                <Typo.Text mt={4} fontWeight="bold">
+                    {p4.split("").map((char, i) => (
+                        <motion.span
+                            key={i}
+                            animate={contentControl}
+                            initial={{ opacity: 0 }}
+                            custom={i + p1.length + p2.length + p3.length}
+                        >
+                            {char}
+                        </motion.span>
+                    ))}
+                </Typo.Text>
+                <Typo.Text>
+                    {p5.split("").map((char, i) => (
+                        <motion.span
+                            key={i}
+                            animate={contentControl}
+                            initial={{ opacity: 0 }}
+                            custom={i + p1.length + p2.length + p3.length + p4.length}
+                        >
+                            {char}
+                        </motion.span>
+                    ))}
+                </Typo.Text>
+            </>
+        )
     }
 
     useEffect(() => {
@@ -99,18 +145,16 @@ const AmountScreen = () => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={["auto", "15%"]}
+                    right={["auto", "5%", "5%", "10%", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     p={4}
                     ref={ref}
                 >
                     <HStack align="baseline" spacing={0} overflow="hidden">
-                        <Letter char="1" control={letterControls} custom={1} />
-                        <Letter char="0" control={letterControls} custom={2} />
-                        <Letter char="0" control={letterControls} custom={3} />
-                        <Letter char="0" control={letterControls} custom={4} />
-                        <Letter char="0" control={letterControls} custom={5} />
+                        {"10,000".split("").map((char, idx) => (
+                            <Letter key={idx} char={char} control={letterControls} custom={idx + 1} />
+                        ))}
                     </HStack>
                     <MotionBox
                         w="full"
@@ -123,7 +167,7 @@ const AmountScreen = () => {
                         <Typo.BoldText textTransform="uppercase" mb={2}>
                             {`Beautifully handcrafted Nekos`}
                         </Typo.BoldText>
-                        <Typo.Text>{generateContent()}</Typo.Text>
+                        {generateContent()}
                     </MotionBox>
                 </Box>
             </Box>

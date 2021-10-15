@@ -8,8 +8,9 @@ import variants from "./variants"
 
 interface CountDownScreenProps {}
 
-const p1 = "Until Whitelisting will be open for minting. After this the Public Sale will be available for minting."
-const p2 = "All traits and attributes will be revealed sometimes after the Public Sale."
+const p1 = "Time left until the public sale begins."
+const p2 =
+    "The private sale for whitelisted members will start right after the public sale ends, and will last for 24 hours. Afterwards, applicable members that qualify for free NEKOs based on our programs & initiatives will have 24 hours to mint. All NEKOs will be revealed 48 hours after this last group of free mints."
 
 const CountDownScreen = ({}: CountDownScreenProps) => {
     const headingControl = useAnimation()
@@ -62,7 +63,7 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    left={["auto", "15%"]}
+                    left={["auto", "5%", "5%", "10%", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     // w="45%"
@@ -70,7 +71,7 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
                     ref={ref}
                 >
                     <MotionBox
-                        variants={variants.slideFromLeft}
+                        variants={variants.zoom}
                         initial="hidden"
                         animate={headingControl}
                         transition={{
