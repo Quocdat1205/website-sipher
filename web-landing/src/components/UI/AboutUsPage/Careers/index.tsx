@@ -23,11 +23,11 @@ const Careers = ({}: CareesProps) => {
                     >
                         <Typo.Text>Team Organisation</Typo.Text>
                         <Flex flexWrap="wrap" alignItems="center" as="span">
-                            <Typo.Text>- Founding team is based in Ho Chi Minh, Vietnam</Typo.Text>
+                            <Typo.Text>{`- Founding team is based in Ho Chi Minh, Vietnam`}</Typo.Text>
                             <FlagImage srcImg="/images/flags/vn.png" />
                         </Flex>
                         <Flex flexWrap="wrap" justifyContent="center" alignItems="center" as="span">
-                            <Typo.Text>- Team spread across Vietnam</Typo.Text>
+                            <Typo.Text>{`- Team spread across Vietnam`}</Typo.Text>
                             <FlagImage srcImg="/images/flags/vn.png" />
                             <Typo.Text>, US</Typo.Text>
                             <FlagImage srcImg="/images/flags/us.png" />
@@ -43,7 +43,7 @@ const Careers = ({}: CareesProps) => {
                             <FlagImage srcImg="/images/flags/indo.png" />
                         </Flex>
                         <Flex flexWrap="wrap" alignItems="center" as="span">
-                            <Typo.Text>- Art team is in VN 🇻🇳 </Typo.Text>
+                            <Typo.Text>{`- Art team is in VN`}</Typo.Text>
                             <FlagImage srcImg="/images/flags/vn.png" />
                         </Flex>
                     </Flex>
@@ -58,11 +58,11 @@ const Careers = ({}: CareesProps) => {
                         alignItems="center"
                     >
                         <Typo.Text>Team Organisation</Typo.Text>
-                        <Typo.Text>- Founding team is based in Ho Chi Minh, Vietnam</Typo.Text>
+                        <Typo.Text>{`- Founding team is based in Ho Chi Minh, Vietnam`}</Typo.Text>
                         <Typo.Text>
-                            - Team spread across VietNam, US, Europe, Singpore, Phillipines, Puerto Rico, Indonesia
+                            {`- Team spread across VietNam, US, Europe, Singpore, Phillipines, Puerto Rico, Indonesia`}
                         </Typo.Text>
-                        <Typo.Text>- Art team is in VN</Typo.Text>
+                        <Typo.Text>{`- Art team is in VN`}</Typo.Text>
                     </Flex>
                     <Flex w="full" justify="center" mt={8}>
                         <LinkButton

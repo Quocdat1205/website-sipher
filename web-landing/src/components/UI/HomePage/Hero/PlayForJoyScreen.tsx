@@ -10,7 +10,12 @@ import variants from "./variants"
 
 const p1 =
     "Games are meant to invigorate, excite and bring people together. This is true for the most classic and for the most futurist of games. Sipheria will be an immersive world with great gameplay mechanics for all calibre of players."
-const PlayForJoyScreen = () => {
+
+interface PlayForJoyProps {
+    isIOS?: boolean
+}
+
+const PlayForJoyScreen = ({ isIOS }: PlayForJoyProps) => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -54,7 +59,8 @@ const PlayForJoyScreen = () => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={["auto", "5%", "5%", "10%", "15%"]}
+                    right={isIOS ? "auto" : ["auto", "5%", "5%", "10%", "15%"]}
+                    left={isIOS ? ["auto", "5%", "5%", "10%", "15%"] : "auto"}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="30%"
                     p={4}

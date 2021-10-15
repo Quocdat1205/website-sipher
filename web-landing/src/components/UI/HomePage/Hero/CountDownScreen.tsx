@@ -6,13 +6,15 @@ import { useInView } from "react-intersection-observer"
 import CountDown from "./CountDown"
 import variants from "./variants"
 
-interface CountDownScreenProps {}
+interface CountDownScreenProps {
+    isIOS?: boolean
+}
 
 const p1 = "Time left until the public sale begins."
 const p2 =
     "The private sale for whitelisted members will start right after the public sale ends, and will last for 24 hours. Afterwards, applicable members that qualify for free NEKOs based on our programs & initiatives will have 24 hours to mint. All NEKOs will be revealed 48 hours after this last group of free mints."
 
-const CountDownScreen = ({}: CountDownScreenProps) => {
+const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -63,7 +65,8 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={["auto", "5%", "5%", "10%", "15%"]}
+                    right={isIOS ? "auto" : ["auto", "5%", "5%", "10%", "15%"]}
+                    left={isIOS ? ["auto", "5%", "5%", "10%", "15%"] : "auto"}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     // w="45%"
