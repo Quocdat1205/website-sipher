@@ -6,20 +6,7 @@ interface Props {
 }
 
 const FlagImage = ({ srcImg }: Props) => {
-    return (
-        <Image
-            px={[1]}
-            sx={{
-                "@media (max-width: 680px)": {
-                    display: "none",
-                },
-            }}
-            src={srcImg}
-            alt=""
-            h={["1rem", "1.4rem"]}
-            display="inline"
-        />
-    )
+    return <Image px={[1]} src={srcImg} alt="" h={["1rem", "1.4rem"]} display="inline" />
 }
 
 export default FlagImage
