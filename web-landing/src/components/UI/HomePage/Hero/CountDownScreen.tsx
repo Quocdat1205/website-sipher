@@ -71,7 +71,7 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
                     ref={ref}
                 >
                     <MotionBox
-                        variants={variants.slideFromLeft}
+                        variants={variants.zoom}
                         initial="hidden"
                         animate={headingControl}
                         transition={{
