@@ -15,7 +15,7 @@ export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-    if (browserName !== "Safari") {
+    if (browserName === "Safari") {
         unityContext.on("loaded", () => setInitialLoading(false))
     } else {
         setInitialLoading(false)
@@ -32,8 +32,7 @@ const Hero = ({}: HeroProps) => {
     }
 
     useEffect(() => {
-        if (true) setInitialLoading(false)
-        // if (browserName === "Safari") setInitialLoading(false)
+        if (browserName === "Safari") setInitialLoading(false)
     }, [setInitialLoading])
 
     useEffect(() => {
@@ -50,7 +49,7 @@ const Hero = ({}: HeroProps) => {
                 <PlayForJoyScreen />
                 <PlayScreen />
             </Flex>
-            {false ? (
+            {browserName !== "Safari" ? (
                 <Box pos="fixed" top={0} left={0} h="full" w="full">
                     <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
                 </Box>
