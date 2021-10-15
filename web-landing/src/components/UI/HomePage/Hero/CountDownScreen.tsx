@@ -15,7 +15,7 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
-        threshold: 0.8,
+        threshold: 0.6,
     })
 
     const contentControl = useAnimation()
