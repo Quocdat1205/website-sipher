@@ -11,7 +11,7 @@ export const MyText = ({ size = "medium", ...rest }: MyTextProps) => {
             ? ["xs", "sm", "sm", "md"]
             : size === "medium"
             ? ["sm", "md", "md", "xl"]
-            : ["md", "lg", "lg", "2xl"]
+            : ["md", "lg", "lg", "xl", "2xl"]
     return <Text fontSize={fontSize} {...rest} />
 }
 export default MyText

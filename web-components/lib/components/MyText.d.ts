@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TextProps } from "@chakra-ui/layout";
 export interface MyTextProps extends TextProps {
     size?: "small" | "medium" | "large";

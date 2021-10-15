@@ -28,7 +28,7 @@ export var MyText = function (_a) {
         ? ["xs", "sm", "sm", "md"]
         : size === "medium"
             ? ["sm", "md", "md", "xl"]
-            : ["md", "lg", "lg", "2xl"];
+            : ["md", "lg", "lg", "xl", "2xl"];
     return React.createElement(Text, __assign({ fontSize: fontSize }, rest));
 };
 export default MyText;
