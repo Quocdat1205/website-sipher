@@ -1,7 +1,6 @@
 import { Center, Flex, VStack } from "@chakra-ui/react"
 import { BackgroundContainer, LinkButton } from "@components/shared"
 import JoinTheCommunity from "./JoinTheCommunity"
-import Backers from "./Backers"
 import NekoTeaser from "./NekoTeaser"
 import Hero from "./Hero"
 import BehindTheScenes from "./BehindTheScenes"
@@ -33,7 +32,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <DigitalCharacters />
                     <WhatIsSipher />
                     <OwnerBenefits />
-                    <Backers />
+                    {/* <Backers /> */}
                     <BehindTheScenes />
                 </VStack>
                 <Center
