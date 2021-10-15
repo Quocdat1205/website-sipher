@@ -15,11 +15,7 @@ export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-    if (browserName === "Safari") {
-        unityContext.on("loaded", () => setInitialLoading(false))
-    } else {
-        setInitialLoading(false)
-    }
+    unityContext.on("loaded", () => setInitialLoading(false))
 
     const ctnRef = useRef<HTMLDivElement>(null)
     const handleMouseWheel = () => {
