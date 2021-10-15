@@ -1,10 +1,8 @@
 import { Box, Flex, Grid, GridProps } from "@chakra-ui/layout"
-import { Typo } from "@components/shared"
+import { MotionFlex, Typo } from "@components/shared"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { IoMdPlay } from "react-icons/io"
-
-const MotionGrid = motion<Omit<GridProps, "transition">>(Grid)
 
 const NekoTeaser = () => {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -39,14 +37,15 @@ const NekoTeaser = () => {
         >
             <AnimatePresence>
                 {!isPlaying && (
-                    <MotionGrid
+                    <MotionFlex
                         pos="absolute"
                         top={0}
                         left={0}
                         p={4}
                         w="full"
                         h="full"
-                        placeItems="center"
+                        justify="center"
+                        align="center"
                         bg="blackAlpha.600"
                         exit={{ opacity: 0 }}
                         transition={{ type: "tween", duration: 0.25 }}
@@ -69,10 +68,16 @@ const NekoTeaser = () => {
                                 {"A SNEAK PEEK OF WHAT'S COMING SOON"}
                             </Typo.BoldText>
                         </Flex>
-                    </MotionGrid>
+                    </MotionFlex>
                 )}
             </AnimatePresence>
-            <video src={"/video/neko_teaser.mp4"} controls={false} ref={videoRef} onPause={() => setIsPlaying(false)} />
+            <video
+                src={"/video/neko_teaser.mp4"}
+                playsInline
+                controls={false}
+                ref={videoRef}
+                onPause={() => setIsPlaying(false)}
+            />
         </Box>
     )
 }

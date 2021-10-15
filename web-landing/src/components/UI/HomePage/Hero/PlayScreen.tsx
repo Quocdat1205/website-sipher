@@ -54,7 +54,7 @@ const PlayScreen = () => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    right={["auto", "15%"]}
+                    right={["auto", "5%", "5%", "10%", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     p={4}

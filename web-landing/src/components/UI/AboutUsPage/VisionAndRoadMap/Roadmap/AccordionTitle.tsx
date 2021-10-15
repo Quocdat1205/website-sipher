@@ -13,10 +13,10 @@ interface Props {
 const AccordionTitle = ({ name, date, completed, isExpanded }: Props) => {
     return (
         <AccordionButton py={4} _focus={{ boxShadow: "none" }}>
-            <Flex align="center" w="full">
-                <Flex direction="column" pl={12}>
+            <Flex align="center" w="full" justify="space-between">
+                <Flex direction="column" pl={[4, 8, 12]} overflow="hidden">
                     <Flex align="center">
-                        <Typo.BoldText isGradient={isExpanded} textTransform="uppercase">
+                        <Typo.BoldText size="medium" isGradient={isExpanded} textTransform="uppercase" isTruncated>
                             {name}
                         </Typo.BoldText>
                         {completed && (
@@ -24,15 +24,24 @@ const AccordionTitle = ({ name, date, completed, isExpanded }: Props) => {
                                 ml={4}
                                 align="center"
                                 py={1}
-                                px={2}
-                                pr={3}
+                                px={[1, 2]}
+                                pr={[1, 3]}
                                 rounded="full"
                                 color="main.lightGreen"
                                 border="1px"
                                 borderColor="main.lightGreen"
                             >
                                 <BsCheck />
-                                <Typo.Text size="small" ml={1} color="main.lightGreen">
+                                <Typo.Text
+                                    size="small"
+                                    ml={1}
+                                    color="main.lightGreen"
+                                    sx={{
+                                        "@media (max-width: 480px)": {
+                                            display: "none",
+                                        },
+                                    }}
+                                >
                                     Completed
                                 </Typo.Text>
                             </Flex>
@@ -42,7 +51,7 @@ const AccordionTitle = ({ name, date, completed, isExpanded }: Props) => {
                         {date}
                     </Typo.Text>
                 </Flex>
-                <Box ml="auto" transform={`rotate(${isExpanded ? "90deg" : "0deg"})`} transition="transform 0.3s ease">
+                <Box ml={2} transform={`rotate(${isExpanded ? "90deg" : "0deg"})`} transition="transform 0.3s ease">
                     <BsChevronRight fontSize="1.2rem" />
                 </Box>
             </Flex>
