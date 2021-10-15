@@ -5,7 +5,7 @@ export const characters = [
     },
     {
         name: "Synthetic",
-        path: "/images/pc/characters/synthetic.png",
+        path: "/images/pc/characters/mech.png",
     },
     {
         name: "Phasewalker",
