@@ -34,7 +34,7 @@ const Hero = ({ uaString }) => {
 
     useEffect(() => {
         if (isIOS) setInitialLoading(false)
-    }, [setInitialLoading])
+    }, [setInitialLoading, isIOS])
 
     useEffect(() => {
         window.addEventListener("scroll", handleMouseWheel)
