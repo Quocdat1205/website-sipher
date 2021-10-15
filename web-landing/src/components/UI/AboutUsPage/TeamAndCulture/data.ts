@@ -97,17 +97,17 @@ export const personEmployee: PersonCardProps[] = [
   },
   {
     name: "Loc Bui",
-    job: "Game Engineering Lead",
+    job: "Game Engineer Lead",
     srcImg: "/images/avatars/19.png",
   },
   {
     name: "Doan Do",
-    job: "Senior Game Engineering",
+    job: "Senior Game Engineer",
     srcImg: "/images/avatars/20.png",
   },
   {
     name: "Duy Tran",
-    job: "Game Engineering",
+    job: "Game Engineer",
     srcImg: "/images/avatars/21.png",
   },
   {
