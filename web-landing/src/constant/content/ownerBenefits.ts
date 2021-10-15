@@ -5,7 +5,7 @@ const content = [
     },
     {
         icon: "/images/icons/genesis_2.png",
-        text: "Free spaceship parts - combine to create your in-game spaceship (NFT)",
+        text: "Exclusive limited edition spaceship parts",
     },
     {
         icon: "/images/icons/genesis_3.png",
@@ -14,16 +14,22 @@ const content = [
     {
         icon: "/images/icons/genesis_4.png",
         text: "Early access to the game",
-        linkText: "View Benefits",
     },
     {
         icon: "./images/icons/genesis_5.png",
         text: "Guildmaster program",
-        linkText: "View Guildmaster Program",
+        link: {
+            text: "View Guildmaster Program",
+            path: "https://sipherhq.notion.site/Sipher-Programs-and-Initatives-1afd93650c044a338758418f8132343c",
+        },
     },
     {
         icon: "./images/icons/genesis_6.png",
         text: "Whitelist fast-track",
+        link: {
+            text: "Check out other Benefits",
+            path: "https://sipherhq.notion.site/Benefits-of-Owning-a-Genesis-Sipher-02e788d128ef4e80a6b2d66813acf2e7",
+        },
     },
 ]
 

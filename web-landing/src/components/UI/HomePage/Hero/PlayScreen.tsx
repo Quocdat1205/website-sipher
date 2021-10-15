@@ -9,7 +9,7 @@ import { fontSizes } from "."
 import variants from "./variants"
 
 const p1 =
-    "Sipherian adventure (PVE) where you send your characters on adventures and collect rewards, crafts, upgrades and more and Sipherian Brawl (PVP) where the goal is to control characters and battle other players for rewards and prestige."
+    "Using NFTs and Blockchain technology, gamers, community builders, streamers, guilds, e-sports organizations and more, can be rewarded for contributing to the success of the Sipher gaming and entertainment universe. Own what you earn, and earn what you deserve."
 const PlayScreen = () => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
@@ -69,7 +69,7 @@ const PlayScreen = () => {
                         }}
                     >
                         <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={fontSizes} mb={0}>
-                            {"PLAY TO ENJOY & PARTICIPATE TO EARN"}
+                            {"Own & Earn"}
                         </Typo.Heading>
                     </MotionBox>
                     <MotionBox
@@ -81,7 +81,7 @@ const PlayScreen = () => {
                         transition={{ duration: 0.5 }}
                     >
                         <Typo.BoldText textTransform="uppercase" mb={2}>
-                            {`A whole new world awaits in two main game modes:`}
+                            {`Power by blockchain`}
                         </Typo.BoldText>
                         <Typo.Text>{generateContent()}</Typo.Text>
                     </MotionBox>

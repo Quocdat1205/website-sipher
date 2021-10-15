@@ -12,7 +12,7 @@ interface TextContainerProps extends BoxProps {
 export const TextContainer = ({
     headline,
     children,
-    maxW = ["48rem", "48rem", "48rem", "56rem", "72rem"],
+    maxW = ["48rem", "48rem", "56rem", "64rem", "72rem"],
     ...rest
 }: TextContainerProps) => {
     return (

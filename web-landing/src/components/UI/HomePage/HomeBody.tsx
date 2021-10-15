@@ -5,6 +5,9 @@ import Backers from "./Backers"
 import NekoTeaser from "./NekoTeaser"
 import Hero from "./Hero"
 import BehindTheScenes from "./BehindTheScenes"
+import OwnerBenefits from "./OwnerBenefits"
+import DigitalCharacters from "./DigitalCharacters"
+import WhatIsSipher from "./WhatIsSipher"
 
 interface HomeBodyProps {}
 
@@ -25,8 +28,11 @@ const HomeBody = ({}: HomeBodyProps) => {
             >
                 <VStack spacing={24} align="center" w="full">
                     <NekoTeaser />
-                    <BehindTheScenes />
+                    <DigitalCharacters />
+                    <WhatIsSipher />
+                    <OwnerBenefits />
                     <Backers />
+                    <BehindTheScenes />
                 </VStack>
                 <Center
                     bg="url(./images/pc/home/bannerhome.png)"

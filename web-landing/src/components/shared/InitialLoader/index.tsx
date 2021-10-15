@@ -25,6 +25,7 @@ const Loader = ({ isVisible }: LoaderProps) => {
                     bg="gray.900"
                     w="full"
                     zIndex="tooltip"
+                    className="test"
                 >
                     <Grid w="full" placeItems="center" h="100vh">
                         <MotionBox

@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
-import { Img, Flex, SimpleGrid, HStack, StackProps } from "@chakra-ui/react"
-import { TextContainer } from "@components/shared"
+import { Img, Flex, SimpleGrid, HStack, StackProps, Box } from "@chakra-ui/react"
+import { MotionBox, TextContainer } from "@components/shared"
 import { motion } from "framer-motion"
 
 interface BehindTheScenesProps {}
@@ -26,12 +26,34 @@ const BehindTheScenes = ({}: BehindTheScenesProps) => {
                         <Flex
                             key={image.path}
                             justify="center"
-                            h="10rem"
+                            h={["6rem", "10rem"]}
+                            w={["9rem", "15rem"]}
+                            pos="relative"
                             border="1px"
                             borderColor="whiteAlpha.100"
                             bg="black"
+                            overflow="hidden"
                         >
-                            <Img src={image.path} alt={image.alt} h="full" w="auto" />
+                            <MotionBox
+                                h="full"
+                                w="full"
+                                whileHover={{ scale: 1.4 }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: "easeInOut",
+                                }}
+                            >
+                                <Img
+                                    src={image.path}
+                                    alt={image.alt}
+                                    h="full"
+                                    w="auto"
+                                    pos="absolute"
+                                    top="50%"
+                                    left="50%"
+                                    transform="translate(-50%, -50%)"
+                                />
+                            </MotionBox>
                         </Flex>
                     ))}
                 </SimpleGrid>
