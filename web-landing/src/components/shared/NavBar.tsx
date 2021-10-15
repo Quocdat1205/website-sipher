@@ -54,6 +54,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                                 display: "none",
                             },
                         }}
+                        size="medium"
                     />
                     <Grid
                         ml={4}
