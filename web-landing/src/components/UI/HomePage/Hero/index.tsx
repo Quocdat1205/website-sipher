@@ -19,7 +19,7 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
   const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
-  const isIOS = isIos || isIpad || isIphone || isSafari;
+  const isIOS = false//isIos || isIpad || isIphone || isSafari;
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
   unityContext.on("loaded", () => setInitialLoading(false));
   const ctnRef = useRef<HTMLDivElement>(null);
@@ -31,9 +31,9 @@ const Hero = ({ uaString }) => {
     unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth);
   };
 
-//   useEffect(() => {
-//     if (isIOS) setInitialLoading(false);
-//   }, [setInitialLoading, isIOS]);
+  useEffect(() => {
+    if (isIOS) setInitialLoading(false);
+  }, [setInitialLoading, isIOS]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleMouseWheel);
@@ -49,7 +49,7 @@ const Hero = ({ uaString }) => {
         <PlayForJoyScreen isIOS={isIOS} />
         <PlayScreen />
       </Flex>
-      {/* {isIOS ? (
+      {isIOS ? (
                 <Flex align="center" justify="center" pos="fixed" top={0} left={0} h="full" w="full">
                     <Img
                         src="/images/pc/home/NEKO_3D.png"
@@ -62,10 +62,7 @@ const Hero = ({ uaString }) => {
                 <Box pos="fixed" top={0} left={0} h="full" w="full">
                     <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
                 </Box>
-            )} */}
-      <Box pos="fixed" top={0} left={0} h="full" w="full">
-        <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-      </Box>
+            )}
     </Box>
   );
 };
