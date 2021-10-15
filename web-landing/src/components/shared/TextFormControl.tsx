@@ -1,11 +1,10 @@
 // * DESCRIPTION:
 
-import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/form-control"
-import { Input, chakra, Flex } from "@chakra-ui/react"
+import { FormControl, FormControlProps } from "@chakra-ui/form-control"
+import { FormLabel, Input } from "@chakra-ui/react"
 import React from "react"
-import { FaAsterisk } from "react-icons/fa"
 
-interface FormControlProps {
+interface TextFormControlProps extends Omit<FormControlProps, "onChange"> {
     label: string
     value: string
     onChange: (value: string) => void
@@ -15,34 +14,25 @@ interface FormControlProps {
     inputRef?: React.RefObject<HTMLInputElement>
 }
 
-export const TextFormControl = ({ label, value, onChange, error, type, isRequired, inputRef }: FormControlProps) => {
+export const TextFormControl = ({ label, value, onChange, error, type, inputRef, ...rest }: TextFormControlProps) => {
     return (
-        <FormControl mb={[2, 4]} isInvalid={!!error}>
-            <FormLabel fontSize={["sm", "md", "lg"]} mb={[0.5, 1]} color="main.yellow">
-                <Flex align="center">
-                    {label}
-                    {isRequired && (
-                        <chakra.span color="main.darkRed" ml={2}>
-                            <FaAsterisk size="0.5rem" />
-                        </chakra.span>
-                    )}
-                </Flex>
-            </FormLabel>
+        <FormControl isInvalid={!!error} pos="relative" {...rest}>
             <Input
-                variant="flushed"
+                placeholder={label}
                 type={type}
                 value={value}
                 onChange={e => onChange(e.target.value)}
-                borderBottomColor="main.gray"
+                border="1px"
+                rounded="full"
+                borderColor="main.gray"
                 _focus={{
-                    borderBottomColor: "main.yellow",
+                    borderColor: "main.orange",
                 }}
-                fontSize={["sm", "md", "lg"]}
+                fontSize={["sm", "md"]}
                 color="whiteAlpha.900"
-                px={4}
+                px={6}
                 ref={inputRef}
             />
-            <FormErrorMessage>{error}</FormErrorMessage>
         </FormControl>
     )
 }

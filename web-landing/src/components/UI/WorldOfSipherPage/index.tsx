@@ -1,22 +1,17 @@
-// * DESCRIPTION:
-
 import { Flex } from "@chakra-ui/react"
-import HeaderBackground from "@components/shared/HeaderBackground"
 import { blockchainContent, factionsContent, gameplayContent, theWorldContent } from "@constant/content/why"
 import React, { useState } from "react"
 import MainContent from "./MainContent"
-import BackgroundContainer from "@components/shared/BackgroundContainer"
 import TheWorldContent from "./TheWorldContent"
 import GameplayContent from "./GameplayContent"
 import FactionsContent from "./FactionsContent"
 import BlockchainContent from "./BlockchainContent"
-import { GradientButton } from "@sipher/web-components"
-import { LinkButton } from "@components/shared"
+import { LinkButton, BackgroundContainer, HeaderBackground } from "@components/shared"
 
-interface WorldOfSipherUIProps {}
+type Page = "theworld" | "gameplay" | "factions" | "blockchain"
 
-const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
-    const [currentPage, setCurrentPage] = useState<"theworld" | "gameplay" | "factions" | "blockchain">("theworld")
+const WorldOfSipherUI = () => {
+    const [currentPage, setCurrentPage] = useState<Page>("theworld")
 
     const renderImage = () =>
         `/images/pc/${

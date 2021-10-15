@@ -1,6 +1,6 @@
-import { Img, Box, Center, Flex, HStack, StackProps } from "@chakra-ui/react"
+import { Img, Box, Flex, HStack, StackProps } from "@chakra-ui/react"
 import { LinkButton, TextContainer } from "@components/shared"
-import { GradientButton, MyText } from "@sipher/web-components"
+import { MyText } from "@sipher/web-components"
 import { motion } from "framer-motion"
 import React from "react"
 

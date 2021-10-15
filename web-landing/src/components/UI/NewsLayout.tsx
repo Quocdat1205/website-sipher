@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Flex, Box } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import { NavBar, Footer } from "@components/shared"
 
 interface NewsLayoutProps {

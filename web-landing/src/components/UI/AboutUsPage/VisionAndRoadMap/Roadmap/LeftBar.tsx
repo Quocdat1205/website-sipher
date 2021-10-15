@@ -12,14 +12,14 @@ const LeftBar = ({ isExpanded }: LeftBarProps) => {
                 position="absolute"
                 top="-0.5rem"
                 left="4%"
-                h="1.7rem"
+                h="1.5rem"
                 w="3px"
                 zIndex="1"
                 bgGradient={isExpanded ? "linear(to-b, bgGradient.orange)" : "linear(to-b, bgGradient.white)"}
             />
             <Box
                 position="absolute"
-                top="2rem"
+                top="1.9rem"
                 left="4%"
                 bgGradient={isExpanded ? "linear(to-b, bgGradient.orange)" : "linear(to-b, bgGradient.white)"}
                 boxSize="0.75rem"
@@ -29,7 +29,7 @@ const LeftBar = ({ isExpanded }: LeftBarProps) => {
             <Box
                 pos="absolute"
                 left="4%"
-                top="3.1rem"
+                top="3rem"
                 h="calc(100% - 1.9rem)"
                 w="3px"
                 zIndex="2"

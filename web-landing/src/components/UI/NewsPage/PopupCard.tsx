@@ -5,7 +5,6 @@ import { useQuery } from "react-query"
 import { getDetailsNews } from "@hooks/api/news"
 import LayoutMedium from "./LayoutMedium"
 import LayoutTwitter from "./LayoutTwitter"
-import { useStoreState } from "@store"
 
 interface Props {}
 
@@ -20,7 +19,7 @@ export interface DetailsNewsProps {
 const PopupCard = ({}: Props) => {
     const router = useRouter()
     const { published } = router.query
-    const navbarHeight = useStoreState(s => s.navbarHeight)
+    const navbarHeight = 24
     const { data: details, isLoading } = useQuery(["news", published], () => getDetailsNews(published), {
         enabled: !!published,
     })

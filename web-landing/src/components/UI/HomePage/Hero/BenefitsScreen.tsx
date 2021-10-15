@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Box, Flex, chakra, BoxProps } from "@chakra-ui/react"
+import { Box, Flex, chakra } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
 import { motion, useAnimation } from "framer-motion"
 import React, { useEffect, ComponentProps } from "react"
@@ -19,7 +19,7 @@ const BenefitsScreen = () => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
-        threshold: 0.8,
+        threshold: 0.6,
     })
     const linkControl = useAnimation()
     const contentControl = useAnimation()
@@ -122,14 +122,14 @@ const BenefitsScreen = () => {
                 })
             })
         }
-    }, [headingControl, textControl, contentControl, inView])
+    }, [headingControl, textControl, contentControl, linkControl, inView])
 
     return (
         <Flex h="100vh" maxH="1080px" justify="center" w="full" flexShrink={0} bg="blackAlpha.300" zIndex={2}>
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    left={["auto", "15%"]}
+                    right={["auto", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     // w="45%"
@@ -137,7 +137,7 @@ const BenefitsScreen = () => {
                     ref={ref}
                 >
                     <MotionBox
-                        variants={variants.slideFromLeft}
+                        variants={variants.slideFromRight}
                         initial="hidden"
                         animate={headingControl}
                         transition={{

@@ -2,10 +2,7 @@
 
 import { Flex, Box, Heading, HeadingProps } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
-import SpecialHeading from "@components/shared/SpecialHeading"
-import { GradientText, MyText } from "@sipher/web-components"
 import { AnimatePresence, motion } from "framer-motion"
-import { ComponentProps } from "react"
 import { fontSizes } from ".."
 
 interface TimeCellProps {

@@ -4,7 +4,6 @@ import JoinTheCommunity from "./JoinTheCommunity"
 import Backers from "./Backers"
 import NekoTeaser from "./NekoTeaser"
 import Hero from "./Hero"
-import { GradientButton } from "@sipher/web-components"
 import BehindTheScenes from "./BehindTheScenes"
 
 interface HomeBodyProps {}

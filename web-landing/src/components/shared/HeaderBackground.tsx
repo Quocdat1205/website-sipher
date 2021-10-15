@@ -9,7 +9,12 @@ interface Props {
     isCoatedBg?: boolean
 }
 
-const HeaderBackground = ({ isCoatedBg = false, srcImg = "/images/pc/bg-title.png", title, description }: Props) => {
+export const HeaderBackground = ({
+    isCoatedBg = false,
+    srcImg = "/images/pc/bg-title.png",
+    title,
+    description,
+}: Props) => {
     return (
         <Flex
             align="center"

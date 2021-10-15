@@ -1,11 +1,9 @@
-import { Box, Flex, position } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
-import content from "@constant/content/moonBaseStation"
 import { useAnimation, motion } from "framer-motion"
 import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import CountDown from "./CountDown"
-import HeroScreen from "./HeroScreen"
 import variants from "./variants"
 
 interface CountDownScreenProps {}
@@ -17,7 +15,7 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
-        threshold: 0.8,
+        threshold: 0.6,
     })
 
     const contentControl = useAnimation()

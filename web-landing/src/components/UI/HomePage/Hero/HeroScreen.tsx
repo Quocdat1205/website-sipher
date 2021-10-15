@@ -2,11 +2,9 @@
 
 import { Box, Flex } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
-import useTypeWriter from "@hooks/useTypeWriter"
 import { motion, useAnimation } from "framer-motion"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
-import unityContext from "src/utils/unity"
 import variants from "./variants"
 
 interface HeroScreenProps {

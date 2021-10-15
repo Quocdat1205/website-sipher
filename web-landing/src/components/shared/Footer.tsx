@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react"
 import { GradientOutlineButton } from "."
 import { useFormCore, useChakraToast, MyText, GradientText } from "@sipher/web-components"
 import { isEmail } from "src/utils"
-import TextFormControl from "./TextFormControl2"
+import TextFormControl from "./TextFormControl"
 import CommunityIcons from "./CommunityIcons"
 import { useRouter } from "next/router"
 

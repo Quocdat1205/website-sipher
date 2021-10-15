@@ -1,7 +1,6 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/layout"
-import { Footer } from "@components/shared"
 import Loader from "@components/shared/InitialLoader"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"

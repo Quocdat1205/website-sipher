@@ -2,7 +2,6 @@ import { Flex } from "@chakra-ui/react"
 import React from "react"
 import StepButton from "./StepButton"
 import { TextContainer, Typo } from "@components/shared"
-import { GradientButton, MyText } from "@sipher/web-components"
 import CommunityIcons from "@components/shared/CommunityIcons"
 
 interface Props {}
