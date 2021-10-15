@@ -1,5 +1,3 @@
-// * DESCRIPTION:
-
 import { Flex } from "@chakra-ui/react"
 import { blockchainContent, factionsContent, gameplayContent, theWorldContent } from "@constant/content/why"
 import React, { useState } from "react"
@@ -10,10 +8,10 @@ import FactionsContent from "./FactionsContent"
 import BlockchainContent from "./BlockchainContent"
 import { LinkButton, BackgroundContainer, HeaderBackground } from "@components/shared"
 
-interface WorldOfSipherUIProps {}
+type Page = "theworld" | "gameplay" | "factions" | "blockchain"
 
-const WorldOfSipherUI = ({}: WorldOfSipherUIProps) => {
-    const [currentPage, setCurrentPage] = useState<"theworld" | "gameplay" | "factions" | "blockchain">("theworld")
+const WorldOfSipherUI = () => {
+    const [currentPage, setCurrentPage] = useState<Page>("theworld")
 
     const renderImage = () =>
         `/images/pc/${
