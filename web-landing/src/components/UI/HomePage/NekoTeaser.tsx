@@ -75,7 +75,7 @@ const NekoTeaser = () => {
             <video
                 src={"/video/neko_teaser.mp4"}
                 playsInline={true}
-                controls={true}
+                controls={false}
                 ref={videoRef}
                 onPause={() => setIsPlaying(false)}
                 data-reactid=".0.1.0.0"

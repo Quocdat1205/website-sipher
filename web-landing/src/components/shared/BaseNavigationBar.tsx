@@ -47,11 +47,11 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                         active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
                     />
                 ))}
-                <NavBarLink
+                {/* <NavBarLink
                     text="minting"
                     href="#minting"
                     onClick={() => window.open("https://mint.sipherion.com/", "_blank")}
-                />
+                /> */}
             </HStack>
 
             {children}
