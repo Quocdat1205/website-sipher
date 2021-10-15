@@ -54,7 +54,7 @@ const NFTList = ({ type }: Props) => {
   };
 
   return (
-    <Flex flexDir="column" h="full" overflow="auto" id="scrollableDiv" py={4}>
+    <Flex flexDir="column" h="full" w="full" overflow="auto" id="scrollableDiv" py={4} maxW="64rem">
       {/* <Box flex="1" overflow="auto" className="nice-scroll" id="scrollableDiv"> */}
       <InfiniteScroll
         dataLength={data ? data.pages.reduce((init, cur) => init.concat(cur), []).length : 0}
@@ -75,15 +75,7 @@ const NFTList = ({ type }: Props) => {
         }}
       >
         {data ? (
-          <SimpleGrid
-            columns={[1, 3, 5, 6, 7]}
-            spacing={4}
-            // sx={{
-            //   "@media (min-width: 2560px)": {
-            //     gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
-            //   },
-            // }}
-          >
+          <SimpleGrid columns={[1, 2, 3, 4]} spacing={4}>
             {data.pages.map((page, i) => (
               <Fragment key={i}>
                 {page.map((item) => (
@@ -98,7 +90,6 @@ const NFTList = ({ type }: Props) => {
           </MyText>
         )}
       </InfiniteScroll>
-      {/* </Box> */}
       <Modal scrollBehavior="inside" size="6xl" isOpen={isOpen} isCentered onClose={onClose}>
         <ModalOverlay bg="blackAlpha.900" />
         <ModalContent
