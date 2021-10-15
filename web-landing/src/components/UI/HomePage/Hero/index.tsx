@@ -15,7 +15,7 @@ export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-
+    unityContext.on("loaded", () => setInitialLoading(false))
     const ctnRef = useRef<HTMLDivElement>(null)
     const handleMouseWheel = () => {
         if (ctnRef.current)
@@ -45,9 +45,9 @@ const Hero = ({}: HeroProps) => {
                 <PlayScreen />
             </Flex>
             {browserName === "Safari" || isIOS ? (
-                <Grid pos="fixed" top={0} left={0} h="full" w="full" placeItems="center">
-                    <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" w="full" maxW="35rem" />
-                </Grid>
+                <Flex align="center" justify="center" pos="fixed" top={0} left={0} h="full" w="full">
+                    <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" w="full" maxW="36rem" />
+                </Flex>
             ) : (
                 <Box pos="fixed" top={0} left={0} h="full" w="full">
                     <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
