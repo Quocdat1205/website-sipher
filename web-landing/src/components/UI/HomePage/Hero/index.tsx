@@ -1,4 +1,5 @@
-import { Box, Flex } from "@chakra-ui/react"
+import { browserName } from "react-device-detect"
+import { Box, Flex, Img, Grid } from "@chakra-ui/react"
 import unityContext from "src/utils/unity"
 import { useStoreActions } from "@store"
 import FirstScreen from "./FirstScreen"
@@ -14,11 +15,11 @@ export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
 
 const Hero = ({}: HeroProps) => {
     const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-    unityContext.on("loaded", () =>
-        setTimeout(() => {
-            setInitialLoading(false)
-        }, 2000)
-    )
+    if (browserName !== "Safari") {
+        unityContext.on("loaded", () => setInitialLoading(false))
+    } else {
+        setInitialLoading(false)
+    }
     // const [scrollY, setScrollY] = useState(0)
     const [delay, setDelay] = useState(false)
     useEffect(() => {
@@ -46,20 +47,16 @@ const Hero = ({}: HeroProps) => {
     }
 
     useEffect(() => {
+        if (browserName === "Safari") setInitialLoading(false)
+    }, [browserName])
+
+    useEffect(() => {
         window.addEventListener("scroll", handleMouseWheel)
         return () => window.removeEventListener("scroll", handleMouseWheel)
     }, [])
 
     return (
-        <Box
-            pos="relative"
-            zIndex={0}
-            overflowX="hidden"
-            onMouseMove={handleMouseMove}
-            // onWheel={handleMouseWheel}
-            ref={ctnRef}
-            id="hero"
-        >
+        <Box pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove} ref={ctnRef} id="hero">
             <Flex direction="column" w="full">
                 <FirstScreen />
                 <CountDownScreen />
@@ -67,9 +64,15 @@ const Hero = ({}: HeroProps) => {
                 <PlayForJoyScreen />
                 <PlayScreen />
             </Flex>
-            <Box pos="fixed" top={0} left={0} h="full" w="full">
-                <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-            </Box>
+            {browserName !== "Safari" ? (
+                <Box pos="fixed" top={0} left={0} h="full" w="full">
+                    <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
+                </Box>
+            ) : (
+                <Grid pos="fixed" top={0} left={0} h="full" w="full" placeItems="center">
+                    <Img src="/images/pc/home/NEKO_3D.png" alt="sipher-logo" />
+                </Grid>
+            )}
         </Box>
     )
 }

@@ -26,8 +26,8 @@ const BehindTheScenes = ({}: BehindTheScenesProps) => {
                         <Flex
                             key={image.path}
                             justify="center"
-                            h="10rem"
-                            w="15rem"
+                            h={["6rem", "10rem"]}
+                            w={["9rem", "15rem"]}
                             pos="relative"
                             border="1px"
                             borderColor="whiteAlpha.100"

@@ -6,8 +6,8 @@ interface WhatIsSipherProps {}
 
 const WhatIsSipher = ({}: WhatIsSipherProps) => {
     return (
-        <TextContainer headline="What Is Sipher" px={4}>
-            <Typo.BoldText textAlign="center" textTransform="uppercase">
+        <TextContainer headline="What Is Sipher">
+            <Typo.BoldText textAlign="center" textTransform="uppercase" px={4}>
                 {definition}
             </Typo.BoldText>
             <Img
@@ -16,7 +16,7 @@ const WhatIsSipher = ({}: WhatIsSipherProps) => {
                 alt="What Is Sipher"
                 mt={8}
             />
-            <SimpleGrid columns={[1, 3]} mt={16} spacing={4}>
+            <SimpleGrid columns={[1, 3]} mt={16} spacing={[8, 4]} px={4}>
                 {content.map(item => (
                     <Flex direction="column" key={item.headline}>
                         <GradientOutlineButton

@@ -16,7 +16,7 @@ const DigitalCharacters = () => {
             >
                 <SimpleGrid columns={[2, 4]} spacing="2rem" mt={8} w="full">
                     {characters.map(character => (
-                        <Flex direction="column" align="center">
+                        <Flex key={character.name} direction="column" align="center">
                             <Img src={character.path} alt={character.name} />
                             <Typo.BoldText w="full" textAlign="center" textTransform="uppercase" mt={4}>
                                 {character.name}
