@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Img, Flex, SimpleGrid, HStack, StackProps, Box } from "@chakra-ui/react"
-import { MotionBox, TextContainer } from "@components/shared"
+import { MotionBox, MotionFlex, TextContainer } from "@components/shared"
 import { motion } from "framer-motion"
 
 interface BehindTheScenesProps {}
@@ -21,20 +21,21 @@ const BehindTheScenes = ({}: BehindTheScenesProps) => {
     return (
         <TextContainer headline="Behind The Scenes" overflowX="hidden" px={4}>
             <Flex justify="center" w="full">
-                <SimpleGrid columns={[2, 3]} spacing={4} maxW="56rem">
+                <SimpleGrid columns={[2, 3]} spacing={4} w="full">
                     {images.map(image => (
                         <Flex
                             key={image.path}
                             justify="center"
-                            h={["6rem", "10rem"]}
-                            w={["9rem", "15rem"]}
+                            h={["6rem", "10rem", "15rem", "20rem"]}
+                            w="full"
                             pos="relative"
                             border="1px"
                             borderColor="whiteAlpha.100"
                             bg="black"
                             overflow="hidden"
                         >
-                            <MotionBox
+                            <MotionFlex
+                                justify="center"
                                 h="full"
                                 w="full"
                                 whileHover={{ scale: 1.4 }}
@@ -43,17 +44,8 @@ const BehindTheScenes = ({}: BehindTheScenesProps) => {
                                     ease: "easeInOut",
                                 }}
                             >
-                                <Img
-                                    src={image.path}
-                                    alt={image.alt}
-                                    h="full"
-                                    w="auto"
-                                    pos="absolute"
-                                    top="50%"
-                                    left="50%"
-                                    transform="translate(-50%, -50%)"
-                                />
-                            </MotionBox>
+                                <Img src={image.path} alt={image.alt} h="full" w="auto" />
+                            </MotionFlex>
                         </Flex>
                     ))}
                 </SimpleGrid>

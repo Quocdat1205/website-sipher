@@ -34,9 +34,6 @@ const Letter = ({ char, control, custom }: LetterProps) => {
     )
 }
 
-const content =
-    "10,000 Nekos will be available in this collection, split between a public sale, and a private sale. The public sale will occur on - Insert Date and Time- and will follow a Dutch Auction format. The private sale will occur on -Insert date and time- at a price of 0.1 ETH (plus gas)."
-
 const p1 = "10,000 Nekos will be available in this collection, split between a public sale, and a private sale."
 const p2 = "Public Sale"
 const p3 =

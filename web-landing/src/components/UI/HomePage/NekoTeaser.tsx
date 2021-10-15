@@ -73,8 +73,8 @@ const NekoTeaser = () => {
             </AnimatePresence>
             <video
                 src={"/video/neko_teaser.mp4"}
-                playsInline
-                controls={false}
+                playsInline={true}
+                controls={true}
                 ref={videoRef}
                 onPause={() => setIsPlaying(false)}
             />

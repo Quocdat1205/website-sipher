@@ -16,7 +16,7 @@ const WhatIsSipher = ({}: WhatIsSipherProps) => {
                 alt="What Is Sipher"
                 mt={8}
             />
-            <SimpleGrid columns={[1, 3]} mt={16} spacing={[8, 4]} px={4}>
+            <SimpleGrid columns={[1, 3]} mt={16} spacing={8} px={4}>
                 {content.map(item => (
                     <Flex direction="column" key={item.headline}>
                         <GradientOutlineButton

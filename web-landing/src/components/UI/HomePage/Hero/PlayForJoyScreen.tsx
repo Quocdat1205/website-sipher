@@ -56,7 +56,7 @@ const PlayForJoyScreen = () => {
                     pos="absolute"
                     right={["auto", "5%", "5%", "10%", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
-                    bottom="20%"
+                    bottom="30%"
                     p={4}
                     ref={ref}
                 >

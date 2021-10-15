@@ -63,7 +63,7 @@ const CountDownScreen = ({}: CountDownScreenProps) => {
             <Box pos="relative" w="full">
                 <Box
                     pos="absolute"
-                    left={["auto", "5%", "5%", "10%", "15%"]}
+                    right={["auto", "5%", "5%", "10%", "15%"]}
                     maxW={["full", "30rem", "35rem", "35rem", "40rem"]}
                     bottom="20%"
                     // w="45%"
