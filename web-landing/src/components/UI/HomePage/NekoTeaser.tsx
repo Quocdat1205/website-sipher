@@ -1,14 +1,16 @@
-import { Box, Flex, Grid, GridProps } from "@chakra-ui/layout"
+import { Box, Flex } from "@chakra-ui/layout"
 import { MotionFlex, Typo } from "@components/shared"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
+import { useUserAgent } from "next-useragent"
 import { useEffect, useRef, useState } from "react"
 import { getSelectorsByUserAgent } from "react-device-detect"
 import { IoMdPlay } from "react-icons/io"
 
-const NekoTeaser = () => {
+const NekoTeaser = ({ uaString }) => {
     const videoRef = useRef<HTMLVideoElement>(null)
     const [isPlaying, setIsPlaying] = useState(false)
-
+    const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent)
+    const isIOS = isIos || isIpad || isIphone || isSafari
     useEffect(() => {
         let timeout = setInterval(() => {
             if (videoRef.current && isPlaying && videoRef.current.volume < 1) {
@@ -75,7 +77,7 @@ const NekoTeaser = () => {
             <video
                 src={"/video/neko_teaser.mp4"}
                 playsInline={true}
-                controls={false}
+                controls={isIOS}
                 ref={videoRef}
                 onPause={() => setIsPlaying(false)}
                 data-reactid=".0.1.0.0"

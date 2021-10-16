@@ -6,8 +6,6 @@ import { getDetailsNews } from "@hooks/api/news"
 import LayoutMedium from "./LayoutMedium"
 import LayoutTwitter from "./LayoutTwitter"
 
-interface Props {}
-
 export interface DetailsNewsProps {
     thumbnail?: string
     title?: string
@@ -16,10 +14,10 @@ export interface DetailsNewsProps {
     link: string
     type: "medium" | "twitter"
 }
-const PopupCard = ({}: Props) => {
+const PopupCard = () => {
     const router = useRouter()
     const { published } = router.query
-    const navbarHeight = 24
+    const navbarHeight = 66
     const { data: details, isLoading } = useQuery(["news", published], () => getDetailsNews(published), {
         enabled: !!published,
     })

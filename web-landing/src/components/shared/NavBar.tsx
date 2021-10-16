@@ -35,7 +35,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         <Flex
             flexDir="column"
             position="fixed"
-            zIndex="toast"
+            zIndex="popover"
             w="full"
             sx={{
                 ".childmenu::-webkit-scrollbar": {
