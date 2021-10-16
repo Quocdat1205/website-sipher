@@ -8,7 +8,6 @@ import { useRouter } from "next/router"
 import { BaseNavigationBar, LinkButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
-import { useEffect, useRef } from "react"
 interface NavBarProps {
     isChildMenu?: boolean
 }
@@ -48,7 +47,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                 <Flex>
                     <LinkButton
                         text="Join Our Discord Community"
-                        href="https://discord.com/invite/dRqdSxUSmd"
+                        href="https://discord.gg/sipherxyz"
                         sx={{
                             "@media (max-width: 480px)": {
                                 display: "none",
