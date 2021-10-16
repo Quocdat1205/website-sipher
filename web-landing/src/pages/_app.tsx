@@ -52,19 +52,20 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                             property="og:description"
                             content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon"
                         />
-                        <meta property="og:image" content="/images/general/logo512.png" />
+                        <meta property="og:image" content="/images/pc/home/NEKO_3D.png" />
                         <meta name="twitter:card" content="summary_large_image" />
                         <meta name="twitter:title" content="Welcome to Sipher" />
                         <meta
                             name="twitter:description"
                             content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon!  "
                         />
-                        <meta name="twitter:image" content="/images/general/logo512.png" />
-                        {/* <script>
-                    window.dataLayer = window.dataLayer || []; function gtag(){" "}
-                    {(window as any).dataLayer.push(arguments)}
-                    gtag("js", new Date()); gtag("config", "UA-203015581-1");
-                </script> */}
+                        <meta name="twitter:image" content="/images/pc/home/NEKO_3D.png" />
+                        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1"></script>
+                        <script>
+                            window.dataLayer = window.dataLayer || []; function gtag(){" "}
+                            {(window as any).dataLayer.push(arguments)}
+                            gtag("js", new Date()); gtag("config", "UA-203015581-1");
+                        </script>
                     </Head>
                     <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
                     {getLayout(<Component {...pageProps} />)}
