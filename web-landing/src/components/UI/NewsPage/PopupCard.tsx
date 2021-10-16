@@ -17,20 +17,23 @@ export interface DetailsNewsProps {
 const PopupCard = () => {
     const router = useRouter()
     const { published } = router.query
-    const navbarHeight = 66
     const { data: details, isLoading } = useQuery(["news", published], () => getDetailsNews(published), {
         enabled: !!published,
     })
 
     return (
         <Modal
-            size="full"
             isOpen={!!router.query.published}
             isCentered
             onClose={() => router.push("news", undefined, { scroll: false })}
         >
             <ModalOverlay bg="blackAlpha.900" />
-            <ModalContent overflow="hidden" pt={[`${navbarHeight}px`]}>
+            <ModalContent
+                my={["0", `${details && details.type === "medium" ? "0" : "3.75rem"}`]}
+                maxW="64rem"
+                h={["100%", "auto"]}
+                overflow="hidden"
+            >
                 <ModalBody pos="relative" overflow="hidden" h="100%" w="100%" p={0} bg="about.cardGray">
                     <ModalCloseButton
                         zIndex={1}
@@ -41,9 +44,9 @@ const PopupCard = () => {
                     />
                     {!isLoading && details ? (
                         details.type === "medium" ? (
-                            <LayoutMedium navbarHeight={navbarHeight} details={details} />
+                            <LayoutMedium details={details} />
                         ) : details.type === "twitter" ? (
-                            <LayoutTwitter navbarHeight={navbarHeight} details={details} />
+                            <LayoutTwitter details={details} />
                         ) : (
                             "Not Found"
                         )
