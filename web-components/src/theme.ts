@@ -66,8 +66,8 @@ export const theme = extendTheme({
                 overflow: "hidden",
                 height: "100%",
             },
-            "*::-webkit-media-controls-start-playback-button": {
-                display: "none!important",
+            "video::-webkit-media-controls-start-playback-button": {
+                display: "none !important",
                 "-webkit-appearance": "none",
             },
         },
