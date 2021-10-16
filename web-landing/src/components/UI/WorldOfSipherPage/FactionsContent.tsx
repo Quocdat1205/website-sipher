@@ -1,39 +1,33 @@
-// * DESCRIPTION:
-
-import { Box, Flex, VStack, Img } from "@chakra-ui/react"
+import { VStack } from "@chakra-ui/react"
 import { factionsContent } from "@constant/content/why"
-import { MyHeading, MyText } from "@sipher/web-components"
+import FactionCard from "./FactionCard"
+import maximalistTemplars from "../../../../public/images/pc/why/maximalist_templars.png"
+import centurionScholars from "../../../../public/images/pc/why/centurion_scholars.png"
+import shadeBrotherhood from "../../../../public/images/pc/why/shade_brotherhood.png"
+const factionsContents = [
+    {
+        image: maximalistTemplars,
+        headline: "Maximalist Templars",
+        content: factionsContent.maximalistTemplars[0],
+    },
+    {
+        image: centurionScholars,
+        headline: "Centurion Scholars",
+        content: factionsContent.centurionScholars[0],
+    },
+    {
+        image: shadeBrotherhood,
+        headline: "Shade Brotherhood",
+        content: factionsContent.shadeBrotherhood[0],
+    },
+]
 
 const FactionsContent = () => {
     return (
         <VStack spacing={8}>
-            <Flex p={[2, 4]} bg="about.cardGray" align="center" flexDir={["column", "row"]} rounded="md">
-                <Box flex={1}>
-                    <Img src="/images/pc/why/faction1.png" alt="MAXIMALIST TEMPLARS" />
-                </Box>
-                <Box flex={2} ml={[0, 4]} mt={[4, 0]}>
-                    <MyHeading>MAXIMALIST TEMPLARS</MyHeading>
-                    <MyText mt={2}>{factionsContent.maximalistTemplars}</MyText>
-                </Box>
-            </Flex>
-            <Flex p={[2, 4]} bg="about.cardGray" align="center" flexDir={["column", "row"]} rounded="md">
-                <Box flex={1}>
-                    <Img src="/images/pc/why/faction2.png" alt="CENTURION SCHOLARS" />
-                </Box>
-                <Box flex={2} ml={[0, 4]} mt={[4, 0]}>
-                    <MyHeading>CENTURION SCHOLARS</MyHeading>
-                    <MyText mt={2}>{factionsContent.centurionScholars}</MyText>
-                </Box>
-            </Flex>
-            <Flex p={[2, 4]} bg="about.cardGray" align="center" flexDir={["column", "row"]} rounded="md">
-                <Box flex={1}>
-                    <Img src="/images/pc/why/faction3.png" alt="SHADE BROTHERHOOD" />
-                </Box>
-                <Box flex={2} ml={[0, 4]} mt={[4, 0]}>
-                    <MyHeading>SHADE BROTHERHOOD</MyHeading>
-                    <MyText mt={2}>{factionsContent.shadeBrotherhood}</MyText>
-                </Box>
-            </Flex>
+            {factionsContents.map(content => (
+                <FactionCard key={content.headline} data={content} />
+            ))}
         </VStack>
     )
 }

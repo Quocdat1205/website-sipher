@@ -1,20 +1,17 @@
-import FagUI from "@components/UI/Faq";
-import NewsLayout from "@components/UI/NewsLayout";
-import Head from "next/head";
-import React, { ReactElement } from "react";
-import { NextPageWithLayout } from "./_app";
-
+import FagUI from "@components/UI/Faq"
+import NewsLayout from "@components/UI/NewsLayout"
+import React, { ReactElement } from "react"
+import { NextPageWithLayout } from "./_app"
+import Metadata from "@components/shared/Metadata"
 const FagPage: NextPageWithLayout = () => {
-  return <FagUI />;
-};
+    return (
+        <>
+            <Metadata title="FAQ" description="Sipher's frequently asked questions" />
+            <FagUI />
+        </>
+    )
+}
 FagPage.getLayout = (page: ReactElement) => {
-  return (
-    <>
-      <Head>
-        <title>Faq</title>
-      </Head>
-      <NewsLayout>{page}</NewsLayout>
-    </>
-  );
-};
-export default FagPage;
+    return <NewsLayout>{page}</NewsLayout>
+}
+export default FagPage
