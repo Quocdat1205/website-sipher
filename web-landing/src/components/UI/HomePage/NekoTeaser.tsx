@@ -79,7 +79,9 @@ const NekoTeaser = ({ uaString }) => {
                 playsInline={true}
                 controls={isIOS}
                 ref={videoRef}
+                onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
+                onEnded={() => videoRef.current?.load()}
                 data-reactid=".0.1.0.0"
                 datatype="video/mp4"
                 poster="/video/neko_poster.jpg"
