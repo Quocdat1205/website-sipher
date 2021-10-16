@@ -15,7 +15,7 @@ export const unityContext = isMobile
     : new UnityContext({
           loaderUrl: "/unity/noscroll.loader.js",
           dataUrl: "/unity/noscroll.data",
-          frameworkUrl: "/noscroll/unity11.framework.js",
+          frameworkUrl: "/unity/noscroll.framework.js",
           codeUrl: "/unity/noscroll.wasm",
           webglContextAttributes: {
               powerPreference: "low-power",
