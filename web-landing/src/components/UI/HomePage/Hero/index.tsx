@@ -21,7 +21,7 @@ const Hero = ({ uaString }) => {
   // const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
   // const isIOS = isIos || isIpad || isIphone || isSafari;
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-  // unityContext.on("loaded", () => setInitialLoading(false));
+  // 
   // const ctnRef = useRef<HTMLDivElement>(null);
   // const handleMouseWheel = () => {
   //   if (ctnRef.current) unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);
@@ -32,7 +32,7 @@ const Hero = ({ uaString }) => {
   // };
 
   useEffect(() => {
-    setInitialLoading(false);
+    unityContext.on("loaded", () => setInitialLoading(false));
   }, [setInitialLoading]);
 
   // useEffect(() => {
