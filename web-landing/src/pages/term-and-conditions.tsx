@@ -8,7 +8,7 @@ import { NextPageWithLayout } from "./_app"
 const NFTPage: NextPageWithLayout = () => {
     return (
         <>
-            <Metadata title="Term And Conditions" description="Read about Sipher's term and condition's" />
+            <Metadata title="Term And Conditions" description="Read about Sipher's term and conditions" />
             <TermAndConditionsUI />
         </>
     )
