@@ -1,5 +1,5 @@
 import { Box, Flex, Img } from "@chakra-ui/react";
-import unityContext from "src/utils/unity";
+// import unityContext from "src/utils/unity";
 import { useStoreActions } from "@store";
 import FirstScreen from "./FirstScreen";
 import AmountScreen from "./AmountScreen";
@@ -39,7 +39,7 @@ const Hero = ({ uaString }) => {
   //   window.addEventListener("scroll", handleMouseWheel);
   //   return () => window.removeEventListener("scroll", handleMouseWheel);
   // }, []);
-  unityContext.on("loaded", () => setInitialLoading(false));
+  // unityContext.on("loaded", () => setInitialLoading(false));
   return (
     <Box pos="relative" zIndex={0} overflowX="hidden" id="hero">
       <Flex direction="column" w="full">
