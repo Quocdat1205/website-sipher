@@ -82,6 +82,7 @@ const NekoTeaser = ({ uaString }) => {
                 onPause={() => setIsPlaying(false)}
                 data-reactid=".0.1.0.0"
                 datatype="video/mp4"
+                poster="/video/neko_poster.jpg"
             ></video>
         </Box>
     )
