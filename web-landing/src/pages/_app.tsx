@@ -61,11 +61,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                         />
                         <meta name="twitter:image" content="/images/pc/home/NEKO_3D.png" />
                     </Head>
-                    <Script id="data-layer">
-                        window.dataLayer = window.dataLayer || []; function gtag(){" "}
-                        {(window as any).dataLayer.push(arguments)}
-                        gtag(`js`, new Date()); gtag(`config`, `UA-203015581-1`);
-                    </Script>
+
                     <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
                     {getLayout(<Component {...pageProps} />)}
                 </QueryClientProvider>
