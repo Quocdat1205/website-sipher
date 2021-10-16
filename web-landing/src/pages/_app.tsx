@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               itemProp="description"
               content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon"
             />
-            <meta itemProp="image" content="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/NEKO_3D.png" />
+            <meta itemProp="image" content="/images/pc/home/NEKO_3D.png" />
             <meta property="og:url" content="https://sipher.xyz" />
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Welcome to Sipher" />
@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               property="og:description"
               content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon"
             />
-            <meta property="og:image" content="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/NEKO_3D.png" />
+            <meta property="og:image" content="/images/pc/home/NEKO_3D.png" />
 
             <meta name="twitter:card" content="summary_large_image" />
             {/* <meta name="twitter:site" content="@SIPHERxyz" /> */}
