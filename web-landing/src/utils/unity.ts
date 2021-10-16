@@ -3,20 +3,20 @@ import { isMobile } from "react-device-detect"
 
 export const unityContext = isMobile
     ? new UnityContext({
-          loaderUrl: "/unity/mobile.loader.js",
-          dataUrl: "/unity/mobile.data",
-          frameworkUrl: "/mobile/mobile.framework.js",
-          codeUrl: "/unity/mobile.wasm",
+          loaderUrl: "/unity/noscroll.loader.js",
+          dataUrl: "/unity/noscroll.data",
+          frameworkUrl: "/unity/noscroll.framework.js",
+          codeUrl: "/unity/noscroll.wasm",
           webglContextAttributes: {
               powerPreference: "low-power",
               preserveDrawingBuffer: true,
           },
       })
     : new UnityContext({
-          loaderUrl: "/unity/unity11.loader.js",
-          dataUrl: "/unity/unity11.data",
-          frameworkUrl: "/unity/unity11.framework.js",
-          codeUrl: "/unity/unity11.wasm",
+          loaderUrl: "/unity/noscroll.loader.js",
+          dataUrl: "/unity/noscroll.data",
+          frameworkUrl: "/noscroll/unity11.framework.js",
+          codeUrl: "/unity/noscroll.wasm",
           webglContextAttributes: {
               powerPreference: "low-power",
               preserveDrawingBuffer: true,
