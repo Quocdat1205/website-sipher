@@ -21,7 +21,7 @@ const Hero = ({ uaString }) => {
   // const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
   // const isIOS = isIos || isIpad || isIphone || isSafari;
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-  // 
+  //
   // const ctnRef = useRef<HTMLDivElement>(null);
   // const handleMouseWheel = () => {
   //   if (ctnRef.current) unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);
@@ -32,7 +32,7 @@ const Hero = ({ uaString }) => {
   // };
 
   useEffect(() => {
-    unityContext.on("loaded", () => setInitialLoading(false));
+    setInitialLoading(false);
   }, [setInitialLoading]);
 
   // useEffect(() => {
@@ -49,9 +49,14 @@ const Hero = ({ uaString }) => {
         <PlayForJoyScreen />
         <PlayScreen />
       </Flex>
-      <Box pos="fixed" top={0} left={0} h="full" w="full">
+      {/* <Box pos="fixed" top={0} left={0} h="full" w="full">
         <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-      </Box>
+      </Box> */}
+      <Flex align="center" justify="center" pos="fixed" top={0} left={0} h="full" w="full">
+        <div>          
+        <iframe src="https://web-necko-nine.vercel.app/" height="1080px" width="1920px"/>         
+      </div>
+      </Flex>
     </Box>
   );
 };
