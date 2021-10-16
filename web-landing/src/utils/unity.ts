@@ -3,10 +3,10 @@ import { isMobile } from "react-device-detect"
 
 export const unityContext = isMobile
     ? new UnityContext({
-          loaderUrl: "/unity/neko.loader.js",
-          dataUrl: "/unity/neko.data",
-          frameworkUrl: "/neko/mobile.framework.js",
-          codeUrl: "/unity/neko.wasm",
+          loaderUrl: "/unity/mobile.loader.js",
+          dataUrl: "/unity/mobile.data",
+          frameworkUrl: "/mobile/mobile.framework.js",
+          codeUrl: "/unity/mobile.wasm",
           webglContextAttributes: {
               powerPreference: "low-power",
               preserveDrawingBuffer: true,
