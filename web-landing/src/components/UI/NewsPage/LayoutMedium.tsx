@@ -5,6 +5,7 @@ import { DetailsNewsProps } from "./PopupCard";
 import UrlCopier from "./UrlCopier";
 import ButtonLinkTo from "./ButtonLinkTo";
 import { MyHeading } from "@sipher/web-components";
+import { ModalCloseButton } from "@chakra-ui/modal";
 
 interface Props {
   details: DetailsNewsProps;
@@ -12,7 +13,7 @@ interface Props {
 
 const LayoutMedium = ({ details }: Props) => {
   return (
-    <Flex pt={["64px", "66px"]} overflow="auto" flexDir="column" h="100vh">
+    <Flex pt={["64px", "0"]} overflow="auto" flexDir="column" h={["100vh", "80vh"]}>
       <Box maxW="64rem">
         <Flex flexDir="column" flex={1} p={[4, 8]}>
           <Box flex={1}>
