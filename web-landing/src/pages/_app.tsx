@@ -53,9 +53,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon"
             />
             <meta property="og:image" content="/images/pc/home/NEKO_3D.png" />
-            
+
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:site" content="@SIPHERxyz" />
+            {/* <meta name="twitter:site" content="@SIPHERxyz" /> */}
             <meta name="twitter:title" content="Welcome to Sipher" />
             <meta
               name="twitter:description"
