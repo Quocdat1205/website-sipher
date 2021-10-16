@@ -52,14 +52,14 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                             property="og:description"
                             content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon"
                         />
-                        <meta property="og:image" content="/images/general/main_icon.ico" />
-                        <meta name="twitter:card" content="Welcome_to_Sipher" />
+                        <meta property="og:image" content="/images/general/logo512.png" />
+                        <meta name="twitter:card" content="summary_large_image" />
                         <meta name="twitter:title" content="Welcome to Sipher" />
                         <meta
                             name="twitter:description"
                             content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon!  "
                         />
-                        <meta name="twitter:image" content="/images/general/main_icon.ico" />
+                        <meta name="twitter:image" content="/images/general/logo512.png" />
                         {/* <script>
                     window.dataLayer = window.dataLayer || []; function gtag(){" "}
                     {(window as any).dataLayer.push(arguments)}
