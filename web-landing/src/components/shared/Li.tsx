@@ -2,8 +2,9 @@
 
 import { chakra, Text, TextProps, BoxProps } from "@chakra-ui/react"
 import { ReactNode } from "react"
+import { Typo } from "."
 
-interface LiProps extends TextProps {
+interface LiProps extends Omit<TextProps, "size"> {
     headline: ReactNode
     children?: ReactNode
     level?: number
@@ -20,9 +21,9 @@ export const Li = ({ headline, children, type = "decimal", level = 1, listKey, b
             ml={(level - 1) * 8}
             mb={bottomSpace}
         >
-            <Text _before={{ content: `counter(${listKey || type}, ${type}) ". "` }} textAlign="justify" {...rest}>
+            <Typo.Text _before={{ content: `counter(${listKey || type}, ${type}) ". "` }} textAlign="justify" {...rest}>
                 {headline}
-            </Text>
+            </Typo.Text>
             {children}
         </chakra.li>
     )
