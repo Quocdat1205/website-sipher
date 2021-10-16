@@ -1,7 +1,7 @@
 export const introduction = [
-    'Sipher ("Sipher Surge") is a distributed application that runs on the Ethereum network, using uniquely coded smart contracts (each, a “Smart Contract”) that allow users to acquire, buy and sell own and transfer, the unique digital characters known as Sipher Surge (hereafter “Sipher Surge”) located at www.Sipher.xyz (the “Site”). The Smart Contracts and the Site are collectively referred to in these T&C as the “App”. Using the App, users can view their Sipher Surge, and use the Smart Contracts to acquire, buy, sell, own, trade and transfer Sipher Surge on the Ethereum network.',
-    'Sipher ("Sipher Surge”, "we", or "us") is the party making the App available for you to use. Before using the App, the Smart Contracts, or the Site, you must agree to these T&C and any other terms and conditions incorporated or referenced herein (the T&C and any other terms and conditions incorporated or referenced herein are collectively referred to as the “Terms”).',
-    "PLEASE READ THESE TERMS CAREFULLY BEFORE USING THE APP, THE SMART CONTRACTS, OR THE SITE. THESE TERMS GOVERN YOUR USE OF THE APP, THE SMART CONTRACTS, AND THE SITE, UNLESS Sipher SURGE HAS AGREED TO DIFFERENT WRITTEN AGREEMENT WITH YOU TO THE CONTRARY, SIGNED BY BOTH PARTIES. Sipher SURGE IS ONLY WILLING TO MAKE THE APP, THE SMART CONTRACTS, AND THE SITE AVAILABLE TO YOU IF YOU ACCEPT ALL OF THESE TERMS. BY USING THE APP, THE SMART CONTRACTS, THE SITE, OR ANY PART THEREOF, YOU ARE CONFIRMING THAT YOU UNDERSTAND AND AGREE TO BE BOUND BY ALL OF THE TERMS CONTAINED HEREIN. . IF YOU ARE ACCEPTING THESE TERMS ON BEHALF OF A COMPANY OR OTHER LEGAL ENTITY, YOU REPRESENT THAT YOU HAVE THE LEGAL AUTHORITY TO ACCEPT THESE TERMS ON THAT ENTITY’S BEHALF, IN WHICH CASE “YOU” WILL MEAN THAT COMPANY OR LEGAL ENTITY. IF YOU DO NOT HAVE SUCH AUTHORITY, OR IF YOU DO NOT ACCEPT ALL OF THESE TERMS, THEN WE ARE NOT WILLING TO MAKE THE APP, THE SMART CONTRACTS, OR THE SITE AVAILABLE TO YOU. IF YOU DO NOT FULLY AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO ACCESS OR USE THE APP, THE SMART CONTRACTS, OR THE SITE. ALL TRANSACTIONS INITIATED THROUGH THE APP ARE FACILITATED AND RUN BY THIRD-PARTY ELECTRONIC WALLETS ON THE ETHEREUM BLOCKCHAIN, AND BY USING THE APP YOU AGREE THAT YOU ARE GOVERNED BY THE TERMS OF SERVICE AND PRIVACY POLICY FOR THOSE APPLICABLE WALLETS. WE ARE NOT A BROKER, FINANCIAL INSTITUTION, OR CREDITOR. THE APP IS AN ADMINISTRATIVE PLATFORM ONLY. WE FACILITATE TRANSACTIONS BETWEEN THE BUYER AND SELLER BUT ARE NOT A PARTY TO ANY AGREEMENT BETWEEN THE BUYER AND SELLER (UNLESS WE ARE THE SELLER). YOU BEAR FULL RESPONSIBILITY FOR VERIFYING THE IDENTITY, LEGITIMACY, AND AUTHENTICITY OF ANY ASSETS YOU PURCHASE.",
+    'Sipher ("Sipher") is a distributed application that runs on the Ethereum network, using uniquely coded smart contracts (each, a “Smart Contract”) that allow users to acquire, buy and sell own and transfer, the unique digital characters known as Sipher (hereafter “Sipher”) located at www.Sipher.xyz (the “Site”). The Smart Contracts and the Site are collectively referred to in these T&C as the “App”. Using the App, users can view their Sipher, and use the Smart Contracts to acquire, buy, sell, own, trade and transfer Sipher on the Ethereum network.',
+    'Sipher ("Sipher”, "we", or "us") is the party making the App available for you to use. Before using the App, the Smart Contracts, or the Site, you must agree to these T&C and any other terms and conditions incorporated or referenced herein (the T&C and any other terms and conditions incorporated or referenced herein are collectively referred to as the “Terms”).',
+    "PLEASE READ THESE TERMS CAREFULLY BEFORE USING THE APP, THE SMART CONTRACTS, OR THE SITE. THESE TERMS GOVERN YOUR USE OF THE APP, THE SMART CONTRACTS, AND THE SITE, UNLESS Sipher HAS AGREED TO DIFFERENT WRITTEN AGREEMENT WITH YOU TO THE CONTRARY, SIGNED BY BOTH PARTIES. Sipher IS ONLY WILLING TO MAKE THE APP, THE SMART CONTRACTS, AND THE SITE AVAILABLE TO YOU IF YOU ACCEPT ALL OF THESE TERMS. BY USING THE APP, THE SMART CONTRACTS, THE SITE, OR ANY PART THEREOF, YOU ARE CONFIRMING THAT YOU UNDERSTAND AND AGREE TO BE BOUND BY ALL OF THE TERMS CONTAINED HEREIN. . IF YOU ARE ACCEPTING THESE TERMS ON BEHALF OF A COMPANY OR OTHER LEGAL ENTITY, YOU REPRESENT THAT YOU HAVE THE LEGAL AUTHORITY TO ACCEPT THESE TERMS ON THAT ENTITY’S BEHALF, IN WHICH CASE “YOU” WILL MEAN THAT COMPANY OR LEGAL ENTITY. IF YOU DO NOT HAVE SUCH AUTHORITY, OR IF YOU DO NOT ACCEPT ALL OF THESE TERMS, THEN WE ARE NOT WILLING TO MAKE THE APP, THE SMART CONTRACTS, OR THE SITE AVAILABLE TO YOU. IF YOU DO NOT FULLY AGREE TO THESE TERMS, YOU ARE NOT PERMITTED TO ACCESS OR USE THE APP, THE SMART CONTRACTS, OR THE SITE. ALL TRANSACTIONS INITIATED THROUGH THE APP ARE FACILITATED AND RUN BY THIRD-PARTY ELECTRONIC WALLETS ON THE ETHEREUM BLOCKCHAIN, AND BY USING THE APP YOU AGREE THAT YOU ARE GOVERNED BY THE TERMS OF SERVICE AND PRIVACY POLICY FOR THOSE APPLICABLE WALLETS. WE ARE NOT A BROKER, FINANCIAL INSTITUTION, OR CREDITOR. THE APP IS AN ADMINISTRATIVE PLATFORM ONLY. WE FACILITATE TRANSACTIONS BETWEEN THE BUYER AND SELLER BUT ARE NOT A PARTY TO ANY AGREEMENT BETWEEN THE BUYER AND SELLER (UNLESS WE ARE THE SELLER). YOU BEAR FULL RESPONSIBILITY FOR VERIFYING THE IDENTITY, LEGITIMACY, AND AUTHENTICITY OF ANY ASSETS YOU PURCHASE.",
 ]
 
 type TermAndConditionItem = {
@@ -27,12 +27,12 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "All transactions regarding Sipher Surge are managed and confirmed via the Ethereum blockchain. You understand that your Ethereum public address may be made publicly visible whenever you engage in a transaction.",
+                    "All transactions regarding Sipher are managed and confirmed via the Ethereum blockchain. You understand that your Ethereum public address may be made publicly visible whenever you engage in a transaction.",
             },
             {
                 level: 1,
                 content:
-                    "We do not own nor control your web browser, your Ethereum wallet, the Ethereum network, or any other third-party site, product, or service that you might access, visit, or use for the purpose of enabling you to perform a transaction with your Sipher Surge. We are not liable for the acts or omissions of any such third parties, nor will we be liable for any damage that you may suffer as a result of your transactions or any other interaction with any such third parties.",
+                    "We do not own nor control your web browser, your Ethereum wallet, the Ethereum network, or any other third-party site, product, or service that you might access, visit, or use for the purpose of enabling you to perform a transaction with your Sipher. We are not liable for the acts or omissions of any such third parties, nor will we be liable for any damage that you may suffer as a result of your transactions or any other interaction with any such third parties.",
             },
             {
                 level: 1,
@@ -64,19 +64,18 @@ export const termAndCondition: TermAndConditionItem[] = [
             },
             {
                 level: 2,
-                content:
-                    '"Art" means any art, design, and drawings that may be associated with a Sipher Surge that you Own',
+                content: '"Art" means any art, design, and drawings that may be associated with a Sipher that you Own',
                 key: "definition",
             },
             {
                 level: 2,
                 content:
-                    '"Own" means, with respect to a Sipher Surge, a Sipher Surge that you have purchased or otherwise rightfully acquired from a legitimate source, where proof of such purchase is recorded on the relevant Ethereum blockchain.',
+                    '"Own" means, with respect to a Sipher, a Sipher that you have purchased or otherwise rightfully acquired from a legitimate source, where proof of such purchase is recorded on the relevant Ethereum blockchain.',
                 key: "definition",
             },
             {
                 level: 2,
-                content: '"Purchased Sipher Surge" means a Sipher Surge that you Own.',
+                content: '"Purchased Sipher" means a Sipher that you Own.',
                 key: "definition",
             },
             {
@@ -92,31 +91,31 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "When you purchase a Sipher Surge, you own only the NFT, not any associated Art. Each Sipher Surge is associated with a non-fungible token (an “NFT”) on the Ethereum blockchain. When you acquire a Sipher Surge, you own the NFT, not the associated Art, or any other Sipher Surge Materials (as that term is defined below), or any Third Party IP. You can trade the NFT, sell it, or give it away for free. Ownership of the NFT is governed solely by the Smart Contract and the Ethereum Network.",
+                    "When you purchase a Sipher, you own only the NFT, not any associated Art. Each Sipher is associated with a non-fungible token (an “NFT”) on the Ethereum blockchain. When you acquire a Sipher, you own the NFT, not the associated Art, or any other Sipher Materials (as that term is defined below), or any Third Party IP. You can trade the NFT, sell it, or give it away for free. Ownership of the NFT is governed solely by the Smart Contract and the Ethereum Network.",
                 key: "ownership",
             },
             {
                 level: 2,
                 content:
-                    "We Own the App, and the App includes the Art. You acknowledge and agree that Sipher Surge (or, as applicable, our licensors) owns all legal right, title and interest in and to all other elements of the App, and all intellectual property rights therein (including, without limitation, all Art, designs, names, copyrights, trademarks, patents, systems, methods, information, computer code, software, services, “look and feel”, organization, compilation of the content, code, data, and all other elements of the App (collectively, the “Sipher Surge Materials”)). Other than expressly stated in these Terms, you do not have any other rights in the Sipher Surge Materials. You acknowledge that the Sipher Surge Materials are protected by, as applicable, copyright, trade dress, patent, and trademark laws, international conventions, other relevant intellectual property and proprietary rights, and applicable laws. All Sipher Surge Materials are the copyrighted property of Sipher Surge or its licensors, and all trademarks, service marks, and trade names associated with the App or otherwise contained in the Sipher Surge Materials are proprietary to Sipher Surge or its licensors. You may not use the Sipher Surge name without our prior written consent. Except as expressly set forth herein, your use of the App does not grant you ownership of or any other rights with respect to any Art, content, code, data, or other Sipher Surge Materials that you may access on or through the App. We reserve all rights in and to the Sipher Surge Materials that are not expressly granted to you in these Terms. For the avoidance of doubt, you understand and agree:",
+                    "We Own the App, and the App includes the Art. You acknowledge and agree that Sipher (or, as applicable, our licensors) owns all legal right, title and interest in and to all other elements of the App, and all intellectual property rights therein (including, without limitation, all Art, designs, names, copyrights, trademarks, patents, systems, methods, information, computer code, software, services, “look and feel”, organization, compilation of the content, code, data, and all other elements of the App (collectively, the “Sipher Materials”)). Other than expressly stated in these Terms, you do not have any other rights in the Sipher Materials. You acknowledge that the Sipher Materials are protected by, as applicable, copyright, trade dress, patent, and trademark laws, international conventions, other relevant intellectual property and proprietary rights, and applicable laws. All Sipher Materials are the copyrighted property of Sipher or its licensors, and all trademarks, service marks, and trade names associated with the App or otherwise contained in the Sipher Materials are proprietary to Sipher or its licensors. You may not use the Sipher name without our prior written consent. Except as expressly set forth herein, your use of the App does not grant you ownership of or any other rights with respect to any Art, content, code, data, or other Sipher Materials that you may access on or through the App. We reserve all rights in and to the Sipher Materials that are not expressly granted to you in these Terms. For the avoidance of doubt, you understand and agree:",
                 key: "ownership",
             },
             {
                 level: 3,
                 content:
-                    "That your acquisition or purchase of a Sipher Surge , whether via the App or otherwise, does not give you any rights or licenses in or to the Sipher Surge Materials (including, without limitation, our copyright in and to the associated Art or the Sipher Surge name/trademark) other than those expressly contained in these Terms.",
+                    "That your acquisition or purchase of a Sipher , whether via the App or otherwise, does not give you any rights or licenses in or to the Sipher Materials (including, without limitation, our copyright in and to the associated Art or the Sipher name/trademark) other than those expressly contained in these Terms.",
                 key: "weown",
             },
             {
                 level: 3,
                 content:
-                    "That you do not have the right, except as otherwise set forth in these Terms, to reproduce, distribute, or otherwise commercialize any elements of the Sipher Surge Materials (including, without limitation, any Art) without our prior written consent in each case, which consent we may withhold in our sole and absolute discretion",
+                    "That you do not have the right, except as otherwise set forth in these Terms, to reproduce, distribute, or otherwise commercialize any elements of the Sipher Materials (including, without limitation, any Art) without our prior written consent in each case, which consent we may withhold in our sole and absolute discretion",
                 key: "weown",
             },
             {
                 level: 3,
                 content:
-                    "That you will not apply for, register, or otherwise use or attempt to use any Sipher Surge trademarks or service marks, or any confusingly similar marks, anywhere in the world without our prior written consent in each case, which consent we may withhold in our sole and absolute discretion.",
+                    "That you will not apply for, register, or otherwise use or attempt to use any Sipher trademarks or service marks, or any confusingly similar marks, anywhere in the world without our prior written consent in each case, which consent we may withhold in our sole and absolute discretion.",
                 key: "weown",
             },
             {
@@ -126,7 +125,7 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "General Use. Subject to your full and continued compliance with these Terms, Sipher Surge grants you a limited worldwide, non-exclusive, non-transferable, royalty-free license to use, copy, and display the Art of your Purchased Sipher Surge solely for the following purposes:",
+                    "General Use. Subject to your full and continued compliance with these Terms, Sipher grants you a limited worldwide, non-exclusive, non-transferable, royalty-free license to use, copy, and display the Art of your Purchased Sipher solely for the following purposes:",
                 key: "license",
             },
             {
@@ -137,19 +136,19 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 3,
                 content:
-                    "As part of a marketplace that permits the purchase and sale of your Purchased Sipher Surge , provided that the marketplace cryptographically verifies each Sipher Surge owner’s rights to display the Art for their Purchased Sipher Surge to ensure that only the actual owner of the NFT can display the Art.",
+                    "As part of a marketplace that permits the purchase and sale of your Purchased Sipher , provided that the marketplace cryptographically verifies each Sipher owner’s rights to display the Art for their Purchased Sipher to ensure that only the actual owner of the NFT can display the Art.",
                 key: "generaluse",
             },
             {
                 level: 3,
                 content:
-                    "Or as part of a third party website or application that permits the inclusion, involvement, or participation of your Purchased Sipher Surge , provided that the website/application cryptographically verifies each Sipher Surge owner’s rights to display the Art for their Purchased Sipher Surge to ensure that only the actual owner of the NFT can display the Art, and provided that the Art is no longer visible once the owner of the Purchased Sipher Surge leaves or logs out of the applicable website/application.",
+                    "Or as part of a third party website or application that permits the inclusion, involvement, or participation of your Purchased Sipher , provided that the website/application cryptographically verifies each Sipher owner’s rights to display the Art for their Purchased Sipher to ensure that only the actual owner of the NFT can display the Art, and provided that the Art is no longer visible once the owner of the Purchased Sipher leaves or logs out of the applicable website/application.",
                 key: "generaluse",
             },
             {
                 level: 2,
                 content:
-                    "Non-digital Commercial Use. Subject to your continued compliance with these Terms, Sipher Surge grants you a limited, worldwide, non-exclusive, non-transferable license to use, copy, and display the Art for your Purchased Sipher Surge for the purpose of commercializing your own physical merchandise that includes, contains, or consists of the Art for your Purchased Sipher Surge (“Commercial Use”), provided that such Commercial Use does not.",
+                    "Non-digital Commercial Use. Subject to your continued compliance with these Terms, Sipher grants you a limited, worldwide, non-exclusive, non-transferable license to use, copy, and display the Art for your Purchased Sipher for the purpose of commercializing your own physical merchandise that includes, contains, or consists of the Art for your Purchased Sipher (“Commercial Use”), provided that such Commercial Use does not.",
                 key: "license",
             },
             {
@@ -160,7 +159,7 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 3,
                 content:
-                    "Or result in you earning more than USD$100,000 in gross revenue each year. In the event your Commercial Use exceeds USD$100,000 in a given year, you will need to enter into a commercial license with us. If you exceed the USD$100,000 limitation, you will be in breach of these Terms, and must contact Sipher Surge regarding entering into a broader license agreement (which will be in Sipher Surge ’s sole and absolute discretion). Without entering into a commercial license with us, you acknowledge and agree that:",
+                    "Or result in you earning more than USD$100,000 in gross revenue each year. In the event your Commercial Use exceeds USD$100,000 in a given year, you will need to enter into a commercial license with us. If you exceed the USD$100,000 limitation, you will be in breach of these Terms, and must contact Sipher regarding entering into a broader license agreement (which will be in Sipher ’s sole and absolute discretion). Without entering into a commercial license with us, you acknowledge and agree that:",
                 key: "nondigital",
             },
             {
@@ -171,13 +170,13 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 4,
                 content:
-                    "In addition to any remedies that may be available to Sipher Surge at law or in equity, Sipher Surge may immediately terminate the license granted above.",
+                    "In addition to any remedies that may be available to Sipher at law or in equity, Sipher may immediately terminate the license granted above.",
                 key: "orresult",
             },
             {
                 level: 4,
                 content:
-                    "And you will be liable and responsible to reimburse Sipher Surge for any costs and expenses incurred by Sipher Surge during the course of enforcing these Terms against you (including attorney and legal fees).",
+                    "And you will be liable and responsible to reimburse Sipher for any costs and expenses incurred by Sipher during the course of enforcing these Terms against you (including attorney and legal fees).",
                 key: "orresult",
             },
             {
@@ -188,43 +187,43 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "Modify the Art for your Purchased Sipher Surge in any way, including, without limitation, the shapes, designs, drawings, attributes, or color schemes.",
+                    "Modify the Art for your Purchased Sipher in any way, including, without limitation, the shapes, designs, drawings, attributes, or color schemes.",
                 key: "restrictions",
             },
             {
                 level: 2,
                 content:
-                    "Use the Art for your Purchased Sipher Surge to advertise, market, or sell any third party product or service.",
+                    "Use the Art for your Purchased Sipher to advertise, market, or sell any third party product or service.",
                 key: "restrictions",
             },
             {
                 level: 2,
                 content:
-                    "Use the Art for your Purchased Sipher Surge in connection with images, videos, or other forms of media that depict hatred, intolerance, violence, cruelty, or anything else that could reasonably be found to constitute hate speech or otherwise infringe upon the rights of others.",
+                    "Use the Art for your Purchased Sipher in connection with images, videos, or other forms of media that depict hatred, intolerance, violence, cruelty, or anything else that could reasonably be found to constitute hate speech or otherwise infringe upon the rights of others.",
                 key: "restrictions",
             },
             {
                 level: 2,
                 content:
-                    "Use the Art for your Purchased Sipher Surge in movies, videos, or any other forms of media, except to the limited extent that such use is expressly permitted in these Terms or solely for your own personal, non-commercial use.",
+                    "Use the Art for your Purchased Sipher in movies, videos, or any other forms of media, except to the limited extent that such use is expressly permitted in these Terms or solely for your own personal, non-commercial use.",
                 key: "restrictions",
             },
             {
                 level: 2,
                 content:
-                    "Sell, distribute for commercial gain (including, without limitation, giving away in the hopes of eventual commercial gain), or otherwise commercialize merchandise that includes, contains, or consists of the Art for your Purchased Sipher Surge , except as expressly permitted in these Terms.",
+                    "Sell, distribute for commercial gain (including, without limitation, giving away in the hopes of eventual commercial gain), or otherwise commercialize merchandise that includes, contains, or consists of the Art for your Purchased Sipher , except as expressly permitted in these Terms.",
                 key: "restrictions",
             },
             {
                 level: 2,
                 content:
-                    "Attempt to trademark, copyright, or otherwise acquire additional intellectual property rights in or to the Art for your Purchased Sipher Surge or",
+                    "Attempt to trademark, copyright, or otherwise acquire additional intellectual property rights in or to the Art for your Purchased Sipher or",
                 key: "restrictions",
             },
             {
                 level: 2,
                 content:
-                    "Otherwise utilize the Art for your Purchased Sipher Surge for your or any third party’s commercial benefit. To the extent that Art associated with your Purchased Sipher Surge contains Third Party IP (e.g., licensed intellectual property from a celebrity, athlete, or other public figure), you understand and agree as follows:",
+                    "Otherwise utilize the Art for your Purchased Sipher for your or any third party’s commercial benefit. To the extent that Art associated with your Purchased Sipher contains Third Party IP (e.g., licensed intellectual property from a celebrity, athlete, or other public figure), you understand and agree as follows:",
                 key: "restrictions",
             },
             {
@@ -241,19 +240,19 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 3,
                 content:
-                    "That, depending on the nature of the license granted from the owner of the Third Party IP, Sipher Surge may need to pass through additional restrictions on your ability to use the Art.",
+                    "That, depending on the nature of the license granted from the owner of the Third Party IP, Sipher may need to pass through additional restrictions on your ability to use the Art.",
                 key: "utilize",
             },
             {
                 level: 3,
                 content:
-                    "and to the extent that Sipher Surge informs you of such additional restrictions in writing (email being acceptable), you will be responsible for complying with all such restrictions from the date that you receive the notice, and that failure to do so will be deemed a breach of this license. For the avoidance of doubt, it is strictly prohibited and a violation of these Terms to use any Art or Purchased Sipher Surge in order to create a similar or derivative NFT based on the Art or Purchased Sipher Surge . Such use constitutes a violation of these Terms as well as intellectual property infringement, which would cause monetary damages and irreparable harm to Sipher Surge . The restrictions in this Section will survive the expiration or termination of these Terms.",
+                    "and to the extent that Sipher informs you of such additional restrictions in writing (email being acceptable), you will be responsible for complying with all such restrictions from the date that you receive the notice, and that failure to do so will be deemed a breach of this license. For the avoidance of doubt, it is strictly prohibited and a violation of these Terms to use any Art or Purchased Sipher in order to create a similar or derivative NFT based on the Art or Purchased Sipher . Such use constitutes a violation of these Terms as well as intellectual property infringement, which would cause monetary damages and irreparable harm to Sipher . The restrictions in this Section will survive the expiration or termination of these Terms.",
                 key: "utilize",
             },
             {
                 level: 1,
                 content: "Restrictions",
-                text: "The license granted in Section 3.C above applies only to the extent that you continue to Own the applicable Purchased Sipher Surge . If at any time you sell, trade, donate, give away, transfer, or otherwise dispose of your Purchased Sipher Surge for any reason, the license granted in Section 3.C will immediately expire with respect to you and that Sipher Surge without requiring notice, and you will have no further rights in or to the Art for that Sipher Surge.",
+                text: "The license granted in Section 3.C above applies only to the extent that you continue to Own the applicable Purchased Sipher . If at any time you sell, trade, donate, give away, transfer, or otherwise dispose of your Purchased Sipher for any reason, the license granted in Section 3.C will immediately expire with respect to you and that Sipher without requiring notice, and you will have no further rights in or to the Art for that Sipher.",
             },
             {
                 level: 1,
@@ -263,7 +262,7 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "Use of the Sipher Surge name. Not withstanding any contained in these Terms, You agree that you will not use the Sipher Surge name for any purpose without obtaining our prior written consent. Approval shall be determined in our sole discretion. Furthermore, non-response to a request for such approval shall not be deemed an approval.",
+                    "Use of the Sipher name. Not withstanding any contained in these Terms, You agree that you will not use the Sipher name for any purpose without obtaining our prior written consent. Approval shall be determined in our sole discretion. Furthermore, non-response to a request for such approval shall not be deemed an approval.",
             },
             {
                 level: 1,
@@ -361,12 +360,12 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "Any final acquisition, purchase, trade, or sale of Sipher Surge will be conducted solely through the Ethereum network, though the Site may serve as a platform that facilitates such transactions. We have no control over these transactions as or once they occur, nor do we have the ability to reverse any transactions. You agree that we will have no liability to you or to any third party for any claims or damages that may arise as a result of any transactions pertaining to the Smart Contracts, or any other transactions that conducted via the Ethereum network.",
+                    "Any final acquisition, purchase, trade, or sale of Sipher will be conducted solely through the Ethereum network, though the Site may serve as a platform that facilitates such transactions. We have no control over these transactions as or once they occur, nor do we have the ability to reverse any transactions. You agree that we will have no liability to you or to any third party for any claims or damages that may arise as a result of any transactions pertaining to the Smart Contracts, or any other transactions that conducted via the Ethereum network.",
             },
             {
                 level: 1,
                 content:
-                    "We may require you to provide additional information and documents at the request of any competent authority or in case of application of any applicable law or regulation, including laws related to anti-laundering (legalization) of incomes obtained by criminal means, or for counteracting financing of terrorism. Sipher Surge may also require you to provide additional information and documents in cases where it has reasons to believe that:",
+                    "We may require you to provide additional information and documents at the request of any competent authority or in case of application of any applicable law or regulation, including laws related to anti-laundering (legalization) of incomes obtained by criminal means, or for counteracting financing of terrorism. Sipher may also require you to provide additional information and documents in cases where it has reasons to believe that:",
             },
             {
                 level: 2,
@@ -382,13 +381,13 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "And/or transactions effected by you were effected in breach of these Terms. In such cases, Sipher Surge, in its sole discretion, may pause or cancel your transactions until such additional information and documents are reviewed by us and accepted as satisfying the requirements of applicable law. If you do not provide complete and accurate information and documents in response to such a request, Sipher Surge may refuse to provide you with further access to the Site and/or the App.",
+                    "And/or transactions effected by you were effected in breach of these Terms. In such cases, Sipher, in its sole discretion, may pause or cancel your transactions until such additional information and documents are reviewed by us and accepted as satisfying the requirements of applicable law. If you do not provide complete and accurate information and documents in response to such a request, Sipher may refuse to provide you with further access to the Site and/or the App.",
                 key: "wemayrequire",
             },
             {
                 level: 1,
                 content:
-                    "Ethereum requires the payment of a transaction fee (a “Gas Fee”) for every transaction that occurs on the Ethereum network. You will be solely responsible to pay any and all sales, use, value-added and other taxes, duties, and assessments (except taxes on our net income) now or hereafter claimed or imposed by any governmental authority (collectively, “Taxes”) associated with your use of the App (including, without limitation, any Taxes that may become payable as the result of your ownership or transfer of any of your Sipher Surge). Except for income taxes levied on Sipher Surge , you.",
+                    "Ethereum requires the payment of a transaction fee (a “Gas Fee”) for every transaction that occurs on the Ethereum network. You will be solely responsible to pay any and all sales, use, value-added and other taxes, duties, and assessments (except taxes on our net income) now or hereafter claimed or imposed by any governmental authority (collectively, “Taxes”) associated with your use of the App (including, without limitation, any Taxes that may become payable as the result of your ownership or transfer of any of your Sipher). Except for income taxes levied on Sipher , you.",
             },
             {
                 level: 2,
@@ -415,7 +414,7 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "You expressly understand and agree that your access to and use of the app is at your sole risk, and that the app is provided “as is” and “as available” without warranties of any kind, whether express or implied. To the fullest extent permissible pursuant to applicable law, Sipher surge , our subsidiaries, affiliates, and licensors make no express warranties and hereby disclaim all implied warranties regarding the app and any part of it (including, without limitation, the site, any smart contract, or any external websites), including the implied warranties of merchantability, fitness for a particular purpose, non-infringement, correctness, accuracy, or reliability. Without limiting the generality of the foregoing, Sipher surge , our subsidiaries, affiliates, and licensors do not represent or warrant to you that:",
+                    "You expressly understand and agree that your access to and use of the app is at your sole risk, and that the app is provided “as is” and “as available” without warranties of any kind, whether express or implied. To the fullest extent permissible pursuant to applicable law, Sipher , our subsidiaries, affiliates, and licensors make no express warranties and hereby disclaim all implied warranties regarding the app and any part of it (including, without limitation, the site, any smart contract, or any external websites), including the implied warranties of merchantability, fitness for a particular purpose, non-infringement, correctness, accuracy, or reliability. Without limiting the generality of the foregoing, Sipher , our subsidiaries, affiliates, and licensors do not represent or warrant to you that:",
             },
             {
                 level: 2,
@@ -448,22 +447,22 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "You accept the inherent security risks of providing information and dealing online over the internet and agree that Sipher surge has no liability or responsibility for any breach of security unless it is due to our gross negligence.",
+                    "You accept the inherent security risks of providing information and dealing online over the internet and agree that Sipher has no liability or responsibility for any breach of security unless it is due to our gross negligence.",
             },
             {
                 level: 1,
                 content:
-                    "Sipher surge will not be responsible or liable to you for any losses you incur as the result of your use of the ethereum network or any ethereum wallet or other electronic wallet, including but not limited to any losses, damages or claims arising from: (i) user error, such as forgotten passwords or incorrectly construed smart contracts or other transactions; (ii) server failure or data loss; (iii) corrupted wallet files; or (iv) unauthorized access or activities by third parties, including but not limited to the use of viruses, phishing, bruteforcing or other means of attack against the app, ethereum network, or any ethereum wallet or other electronic wallet.",
+                    "Sipher will not be responsible or liable to you for any losses you incur as the result of your use of the ethereum network or any ethereum wallet or other electronic wallet, including but not limited to any losses, damages or claims arising from: (i) user error, such as forgotten passwords or incorrectly construed smart contracts or other transactions; (ii) server failure or data loss; (iii) corrupted wallet files; or (iv) unauthorized access or activities by third parties, including but not limited to the use of viruses, phishing, bruteforcing or other means of attack against the app, ethereum network, or any ethereum wallet or other electronic wallet.",
             },
             {
                 level: 1,
                 content:
-                    "Sipher surge are intangible digital assets that exist only by virtue of the ownership record maintained in the ethereum network. All smart contracts are conducted and occur on the decentralized ledger within the ethereum platform. We have no control over and make no guarantees or promises with respect to smart contracts.",
+                    "Sipher are intangible digital assets that exist only by virtue of the ownership record maintained in the ethereum network. All smart contracts are conducted and occur on the decentralized ledger within the ethereum platform. We have no control over and make no guarantees or promises with respect to smart contracts.",
             },
             {
                 level: 1,
                 content:
-                    "Sipher surge is not responsible for losses due to blockchains or any other features of the ethereum network or any ethereum wallet or other electronic wallet, including but not limited to late report by developers or representatives (or no report at all) of any issues with the blockchain supporting the ethereum network, including forks, technical node issues, or any other issues having fund losses as a result.",
+                    "Sipher is not responsible for losses due to blockchains or any other features of the ethereum network or any ethereum wallet or other electronic wallet, including but not limited to late report by developers or representatives (or no report at all) of any issues with the blockchain supporting the ethereum network, including forks, technical node issues, or any other issues having fund losses as a result.",
             },
         ],
     },
@@ -473,7 +472,7 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "You understand and agree that Sipher surge , our subsidiaries, affiliates, and licensors will not be liable to you or to any third party for any indirect, incidental, special, consequential, or exemplary damages which you may incur, howsoever caused and under any theory of liability, including, without limitation, any loss of profits (whether incurred directly or indirectly), loss of goodwill or business reputation, loss of data, cost of procurement of substitute goods or services, or any other intangible loss, even if Sipher surge has been advised of the possibility of such damages.",
+                    "You understand and agree that Sipher , our subsidiaries, affiliates, and licensors will not be liable to you or to any third party for any indirect, incidental, special, consequential, or exemplary damages which you may incur, howsoever caused and under any theory of liability, including, without limitation, any loss of profits (whether incurred directly or indirectly), loss of goodwill or business reputation, loss of data, cost of procurement of substitute goods or services, or any other intangible loss, even if Sipher has been advised of the possibility of such damages.",
             },
             {
                 level: 1,
@@ -494,7 +493,7 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "You acknowledge and agree that Sipher surge has made the app available to you and entered into these terms in reliance upon the warranty disclaimers and limitations of liability set forth herein, which reflect a reasonable and fair allocation of risk between the parties and form an essential basis of the bargain between us. Sipher surge would not be able to provide the app to you without these limitations.",
+                    "You acknowledge and agree that Sipher has made the app available to you and entered into these terms in reliance upon the warranty disclaimers and limitations of liability set forth herein, which reflect a reasonable and fair allocation of risk between the parties and form an essential basis of the bargain between us. Sipher would not be able to provide the app to you without these limitations.",
             },
             {
                 level: 1,
@@ -510,43 +509,43 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "The prices of blockchain assets and cryptocurrencies are extremely volatile. Fluctuations in the price of other digital assets could materially and adversely affect the value of your Sipher Surge, which may also be subject to significant price volatility. We cannot guarantee that any purchasers of Sipher Surge will not lose money.",
+                    "The prices of blockchain assets and cryptocurrencies are extremely volatile. Fluctuations in the price of other digital assets could materially and adversely affect the value of your Sipher, which may also be subject to significant price volatility. We cannot guarantee that any purchasers of Sipher will not lose money.",
             },
             {
                 level: 1,
                 content:
-                    "You are solely responsible for determining what, if any, taxes apply to your Sipher Surge -related transactions. Sipher Surge is not responsible for determining the taxes that apply to any of your transactions.",
+                    "You are solely responsible for determining what, if any, taxes apply to your Sipher -related transactions. Sipher is not responsible for determining the taxes that apply to any of your transactions.",
             },
             {
                 level: 1,
                 content:
-                    "The App does not store, send, or receive Sipher Surge. Sipher Surge exist only by virtue of the ownership record maintained on the blockchain in the Ethereum network. Any transfer of Sipher Surge occurs within the supporting blockchain in the Ethereum network.",
+                    "The App does not store, send, or receive Sipher. Sipher exist only by virtue of the ownership record maintained on the blockchain in the Ethereum network. Any transfer of Sipher occurs within the supporting blockchain in the Ethereum network.",
             },
             {
                 level: 1,
                 content:
-                    "There are risks associated with using an Internet-based currency, including, but not limited to, the risk of hardware, software and Internet connections, the risk of malicious software introduction, and the risk that third parties may obtain unauthorized access to information stored within your wallet. You accept and acknowledge that Sipher Surge will not be responsible for any communication failures, disruptions, errors, distortions or delays you may experience when using the Ethereum network, however caused.",
+                    "There are risks associated with using an Internet-based currency, including, but not limited to, the risk of hardware, software and Internet connections, the risk of malicious software introduction, and the risk that third parties may obtain unauthorized access to information stored within your wallet. You accept and acknowledge that Sipher will not be responsible for any communication failures, disruptions, errors, distortions or delays you may experience when using the Ethereum network, however caused.",
             },
             {
                 level: 1,
                 content:
-                    "A lack of use or public interest in the creation and development of distributed ecosystems could negatively impact the Sipher Surge ecosystem, and therefore the potential utility or value of Sipher Surge.",
+                    "A lack of use or public interest in the creation and development of distributed ecosystems could negatively impact the Sipher ecosystem, and therefore the potential utility or value of Sipher.",
             },
             {
                 level: 1,
                 content:
-                    "The regulatory regime governing blockchain technologies, cryptocurrencies, and tokens is uncertain, and new regulations or policies may materially adversely affect the Sipher Surge’ ecosystem, and therefore the potential utility or value of Sipher Surge.",
+                    "The regulatory regime governing blockchain technologies, cryptocurrencies, and tokens is uncertain, and new regulations or policies may materially adversely affect the Sipher’ ecosystem, and therefore the potential utility or value of Sipher.",
             },
             {
                 level: 1,
                 content:
-                    "Upgrades by Ethereum to the Ethereum platform, a hard fork in the Ethereum platform, or a change in how transactions are confirmed on the Ethereum platform may have unintended, adverse effects on all blockchains using the ERC-20 standard, including the Sipher Surge ’ ecosystem.",
+                    "Upgrades by Ethereum to the Ethereum platform, a hard fork in the Ethereum platform, or a change in how transactions are confirmed on the Ethereum platform may have unintended, adverse effects on all blockchains using the ERC-20 standard, including the Sipher ’ ecosystem.",
             },
         ],
     },
     {
         title: "Indemnity",
-        text: "You shall defend, indemnify and hold harmless Sipher Surge and its subsidiaries, affiliates, officers, agents, employees, advertisers, licensors, suppliers or partners from and against any claim, liability, loss, damage (actual and consequential) of any kind or nature, suit, judgment, litigation cost, and attorneys’ fees arising out of or in any way related to",
+        text: "You shall defend, indemnify and hold harmless Sipher and its subsidiaries, affiliates, officers, agents, employees, advertisers, licensors, suppliers or partners from and against any claim, liability, loss, damage (actual and consequential) of any kind or nature, suit, judgment, litigation cost, and attorneys’ fees arising out of or in any way related to",
         chapters: [
             {
                 level: 1,
@@ -559,7 +558,7 @@ export const termAndCondition: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "Misappropriation or infringement by you, of any intellectual property rights or other right of Sipher Surge , or any person or entity.",
+                    "Misappropriation or infringement by you, of any intellectual property rights or other right of Sipher , or any person or entity.",
             },
             {
                 level: 1,
@@ -580,12 +579,12 @@ export const termAndCondition: TermAndConditionItem[] = [
     },
     {
         title: "Change To The Term",
-        text: "We reserve the right, at our sole discretion, to modify or replace any of the Terms or to change, suspend or discontinue the App or Site at any time, by posting a notice on the Site or by sending you an email. We may also impose limits on certain features and services or restrict your access to parts or all of the App or Site without notice or liability, including, without limitation, by prohibiting you from selling your Sipher Surge through the App. It is your responsibility to check these Terms periodically for changes. You can determine if any changes were made to these Terms by noting the date that these Terms were last updated. Your continued use of the App or Site following the posting of any changes to the Terms constitutes acceptance of those changes.",
+        text: "We reserve the right, at our sole discretion, to modify or replace any of the Terms or to change, suspend or discontinue the App or Site at any time, by posting a notice on the Site or by sending you an email. We may also impose limits on certain features and services or restrict your access to parts or all of the App or Site without notice or liability, including, without limitation, by prohibiting you from selling your Sipher through the App. It is your responsibility to check these Terms periodically for changes. You can determine if any changes were made to these Terms by noting the date that these Terms were last updated. Your continued use of the App or Site following the posting of any changes to the Terms constitutes acceptance of those changes.",
         chapters: [],
     },
     {
         title: "Change To The App",
-        text: "You acknowledge and agree that the form and nature of the App, and any part of it, may change from time to time without prior notice to you, and that we may add new features and change any part of the App at any time without notice. We also reserve the right to shut down the App in our sole discretion. Shutting down the App will not prohibit you from transferring, buying or selling your Purchased Sipher Surge on another website or application.",
+        text: "You acknowledge and agree that the form and nature of the App, and any part of it, may change from time to time without prior notice to you, and that we may add new features and change any part of the App at any time without notice. We also reserve the right to shut down the App in our sole discretion. Shutting down the App will not prohibit you from transferring, buying or selling your Purchased Sipher on another website or application.",
         chapters: [],
     },
     {
