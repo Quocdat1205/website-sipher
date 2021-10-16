@@ -19,7 +19,7 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
   const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
-  const isIOS = false//isIos || isIpad || isIphone || isSafari;
+  const isIOS = isIos || isIpad || isIphone || isSafari;
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
   unityContext.on("loaded", () => setInitialLoading(false));
   const ctnRef = useRef<HTMLDivElement>(null);
@@ -50,19 +50,19 @@ const Hero = ({ uaString }) => {
         <PlayScreen />
       </Flex>
       {isIOS ? (
-                <Flex align="center" justify="center" pos="fixed" top={0} left={0} h="full" w="full">
-                    <Img
-                        src="/images/pc/home/NEKO_3D.png"
-                        alt="sipher-logo"
-                        w="full"
-                        maxW={["36rem", "36rem", "36rem", "40rem", "44rem"]}
-                    />
-                </Flex>
-            ) : (
-                <Box pos="fixed" top={0} left={0} h="full" w="full">
-                    <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-                </Box>
-            )}
+        <Flex align="center" justify="center" pos="fixed" top={0} left={0} h="full" w="full">
+          <Img
+            src="/images/pc/home/NEKO_3D.png"
+            alt="sipher-logo"
+            w="full"
+            maxW={["36rem", "36rem", "36rem", "40rem", "44rem"]}
+          />
+        </Flex>
+      ) : (
+        <Box pos="fixed" top={0} left={0} h="full" w="full">
+          <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
+        </Box>
+      )}
     </Box>
   );
 };
