@@ -30,7 +30,12 @@ const PopupCard = ({}: Props) => {
       onClose={() => router.push("news", undefined, { scroll: false })}
     >
       <ModalOverlay bg="blackAlpha.900" />
-      <ModalContent my={["0", "3.75rem"]} maxW="64rem" h={["100%", "auto"]} overflow="hidden">
+      <ModalContent
+        my={["0", `${details && details.type === "medium" ? "0" : "3.75rem"}`]}
+        maxW="64rem"
+        h={["100%", "auto"]}
+        overflow="hidden"
+      >
         <ModalBody pos="relative" overflow="hidden" h="100%" w="100%" p={0} bg="about.cardGray">
           <ModalCloseButton
             zIndex={1}
