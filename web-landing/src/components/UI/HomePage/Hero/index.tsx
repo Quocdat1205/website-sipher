@@ -8,6 +8,7 @@ import { MouseEvent, useEffect, useRef } from "react";
 import CountDownScreen from "./CountDownScreen";
 import PlayScreen from "./PlayScreen";
 import PlayForJoyScreen from "./PlayForJoyScreen";
+import { useUserAgent } from "next-useragent";
 
 export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"];
 
@@ -17,7 +18,9 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-
+  const { isIos, isIpad, isIphone, isSafari } = useUserAgent( window.navigator.userAgent);
+  const isIOS = isIos || isIpad || isIphone || isSafari ;
+  
   const ctnRef = useRef<HTMLDivElement>(null);
   const handleMouseWheel = () => {
     if (ctnRef.current) unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);

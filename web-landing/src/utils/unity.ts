@@ -1,9 +1,6 @@
 import { UnityContext } from "react-unity-webgl"
 import { isMobile,isSafari } from "react-device-detect"
-// import { useUserAgent } from "next-useragent";
 
-// const { isIos, isIpad, isIphone, isSafari } = useUserAgent( window.navigator.userAgent);
-// const isIOS = isIos || isIpad || isIphone || isSafari || isMobile;
 
 export const unityContext = (isMobile || isSafari)
     ? new UnityContext({
