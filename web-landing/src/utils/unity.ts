@@ -1,7 +1,11 @@
 import { UnityContext } from "react-unity-webgl"
-import { isMobile } from "react-device-detect"
+import { isMobile,isSafari } from "react-device-detect"
+// import { useUserAgent } from "next-useragent";
 
-export const unityContext = isMobile
+// const { isIos, isIpad, isIphone, isSafari } = useUserAgent( window.navigator.userAgent);
+// const isIOS = isIos || isIpad || isIphone || isSafari || isMobile;
+
+export const unityContext = (isMobile || isSafari)
     ? new UnityContext({
           loaderUrl: "/unity/mobile.loader.js",
           dataUrl: "/unity/mobile.data",
