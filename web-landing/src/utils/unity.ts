@@ -13,10 +13,10 @@ export const unityContext = isMobile
           },
       })
     : new UnityContext({
-          loaderUrl: "/unity/noscroll.loader.js",
-          dataUrl: "/unity/noscroll.data",
-          frameworkUrl: "/unity/noscroll.framework.js",
-          codeUrl: "/unity/noscroll.wasm",
+          loaderUrl: "/unity/unity11.loader.js",
+          dataUrl: "/unity/unity11.data",
+          frameworkUrl: "/unity/unity11.framework.js",
+          codeUrl: "/unity/unity11.wasm",
           webglContextAttributes: {
               powerPreference: "low-power",
               preserveDrawingBuffer: true,
