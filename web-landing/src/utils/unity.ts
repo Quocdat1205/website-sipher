@@ -13,10 +13,10 @@ export const unityContext = isMobile
           },
       })
     : new UnityContext({
-          loaderUrl: "/unity/unity11.loader.js",
-          dataUrl: "/unity/unity11.data",
-          frameworkUrl: "/unity/unity11.framework.js",
-          codeUrl: "/unity/unity11.wasm",
+          loaderUrl: "/unity/gz.loader.js",
+          dataUrl: "/unity/gz.data.gz",
+          frameworkUrl: "/unity/gz.framework.js.gz",
+          codeUrl: "/unity/gz.wasm.gz",
           webglContextAttributes: {
               powerPreference: "low-power",
               preserveDrawingBuffer: true,
