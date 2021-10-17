@@ -1,5 +1,3 @@
-// 
-
 import { Box, Flex, Img } from "@chakra-ui/react";
 import unityContext from "src/utils/unity";
 import { useStoreActions } from "@store";
@@ -21,8 +19,10 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-  
   const ctnRef = useRef<HTMLDivElement>(null);
+  const handleMouseWheel = () => {
+    if (ctnRef.current) unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);
+  };
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
     unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth);
@@ -32,8 +32,13 @@ const Hero = ({ uaString }) => {
     unityContext.on("loaded", () => setInitialLoading(false));
   }, [setInitialLoading]);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleMouseWheel);
+    return () => window.removeEventListener("scroll", handleMouseWheel);
+  }, []);
+
   return (
-    <Box pos="relative" zIndex={0} overflowX="hidden" ref={ctnRef} id="hero">
+    <Box pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove} ref={ctnRef} id="hero">
       <Flex direction="column" w="full">
         <FirstScreen />
         <CountDownScreen />
@@ -41,9 +46,9 @@ const Hero = ({ uaString }) => {
         <PlayForJoyScreen />
         <PlayScreen />
       </Flex>
-        <Box pos="fixed" top={0} left={0} h="full" w="full">
-          <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-        </Box>
+      <Box pos="fixed" top={0} left={0} h="full" w="full">
+        <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
+      </Box>
     </Box>
   );
 };
