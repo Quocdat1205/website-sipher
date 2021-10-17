@@ -2,13 +2,13 @@ const content = [
     {
         name: "Sipherian surge",
         completed: true,
-        date: "August 2021",
+        date: "September 2021",
         content: ["Sipher Inu 10,000 Playable Character", "Launch of Sipherian Laboratory", "Social & Marketing"],
     },
     {
         name: "Sipherian Flash",
         completed: true,
-        date: "September 2021",
+        date: "October 2021",
         content: ["Sipher Neko - 10,000 Playable Character", "Spaceship Loot"],
     },
     {

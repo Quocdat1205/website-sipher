@@ -37,8 +37,6 @@ const Careers = ({}: CareesProps) => {
                         <FlagImage srcImg="/images/flags/sing.png" />
                         <FlagImage srcImg="/images/flags/rico.png" />
                         <FlagImage srcImg="/images/flags/philip.png" />
-                        <FlagImage srcImg="/images/flags/us.png" />
-                        <FlagImage srcImg="/images/flags/us.png" />
                         <FlagImage srcImg="/images/flags/germany.png" />
                         <FlagImage srcImg="/images/flags/canada.png" />
                     </Typo.Text>
