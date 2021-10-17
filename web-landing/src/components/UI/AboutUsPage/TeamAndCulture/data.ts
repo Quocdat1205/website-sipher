@@ -20,9 +20,9 @@ export const personLead: PersonCardProps[] = [
 
 export const personEmployee: PersonCardProps[] = [
   {
-    name: "Nghia Nguyen",
-    job: "Head of Community & NFTs",
-    srcImg: "/images/avatars/4.png",
+    name: "Hai Nguyen",
+    job: "Art Director",
+    srcImg: "/images/avatars/30.png",
   },
   {
     name: "Alain Dinh",
@@ -35,9 +35,9 @@ export const personEmployee: PersonCardProps[] = [
     srcImg: "/images/avatars/6.png",
   },
   {
-    name: "Joel Colon",
-    job: "Strategist",
-    srcImg: "/images/avatars/7.png",
+    name: "Nghia Nguyen",
+    job: "Head of Community & NFTs",
+    srcImg: "/images/avatars/4.png",
   },
   {
     name: "Duc Ho",
@@ -111,14 +111,19 @@ export const personEmployee: PersonCardProps[] = [
     srcImg: "/images/avatars/21.png",
   },
   {
-    name: "Khai Huynh",
-    job: "Marketing Lead",
-    srcImg: "/images/avatars/22.png",
+    name: "Joel Colon",
+    job: "Strategist",
+    srcImg: "/images/avatars/7.png",
   },
   {
     name: "Vi Truong",
     job: "Marketing Support",
     srcImg: "/images/avatars/23.png",
+  },
+  {
+    name: "Khai Huynh",
+    job: "Marketing Lead",
+    srcImg: "/images/avatars/22.png",
   },
   {
     name: "Song Nguyen",
@@ -149,11 +154,6 @@ export const personEmployee: PersonCardProps[] = [
     name: "Lam Phung",
     job: "3D Artist Lead",
     srcImg: "/images/avatars/29.png",
-  },
-  {
-    name: "Hai Nguyen",
-    job: "Art Director",
-    srcImg: "/images/avatars/30.png",
   },
   {
     name: "Anh Tran",
@@ -206,3 +206,4 @@ export const personEmployee: PersonCardProps[] = [
     srcImg: "/images/avatars/40.png",
   },
 ];
+// comment

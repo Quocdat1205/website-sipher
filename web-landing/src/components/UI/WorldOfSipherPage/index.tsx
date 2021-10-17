@@ -66,7 +66,7 @@ const WorldOfSipherUI = () => {
             <BlockchainContent />
           )}
         </MainContent>
-        <LinkButton text="View The Sipher Atlas" href="https://discord.com/invite/dRqdSxUSmd" size="large" mt={8} />
+        <LinkButton text="View The Sipher Atlas" href="https://t.ly/sipheratlas" size="large" mt={8} />
       </Flex>
     </BackgroundContainer>
   );

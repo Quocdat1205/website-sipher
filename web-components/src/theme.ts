@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react"
 
+// ??? ???
 export const theme = extendTheme({
     colors: {
         main: {
@@ -65,6 +66,10 @@ export const theme = extendTheme({
             ".motion-container": {
                 overflow: "hidden",
                 height: "100%",
+            },
+            "video::-webkit-media-controls-start-playback-button": {
+                display: "none !important",
+                "-webkit-appearance": "none",
             },
         },
     },

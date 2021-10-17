@@ -51,21 +51,35 @@ const AmountScreen = () => {
     let generateContent = () => {
         return (
             <>
-                <Typo.Text>
+                <Typo.Text
+                    sx={{
+                        textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                    }}
+                >
                     {p1.split("").map((char, i) => (
                         <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
                             {char}
                         </motion.span>
                     ))}
                 </Typo.Text>
-                <Typo.Text mt={4} fontWeight="bold">
+                <Typo.Text
+                    mt={4}
+                    fontWeight="bold"
+                    sx={{
+                        textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                    }}
+                >
                     {p2.split("").map((char, i) => (
                         <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i + p1.length}>
                             {char}
                         </motion.span>
                     ))}
                 </Typo.Text>
-                <Typo.Text>
+                <Typo.Text
+                    sx={{
+                        textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                    }}
+                >
                     {p3.split("").map((char, i) => (
                         <motion.span
                             key={i}
@@ -77,7 +91,13 @@ const AmountScreen = () => {
                         </motion.span>
                     ))}
                 </Typo.Text>
-                <Typo.Text mt={4} fontWeight="bold">
+                <Typo.Text
+                    mt={4}
+                    fontWeight="bold"
+                    sx={{
+                        textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                    }}
+                >
                     {p4.split("").map((char, i) => (
                         <motion.span
                             key={i}
@@ -89,7 +109,11 @@ const AmountScreen = () => {
                         </motion.span>
                     ))}
                 </Typo.Text>
-                <Typo.Text>
+                <Typo.Text
+                    sx={{
+                        textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                    }}
+                >
                     {p5.split("").map((char, i) => (
                         <motion.span
                             key={i}
@@ -161,7 +185,13 @@ const AmountScreen = () => {
                         animate={textControl}
                         transition={{ duration: 0.5 }}
                     >
-                        <Typo.BoldText textTransform="uppercase" mb={2}>
+                        <Typo.BoldText
+                            textTransform="uppercase"
+                            mb={2}
+                            sx={{
+                                textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                            }}
+                        >
                             {`Beautifully handcrafted Nekos`}
                         </Typo.BoldText>
                         {generateContent()}

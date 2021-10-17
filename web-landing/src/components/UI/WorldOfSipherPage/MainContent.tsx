@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Stack, VStack } from "@chakra-ui/react"
+import { Box, Flex, Img, Stack, VStack } from "@chakra-ui/react"
 import WorldMenu, { WorldMenuId } from "./MenuWorld"
 import React from "react"
 import { Typo } from "@components/shared"
@@ -35,7 +35,7 @@ const MainContent = ({
                     <WorldMenu currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </VStack>
                 <Box flex={1}>
-                    <Image w="full" src={srcImg} alt={headline} />
+                    <Img w="full" src={srcImg} alt={headline} />
                 </Box>
             </Stack>
             <Box>{children}</Box>

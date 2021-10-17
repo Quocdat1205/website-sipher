@@ -1,7 +1,6 @@
 import { Center, Flex, VStack } from "@chakra-ui/react"
 import { BackgroundContainer, LinkButton } from "@components/shared"
 import JoinTheCommunity from "./JoinTheCommunity"
-import Backers from "./Backers"
 import NekoTeaser from "./NekoTeaser"
 import Hero from "./Hero"
 import BehindTheScenes from "./BehindTheScenes"
@@ -29,11 +28,11 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                 py={24}
             >
                 <VStack spacing={24} align="center" w="full">
-                    <NekoTeaser />
+                    <NekoTeaser uaString={uaString} />
                     <DigitalCharacters />
                     <WhatIsSipher />
                     <OwnerBenefits />
-                    <Backers />
+                    {/* <Backers /> */}
                     <BehindTheScenes />
                 </VStack>
                 <Center
@@ -50,12 +49,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <JoinTheCommunity />
                 </Center>
 
-                <LinkButton
-                    size="large"
-                    text="Join Our Discord Community"
-                    href="https://discord.com/invite/dRqdSxUSmd"
-                    mt={8}
-                />
+                <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/sipherxyz" mt={8} />
             </Flex>
         </BackgroundContainer>
     )

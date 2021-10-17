@@ -1,76 +1,45 @@
 // * DESCRIPTION:
 
-import { Flex } from "@chakra-ui/react"
+import { Flex, UnorderedList, ListItem } from "@chakra-ui/react"
 import { BackgroundContainer, LinkButton, TextContainer, Typo } from "@components/shared"
 import FlagImage from "./FlagImage"
 
 interface CareesProps {}
+const intro =
+    "Sipher was born from the pure passion for games and the desire to embrace blockchain technology to bring about disruptive innovation in the Gaming & Entertainment Space. We will serve our users through three main pillars:"
+const items = [
+    "A user experience focused approach based on a genuine passion for gaming and entertainment experiences.",
+    "An open and education friendly approach inclusive to users of all levels of technical knowledge, to introduce blockchain’s ethos and unique benefits.",
+    "A sustainable revenue-based model based on sound financial foundations.",
+]
+const sub =
+    "Our founding team is based in Ho Chi Minh, Vietnam yet we are an international bunch with fully remote roles, with background from "
 
 const Careers = ({}: CareesProps) => {
     return (
         <BackgroundContainer>
             <Flex direction="column" align="center" px={4} py={24} w="full">
                 <TextContainer headline="CAREERS">
-                    <Flex
-                        sx={{
-                            "@media (max-width: 680px)": {
-                                display: "none",
-                            },
-                        }}
-                        flexDir="column"
-                        textAlign="center"
-                        alignItems="center"
-                    >
-                        <Typo.Text>Team Organisation</Typo.Text>
-                        <Flex flexWrap="wrap" alignItems="center" as="span">
-                            <Typo.Text>{`- Founding team is based in Ho Chi Minh, Vietnam`}</Typo.Text>
-                            <FlagImage srcImg="/images/flags/vn.png" />
-                        </Flex>
-                        <Flex flexWrap="wrap" justifyContent="center" alignItems="center" as="span">
-                            <Typo.Text>{`- Team spread across Vietnam`}</Typo.Text>
-                            <FlagImage srcImg="/images/flags/vn.png" />
-                            <Typo.Text>, US</Typo.Text>
-                            <FlagImage srcImg="/images/flags/us.png" />
-                            <Typo.Text>, Europe</Typo.Text>
-                            <FlagImage srcImg="/images/flags/euro.png" />
-                            <Typo.Text>, Singpore</Typo.Text>
-                            <FlagImage srcImg="/images/flags/sing.png" />
-                            <Typo.Text>, Phillipines</Typo.Text>
-                            <FlagImage srcImg="/images/flags/philip.png" />
-                            <Typo.Text>, Puerto Rico</Typo.Text>
-                            <FlagImage srcImg="/images/flags/rico.png" />
-                            <Typo.Text>, Indonesia</Typo.Text>
-                            <FlagImage srcImg="/images/flags/indo.png" />
-                        </Flex>
-                        <Flex flexWrap="wrap" alignItems="center" as="span">
-                            <Typo.Text>{`- Art team is in VN`}</Typo.Text>
-                            <FlagImage srcImg="/images/flags/vn.png" />
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        sx={{
-                            "@media (min-width: 680px)": {
-                                display: "none",
-                            },
-                        }}
-                        flexDir="column"
-                        textAlign="center"
-                        alignItems="center"
-                    >
-                        <Typo.Text>Team Organisation</Typo.Text>
-                        <Typo.Text>{`- Founding team is based in Ho Chi Minh, Vietnam`}</Typo.Text>
-                        <Typo.Text>
-                            {`- Team spread across VietNam, US, Europe, Singpore, Phillipines, Puerto Rico, Indonesia`}
-                        </Typo.Text>
-                        <Typo.Text>{`- Art team is in VN`}</Typo.Text>
-                    </Flex>
-                    <Flex w="full" justify="center" mt={8}>
-                        <LinkButton
-                            text="Join Us At Sipher"
-                            href="https://www.notion.so/sipherhq/Join-us-at-Sipher-1357e774e38d432bb7d06078a99b43e7"
-                            size="large"
-                        />
-                    </Flex>
+                    <Typo.Text>{intro}</Typo.Text>
+                    <UnorderedList>
+                        {items.map(item => (
+                            <ListItem key={item}>
+                                <Typo.Text>{item}</Typo.Text>
+                            </ListItem>
+                        ))}
+                    </UnorderedList>
+                    <Typo.Text>
+                        {sub}
+                        <FlagImage srcImg="/images/flags/us.png" />
+                        <FlagImage srcImg="/images/flags/vn.png" />
+                        <FlagImage srcImg="/images/flags/euro.png" />
+                        <FlagImage srcImg="/images/flags/indo.png" />
+                        <FlagImage srcImg="/images/flags/sing.png" />
+                        <FlagImage srcImg="/images/flags/rico.png" />
+                        <FlagImage srcImg="/images/flags/philip.png" />
+                        <FlagImage srcImg="/images/flags/germany.png" />
+                        <FlagImage srcImg="/images/flags/canada.png" />
+                    </Typo.Text>
                 </TextContainer>
             </Flex>
         </BackgroundContainer>
