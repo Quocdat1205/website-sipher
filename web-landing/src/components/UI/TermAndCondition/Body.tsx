@@ -67,7 +67,6 @@ const HomeBody = ({}: HomeBodyProps) => {
                                 key={paragraph.content}
                                 headline={paragraph.content}
                                 type={paragraph.level === 0 ? "1" : paragraph.level === 1 ? "decimal" : "lower-alpha"}
-                                fontSize="md"
                                 level={paragraph.level + 1}
                                 listKey={paragraph.key}
                             />

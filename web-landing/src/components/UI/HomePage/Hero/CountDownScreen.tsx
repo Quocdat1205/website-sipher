@@ -91,8 +91,21 @@ const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
                         animate={textControl}
                         transition={{ duration: 0.1 }}
                     >
-                        <Typo.Text mb={2}>{generateP1()}</Typo.Text>
-                        <Typo.Text>{generateP2()}</Typo.Text>
+                        <Typo.Text
+                            mb={2}
+                            sx={{
+                                textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                            }}
+                        >
+                            {generateP1()}
+                        </Typo.Text>
+                        <Typo.Text
+                            sx={{
+                                textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                            }}
+                        >
+                            {generateP2()}
+                        </Typo.Text>
                     </MotionBox>
                 </Box>
             </Box>

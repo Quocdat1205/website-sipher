@@ -80,10 +80,22 @@ const PlayScreen = () => {
                         animate={textControl}
                         transition={{ duration: 0.5 }}
                     >
-                        <Typo.BoldText textTransform="uppercase" mb={2}>
+                        <Typo.BoldText
+                            textTransform="uppercase"
+                            mb={2}
+                            sx={{
+                                textShadow: "-1px 0 s, 0 1px black, 1px 0 black, 0 -1px black",
+                            }}
+                        >
                             {`Power by blockchain`}
                         </Typo.BoldText>
-                        <Typo.Text>{generateContent()}</Typo.Text>
+                        <Typo.Text
+                            sx={{
+                                textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                            }}
+                        >
+                            {generateContent()}
+                        </Typo.Text>
                     </MotionBox>
                 </Box>
             </Box>

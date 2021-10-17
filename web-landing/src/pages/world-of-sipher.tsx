@@ -1,20 +1,21 @@
+import Metadata from "@components/shared/Metadata"
 import NewsLayout from "@components/UI/NewsLayout"
 import WorldOfSipherUI from "@components/UI/WorldOfSipherPage"
-import Head from "next/head"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "./_app"
 
 const WordSipherPage: NextPageWithLayout = () => {
-	return <WorldOfSipherUI />
+    return (
+        <>
+            <Metadata
+                title="World Of Sipher"
+                description="Learn why we're the next awesome blockchain game you'll play!"
+            />
+            <WorldOfSipherUI />
+        </>
+    )
 }
 WordSipherPage.getLayout = (page: ReactElement) => {
-	return (
-		<>
-			<Head>
-				<title>World Sipher</title>
-			</Head>
-			<NewsLayout>{page}</NewsLayout>
-		</>
-	)
+    return <NewsLayout>{page}</NewsLayout>
 }
 export default WordSipherPage
