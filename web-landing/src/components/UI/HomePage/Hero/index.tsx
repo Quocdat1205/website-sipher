@@ -18,7 +18,7 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-  const { isIos, isIpad, isIphone, isSafari } = useUserAgent(window.navigator.userAgent);
+  const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
   const isIOS = isIos || isIpad || isIphone || isSafari;
 
   const ctnRef = useRef<HTMLDivElement>(null);
