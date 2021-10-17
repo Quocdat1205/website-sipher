@@ -1,13 +1,12 @@
 import { UnityContext } from "react-unity-webgl"
 import { isMobile,isSafari } from "react-device-detect"
 
-
 export const unityContext = (isMobile || isSafari)
     ? new UnityContext({
-          loaderUrl: "/unity/neko-lighting.loader.js",
-          dataUrl: "/unity/neko-lighting.data",
-          frameworkUrl: "/unity/neko-lighting.framework.js",
-          codeUrl: "/unity/neko-lighting.wasm",
+          loaderUrl: "/unity/mobile.loader.js",
+          dataUrl: "/unity/mobile.data",
+          frameworkUrl: "/unity/mobile.framework.js",
+          codeUrl: "/unity/mobile.wasm",
           webglContextAttributes: {
               powerPreference: "low-power",
               preserveDrawingBuffer: true,
