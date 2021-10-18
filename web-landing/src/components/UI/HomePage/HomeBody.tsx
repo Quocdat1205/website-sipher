@@ -34,20 +34,8 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <OwnerBenefits />
                     {/* <Backers /> */}
                     <BehindTheScenes />
-                </VStack>
-                <Center
-                    bg="url(./images/pc/home/bannerhome.png)"
-                    bgSize="100%"
-                    bgRepeat="no-repeat"
-                    bgPosition="center"
-                    backgroundSize="cover"
-                    w="full"
-                    pt={"12rem"}
-                    px={4}
-                    mt={24}
-                >
                     <JoinTheCommunity />
-                </Center>
+                </VStack>
 
                 <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/sipherxyz" mt={8} />
             </Flex>
