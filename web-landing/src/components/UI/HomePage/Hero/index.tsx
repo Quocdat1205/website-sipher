@@ -43,9 +43,9 @@ const Hero = ({ uaString }) => {
     <Box pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove} ref={ctnRef} id="hero">
       <Flex direction="column" w="full">
         <FirstScreen />
-        <CountDownScreen isIOS={isIOS} />
+        <CountDownScreen />
         <AmountScreen />
-        <PlayForJoyScreen isIOS={isIOS} />
+        <PlayForJoyScreen />
         <PlayScreen />
       </Flex>
       <Box pos="fixed" top={0} left={0} h="full" w="full">
