@@ -18,9 +18,12 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
+<<<<<<< HEAD
   const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
   const isIOS = isIos || isIpad || isIphone || isSafari;
 
+=======
+>>>>>>> testMobile
   const ctnRef = useRef<HTMLDivElement>(null);
   const handleMouseWheel = () => {
     if (ctnRef.current) unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);
@@ -43,9 +46,9 @@ const Hero = ({ uaString }) => {
     <Box pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove} ref={ctnRef} id="hero">
       <Flex direction="column" w="full">
         <FirstScreen />
-        <CountDownScreen isIOS={isIOS} />
+        <CountDownScreen />
         <AmountScreen />
-        <PlayForJoyScreen isIOS={isIOS} />
+        <PlayForJoyScreen />
         <PlayScreen />
       </Flex>
       <Box pos="fixed" top={0} left={0} h="full" w="full">
