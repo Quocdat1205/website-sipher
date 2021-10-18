@@ -21,7 +21,7 @@ export const NavBar = ({}: NavBarProps) => {
       logoPath="/images/mainlogo.svg"
       menus={navMenus.filter((item) => item.id !== "Private Sale" || states.isWhitelisted.proof.length > 0)}
     >
-      {/* <TotalSupplyNFTs /> */}
+      <TotalSupplyNFTs />
       <AccountAddress />
     </BaseNavigationBar>
   );
