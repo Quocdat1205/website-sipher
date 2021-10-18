@@ -18,12 +18,9 @@ interface HeroProps {
 
 const Hero = ({ uaString }) => {
   const setInitialLoading = useStoreActions((action) => action.setInitialLoading);
-<<<<<<< HEAD
   const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
   const isIOS = isIos || isIpad || isIphone || isSafari;
 
-=======
->>>>>>> testMobile
   const ctnRef = useRef<HTMLDivElement>(null);
   const handleMouseWheel = () => {
     if (ctnRef.current) unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5);
