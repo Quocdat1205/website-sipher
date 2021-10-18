@@ -9,7 +9,7 @@ function Inventory() {
 
   return (
     <Flex flexDir="column" p="4" bg="rgba(0, 0, 0, 0.8)" w="100%" h="100%" alignItems="center">
-      <Flex flexDir="column" w="full" maxWidth="64rem">
+      <Flex flexDir="column" w="full" maxWidth="64rem" overflow="hidden">
         <MyHeading fontFamily="Chakra Petch" textAlign="right" textTransform="uppercase" color="#B70F28" w="full">
           Inventory
         </MyHeading>
@@ -30,7 +30,10 @@ function Inventory() {
         />
         <Flex w="100%" p="4" flexDir="column" flex="1" overflow="hidden" maxWidth="64rem">
           <MyText textAlign="right">You currently have {total} Sipher NFTs</MyText>
-          <Tabs display="flex" flexDirection="column" overflow="hidden">
+          <Flex flex={1} h="full" flexDirection="column" overflow="hidden">
+            <ListNFTs type="INU" />
+          </Flex>
+          {/* <Tabs display="flex" flexDirection="column" overflow="hidden">
             <TabList borderColor="whiteAlpha.300" color="gray.500">
               <Tab
                 fontWeight="bold"
@@ -53,6 +56,7 @@ function Inventory() {
                 }}
                 _focus={{ boxShadow: "none" }}
                 px="6"
+                disabled
               >
                 NEKO
               </Tab>
@@ -61,11 +65,11 @@ function Inventory() {
               <TabPanel display="flex" flexDir="column" alignItems="center" overflow="hidden" p={0} h="full">
                 <ListNFTs type="INU" />
               </TabPanel>
-              <TabPanel display="flex" flexDir="column" alignItems="center" overflow="hidden" p={0} h="full">
+              <TabPanel disabled display="flex" flexDir="column" alignItems="center" overflow="hidden" p={0} h="full">
                 <ListNFTs type="NEKO" />
               </TabPanel>
             </TabPanels>
-          </Tabs>
+          </Tabs> */}
         </Flex>
       </Flex>
     </Flex>
