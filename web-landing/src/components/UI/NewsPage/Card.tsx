@@ -49,16 +49,16 @@ const Card = ({ item, onClick }: Props) => {
       <Box>
         <Box p={4}>
           <Image
-            zIndex="2"
+            m="0 auto"
             onClick={(e) => {
               e.stopPropagation();
               window.open(link, "_blank");
             }}
+            zIndex="2"
             display="block"
-            m="0 auto"
             src={`/images/icons/${type === "medium" ? "medium" : "twitter"}.png`}
             alt=""
-            h="1.8rem"
+            h="2rem"
           />
         </Box>
         <Box overflow="hidden" px={4} mb={4}>

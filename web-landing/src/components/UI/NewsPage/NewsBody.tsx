@@ -60,17 +60,20 @@ const NewsBody = (props: Props) => {
     setLoadMore(false);
   };
 
+  const sortData = (a, b) => {
+    return (
+      (b.type === "medium" ? parseInt(b.published) * 1000 : parseInt(b.published)) -
+      (a.type === "medium" ? parseInt(a.published) * 1000 : parseInt(a.published))
+    );
+  };
+
   return (
     <Flex direction="column" w="full" py={24} px={4} align="center">
       {!isLoading ? (
         news && news.data?.length > 0 ? (
           <PinterestGrid gutterWidth={10} gutterHeight={10} responsive={{ customBreakPoints: breakPoints }}>
             {news.data
-              ?.sort(
-                (a, b) =>
-                  (b.type === "medium" ? parseInt(b.published) * 1000 : parseInt(b.published)) -
-                  (a.type === "medium" ? parseInt(a.published) * 1000 : parseInt(a.published))
-              )
+              ?.sort((a, b) => sortData(a, b))
               .map((item) => (
                 <Card
                   onClick={() => {
