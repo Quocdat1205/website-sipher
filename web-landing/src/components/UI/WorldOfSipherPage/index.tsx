@@ -14,14 +14,14 @@ const WorldOfSipherUI = () => {
   const [currentPage, setCurrentPage] = useState<Page>("theworld");
 
   const renderImage = () =>
-    `/images/pc/${
+    `${
       currentPage === "theworld"
-        ? "why/theworld.png"
+        ? "/images/pc/why/theworld.png"
         : currentPage === "gameplay"
-        ? "why/gameplay.png"
+        ? "/images/pc/why/gameplay.png"
         : currentPage === "factions"
-        ? "nft/banner.png"
-        : "news.png"
+        ? "/images/pc/nft/banner.png"
+        : "https://sipherstorage.s3.ap-southeast-1.amazonaws.com/Logo.png"
     }`;
 
   const renderHeadline = () =>

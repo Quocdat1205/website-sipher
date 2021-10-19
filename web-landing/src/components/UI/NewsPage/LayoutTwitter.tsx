@@ -37,7 +37,11 @@ const LayoutTwitter = ({ details }: Props) => {
           h="auto"
           minH={["30vh"]}
           maxH={["30vh", "60vh"]}
-          src={details.thumbnail !== "" ? details.thumbnail : "/images/pc/news.png"}
+          src={
+            details.thumbnail !== ""
+              ? details.thumbnail
+              : "https://sipherstorage.s3.ap-southeast-1.amazonaws.com/Logo.png"
+          }
           alt=""
         />
       </Flex>
