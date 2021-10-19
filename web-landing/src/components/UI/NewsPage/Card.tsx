@@ -44,7 +44,12 @@ const Card = ({ item, onClick }: Props) => {
       overflow="hidden"
     >
       <Box>
-        <Image w="full" h="auto" src={thumbnail !== "" ? thumbnail : "/images/pc/news.png"} alt="" />
+        <Image
+          w="full"
+          h="auto"
+          src={thumbnail !== "" ? thumbnail : "https://sipherstorage.s3.ap-southeast-1.amazonaws.com/Logo.png"}
+          alt=""
+        />
       </Box>
       <Box>
         <Box p={4}>
