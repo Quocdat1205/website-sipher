@@ -50,7 +50,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                 {/* <NavBarLink
                     text="minting"
                     href="#minting"
-                    onClick={() => window.open("https://mint.sipherion.com/", "_blank")}
+                    onClick={() => window.open("https://mint.sipher.xyz/", "_blank")}
                 /> */}
             </HStack>
 

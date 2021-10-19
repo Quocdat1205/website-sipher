@@ -1,1 +1,1 @@
-export const baseUrl = "https://be.sipherion.com/api/sipher/v1.1"
+export const baseUrl = "https://be.sipher.xyz/api/sipher/v1.1"

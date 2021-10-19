@@ -52,17 +52,6 @@ const NFT_ABI: any = [
     type: "event",
   },
   {
-    anonymous: false,
-    inputs: [
-      { indexed: false, internalType: "uint256", name: "ID", type: "uint256" },
-      { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
-      { indexed: false, internalType: "address", name: "to", type: "address" },
-      { indexed: false, internalType: "uint256", name: "unitPrice", type: "uint256" },
-    ],
-    name: "mintRecord",
-    type: "event",
-  },
-  {
     inputs: [],
     name: "MAX_GENESIS_SUPPLY",
     outputs: [{ internalType: "uint64", name: "", type: "uint64" }],
@@ -156,7 +145,6 @@ const NFT_ABI: any = [
     inputs: [
       { internalType: "uint256", name: "amount", type: "uint256" },
       { internalType: "address", name: "to", type: "address" },
-      { internalType: "uint256", name: "unitPrice", type: "uint256" },
     ],
     name: "mintGenesis",
     outputs: [],

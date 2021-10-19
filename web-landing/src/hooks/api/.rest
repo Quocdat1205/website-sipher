@@ -1,4 +1,4 @@
-POST https://be.sipherion.com/api/sipher/v1.0/subscribe
+POST https://be.sipher.xyz/api/sipher/v1.0/subscribe
 content-type: "application/json"
 accept: "application/json"
 

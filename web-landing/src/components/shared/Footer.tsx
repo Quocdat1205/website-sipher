@@ -1,8 +1,8 @@
-import { Flex, Stack } from "@chakra-ui/react"
+import { Flex, Stack, Input } from "@chakra-ui/react"
 import { usePostSubscribe } from "@hooks/api/subscribe"
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { GradientOutlineButton } from "."
-import { useFormCore, useChakraToast, MyText, GradientText } from "@sipher/web-components"
+import { useChakraToast, MyText, GradientText } from "@sipher/web-components"
 import { isEmail } from "src/utils"
 import TextFormControl from "./TextFormControl"
 import CommunityIcons from "./CommunityIcons"
@@ -10,16 +10,11 @@ import { useRouter } from "next/router"
 
 export const Footer = () => {
     const router = useRouter()
-    const inputRef = useRef<HTMLInputElement>(null)
-    const { values, setValue, errors, setError, initForm } = useFormCore({
-        email: "",
-        full_name: "",
-    })
+
     const toast = useChakraToast()
 
-    useEffect(() => {
-        initForm()
-    }, [initForm])
+    const nameInputRef = useRef<HTMLInputElement>(null)
+    const emailInputRef = useRef<HTMLInputElement>(null)
 
     const { mutate, isLoading } = usePostSubscribe({
         onError: () => {
@@ -27,29 +22,28 @@ export const Footer = () => {
         },
         onSuccess: data => {
             if (!data.message) {
-                initForm()
                 toast({
                     status: "success",
                     title: "Congrats!",
                     message: "Stay tuned & subscribe to our community for woofing perks and exclusive news.",
                 })
-            } else {
-                if (data.message === "email exists") setError("email", "Email was already subscribed!")
-                else setError("email", "Something went wrong!")
+                nameInputRef.current!.value = ""
+                emailInputRef.current!.value = ""
             }
         },
     })
 
     const submit = () => {
-        if (values.email === "") {
-            setError("email", "Email is required!")
-            return
+        console.log("Click")
+        if (emailInputRef.current) {
+            if (emailInputRef.current.value === "") {
+                return
+            }
+            if (!isEmail(emailInputRef.current.value)) {
+                return
+            }
+            mutate({ email: emailInputRef.current!.value, full_name: nameInputRef.current!.value })
         }
-        if (!isEmail(values.email)) {
-            setError("email", "Email is invalid!")
-            return
-        }
-        mutate(values)
     }
 
     return (
@@ -68,20 +62,8 @@ export const Footer = () => {
                     Stay in touch with us
                 </MyText>
                 <Stack mt={4} align="center" direction={["column", "row"]} spacing={4} px={[0, 4, 8]} py={2} w="full">
-                    <TextFormControl
-                        label="Your name"
-                        value={values.full_name}
-                        onChange={newValue => setValue("full_name", newValue)}
-                        w={["full", "15rem"]}
-                    />
-                    <TextFormControl
-                        label="Email address"
-                        value={values.email}
-                        onChange={newValue => setValue("email", newValue)}
-                        error={errors.email}
-                        inputRef={inputRef}
-                        w={["full", "20rem"]}
-                    />
+                    <TextFormControl label="Your name" inputRef={nameInputRef} w={["full", "15rem"]} />
+                    <TextFormControl label="Email address" inputRef={emailInputRef} w={["full", "20rem"]} />
                     <GradientOutlineButton
                         w={["full", "auto"]}
                         text="Submit"

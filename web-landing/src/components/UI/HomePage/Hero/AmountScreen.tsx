@@ -1,6 +1,4 @@
-// * DESCRIPTION:
-
-import { Box, Flex, Heading, HeadingProps, HStack } from "@chakra-ui/react"
+import { Box, Flex, Heading, HeadingProps, HStack, chakra } from "@chakra-ui/react"
 import { MotionBox, Typo } from "@components/shared"
 import { AnimationControls, motion, useAnimation } from "framer-motion"
 import React, { useEffect } from "react"
@@ -37,10 +35,12 @@ const Letter = ({ char, control, custom }: LetterProps) => {
 const p1 = "10,000 Nekos will be available in this collection, split between a public sale, and a private sale."
 const p2 = "Public Sale"
 const p3 =
-    "The public sale will occur on Oct 30, 2021 at 1:30 AM UTC and will follow a Dutch Auction format. The auction will start at a price of 0.9ETH and will decrease by 0.05 ETH every 10 minutes, with the lowest purchase price being 0.1 ETH. Regardless of purchase price, each participant can purchase up to 5 Nekos per transaction, with a maximum of 5 per wallet."
+    "The public sale will occur on Oct 30, 2021 at 1:30 AM UTC and will follow a Dutch Auction format. The auction will start at a price of 0.9 ETH and will decrease by 0.05 ETH every 10 minutes, with the lowest purchase price being 0.1 ETH. Regardless of purchase price, each participant can purchase up to 5 Nekos per transaction, with a maximum of 5 per wallet."
 const p4 = "Private Sale"
 const p5 =
     "The private sale will occur on Oct 30, 2021 right after the public sale ended, for a price of 0.1 ETH per Neko. Whitelisted members have up to 24 hours to mint. More information about the private sale is in our Discord channel."
+const learnMore = "Learn more about out Dutch Auction."
+
 const AmountScreen = () => {
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -89,7 +89,27 @@ const AmountScreen = () => {
                         >
                             {char}
                         </motion.span>
-                    ))}
+                    ))}{" "}
+                    <chakra.span
+                        cursor="pointer"
+                        color="main.orange"
+                        fontWeight="semibold"
+                        as="a"
+                        rel="noreferrer"
+                        target="_blank"
+                        href="https://www.notion.so/sipherhq/The-Dutch-Auction-f98c600a2cbe4e2ba2918daf08b95210"
+                    >
+                        {learnMore.split("").map((char, i) => (
+                            <motion.span
+                                key={i}
+                                animate={contentControl}
+                                initial={{ opacity: 0 }}
+                                custom={i + p1.length + p2.length + p3.length}
+                            >
+                                {char}
+                            </motion.span>
+                        ))}
+                    </chakra.span>
                 </Typo.Text>
                 <Typo.Text
                     mt={4}
@@ -103,7 +123,7 @@ const AmountScreen = () => {
                             key={i}
                             animate={contentControl}
                             initial={{ opacity: 0 }}
-                            custom={i + p1.length + p2.length + p3.length}
+                            custom={i + p1.length + p2.length + p3.length + learnMore.length}
                         >
                             {char}
                         </motion.span>
@@ -119,7 +139,7 @@ const AmountScreen = () => {
                             key={i}
                             animate={contentControl}
                             initial={{ opacity: 0 }}
-                            custom={i + p1.length + p2.length + p3.length + p4.length}
+                            custom={i + p1.length + p2.length + p3.length + p4.length + learnMore.length}
                         >
                             {char}
                         </motion.span>
