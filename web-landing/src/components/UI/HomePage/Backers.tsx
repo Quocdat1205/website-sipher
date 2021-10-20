@@ -26,9 +26,16 @@ const smallBackers = [
 const Backers = ({}: BackersProps) => {
     return (
         <TextContainer headline="Backers" px={4} maxW={["48rem", "48rem", "56rem"]}>
-            <Stack w="full" justify="space-between" align="center" spacing={8} direction={["column", "row", "row"]}>
+            <Stack
+                w="full"
+                justify="space-between"
+                align="center"
+                px={[8, 0]}
+                spacing={8}
+                direction={["column", "row", "row"]}
+            >
                 <Box>
-                    <Img src="/images/icons/backers/1.png" alt="Mysterious Backer 1" h="200%" />
+                    <Img src="/images/icons/backers/1.png" alt="Mysterious Backer 1" />
                 </Box>
                 <Box>
                     <Img src="/images/icons/backers/2.png" alt="Mysterious Backer 2" />
@@ -39,7 +46,7 @@ const Backers = ({}: BackersProps) => {
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={16} my={8}>
                 {smallBackers.map(backer => (
-                    <WrapItem key={backer.alt} overflow="hidden">
+                    <WrapItem key={backer.alt} overflow="hidden" flexBasis={["30%", "auto"]} justifyContent="center">
                         <Img src={backer.path} alt={backer.alt} />
                     </WrapItem>
                 ))}
