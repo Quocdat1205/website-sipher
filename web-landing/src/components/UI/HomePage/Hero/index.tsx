@@ -32,7 +32,7 @@ const Hero = ({ uaString }: HeroProps) => {
     }
 
     useEffect(() => {
-        unityContext.on("loaded", () => setInitialLoading(false))
+        unityContext.on("loaded", () => setInitialLoading(false));
     }, [setInitialLoading])
 
     useEffect(() => {
