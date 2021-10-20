@@ -1,5 +1,4 @@
-import { Flex, Stack, Input } from "@chakra-ui/react"
-import { usePostSubscribe } from "@hooks/api/subscribe"
+import { Flex, Stack } from "@chakra-ui/react"
 import React, { useRef } from "react"
 import { GradientOutlineButton } from "."
 import { useChakraToast, MyText, GradientText } from "@sipher/web-components"
@@ -7,6 +6,22 @@ import { isEmail } from "src/utils"
 import TextFormControl from "./TextFormControl"
 import CommunityIcons from "./CommunityIcons"
 import { useRouter } from "next/router"
+import { useMutation } from "react-query"
+import axios from "axios"
+interface ISubscribeInput {
+    email: string
+    full_name: string
+}
+const postSubscribe = async (input: ISubscribeInput) => {
+    console.log("Subscribe", input)
+    let { data } = await axios.post("https://be.sipher.xyz/api/sipher/v1.0/subscribe", input, {
+        validateStatus: status => {
+            if (status === 400) return true
+            return false
+        },
+    })
+    return data
+}
 
 export const Footer = () => {
     const router = useRouter()
@@ -16,25 +31,33 @@ export const Footer = () => {
     const nameInputRef = useRef<HTMLInputElement>(null)
     const emailInputRef = useRef<HTMLInputElement>(null)
 
-    const { mutate, isLoading } = usePostSubscribe({
-        onError: () => {
-            toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
-        },
-        onSuccess: data => {
-            if (!data.message) {
-                toast({
-                    status: "success",
-                    title: "Congrats!",
-                    message: "Stay tuned & subscribe to our community for woofing perks and exclusive news.",
-                })
+    const { mutate, isLoading } = useMutation(
+        () => postSubscribe({ email: emailInputRef.current!.value, full_name: nameInputRef.current?.value || "" }),
+        {
+            onError: (error: any) => {
+                toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
+            },
+            onSuccess: data => {
+                if (data?.error?.error === "email exists") {
+                    toast({
+                        status: "info",
+                        title: "Email is already subscribed!",
+                        message: "Thank you!",
+                    })
+                } else {
+                    toast({
+                        status: "success",
+                        title: "Congrats!",
+                        message: "Stay tuned & subscribe to our community for woofing perks and exclusive news.",
+                    })
+                }
                 nameInputRef.current!.value = ""
                 emailInputRef.current!.value = ""
-            }
-        },
-    })
+            },
+        }
+    )
 
     const submit = () => {
-        console.log("Click")
         if (emailInputRef.current) {
             if (emailInputRef.current.value === "") {
                 return
@@ -42,7 +65,7 @@ export const Footer = () => {
             if (!isEmail(emailInputRef.current.value)) {
                 return
             }
-            mutate({ email: emailInputRef.current!.value, full_name: nameInputRef.current!.value })
+            mutate()
         }
     }
 
