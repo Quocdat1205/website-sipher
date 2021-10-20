@@ -33,7 +33,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <DigitalCharacters />
                     <WhatIsSipher />
                     <OwnerBenefits />
-                    <Backers />
+                    {/* <Backers /> */}
                     <BehindTheScenes />
                     <JoinTheCommunity />
                 </VStack>
