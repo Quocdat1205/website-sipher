@@ -25,10 +25,10 @@ const smallBackers = [
 
 const Backers = ({}: BackersProps) => {
     return (
-        <TextContainer headline="Backers" px={4}>
-            <Stack w="full" justify="space-between" align="center" spacing={8} direction={["column", "column", "row"]}>
+        <TextContainer headline="Backers" px={4} maxW={["48rem", "48rem", "56rem"]}>
+            <Stack w="full" justify="space-between" align="center" spacing={8} direction={["column", "row", "row"]}>
                 <Box>
-                    <Img src="/images/icons/backers/1.png" alt="Mysterious Backer 1" />
+                    <Img src="/images/icons/backers/1.png" alt="Mysterious Backer 1" h="200%" />
                 </Box>
                 <Box>
                     <Img src="/images/icons/backers/2.png" alt="Mysterious Backer 2" />

@@ -15,8 +15,6 @@ const images = [
     { path: "/images/pc/behind_the_scenes/6.png", alt: "Behind The Scenes 6" },
 ]
 
-const MotionStack = motion<Omit<StackProps, "transition">>(HStack)
-
 const BehindTheScenes = ({}: BehindTheScenesProps) => {
     return (
         <TextContainer headline="Behind The Scenes" overflowX="hidden" px={4}>
