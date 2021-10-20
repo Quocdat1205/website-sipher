@@ -10,14 +10,17 @@ const smallBackers = [
     { path: "/images/icons/backers/signum_capital.png", alt: "Signum Capital" },
     { path: "/images/icons/backers/dragonfly_capital.png", alt: "Dragonfly Capital" },
     { path: "/images/icons/backers/cmtdigital.png", alt: "CMTDIGITAL" },
-    { path: "/images/icons/backers/alameda_research.png", alt: "Alameda Research" },
     { path: "/images/icons/backers/bitkraft.png", alt: "Bitkraft" },
-    { path: "/images/icons/backers/delphi_digital.png", alt: "Delphi Digital" },
-    { path: "/images/icons/backers/fenbushi_capital.png", alt: "Fenbushi Capital" },
-    { path: "/images/icons/backers/sfermion.png", alt: "Sfermion" },
+    { path: "/images/icons/backers/alameda_research.png", alt: "Alameda Research" },
     { path: "/images/icons/backers/hyperchain.png", alt: "Hyperchain Capital" },
     { path: "/images/icons/backers/gbv.png", alt: "GBV" },
+    { path: "/images/icons/backers/delphi_digital.png", alt: "Delphi Digital" },
+    { path: "/images/icons/backers/sfermion.png", alt: "Sfermion" },
+    { path: "/images/icons/backers/coin98.png", alt: "Coin 98" },
     { path: "/images/icons/backers/yield_guild.png", alt: "Yield Guild" },
+    { path: "/images/icons/backers/kyber_network.png", alt: "Kyber Network" },
+    { path: "/images/icons/backers/fenbushi_capital.png", alt: "Fenbushi Capital" },
+    { path: "/images/icons/backers/merit_circle.png", alt: "Merit Circle" },
 ]
 
 const Backers = ({}: BackersProps) => {
@@ -36,7 +39,7 @@ const Backers = ({}: BackersProps) => {
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={16} my={8}>
                 {smallBackers.map(backer => (
-                    <WrapItem key={backer.alt}>
+                    <WrapItem key={backer.alt} overflow="hidden">
                         <Img src={backer.path} alt={backer.alt} />
                     </WrapItem>
                 ))}

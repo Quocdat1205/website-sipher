@@ -14,10 +14,10 @@ export const unityContext =
               },
           })
         : new UnityContext({
-              loaderUrl: "/unity/unity12.loader.js",
-              dataUrl: "/unity/unity12.data",
-              frameworkUrl: "/unity/unity12.framework.js",
-              codeUrl: "/unity/unity12.wasm",
+              loaderUrl: "/unity/unity15.loader.js",
+              dataUrl: "/unity/unity15.data",
+              frameworkUrl: "/unity/unity15.framework.js",
+              codeUrl: "/unity/unity15.wasm",
               webglContextAttributes: {
                   powerPreference: "low-power",
                   preserveDrawingBuffer: true,
