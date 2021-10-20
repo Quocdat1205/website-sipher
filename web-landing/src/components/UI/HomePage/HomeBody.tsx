@@ -7,6 +7,7 @@ import BehindTheScenes from "./BehindTheScenes"
 import OwnerBenefits from "./OwnerBenefits"
 import DigitalCharacters from "./DigitalCharacters"
 import WhatIsSipher from "./WhatIsSipher"
+import Backers from "./Backers"
 
 interface HomeBodyProps {
     uaString: string
@@ -32,7 +33,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <DigitalCharacters />
                     <WhatIsSipher />
                     <OwnerBenefits />
-                    {/* <Backers /> */}
+                    <Backers />
                     <BehindTheScenes />
                     <JoinTheCommunity />
                 </VStack>

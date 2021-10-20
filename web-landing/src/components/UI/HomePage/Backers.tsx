@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Stack, Img, Wrap, WrapItem } from "@chakra-ui/react"
+import { Stack, Img, Wrap, WrapItem, Box } from "@chakra-ui/react"
 import { TextContainer } from "@components/shared"
 
 interface BackersProps {}
@@ -24,9 +24,15 @@ const Backers = ({}: BackersProps) => {
     return (
         <TextContainer headline="Backers" px={4}>
             <Stack w="full" justify="space-between" align="center" spacing={8} direction={["column", "column", "row"]}>
-                <Img src="/images/icons/backers/konvoy_ventures.png" alt="Konvoy Ventures" />
-                <Img src="/images/icons/backers/hashed.png" alt="Hashed" />
-                <Img src="/images/icons/backers/arrington_xrp.png" alt="Arrington XRP Capital" />
+                <Box>
+                    <Img src="/images/icons/backers/1.png" alt="Mysterious Backer 1" />
+                </Box>
+                <Box>
+                    <Img src="/images/icons/backers/2.png" alt="Mysterious Backer 2" />
+                </Box>
+                <Box>
+                    <Img src="/images/icons/backers/3.png" alt="Mysterious Backer 3" />
+                </Box>
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={16} my={8}>
                 {smallBackers.map(backer => (
