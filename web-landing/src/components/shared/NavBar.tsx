@@ -43,7 +43,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         },
       }}
     >
-      <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
+      <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
         <Flex>
           <LinkButton
             text="Join Our Discord Community"

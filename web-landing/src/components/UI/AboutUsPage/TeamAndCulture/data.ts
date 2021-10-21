@@ -5,16 +5,22 @@ export const personLead: PersonCardProps[] = [
     name: "Tin Nguyen",
     job: "World Architect",
     srcImg: "/images/avatars/1.png",
+    linkedin: "https://www.linkedin.com/in/tinnguyenttg/",
+    twitter: "https://twitter.com/AskTinNguyen",
   },
   {
     name: "Victor Tran",
     job: "Co-founding Advisor",
     srcImg: "/images/avatars/2.png",
+    linkedin: "https://www.linkedin.com/in/vutranhuy/",
+    twitter: "https://twitter.com/vutran54",
   },
   {
     name: "Loi Luu",
     job: "Co-founding Advisor",
     srcImg: "/images/avatars/3.png",
+    linkedin: "https://www.linkedin.com/in/loiluu/",
+    twitter: "https://twitter.com/loi_luu",
   },
 ];
 
@@ -28,11 +34,14 @@ export const personEmployee: PersonCardProps[] = [
     name: "Alain Dinh",
     job: "Head of Partnership & B2B",
     srcImg: "/images/avatars/5.png",
+    linkedin: "https://www.linkedin.com/in/alain-dinh-3a2b0bb7/",
+    twitter: "https://twitter.com/allendeen",
   },
   {
     name: "Justin Cohen",
     job: "Marketing Director & Marketplace",
     srcImg: "/images/avatars/6.png",
+    linkedin: "https://www.linkedin.com/in/cohenjustin/",
   },
   {
     name: "Nghia Nguyen",
