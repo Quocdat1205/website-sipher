@@ -76,7 +76,7 @@ const PersonCard = ({ isEmployee, name, job, srcImg, linkedin, twitter }: Person
                                 fontSize={["1.5rem", "2rem"]}
                                 pointerEvents={`${linkedin ? "unset" : "none"}`}
                                 icon={<FaLinkedin />}
-                                color={twitter ? "white" : "whiteAlpha.500"}
+                                color={linkedin ? "white" : "whiteAlpha.500"}
                             />
                         </Stack>
                     </MotionFlex>
