@@ -43,18 +43,18 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                 },
             }}
         >
-            <BaseNavigationBar logoPath="/images/mainlogo.png" menus={navMenus} onLogoClick={() => router.push("/")}>
+            <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
                     <LinkButton
                         text="Join Our Discord Community"
                         href="https://discord.gg/sipherxyz"
                         sx={{
-                            "@media (max-width: 480px)": {
+                            ".childmenu::-webkit-scrollbar": {
                                 display: "none",
                             },
                         }}
-                        size="medium"
                     />
+
                     <Grid
                         ml={4}
                         rounded="full"
