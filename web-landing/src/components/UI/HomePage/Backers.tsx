@@ -35,10 +35,10 @@ const Backers = ({}: BackersProps) => {
                 direction={["column", "row", "row"]}
             >
                 <Box>
-                    <Img src="/images/icons/backers/arrington_xrp.png" alt="Arrington XP Capital" />
+                    <Img src="/images/icons/backers/new_arrington_capital.png" alt="Arrington XP Capital" />
                 </Box>
                 <Box>
-                    <Img src="/images/icons/backers/konvoy_ventures.png" alt="Konvoy Ventures" />
+                    <Img src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
                 </Box>
                 <Box>
                     <Img src="/images/icons/backers/hashed.png" alt="Hashed" />

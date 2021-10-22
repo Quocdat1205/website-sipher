@@ -59,7 +59,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
             <MotionFlex direction="column" align="center" ref={ref} overflow="hidden">
                 <Box overflow="hidden">
                     <MotionBox animate={logoControl} initial={{ y: "-100%" }} mb={2}>
-                        <Img src="/images/mainlogo.svg" h={["2rem"]} alt="sipher-logo" />
+                        <Img src="/images/logonew.svg" h={["2rem"]} alt="sipher-logo" />
                     </MotionBox>
                 </Box>
                 <Title />
