@@ -42,6 +42,7 @@ export const personEmployee: PersonCardProps[] = [
     job: "Marketing Director & Marketplace",
     srcImg: "/images/avatars/6.png",
     linkedin: "https://www.linkedin.com/in/cohenjustin/",
+    twitter: "https://twitter.com/mrjustincohen",
   },
   {
     name: "Nghia Nguyen",
