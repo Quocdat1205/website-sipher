@@ -23,6 +23,7 @@
         "react-dom": "17.0.2",
         "react-icons": "^4.2.0",
         "react-query": "^3.24.4",
+        "react-timer-hook": "^3.0.5",
         "web3": "^1.6.0"
     },
     "devDependencies": {

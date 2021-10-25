@@ -2,13 +2,16 @@ import config from "./config"
 import axios from "axios"
 import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "@constant/index"
 
-/** Check smart contract! I don't know about this */
+/** Check smart contract! I don't know about this
+ * @description Not used! Will be remove soon!
+ */
 export const checkSmartContract = async (publicAddress: string): Promise<boolean> => {
     let address = publicAddress.toLowerCase()
     const { data } = await axios.get(
         `/neko-sc/checkSC?nftContractAddress=${SMARTCONTRACT_NEKO}&saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${address}`,
         config
     )
+    console.log("data", SMARTCONTRACT_NEKO, SMARTCONTRACT_SALE_NEKO, address)
 
     return data.message
 }
@@ -19,18 +22,16 @@ export const checkGas = async () => {
     return data.message
 }
 
-export interface IWhitelisted {
+export interface WhitelistInfo {
     proof: string[]
     privateCap: number
     freeMintCap: number
 }
 
 /** Check if an address is whitelisted
- * @returns proof: list of string to prove you are whitelisted
- * @returns privateCap: maximum quatity of NFT that address can buy on private sale
- * @returns freeMintCap: maximum quatity of NFT that address can buy on free mint
+ * @returns WhiteListInfo, contains proof, privateCap and freeMintCap
  */
-export const checkIsWhitelisted = async (publicAddress: string): Promise<IWhitelisted> => {
+export const checkIsWhitelisted = async (publicAddress: string): Promise<WhitelistInfo> => {
     const { data } = await axios.get(
         `/neko-sc/checkWhiteList?saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${publicAddress}`,
         config

@@ -7,6 +7,7 @@ import {
   ModalContent,
   ModalOverlay,
   useDisclosure,
+  Box,
   CircularProgress,
 } from "@chakra-ui/react";
 import React, { Fragment, useEffect, useRef, useState } from "react";
@@ -16,7 +17,6 @@ import Card from "./Card";
 import PopupModal from "./PopupModal";
 import { getListNFT } from "@api/index";
 import { MyText } from "@sipher/web-components";
-import { useStoreActions } from "src/store";
 import useWalletContext from "@hooks/useWalletContext";
 
 interface Props {
@@ -25,14 +25,15 @@ interface Props {
 
 const NFTList = ({ type }: Props) => {
   const { states } = useWalletContext();
+  const [total, setTotal] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [scroll, setScroll] = useState(0);
-  const setTotal = useStoreActions((_) => _.setTotal);
   const step = useRef(10);
   const [selectId, setSelectId] = useState({
     id: "",
     race: "",
   });
+
   const getNFTWithRange = async ({ pageParam = 0 }) => {
     let nfts = await getListNFT(states.accountLogin, pageParam, pageParam + step.current, type);
     setTotal(nfts.total);
@@ -52,43 +53,48 @@ const NFTList = ({ type }: Props) => {
     setSelectId({ id, race });
     onOpen();
   };
+
   return (
-    <Flex flexDir="column" h="full" w="full" overflow="auto" id="scrollableDiv" py={4} maxW="64rem">
-      {/* <Box flex="1" overflow="auto" className="nice-scroll" id="scrollableDiv"> */}
-      <InfiniteScroll
-        dataLength={data ? data.pages.reduce((init, cur) => init.concat(cur), []).length : 0}
-        next={() => {
-          fetchNextPage();
-        }}
-        hasMore={!!hasNextPage}
-        style={{ width: "100%", overflow: "hidden" }}
-        scrollableTarget="scrollableDiv"
-        loader={
-          <Flex mt="4" align="center" justify="center" color="white">
-            <CircularProgress size="10" isIndeterminate color="yellow.400" />
-          </Flex>
-        }
-        initialScrollY={scroll || 0}
-        onScroll={(v) => {
-          if (setScroll) setScroll((v.target as HTMLDivElement).scrollTop);
-        }}
-      >
-        {data && data.pages.length > 1 ? (
-          <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={4}>
-            {data.pages.map((page, i) => (
-              <Fragment key={i}>
-                {page.map((item) => (
-                  <Card onClick={() => handleClick(item.id, item.race)} key={item.id} item={item} />
-                ))}
-              </Fragment>
-            ))}
-          </SimpleGrid>
-        ) : (
-          <MyText px="2" color="whiteAlpha.500">
-            No data
-          </MyText>
-        )}
-      </InfiniteScroll>
+    <Flex flexDir="column" h="full" w="full" overflow="hidden" py={4} maxW="64rem">
+      <MyText textAlign="right">
+        You currently have {total} {type} NFTs
+      </MyText>
+      <Box flex="1" overflow="auto" className="nice-scroll" id="scrollableDiv">
+        <InfiniteScroll
+          dataLength={data ? data.pages.reduce((init, cur) => init.concat(cur), []).length : 0}
+          next={() => {
+            fetchNextPage();
+          }}
+          hasMore={!!hasNextPage}
+          style={{ width: "100%", overflow: "hidden" }}
+          scrollableTarget="scrollableDiv"
+          loader={
+            <Flex mt="4" align="center" justify="center" color="white">
+              <CircularProgress size="10" isIndeterminate color="yellow.400" />
+            </Flex>
+          }
+          initialScrollY={scroll || 0}
+          onScroll={(v) => {
+            if (setScroll) setScroll((v.target as HTMLDivElement).scrollTop);
+          }}
+        >
+          {data && data.pages.length > 0 ? (
+            <SimpleGrid columns={[1, 2, 3, 4]} spacing={4}>
+              {data.pages.map((page, i) => (
+                <Fragment key={i}>
+                  {page.map((item) => (
+                    <Card onClick={() => handleClick(item.id, item.race)} key={item.id} item={item} />
+                  ))}
+                </Fragment>
+              ))}
+            </SimpleGrid>
+          ) : (
+            <MyText px="2" color="whiteAlpha.500">
+              No data
+            </MyText>
+          )}
+        </InfiniteScroll>
+      </Box>
       <Modal scrollBehavior="inside" size="6xl" isOpen={isOpen} isCentered onClose={onClose}>
         <ModalOverlay bg="blackAlpha.900" />
         <ModalContent

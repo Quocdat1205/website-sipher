@@ -1,1 +1,1 @@
-export type ISalePhase = "public" | "private" | "freeMint"
+export type ISalePhase = "PRIVATE_SALE" | "FREE_MINTING"
