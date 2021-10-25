@@ -23,7 +23,6 @@ export const NavBar = ({}: NavBarProps) => {
                     (item.id !== "Private Sale" && item.id !== "Free Minting") || states.whitelistInfo.proof.length > 0
             )}
         >
-            {/* <TotalSupplyNFTs /> */}
             <AccountAddress />
         </BaseNavigationBar>
     )
