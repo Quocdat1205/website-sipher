@@ -18,7 +18,10 @@ export const NavBar = ({}: NavBarProps) => {
     return (
         <BaseNavigationBar
             logoPath="/images/mainlogo.svg"
-            menus={navMenus.filter(item => item.id !== "Private Sale" || states.whitelistInfo.proof.length > 0)}
+            menus={navMenus.filter(
+                item =>
+                    (item.id !== "Private Sale" && item.id !== "Free Minting") || states.whitelistInfo.proof.length > 0
+            )}
         >
             {/* <TotalSupplyNFTs /> */}
             <AccountAddress />

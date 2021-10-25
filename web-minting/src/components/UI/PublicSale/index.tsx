@@ -51,7 +51,6 @@ const PublicSale = () => {
                 <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1}>
                     <Flex h="full">
                         <CountDown
-                            // Need to reset salePhaseName every seconds to check, right?
                             isOnSale={isOnSale}
                             minutesLeft={minutesLeft}
                             secondsLeft={secondsLeft}

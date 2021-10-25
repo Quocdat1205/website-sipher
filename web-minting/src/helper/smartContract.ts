@@ -96,7 +96,10 @@ export const getPublicCurrentPrice = async () => {
     return parseFloat((data / 10 ** 18).toFixed(2))
 }
 
-export type ISaleConfig = Record<"publicTime" | "privateTime" | "freeMintTime" | "endTime" | "maxSupply", number>
+export type ISaleConfig = Record<
+    "publicTime" | "publicEndTime" | "privateTime" | "freeMintTime" | "endTime" | "maxSupply",
+    number
+>
 
 /** Get sale config
  * @returns publicTime, privateTime, freeMintTime, endTime, maxSupply
@@ -105,9 +108,10 @@ export const getSaleConfig = async (): Promise<ISaleConfig> => {
     const data = await ContractProviderSALE.methods.getSaleConfig().call()
     return {
         publicTime: parseInt(data[0]) * 1000,
-        privateTime: parseInt(data[1]) * 1000,
-        freeMintTime: parseInt(data[2]) * 1000,
-        endTime: parseInt(data[3]) * 1000,
-        maxSupply: parseInt(data[4]),
+        publicEndTime: parseInt(data[1]) * 1000,
+        privateTime: parseInt(data[2]) * 1000,
+        freeMintTime: parseInt(data[3]) * 1000,
+        endTime: parseInt(data[4]) * 1000,
+        maxSupply: parseInt(data[5]),
     }
 }

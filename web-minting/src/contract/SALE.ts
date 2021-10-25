@@ -3,6 +3,7 @@ const SALE_ABI: any = [
         inputs: [
             { internalType: "contract ISipherNFT", name: "_nft", type: "address" },
             { internalType: "uint64", name: "_publicTime", type: "uint64" },
+            { internalType: "uint64", name: "_publicEndTime", type: "uint64" },
             { internalType: "uint64", name: "_privateTime", type: "uint64" },
             { internalType: "uint64", name: "_freeMintTime", type: "uint64" },
             { internalType: "uint64", name: "_endTime", type: "uint64" },
@@ -42,7 +43,10 @@ const SALE_ABI: any = [
     },
     {
         anonymous: false,
-        inputs: [{ indexed: false, internalType: "uint256", name: "refundAmount", type: "uint256" }],
+        inputs: [
+            { indexed: false, internalType: "address", name: "buyer", type: "address" },
+            { indexed: false, internalType: "uint256", name: "refundAmount", type: "uint256" },
+        ],
         name: "Refund",
         type: "event",
     },
@@ -164,6 +168,7 @@ const SALE_ABI: any = [
             {
                 components: [
                     { internalType: "uint64", name: "publicTime", type: "uint64" },
+                    { internalType: "uint64", name: "publicEndTime", type: "uint64" },
                     { internalType: "uint64", name: "privateTime", type: "uint64" },
                     { internalType: "uint64", name: "freeMintTime", type: "uint64" },
                     { internalType: "uint64", name: "endTime", type: "uint64" },

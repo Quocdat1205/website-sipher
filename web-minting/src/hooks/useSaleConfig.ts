@@ -24,8 +24,10 @@ const getSalePhase = (saleConfig: ISaleConfig) => {
     let currentSalePhase: number
     if (now < saleConfig.publicTime) {
         currentSalePhase = 1
-    } else if (now < saleConfig.privateTime) {
+    } else if (now < saleConfig.publicEndTime) {
         currentSalePhase = 2
+    } else if (now < saleConfig.privateTime) {
+        currentSalePhase = 1
     } else if (now < saleConfig.freeMintTime) {
         currentSalePhase = 3
     } else if (now < saleConfig.endTime) {
@@ -57,6 +59,7 @@ const useSaleConfig = () => {
         initialData: {
             publicTime: 0,
             privateTime: 0,
+            publicEndTime: 0,
             freeMintTime: 0,
             endTime: 0,
             maxSupply: 0,
