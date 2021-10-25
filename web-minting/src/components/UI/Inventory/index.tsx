@@ -1,12 +1,9 @@
 import { Box, Flex, Tabs, Tab, TabList, TabPanel, TabPanels } from "@chakra-ui/react";
 import React from "react";
 import { MyHeading, MyText } from "@sipher/web-components";
-import { useStoreState } from "src/store";
 import ListNFTs from "./NFTList";
 
 function Inventory() {
-  const total = useStoreState((_) => _.total);
-
   return (
     <Flex flexDir="column" p="4" bg="rgba(0, 0, 0, 0.8)" w="100%" h="100%" alignItems="center">
       <Flex flexDir="column" w="full" maxWidth="64rem" overflow="hidden">
@@ -29,10 +26,6 @@ function Inventory() {
           }}
         />
         <Flex w="100%" p="4" flexDir="column" flex="1" overflow="hidden" maxWidth="64rem">
-          <MyText textAlign="right">You currently have {total} Sipher NFTs</MyText>
-          {/* <Flex flex={1} h="full" flexDirection="column" overflow="hidden">
-            <ListNFTs type="INU" />
-          </Flex> */}
           <Tabs display="flex" flexDirection="column" overflow="hidden">
             <TabList borderColor="whiteAlpha.300" color="gray.500">
               <Tab
