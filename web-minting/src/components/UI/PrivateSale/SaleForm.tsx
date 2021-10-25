@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/layout"
+import { Flex, Text } from "@chakra-ui/layout"
 import { GradientButton } from "@components/shared/GradientButton"
 import { Typo } from "@components/shared/Typo"
 import React from "react"
@@ -41,7 +41,7 @@ const SaleForm = ({
                         value={currentSlot}
                         isDisabled={!isOnSale}
                     />
-                    <Typo.Text fontWeight="semibold">{(currentSlot * price).toFixed(2)} ETH + GAS</Typo.Text>
+                    <Text fontWeight="semibold">{(currentSlot * price).toFixed(2)} ETH + GAS</Text>
                 </Flex>
                 <GradientButton
                     text="Mint"

@@ -11,6 +11,7 @@ import { PRIVATE_MINTING_LIMIT, FREE_MINTING_LIMIT } from "@constant/index"
 import useSaleRecord from "@hooks/useSaleRecord"
 import Countdown from "./Countdown"
 import useSale from "./useSale"
+import GridItemContainer from "@components/shared/GridItemContainer"
 
 interface PrivateSaleProps {
     mode: ISalePhase
@@ -31,16 +32,8 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
     const { privateSale, freeMint } = useSaleRecord()
     return (
         <Flex w="full" h="full" justify="center" align="center" p={4} overflow="hidden" direction="column">
-            <Grid
-                templateRows="auto 1fr auto"
-                templateColumns="2fr 1fr"
-                gap={2}
-                w="full"
-                maxH="full"
-                maxW="56rem"
-                overflow="hidden"
-            >
-                <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
+            <Grid templateRows="auto 1fr auto" templateColumns="2fr 1fr" gap={2} w="full" maxH="full" maxW="56rem">
+                <GridItemContainer slideDirection="top" colSpan={2} px={4} py={2} bg="blackAlpha.900">
                     <Typo.Heading w="full" textAlign="center" fontSize="2xl" mb={0}>
                         <chakra.span
                             bgGradient="linear(to-b, bgGradient.orange)"
@@ -53,8 +46,8 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                         / {numberWithCommas(mode === "PRIVATE_SALE" ? PRIVATE_MINTING_LIMIT : FREE_MINTING_LIMIT)} NEKOS
                         ALREADY MINTED
                     </Typo.Heading>
-                </GridItem>
-                <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1}>
+                </GridItemContainer>
+                <GridItemContainer slideDirection="left" bg="blackAlpha.900" colSpan={1} rowSpan={1}>
                     <Flex h="full" w="full">
                         <Countdown
                             isOnSale={isOnSale}
@@ -73,16 +66,30 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                             isMinting={isMinting}
                         />
                     </Flex>
-                </GridItem>
-                <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
+                </GridItemContainer>
+                <GridItemContainer slideDirection="right" bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
                     <Reward />
-                </GridItem>
-                <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                </GridItemContainer>
+                <GridItemContainer
+                    slideDirection="left"
+                    bg="blackAlpha.900"
+                    colSpan={1}
+                    rowSpan={1}
+                    p={4}
+                    overflow="hidden"
+                >
                     <DutchAuction />
-                </GridItem>
-                <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                </GridItemContainer>
+                <GridItemContainer
+                    slideDirection="right"
+                    bg="blackAlpha.900"
+                    colSpan={1}
+                    rowSpan={1}
+                    p={4}
+                    overflow="hidden"
+                >
                     <RewardInfo />
-                </GridItem>
+                </GridItemContainer>
             </Grid>
         </Flex>
     )

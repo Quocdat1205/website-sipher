@@ -35,8 +35,6 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
         await sendSmartContract({ address, slot, slotPrice: totalPrice, proof, privateCap, freeMintCap })
         toast({ status: "success", title: "Transaction created successfully!", duration: 6000 })
         setSlot(0)
-        queryClient.invalidateQueries("total-supply")
-        queryClient.invalidateQueries("user-record")
     }
 
     const handleMint = async () => {
@@ -58,6 +56,8 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
         try {
             setIsMinting(true)
             await mint()
+            queryClient.invalidateQueries("total-supply")
+            queryClient.invalidateQueries("user-record")
             setIsMinting(false)
         } catch (error) {
             console.log(error)
