@@ -25,3 +25,4 @@ export const PRIVATE_MINTING_LIMIT = 3000
 //Maximum NFT free minting
 // ! Still UNKNOWN
 export const FREE_MINTING_LIMIT = 500
+// FIX
