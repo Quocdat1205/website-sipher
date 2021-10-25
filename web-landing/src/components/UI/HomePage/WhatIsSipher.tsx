@@ -11,7 +11,7 @@ const WhatIsSipher = ({}: WhatIsSipherProps) => {
         {definition}
       </Typo.BoldText>
       <Img
-        src="https://s3-alpha-sig.figma.com/img/b0bd/73c7/caf43e86b11778686a5d2e4632181383?Expires=1635120000&Signature=bI8UqPIFpPo0towMU1xg3HM6Cong7MfuGQejz3IFxAPW6F7f-ZhAZP~lmu-~Hr1OfLNn7~bgp8PylbTE0zHhFoKMaIyU7t58JLEY3dCCFT64s4ynrb~bGHWMuFUdZkmUmFobrF9y9iq708N48cx6kSl9x4ISuOIYTga~E2DkyvBSUk51m4Mid86NIqh23LwLcu9W12YR3CrIO~~k4NXZ66he6eaYv-kpUCJr0tId1i-9oPNSaX~M1ZQkTtzuTNFpyysuXLoE6y-dzfCxUkiv4mMS52slMwInZsCVVLEBtnW2WRcA5-XsxfijmBq5-rcjRCmesRCOOPVUAjX9FCt4kQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        src="/images/pc/home/home_img.png"
         w="full"
         alt="What Is Sipher"
         mt={8}
