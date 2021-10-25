@@ -6,12 +6,12 @@ import Loader from "@components/shared/Loader"
 
 interface CountdownProps {
     isOnSale: boolean
+    hoursLeft: number
     minutesLeft: number
-    secondsLeft: number
     percent: number
 }
 
-const Countdown = ({ isOnSale, minutesLeft, secondsLeft, percent }: CountdownProps) => {
+const Countdown = ({ isOnSale, hoursLeft, minutesLeft, percent }: CountdownProps) => {
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
             <Typo.Text textTransform="uppercase" fontWeight="semibold" fontSize="sm">
@@ -19,8 +19,11 @@ const Countdown = ({ isOnSale, minutesLeft, secondsLeft, percent }: CountdownPro
             </Typo.Text>
             <Box boxSize="14rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
-                    {isOnSale ? (
-                        <PublicCountdown minutes={minutesLeft} seconds={secondsLeft} />
+                    {!isOnSale ? (
+                        <PublicCountdown
+                            time1={{ value: hoursLeft, unit: "HOURS" }}
+                            time2={{ value: minutesLeft, unit: "MINS" }}
+                        />
                     ) : (
                         <MyText fontWeight="bold">NOT FOR SALE</MyText>
                     )}

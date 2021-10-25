@@ -20,7 +20,10 @@ const Countdown = ({ isOnSale, minutesLeft, secondsLeft, percent }: CountdownPro
             <Box boxSize="14rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     {isOnSale ? (
-                        <PublicCountdown minutes={minutesLeft} seconds={secondsLeft} />
+                        <PublicCountdown
+                            time1={{ value: minutesLeft, unit: "MINS" }}
+                            time2={{ value: secondsLeft, unit: "SECS" }}
+                        />
                     ) : (
                         <MyText fontWeight="bold">NOT FOR SALE</MyText>
                     )}

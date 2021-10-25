@@ -11,7 +11,8 @@ export const BASE_PRICE = 0.15
 // Price step
 export const PRICE_STEP = 0.05
 // Interval: 10 MINUTES
-export const INTERVAL = 1000 * 60 * 10
+// Test Interval : 5 MINUTES
+export const INTERVAL = 1000 * 60 * 5
 // Public slot cap
 export const PUBLIC_CAP = 5
 // Price fetching interval

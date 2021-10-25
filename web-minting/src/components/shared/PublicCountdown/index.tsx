@@ -1,23 +1,19 @@
 import { HStack } from "@chakra-ui/react"
-import React, { useEffect, useRef, useState } from "react"
-import { differenceInSeconds } from "date-fns"
-import TimeCell from "./TimeCell"
+import React from "react"
+import TimeCell, { TimeCellProps } from "./TimeCell"
 import Colon from "./Colon"
 
-const ONE_HOUR = 60 * 60
-const ONE_MINUTE = 60
-
 interface PublicCountdownProps {
-    minutes: number
-    seconds: number
+    time1: TimeCellProps
+    time2: TimeCellProps
 }
 
-export const PublicCountdown = ({ minutes, seconds }: PublicCountdownProps) => {
+export const PublicCountdown = ({ time1, time2 }: PublicCountdownProps) => {
     return (
         <HStack justifyContent="flex-start" align="center" spacing={2}>
-            <TimeCell value={minutes} textAlign="right" />
+            <TimeCell {...time1} />
             <Colon />
-            <TimeCell value={seconds} textAlign="left" />
+            <TimeCell {...time2} />
         </HStack>
     )
 }

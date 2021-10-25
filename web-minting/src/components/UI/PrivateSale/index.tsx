@@ -58,8 +58,8 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                     <Flex h="full" w="full">
                         <Countdown
                             isOnSale={isOnSale}
-                            minutesLeft={hoursLeft}
-                            secondsLeft={minutesLeft}
+                            hoursLeft={hoursLeft}
+                            minutesLeft={minutesLeft}
                             percent={percent}
                         />
                         <SaleForm
