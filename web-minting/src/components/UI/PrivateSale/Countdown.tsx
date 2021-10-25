@@ -19,7 +19,7 @@ const Countdown = ({ isOnSale, hoursLeft, minutesLeft, percent }: CountdownProps
             </Typo.Text>
             <Box boxSize="14rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
-                    {!isOnSale ? (
+                    {isOnSale ? (
                         <PublicCountdown
                             time1={{ value: hoursLeft, unit: "HOURS" }}
                             time2={{ value: minutesLeft, unit: "MINS" }}
