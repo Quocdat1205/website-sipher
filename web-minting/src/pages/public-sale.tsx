@@ -2,7 +2,7 @@ import Head from "next/head"
 import MainLayout from "@components/UI/MainLayout"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "@pages/_app"
-import Sale from "@components/UI/Sale"
+import PublicSale from "@components/UI/PublicSale"
 
 const MintingPublic: NextPageWithLayout = () => {
     return (
@@ -10,7 +10,7 @@ const MintingPublic: NextPageWithLayout = () => {
             <Head>
                 <title>Public Sale</title>
             </Head>
-            <Sale mode="public" />
+            <PublicSale />
         </>
     )
 }

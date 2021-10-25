@@ -2,7 +2,7 @@ import Head from "next/head"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "@pages/_app"
 import MainLayout from "@components/UI/MainLayout"
-import Sale from "@components/UI/Sale"
+import PrivateSale from "@components/UI/PrivateSale"
 
 const FreeMinting: NextPageWithLayout = () => {
     return (
@@ -10,7 +10,7 @@ const FreeMinting: NextPageWithLayout = () => {
             <Head>
                 <title>Free Minting</title>
             </Head>
-            <Sale mode="freeMint" />
+            <PrivateSale mode="FREE_MINTING" />
         </>
     )
 }
