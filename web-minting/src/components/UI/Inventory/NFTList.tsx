@@ -52,7 +52,6 @@ const NFTList = ({ type }: Props) => {
     setSelectId({ id, race });
     onOpen();
   };
-
   return (
     <Flex flexDir="column" h="full" w="full" overflow="auto" id="scrollableDiv" py={4} maxW="64rem">
       {/* <Box flex="1" overflow="auto" className="nice-scroll" id="scrollableDiv"> */}
@@ -74,8 +73,8 @@ const NFTList = ({ type }: Props) => {
           if (setScroll) setScroll((v.target as HTMLDivElement).scrollTop);
         }}
       >
-        {data ? (
-          <SimpleGrid columns={[1, 2, 3, 4]} spacing={4}>
+        {data && data.pages.length > 1 ? (
+          <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={4}>
             {data.pages.map((page, i) => (
               <Fragment key={i}>
                 {page.map((item) => (
@@ -86,7 +85,7 @@ const NFTList = ({ type }: Props) => {
           </SimpleGrid>
         ) : (
           <MyText px="2" color="whiteAlpha.500">
-            Not Found
+            No data
           </MyText>
         )}
       </InfiniteScroll>

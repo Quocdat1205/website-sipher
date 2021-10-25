@@ -30,10 +30,10 @@ function Inventory() {
         />
         <Flex w="100%" p="4" flexDir="column" flex="1" overflow="hidden" maxWidth="64rem">
           <MyText textAlign="right">You currently have {total} Sipher NFTs</MyText>
-          <Flex flex={1} h="full" flexDirection="column" overflow="hidden">
+          {/* <Flex flex={1} h="full" flexDirection="column" overflow="hidden">
             <ListNFTs type="INU" />
-          </Flex>
-          {/* <Tabs display="flex" flexDirection="column" overflow="hidden">
+          </Flex> */}
+          <Tabs display="flex" flexDirection="column" overflow="hidden">
             <TabList borderColor="whiteAlpha.300" color="gray.500">
               <Tab
                 fontWeight="bold"
@@ -69,7 +69,7 @@ function Inventory() {
                 <ListNFTs type="NEKO" />
               </TabPanel>
             </TabPanels>
-          </Tabs> */}
+          </Tabs>
         </Flex>
       </Flex>
     </Flex>
