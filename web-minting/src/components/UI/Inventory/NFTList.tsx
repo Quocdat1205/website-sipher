@@ -56,7 +56,7 @@ const NFTList = ({ type }: Props) => {
 
   return (
     <Flex flexDir="column" h="full" w="full" overflow="hidden" py={4} maxW="64rem">
-      <MyText textAlign="right">
+      <MyText textAlign="right" py={2}>
         You currently have {total} {type} NFTs
       </MyText>
       <Box flex="1" overflow="auto" className="nice-scroll" id="scrollableDiv">
@@ -107,7 +107,7 @@ const NFTList = ({ type }: Props) => {
             content: "''",
             w: "100%",
             h: "100%",
-            transform: "scale(1.01)",
+            transform: "scale(1.005)",
             zIndex: "-1",
             bgSize: "500%",
             pos: "absolute",
@@ -117,7 +117,7 @@ const NFTList = ({ type }: Props) => {
             content: "''",
             w: "100%",
             h: "100%",
-            transform: "scale(1.01)",
+            transform: "scale(1.005)",
             zIndex: "-1",
             bgSize: "500%",
             pos: "absolute",
