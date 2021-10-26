@@ -2,8 +2,8 @@ import config from "./config"
 import axios from "axios"
 import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "@constant/index"
 
-/** Check smart contract! I don't know about this
- * @description Not used! Will be remove soon!
+/** Check smart contract!
+ * @description Check whether front-end and back-end is using the same contract
  */
 export const checkSmartContract = async (publicAddress: string): Promise<boolean> => {
     let address = publicAddress.toLowerCase()

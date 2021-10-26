@@ -1,45 +1,42 @@
-import { Box, chakra, Flex, Image, Text } from "@chakra-ui/react"
-import { MyText } from "@sipher/web-components"
+import { NFTInfo } from "@api/nft"
+import { Box, Img, Text } from "@chakra-ui/react"
+import { MotionFlex } from "@components/shared/Motion"
+import { useRouter } from "next/router"
 
 interface CardProps {
-	item: {
-		name: string
-		origin: string
-		image_url: string
-	}
-	onClick: () => void
+    item: NFTInfo
+    order: number
 }
 
-const Card = ({ item, onClick }: CardProps) => {
-	const { name, origin, image_url } = item
-
-	return (
-		<Flex
-			cursor="pointer"
-			flexDir="column"
-			onClick={() => onClick()}
-			_hover={{
-				bg: "whiteAlpha.200",
-				boxShadow: "rgb(255 255 255 / 25%) 0px 0px 8px 0px",
-				transition: "all 0.1s ease 0s",
-			}}
-			border="1px"
-			borderColor="whiteAlpha.300"
-			borderRadius="md"
-			color="whiteAlpha.800"
-			p={[2, 3]}
-		>
-			<Image p="1" w="100%" border="1px" borderColor="whiteAlpha.900" src={image_url} alt="" />
-			<Flex my="2" maxW="60%">
-				<chakra.span h={["3px", "4px", "5px"]} flex="1" bg="red.500" />
-				<chakra.span ml="0.5rem" h={["3px", "4px", "5px"]} flex="1" bg="whiteAlpha.300" />
-				<chakra.span ml="0.5rem" h={["3px", "4px", "5px"]} flex="1" bg="whiteAlpha.300" />
-			</Flex>
-			<MyText fontWeight="bold" color="red.500">
-				{name}
-			</MyText>
-			<MyText color="yellow.400">{origin}</MyText>
-		</Flex>
-	)
+const Card = ({ item, order }: CardProps) => {
+    const { name, origin, image_url } = item
+    const router = useRouter()
+    return (
+        <MotionFlex
+            cursor="pointer"
+            flexDir="column"
+            onClick={() => router.push(`/inventory/${item.race.toLowerCase()}/${item.id}`)}
+            _hover={{
+                bg: "blackAlpha.800",
+                borderColor: "whiteAlpha.500",
+            }}
+            border="1px"
+            borderColor="whiteAlpha.300"
+            shadow="lg"
+            bg="blackAlpha.900"
+            overflow="hidden"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ type: "tween", delay: order * 0.05 }}
+        >
+            <Img w="100%" src={image_url} alt={name} />
+            <Box py={2} px={2}>
+                <Text fontWeight="bold" bgGradient="linear(to-b, bgGradient.orange)" bgClip="text">
+                    {name}
+                </Text>
+                <Text fontSize="sm">{origin}</Text>
+            </Box>
+        </MotionFlex>
+    )
 }
 export default Card

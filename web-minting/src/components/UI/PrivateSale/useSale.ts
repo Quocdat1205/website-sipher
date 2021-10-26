@@ -5,18 +5,22 @@ import useSaleConfig from "@hooks/useSaleConfig"
 import useWalletContext from "@hooks/useWalletContext"
 import { useState } from "react"
 import { useQueryClient } from "react-query"
-import useTimeAndPrice from "./useTimeAndPrice"
+import { useTimer } from "react-timer-hook"
 
 const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const price = mode === "PRIVATE_SALE" ? 0.1 : 0
     const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
-    const { salePhaseName } = useSaleConfig()
+    const {
+        salePhaseName,
+        saleConfig: { freeMintTime, endTime },
+    } = useSaleConfig()
     const [slot, setSlot] = useState(0)
     const [isMinting, setIsMinting] = useState(false)
     const queryClient = useQueryClient()
     const totalPrice = parseFloat((slot * price).toFixed(2))
     const isOnSale = mode === salePhaseName
-    const timeAndPrice = useTimeAndPrice(mode)
+    const timer = useTimer({ expiryTimestamp: new Date(mode === "PRIVATE_SALE" ? freeMintTime : endTime) })
+
     const getMaxSlot = () => {
         if (mode === "PRIVATE_SALE") {
             return userRecord ? Math.max(states.whitelistInfo.privateCap - userRecord.whitelistBought, 0) : 0
@@ -77,7 +81,7 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
         price,
         totalPrice,
         isLoadingUserRecord,
-        timeAndPrice,
+        timer,
     }
 }
 

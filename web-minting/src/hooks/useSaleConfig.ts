@@ -12,7 +12,6 @@ const salePhases = {
     4: "FREE_MINTING",
     5: "END_SALE",
 } as const
-
 interface PublicPriceStep {
     value: number
     timeStamp: number

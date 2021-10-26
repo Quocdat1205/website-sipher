@@ -2,28 +2,41 @@
 import { BaseNavigationBar } from "@sipher/web-components"
 import AccountAddress from "./AccountAddress"
 import useWalletContext from "@hooks/useWalletContext"
+import { Flex } from "@chakra-ui/react"
+import ChildMenu from "@components/shared/ChildMenu"
 
-interface NavBarProps {}
+interface NavBarProps {
+    isInventoryMenu?: boolean
+}
 
 export const navMenus = [
     { id: "Public Sale", path: "/public-sale" },
     { id: "Private Sale", path: "/private-sale" },
     { id: "Free Minting", path: "/free-minting" },
-    { id: "Inventory", path: "/inventory" },
+    { id: "Inventory", path: "/inventory/inu" },
 ]
 
-export const NavBar = ({}: NavBarProps) => {
+export const inventoryMenus = [
+    { id: "INU", path: "/inventory/inu" },
+    { id: "NEKO", path: "/inventory/neko" },
+]
+
+export const NavBar = ({ isInventoryMenu }: NavBarProps) => {
     const { states } = useWalletContext()
 
     return (
-        <BaseNavigationBar
-            logoPath="/images/mainlogo.svg"
-            menus={navMenus.filter(
-                item =>
-                    (item.id !== "Private Sale" && item.id !== "Free Minting") || states.whitelistInfo.proof.length > 0
-            )}
-        >
-            <AccountAddress />
-        </BaseNavigationBar>
+        <Flex direction="column" pos="fixed" w="full">
+            <BaseNavigationBar
+                logoPath="/images/mainlogo.svg"
+                menus={navMenus.filter(
+                    item =>
+                        (item.id !== "Private Sale" && item.id !== "Free Minting") ||
+                        states.whitelistInfo.proof.length > 0
+                )}
+            >
+                <AccountAddress />
+            </BaseNavigationBar>
+            {isInventoryMenu && <ChildMenu menus={inventoryMenus} />}
+        </Flex>
     )
 }

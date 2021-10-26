@@ -23,7 +23,7 @@ const QuantitySelector = ({ onChange, value, maxValue, minValue = 0, isDisabled 
                 rounded={0}
             />
             <Input
-                w="2.5rem"
+                w="3rem"
                 variant="filled"
                 bgColor="transparent"
                 bgGradient="linear(to-b, blackAlpha.900, blackAlpha.500, blackAlpha.900)"
@@ -40,9 +40,10 @@ const QuantitySelector = ({ onChange, value, maxValue, minValue = 0, isDisabled 
                 fontWeight="bold"
                 color="whiteAlpha.900"
                 textAlign="center"
-                value={value}
+                value={`${value}/${maxValue}`}
                 isDisabled={isDisabled}
                 px={0}
+                letterSpacing="1px"
             />
             <GradientButton
                 h="full"

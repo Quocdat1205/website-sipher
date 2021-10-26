@@ -1,7 +1,6 @@
 import { Flex, Box } from "@chakra-ui/layout"
 import Loading from "@components/shared/Loading"
 import useWalletContext from "@hooks/useWalletContext"
-import { AnimatePresence } from "framer-motion"
 import React, { useEffect } from "react"
 import { NavBar } from "./NavigationBar/NavBar"
 
@@ -9,7 +8,7 @@ interface Props {
     children: React.ReactNode
 }
 
-const MainLayout = ({ children }: Props) => {
+const InventoryLayout = ({ children }: Props) => {
     const { states } = useWalletContext()
 
     useEffect(() => {
@@ -17,25 +16,24 @@ const MainLayout = ({ children }: Props) => {
             window.location.href = "/"
         }
     }, [states.accessToken])
-
     return (
-        <Box color="whiteAlpha.900" w="full" h="100vh">
+        <Flex direction="column" w="full" minH="100vh">
             {states.accessToken === "" && <Loading />}
             <Flex
                 color="whiteAlpha.900"
                 bg="url(/images/bgMinting.png) no-repeat"
                 bgSize="100% 100%"
                 w="full"
-                minH="100vh"
+                flex={1}
                 flexDir="column"
                 pos="relative"
             >
-                <NavBar />
-                <Flex flex={1} overflow="visible" pt={20} bg="blackAlpha.500">
-                    <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>
+                <NavBar isInventoryMenu />
+                <Flex flex={1} overflow="auto" pt={28} pb={4} bg="blackAlpha.800">
+                    {children}
                 </Flex>
             </Flex>
-        </Box>
+        </Flex>
     )
 }
-export default MainLayout
+export default InventoryLayout

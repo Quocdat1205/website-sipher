@@ -14,6 +14,7 @@ interface SaleFormProps {
     handleMint: () => void
     isMinting: boolean
     isLoadingUserRecord: boolean
+    boughtNFT: number
 }
 
 const SaleForm = ({
@@ -25,6 +26,7 @@ const SaleForm = ({
     handleMint,
     isLoadingUserRecord,
     isMinting,
+    boughtNFT,
 }: SaleFormProps) => {
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4}>
@@ -40,11 +42,15 @@ const SaleForm = ({
                 text="Mint"
                 w="full"
                 mt={4}
+                mb={2}
                 onClick={() => handleMint()}
                 isLoading={isMinting}
                 loadingText="MINTING"
                 disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
             />
+            <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
+                You have purchased {boughtNFT}
+            </Text>
         </Flex>
     )
 }
