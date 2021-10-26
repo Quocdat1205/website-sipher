@@ -13,7 +13,7 @@ interface Props {}
 
 const TierRewardBenefit = (props: Props) => {
   return (
-    <Flex bg="blackAlpha.300" align="center" flexDir="column" w="full" h="full" p={4} overflow="auto">
+    <Flex bg="blackAlpha.400" align="center" flexDir="column" w="full" h="full" p={4} overflow="auto">
       <Flex w="full" maxW="68rem" flexDir="column" h="full">
         <NextLink href="/public-sale">
           <Flex _hover={{ color: "main.yellow" }} cursor="pointer" wrap="wrap" align="center">
@@ -42,8 +42,8 @@ const TierRewardBenefit = (props: Props) => {
           </GridItem>
           <GridItem bg="blackAlpha.900" p={4} colSpan={1}>
             <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-              {rankBenefits.map((item) => (
-                <RankCard key={item.id} id={item.id} srcImg={item.srcImg} />
+              {rankBenefits.map((item, index) => (
+                <RankCard key={index} id={item.id} srcImg={item.srcImg} />
               ))}
             </Grid>
           </GridItem>

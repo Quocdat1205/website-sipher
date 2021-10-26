@@ -9,31 +9,28 @@ export const rankBenefits: RankCardProps[] = [
 
 export const titleAuctionBenefits = [
   { text: "Purchase price" },
-  { text: "Immortalize in Sipheria", tooltip: "None" },
+  {
+    text: "Immortalize in Sipheria",
+    tooltip:
+      "Will use your name in the actual world building, you might get NPCs, Towns, Roads named after your easter egg style",
+  },
   { text: "Scuplture" },
-  { text: "Hall Of Frame", tooltip: "None" },
+  { text: "Hall Of Frame", tooltip: "A list in game and on the website, location in game is TBD" },
   { text: "Free Swag on Maddies" },
-  { text: "In-game Title", tooltip: "None" },
+  {
+    text: "In-game Title",
+    tooltip: "Will have icons, and icon borders, this will be promised to our early supporters",
+  },
 ];
 
 export const dataAuctionBenefits = [
   {
     id: "Purchase price",
-    content: [
-      { text: "0.9 - 0.85", type: "text" },
-      { text: "0.8 - 0.75", type: "text" },
-      { text: "0.7 - 0.65", type: "text" },
-      { text: "0.6 - 0.55", type: "text" },
-    ],
+    content: [{ text: "0.9 - 0.85" }, { text: "0.8 - 0.75" }, { text: "0.7 - 0.65" }, { text: "0.6 - 0.55" }],
   },
   {
     id: "Immortalize in Sipheria",
-    content: [
-      { text: "Names forever immortalize in Sipheria", type: "text" },
-      { text: "N/A", type: "text" },
-      { text: "N/A", type: "text" },
-      { text: "N/A", type: "text" },
-    ],
+    content: [{ text: "Names forever immortalize in Sipheria" }, { text: "N/A" }, { text: "N/A" }, { text: "N/A" }],
   },
   {
     id: "Scuplture",
@@ -71,28 +68,28 @@ export const dataAuctionBenefits = [
   {
     id: "Hall Of Frame",
     content: [
-      { text: "Hall Of Frame Listing", type: "text" },
-      { text: "Hall Of Frame Listing", type: "text" },
-      { text: "Hall Of Frame Listing", type: "text" },
-      { text: "Hall Of Frame Listing", type: "text" },
+      { text: "Hall Of Frame Listing" },
+      { text: "Hall Of Frame Listing" },
+      { text: "Hall Of Frame Listing" },
+      { text: "Hall Of Frame Listing" },
     ],
   },
   {
     id: "Free Swag on Maddies",
     content: [
-      { text: "Diamond Tier Swag Membership for Maddies", type: "text" },
-      { text: "Platinum Tier Swag Membership for Maddies", type: "text" },
-      { text: "Gold Tier Swag Membership for Maddies", type: "text" },
-      { text: "Silver Tier Swag Membership for Maddies", type: "text" },
+      { text: "Diamond Tier Swag Membership for Maddies" },
+      { text: "Platinum Tier Swag Membership for Maddies" },
+      { text: "Gold Tier Swag Membership for Maddies" },
+      { text: "Silver Tier Swag Membership for Maddies" },
     ],
   },
   {
     id: "In-game Title",
     content: [
-      { text: "Diamond frame for character name in-game", type: "text" },
-      { text: "Platinum frame for character name in-game", type: "text" },
-      { text: "Gold frame for character name in-game", type: "text" },
-      { text: "Silver frame for character name in-game", type: "text" },
+      { text: "Diamond frame for character name in-game" },
+      { text: "Platinum frame for character name in-game" },
+      { text: "Gold frame for character name in-game" },
+      { text: "Silver frame for character name in-game" },
     ],
   },
 ];

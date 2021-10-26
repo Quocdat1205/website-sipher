@@ -16,7 +16,15 @@ const TitleAuctionBenefits = (props: Props) => {
           <Typo.Text display="flex" alignItems="center" flexDir="row" color="main.yellow" size="small">
             {item.text}
             {item.tooltip && (
-              <Tooltip hasArrow label={item.tooltip} placement="top">
+              <Tooltip
+                p={2}
+                fontWeight="thin"
+                bg="about.darkRed"
+                color="white"
+                hasArrow
+                label={item.tooltip}
+                placement="top-start"
+              >
                 <chakra.span color="white" ml={2}>
                   <FiInfo />
                 </chakra.span>

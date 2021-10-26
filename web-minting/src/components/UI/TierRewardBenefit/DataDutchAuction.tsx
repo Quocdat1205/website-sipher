@@ -8,8 +8,8 @@ interface Props {}
 const DataDutchAuction = (props: Props) => {
   return (
     <Flex maxW="68rem" bg="blackAlpha.900" p={4} mt={8} flexDir="column" w="full">
-      {dataDutchAuction.map((item) => (
-        <Box mb={8} _last={{ mb: 0 }} key={item.id}>
+      {dataDutchAuction.map((item, index) => (
+        <Box mb={8} _last={{ mb: 0 }} key={index}>
           <Typo.Text size="small" color="main.yellow" textTransform="uppercase">
             {item.id}
           </Typo.Text>
@@ -17,15 +17,15 @@ const DataDutchAuction = (props: Props) => {
             {item.title && item.title}
           </Typo.Text>
           <Box>
-            {item.content.map((item) => (
-              <UnorderedList pl={1}>
-                <ListItem color="about.textGray">
-                  <Typo.Text size="small" color="about.textGray" key={item}>
+            <UnorderedList pl={1}>
+              {item.content.map((item) => (
+                <ListItem color="about.textGray" key={item}>
+                  <Typo.Text size="small" color="about.textGray">
                     {item}
                   </Typo.Text>
                 </ListItem>
-              </UnorderedList>
-            ))}
+              ))}
+            </UnorderedList>
           </Box>
         </Box>
       ))}
