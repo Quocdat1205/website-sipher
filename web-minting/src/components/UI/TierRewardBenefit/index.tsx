@@ -1,13 +1,12 @@
-import { Flex, Grid, GridItem, Box, UnorderedList, ListItem } from "@chakra-ui/react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import { Typo } from "@components/shared/Typo";
 import NextLink from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import React from "react";
-import RankCard from "./RankCard";
-import { rankBenefits } from "@constant/content/tierRewardBenefits";
 import TitleAuctionBenefits from "./TitleAuctionBenefits";
 import DataAuctionBenefits from "./DataAuctionBenefits";
 import DataDutchAuction from "./DataDutchAuction";
+import DataRankBenefit from "./DataRankBenefit";
 
 interface Props {}
 
@@ -41,11 +40,7 @@ const TierRewardBenefit = (props: Props) => {
             <Typo.BoldText>AUCTION BENEFITS</Typo.BoldText>
           </GridItem>
           <GridItem bg="blackAlpha.900" p={4} colSpan={1}>
-            <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-              {rankBenefits.map((item, index) => (
-                <RankCard key={index} id={item.id} srcImg={item.srcImg} />
-              ))}
-            </Grid>
+            <DataRankBenefit />
           </GridItem>
           <GridItem bg="blackAlpha.900" p={4} colSpan={1} rowSpan={1}>
             <TitleAuctionBenefits />
