@@ -35,10 +35,10 @@ const Letter = ({ char, control, custom }: LetterProps) => {
 const p1 = "10,000 Nekos will be available in this collection, split between a public sale, and a private sale."
 const p2 = "Public Sale"
 const p3 =
-    "The public sale will occur on Oct 30, 2021 at 1:30 AM UTC and will follow a Dutch Auction format. The auction will start at a price of 0.9 ETH and will decrease by 0.05 ETH every 10 minutes, with the lowest purchase price being 0.1 ETH. Regardless of purchase price, each participant can purchase up to 5 Nekos per transaction, with a maximum of 5 per wallet."
+    "The public sale will occur on Nov 06, 2021 at 1:30 AM UTC and will follow a Dutch Auction format. The auction will start at a price of 0.9 ETH and will decrease by 0.05 ETH every 10 minutes, with the lowest purchase price being 0.1 ETH. Regardless of purchase price, each participant can purchase up to 5 Nekos per transaction, with a maximum of 5 per wallet."
 const p4 = "Private Sale"
 const p5 =
-    "The private sale will occur on Oct 30, 2021 right after the public sale ended, for a price of 0.1 ETH per Neko. Whitelisted members have up to 24 hours to mint. More information about the private sale is in our Discord channel."
+    "The private sale will occur on Nov 06, 2021 right after the public sale ended, for a price of 0.1 ETH per Neko. Whitelisted members have up to 24 hours to mint. More information about the private sale is in our Discord channel."
 const learnMore = "Learn more about out Dutch Auction."
 
 const AmountScreen = () => {
