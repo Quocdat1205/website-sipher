@@ -19,19 +19,19 @@ const InventoryLayout = ({ children }: Props) => {
     return (
         <Flex direction="column" w="full" minH="100vh">
             {states.accessToken === "" && <Loading />}
-            <Flex
-                color="whiteAlpha.900"
-                bg="url(/images/bgMintingNew.png) no-repeat"
-                bgSize="100% 100%"
-                w="full"
-                flex={1}
-                flexDir="column"
-                pos="relative"
-            >
+            <Flex color="whiteAlpha.900" w="full" flex={1} flexDir="column" pos="relative">
                 <NavBar isInventoryMenu />
                 <Flex flex={1} overflow="auto" pt={28} pb={4} bg="blackAlpha.800">
                     {children}
                 </Flex>
+                <Box
+                    pos="fixed"
+                    w="full"
+                    zIndex="-1"
+                    h="100vh"
+                    bg="url(/images/bgMintingNew.png) no-repeat"
+                    bgSize="100% 100%"
+                ></Box>
             </Flex>
         </Flex>
     )
