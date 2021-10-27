@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 import { SlideFade, Flex, Box } from "@chakra-ui/react"
 import MetaMaskTutorial from "./MetaMaskTutorial"
 import ConnectWalletForm from "./ConnectWalletForm"
-import useTypeEffect from "@hooks/useTypeEffect"
-import { MyText } from "@sipher/web-components"
 
 const Login = () => {
     const [redirect, setRedirect] = useState(false)
@@ -13,7 +11,6 @@ const Login = () => {
         localStorage.setItem("connect-wallet", "true")
         setRedirect(true)
     }
-    let typer = useTypeEffect()
     useEffect(() => {
         setRedirect(localStorage.getItem("connect-wallet") === "true")
     }, [])
@@ -29,7 +26,6 @@ const Login = () => {
             color="whiteAlpha.900"
         >
             <Box maxW="100%" w="32rem" bgGradient="linear(to-b, bgGradient.orange)" p="1">
-                <MyText>{typer.text}</MyText>
                 <Flex align="center" justify="center" bg="black" p="4" w="full">
                     {!redirect ? (
                         <MetaMaskTutorial onConnectClick={onConnectClick} />

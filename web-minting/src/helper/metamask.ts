@@ -98,11 +98,12 @@ export const getMetamaskBalance = async (address: string): Promise<number> => {
     return weiToEther(wei)
 }
 
-/** Connect to metask, return bunch of info */
+/** Connect to metamask, return bunch of info */
 export const connectWallet = async () => {
     const accounts = await getMetaMaskAccounts()
     const address = accounts[0]
     const chainInfo = await getChainInfo()
+    console.log("HERE")
     const account = await getUser(address)
     const token = await getAccessToken(account)
     const whitelistInfo = await checkIsWhitelisted(address)
