@@ -1,14 +1,15 @@
-import { Flex } from "@chakra-ui/layout"
+import { Flex, FlexProps } from "@chakra-ui/layout"
+import { motion } from "framer-motion"
 import React from "react"
 import { Typo } from "./Typo"
 
-interface Props {}
+const MotionFlex = motion<Omit<FlexProps, "transition">>(Flex)
 
 const Loading = () => {
     return (
-        <Flex bg="black" h="100vh" w="full" align="center" justify="center">
+        <MotionFlex bg="black" h="100vh" w="full" align="center" justify="center" exit={{ scaleY: 0 }}>
             <Typo.BoldText isGradient>PLEASE WAIT ...</Typo.BoldText>
-        </Flex>
+        </MotionFlex>
     )
 }
 

@@ -15,11 +15,11 @@ const useTimeAndPrice = ({ publicTime }: { publicTime: number }) => {
 
     const percent = 100 - (((currentTime - publicTime) % INTERVAL) / INTERVAL) * 100
 
-    const currentPublicPrice = 0.9 - Math.floor((currentTime - publicTime) / INTERVAL) * PRICE_STEP
+    const currentPublicPrice = Math.max(0.1, 0.9 - Math.floor((currentTime - publicTime) / INTERVAL) * PRICE_STEP)
     return {
-        minutesLeft,
-        secondsLeft,
-        percent,
+        minutesLeft: currentPublicPrice === 0.1 ? 0 : minutesLeft,
+        secondsLeft: currentPublicPrice === 0.1 ? 0 : secondsLeft,
+        percent: currentPublicPrice === 0.1 ? 100 : percent,
         currentPublicPrice,
     }
 }

@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/layout"
+import { Flex, Text } from "@chakra-ui/layout"
 import { Typo } from "@components/shared/Typo"
 import React from "react"
 import PriceWheel from "./PriceWheel"
@@ -34,7 +34,7 @@ const SaleForm = ({
             <PriceWheel price={price} />
             <Flex w="full" mt={4} align="center" justify="space-between">
                 <QuantitySelector onChange={setSlot} maxValue={maxSlot} value={currentSlot} isDisabled={!isOnSale} />
-                <Typo.Text fontWeight="semibold">{(currentSlot * price).toFixed(2)} ETH + GAS</Typo.Text>
+                <Text fontWeight="semibold">{(currentSlot * price).toFixed(2)} ETH + GAS</Text>
             </Flex>
             <GradientButton
                 text="Mint"

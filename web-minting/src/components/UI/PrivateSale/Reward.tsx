@@ -6,15 +6,17 @@ interface RewardProps {}
 
 const Reward = ({}: RewardProps) => {
     return (
-        <Flex direction="column" align="center">
+        <Flex direction="column" align="flex-start">
             <MyText size="small" color="main.yellow" mb={4}>
                 GOLD TIER
             </MyText>
-            <Img src="/images/reward.png" alt="reward" h="8rem" />
+            <Flex justify="center" w="full">
+                <Img src="/images/reward.png" alt="reward" h="8rem" />
+            </Flex>
             <MyText size="small" color="main.yellow">
                 YOU WILL RECEIVE:
             </MyText>
-            <UnorderedList display="flex" flexDirection="column" alignItems="center">
+            <UnorderedList>
                 <ListItem w="fit-content">
                     <MyText size="small">1 Free Sipher Hoodie</MyText>
                 </ListItem>
