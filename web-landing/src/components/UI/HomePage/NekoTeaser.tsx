@@ -75,7 +75,7 @@ const NekoTeaser = ({ uaString }) => {
                 )}
             </AnimatePresence>
             <video
-                src={"/video/neko_teaser.mp4"}
+                src={"/video/neko_teaser1.mp4"}
                 playsInline={true}
                 controls={isIOS}
                 ref={videoRef}
