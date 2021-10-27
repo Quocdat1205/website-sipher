@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import React from "react"
 import { changeEmotion, getNFT, getMerkle } from "@api/index"
-import { Box, Tooltip, Flex, Tbody, Tr, Td, Image, Table, Spinner } from "@chakra-ui/react"
+import { Box, Tooltip, Flex, Tbody, Tr, Td, Img, Table, Spinner, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import useWalletContext from "@hooks/useWalletContext"
 import { NFTRace } from "@@types"
@@ -9,8 +9,11 @@ import Head from "next/head"
 import EmotionChanger from "./EmotionChanger"
 import { Typo } from "@components/shared/Typo"
 import { BsQuestionCircle } from "react-icons/bs"
-import { MotionFlex } from "@components/shared/Motion"
-
+import { MotionBox, MotionFlex } from "@components/shared/Motion"
+import { FiArrowLeft } from "react-icons/fi"
+import { useRouter } from "next/router"
+import { AnimatePresence, motion } from "framer-motion"
+import Image from "next/image"
 interface PopupProps {
     id: number
     race: NFTRace
@@ -40,7 +43,6 @@ const Detail = ({ id, race }: PopupProps) => {
         {
             onSuccess: () => {
                 queryClient.invalidateQueries("NFT")
-                toast({ status: "success", title: "Change emotion successfully!" })
             },
         }
     )
@@ -56,7 +58,7 @@ const Detail = ({ id, race }: PopupProps) => {
         if (!data) return []
         return Object.keys(Object.fromEntries(Object.entries(data.emotionImages).filter(entry => entry[1] !== "")))
     }
-
+    const router = useRouter()
     return (
         <MotionFlex
             w="full"
@@ -74,18 +76,47 @@ const Detail = ({ id, race }: PopupProps) => {
             <Flex direction="column" w="full" maxW="56rem">
                 {data && merkle ? (
                     <>
-                        <Flex w="full">
-                            <Box flex="2" flexShrink={0}>
-                                <Box>
-                                    <Image src={data.emotionImages[currentEmotion]} alt={currentEmotion} mb={4} />
-                                    <EmotionChanger
-                                        availableEmotions={getAvailableEmotion()}
-                                        currentEmotion={currentEmotion}
-                                        onChangeEmotion={mutateChangeEmotion}
-                                    />
+                        <Flex
+                            _hover={{ color: "main.yellow" }}
+                            cursor="pointer"
+                            align="center"
+                            mb={4}
+                            onClick={() => router.back()}
+                        >
+                            <FiArrowLeft size="1.2rem" />
+                            <Text ml={2} color="inherit">
+                                BACK
+                            </Text>
+                        </Flex>
+                        <Flex w="full" overflow="hidden">
+                            <Box>
+                                <Box pos="relative" w="18rem" h="20rem" mb={4}>
+                                    <AnimatePresence>
+                                        <MotionBox
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            key={currentEmotion}
+                                            pos="absolute"
+                                            top={0}
+                                            left={0}
+                                        >
+                                            <Image
+                                                src={data.emotionImages[currentEmotion]}
+                                                alt={currentEmotion}
+                                                width={288}
+                                                height={320}
+                                            />
+                                        </MotionBox>
+                                    </AnimatePresence>
                                 </Box>
+                                <EmotionChanger
+                                    availableEmotions={getAvailableEmotion()}
+                                    currentEmotion={currentEmotion}
+                                    onChangeEmotion={mutateChangeEmotion}
+                                />
                             </Box>
-                            <Flex direction="column" flex="3" ml="4">
+                            <Flex direction="column" flex={3} ml="4" overflow="hidden">
                                 <Typo.Heading
                                     isGradient
                                     textTransform="uppercase"
@@ -154,13 +185,13 @@ const Detail = ({ id, race }: PopupProps) => {
                                                 </Tooltip>
                                             </Flex>
                                         </Flex>
-                                        <Box w="full" overflow="hidden">
+                                        <Flex direction="column" w="full" overflow="hidden">
                                             {merkle.proof.map(p => (
-                                                <Typo.Text key={p} isTruncated fontFamily="mono">
+                                                <Text key={p} isTruncated fontFamily="mono" w="full" overflow="hidden">
                                                     {p}
-                                                </Typo.Text>
+                                                </Text>
                                             ))}
-                                        </Box>
+                                        </Flex>
                                     </>
                                 )}
                             </Flex>

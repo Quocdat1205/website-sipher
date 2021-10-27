@@ -10,4 +10,7 @@ module.exports = {
             },
         ]
     },
+    images: {
+        domains: ["sipherstorage.s3.ap-southeast-1.amazonaws.com"],
+    },
 }

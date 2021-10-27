@@ -1,14 +1,4 @@
-import {
-    Flex,
-    SimpleGrid,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalOverlay,
-    Box,
-    CircularProgress,
-} from "@chakra-ui/react"
+import { Flex, SimpleGrid, Box, CircularProgress, Spinner, Text } from "@chakra-ui/react"
 import React, { Fragment, useState } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
 import { useInfiniteQuery } from "react-query"
@@ -40,6 +30,26 @@ const NFTList = ({ race }: Props) => {
     const { data, hasNextPage, fetchNextPage, isLoading } = useInfiniteQuery(["NFT", race], getNFTWithRange, {
         getNextPageParam: (lastPage, pages) => (lastPage.length < STEP ? undefined : lastPage.length * pages.length),
     })
+
+    if (isLoading && !data)
+        return (
+            <Flex w="full" flex={1} align="center" justify="center">
+                <Flex align="center">
+                    <Spinner size="sm" mr={2} />
+                    <Text>Loading</Text>
+                </Flex>
+            </Flex>
+        )
+
+    if (!isLoading && !data)
+        return (
+            <Flex w="full" flex={1} align="center" justify="center">
+                <Flex align="center" direction="column">
+                    <Text fontSize="lg">Failed to get data!</Text>
+                    <Text color="whiteAlpha.600">Try again later.</Text>
+                </Flex>
+            </Flex>
+        )
 
     return (
         <Flex w="full" justify="center" p={4}>

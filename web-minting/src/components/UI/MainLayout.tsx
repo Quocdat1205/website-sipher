@@ -23,7 +23,7 @@ const MainLayout = ({ children }: Props) => {
             {states.accessToken === "" && <Loading />}
             <Flex
                 color="whiteAlpha.900"
-                bg="url(/images/bgMinting.png) no-repeat"
+                bg="url(/images/bgMintingNew.png) no-repeat"
                 bgSize="100% 100%"
                 w="full"
                 minH="100vh"
