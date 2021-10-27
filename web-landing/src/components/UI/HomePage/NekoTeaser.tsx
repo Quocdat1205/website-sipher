@@ -3,7 +3,6 @@ import { MotionFlex, Typo } from "@components/shared"
 import { AnimatePresence } from "framer-motion"
 import { useUserAgent } from "next-useragent"
 import { useEffect, useRef, useState } from "react"
-import { getSelectorsByUserAgent } from "react-device-detect"
 import { IoMdPlay } from "react-icons/io"
 
 const NekoTeaser = ({ uaString }) => {
@@ -30,12 +29,11 @@ const NekoTeaser = ({ uaString }) => {
             }
         }
     }, [isPlaying])
-    const {} = getSelectorsByUserAgent("asd")
     return (
         <Box
             pos="relative"
-            w={["48rem", "48rem", "56rem", "64rem", "72rem"]}
-            maxW="100%"
+            maxW={["full", "full", "48rem", "52rem", "56rem"]}
+            w="full"
             onClick={() => setIsPlaying(!isPlaying)}
         >
             <AnimatePresence>
@@ -75,7 +73,7 @@ const NekoTeaser = ({ uaString }) => {
                 )}
             </AnimatePresence>
             <video
-                src={"/video/neko_teaser1.mp4"}
+                src={"/video/neko_teaser.mp4"}
                 playsInline={true}
                 controls={isIOS}
                 ref={videoRef}
@@ -84,7 +82,7 @@ const NekoTeaser = ({ uaString }) => {
                 onEnded={() => videoRef.current?.load()}
                 data-reactid=".0.1.0.0"
                 datatype="video/mp4"
-                poster="/video/neko_poster.jpg"
+                poster="/video/neko_teaser_poster.jpg"
             ></video>
         </Box>
     )

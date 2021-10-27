@@ -31,7 +31,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                 <VStack spacing={24} align="center" w="full">
                     <NekoTeaser uaString={uaString} />
                     <DigitalCharacters />
-                    <WhatIsSipher />
+                    <WhatIsSipher uaString={uaString} />
                     <OwnerBenefits />
                     <Backers />
                     <BehindTheScenes />
