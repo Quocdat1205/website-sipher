@@ -16,6 +16,7 @@ interface SaleFormProps {
     isLoadingUserRecord: boolean
     timeLeft: Record<"days" | "hours" | "minutes" | "seconds", number>
     boughtNFT: number
+    mode: "PRIVATE_SALE" | "FREE_MINTING"
 }
 
 const SaleForm = ({
@@ -29,14 +30,15 @@ const SaleForm = ({
     isLoadingUserRecord,
     timeLeft,
     boughtNFT,
+    mode,
 }: SaleFormProps) => {
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={6}>
             <Flex direction="column" w="full">
                 <Text textTransform="uppercase" fontWeight="semibold" fontSize="sm">
-                    Private Sale End Time
+                    {mode === "PRIVATE_SALE" ? "Private Sale End Time" : "Free Minting End Time"}
                 </Text>
-                <Countdown isOnSale timeLeft={timeLeft} />
+                <Countdown isOnSale={isOnSale} timeLeft={timeLeft} />
             </Flex>
             <Flex direction="column" w="full">
                 <Text textTransform="uppercase" fontWeight="semibold" fontSize="sm" mb={1}>

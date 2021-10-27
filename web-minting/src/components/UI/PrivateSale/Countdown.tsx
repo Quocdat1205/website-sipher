@@ -13,16 +13,12 @@ const Countdown = ({ isOnSale, timeLeft }: CountdownProps) => {
     const { days, hours, minutes, seconds } = timeLeft
     return (
         <Flex direction="column" align="center" justify="center" pos="relative" h="6rem">
-            {isOnSale ? (
-                <PrivateCountdown
-                    time1={{ value: days, unit: "Days" }}
-                    time2={{ value: hours, unit: "Hours" }}
-                    time3={{ value: minutes, unit: "Mins" }}
-                    time4={{ value: seconds, unit: "Secs" }}
-                />
-            ) : (
-                <MyText fontWeight="bold">NOT FOR SALE</MyText>
-            )}
+            <PrivateCountdown
+                time1={{ value: isOnSale ? days : 0, unit: "Days" }}
+                time2={{ value: isOnSale ? hours : 0, unit: "Hours" }}
+                time3={{ value: isOnSale ? minutes : 0, unit: "Mins" }}
+                time4={{ value: isOnSale ? seconds : 0, unit: "Secs" }}
+            />
         </Flex>
     )
 }

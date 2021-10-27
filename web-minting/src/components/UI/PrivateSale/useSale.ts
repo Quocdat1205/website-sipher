@@ -12,6 +12,7 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
     const {
         salePhaseName,
+        salePhase,
         saleConfig: { freeMintTime, endTime },
     } = useSaleConfig()
     const [slot, setSlot] = useState(0)
@@ -19,8 +20,21 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const queryClient = useQueryClient()
     const totalPrice = parseFloat((slot * price).toFixed(2))
     const isOnSale = mode === salePhaseName
-    const timer = useTimer({ expiryTimestamp: new Date(mode === "PRIVATE_SALE" ? freeMintTime : endTime) })
-
+    // private sale = 3, free minting = 4
+    const currentPhase =
+        mode === "PRIVATE_SALE"
+            ? salePhase < 3
+                ? "NOT_STARTED"
+                : salePhase > 3
+                ? "ENDED"
+                : "ON_GOING"
+            : salePhase < 4
+            ? "NOT_STARTED"
+            : salePhase > 4
+            ? "ENDED"
+            : "ON_GOING"
+    const privateSaleTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
+    const freeMintingTimer = useTimer({ expiryTimestamp: new Date(endTime) })
     const getMaxSlot = () => {
         if (mode === "PRIVATE_SALE") {
             return userRecord ? Math.max(states.whitelistInfo.privateCap - userRecord.whitelistBought, 0) : 0
@@ -81,7 +95,8 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
         price,
         totalPrice,
         isLoadingUserRecord,
-        timer,
+        currentPhase,
+        timer: mode === "PRIVATE_SALE" ? privateSaleTimer : freeMintingTimer,
     }
 }
 

@@ -11,8 +11,19 @@ interface PrivateSaleProps {
 }
 
 const PrivateSale = ({ mode }: PrivateSaleProps) => {
-    const { handleMint, slot, setSlot, isMinting, maxSlot, isOnSale, price, isLoadingUserRecord, timer, userRecord } =
-        useSale(mode)
+    const {
+        handleMint,
+        slot,
+        setSlot,
+        isMinting,
+        maxSlot,
+        isOnSale,
+        price,
+        isLoadingUserRecord,
+        timer,
+        userRecord,
+        currentPhase,
+    } = useSale(mode)
     return (
         <MotionFlex
             w="full"
@@ -26,7 +37,8 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Typo.Heading fontSize="3xl">
-                SIPHER NFT {mode === "PRIVATE_SALE" ? "PRIVATE SALE" : "FREE MINTING"}
+                SIPHER NFT {mode === "PRIVATE_SALE" ? "PRIVATE SALE" : "FREE MINTING"}{" "}
+                {currentPhase === "NOT_STARTED" ? ": NOT STARTED" : currentPhase === "ENDED" ? ": ENDED" : ""}
             </Typo.Heading>
             <Flex justify="center" align="center" direction="column">
                 <Grid
@@ -54,6 +66,7 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                                 boughtNFT={
                                     mode === "PRIVATE_SALE" ? userRecord!.whitelistBought : userRecord!.freeMintBought
                                 }
+                                mode={mode}
                             />
                         </Flex>
                     </GridItem>

@@ -11,7 +11,7 @@ import useSaleRecord from "@hooks/useSaleRecord"
 
 const usePublicSale = () => {
     const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
-    const { saleConfig, salePhaseName } = useSaleConfig()
+    const { saleConfig, salePhaseName, salePhase } = useSaleConfig()
     const queryClient = useQueryClient()
     const [isMinting, setIsMinting] = useState(false)
     const [slot, setSlot] = useState(0)
@@ -19,6 +19,9 @@ const usePublicSale = () => {
     const isOnSale = salePhaseName === "PUBLIC_SALE"
     const timeAndPrice = useTimeAndPrice({ publicTime: saleConfig!.publicTime })
     const { publicSale: publicSaleRecord } = useSaleRecord()
+
+    const currentPhase = salePhase < 2 ? "NOT_STARTED" : salePhase > 2 ? "ENDED" : "ON_GOING"
+
     const mint = async (currentPrice: number) => {
         let slotPrice = parseFloat((slot * currentPrice).toFixed(2))
         const {
@@ -76,6 +79,7 @@ const usePublicSale = () => {
         isOnSale,
         isLoadingUserRecord,
         timeAndPrice,
+        currentPhase,
     }
 }
 
