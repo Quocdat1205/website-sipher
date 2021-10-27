@@ -75,7 +75,7 @@ const NewsBody = (props: Props) => {
                   onClick={() => {
                     handleSelect(item);
                   }}
-                  key={item.title}
+                  key={item.published}
                   item={item}
                 />
               ))}
