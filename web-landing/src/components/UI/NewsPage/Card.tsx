@@ -25,8 +25,7 @@ interface Props {
 const Card = ({ item, onClick }: Props) => {
   const { type, thumbnail, title, link, published } = item;
 
-  const createDate = new Date(type === "medium" ? parseInt(published) * 1000 : parseInt(published));
-
+  const createDate = new Date(parseInt(published));
   return (
     <Flex
       m="2"
