@@ -65,7 +65,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 <Title />
                 <Box overflow="hidden">
                     <MotionBox animate={descriptionControl} initial={{ y: "100%" }}>
-                        <Typo.BoldText textAlign="center">OFFICIAL NEKO LAUNCH 30/10/2021</Typo.BoldText>
+                        <Typo.BoldText textAlign="center">OFFICIAL NEKO LAUNCH 06/11/2021</Typo.BoldText>
                         <Typo.BoldText textAlign="center">01:30 AM UTC</Typo.BoldText>
                     </MotionBox>
                 </Box>

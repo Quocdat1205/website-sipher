@@ -51,7 +51,6 @@ const NewsBody = (props: Props) => {
   const handleSelect = (item) => {
     router.push(`?published=${item.published}`, undefined, { scroll: false });
   };
-  const mb = [8, 8, 16];
 
   const loadMore = async () => {
     setLoadMore(true);
@@ -61,10 +60,7 @@ const NewsBody = (props: Props) => {
   };
 
   const sortData = (a, b) => {
-    return (
-      (b.type === "medium" ? parseInt(b.published) * 1000 : parseInt(b.published)) -
-      (a.type === "medium" ? parseInt(a.published) * 1000 : parseInt(a.published))
-    );
+    return parseInt(b.published) - parseInt(a.published);
   };
 
   return (
@@ -79,7 +75,7 @@ const NewsBody = (props: Props) => {
                   onClick={() => {
                     handleSelect(item);
                   }}
-                  key={item.title}
+                  key={item.published}
                   item={item}
                 />
               ))}

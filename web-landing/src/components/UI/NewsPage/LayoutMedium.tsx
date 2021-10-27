@@ -5,7 +5,6 @@ import { DetailsNewsProps } from "./PopupCard";
 import UrlCopier from "./UrlCopier";
 import ButtonLinkTo from "./ButtonLinkTo";
 import { MyHeading } from "@sipher/web-components";
-import { ModalCloseButton } from "@chakra-ui/modal";
 
 interface Props {
   details: DetailsNewsProps;
