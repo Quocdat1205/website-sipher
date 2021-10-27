@@ -43,6 +43,7 @@ const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: 
                 .filter(icon => availableEmotions.includes(icon.type))
                 .map(icon => (
                     <Tooltip
+                        key={icon.type}
                         hasArrow
                         label={icon.type}
                         placement="bottom"

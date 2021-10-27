@@ -32,8 +32,12 @@ const TierRewardBenefit = (props: Props) => {
                                     </Typo.Heading>
                                 </chakra.td>
                                 {rankBenefits.map((item, index) => (
-                                    <chakra.td py={4} bg={index % 2 === 0 ? "blackAlpha.900" : "blackAlpha.700"}>
-                                        <RankCard key={item.id} id={item.id} srcImg={item.srcImg} h="full" />
+                                    <chakra.td
+                                        key={item.id}
+                                        py={4}
+                                        bg={index % 2 === 0 ? "blackAlpha.900" : "blackAlpha.700"}
+                                    >
+                                        <RankCard id={item.id} srcImg={item.srcImg} h="full" />
                                     </chakra.td>
                                 ))}
                             </chakra.tr>

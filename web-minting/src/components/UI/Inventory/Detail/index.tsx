@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import React from "react"
 import { changeEmotion, getNFT, getMerkle } from "@api/index"
-import { Box, Tooltip, Flex, Tbody, Tr, Td, Img, Table, Spinner, Text } from "@chakra-ui/react"
+import { Box, Tooltip, Flex, Tbody, Tr, Td, Table, Spinner, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import useWalletContext from "@hooks/useWalletContext"
 import { NFTRace } from "@@types"

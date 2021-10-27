@@ -9,7 +9,7 @@ export interface RankCardProps extends FlexProps {
 const RankCard = ({ id, srcImg, ...rest }: RankCardProps) => {
     return (
         <Flex flexDir="column" align="center" h="full" justify="center" {...rest}>
-            <Image h="4rem" src={srcImg} />
+            <Image h="4rem" src={srcImg} alt={id} />
             <Text textTransform="uppercase" fontSize="sm">
                 {id}
             </Text>
