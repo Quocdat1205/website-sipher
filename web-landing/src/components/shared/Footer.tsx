@@ -15,7 +15,7 @@ interface ISubscribeInput {
 const postSubscribe = async (input: ISubscribeInput) => {
     let { data } = await axios.post("https://be.sipher.xyz/api/sipher/v1.0/subscribe", input, {
         validateStatus: status => {
-            if (status === 400) return true
+            if (status === 400 || status === 200) return true
             return false
         },
     })
