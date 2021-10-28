@@ -41,7 +41,7 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
             </Typo.Heading>
             <Flex justify="center" align="center" direction="column">
                 <Grid
-                    templateRows="1fr aotu"
+                    templateRows="1fr auto"
                     templateColumns="1fr"
                     gap={2}
                     w="full"

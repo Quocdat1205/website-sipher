@@ -9,7 +9,7 @@ const DutchAuction = ({}: DutchAuctionProps) => {
             <Text fontWeight="semibold" color="main.yellow" fontSize="sm">
                 ABOUT DUTCH AUCTION
             </Text>
-            <Box flex={1} overflow="auto">
+            <Box flex={1}>
                 <UnorderedList pl={1}>
                     <ListItem>
                         <Text fontSize="sm">

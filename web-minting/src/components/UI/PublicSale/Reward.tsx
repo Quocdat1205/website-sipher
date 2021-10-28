@@ -29,12 +29,11 @@ const Reward = ({ currentPublicPrice }: RewardProps) => {
         return { tier: "No Tier" }
     }
     const tier = getTier()
-    if (currentPublicPrice < 0.55) return null
     return (
         <Flex direction="column" align="flex-start">
-            <Flex mb={4}>
+            <Flex mb={4} align="center" justify="center" w="full">
                 {tier.image && (
-                    <Box h="1.5rem" mr={1}>
+                    <Box h="2rem" mr={1}>
                         <Img src={tier.image} alt={tier.tier} h="full" />
                     </Box>
                 )}

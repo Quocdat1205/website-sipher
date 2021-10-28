@@ -25,6 +25,7 @@ const PublicSale = () => {
         userRecord,
         currentPhase,
         timer,
+        isOnTier,
         isPriceDecreasing,
     } = usePublicSale()
     const { publicSale } = useSaleRecord()
@@ -80,15 +81,19 @@ const PublicSale = () => {
                             />
                         </Flex>
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
-                        <Reward currentPublicPrice={isOnSale ? currentPublicPrice : START_PRICE} />
-                    </GridItem>
+                    {isOnTier && (
+                        <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
+                            <Reward currentPublicPrice={currentPublicPrice} />
+                        </GridItem>
+                    )}
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
-                        <RewardInfo />
-                    </GridItem>
+                    {isOnTier && (
+                        <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                            <RewardInfo />
+                        </GridItem>
+                    )}
                 </Grid>
             </Flex>
         </MotionFlex>

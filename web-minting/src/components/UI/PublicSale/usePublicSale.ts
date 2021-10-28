@@ -29,6 +29,7 @@ const usePublicSale = () => {
     const endSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicEndTime) })
     const startSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicTime) })
     const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer
+    const isOnTier = timeAndPrice.currentPublicPrice >= 0.55
     const mint = async (currentPrice: number) => {
         let slotPrice = parseFloat((slot * currentPrice).toFixed(2))
         const {
@@ -88,6 +89,7 @@ const usePublicSale = () => {
         currentPhase,
         timer,
         isPriceDecreasing,
+        isOnTier,
     }
 }
 
