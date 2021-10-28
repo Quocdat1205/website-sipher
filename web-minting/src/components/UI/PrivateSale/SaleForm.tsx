@@ -17,6 +17,7 @@ interface SaleFormProps {
     timeLeft: Record<"days" | "hours" | "minutes" | "seconds", number>
     boughtNFT: number
     mode: "PRIVATE_SALE" | "FREE_MINTING"
+    currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING"
 }
 
 const SaleForm = ({
@@ -31,14 +32,23 @@ const SaleForm = ({
     timeLeft,
     boughtNFT,
     mode,
+    currentPhase,
 }: SaleFormProps) => {
+    const genTitle = () => {
+        if (currentPhase === "NOT_STARTED")
+            return mode === "PRIVATE_SALE" ? "Count Down To Private Sale" : "Count Down To Free Minting"
+        if (currentPhase === "ON_GOING")
+            return mode === "PRIVATE_SALE" ? "Private Sale End Time" : "Free Minting End Time"
+        if (currentPhase === "ENDED")
+            return mode === "PRIVATE_SALE" ? "Private Sale Has Ended" : "Free Minting Has Ended"
+    }
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={6}>
             <Flex direction="column" w="full">
                 <Text textTransform="uppercase" fontWeight="semibold" fontSize="sm">
-                    {mode === "PRIVATE_SALE" ? "Private Sale End Time" : "Free Minting End Time"}
+                    {genTitle()}
                 </Text>
-                <Countdown isOnSale={isOnSale} timeLeft={timeLeft} />
+                <Countdown timeLeft={timeLeft} />
             </Flex>
             <Flex direction="column" w="full">
                 <Text textTransform="uppercase" fontWeight="semibold" fontSize="sm" mb={1}>

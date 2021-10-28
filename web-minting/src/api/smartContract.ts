@@ -11,7 +11,6 @@ export const checkSmartContract = async (publicAddress: string): Promise<boolean
         `/neko-sc/checkSC?nftContractAddress=${SMARTCONTRACT_NEKO}&saleContractAddress=${SMARTCONTRACT_SALE_NEKO}&WalletAddress=${address}`,
         config
     )
-    console.log("data", SMARTCONTRACT_NEKO, SMARTCONTRACT_SALE_NEKO, address)
 
     return data.message
 }

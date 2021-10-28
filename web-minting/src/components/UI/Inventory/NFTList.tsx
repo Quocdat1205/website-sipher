@@ -29,7 +29,6 @@ const NFTList = ({ race }: Props) => {
     }
     const { data, hasNextPage, fetchNextPage, isLoading } = useInfiniteQuery(["NFT", race], getNFTWithRange, {
         getNextPageParam: (lastPage, pages) => (lastPage.length < STEP ? undefined : lastPage.length * pages.length),
-        cacheTime: 0,
     })
 
     if (!data) {

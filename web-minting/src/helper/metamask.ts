@@ -18,7 +18,7 @@ export const getMetaMaskAccounts = async (): Promise<string[]> => {
             method: "eth_requestAccounts",
         })
         .catch(error => {
-            console.log("metamask error", error)
+            console.log("MetaMask error:", error)
         })
     return accounts
 }
@@ -103,7 +103,6 @@ export const connectWallet = async () => {
     const accounts = await getMetaMaskAccounts()
     const address = accounts[0]
     const chainInfo = await getChainInfo()
-    console.log("HERE")
     const account = await getUser(address)
     const token = await getAccessToken(account)
     const whitelistInfo = await checkIsWhitelisted(address)

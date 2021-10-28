@@ -37,8 +37,7 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Typo.Heading fontSize="3xl">
-                SIPHER NFT {mode === "PRIVATE_SALE" ? "PRIVATE SALE" : "FREE MINTING"}{" "}
-                {currentPhase === "NOT_STARTED" ? ": NOT STARTED" : currentPhase === "ENDED" ? ": ENDED" : ""}
+                SIPHER NFT {mode === "PRIVATE_SALE" ? "PRIVATE SALE" : "FREE MINTING"}
             </Typo.Heading>
             <Flex justify="center" align="center" direction="column">
                 <Grid
@@ -63,6 +62,7 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                                 isLoadingUserRecord={isLoadingUserRecord}
                                 isMinting={isMinting}
                                 timeLeft={timer}
+                                currentPhase={currentPhase}
                                 boughtNFT={
                                     mode === "PRIVATE_SALE" ? userRecord!.whitelistBought : userRecord!.freeMintBought
                                 }

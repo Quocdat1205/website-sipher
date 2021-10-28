@@ -24,6 +24,8 @@ const PublicSale = () => {
         isMinting,
         userRecord,
         currentPhase,
+        timer,
+        isPriceDecreasing,
     } = usePublicSale()
     const { publicSale } = useSaleRecord()
     return (
@@ -38,13 +40,7 @@ const PublicSale = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
-            <Typo.Heading fontSize="3xl">
-                {isOnSale
-                    ? "AUCTION IN PROGRESS"
-                    : `SIPHER NFT PUBLIC SALE ${
-                          currentPhase === "NOT_STARTED" ? ": NOT STARTED" : currentPhase === "ENDED" ? ": ENDED" : ""
-                      }`}
-            </Typo.Heading>
+            <Typo.Heading fontSize="3xl">AUCTION IN PROGRESS</Typo.Heading>
             <Flex justify="center" align="center" direction="column">
                 <Grid templateRows="auto 1fr auto" templateColumns="2fr 1fr" gap={2} w="full" maxH="full" maxW="56rem">
                     <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
@@ -64,10 +60,12 @@ const PublicSale = () => {
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1}>
                         <Flex h="full">
                             <CountDown
-                                isOnSale={isOnSale}
                                 minutesLeft={minutesLeft}
                                 secondsLeft={secondsLeft}
                                 percent={percent}
+                                currentPhase={currentPhase}
+                                timer={timer}
+                                isPriceDecreasing={isPriceDecreasing}
                             />
                             <SaleForm
                                 price={isOnSale ? currentPublicPrice : START_PRICE}
@@ -83,7 +81,7 @@ const PublicSale = () => {
                         </Flex>
                     </GridItem>
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
-                        <Reward />
+                        <Reward currentPublicPrice={isOnSale ? currentPublicPrice : START_PRICE} />
                     </GridItem>
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />

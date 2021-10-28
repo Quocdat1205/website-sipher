@@ -1,5 +1,4 @@
-import { Box, Flex, ListItem, UnorderedList } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
+import { Box, Flex, ListItem, UnorderedList, Text, chakra } from "@chakra-ui/react"
 import { MyText } from "@sipher/web-components"
 
 interface DutchAuctionProps {}
@@ -7,32 +6,38 @@ interface DutchAuctionProps {}
 const DutchAuction = ({}: DutchAuctionProps) => {
     return (
         <Flex direction="column" h="full">
-            <MyText color="main.yellow" size="small">
+            <Text fontWeight="semibold" color="main.yellow" fontSize="sm">
                 ABOUT DUTCH AUCTION
-            </MyText>
+            </Text>
             <Box flex={1} overflow="auto">
                 <UnorderedList pl={1}>
                     <ListItem>
-                        <MyText size="small">
-                            The auction starting price is <chakra.span color="main.yellow">0.9 ETH</chakra.span> and
-                            will decrease by 0.1 ETH every 10 minutes until the lowest price of 0.1 ETH.
-                        </MyText>
+                        <Text fontSize="sm">
+                            The auction starting price is{" "}
+                            <chakra.span color="main.yellow" fontWeight={500}>
+                                0.9 ETH
+                            </chakra.span>{" "}
+                            and will decrease by 0.1 ETH every 10 minutes until the lowest price of 0.1 ETH.
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <MyText size="small">
-                            The auction ends when either <chakra.span color="main.yellow">6,000 bids</chakra.span> are
-                            received or the time runs out, whichever occurs first.
-                        </MyText>
+                        <Text fontSize="sm">
+                            The auction ends when either{" "}
+                            <chakra.span color="main.yellow" fontWeight={500}>
+                                6,000 bids
+                            </chakra.span>{" "}
+                            are received or the time runs out, whichever occurs first.
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <MyText size="small">
+                        <Text fontSize="sm">
                             If demand exceeds supply, bids will be fulfilled on a first-come first-serve basis.
-                        </MyText>
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <MyText size="small">
+                        <Text fontSize="sm">
                             All winning bidders who receives NEKOs will pay the same price per NEKO.
-                        </MyText>
+                        </Text>
                     </ListItem>
                 </UnorderedList>
             </Box>

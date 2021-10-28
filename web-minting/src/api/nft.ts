@@ -55,7 +55,6 @@ export const getNFT = async ({ address, race, id }: GetNFTInput): Promise<NFTDet
     const {
         data: { message },
     } = await axios.get(`/nft/get-nft?publicAddress=${address}&id=${id}&race=${race}`, config)
-    console.log(message)
     return {
         id: message.id,
         name: message.name,
@@ -87,7 +86,6 @@ interface Merkle {
 
 export const getMerkle = async (id: number, race: string): Promise<Merkle> => {
     const { data } = await axios.get(`/${race}-sc/merkle/${id}`, config)
-    console.log("MERGLE", data)
     return data
 }
 

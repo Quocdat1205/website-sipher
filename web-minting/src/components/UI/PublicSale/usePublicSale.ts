@@ -8,6 +8,7 @@ import useWalletContext from "@hooks/useWalletContext"
 import { useState } from "react"
 import { useQueryClient } from "react-query"
 import useSaleRecord from "@hooks/useSaleRecord"
+import { useTimer } from "react-timer-hook"
 
 const usePublicSale = () => {
     const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
@@ -17,11 +18,17 @@ const usePublicSale = () => {
     const [slot, setSlot] = useState(0)
     const maxSlot = PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
     const isOnSale = salePhaseName === "PUBLIC_SALE"
-    const timeAndPrice = useTimeAndPrice({ publicTime: saleConfig!.publicTime })
+    const timeAndPrice = useTimeAndPrice({
+        publicTime: saleConfig!.publicTime,
+        publicEndTime: saleConfig!.publicEndTime,
+    })
+    const isPriceDecreasing = timeAndPrice.currentPublicPrice > 0.1 && isOnSale
     const { publicSale: publicSaleRecord } = useSaleRecord()
-
-    const currentPhase = salePhase < 2 ? "NOT_STARTED" : salePhase > 2 ? "ENDED" : "ON_GOING"
-
+    const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
+        salePhase < 2 ? "NOT_STARTED" : salePhase > 2 ? "ENDED" : "ON_GOING"
+    const endSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicEndTime) })
+    const startSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicTime) })
+    const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer
     const mint = async (currentPrice: number) => {
         let slotPrice = parseFloat((slot * currentPrice).toFixed(2))
         const {
@@ -32,7 +39,6 @@ const usePublicSale = () => {
         toast({ status: "success", title: "Transaction created successfully!", duration: 6000 })
         setSlot(0)
     }
-
     const handleMint = async () => {
         const currentPrice = await getPublicCurrentPrice()
 
@@ -80,6 +86,8 @@ const usePublicSale = () => {
         isLoadingUserRecord,
         timeAndPrice,
         currentPhase,
+        timer,
+        isPriceDecreasing,
     }
 }
 

@@ -1,7 +1,7 @@
 // Sale contract address
-export const SMARTCONTRACT_SALE_NEKO = "0xd3f746Bfb98000a9752dFb59EdCbd3ebe7ba71F5"
+export const SMARTCONTRACT_SALE_NEKO = "0xD1C8db271a8380E8e17Ce432511E073a803C8cD4"
 // Neko contract address
-export const SMARTCONTRACT_NEKO = "0xc8879E56ECD5FfFefeA33233d493Bd2BD7AA3b51"
+export const SMARTCONTRACT_NEKO = "0x4253BEa98B28Bd3B076C6284fab77804845d67ad"
 // Rinkeby chain id
 export const CHAIN_ID = "4"
 // Starting price of public sale

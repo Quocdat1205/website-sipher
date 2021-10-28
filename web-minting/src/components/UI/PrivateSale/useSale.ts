@@ -13,7 +13,7 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const {
         salePhaseName,
         salePhase,
-        saleConfig: { freeMintTime, endTime },
+        saleConfig: { freeMintTime, endTime, privateTime },
     } = useSaleConfig()
     const [slot, setSlot] = useState(0)
     const [isMinting, setIsMinting] = useState(false)
@@ -21,7 +21,7 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const totalPrice = parseFloat((slot * price).toFixed(2))
     const isOnSale = mode === salePhaseName
     // private sale = 3, free minting = 4
-    const currentPhase =
+    const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
         mode === "PRIVATE_SALE"
             ? salePhase < 3
                 ? "NOT_STARTED"
@@ -33,8 +33,16 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
             : salePhase > 4
             ? "ENDED"
             : "ON_GOING"
-    const privateSaleTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
-    const freeMintingTimer = useTimer({ expiryTimestamp: new Date(endTime) })
+    const privateSaleStartTimer = useTimer({ expiryTimestamp: new Date(privateTime) })
+    const privateSaleEndTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
+    const freeMintingStartTimer = privateSaleEndTimer
+    const freeMintingEndTimer = useTimer({ expiryTimestamp: new Date(endTime) })
+    const timer = () => {
+        if (currentPhase === "NOT_STARTED")
+            return mode === "PRIVATE_SALE" ? privateSaleStartTimer : freeMintingStartTimer
+        else return mode === "PRIVATE_SALE" ? privateSaleEndTimer : freeMintingEndTimer
+    }
+    console.log(timer())
     const getMaxSlot = () => {
         if (mode === "PRIVATE_SALE") {
             return userRecord ? Math.max(states.whitelistInfo.privateCap - userRecord.whitelistBought, 0) : 0
@@ -96,7 +104,7 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
         totalPrice,
         isLoadingUserRecord,
         currentPhase,
-        timer: mode === "PRIVATE_SALE" ? privateSaleTimer : freeMintingTimer,
+        timer: timer(),
     }
 }
 

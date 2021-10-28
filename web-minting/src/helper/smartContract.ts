@@ -38,7 +38,7 @@ interface SendSCInput {
  */
 export const sendSmartContract = async (input: SendSCInput) => {
     const { address, slot, slotPrice, proof, privateCap, freeMintCap } = input
-
+    console.log("INPUT", input)
     const _gaslimit =
         slot === 1
             ? 296656
@@ -82,7 +82,6 @@ export type IUserRecord = Record<"publicBought" | "whitelistBought" | "freeMintB
 /** Get number of NFT buy from private and public */
 export const getUserRecord = async (publicAddress: string): Promise<IUserRecord> => {
     const data = await ContractProviderSALE.methods.getUserRecord(publicAddress).call()
-    console.log("user record of", publicAddress, data)
     return {
         publicBought: parseInt(data[0]),
         whitelistBought: parseInt(data[1]),
