@@ -136,10 +136,16 @@ const Detail = ({ id, race }: PopupProps) => {
                                             {data.attributes.length > 0
                                                 ? data.attributes.map(item => (
                                                       <Tr key={item.value}>
-                                                          <Td textAlign="left" py={1} px={0} textTransform="capitalize">
+                                                          <Td
+                                                              textAlign="left"
+                                                              py={1}
+                                                              px={0}
+                                                              textTransform="capitalize"
+                                                              w="full"
+                                                          >
                                                               {item.traitType} : {item.value}
                                                           </Td>
-                                                          <Td py={1} px={0}>
+                                                          <Td py={1} px={0} whiteSpace="nowrap">
                                                               1 of {item.total}
                                                           </Td>
                                                       </Tr>
