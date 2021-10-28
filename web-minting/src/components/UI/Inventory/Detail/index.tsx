@@ -55,7 +55,7 @@ const Detail = ({ id, race }: PopupProps) => {
     }
 
     const getAvailableEmotion = () => {
-        if (!data) return []
+        if (!data || data.name === "???") return []
         return Object.keys(Object.fromEntries(Object.entries(data.emotionImages).filter(entry => entry[1] !== "")))
     }
     const router = useRouter()

@@ -23,14 +23,14 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     // private sale = 3, free minting = 4
     const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
         mode === "PRIVATE_SALE"
-            ? salePhase < 3
+            ? salePhase < 4
                 ? "NOT_STARTED"
-                : salePhase > 3
+                : salePhase > 4
                 ? "ENDED"
                 : "ON_GOING"
-            : salePhase < 4
+            : salePhase < 5
             ? "NOT_STARTED"
-            : salePhase > 4
+            : salePhase > 5
             ? "ENDED"
             : "ON_GOING"
     const privateSaleStartTimer = useTimer({ expiryTimestamp: new Date(privateTime) })

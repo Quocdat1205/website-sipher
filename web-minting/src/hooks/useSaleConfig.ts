@@ -8,9 +8,10 @@ const salePhases = {
     0: "UNKNOWN",
     1: "NOT_FOR_SALE",
     2: "PUBLIC_SALE",
-    3: "PRIVATE_SALE",
-    4: "FREE_MINTING",
-    5: "END_SALE",
+    3: "PUBLIC_END_SALE",
+    4: "PRIVATE_SALE",
+    5: "FREE_MINTING",
+    6: "END_SALE",
 } as const
 interface PublicPriceStep {
     value: number
@@ -26,13 +27,13 @@ const getSalePhase = (saleConfig: ISaleConfig) => {
     } else if (now < saleConfig.publicEndTime) {
         currentSalePhase = 2
     } else if (now < saleConfig.privateTime) {
-        currentSalePhase = 1
-    } else if (now < saleConfig.freeMintTime) {
         currentSalePhase = 3
-    } else if (now < saleConfig.endTime) {
+    } else if (now < saleConfig.freeMintTime) {
         currentSalePhase = 4
-    } else {
+    } else if (now < saleConfig.endTime) {
         currentSalePhase = 5
+    } else {
+        currentSalePhase = 6
     }
     return currentSalePhase
 }

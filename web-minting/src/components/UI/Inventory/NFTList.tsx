@@ -27,9 +27,14 @@ const NFTList = ({ race }: Props) => {
         setTotal(NFTs.total)
         return NFTs.data
     }
-    const { data, hasNextPage, fetchNextPage, isLoading } = useInfiniteQuery(["NFT", race], getNFTWithRange, {
-        getNextPageParam: (lastPage, pages) => (lastPage.length < STEP ? undefined : lastPage.length * pages.length),
-    })
+    const { data, hasNextPage, fetchNextPage, isLoading, isFetching } = useInfiniteQuery(
+        ["NFT", race],
+        getNFTWithRange,
+        {
+            getNextPageParam: (lastPage, pages) =>
+                lastPage.length < STEP ? undefined : lastPage.length * pages.length,
+        }
+    )
 
     if (!data) {
         if (isLoading)
@@ -55,7 +60,7 @@ const NFTList = ({ race }: Props) => {
         <Flex w="full" justify="center" p={4}>
             <Flex flexDir="column" h="full" w="full" overflow="hidden" maxW="64rem">
                 <MyText textAlign="right" mb={4}>
-                    You currently have {total} {race} NFT{!isLoading && total > 1 && "s"}
+                    You currently have {isFetching ? "..." : total} {race} NFT{!isLoading && total > 1 && "s"}
                 </MyText>
                 <Box flex={1}>
                     <InfiniteScroll

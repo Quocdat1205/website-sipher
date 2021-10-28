@@ -1,5 +1,5 @@
 import { web3 } from "./metamask"
-import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "@constant/index"
+import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO, DELAY } from "@constant/index"
 import { NFT_ABI, SALE_ABI } from "../contract"
 import { checkGas } from "@api/smartContract"
 
@@ -106,11 +106,11 @@ export type ISaleConfig = Record<
 export const getSaleConfig = async (): Promise<ISaleConfig> => {
     const data = await ContractProviderSALE.methods.getSaleConfig().call()
     return {
-        publicTime: parseInt(data[0]) * 1000,
-        publicEndTime: parseInt(data[1]) * 1000,
-        privateTime: parseInt(data[2]) * 1000,
-        freeMintTime: parseInt(data[3]) * 1000,
-        endTime: parseInt(data[4]) * 1000,
+        publicTime: parseInt(data[0]) * 1000 + DELAY,
+        publicEndTime: parseInt(data[1]) * 1000 + DELAY,
+        privateTime: parseInt(data[2]) * 1000 + DELAY,
+        freeMintTime: parseInt(data[3]) * 1000 + DELAY,
+        endTime: parseInt(data[4]) * 1000 + DELAY,
         maxSupply: parseInt(data[5]),
     }
 }

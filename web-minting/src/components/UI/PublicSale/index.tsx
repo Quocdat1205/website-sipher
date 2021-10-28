@@ -41,7 +41,13 @@ const PublicSale = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
-            <Typo.Heading fontSize="3xl">AUCTION IN PROGRESS</Typo.Heading>
+            <Typo.Heading fontSize="3xl">
+                {currentPhase === "NOT_STARTED"
+                    ? "AUCTION COMING UP"
+                    : currentPhase === "ON_GOING"
+                    ? "AUCTION IN PROGRESS"
+                    : "AUCTION HAS ENDED"}
+            </Typo.Heading>
             <Flex justify="center" align="center" direction="column">
                 <Grid templateRows="auto 1fr auto" templateColumns="2fr 1fr" gap={2} w="full" maxH="full" maxW="56rem">
                     <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">

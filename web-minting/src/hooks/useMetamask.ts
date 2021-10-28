@@ -95,7 +95,7 @@ export const useMetamask = () => {
                     router.push("inventory/inu")
                 } else if (now > saleConfig!.freeMintTime && whitelistInfo.freeMintCap > 0) {
                     router.push("/free-minting")
-                } else if (now > saleConfig!.privateTime && whitelistInfo.privateCap > 0) {
+                } else if (now > saleConfig!.publicEndTime && whitelistInfo.privateCap > 0) {
                     router.push("/private-sale")
                 } else {
                     router.push("/public-sale")

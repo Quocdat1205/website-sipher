@@ -1,10 +1,11 @@
-import { Flex, Box } from "@chakra-ui/react"
+import { Flex, Box, Text } from "@chakra-ui/react"
 import PublicCountdown from "@components/shared/PublicCountdown"
 import { Typo } from "@components/shared/Typo"
-import { MyText } from "@sipher/web-components"
 import Loader from "@components/shared/Loader"
 import PrivateCountdown from "@components/shared/PrivateCountdown"
 import { TimerResult } from "react-timer-hook"
+import PriceChangeText from "./PriceChangeText"
+import { useEffect, useState } from "react"
 
 interface CountdownProps {
     minutesLeft: number
@@ -16,7 +17,11 @@ interface CountdownProps {
 }
 
 const Countdown = ({ minutesLeft, secondsLeft, percent, currentPhase, timer, isPriceDecreasing }: CountdownProps) => {
-    console.log("pc", percent)
+    const [isRunning, setIsRunning] = useState(false)
+    useEffect(() => {
+        if (isPriceDecreasing && secondsLeft < 15 && minutesLeft == 0 && !isRunning) setIsRunning(true)
+        if (isPriceDecreasing && secondsLeft > 0 && minutesLeft == 4 && isRunning) setIsRunning(false)
+    }, [isPriceDecreasing, secondsLeft])
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
             <Typo.Text textTransform="uppercase" fontWeight="semibold" fontSize="sm">
@@ -46,6 +51,7 @@ const Countdown = ({ minutesLeft, secondsLeft, percent, currentPhase, timer, isP
                 </Flex>
                 {isPriceDecreasing && <Loader percent={percent} />}
             </Box>
+            <PriceChangeText isRunning={isRunning} />
             <Box
                 pos="absolute"
                 w="1px"
