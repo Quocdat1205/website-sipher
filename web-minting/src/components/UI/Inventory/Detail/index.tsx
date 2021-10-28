@@ -56,7 +56,7 @@ const Detail = ({ id, race }: PopupProps) => {
 
     const getAvailableEmotion = () => {
         if (!data || data.name === "???") return []
-        return Object.keys(Object.fromEntries(Object.entries(data.emotionImages).filter(entry => entry[1] !== "")))
+        return data.emotions.filter(emotion => !!emotion.image)
     }
     const router = useRouter()
     return (
@@ -89,8 +89,8 @@ const Detail = ({ id, race }: PopupProps) => {
                             </Text>
                         </Flex>
                         <Flex w="full" overflow="hidden">
-                            <Box>
-                                <Box pos="relative" w="18rem" h="20rem" mb={4}>
+                            <Box w="18rem">
+                                <Box pos="relative" w="full" h="20rem" mb={4}>
                                     <AnimatePresence>
                                         <MotionBox
                                             initial={{ opacity: 0 }}
@@ -100,9 +100,10 @@ const Detail = ({ id, race }: PopupProps) => {
                                             pos="absolute"
                                             top={0}
                                             left={0}
+                                            zIndex={1}
                                         >
                                             <Image
-                                                src={data.emotionImages[currentEmotion]}
+                                                src={data.emotions.find(e => e.id === currentEmotion)!.image}
                                                 alt={currentEmotion}
                                                 width={288}
                                                 height={320}
@@ -111,7 +112,7 @@ const Detail = ({ id, race }: PopupProps) => {
                                     </AnimatePresence>
                                 </Box>
                                 <EmotionChanger
-                                    availableEmotions={getAvailableEmotion()}
+                                    availableEmotions={getAvailableEmotion().map(e => e.id)}
                                     currentEmotion={currentEmotion}
                                     onChangeEmotion={mutateChangeEmotion}
                                 />

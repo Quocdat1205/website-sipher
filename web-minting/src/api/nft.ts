@@ -32,8 +32,6 @@ export interface GetNFTInput {
     id: number
 }
 
-export type Emotion = "ANGRY" | "DEFAULT" | "EVIL" | "MASK" | "NERVOUS" | "SAD"
-
 export interface Attribute {
     total: number
     traitType: string
@@ -45,8 +43,8 @@ export interface NFTDetail {
     origin: string
     race: string
     rank: number
-    emotion: Emotion
-    emotionImages: Record<Emotion, string>
+    emotion: string
+    emotions: { id: string; image: string }[]
     attributes: Attribute[]
 }
 
@@ -55,6 +53,7 @@ export const getNFT = async ({ address, race, id }: GetNFTInput): Promise<NFTDet
     const {
         data: { message },
     } = await axios.get(`/nft/get-nft?publicAddress=${address}&id=${id}&race=${race}`, config)
+    console.log(message)
     return {
         id: message.id,
         name: message.name,
@@ -62,9 +61,7 @@ export const getNFT = async ({ address, race, id }: GetNFTInput): Promise<NFTDet
         race: message.race,
         rank: message.rank,
         emotion: message.emotion.toUpperCase(),
-        emotionImages: Object.fromEntries(
-            Object.entries(message.emotions).map((entry: any) => [entry[0], entry[1].image])
-        ),
+        emotions: message.emotions,
         attributes: message.attributes.map(attr => ({
             total: attr.total,
             traitType: attr.trait_type,
@@ -78,7 +75,7 @@ interface Merkle {
     name: string
     origin: string
     race: string
-    emotions: Partial<Record<Emotion, { image: string }>>
+    emotions: Partial<Record<string, { image: string }>>
     attributes: { trait_type: string; value: string }[]
     image: string
     proof: string[]

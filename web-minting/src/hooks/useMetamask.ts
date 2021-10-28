@@ -92,7 +92,7 @@ export const useMetamask = () => {
             let now = new Date().getTime()
             if (now)
                 if (now > saleConfig!.endTime) {
-                    router.push("inventory/inu")
+                    router.push("inventory/neko")
                 } else if (now > saleConfig!.freeMintTime && whitelistInfo.freeMintCap > 0) {
                     router.push("/free-minting")
                 } else if (now > saleConfig!.publicEndTime && whitelistInfo.privateCap > 0) {
