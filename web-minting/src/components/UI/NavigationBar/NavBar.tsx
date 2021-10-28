@@ -30,8 +30,9 @@ export const NavBar = ({ isInventoryMenu }: NavBarProps) => {
                 logoPath="/images/mainlogo.svg"
                 menus={navMenus.filter(
                     item =>
-                        (item.id !== "Private Sale" && item.id !== "Free Minting") ||
-                        states.whitelistInfo.proof.length > 0
+                        item.id === "Public Sale" ||
+                        (item.id === "Private Sale" && states.whitelistInfo.privateCap > 0) ||
+                        (item.id === "Free Minting" && states.whitelistInfo.freeMintCap > 0)
                 )}
             >
                 <AccountAddress />
