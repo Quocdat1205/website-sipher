@@ -1,4 +1,4 @@
-import { Box, Flex, ListItem, UnorderedList } from "@chakra-ui/layout"
+import { Box, Flex, ListItem, UnorderedList, Text } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { MyText } from "@sipher/web-components"
 
@@ -9,36 +9,34 @@ interface InfoProps {
 const Info = ({ mode }) => {
     return (
         <Flex direction="column">
-            <MyText color="main.yellow" size="small">
+            <Text color="main.yellow" fontSize="sm" fontWeight="semibold">
                 {mode}
-            </MyText>
+            </Text>
             <Box overflow="auto" mb={4}>
                 <UnorderedList pl={1}>
                     <ListItem>
-                        <MyText size="small">
+                        <Text fontSize="sm">
                             Available for whitelisted address only. The purchase limit will be based on contribution
                             history to Sipher community.
-                        </MyText>
+                        </Text>
                     </ListItem>
                 </UnorderedList>
             </Box>
-            <MyText color="main.yellow" size="small">
+            <Text fontSize="sm" color="main.yellow" fontWeight="semibold">
                 NOTE
-            </MyText>
+            </Text>
             <Box overflow="auto">
                 <UnorderedList pl={1}>
                     <ListItem>
-                        <MyText size="small">
+                        <Text fontSize="sm">
                             Only confirm transaction when your wallet provider shows no error/warning.
-                        </MyText>
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <MyText size="small">
-                            Adjust Gas Fees accordingly to your transaction to go through fast.
-                        </MyText>
+                        <Text fontSize="sm">Adjust Gas Fees accordingly to your transaction to go through fast.</Text>
                     </ListItem>
                     <ListItem>
-                        <MyText size="small">(For reference: https://ethgasstation.info)</MyText>
+                        <Text fontSize="sm">(For reference: https://ethgasstation.info)</Text>
                     </ListItem>
                 </UnorderedList>
             </Box>
