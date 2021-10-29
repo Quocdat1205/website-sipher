@@ -59,7 +59,7 @@ const SaleForm = ({
         color="white"
         hasArrow
         label="Refresh available NFTs based on your recorded purchase history"
-        placement="bottom"
+        placement="right"
       >
         <Box w="full">
           <GradientButton
