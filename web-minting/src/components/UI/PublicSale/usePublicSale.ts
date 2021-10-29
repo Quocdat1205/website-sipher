@@ -9,9 +9,6 @@ import { useState ,useEffect} from "react";
 import { useQueryClient } from "react-query";
 import useSaleRecord from "@hooks/useSaleRecord";
 import { useTimer } from "react-timer-hook";
-import Web3 from "web3"
-export const metaMaskProvider = typeof window !== "undefined" && window.ethereum
-export const web3 = new Web3(metaMaskProvider)
 
 const usePublicSale = () => {
   const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext();
