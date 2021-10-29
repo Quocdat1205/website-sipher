@@ -17,7 +17,7 @@ const usePublicSale = () => {
   const [isMinting, setIsMinting] = useState(false);
   const [slot, setSlot] = useState(0);
   const [pendingSlot, setPendingSlot] = useState(0);
-  const [maxSlot, setMaxSlot] = useState(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0) + pendingSlot));
+  const [maxSlot, setMaxSlot] = useState(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0)));
   const isOnSale = salePhaseName === "PUBLIC_SALE";
   const timeAndPrice = useTimeAndPrice({
     publicTime: saleConfig!.publicTime,
@@ -45,8 +45,8 @@ const usePublicSale = () => {
   };
   const handleMint = async () => {
     const currentPrice = await getPublicCurrentPrice();
-    setMaxSlot(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0) + slot+pendingSlot));
-    setPendingSlot(pendingSlot +slot);
+    setMaxSlot(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0) + slot + pendingSlot));
+    setPendingSlot(pendingSlot + slot);
     /** Check for balance */
     const balance = await getMetamaskBalance(states.accountLogin);
     if (balance < currentPrice) {
