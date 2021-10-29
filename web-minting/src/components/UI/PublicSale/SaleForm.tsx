@@ -8,7 +8,6 @@ import { GradientButton } from "@components/shared/GradientButton";
 interface SaleFormProps {
   price: number;
   currentSlot: number;
-  pendingSlot: number;
   maxSlot: number;
   setSlot: (slot: number) => void;
   isOnSale: boolean;
@@ -23,7 +22,6 @@ const SaleForm = ({
   price,
   currentSlot,
   maxSlot,
-  pendingSlot,
   setSlot,
   isOnSale,
   handleMint,
@@ -69,7 +67,7 @@ const SaleForm = ({
             onClick={() => handleRefresh()}
             isLoading={isMinting}
             loadingText="REFRESH"
-            disabled={(pendingSlot === 0 && currentSlot === 0) || !isOnSale || isLoadingUserRecord}
+            disabled={maxSlot !== 0 || !isOnSale || isLoadingUserRecord}
           />
         </Box>
       </Tooltip>
