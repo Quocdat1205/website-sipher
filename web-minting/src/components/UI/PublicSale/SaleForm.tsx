@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/layout";
+import { Flex, Text, Tooltip, Box } from "@chakra-ui/react";
 import { Typo } from "@components/shared/Typo";
 import React from "react";
 import PriceWheel from "./PriceWheel";
@@ -52,15 +52,27 @@ const SaleForm = ({
         loadingText="MINTING"
         disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
       />
-      <GradientButton
-        text="Refresh"
-        w="full"
-        mb={2}
-        onClick={() => handleRefresh()}
-        isLoading={isMinting}
-        loadingText="REFRESH"
-        disabled={(pendingSlot !== 0 && currentSlot !== 0) || !isOnSale || isLoadingUserRecord}
-      />
+      <Tooltip
+        p={2}
+        fontWeight="thin"
+        bg="rgba(253, 78, 104, 0.8)"
+        color="white"
+        hasArrow
+        label="Refresh available NFTs based on your recorded purchase history"
+        placement="bottom"
+      >
+        <Box w="full">
+          <GradientButton
+            text="Refresh"
+            w="full"
+            mb={2}
+            onClick={() => handleRefresh()}
+            isLoading={isMinting}
+            loadingText="REFRESH"
+            disabled={(pendingSlot === 0 && currentSlot === 0) || !isOnSale || isLoadingUserRecord}
+          />
+        </Box>
+      </Tooltip>
       <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
         You have purchased {boughtNFT}
       </Text>
