@@ -45,8 +45,8 @@ const usePublicSale = () => {
   };
   const handleMint = async () => {
     const currentPrice = await getPublicCurrentPrice();
-    setMaxSlot(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0) + slot));
-    setPendingSlot(slot);
+    setMaxSlot(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0) + slot+pendingSlot));
+    setPendingSlot(pendingSlot +slot);
     /** Check for balance */
     const balance = await getMetamaskBalance(states.accountLogin);
     if (balance < currentPrice) {
