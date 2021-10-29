@@ -1,21 +1,21 @@
 // Sale contract address
-export const SMARTCONTRACT_SALE_NEKO = "0xD1C8db271a8380E8e17Ce432511E073a803C8cD4"
+export const SMARTCONTRACT_SALE_NEKO = "0x13d7cEDFC1E62b973bCD0ea0F5384707467c9c29";
 // Neko contract address
-export const SMARTCONTRACT_NEKO = "0x4253BEa98B28Bd3B076C6284fab77804845d67ad"
+export const SMARTCONTRACT_NEKO = "0x6AB8340a6A68e9e6BD40C62E6138855c74b44351";
 // Rinkeby chain id
-export const CHAIN_ID = "4"
+export const CHAIN_ID = "4";
 // Starting price of public sale
-export const START_PRICE = 0.9
+export const START_PRICE = 0.9;
 // Price step
-export const PRICE_STEP = 0.05
+export const PRICE_STEP = 0.05;
 // Interval: 10 MINUTES
 // Test Interval : 5 MINUTES
-export const INTERVAL = 1000 * 60 * 5
+export const INTERVAL = 1000 * 60 * 5;
 // Public slot cap
-export const PUBLIC_CAP = 5
+export const PUBLIC_CAP = 5;
 // Price fetching interval
-export const FETCHING_INTERVAL = 1000
+export const FETCHING_INTERVAL = 1000;
 // Maximum NFT public sale
-export const PUBLIC_MINTING_LIMIT = 6000
+export const PUBLIC_MINTING_LIMIT = 6000;
 
-export const DELAY = 15000
+export const DELAY = 15000;
