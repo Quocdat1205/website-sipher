@@ -1,7 +1,7 @@
 // Sale contract address
-export const SMARTCONTRACT_SALE_NEKO = "0x13d7cEDFC1E62b973bCD0ea0F5384707467c9c29";
+export const SMARTCONTRACT_SALE_NEKO = "0x99c76bD18C59eE83cf433b34a576eE52C6bFd2a4";
 // Neko contract address
-export const SMARTCONTRACT_NEKO = "0x6AB8340a6A68e9e6BD40C62E6138855c74b44351";
+export const SMARTCONTRACT_NEKO = "0xc355E384CFAF595C3Ce9Acc63fEa8544784f9286";
 // Rinkeby chain id
 export const CHAIN_ID = "4";
 // Starting price of public sale
@@ -18,4 +18,5 @@ export const FETCHING_INTERVAL = 1000;
 // Maximum NFT public sale
 export const PUBLIC_MINTING_LIMIT = 6000;
 
-export const DELAY = 15000;
+// deplay 15 seconds
+export const DELAY = 1000 * 15;
