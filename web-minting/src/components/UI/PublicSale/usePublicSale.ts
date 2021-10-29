@@ -99,6 +99,7 @@ const usePublicSale = () => {
     isMinting,
     handleMint,
     handleRefresh,
+    pendingSlot,
     isOnSale,
     isLoadingUserRecord,
     timeAndPrice,

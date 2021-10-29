@@ -8,6 +8,7 @@ import { GradientButton } from "@components/shared/GradientButton";
 interface SaleFormProps {
   price: number;
   currentSlot: number;
+  pendingSlot: number;
   maxSlot: number;
   setSlot: (slot: number) => void;
   isOnSale: boolean;
@@ -22,6 +23,7 @@ const SaleForm = ({
   price,
   currentSlot,
   maxSlot,
+  pendingSlot,
   setSlot,
   isOnSale,
   handleMint,
@@ -30,12 +32,6 @@ const SaleForm = ({
   isMinting,
   boughtNFT,
 }: SaleFormProps) => {
-  const [isRefresh, setIsRefresh] = useState(false);
-
-  useEffect(() => {
-    setIsRefresh(localStorage.getItem("pending-neko-public") === "0");
-  }, []);
-
   return (
     <Flex direction="column" align="center" flex={1} h="full" p={4}>
       <Typo.Text textTransform="uppercase" fontWeight="semibold" fontSize="sm" mb={4}>
@@ -63,7 +59,7 @@ const SaleForm = ({
         onClick={() => handleRefresh()}
         isLoading={isMinting}
         loadingText="REFRESH"
-        disabled={isRefresh || !isOnSale || isLoadingUserRecord}
+        disabled={pendingSlot === 0 || !isOnSale || isLoadingUserRecord}
       />
       <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
         You have purchased {boughtNFT}

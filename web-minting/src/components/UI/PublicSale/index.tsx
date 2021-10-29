@@ -20,6 +20,7 @@ const PublicSale = () => {
     maxSlot,
     setSlot,
     handleMint,
+    pendingSlot,
     handleRefresh,
     isLoadingUserRecord,
     isMinting,
@@ -81,6 +82,7 @@ const PublicSale = () => {
                 currentSlot={slot}
                 maxSlot={maxSlot}
                 setSlot={setSlot}
+                pendingSlot={pendingSlot}
                 isOnSale={isOnSale}
                 handleMint={handleMint}
                 handleRefresh={handleRefresh}
