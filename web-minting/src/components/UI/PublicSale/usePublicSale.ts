@@ -5,7 +5,7 @@ import { getPublicCurrentPrice, sendSmartContract } from "@helper/smartContract"
 import useSaleConfig from "@hooks/useSaleConfig";
 import useTimeAndPrice from "@components/UI/PublicSale/useTimeAndPrice";
 import useWalletContext from "@hooks/useWalletContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQueryClient } from "react-query";
 import useSaleRecord from "@hooks/useSaleRecord";
 import { useTimer } from "react-timer-hook";

@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/layout";
 import { Typo } from "@components/shared/Typo";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PriceWheel from "./PriceWheel";
 import QuantitySelector from "@components/shared/QuantitySelector";
 import { GradientButton } from "@components/shared/GradientButton";
