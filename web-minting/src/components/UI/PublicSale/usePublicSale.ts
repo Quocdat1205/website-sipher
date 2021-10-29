@@ -35,8 +35,8 @@ const usePublicSale = () => {
 
   useEffect(() => {
     setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0));
-  }, []);
-
+  }, [userRecord]);
+  console.log(maxSlot);
   const mint = async (currentPrice: number) => {
     let slotPrice = parseFloat((slot * currentPrice).toFixed(2));
     const {
