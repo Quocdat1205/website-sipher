@@ -9,6 +9,9 @@ import { useState } from "react";
 import { useQueryClient } from "react-query";
 import useSaleRecord from "@hooks/useSaleRecord";
 import { useTimer } from "react-timer-hook";
+import Web3 from "web3"
+export const metaMaskProvider = typeof window !== "undefined" && window.ethereum
+export const web3 = new Web3(metaMaskProvider)
 
 const usePublicSale = () => {
   const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext();
@@ -32,6 +35,8 @@ const usePublicSale = () => {
   const startSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicTime) });
   const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer;
   const isOnTier = timeAndPrice.currentPublicPrice >= 0.55;
+
+  web3.eth.getPendingTransactions().then(console.log);
 
   const mint = async (currentPrice: number) => {
     let slotPrice = parseFloat((slot * currentPrice).toFixed(2));
