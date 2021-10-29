@@ -5,10 +5,13 @@ import { getPublicCurrentPrice, sendSmartContract } from "@helper/smartContract"
 import useSaleConfig from "@hooks/useSaleConfig";
 import useTimeAndPrice from "@components/UI/PublicSale/useTimeAndPrice";
 import useWalletContext from "@hooks/useWalletContext";
-import { useEffect, useState } from "react";
+import { useState ,useEffect} from "react";
 import { useQueryClient } from "react-query";
 import useSaleRecord from "@hooks/useSaleRecord";
 import { useTimer } from "react-timer-hook";
+import Web3 from "web3"
+export const metaMaskProvider = typeof window !== "undefined" && window.ethereum
+export const web3 = new Web3(metaMaskProvider)
 
 const usePublicSale = () => {
   const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext();
@@ -17,7 +20,7 @@ const usePublicSale = () => {
   const [isMinting, setIsMinting] = useState(false);
   const [slot, setSlot] = useState(0);
   const [pendingSlot, setPendingSlot] = useState(0);
-  const [maxSlot, setMaxSlot] = useState(0);
+  const [maxSlot, setMaxSlot] = useState(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0)));
   const isOnSale = salePhaseName === "PUBLIC_SALE";
   const timeAndPrice = useTimeAndPrice({
     publicTime: saleConfig!.publicTime,
