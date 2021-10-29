@@ -19,9 +19,9 @@ interface CountdownProps {
 const Countdown = ({ minutesLeft, secondsLeft, percent, currentPhase, timer, isPriceDecreasing }: CountdownProps) => {
     const [isRunning, setIsRunning] = useState(false)
     useEffect(() => {
-        if (isPriceDecreasing && secondsLeft < 15 && minutesLeft == 0 && !isRunning) setIsRunning(true)
-        if (isPriceDecreasing && secondsLeft > 0 && minutesLeft == 4 && isRunning) setIsRunning(false)
-    }, [isPriceDecreasing, secondsLeft])
+        if (isPriceDecreasing && secondsLeft <= 10 && minutesLeft == 0 && !isRunning) setIsRunning(true)
+        if (isPriceDecreasing && secondsLeft <= 50 && minutesLeft == 4 && isRunning) setIsRunning(false)
+    }, [isPriceDecreasing, secondsLeft, minutesLeft, isRunning, setIsRunning])
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
             <Typo.Text textTransform="uppercase" fontWeight="semibold" fontSize="sm">

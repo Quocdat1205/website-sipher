@@ -12,17 +12,23 @@ const useTypeEffect = () => {
     useEffect(() => {
         let timeout: NodeJS.Timeout
         if (forward)
-            if (index < text.length) timeout = setTimeout(() => setIndex(index + 1), 100)
+            if (index < text.length) timeout = setTimeout(() => setIndex(index + 1), 50)
             else setForward(false)
         return () => clearTimeout(timeout)
     }, [index, setIndex, forward, setForward])
 
     useEffect(() => {
         let timeout: NodeJS.Timeout
-        if (deleteing)
-            if (currentText.length > 0) timeout = setTimeout(() => setcurrentText(text.slice(0, text.length - 1)), 100)
-            else setDeleteing(false)
-    })
+        if (deleteing) {
+            if (currentText.length > 0)
+                timeout = setTimeout(() => setcurrentText(currentText.slice(0, currentText.length - 1)), 50)
+            else {
+                setDeleteing(false)
+                setIndex(0)
+            }
+        }
+        return () => clearTimeout(timeout)
+    }, [currentText, deleteing, setDeleteing])
 
     useEffect(() => {
         setcurrentText(text.slice(0, index))

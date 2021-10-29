@@ -9,7 +9,7 @@ interface PriceChangeTextProps {
 const PriceChangeText = ({ isRunning }: PriceChangeTextProps) => {
     let { start, stop, text } = useTypeEffect()
     useEffect(() => {
-        if (isRunning) start("PRICE IS ABOUT TO CHANGE!")
+        if (isRunning) start("PRICE IS ABOUT TO CHANGE")
         else stop()
     }, [isRunning])
     return (
