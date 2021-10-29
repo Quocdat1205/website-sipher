@@ -67,7 +67,7 @@ const SaleForm = ({
             onClick={() => handleRefresh()}
             isLoading={isMinting}
             loadingText="REFRESH"
-            disabled={maxSlot !== 0 || !isOnSale || isLoadingUserRecord}
+            disabled={boughtNFT !== 0 || maxSlot !== 0 || !isOnSale || isLoadingUserRecord}
           />
         </Box>
       </Tooltip>
