@@ -59,7 +59,7 @@ const SaleForm = ({
         onClick={() => handleRefresh()}
         isLoading={isMinting}
         loadingText="REFRESH"
-        disabled={pendingSlot === 0 || !isOnSale || isLoadingUserRecord}
+        disabled={(pendingSlot !== 0 && currentSlot !== 0) || !isOnSale || isLoadingUserRecord}
       />
       <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
         You have purchased {boughtNFT}
