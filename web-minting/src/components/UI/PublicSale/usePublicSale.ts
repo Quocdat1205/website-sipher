@@ -36,8 +36,9 @@ const usePublicSale = () => {
   const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer;
   const isOnTier = timeAndPrice.currentPublicPrice >= 0.55;
 
-  web3.eth.getPendingTransactions().then(console.log);
-
+  useEffect(() => {
+    setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0));
+  }, [userRecord]);
   const mint = async (currentPrice: number) => {
     let slotPrice = parseFloat((slot * currentPrice).toFixed(2));
     const {
