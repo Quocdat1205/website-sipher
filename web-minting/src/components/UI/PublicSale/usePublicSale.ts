@@ -77,9 +77,9 @@ const usePublicSale = () => {
       setIsMinting(false);
     } catch (error) {
       console.log(error);
-      setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0));
+      // setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0));
       setSlot(0);
-      setPendingSlot(pendingSlot - slot);
+      // setPendingSlot(pendingSlot - slot);
       toast({ status: "error", title: "Something went wrong!", message: "Try again later." });
       setIsMinting(false);
     }
