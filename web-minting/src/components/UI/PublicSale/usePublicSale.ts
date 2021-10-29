@@ -5,7 +5,7 @@ import { getPublicCurrentPrice, sendSmartContract } from "@helper/smartContract"
 import useSaleConfig from "@hooks/useSaleConfig";
 import useTimeAndPrice from "@components/UI/PublicSale/useTimeAndPrice";
 import useWalletContext from "@hooks/useWalletContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 import useSaleRecord from "@hooks/useSaleRecord";
 import { useTimer } from "react-timer-hook";
@@ -17,7 +17,7 @@ const usePublicSale = () => {
   const [isMinting, setIsMinting] = useState(false);
   const [slot, setSlot] = useState(0);
   const [pendingSlot, setPendingSlot] = useState(0);
-  const [maxSlot, setMaxSlot] = useState(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0)));
+  const [maxSlot, setMaxSlot] = useState(0);
   const isOnSale = salePhaseName === "PUBLIC_SALE";
   const timeAndPrice = useTimeAndPrice({
     publicTime: saleConfig!.publicTime,
@@ -32,6 +32,10 @@ const usePublicSale = () => {
   const startSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicTime) });
   const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer;
   const isOnTier = timeAndPrice.currentPublicPrice >= 0.55;
+
+  useEffect(() => {
+    setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0));
+  }, []);
 
   const mint = async (currentPrice: number) => {
     let slotPrice = parseFloat((slot * currentPrice).toFixed(2));
