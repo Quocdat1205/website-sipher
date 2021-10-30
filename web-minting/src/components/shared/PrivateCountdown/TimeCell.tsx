@@ -1,7 +1,6 @@
 // * DESCRIPTION:
 
 import { Flex, Box, Heading, HeadingProps, Text } from "@chakra-ui/react"
-import { MyText } from "@sipher/web-components"
 import { AnimatePresence, motion } from "framer-motion"
 
 export interface TimeCellProps {
@@ -35,9 +34,9 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                     </MotionText>
                 </AnimatePresence>
             </Box>
-            <MyText textAlign={"center"} fontSize="xs" color="whiteAlpha.700">
+            <Text textAlign={"center"} fontSize="xs" color="white">
                 {unit}
-            </MyText>
+            </Text>
         </Flex>
     )
 }

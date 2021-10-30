@@ -112,4 +112,13 @@ export const getSaleConfig = async (): Promise<ISaleConfig> => {
         endTime: parseInt(data[4]) * 1000 + DELAY,
         maxSupply: parseInt(data[5]),
     }
+    // For testing
+    // return {
+    //     publicTime: 1635605570943 + DELAY,
+    //     publicEndTime: 1635705570943 + DELAY,
+    //     privateTime: 1635805570943 + DELAY,
+    //     freeMintTime: 1635905570943 + DELAY,
+    //     endTime: 1636005570943 + DELAY,
+    //     maxSupply: 10000,
+    // }
 }

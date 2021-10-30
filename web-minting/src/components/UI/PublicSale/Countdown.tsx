@@ -6,6 +6,7 @@ import PrivateCountdown from "@components/shared/PrivateCountdown"
 import { TimerResult } from "react-timer-hook"
 import PriceChangeText from "./PriceChangeText"
 import { useEffect, useState } from "react"
+import { INTERVAL } from "@constant/index"
 
 interface CountdownProps {
     minutesLeft: number
@@ -28,8 +29,11 @@ const Countdown = ({
 }: CountdownProps) => {
     const [isRunning, setIsRunning] = useState(false)
     useEffect(() => {
-        if (isPriceDecreasing && secondsLeft <= 10 && minutesLeft == 0 && !isRunning) setIsRunning(true)
-        if (isPriceDecreasing && secondsLeft <= 50 && minutesLeft == 4 && isRunning) setIsRunning(false)
+        if (isPriceDecreasing && secondsLeft <= 10 && minutesLeft == 0 && !isRunning) {
+            setIsRunning(true)
+        } else if (isPriceDecreasing && secondsLeft <= 50 && minutesLeft == INTERVAL / 60000 - 1 && isRunning) {
+            setIsRunning(false)
+        }
     }, [isPriceDecreasing, secondsLeft, minutesLeft, isRunning, setIsRunning])
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
