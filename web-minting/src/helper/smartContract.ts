@@ -38,7 +38,6 @@ interface SendSCInput {
  */
 export const sendSmartContract = async (input: SendSCInput) => {
     const { address, slot, slotPrice, proof, privateCap, freeMintCap } = input
-    console.log("INPUT", input)
     const _gaslimit =
         slot === 1
             ? 296656

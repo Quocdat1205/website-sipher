@@ -14,9 +14,18 @@ interface CountdownProps {
     currentPhase: "NOT_STARTED" | "ON_GOING" | "ENDED"
     timer: TimerResult
     isPriceDecreasing: boolean
+    isOnSale: boolean
 }
 
-const Countdown = ({ minutesLeft, secondsLeft, percent, currentPhase, timer, isPriceDecreasing }: CountdownProps) => {
+const Countdown = ({
+    minutesLeft,
+    secondsLeft,
+    percent,
+    currentPhase,
+    timer,
+    isPriceDecreasing,
+    isOnSale,
+}: CountdownProps) => {
     const [isRunning, setIsRunning] = useState(false)
     useEffect(() => {
         if (isPriceDecreasing && secondsLeft <= 10 && minutesLeft == 0 && !isRunning) setIsRunning(true)
@@ -51,7 +60,7 @@ const Countdown = ({ minutesLeft, secondsLeft, percent, currentPhase, timer, isP
                 </Flex>
                 {isPriceDecreasing && <Loader percent={percent} />}
             </Box>
-            <PriceChangeText isRunning={isRunning} />
+            {isOnSale && <PriceChangeText isRunning={isRunning} />}
             <Box
                 pos="absolute"
                 w="1px"

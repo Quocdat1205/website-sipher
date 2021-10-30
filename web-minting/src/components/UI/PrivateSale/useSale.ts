@@ -42,7 +42,6 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
             return mode === "PRIVATE_SALE" ? privateSaleStartTimer : freeMintingStartTimer
         else return mode === "PRIVATE_SALE" ? privateSaleEndTimer : freeMintingEndTimer
     }
-    console.log(timer())
     const getMaxSlot = () => {
         if (mode === "PRIVATE_SALE") {
             return userRecord ? Math.max(states.whitelistInfo.privateCap - userRecord.whitelistBought, 0) : 0

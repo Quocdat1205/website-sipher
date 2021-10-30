@@ -77,7 +77,6 @@ export const useMetamask = () => {
             }
             setIsConnecting(true)
             const { account, chainInfo, token, whitelistInfo } = await connectWallet()
-            console.log("Go here")
             if (chainInfo.id !== CHAIN_ID) {
                 toast({ status: "error", title: "Wrong network!" })
                 setIsConnecting(false)
