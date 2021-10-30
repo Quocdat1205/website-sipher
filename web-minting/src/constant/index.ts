@@ -10,7 +10,7 @@ export const START_PRICE = 0.9
 export const PRICE_STEP = 0.05
 // Interval: 10 MINUTES
 // Test Interval : 5 MINUTES
-export const INTERVAL = 1000 * 60 * 5
+export const INTERVAL = 1000 * 60 * 10
 // Public slot cap
 export const PUBLIC_CAP = 5
 // Price fetching interval
