@@ -1,4 +1,4 @@
-import { Flex, SimpleGrid, Box, CircularProgress, Spinner, Text } from "@chakra-ui/react"
+import { Flex, SimpleGrid, Box, Spinner, Text, chakra } from "@chakra-ui/react"
 import React, { Fragment, useState } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
 import { useInfiniteQuery } from "react-query"
@@ -59,9 +59,13 @@ const NFTList = ({ race }: Props) => {
     return (
         <Flex w="full" justify="center" p={4}>
             <Flex flexDir="column" h="full" w="full" overflow="hidden" maxW="64rem">
-                <MyText textAlign="right" mb={4}>
-                    You currently have {isFetching ? "..." : total} {race} NFT{!isLoading && total > 1 && "s"}
-                </MyText>
+                <Text textAlign="center" mb={4}>
+                    You currently have{" "}
+                    <chakra.span fontWeight={500} color="main.yellow">
+                        {isFetching ? "..." : total}
+                    </chakra.span>{" "}
+                    {race} NFT{!isLoading && total > 1 && "s"}
+                </Text>
                 <Box flex={1}>
                     <InfiniteScroll
                         dataLength={data ? data.pages.reduce((init, cur) => init.concat(cur), []).length : 0}
@@ -77,7 +81,7 @@ const NFTList = ({ race }: Props) => {
                             </Flex>
                         }
                     >
-                        <SimpleGrid columns={[3, 4, 5]} spacing={4}>
+                        <SimpleGrid columns={[2, 3, 4, 4]} spacing={4}>
                             {data.pages.map((page, i) => (
                                 <Fragment key={i}>
                                     {page.map((item, index) => (

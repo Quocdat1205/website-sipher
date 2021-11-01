@@ -1,38 +1,38 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import React from "react";
-import { changeEmotion, getNFT, getMerkle } from "@api/index";
-import { Box, Tooltip, Flex, Tbody, Tr, Td, Table, Spinner, Text } from "@chakra-ui/react";
-import { useState } from "react";
-import useWalletContext from "@hooks/useWalletContext";
-import { NFTRace } from "@@types";
-import Head from "next/head";
-import EmotionChanger from "./EmotionChanger";
-import { Typo } from "@components/shared/Typo";
-import { BsQuestionCircle } from "react-icons/bs";
-import { MotionBox, MotionFlex } from "@components/shared/Motion";
-import { FiArrowLeft } from "react-icons/fi";
-import { useRouter } from "next/router";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
+import { useMutation, useQuery, useQueryClient } from "react-query"
+import React from "react"
+import { changeEmotion, getNFT, getMerkle } from "@api/index"
+import { Box, Tooltip, Flex, Tbody, Tr, Td, Table, Spinner, Text, chakra } from "@chakra-ui/react"
+import { useState } from "react"
+import useWalletContext from "@hooks/useWalletContext"
+import { NFTRace } from "@@types"
+import Head from "next/head"
+import EmotionChanger from "./EmotionChanger"
+import { Typo } from "@components/shared/Typo"
+import { BsQuestionCircle } from "react-icons/bs"
+import { MotionBox, MotionFlex } from "@components/shared/Motion"
+import { FiArrowLeft } from "react-icons/fi"
+import { useRouter } from "next/router"
+import { AnimatePresence, motion } from "framer-motion"
+import Image from "next/image"
 interface PopupProps {
-    id: number;
-    race: NFTRace;
+    id: number
+    race: NFTRace
 }
 
 const Detail = ({ id, race }: PopupProps) => {
-    const { states, toast } = useWalletContext();
-    const queryClient = useQueryClient();
-    const [currentEmotion, setCurrentEmotion] = useState("DEFAULT");
+    const { states, toast } = useWalletContext()
+    const queryClient = useQueryClient()
+    const [currentEmotion, setCurrentEmotion] = useState("DEFAULT")
     const { data } = useQuery(["NFT", race, id], () => getNFT({ address: states.accountLogin, id, race }), {
-        onSuccess: (data) => {
-            setCurrentEmotion(data.emotion.toUpperCase());
+        onSuccess: data => {
+            setCurrentEmotion(data.emotion.toUpperCase())
         },
-    });
+    })
 
-    const { data: merkle } = useQuery(["merkle", race, id], () => getMerkle(id, race.toLowerCase()));
+    const { data: merkle } = useQuery(["merkle", race, id], () => getMerkle(id, race.toLowerCase()))
 
     const { mutate: mutateChangeEmotion } = useMutation<unknown, unknown, string>(
-        (newEmotion) =>
+        newEmotion =>
             changeEmotion({
                 accessToken: states.accessToken,
                 address: states.accountLogin,
@@ -42,23 +42,23 @@ const Detail = ({ id, race }: PopupProps) => {
             }),
         {
             onSuccess: () => {
-                queryClient.invalidateQueries("NFT");
+                queryClient.invalidateQueries("NFT")
             },
         }
-    );
+    )
 
     const handleDownJSON = () => {
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(new Blob([JSON.stringify(merkle)], { type: "text/json" }));
-        a.download = "merkle.json";
-        a.click();
-    };
+        const a = document.createElement("a")
+        a.href = URL.createObjectURL(new Blob([JSON.stringify(merkle)], { type: "text/json" }))
+        a.download = "merkle.json"
+        a.click()
+    }
 
     const getAvailableEmotion = () => {
-        if (!data || data.name === "???") return [];
-        return data.emotions.filter((emotion) => !!emotion.image);
-    };
-    const router = useRouter();
+        if (!data || data.name === "???") return []
+        return data.emotions.filter(emotion => !!emotion.image)
+    }
+    const router = useRouter()
     return (
         <MotionFlex
             w="full"
@@ -103,7 +103,7 @@ const Detail = ({ id, race }: PopupProps) => {
                                             zIndex={1}
                                         >
                                             <Image
-                                                src={data.emotions.find((e) => e.id === currentEmotion)!.image}
+                                                src={data.emotions.find(e => e.id === currentEmotion)!.image}
                                                 alt={currentEmotion}
                                                 width={320}
                                                 height={361}
@@ -112,29 +112,31 @@ const Detail = ({ id, race }: PopupProps) => {
                                     </AnimatePresence>
                                 </Box>
                                 <EmotionChanger
-                                    availableEmotions={getAvailableEmotion().map((e) => e.id)}
+                                    availableEmotions={getAvailableEmotion().map(e => e.id)}
                                     currentEmotion={currentEmotion}
                                     onChangeEmotion={mutateChangeEmotion}
                                 />
                             </Box>
                             <Flex direction="column" flex={3} ml="4" overflow="hidden">
                                 <Typo.Heading
-                                    isGradient
                                     textTransform="uppercase"
                                     fontSize="3xl"
                                     textAlign="left"
+                                    w="max-content"
+                                    color="main.yellow"
                                     mb={2}
                                 >
                                     {data.name}
                                 </Typo.Heading>
-                                <Typo.BoldText textTransform="uppercase" mb={1}>
-                                    Properties
-                                </Typo.BoldText>
-                                <Box mb={4} pb={4} borderBottom="1px" borderColor="whiteAlpha.300">
+
+                                <Flex w="full" mb={1} align="center">
+                                    <Typo.BoldText textTransform="uppercase">Properties</Typo.BoldText>
+                                </Flex>
+                                <Box mb={4}>
                                     <Table variant="unstyled">
                                         <Tbody>
                                             {data.attributes.length > 0
-                                                ? data.attributes.map((item) => (
+                                                ? data.attributes.map(item => (
                                                       <Tr key={item.value}>
                                                           <Td
                                                               textAlign="left"
@@ -160,12 +162,13 @@ const Detail = ({ id, race }: PopupProps) => {
                                             <Typo.BoldText textTransform="uppercase" mb={1}>
                                                 Proofs
                                             </Typo.BoldText>
+
                                             <Flex align="center">
                                                 <Typo.BoldText
                                                     cursor="pointer"
-                                                    fontSize="md"
+                                                    fontSize="sm"
                                                     fontWeight="semibold"
-                                                    isGradient
+                                                    color="main.yellow"
                                                     letterSpacing="0px"
                                                     onClick={handleDownJSON}
                                                 >
@@ -174,7 +177,7 @@ const Detail = ({ id, race }: PopupProps) => {
                                                 <Tooltip
                                                     hasArrow
                                                     label="How to verify proofs"
-                                                    placement="bottom"
+                                                    placement="top"
                                                     fontSize="xs"
                                                     bg="blackAlpha.900"
                                                     openDelay={500}
@@ -187,18 +190,18 @@ const Detail = ({ id, race }: PopupProps) => {
                                                         rel="nonreferrer"
                                                         target="_blank"
                                                     >
-                                                        <BsQuestionCircle />
+                                                        <BsQuestionCircle size="1rem" />
                                                     </Box>
                                                 </Tooltip>
                                             </Flex>
                                         </Flex>
                                         <Flex direction="column" w="full" overflow="hidden">
-                                            {merkle.proof.map((p) => (
+                                            {merkle.proof.map(p => (
                                                 <Text
                                                     textAlign="left"
                                                     letterSpacing="0.75px"
                                                     fontSize="sm"
-                                                    color="about.textGray"
+                                                    color="whiteAlpha.800"
                                                     key={p}
                                                     isTruncated
                                                     fontFamily="mono"
@@ -224,7 +227,7 @@ const Detail = ({ id, race }: PopupProps) => {
                 )}
             </Flex>
         </MotionFlex>
-    );
-};
+    )
+}
 
-export default Detail;
+export default Detail

@@ -12,23 +12,31 @@ const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: 
             {availableEmotions.map(emotion => (
                 <Box
                     key={emotion}
-                    bg={emotion === currentEmotion ? "main.yellow" : "transparent"}
                     px={4}
                     py={1}
-                    rounded="full"
-                    border="1px"
-                    borderColor="main.yellow"
                     cursor="pointer"
                     userSelect="none"
                     onClick={() => onChangeEmotion(emotion)}
+                    pos="relative"
                 >
                     <Text
                         fontSize="sm"
                         fontWeight="semibold"
                         color={emotion === currentEmotion ? "black" : "main.yellow"}
+                        pos="relative"
+                        zIndex={2}
                     >
                         {emotion}
                     </Text>
+                    <Box
+                        pos="absolute"
+                        w="full"
+                        h="full"
+                        transform="skewX(-25deg)"
+                        bg={emotion === currentEmotion ? "main.yellow" : "whiteAlpha.100"}
+                        top={0}
+                        left={0}
+                    ></Box>
                 </Box>
             ))}
         </Wrap>
