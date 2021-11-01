@@ -1,38 +1,38 @@
-import { useMutation, useQuery, useQueryClient } from "react-query"
-import React from "react"
-import { changeEmotion, getNFT, getMerkle } from "@api/index"
-import { Box, Tooltip, Flex, Tbody, Tr, Td, Table, Spinner, Text } from "@chakra-ui/react"
-import { useState } from "react"
-import useWalletContext from "@hooks/useWalletContext"
-import { NFTRace } from "@@types"
-import Head from "next/head"
-import EmotionChanger from "./EmotionChanger"
-import { Typo } from "@components/shared/Typo"
-import { BsQuestionCircle } from "react-icons/bs"
-import { MotionBox, MotionFlex } from "@components/shared/Motion"
-import { FiArrowLeft } from "react-icons/fi"
-import { useRouter } from "next/router"
-import { AnimatePresence, motion } from "framer-motion"
-import Image from "next/image"
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import React from "react";
+import { changeEmotion, getNFT, getMerkle } from "@api/index";
+import { Box, Tooltip, Flex, Tbody, Tr, Td, Table, Spinner, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import useWalletContext from "@hooks/useWalletContext";
+import { NFTRace } from "@@types";
+import Head from "next/head";
+import EmotionChanger from "./EmotionChanger";
+import { Typo } from "@components/shared/Typo";
+import { BsQuestionCircle } from "react-icons/bs";
+import { MotionBox, MotionFlex } from "@components/shared/Motion";
+import { FiArrowLeft } from "react-icons/fi";
+import { useRouter } from "next/router";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 interface PopupProps {
-    id: number
-    race: NFTRace
+    id: number;
+    race: NFTRace;
 }
 
 const Detail = ({ id, race }: PopupProps) => {
-    const { states, toast } = useWalletContext()
-    const queryClient = useQueryClient()
-    const [currentEmotion, setCurrentEmotion] = useState("DEFAULT")
+    const { states, toast } = useWalletContext();
+    const queryClient = useQueryClient();
+    const [currentEmotion, setCurrentEmotion] = useState("DEFAULT");
     const { data } = useQuery(["NFT", race, id], () => getNFT({ address: states.accountLogin, id, race }), {
-        onSuccess: data => {
-            setCurrentEmotion(data.emotion.toUpperCase())
+        onSuccess: (data) => {
+            setCurrentEmotion(data.emotion.toUpperCase());
         },
-    })
+    });
 
-    const { data: merkle } = useQuery(["merkle", race, id], () => getMerkle(id, race.toLowerCase()))
+    const { data: merkle } = useQuery(["merkle", race, id], () => getMerkle(id, race.toLowerCase()));
 
     const { mutate: mutateChangeEmotion } = useMutation<unknown, unknown, string>(
-        newEmotion =>
+        (newEmotion) =>
             changeEmotion({
                 accessToken: states.accessToken,
                 address: states.accountLogin,
@@ -42,23 +42,23 @@ const Detail = ({ id, race }: PopupProps) => {
             }),
         {
             onSuccess: () => {
-                queryClient.invalidateQueries("NFT")
+                queryClient.invalidateQueries("NFT");
             },
         }
-    )
+    );
 
     const handleDownJSON = () => {
-        const a = document.createElement("a")
-        a.href = URL.createObjectURL(new Blob([JSON.stringify(merkle)], { type: "text/json" }))
-        a.download = "merkle.json"
-        a.click()
-    }
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([JSON.stringify(merkle)], { type: "text/json" }));
+        a.download = "merkle.json";
+        a.click();
+    };
 
     const getAvailableEmotion = () => {
-        if (!data || data.name === "???") return []
-        return data.emotions.filter(emotion => !!emotion.image)
-    }
-    const router = useRouter()
+        if (!data || data.name === "???") return [];
+        return data.emotions.filter((emotion) => !!emotion.image);
+    };
+    const router = useRouter();
     return (
         <MotionFlex
             w="full"
@@ -89,8 +89,8 @@ const Detail = ({ id, race }: PopupProps) => {
                             </Text>
                         </Flex>
                         <Flex w="full" overflow="hidden">
-                            <Box w="18rem">
-                                <Box pos="relative" w="full" h="20rem" mb={4}>
+                            <Box w="20rem">
+                                <Box pos="relative" w="full" h="22.5rem" mb={4}>
                                     <AnimatePresence>
                                         <MotionBox
                                             initial={{ opacity: 0 }}
@@ -103,16 +103,16 @@ const Detail = ({ id, race }: PopupProps) => {
                                             zIndex={1}
                                         >
                                             <Image
-                                                src={data.emotions.find(e => e.id === currentEmotion)!.image}
+                                                src={data.emotions.find((e) => e.id === currentEmotion)!.image}
                                                 alt={currentEmotion}
-                                                width={288}
-                                                height={320}
+                                                width={320}
+                                                height={361}
                                             />
                                         </MotionBox>
                                     </AnimatePresence>
                                 </Box>
                                 <EmotionChanger
-                                    availableEmotions={getAvailableEmotion().map(e => e.id)}
+                                    availableEmotions={getAvailableEmotion().map((e) => e.id)}
                                     currentEmotion={currentEmotion}
                                     onChangeEmotion={mutateChangeEmotion}
                                 />
@@ -134,7 +134,7 @@ const Detail = ({ id, race }: PopupProps) => {
                                     <Table variant="unstyled">
                                         <Tbody>
                                             {data.attributes.length > 0
-                                                ? data.attributes.map(item => (
+                                                ? data.attributes.map((item) => (
                                                       <Tr key={item.value}>
                                                           <Td
                                                               textAlign="left"
@@ -193,8 +193,18 @@ const Detail = ({ id, race }: PopupProps) => {
                                             </Flex>
                                         </Flex>
                                         <Flex direction="column" w="full" overflow="hidden">
-                                            {merkle.proof.map(p => (
-                                                <Text key={p} isTruncated fontFamily="mono" w="full" overflow="hidden">
+                                            {merkle.proof.map((p) => (
+                                                <Text
+                                                    textAlign="left"
+                                                    letterSpacing="0.75px"
+                                                    fontSize="sm"
+                                                    color="about.textGray"
+                                                    key={p}
+                                                    isTruncated
+                                                    fontFamily="mono"
+                                                    w="full"
+                                                    overflow="hidden"
+                                                >
                                                     {p}
                                                 </Text>
                                             ))}
@@ -214,7 +224,7 @@ const Detail = ({ id, race }: PopupProps) => {
                 )}
             </Flex>
         </MotionFlex>
-    )
-}
+    );
+};
 
-export default Detail
+export default Detail;

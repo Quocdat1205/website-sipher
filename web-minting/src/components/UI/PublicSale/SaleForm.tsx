@@ -1,23 +1,23 @@
-import { Flex, Text, Tooltip, IconButton } from "@chakra-ui/react"
-import { Typo } from "@components/shared/Typo"
-import React from "react"
-import PriceWheel from "./PriceWheel"
-import QuantitySelector from "@components/shared/QuantitySelector"
-import { GradientButton } from "@components/shared/GradientButton"
-import RefreshIcon from "@components/shared/RefreshIcon"
-import { PUBLIC_CAP } from "@constant/index"
+import { Flex, Text, Tooltip, IconButton } from "@chakra-ui/react";
+import { Typo } from "@components/shared/Typo";
+import React from "react";
+import PriceWheel from "./PriceWheel";
+import QuantitySelector from "@components/shared/QuantitySelector";
+import { GradientButton } from "@components/shared/GradientButton";
+import RefreshIcon from "@components/shared/RefreshIcon";
+import { PUBLIC_CAP } from "@constant/index";
 
 interface SaleFormProps {
-    price: number
-    currentSlot: number
-    maxSlot: number
-    setSlot: (slot: number) => void
-    isOnSale: boolean
-    handleMint: () => void
-    handleRefresh: () => void
-    isMinting: boolean
-    isLoadingUserRecord: boolean
-    boughtNFT: number
+    price: number;
+    currentSlot: number;
+    maxSlot: number;
+    setSlot: (slot: number) => void;
+    isOnSale: boolean;
+    handleMint: () => void;
+    handleRefresh: () => void;
+    isMinting: boolean;
+    isLoadingUserRecord: boolean;
+    boughtNFT: number;
 }
 
 const SaleForm = ({
@@ -87,7 +87,7 @@ const SaleForm = ({
                 You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
             </Text>
         </Flex>
-    )
-}
+    );
+};
 
-export default SaleForm
+export default SaleForm;

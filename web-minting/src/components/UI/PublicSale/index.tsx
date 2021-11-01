@@ -1,16 +1,16 @@
-import React from "react"
-import { Flex, Grid, GridItem, chakra } from "@chakra-ui/react"
-import { Typo } from "@components/shared/Typo"
-import CountDown from "./Countdown"
-import SaleForm from "./SaleForm"
-import DutchAuction from "./DutchAuction"
-import RewardInfo from "./RewardInfo"
-import Reward from "./Reward"
-import usePublicSale from "./usePublicSale"
-import { PUBLIC_MINTING_LIMIT, START_PRICE } from "@constant/index"
-import { numberWithCommas } from "@utils/index"
-import useSaleRecord from "@hooks/useSaleRecord"
-import { MotionFlex } from "@components/shared/Motion"
+import React from "react";
+import { Flex, Grid, GridItem, chakra } from "@chakra-ui/react";
+import { Typo } from "@components/shared/Typo";
+import CountDown from "./Countdown";
+import SaleForm from "./SaleForm";
+import DutchAuction from "./DutchAuction";
+import RewardInfo from "./RewardInfo";
+import Reward from "./Reward";
+import usePublicSale from "./usePublicSale";
+import { PUBLIC_MINTING_LIMIT, START_PRICE } from "@constant/index";
+import { numberWithCommas } from "@utils/index";
+import useSaleRecord from "@hooks/useSaleRecord";
+import { MotionFlex } from "@components/shared/Motion";
 
 const PublicSale = () => {
     const {
@@ -28,8 +28,8 @@ const PublicSale = () => {
         timer,
         isOnTier,
         isPriceDecreasing,
-    } = usePublicSale()
-    const { publicSale } = useSaleRecord()
+    } = usePublicSale();
+    const { publicSale } = useSaleRecord();
 
     return (
         <MotionFlex
@@ -66,7 +66,7 @@ const PublicSale = () => {
                             {numberWithCommas(PUBLIC_MINTING_LIMIT)} NEKOS ALREADY MINTED
                         </Typo.Heading>
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1}>
+                    <GridItem bg="blackAlpha.900" colSpan={isOnTier ? 1 : 2} rowSpan={1}>
                         <Flex h="full">
                             <CountDown
                                 minutesLeft={minutesLeft}
@@ -96,7 +96,7 @@ const PublicSale = () => {
                             <Reward currentPublicPrice={currentPublicPrice} />
                         </GridItem>
                     )}
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                    <GridItem bg="blackAlpha.900" colSpan={isOnTier ? 1 : 2} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />
                     </GridItem>
                     {isOnTier && (
@@ -107,6 +107,6 @@ const PublicSale = () => {
                 </Grid>
             </Flex>
         </MotionFlex>
-    )
-}
-export default PublicSale
+    );
+};
+export default PublicSale;
