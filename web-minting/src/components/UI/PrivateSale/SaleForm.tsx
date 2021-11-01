@@ -69,7 +69,7 @@ const SaleForm = ({
                         isDisabled={!isOnSale}
                     />
                     <Text fontWeight="semibold">
-                        <chakra.span fontSize="2xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
+                        <chakra.span fontSize="2xl">{(currentSlot * price).toFixed(1)}</chakra.span> ETH + GAS
                     </Text>
                 </Flex>
                 <GradientButton

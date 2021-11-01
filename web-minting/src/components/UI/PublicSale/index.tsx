@@ -1,16 +1,16 @@
-import React from "react";
-import { Flex, Grid, GridItem, chakra } from "@chakra-ui/react";
-import { Typo } from "@components/shared/Typo";
-import CountDown from "./Countdown";
-import SaleForm from "./SaleForm";
-import DutchAuction from "./DutchAuction";
-import RewardInfo from "./RewardInfo";
-import Reward from "./Reward";
-import usePublicSale from "./usePublicSale";
-import { PUBLIC_MINTING_LIMIT, START_PRICE } from "@constant/index";
-import { numberWithCommas } from "@utils/index";
-import useSaleRecord from "@hooks/useSaleRecord";
-import { MotionFlex } from "@components/shared/Motion";
+import React from "react"
+import { Flex, Grid, GridItem, chakra } from "@chakra-ui/react"
+import { Typo } from "@components/shared/Typo"
+import CountDown from "./Countdown"
+import SaleForm from "./SaleForm"
+import DutchAuction from "./DutchAuction"
+import RewardInfo from "./RewardInfo"
+import Reward from "./Reward"
+import usePublicSale from "./usePublicSale"
+import { PUBLIC_MINTING_LIMIT, START_PRICE } from "@constant/index"
+import { numberWithCommas } from "@utils/index"
+import useSaleRecord from "@hooks/useSaleRecord"
+import { MotionFlex } from "@components/shared/Motion"
 
 const PublicSale = () => {
     const {
@@ -28,8 +28,8 @@ const PublicSale = () => {
         timer,
         isOnTier,
         isPriceDecreasing,
-    } = usePublicSale();
-    const { publicSale } = useSaleRecord();
+    } = usePublicSale()
+    const { publicSale } = useSaleRecord()
 
     return (
         <MotionFlex
@@ -43,15 +43,22 @@ const PublicSale = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
-            <Typo.Heading fontSize="3xl">
-                {currentPhase === "NOT_STARTED"
-                    ? "AUCTION COMING UP"
-                    : currentPhase === "ON_GOING"
-                    ? "AUCTION IN PROGRESS"
-                    : "AUCTION HAS ENDED"}
-            </Typo.Heading>
             <Flex justify="center" align="center" direction="column">
-                <Grid templateRows="auto 1fr auto" templateColumns="2fr 1fr" gap={2} w="full" maxH="full" maxW="56rem">
+                <Typo.Heading fontSize="3xl">
+                    {currentPhase === "NOT_STARTED"
+                        ? "AUCTION COMING UP"
+                        : currentPhase === "ON_GOING"
+                        ? "AUCTION IN PROGRESS"
+                        : "AUCTION HAS ENDED"}
+                </Typo.Heading>
+                <Grid
+                    templateRows="auto 1fr auto"
+                    templateColumns="2fr 1fr"
+                    gap={2}
+                    w="full"
+                    maxH="full"
+                    maxW={isOnTier ? "56rem" : "40rem"}
+                >
                     <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
                         <Typo.Heading w="full" textAlign="center" fontSize="2xl" mb={0}>
                             <chakra.span
@@ -107,6 +114,6 @@ const PublicSale = () => {
                 </Grid>
             </Flex>
         </MotionFlex>
-    );
-};
-export default PublicSale;
+    )
+}
+export default PublicSale

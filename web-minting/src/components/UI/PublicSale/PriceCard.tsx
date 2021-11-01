@@ -1,5 +1,4 @@
-import { Box, BoxProps } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
+import { Box, BoxProps, Text, chakra } from "@chakra-ui/react"
 import { motion, useAnimation } from "framer-motion"
 import { useEffect } from "react"
 
@@ -32,7 +31,6 @@ const PriceCard = ({ price, active }: PriceCardProps) => {
             letterSpacing="1px"
             textAlign="center"
             lineHeight="2.5rem"
-            fontSize="xl"
             border="1px"
             borderColor="white"
             bgColor="black"
@@ -42,7 +40,9 @@ const PriceCard = ({ price, active }: PriceCardProps) => {
             }}
             animate={cardControl}
         >
-            {price} ETH
+            <Text fontWeight="bold">
+                <chakra.span fontSize="2xl">{price}</chakra.span> ETH
+            </Text>
         </MotionBox>
     )
 }
