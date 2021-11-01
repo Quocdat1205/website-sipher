@@ -1,23 +1,23 @@
-import { Box, Flex, useOutsideClick, Text, Collapse } from "@chakra-ui/react"
-import React, { useRef, useState } from "react"
-import { BiWallet } from "react-icons/bi"
-import AddressCopier from "./AddressCopier"
-import useWalletContext from "@hooks/useWalletContext"
-import { GradientButton, MyText } from "@sipher/web-components"
-import { BsChevronDown, BsChevronUp } from "react-icons/bs"
+import { Box, Flex, useOutsideClick, Text, Collapse } from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
+import { BiWallet } from "react-icons/bi";
+import AddressCopier from "./AddressCopier";
+import useWalletContext from "@hooks/useWalletContext";
+import { GradientButton, MyText } from "@sipher/web-components";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
 const AccountAddress = () => {
     const {
         states: { accountLogin },
         logout,
-    } = useWalletContext()
+    } = useWalletContext();
 
-    const [popup, setPopup] = useState(false)
-    const btnRef = useRef<HTMLDivElement>(null)
+    const [popup, setPopup] = useState(false);
+    const btnRef = useRef<HTMLDivElement>(null);
     useOutsideClick({
         ref: btnRef,
         handler: () => setPopup(false),
-    })
+    });
     return (
         <Flex borderLeft="1px" ml="4" pl="3" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
             <Box zIndex="1" bg="black" color="main.yellow" p={[0, 1, 1.5, 2]} borderRadius="99" ref={btnRef}>
@@ -58,6 +58,6 @@ const AccountAddress = () => {
                 </Box>
             </Box>
         </Flex>
-    )
-}
-export default AccountAddress
+    );
+};
+export default AccountAddress;
