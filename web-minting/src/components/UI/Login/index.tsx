@@ -4,7 +4,7 @@ import isMobile from "is-mobile"
 import { Typo } from "@components/shared/Typo"
 import WalletCard from "./WalletCard"
 import useWalletContext from "@hooks/useWalletContext"
-import { MotionFlex } from "@components/shared/Motion"
+import { MotionBox, MotionFlex } from "@components/shared/Motion"
 
 const Login = () => {
     const { states, connect, isConnecting } = useWalletContext()
@@ -21,14 +21,26 @@ const Login = () => {
                 p={4}
             >
                 <Stack align="center" direction={["column", "column", "column"]} spacing={16} maxW="full">
-                    <Box flex={1} userSelect="none">
+                    <MotionBox
+                        flex={1}
+                        userSelect="none"
+                        initial={{ y: -200, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ type: "tween", duration: 0.4, ease: "easeOut" }}
+                    >
                         <Img src="/images/mainlogo.svg" alt="main-logo" w="full" mb={0} h="5rem" maxW="full" />
-                    </Box>
+                    </MotionBox>
                     {!isMobile() ? (
                         <MotionFlex align="center" justify="center" direction="column">
-                            <Typo.Heading fontSize="3xl" mb={4}>
-                                CONNECT TO YOUR WALLET
-                            </Typo.Heading>
+                            <MotionBox
+                                initial={{ opacity: 0, y: -200 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+                            >
+                                <Typo.Heading fontSize="3xl" mb={4}>
+                                    CONNECT TO YOUR WALLET
+                                </Typo.Heading>
+                            </MotionBox>
                             <VStack align="stretch" spacing={4}>
                                 <WalletCard
                                     isLoading={isConnecting}
@@ -36,15 +48,32 @@ const Login = () => {
                                     onClick={connect}
                                     src="/images/icons/metaMask.png"
                                     title="MetaMask"
+                                    custom={0}
                                 />
-                                <WalletCard disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" />
-                                <WalletCard disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" />
+                                <WalletCard
+                                    disabled
+                                    src="/images/icons/Binance.png"
+                                    title="Binance (Coming soon)"
+                                    custom={1}
+                                />
+                                <WalletCard
+                                    disabled
+                                    src="/images/icons/TWT.png"
+                                    title="TrustWallet (Coming soon)"
+                                    custom={2}
+                                />
                             </VStack>
                         </MotionFlex>
                     ) : (
-                        <Text w="full" textAlign="center" fontWeight={500}>
-                            Minting is not supported on mobile (X_X)!
-                        </Text>
+                        <MotionBox
+                            initial={{ opacity: 0, y: -200 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+                        >
+                            <Text w="full" textAlign="center" fontWeight={500}>
+                                Minting is not supported on mobile (X_X)!
+                            </Text>
+                        </MotionBox>
                     )}
                 </Stack>
             </Flex>
