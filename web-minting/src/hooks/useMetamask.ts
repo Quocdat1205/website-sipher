@@ -78,7 +78,11 @@ export const useMetamask = () => {
             setIsConnecting(true)
             const { account, chainInfo, token, whitelistInfo } = await connectWallet()
             if (chainInfo.id !== CHAIN_ID) {
-                toast({ status: "error", title: "Wrong network!" })
+                toast({
+                    status: "error",
+                    title: "Wrong network!",
+                    message: "Please switch to ethereum mainnet and try again.",
+                })
                 setIsConnecting(false)
                 return
             }
