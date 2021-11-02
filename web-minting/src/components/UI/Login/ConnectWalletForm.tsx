@@ -1,4 +1,4 @@
-import { Box, Flex, VStack, Grid, chakra, Button } from "@chakra-ui/react"
+import { Box, Flex, VStack, Grid, chakra } from "@chakra-ui/react"
 import { MyText } from "@sipher/web-components"
 import WalletCard from "./WalletCard"
 import useWalletContext from "@hooks/useWalletContext"
