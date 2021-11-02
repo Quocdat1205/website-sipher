@@ -1,6 +1,8 @@
-import { Spinner, Flex, Img, Text } from "@chakra-ui/react"
+import { Spinner, Flex, Img, Text, Box } from "@chakra-ui/react"
 import { MotionFlex } from "@components/shared/Motion"
+import { useRouter } from "next/router"
 import React from "react"
+import { BsInfoCircle } from "react-icons/bs"
 
 interface WalletCardProps {
     src: string
@@ -13,6 +15,7 @@ interface WalletCardProps {
 }
 
 const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading = false, custom }: WalletCardProps) => {
+    const router = useRouter()
     return (
         <MotionFlex
             flex={1}
@@ -42,7 +45,20 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
                 >
                     {title}
                 </Text>
-                {isLoading && <Spinner size="sm" thickness="3px" />}
+
+                {isLoading ? (
+                    <Spinner size="sm" thickness="3px" />
+                ) : title === "MetaMask" ? (
+                    <Box
+                        cursor="pointer"
+                        onClick={e => {
+                            e.stopPropagation()
+                            router.push("/metamask-tutorial")
+                        }}
+                    >
+                        <BsInfoCircle size="1.25rem" color="white" />
+                    </Box>
+                ) : null}
             </Flex>
         </MotionFlex>
     )
