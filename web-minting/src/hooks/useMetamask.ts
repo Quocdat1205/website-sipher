@@ -78,7 +78,11 @@ export const useMetamask = () => {
             setIsConnecting(true)
             const { account, chainInfo, token, whitelistInfo } = await connectWallet()
             if (chainInfo.id !== CHAIN_ID) {
-                toast({ status: "error", title: "Wrong network!" })
+                toast({
+                    status: "error",
+                    title: "Wrong network!",
+                    message: "Please switch to ethereum mainnet and try again.",
+                })
                 setIsConnecting(false)
                 return
             }
@@ -106,7 +110,7 @@ export const useMetamask = () => {
             if (error.code === 4001) {
                 toast({
                     status: "error",
-                    title: "User denied message signature",
+                    title: "User denied to sign message!",
                     message: "Please sign the message to continue!",
                 })
             } else {

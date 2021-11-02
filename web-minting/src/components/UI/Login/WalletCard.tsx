@@ -1,6 +1,8 @@
-import { Spinner, Flex, Box, Img } from "@chakra-ui/react"
-import { MyText } from "@sipher/web-components"
+import { Spinner, Flex, Img, Text, Box } from "@chakra-ui/react"
+import { MotionFlex } from "@components/shared/Motion"
+import { useRouter } from "next/router"
 import React from "react"
+import { BsInfoCircle } from "react-icons/bs"
 
 interface WalletCardProps {
     src: string
@@ -9,42 +11,56 @@ interface WalletCardProps {
     active?: boolean
     isLoading?: boolean
     onClick?: () => void
+    custom: number
 }
 
-const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading = false }: WalletCardProps) => {
+const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading = false, custom }: WalletCardProps) => {
+    const router = useRouter()
     return (
-        <Flex
+        <MotionFlex
             flex={1}
-            opacity={disabled ? "0.4" : "1"}
+            opacity={disabled ? 0.6 : 1}
             pointerEvents={disabled ? "none" : "unset"}
-            cursor={disabled ? "not-allowed" : "pointer"}
-            py="2"
-            px="8"
+            py={4}
+            px={8}
             onClick={onClick}
-            // bgGradient={active ? "linear(to-b, bgGradient.orange)" : "linear(to-b, main.darkGrey, main.darkGrey)"}
-            bgColor="main.darkGrey"
+            bgColor="blackAlpha.900"
             alignItems="center"
-            pos="relative"
-            justify="space-between"
+            shadow="base"
+            cursor="pointer"
+            initial={{ x: 200, opacity: 0 }}
+            animate={{
+                x: 0,
+                opacity: disabled ? 0.7 : 1,
+                transition: { duration: 0.25, type: "tween", ease: "easeOut", delay: 0.125 * custom + 1 },
+            }}
+            whileHover={{ scale: 1.05, color: "#F4B533" }}
         >
-            {isLoading && (
-                <Flex
-                    justify="center"
-                    align="center"
-                    w="full"
-                    pos="absolute"
-                    top={0}
-                    left={0}
-                    h="full"
-                    bgColor="main.darkGrey"
+            <Img src={src} alt={title} h="2rem" mr={4} />
+            <Flex w="full" align="center" justify="space-between">
+                <Text
+                    fontWeight={500}
+                    color={disabled ? "whiteAlpha.500" : active ? "main.lightGreen" : "inherit"}
+                    mr={8}
                 >
+                    {title}
+                </Text>
+
+                {isLoading ? (
                     <Spinner size="sm" thickness="3px" />
-                    <MyText ml={2}>Connecting...</MyText>
-                </Flex>
-            )}
-            <MyText color={active ? "main.lightGreen" : "inherit"}>{title}</MyText>
-            <Img src={src} alt={title} h="2rem" />
-        </Flex>
+                ) : title === "MetaMask" ? (
+                    <Box
+                        cursor="pointer"
+                        onClick={e => {
+                            e.stopPropagation()
+                            router.push("/metamask-tutorial")
+                        }}
+                    >
+                        <BsInfoCircle size="1.25rem" color="white" />
+                    </Box>
+                ) : null}
+            </Flex>
+        </MotionFlex>
     )
 }
 export default WalletCard

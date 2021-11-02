@@ -11,7 +11,7 @@ const PriceChangeText = ({ isRunning }: PriceChangeTextProps) => {
     useEffect(() => {
         if (isRunning) start("PRICE IS ABOUT TO CHANGE")
         else stop()
-    }, [isRunning])
+    }, [isRunning, start, stop])
     return (
         <Text fontSize="small" color="main.yellow" fontWeight={500} letterSpacing={"1px"}>
             {text}

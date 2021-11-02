@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/system"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 const useTypeEffect = () => {
     const [text, setText] = useState("")
@@ -41,14 +41,14 @@ const useTypeEffect = () => {
         return () => clearTimeout(timeout)
     }, [cursorOpacity, setCursorOpacity])
 
-    const start = (text: string) => {
+    const start = useCallback((text: string) => {
         setText(text)
         setForward(true)
-    }
+    }, [])
 
-    const stop = () => {
+    const stop = useCallback(() => {
         setDeleteing(true)
-    }
+    }, [])
 
     return {
         text: (
