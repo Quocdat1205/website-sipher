@@ -1,5 +1,4 @@
-import { Spinner, Flex, Box, Img } from "@chakra-ui/react"
-import { MyText } from "@sipher/web-components"
+import { Spinner, Flex, Box, Img, Text } from "@chakra-ui/react"
 import React from "react"
 
 interface WalletCardProps {
@@ -15,35 +14,26 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
     return (
         <Flex
             flex={1}
-            opacity={disabled ? "0.4" : "1"}
+            opacity={disabled ? 0.7 : 1}
             pointerEvents={disabled ? "none" : "unset"}
-            cursor={disabled ? "not-allowed" : "pointer"}
-            py="2"
-            px="8"
+            py={4}
+            px={8}
             onClick={onClick}
-            // bgGradient={active ? "linear(to-b, bgGradient.orange)" : "linear(to-b, main.darkGrey, main.darkGrey)"}
-            bgColor="main.darkGrey"
+            bgColor="blackAlpha.900"
             alignItems="center"
-            pos="relative"
-            justify="space-between"
+            shadow="base"
         >
-            {isLoading && (
-                <Flex
-                    justify="center"
-                    align="center"
-                    w="full"
-                    pos="absolute"
-                    top={0}
-                    left={0}
-                    h="full"
-                    bgColor="main.darkGrey"
+            <Img src={src} alt={title} h="2rem" mr={4} />
+            <Flex w="full" align="center" justify="space-between">
+                <Text
+                    fontWeight={500}
+                    color={disabled ? "whiteAlpha.700" : active ? "main.lightGreen" : "inherit"}
+                    mr={8}
                 >
-                    <Spinner size="sm" thickness="3px" />
-                    <MyText ml={2}>Connecting...</MyText>
-                </Flex>
-            )}
-            <MyText color={active ? "main.lightGreen" : "inherit"}>{title}</MyText>
-            <Img src={src} alt={title} h="2rem" />
+                    {title}
+                </Text>
+                {isLoading && <Spinner size="sm" thickness="3px" />}
+            </Flex>
         </Flex>
     )
 }

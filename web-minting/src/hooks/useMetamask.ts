@@ -106,7 +106,7 @@ export const useMetamask = () => {
             if (error.code === 4001) {
                 toast({
                     status: "error",
-                    title: "User denied message signature",
+                    title: "User denied to sign message!",
                     message: "Please sign the message to continue!",
                 })
             } else {
