@@ -16,8 +16,7 @@ const usePublicSale = () => {
     const queryClient = useQueryClient()
     const [isMinting, setIsMinting] = useState(false)
     const [slot, setSlot] = useState(0)
-    const [pendingSlot, setPendingSlot] = useState(0)
-    const [maxSlot, setMaxSlot] = useState(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0))
+    const maxSlot = PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
     const isOnSale = salePhaseName === "PUBLIC_SALE"
     const timeAndPrice = useTimeAndPrice({
         publicTime: saleConfig!.publicTime,
@@ -32,10 +31,6 @@ const usePublicSale = () => {
     const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer
     const isOnTier = timeAndPrice.currentPublicPrice >= 0.55
 
-    useEffect(() => {
-        setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0))
-    }, [userRecord])
-
     const mint = async (currentPrice: number) => {
         let slotPrice = parseFloat((slot * currentPrice).toFixed(2))
         const {
@@ -48,8 +43,6 @@ const usePublicSale = () => {
     }
     const handleMint = async () => {
         const currentPrice = await getPublicCurrentPrice()
-        setMaxSlot(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0) + slot + pendingSlot))
-        setPendingSlot(pendingSlot + slot)
         /** Check for balance */
         const balance = await getMetamaskBalance(states.accountLogin)
         if (balance < currentPrice) {
@@ -71,27 +64,16 @@ const usePublicSale = () => {
 
         /** Start minting if there's nothing wrong */
         try {
-            setSlot(0)
+            setIsMinting(true)
             await mint(currentPrice)
             queryClient.invalidateQueries("total-supply")
             queryClient.invalidateQueries("user-record")
-            setMaxSlot(PUBLIC_CAP - ((userRecord ? userRecord.publicBought : 0) + slot))
-            setPendingSlot(pendingSlot - slot)
             setIsMinting(false)
         } catch (error) {
             console.log(error)
-            // setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0));
-            setSlot(0)
-            // setPendingSlot(pendingSlot - slot);
             toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
             setIsMinting(false)
         }
-    }
-
-    const handleRefresh = () => {
-        queryClient.invalidateQueries("user-record")
-        setPendingSlot(0)
-        setMaxSlot(PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0))
     }
 
     return {
@@ -101,8 +83,6 @@ const usePublicSale = () => {
         userRecord,
         isMinting,
         handleMint,
-        handleRefresh,
-        pendingSlot,
         isOnSale,
         isLoadingUserRecord,
         timeAndPrice,

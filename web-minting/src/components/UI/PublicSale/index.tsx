@@ -20,7 +20,6 @@ const PublicSale = () => {
         maxSlot,
         setSlot,
         handleMint,
-        handleRefresh,
         isLoadingUserRecord,
         isMinting,
         userRecord,
@@ -57,7 +56,7 @@ const PublicSale = () => {
                     gap={2}
                     w="full"
                     maxH="full"
-                    maxW={isOnTier ? "56rem" : "40rem"}
+                    maxW={"58rem"}
                 >
                     <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
                         <Typo.Heading w="full" textAlign="center" fontSize="2xl" mb={0}>
@@ -73,7 +72,7 @@ const PublicSale = () => {
                             {numberWithCommas(PUBLIC_MINTING_LIMIT)} NEKOS ALREADY MINTED
                         </Typo.Heading>
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={isOnTier ? 1 : 2} rowSpan={1}>
+                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1}>
                         <Flex h="full">
                             <CountDown
                                 minutesLeft={minutesLeft}
@@ -91,26 +90,21 @@ const PublicSale = () => {
                                 setSlot={setSlot}
                                 isOnSale={isOnSale}
                                 handleMint={handleMint}
-                                handleRefresh={handleRefresh}
                                 isLoadingUserRecord={isLoadingUserRecord}
                                 isMinting={isMinting}
                                 boughtNFT={userRecord!.publicBought}
                             />
                         </Flex>
                     </GridItem>
-                    {isOnTier && (
-                        <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
-                            <Reward currentPublicPrice={currentPublicPrice} />
-                        </GridItem>
-                    )}
-                    <GridItem bg="blackAlpha.900" colSpan={isOnTier ? 1 : 2} rowSpan={1} p={4} overflow="hidden">
+                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
+                        <Reward isOnTier={isOnTier} currentPublicPrice={currentPublicPrice} />
+                    </GridItem>
+                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />
                     </GridItem>
-                    {isOnTier && (
-                        <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
-                            <RewardInfo />
-                        </GridItem>
-                    )}
+                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                        <RewardInfo />
+                    </GridItem>
                 </Grid>
             </Flex>
         </MotionFlex>

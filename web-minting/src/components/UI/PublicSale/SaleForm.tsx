@@ -14,7 +14,6 @@ interface SaleFormProps {
     setSlot: (slot: number) => void
     isOnSale: boolean
     handleMint: () => void
-    handleRefresh: () => void
     isMinting: boolean
     isLoadingUserRecord: boolean
     boughtNFT: number
@@ -27,7 +26,6 @@ const SaleForm = ({
     setSlot,
     isOnSale,
     handleMint,
-    handleRefresh,
     isLoadingUserRecord,
     isMinting,
     boughtNFT,
@@ -49,42 +47,16 @@ const SaleForm = ({
                     <chakra.span fontSize="2xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
                 </Text>
             </Flex>
-            <Flex mt={4} mb={2} w="full">
-                <GradientButton
-                    text="Mint"
-                    w="full"
-                    onClick={() => handleMint()}
-                    isLoading={isMinting}
-                    loadingText="MINTING"
-                    disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
-                    flex={1}
-                />
-                <Tooltip
-                    p={2}
-                    fontWeight="thin"
-                    bg="rgba(253, 78, 104, 0.8)"
-                    color="white"
-                    hasArrow
-                    label="Refresh available NFTs based on your recorded purchase history"
-                    placement="right"
-                    fontSize="sm"
-                    openDelay={500}
-                    w="max-content"
-                >
-                    <IconButton
-                        icon={<RefreshIcon size="1.25rem" />}
-                        aria-label="refresh"
-                        ml={2}
-                        bg="whiteAlpha.100"
-                        _hover={{ bg: "whiteAlpha.200" }}
-                        _focus={{ shadow: "none" }}
-                        _active={{ bg: "whiteAlpha.50" }}
-                        onClick={() => handleRefresh()}
-                        isDisabled={boughtNFT === PUBLIC_CAP || maxSlot !== 0 || !isOnSale || isLoadingUserRecord}
-                    />
-                </Tooltip>
-            </Flex>
-
+            <GradientButton
+                text="Mint"
+                w="full"
+                mt={4}
+                mb={2}
+                onClick={() => handleMint()}
+                isLoading={isMinting}
+                loadingText="MINTING"
+                disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
+            />
             <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
                 You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
             </Text>
