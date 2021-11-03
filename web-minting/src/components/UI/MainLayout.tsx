@@ -25,7 +25,7 @@ const MainLayout = ({ children }: Props) => {
         initialData: false,
     })
     useEffect(() => {
-        document.body.style.overflow = !isPaused ? "hidden" : "auto"
+        document.body.style.overflow = isPaused ? "hidden" : "auto"
     }, [isPaused])
     return (
         <Box color="whiteAlpha.900" w="full" h="100vh">
@@ -33,7 +33,7 @@ const MainLayout = ({ children }: Props) => {
             <Flex color="whiteAlpha.900" w="full" minH="100vh" flexDir="column" pos="relative">
                 <NavBar />
 
-                {!isPaused ? (
+                {isPaused ? (
                     <Grid
                         pos="absolute"
                         bg="blackAlpha.900"
