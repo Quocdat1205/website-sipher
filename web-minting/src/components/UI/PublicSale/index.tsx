@@ -20,7 +20,6 @@ const PublicSale = () => {
         maxSlot,
         setSlot,
         handleMint,
-        handleRefresh,
         isLoadingUserRecord,
         isMinting,
         userRecord,
@@ -91,7 +90,6 @@ const PublicSale = () => {
                                 setSlot={setSlot}
                                 isOnSale={isOnSale}
                                 handleMint={handleMint}
-                                handleRefresh={handleRefresh}
                                 isLoadingUserRecord={isLoadingUserRecord}
                                 isMinting={isMinting}
                                 boughtNFT={userRecord!.publicBought}
@@ -99,7 +97,7 @@ const PublicSale = () => {
                         </Flex>
                     </GridItem>
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
-                        <Reward currentPublicPrice={currentPublicPrice} />
+                        <Reward isOnTier={isOnTier} currentPublicPrice={currentPublicPrice} />
                     </GridItem>
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />

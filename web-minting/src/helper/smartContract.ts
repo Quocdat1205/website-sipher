@@ -88,6 +88,14 @@ export const getUserRecord = async (publicAddress: string): Promise<IUserRecord>
     }
 }
 
+/** Check if contract is paused
+ * @returns isPaused: boolean
+ */
+export const getIsPaused = async (): Promise<boolean> => {
+    const isPaused = await ContractProviderNFT.methods.paused().call()
+    return isPaused
+}
+
 /** Get current price of NFT (Public Sale) */
 export const getPublicCurrentPrice = async () => {
     const data = await ContractProviderSALE.methods.getPublicSaleCurrentPrice().call()

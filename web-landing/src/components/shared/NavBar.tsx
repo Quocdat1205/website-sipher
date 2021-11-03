@@ -52,6 +52,9 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                             ".childmenu::-webkit-scrollbar": {
                                 display: "none",
                             },
+                            "@media (max-width: 480px)": {
+                                display: "none",
+                            },
                         }}
                     />
 
