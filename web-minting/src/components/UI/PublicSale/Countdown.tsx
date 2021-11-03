@@ -1,6 +1,5 @@
 import { Flex, Box, Text } from "@chakra-ui/react"
 import PublicCountdown from "@components/shared/PublicCountdown"
-import { Typo } from "@components/shared/Typo"
 import Loader from "@components/shared/Loader"
 import PrivateCountdown from "@components/shared/PrivateCountdown"
 import { TimerResult } from "react-timer-hook"
@@ -37,7 +36,7 @@ const Countdown = ({
     }, [isPriceDecreasing, secondsLeft, minutesLeft, isRunning, setIsRunning])
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
-            <Typo.Text textTransform="uppercase" fontWeight="semibold" fontSize="sm">
+            <Text textTransform="uppercase" fontWeight={500} fontSize="sm" mb={4}>
                 {currentPhase === "NOT_STARTED"
                     ? "Countdown to public sale"
                     : isPriceDecreasing
@@ -45,7 +44,7 @@ const Countdown = ({
                     : currentPhase === "ON_GOING"
                     ? "Until End"
                     : "Public Sale Has Ended"}
-            </Typo.Text>
+            </Text>
             <Box boxSize="14rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     {isPriceDecreasing ? (

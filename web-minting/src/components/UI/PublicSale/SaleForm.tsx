@@ -1,5 +1,4 @@
 import { Flex, Text, Tooltip, IconButton, chakra } from "@chakra-ui/react"
-import { Typo } from "@components/shared/Typo"
 import React from "react"
 import PriceWheel from "./PriceWheel"
 import QuantitySelector from "@components/shared/QuantitySelector"
@@ -34,9 +33,9 @@ const SaleForm = ({
 }: SaleFormProps) => {
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4}>
-            <Typo.Text textTransform="uppercase" fontWeight="semibold" fontSize="sm" mb={4}>
+            <Text textTransform="uppercase" fontWeight={500} fontSize="sm" mb={4}>
                 Current Price
-            </Typo.Text>
+            </Text>
             <PriceWheel price={price} />
             <Flex w="full" mt={4} align="center" justify="space-between">
                 <QuantitySelector
@@ -45,8 +44,8 @@ const SaleForm = ({
                     value={currentSlot}
                     isDisabled={!isOnSale || isMinting}
                 />
-                <Text fontWeight="semibold">
-                    <chakra.span fontSize="2xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
+                <Text fontSize="sm">
+                    <chakra.span fontSize="xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
                 </Text>
             </Flex>
             <Flex mt={4} mb={2} w="full">
@@ -85,7 +84,7 @@ const SaleForm = ({
                 </Tooltip>
             </Flex>
 
-            <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
+            <Text w="full" textAlign="center" fontSize="sm">
                 You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
             </Text>
         </Flex>

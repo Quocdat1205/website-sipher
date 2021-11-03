@@ -6,7 +6,7 @@ const RewardInfo = () => {
 
     return (
         <Flex direction="column" h="full">
-            <Text color="main.yellow" fontSize="sm" fontWeight="semibold">
+            <Text color="main.yellow" fontSize="sm" fontWeight="500">
                 ABOUT REWARD TIERS
             </Text>
             <Box flex={1} overflow="auto">

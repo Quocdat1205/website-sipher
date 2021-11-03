@@ -45,17 +45,17 @@ const SaleForm = ({
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={6}>
             <Flex direction="column" w="full">
-                <Text textTransform="uppercase" fontWeight="semibold" fontSize="sm">
+                <Text textTransform="uppercase" fontWeight="500" fontSize="sm">
                     {genTitle()}
                 </Text>
                 <Countdown timeLeft={timeLeft} />
             </Flex>
             <Flex direction="column" w="full">
-                <Text textTransform="uppercase" fontWeight="semibold" fontSize="sm" mb={1}>
+                <Text textTransform="uppercase" fontWeight="500" fontSize="sm" mb={1}>
                     Price
                 </Text>
                 <Flex border="1px" borderColor="white" bg="black" w="full" justify="center" align="center">
-                    <Text fontSize="xl" fontWeight="bold">
+                    <Text fontSize="xl" fontWeight="500">
                         <chakra.span fontSize="3xl">{price}</chakra.span> ETH
                     </Text>
                 </Flex>
@@ -68,8 +68,9 @@ const SaleForm = ({
                         value={currentSlot}
                         isDisabled={!isOnSale}
                     />
-                    <Text fontWeight="semibold">
-                        <chakra.span fontSize="2xl">{(currentSlot * price).toFixed(1)}</chakra.span> ETH + GAS
+
+                    <Text fontSize="sm">
+                        <chakra.span fontSize="xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
                     </Text>
                 </Flex>
                 <GradientButton
@@ -82,7 +83,7 @@ const SaleForm = ({
                     loadingText="MINTING"
                     disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
                 />
-                <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
+                <Text w="full" textAlign="center" fontSize="sm">
                     You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
                 </Text>
             </Flex>

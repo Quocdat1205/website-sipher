@@ -1,8 +1,7 @@
 import React from "react"
-import { Flex, Grid, Box, Img, GridItem } from "@chakra-ui/react"
+import { Flex, Grid, Box, Img, GridItem, Text } from "@chakra-ui/react"
 import { ISalePhase } from "@@types"
 import useSale from "./useSale"
-import { Typo } from "@components/shared/Typo"
 import SaleForm from "./SaleForm"
 import Info from "./Info"
 import { MotionFlex } from "@components/shared/Motion"
@@ -30,16 +29,20 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
             align="center"
             justify="center"
             direction="column"
-            p={4}
+            p={8}
             initial={{ y: 200, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Flex justify="center" align="center" direction="column">
-                <Typo.Heading fontSize="3xl">
-                    SIPHER NFT {mode === "PRIVATE_SALE" ? "PRIVATE SALE" : "FREE MINTING"}
-                </Typo.Heading>
+                <Text fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                    {currentPhase === "NOT_STARTED"
+                        ? "AUCTION COMING UP"
+                        : currentPhase === "ON_GOING"
+                        ? "AUCTION IN PROGRESS"
+                        : "AUCTION HAS ENDED"}
+                </Text>
 
                 <Grid
                     templateRows="1fr auto"

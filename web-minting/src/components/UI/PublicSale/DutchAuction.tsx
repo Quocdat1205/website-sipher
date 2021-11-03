@@ -6,7 +6,7 @@ interface DutchAuctionProps {}
 const DutchAuction = ({}: DutchAuctionProps) => {
     return (
         <Flex direction="column" h="full">
-            <Text fontWeight="semibold" color="main.yellow" fontSize="sm">
+            <Text fontWeight="500" color="main.yellow" fontSize="sm">
                 ABOUT DUTCH AUCTION
             </Text>
             <Box flex={1}>

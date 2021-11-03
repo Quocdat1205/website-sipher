@@ -27,7 +27,6 @@ const PriceCard = ({ price, active }: PriceCardProps) => {
         <MotionBox
             w="full"
             height="2.5rem"
-            fontWeight="semibold"
             letterSpacing="1px"
             textAlign="center"
             lineHeight="2.5rem"
@@ -40,7 +39,7 @@ const PriceCard = ({ price, active }: PriceCardProps) => {
             }}
             animate={cardControl}
         >
-            <Text fontWeight="bold">
+            <Text fontWeight={500} fontSize="md">
                 <chakra.span fontSize="2xl">{price}</chakra.span> ETH
             </Text>
         </MotionBox>

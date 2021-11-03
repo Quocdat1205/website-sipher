@@ -9,7 +9,7 @@ interface InfoProps {
 const Info = ({ mode }) => {
     return (
         <Flex direction="column">
-            <Text color="main.yellow" fontSize="sm" fontWeight="semibold">
+            <Text color="main.yellow" fontSize="sm" fontWeight="500">
                 {mode}
             </Text>
             <Box overflow="auto" mb={4}>
@@ -22,7 +22,7 @@ const Info = ({ mode }) => {
                     </ListItem>
                 </UnorderedList>
             </Box>
-            <Text fontSize="sm" color="main.yellow" fontWeight="semibold">
+            <Text fontSize="sm" color="main.yellow" fontWeight="500">
                 NOTE
             </Text>
             <Box overflow="auto">
