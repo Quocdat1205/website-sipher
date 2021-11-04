@@ -43,7 +43,7 @@ const PublicSale = () => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Flex justify="center" align="center" direction="column">
-                <Text fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                <Text bg="blackAlpha.900" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {currentPhase === "NOT_STARTED"
                         ? "AUCTION COMING UP"
                         : currentPhase === "ON_GOING"

@@ -36,12 +36,18 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Flex justify="center" align="center" direction="column">
-                <Text fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
-                    {currentPhase === "NOT_STARTED"
-                        ? "AUCTION COMING UP"
+                <Text bg="blackAlpha.900" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                    {mode === "PRIVATE_SALE"
+                        ? currentPhase === "NOT_STARTED"
+                            ? "PRIVATE SALE COMING UP"
+                            : currentPhase === "ON_GOING"
+                            ? "PRIVATE SALE ON PROGRESS"
+                            : "PRIVATE SALE HAS ENDED"
+                        : currentPhase === "NOT_STARTED"
+                        ? "FREE MINT COMING UP"
                         : currentPhase === "ON_GOING"
-                        ? "AUCTION IN PROGRESS"
-                        : "AUCTION HAS ENDED"}
+                        ? "FREE MINT ON PROGRESS"
+                        : "FREE MINT HAS ENDED"}
                 </Text>
 
                 <Grid

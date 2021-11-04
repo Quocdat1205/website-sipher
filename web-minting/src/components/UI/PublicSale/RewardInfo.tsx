@@ -10,18 +10,21 @@ const RewardInfo = () => {
                 ABOUT REWARD TIERS
             </Text>
             <Box flex={1} overflow="auto">
-                <UnorderedList pl={1}>
+                <UnorderedList pl={1} color="whiteAlpha.700">
                     <ListItem>
-                        <Text fontSize="sm">Each price tier is eligible for different amounts of in-game rewards.</Text>
+                        <Text color="whiteAlpha.700" fontSize="sm">
+                            Each price tier is eligible for different amounts of in-game rewards.
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <Text fontSize="sm">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             Read more about{" "}
                             <chakra.span
                                 cursor="pointer"
                                 color="main.yellow"
                                 fontWeight={500}
                                 onClick={() => router.push("/tier-reward-benefits")}
+                                textDecor="underline"
                             >
                                 Tier Reward Benefits
                             </chakra.span>

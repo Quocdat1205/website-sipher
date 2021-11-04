@@ -6,13 +6,13 @@ interface DutchAuctionProps {}
 const DutchAuction = ({}: DutchAuctionProps) => {
     return (
         <Flex direction="column" h="full">
-            <Text fontWeight="500" color="main.yellow" fontSize="sm">
-                ABOUT DUTCH AUCTION
-            </Text>
-            <Box flex={1}>
-                <UnorderedList pl={1}>
+            <Box>
+                <Text fontWeight="500" color="main.yellow" fontSize="sm">
+                    ABOUT DUTCH AUCTION
+                </Text>
+                <UnorderedList color="whiteAlpha.700" pl={1}>
                     <ListItem>
-                        <Text fontSize="sm">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             The auction starting price is{" "}
                             <chakra.span color="main.yellow" fontWeight={500}>
                                 0.9 ETH
@@ -21,7 +21,7 @@ const DutchAuction = ({}: DutchAuctionProps) => {
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text fontSize="sm">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             The auction ends when either{" "}
                             <chakra.span color="main.yellow" fontWeight={500}>
                                 6,000 bids
@@ -30,13 +30,25 @@ const DutchAuction = ({}: DutchAuctionProps) => {
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text fontSize="sm">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             If demand exceeds supply, bids will be fulfilled on a first-come first-serve basis.
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text fontSize="sm">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             All winning bidders who receives NEKOs will pay the same price per NEKO.
+                        </Text>
+                    </ListItem>
+                </UnorderedList>
+            </Box>
+            <Box mt={4}>
+                <Text fontWeight="500" color="main.yellow" fontSize="sm">
+                    IMPORTANT
+                </Text>
+                <UnorderedList color="whiteAlpha.700" pl={1}>
+                    <ListItem>
+                        <Text color="whiteAlpha.700" fontSize="sm">
+                            Minting close to next tier price change, may result to lower tier due to transaction time.
                         </Text>
                     </ListItem>
                 </UnorderedList>

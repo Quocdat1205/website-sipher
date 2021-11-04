@@ -42,7 +42,7 @@ const SaleForm = ({
                     value={currentSlot}
                     isDisabled={!isOnSale || isMinting}
                 />
-                <Text fontSize="sm">
+                <Text fontWeight="bold" fontSize="sm">
                     <chakra.span fontSize="xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
                 </Text>
             </Flex>
