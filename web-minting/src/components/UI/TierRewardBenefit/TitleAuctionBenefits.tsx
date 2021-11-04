@@ -7,20 +7,20 @@ interface Props {}
 
 const TitleAuctionBenefits = (props: Props) => {
     return (
-        <Grid templateRows="repeat(6, 200px)" h="full">
+        <Grid templateRows="repeat(6, 150px)" h="full">
             {titleAuctionBenefits.map(title => (
-                <GridItem key={title.text} bg={"blackAlpha.700"} p={8}>
-                    <Flex align="center">
+                <GridItem key={title.text} p={8}>
+                    <Flex h="full" flexDir="row" alignItems="center">
                         <Text fontWeight="semibold" color="main.yellow">
                             {title.text}
                         </Text>
                         {title.tooltip && (
                             <Tooltip
+                                hasArrow
                                 p={2}
                                 fontWeight="thin"
-                                bg="rgba(253, 78, 104, 0.8)"
+                                bg="about.darkRed"
                                 color="white"
-                                hasArrow
                                 label={title.tooltip}
                                 placement="top-start"
                             >

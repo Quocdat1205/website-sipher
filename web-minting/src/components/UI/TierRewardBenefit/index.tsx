@@ -1,11 +1,12 @@
-import { Flex, chakra, Text, Tooltip } from "@chakra-ui/react"
+import { Flex, Grid, Text, GridItem } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typo"
 import NextLink from "next/link"
-import { FiArrowLeft, FiInfo } from "react-icons/fi"
-import React, { Fragment } from "react"
+import { FiArrowLeft } from "react-icons/fi"
+import React from "react"
 import DataDutchAuction from "./DataDutchAuction"
-import { dataAuctionBenefits, rankBenefits, titleAuctionBenefits } from "@constant/content/tierRewardBenefits"
-import RankCard from "./RankCard"
+import DataRankBenefit from "./DataRankBenefit"
+import TitleAuctionBenefits from "./TitleAuctionBenefits"
+import DataAuctionBenefits from "./DataAuctionBenefits"
 
 interface Props {}
 
@@ -14,7 +15,7 @@ const TierRewardBenefit = (props: Props) => {
         <Flex align="center" flexDir="column" w="full" h="full" p={4}>
             <Flex w="full" maxW="68rem" flexDir="column">
                 <NextLink href="/public-sale">
-                    <Flex _hover={{ color: "main.yellow" }} cursor="pointer" wrap="wrap" align="center">
+                    <Flex _hover={{ color: "main.yellow" }} mb={8} cursor="pointer" wrap="wrap" align="center">
                         <FiArrowLeft />
                         <Text color="inherit" ml={2}>
                             BACK TO MINTING
@@ -22,8 +23,8 @@ const TierRewardBenefit = (props: Props) => {
                     </Flex>
                 </NextLink>
                 <Flex flex={1} align="center" direction="column">
-                    <Typo.Heading fontSize="3xl">DUTCH AUCTION - MINTING DETAILS</Typo.Heading>
-                    <chakra.table w="full" sx={{ borderCollapse: "collapse", tableLayout: "fixed" }}>
+                    {/* <Typo.Heading fontSize="3xl">DUTCH AUCTION - MINTING DETAILS</Typo.Heading> */}
+                    {/* <chakra.table w="full" sx={{ borderCollapse: "collapse", tableLayout: "fixed" }}>
                         <chakra.tbody>
                             <chakra.tr>
                                 <chakra.td bg="blackAlpha.700" p={4}>
@@ -105,34 +106,36 @@ const TierRewardBenefit = (props: Props) => {
                                 </chakra.tr>
                             ))}
                         </chakra.tbody>
-                    </chakra.table>
-                    {/* <Grid
-                    templateRows="auto 1fr auto"
-                    templateColumns="1fr 3fr"
-                    gap={0.5}
-                    w="full"
-                    maxH="full"
-                    maxW="68rem"
-                    overflow="hidden"
-                >
-                    <GridItem px={4} py={2} colSpan={2} rowSpan={1}>
-                        <Typo.Heading fontSize="3xl">DUTCH AUCTION - MINTING DETAILS</Typo.Heading>
-                    </GridItem>
-                    <GridItem bg="blackAlpha.700" py={4} px={8} colSpan={1} rowSpan={1}>
-                        <Typo.Heading fontSize="3xl" textAlign="left" mb={0}>
-                            AUCTION BENEFITS
-                        </Typo.Heading>
-                    </GridItem>
-                    <GridItem colSpan={1}>
-                        <DataRankBenefit />
-                    </GridItem>
-                    <GridItem colSpan={1} rowSpan={1}>
-                        <TitleAuctionBenefits />
-                    </GridItem>
-                    <GridItem colSpan={1}>
-                        <DataAuctionBenefits />
-                    </GridItem>
-                </Grid> */}
+                    </chakra.table> */}
+                    <Grid
+                        templateRows="auto 1fr auto"
+                        templateColumns="1fr 3fr"
+                        gap={0.5}
+                        w="full"
+                        maxH="full"
+                        maxW="68rem"
+                        overflow="hidden"
+                    >
+                        <GridItem px={4} py={2} colSpan={2} rowSpan={1}>
+                            <Typo.Heading fontSize="3xl" letterSpacing="1px">
+                                DUTCH AUCTION - MINTING DETAILS
+                            </Typo.Heading>
+                        </GridItem>
+                        <GridItem bg="blackAlpha.900" py={4} px={8} colSpan={1} rowSpan={1}>
+                            <Typo.Heading letterSpacing="1px" fontSize="3xl" textAlign="left" mb={0}>
+                                AUCTION BENEFITS
+                            </Typo.Heading>
+                        </GridItem>
+                        <GridItem colSpan={1}>
+                            <DataRankBenefit />
+                        </GridItem>
+                        <GridItem bg="rgba(20, 20, 20, 0.9)" colSpan={1} rowSpan={1}>
+                            <TitleAuctionBenefits />
+                        </GridItem>
+                        <GridItem colSpan={1}>
+                            <DataAuctionBenefits />
+                        </GridItem>
+                    </Grid>
                     <DataDutchAuction />
                 </Flex>
             </Flex>
