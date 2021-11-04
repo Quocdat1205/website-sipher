@@ -13,9 +13,9 @@ const Info = ({ mode }) => {
                 {mode}
             </Text>
             <Box overflow="auto" mb={4}>
-                <UnorderedList pl={1}>
+                <UnorderedList pl={1} color="whiteAlpha.700">
                     <ListItem>
-                        <Text fontSize="sm">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             Available for whitelisted address only. The purchase limit will be based on contribution
                             history to Sipher community.
                         </Text>
@@ -26,17 +26,21 @@ const Info = ({ mode }) => {
                 NOTE
             </Text>
             <Box overflow="auto">
-                <UnorderedList pl={1}>
+                <UnorderedList pl={1} color="whiteAlpha.700">
                     <ListItem>
-                        <Text fontSize="sm">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             Only confirm transaction when your wallet provider shows no error/warning.
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text fontSize="sm">Adjust Gas Fees accordingly to your transaction to go through fast.</Text>
+                        <Text color="whiteAlpha.700" fontSize="sm">
+                            Adjust Gas Fees accordingly to your transaction to go through fast.
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <Text fontSize="sm">(For reference: https://ethgasstation.info)</Text>
+                        <Text color="whiteAlpha.700" fontSize="sm">
+                            (For reference: https://ethgasstation.info)
+                        </Text>
                     </ListItem>
                 </UnorderedList>
             </Box>
