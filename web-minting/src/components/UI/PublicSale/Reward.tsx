@@ -30,11 +30,12 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
         return { tier: "No Tier" }
     }
     const tier = getTier()
+
     return (
-        <Flex h="full" direction="column" align="flex-start">
+        <Flex direction="column" h="full" alignItems="flex-start">
             {isOnTier ? (
                 <>
-                    <Flex mb={4} align="center" justify="center" w="full">
+                    <Flex align="center" justify="center" w="full" mb={4}>
                         {tier.image && (
                             <Box h="2rem" mr={1}>
                                 <Img src={tier.image} alt={tier.tier} h="full" />
@@ -44,8 +45,8 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             {tier.tier}
                         </Text>
                     </Flex>
-                    <Flex justify="center" w="full">
-                        <Img src={"/images/reward.png"} alt="reward" h="12rem" />
+                    <Flex w="full" justify="center">
+                        <Img h="12rem" src={"/images/reward.png"} alt="reward" />
                     </Flex>
                     <Text color="main.yellow" fontSize="sm" fontWeight="semibold">
                         YOU WILL RECEIVE:
@@ -63,7 +64,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                     </UnorderedList>
                 </>
             ) : (
-                <Flex align="center" justify="center" w="full" h="full">
+                <Flex w="full" h="full" align="center" justify="center">
                     <Img src={"/images/reward.png"} alt="reward" h="16rem" />
                 </Flex>
             )}
