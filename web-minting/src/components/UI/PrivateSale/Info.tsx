@@ -1,6 +1,4 @@
-import { Box, Flex, ListItem, UnorderedList, Text } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
-import { MyText } from "@sipher/web-components"
+import { Box, Flex, ListItem, UnorderedList, Text, Link } from "@chakra-ui/layout"
 
 interface InfoProps {
     mode: "PRIVATE SALE" | "FREE MINTING"
@@ -38,9 +36,9 @@ const Info = ({ mode }) => {
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
+                        <Link as="a" isExternal color="whiteAlpha.700" href="https://ethgasstation.info" fontSize="sm">
                             (For reference: https://ethgasstation.info)
-                        </Text>
+                        </Link>
                     </ListItem>
                 </UnorderedList>
             </Box>

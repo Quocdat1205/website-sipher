@@ -49,7 +49,6 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                         ? "FREE MINT ON PROGRESS"
                         : "FREE MINT HAS ENDED"}
                 </Text>
-
                 <Grid
                     templateRows="1fr auto"
                     templateColumns="1fr"
