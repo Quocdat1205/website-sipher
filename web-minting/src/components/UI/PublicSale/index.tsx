@@ -56,7 +56,7 @@ const PublicSale = () => {
                     gap={2}
                     w="full"
                     maxH="full"
-                    maxW={"56rem"}
+                    maxW={"64rem"}
                 >
                     <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
                         <Typo.Heading w="full" textAlign="center" fontSize="3xl" mb={0}>

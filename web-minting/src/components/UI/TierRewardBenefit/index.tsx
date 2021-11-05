@@ -25,7 +25,7 @@ const TierRewardBenefit = (props: Props) => {
                 <Flex flex={1} align="center" direction="column">
                     <Grid
                         templateRows="auto 1fr auto"
-                        templateColumns="1.1fr 3fr"
+                        templateColumns="1fr 3fr"
                         gap={0.5}
                         w="full"
                         maxH="full"

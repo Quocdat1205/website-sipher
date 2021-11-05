@@ -35,7 +35,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                     </MotionText>
                 </AnimatePresence>
             </Box>
-            <MyText textAlign={"center"} fontSize="xs">
+            <MyText textAlign={"center"} fontSize="xs" color="whiteAlpha.700">
                 {unit}
             </MyText>
         </Flex>
