@@ -30,7 +30,7 @@ const PublicSale = () => {
         isPriceDecreasing,
     } = usePublicSale()
     const { publicSale } = useSaleRecord()
-    const { publicSaleCapLimit, isLoadingCapLimit } = usePublicCapLimit()
+    const { publicSaleCapLimit } = usePublicCapLimit()
 
     return (
         <MotionFlex
@@ -68,7 +68,7 @@ const PublicSale = () => {
                             {publicSaleCapLimit && publicSaleCapLimit - publicSale > 1 ? "NEKOS" : "NEKO"} REMAINING
                         </Typo.Heading>
                     </GridItem>
-                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
+                    <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
                         <Flex h="full">
                             <CountDown
                                 minutesLeft={minutesLeft}
@@ -92,7 +92,7 @@ const PublicSale = () => {
                             />
                         </Flex>
                     </GridItem>
-                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4}>
+                    <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4}>
                         <Reward isOnTier={isOnTier} currentPublicPrice={currentPublicPrice} />
                     </GridItem>
                     <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">

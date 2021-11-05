@@ -2,7 +2,6 @@ import { checkSmartContract } from "@api/smartContract"
 import { PUBLIC_CAP, PUBLIC_MINTING_LIMIT } from "@constant/index"
 import { getMetamaskBalance } from "@helper/metamask"
 import { getPublicCurrentPrice, sendSmartContract } from "@helper/smartContract"
-import useSaleConfig from "@hooks/useSaleConfig"
 import useTimeAndPrice from "@components/UI/PublicSale/useTimeAndPrice"
 import useWalletContext from "@hooks/useWalletContext"
 import { useState } from "react"
@@ -11,8 +10,13 @@ import useSaleRecord from "@hooks/useSaleRecord"
 import { useTimer } from "react-timer-hook"
 import useTransactionToast from "@hooks/useTransactionToast"
 const usePublicSale = () => {
-    const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
-    const { saleConfig, salePhaseName, salePhase } = useSaleConfig()
+    const {
+        states,
+        toast,
+        userRecord,
+        isLoadingUserRecord,
+        config: { saleConfig, salePhase, salePhaseName },
+    } = useWalletContext()
     const queryClient = useQueryClient()
     const [isMinting, setIsMinting] = useState(false)
     const [slot, setSlot] = useState(0)
@@ -22,7 +26,7 @@ const usePublicSale = () => {
         publicTime: saleConfig!.publicTime,
         publicEndTime: saleConfig!.publicEndTime,
     })
-    const transactionToast = useTransactionToast({ defaultDuration: 8000, isPublic: true })
+    const transactionToast = useTransactionToast({ defaultDuration: 25000, isPublic: true })
     const isPriceDecreasing = timeAndPrice.currentPublicPrice > 0.1 && isOnSale
     const { publicSale: publicSaleRecord } = useSaleRecord()
     const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
@@ -39,6 +43,7 @@ const usePublicSale = () => {
             whitelistInfo: { freeMintCap, privateCap, proof },
         } = states
         await sendSmartContract({ address, slot, slotPrice, proof, privateCap, freeMintCap })
+
         transactionToast({ status: "success" })
         setSlot(0)
     }
