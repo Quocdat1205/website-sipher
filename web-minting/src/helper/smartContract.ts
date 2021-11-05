@@ -93,7 +93,6 @@ export const getUserRecord = async (publicAddress: string): Promise<IUserRecord>
  */
 export const getIsPaused = async (): Promise<boolean> => {
     const isPaused = await ContractProviderNFT.methods.paused().call()
-    console.log("Ispause", isPaused)
     return isPaused
 }
 
@@ -101,6 +100,13 @@ export const getIsPaused = async (): Promise<boolean> => {
 export const getPublicCurrentPrice = async () => {
     const data = await ContractProviderSALE.methods.getPublicSaleCurrentPrice().call()
     return parseFloat((data / 10 ** 18).toFixed(2))
+}
+
+//** Get max public sale cap */
+export const getMaxPublicSaleCap = async () => {
+    const data = await ContractProviderSALE.methods.getMaxPublicSaleCap().call()
+
+    return parseInt(data)
 }
 
 export type ISaleConfig = Record<

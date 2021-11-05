@@ -7,10 +7,11 @@ import DutchAuction from "./DutchAuction"
 import RewardInfo from "./RewardInfo"
 import Reward from "./Reward"
 import usePublicSale from "./usePublicSale"
-import { PUBLIC_MINTING_LIMIT, START_PRICE } from "@constant/index"
+import { START_PRICE } from "@constant/index"
 import { numberWithCommas } from "@utils/index"
 import useSaleRecord from "@hooks/useSaleRecord"
 import { MotionFlex } from "@components/shared/Motion"
+import usePublicCapLimit from "@hooks/usePublicCapLimit"
 
 const PublicSale = () => {
     const {
@@ -29,6 +30,7 @@ const PublicSale = () => {
         isPriceDecreasing,
     } = usePublicSale()
     const { publicSale } = useSaleRecord()
+    const { publicSaleCapLimit, isLoadingCapLimit } = usePublicCapLimit()
 
     return (
         <MotionFlex
@@ -69,7 +71,7 @@ const PublicSale = () => {
                                 {numberWithCommas(publicSale)}
                             </chakra.span>
                             {" / "}
-                            {numberWithCommas(PUBLIC_MINTING_LIMIT)} NEKOS ALREADY MINTED
+                            {!isLoadingCapLimit ? numberWithCommas(publicSaleCapLimit) : "..."} NEKOS ALREADY MINTED
                         </Typo.Heading>
                     </GridItem>
                     <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
