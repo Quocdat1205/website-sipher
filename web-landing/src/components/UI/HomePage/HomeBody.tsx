@@ -25,7 +25,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     backgroundRepeat: "repeat",
                 }}
                 pos="relative"
-                zIndex="banner"
+                zIndex="2"
                 py={24}
             >
                 <VStack spacing={24} align="center" w="full">
