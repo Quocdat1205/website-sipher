@@ -45,7 +45,7 @@ const SaleForm = ({
                 </Text>
             </Flex>
             <GradientButton
-                text="Mint"
+                text="Mint Now"
                 w="full"
                 mt={4}
                 mb={2}

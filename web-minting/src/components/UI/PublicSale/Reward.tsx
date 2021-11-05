@@ -16,7 +16,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/boomer.png",
                 content: [
                     "1 Free Exclusive Sipher Bomber Jacket",
-                    "1 Free Crystalis Neko & Cosmic Inu Limited Edition Sculptures",
+                    "1 Free Neko & Inu Limited Edition Sculptures",
                     "Personalized Thank You card",
                 ],
             }
@@ -27,7 +27,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/hoodie.png",
                 content: [
                     "1 Free Exclusive Sipher Hoodie",
-                    "1 Free Crystalis Neko Limited Edition Sculpture",
+                    "1 Free Neko Limited Edition Sculpture",
                     "Personalized Thank You card",
                 ],
             }
@@ -38,7 +38,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/tshirt.png",
                 content: [
                     "1 Free Exclusive Sipher T-Shirt",
-                    "1 Free Cosmic Inu Limited Edition Sculpture",
+                    "1 Free Inu Limited Edition Sculpture",
                     "Personalized Thank You card",
                 ],
             }

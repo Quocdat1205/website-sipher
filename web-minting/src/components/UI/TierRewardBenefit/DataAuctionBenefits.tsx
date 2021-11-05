@@ -8,7 +8,7 @@ interface Props {}
 
 const DataAuctionBenefits = (props: Props) => {
     return (
-        <Grid templateRows="repeat(6, 150px)">
+        <Grid templateRows="repeat(6, 136px)">
             {dataAuctionBenefits.map(benefit => (
                 <GridItem key={benefit.id}>
                     <Grid templateColumns="repeat(4, 1fr)" h="full">
@@ -18,7 +18,7 @@ const DataAuctionBenefits = (props: Props) => {
                                       bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
                                       key={item.text}
                                   >
-                                      <Flex h="full" align="center" justify="center" textAlign="center" p={4}>
+                                      <Flex h="full" align="center" justify="center" textAlign="center" p={2}>
                                           <Text color="whiteAlpha.900">{item.text}</Text>
                                       </Flex>
                                   </GridItem>
@@ -28,7 +28,7 @@ const DataAuctionBenefits = (props: Props) => {
                                       bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
                                       key={item.id}
                                   >
-                                      <Flex h="full" align="center" justify="center" textAlign="center" p={4}>
+                                      <Flex h="full" align="center" justify="center" textAlign="center" p={2}>
                                           <Text>
                                               {item.content?.map(item => (
                                                   <Fragment key={item.text}>

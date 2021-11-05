@@ -1,4 +1,5 @@
 import { Box, Flex, ListItem, UnorderedList, Text, Link } from "@chakra-ui/layout"
+import { chakra } from "@chakra-ui/system"
 
 interface InfoProps {
     mode: "PRIVATE SALE" | "FREE MINTING"
@@ -18,6 +19,14 @@ const Info = ({ mode }) => {
                             history to Sipher community.
                         </Text>
                     </ListItem>
+                    {mode === "FREE_MINTING" && (
+                        <ListItem>
+                            <Text color="whiteAlpha.700" fontSize="sm">
+                                For members minting under the Guildmaster program under the eligible tiers, you MUST
+                                have qualified for the first & second tier to be qualify for free mint!
+                            </Text>
+                        </ListItem>
+                    )}
                 </UnorderedList>
             </Box>
             <Text fontSize="sm" color="main.yellow" fontWeight="500">
@@ -32,13 +41,24 @@ const Info = ({ mode }) => {
                     </ListItem>
                     <ListItem>
                         <Text color="whiteAlpha.700" fontSize="sm">
-                            Adjust Gas Fees accordingly to your transaction to go through fast.
+                            Adjust Gas Fees accordingly to your transaction to go through fast.{" "}
+                            <Link
+                                as="a"
+                                isExternal
+                                color="whiteAlpha.700"
+                                href="https://ethgasstation.info"
+                                fontSize="sm"
+                                cursor="pointer"
+                            >
+                                (For reference: https://ethgasstation.info)
+                            </Link>
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Link as="a" isExternal color="whiteAlpha.700" href="https://ethgasstation.info" fontSize="sm">
-                            (For reference: https://ethgasstation.info)
-                        </Link>
+                        <Text color="whiteAlpha.700" fontSize="sm">
+                            Be careful before confirming a transaction when all NFTs are almost minted. Your transaction
+                            could be reverted if all supplies sold out.
+                        </Text>
                     </ListItem>
                 </UnorderedList>
             </Box>
