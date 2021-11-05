@@ -29,7 +29,7 @@ export const dataAuctionBenefits = [
         content: [{ text: "0.9 - 0.85" }, { text: "0.8 - 0.75" }, { text: "0.7 - 0.65" }, { text: "0.6 - 0.55" }],
     },
     {
-        id: "Immortalize in Sipheria",
+        id: "Immortalized in Sipheria",
         content: [
             { text: "Names forever immortalized in Sipheria" },
             { text: "N/A" },
@@ -43,7 +43,7 @@ export const dataAuctionBenefits = [
             {
                 id: 1,
                 content: [
-                    { text: "Crystalis Neko & Cosmic INU Limited Edition Sculpture retailed at", type: "text" },
+                    { text: "Neko & INU Limited Edition Sculpture retailed at", type: "text" },
                     { text: "$1,000 USD", type: "highlight" },
                     { text: "each for FREE", type: "text" },
                 ],
@@ -51,7 +51,7 @@ export const dataAuctionBenefits = [
             {
                 id: 2,
                 content: [
-                    { text: "Crystalis Neko Limited Edition Sculpture retailed at", type: "text" },
+                    { text: "Neko Limited Edition Sculpture retailed at", type: "text" },
                     { text: "$1,000 USD", type: "highlight" },
                     { text: "for FREE", type: "text" },
                 ],
@@ -59,7 +59,7 @@ export const dataAuctionBenefits = [
             {
                 id: 3,
                 content: [
-                    { text: "Cosmic INU Limited Edition Sculpture retailed at", type: "text" },
+                    { text: "INU Limited Edition Sculpture retailed at", type: "text" },
                     { text: "$1,000 USD", type: "highlight" },
                     { text: "for FREE", type: "text" },
                 ],

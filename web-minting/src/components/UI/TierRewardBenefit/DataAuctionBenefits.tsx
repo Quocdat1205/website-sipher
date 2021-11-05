@@ -15,7 +15,7 @@ const DataAuctionBenefits = (props: Props) => {
                             ? benefit.content.map((item, index) => (
                                   <GridItem bg={index % 2 === 0 ? "#000000" : "#141414"} opacity="0.9" key={index}>
                                       <Flex h="full" align="center" justify="center" textAlign="center" px={3}>
-                                          <Text color="whiteAlpha.900">{item.text}</Text>
+                                          <Text color="white">{item.text}</Text>
                                       </Flex>
                                   </GridItem>
                               ))
@@ -30,7 +30,7 @@ const DataAuctionBenefits = (props: Props) => {
                                                               {" " + item.text + " "}
                                                           </chakra.span>
                                                       ) : (
-                                                          <chakra.span color="whiteAlpha.900">{item.text} </chakra.span>
+                                                          <chakra.span color="white">{item.text} </chakra.span>
                                                       )}
                                                   </Fragment>
                                               ))}
