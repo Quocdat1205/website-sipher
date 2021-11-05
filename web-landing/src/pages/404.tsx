@@ -39,8 +39,9 @@ const NotfoundPage = ({}: NotfoundPageProps) => {
                         PAGE NOT FOUND
                     </Typo.Heading>
                     <Typo.BoldText textAlign="center">
-                        OOPS! THE PAGE YOU'RE LOOKING FOR IS EITHER NOT AVAILABLE, LOADING INCORRECRLY, OR HAS BEEN LOST
-                        SOMEWHERE IN THE METAVERSE.
+                        {
+                            "OOPS! THE PAGE YOU'RE LOOKING FOR IS EITHER NOT AVAILABLE, LOADING INCORRECRLY, OR HAS BEEN LOST SOMEWHERE IN THE METAVERSE."
+                        }
                     </Typo.BoldText>
                     <LinkButton
                         text="Return Home"
