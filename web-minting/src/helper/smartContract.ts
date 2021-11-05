@@ -93,6 +93,7 @@ export const getUserRecord = async (publicAddress: string): Promise<IUserRecord>
  */
 export const getIsPaused = async (): Promise<boolean> => {
     const isPaused = await ContractProviderNFT.methods.paused().call()
+    console.log("Ispause", isPaused)
     return isPaused
 }
 

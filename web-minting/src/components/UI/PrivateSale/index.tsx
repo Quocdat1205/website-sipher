@@ -44,10 +44,10 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                             ? "PRIVATE SALE ON PROGRESS"
                             : "PRIVATE SALE HAS ENDED"
                         : currentPhase === "NOT_STARTED"
-                        ? "FREE MINT COMING UP"
+                        ? "FREE MINTING COMING UP"
                         : currentPhase === "ON_GOING"
-                        ? "FREE MINT ON PROGRESS"
-                        : "FREE MINT HAS ENDED"}
+                        ? "FREE MINTING ON PROGRESS"
+                        : "FREE MINTING HAS ENDED"}
                 </Text>
 
                 <Grid

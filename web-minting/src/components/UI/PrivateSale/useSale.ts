@@ -6,10 +6,12 @@ import useWalletContext from "@hooks/useWalletContext"
 import { useState } from "react"
 import { useQueryClient } from "react-query"
 import { useTimer } from "react-timer-hook"
+import useTransactionToast from "@hooks/useTransactionToast"
 
 const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const price = mode === "PRIVATE_SALE" ? 0.1 : 0
     const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
+    const transactionToast = useTransactionToast({ defaultDuration: 6000 })
     const {
         salePhaseName,
         salePhase,
@@ -58,7 +60,7 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
             whitelistInfo: { freeMintCap, privateCap, proof },
         } = states
         await sendSmartContract({ address, slot, slotPrice: totalPrice, proof, privateCap, freeMintCap })
-        toast({ status: "success", title: "Transaction created successfully!", duration: 6000 })
+        transactionToast({ status: "success", duration: 10000 })
         setSlot(0)
     }
 
@@ -80,13 +82,14 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
         /** Start minting if there's nothing wrong */
         try {
             setIsMinting(true)
+            transactionToast({ status: "processing" })
             await mint()
             queryClient.invalidateQueries("total-supply")
             queryClient.invalidateQueries("user-record")
             setIsMinting(false)
         } catch (error) {
             console.log(error)
-            toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
+            transactionToast({ status: "failed" })
             setIsMinting(false)
         }
     }
