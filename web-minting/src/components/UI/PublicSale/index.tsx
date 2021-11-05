@@ -1,5 +1,5 @@
 import React from "react"
-import { Flex, Grid, GridItem, chakra } from "@chakra-ui/react"
+import { Flex, Grid, GridItem, chakra, Text } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typo"
 import CountDown from "./Countdown"
 import SaleForm from "./SaleForm"
@@ -25,26 +25,41 @@ const PublicSale = () => {
         userRecord,
         currentPhase,
         timer,
+        isOnTier,
         isPriceDecreasing,
     } = usePublicSale()
     const { publicSale } = useSaleRecord()
+
     return (
         <MotionFlex
             w="full"
             align="center"
             justify="center"
             direction="column"
-            p={4}
+            p={8}
             initial={{ y: 200, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
-            <Typo.Heading fontSize="3xl">AUCTION IN PROGRESS</Typo.Heading>
             <Flex justify="center" align="center" direction="column">
-                <Grid templateRows="auto 1fr auto" templateColumns="2fr 1fr" gap={2} w="full" maxH="full" maxW="56rem">
+                <Text bg="blackAlpha.900" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                    {currentPhase === "NOT_STARTED"
+                        ? "AUCTION COMING UP"
+                        : currentPhase === "ON_GOING"
+                        ? "AUCTION IN PROGRESS"
+                        : "AUCTION HAS ENDED"}
+                </Text>
+                <Grid
+                    templateRows="auto 1fr auto"
+                    templateColumns="2fr 1fr"
+                    gap={2}
+                    w="full"
+                    maxH="full"
+                    maxW={"56rem"}
+                >
                     <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
-                        <Typo.Heading w="full" textAlign="center" fontSize="2xl" mb={0}>
+                        <Typo.Heading w="full" textAlign="center" fontSize="3xl" mb={0}>
                             <chakra.span
                                 bgGradient="linear(to-b, bgGradient.orange)"
                                 backgroundClip="text"
@@ -66,6 +81,7 @@ const PublicSale = () => {
                                 currentPhase={currentPhase}
                                 timer={timer}
                                 isPriceDecreasing={isPriceDecreasing}
+                                isOnSale={isOnSale}
                             />
                             <SaleForm
                                 price={isOnSale ? currentPublicPrice : START_PRICE}
@@ -81,7 +97,7 @@ const PublicSale = () => {
                         </Flex>
                     </GridItem>
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
-                        <Reward currentPublicPrice={isOnSale ? currentPublicPrice : START_PRICE} />
+                        <Reward isOnTier={isOnTier} currentPublicPrice={currentPublicPrice} />
                     </GridItem>
                     <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />

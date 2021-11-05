@@ -1,6 +1,4 @@
-import { Box, Flex, ListItem, UnorderedList } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
-import { MyText } from "@sipher/web-components"
+import { Box, Flex, ListItem, UnorderedList, Text, Link } from "@chakra-ui/layout"
 
 interface InfoProps {
     mode: "PRIVATE SALE" | "FREE MINTING"
@@ -9,36 +7,38 @@ interface InfoProps {
 const Info = ({ mode }) => {
     return (
         <Flex direction="column">
-            <MyText color="main.yellow" size="small">
+            <Text color="main.yellow" fontSize="sm" fontWeight="500">
                 {mode}
-            </MyText>
+            </Text>
             <Box overflow="auto" mb={4}>
-                <UnorderedList pl={1}>
+                <UnorderedList pl={1} color="whiteAlpha.700">
                     <ListItem>
-                        <MyText size="small">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             Available for whitelisted address only. The purchase limit will be based on contribution
                             history to Sipher community.
-                        </MyText>
+                        </Text>
                     </ListItem>
                 </UnorderedList>
             </Box>
-            <MyText color="main.yellow" size="small">
+            <Text fontSize="sm" color="main.yellow" fontWeight="500">
                 NOTE
-            </MyText>
+            </Text>
             <Box overflow="auto">
-                <UnorderedList pl={1}>
+                <UnorderedList pl={1} color="whiteAlpha.700">
                     <ListItem>
-                        <MyText size="small">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             Only confirm transaction when your wallet provider shows no error/warning.
-                        </MyText>
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <MyText size="small">
+                        <Text color="whiteAlpha.700" fontSize="sm">
                             Adjust Gas Fees accordingly to your transaction to go through fast.
-                        </MyText>
+                        </Text>
                     </ListItem>
                     <ListItem>
-                        <MyText size="small">(For reference: https://ethgasstation.info)</MyText>
+                        <Link as="a" isExternal color="whiteAlpha.700" href="https://ethgasstation.info" fontSize="sm">
+                            (For reference: https://ethgasstation.info)
+                        </Link>
                     </ListItem>
                 </UnorderedList>
             </Box>

@@ -28,7 +28,7 @@ const AccountAddress = () => {
                     <MyText ml={2}>
                         {accountLogin !== "" && accountLogin.slice(0, 6)}
                         ...
-                        {accountLogin.slice(accountLogin.length - 4, accountLogin.length)}
+                        {accountLogin !== "" && accountLogin.slice(accountLogin.length - 4, accountLogin.length)}
                     </MyText>
                     <Box ml={4}>{popup ? <BsChevronUp /> : <BsChevronDown />}</Box>
                 </Flex>
@@ -45,7 +45,8 @@ const AccountAddress = () => {
                                 <Text ml={2}>
                                     {accountLogin !== "" && accountLogin.slice(0, 6)}
                                     ...
-                                    {accountLogin.slice(accountLogin.length - 4, accountLogin.length)}
+                                    {accountLogin !== "" &&
+                                        accountLogin.slice(accountLogin.length - 4, accountLogin.length)}
                                 </Text>
                                 <Box ml="auto">
                                     <AddressCopier />

@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import React from "react"
 import { changeEmotion, getNFT, getMerkle } from "@api/index"
-import { Box, Tooltip, Flex, Tbody, Tr, Td, Table, Spinner, Text } from "@chakra-ui/react"
+import { Box, Tooltip, Flex, Tbody, Tr, Td, Table, Spinner, Text, chakra } from "@chakra-ui/react"
 import { useState } from "react"
 import useWalletContext from "@hooks/useWalletContext"
 import { NFTRace } from "@@types"
@@ -55,8 +55,8 @@ const Detail = ({ id, race }: PopupProps) => {
     }
 
     const getAvailableEmotion = () => {
-        if (!data) return []
-        return Object.keys(Object.fromEntries(Object.entries(data.emotionImages).filter(entry => entry[1] !== "")))
+        if (!data || data.name === "???") return []
+        return data.emotions.filter(emotion => !!emotion.image)
     }
     const router = useRouter()
     return (
@@ -89,8 +89,8 @@ const Detail = ({ id, race }: PopupProps) => {
                             </Text>
                         </Flex>
                         <Flex w="full" overflow="hidden">
-                            <Box>
-                                <Box pos="relative" w="18rem" h="20rem" mb={4}>
+                            <Box w="20rem">
+                                <Box pos="relative" w="full" h="22.5rem" mb={4}>
                                     <AnimatePresence>
                                         <MotionBox
                                             initial={{ opacity: 0 }}
@@ -100,45 +100,54 @@ const Detail = ({ id, race }: PopupProps) => {
                                             pos="absolute"
                                             top={0}
                                             left={0}
+                                            zIndex={1}
                                         >
                                             <Image
-                                                src={data.emotionImages[currentEmotion]}
+                                                src={data.emotions.find(e => e.id === currentEmotion)!.image}
                                                 alt={currentEmotion}
-                                                width={288}
-                                                height={320}
+                                                width={320}
+                                                height={361}
                                             />
                                         </MotionBox>
                                     </AnimatePresence>
                                 </Box>
                                 <EmotionChanger
-                                    availableEmotions={getAvailableEmotion()}
+                                    availableEmotions={getAvailableEmotion().map(e => e.id)}
                                     currentEmotion={currentEmotion}
                                     onChangeEmotion={mutateChangeEmotion}
                                 />
                             </Box>
                             <Flex direction="column" flex={3} ml="4" overflow="hidden">
                                 <Typo.Heading
-                                    isGradient
                                     textTransform="uppercase"
                                     fontSize="3xl"
                                     textAlign="left"
+                                    w="max-content"
+                                    color="main.yellow"
                                     mb={2}
                                 >
                                     {data.name}
                                 </Typo.Heading>
-                                <Typo.BoldText textTransform="uppercase" mb={1}>
-                                    Properties
-                                </Typo.BoldText>
-                                <Box mb={4} pb={4} borderBottom="1px" borderColor="whiteAlpha.300">
+
+                                <Flex w="full" mb={1} align="center">
+                                    <Typo.BoldText textTransform="uppercase">Properties</Typo.BoldText>
+                                </Flex>
+                                <Box mb={4}>
                                     <Table variant="unstyled">
                                         <Tbody>
                                             {data.attributes.length > 0
                                                 ? data.attributes.map(item => (
                                                       <Tr key={item.value}>
-                                                          <Td textAlign="left" py={1} px={0} textTransform="capitalize">
+                                                          <Td
+                                                              textAlign="left"
+                                                              py={1}
+                                                              px={0}
+                                                              textTransform="capitalize"
+                                                              w="full"
+                                                          >
                                                               {item.traitType} : {item.value}
                                                           </Td>
-                                                          <Td py={1} px={0}>
+                                                          <Td py={1} px={0} whiteSpace="nowrap">
                                                               1 of {item.total}
                                                           </Td>
                                                       </Tr>
@@ -153,12 +162,13 @@ const Detail = ({ id, race }: PopupProps) => {
                                             <Typo.BoldText textTransform="uppercase" mb={1}>
                                                 Proofs
                                             </Typo.BoldText>
+
                                             <Flex align="center">
                                                 <Typo.BoldText
                                                     cursor="pointer"
-                                                    fontSize="md"
+                                                    fontSize="sm"
                                                     fontWeight="semibold"
-                                                    isGradient
+                                                    color="main.yellow"
                                                     letterSpacing="0px"
                                                     onClick={handleDownJSON}
                                                 >
@@ -167,7 +177,7 @@ const Detail = ({ id, race }: PopupProps) => {
                                                 <Tooltip
                                                     hasArrow
                                                     label="How to verify proofs"
-                                                    placement="bottom"
+                                                    placement="top"
                                                     fontSize="xs"
                                                     bg="blackAlpha.900"
                                                     openDelay={500}
@@ -180,14 +190,24 @@ const Detail = ({ id, race }: PopupProps) => {
                                                         rel="nonreferrer"
                                                         target="_blank"
                                                     >
-                                                        <BsQuestionCircle />
+                                                        <BsQuestionCircle size="1rem" />
                                                     </Box>
                                                 </Tooltip>
                                             </Flex>
                                         </Flex>
                                         <Flex direction="column" w="full" overflow="hidden">
                                             {merkle.proof.map(p => (
-                                                <Text key={p} isTruncated fontFamily="mono" w="full" overflow="hidden">
+                                                <Text
+                                                    textAlign="left"
+                                                    letterSpacing="0.75px"
+                                                    fontSize="sm"
+                                                    color="whiteAlpha.800"
+                                                    key={p}
+                                                    isTruncated
+                                                    fontFamily="mono"
+                                                    w="full"
+                                                    overflow="hidden"
+                                                >
                                                     {p}
                                                 </Text>
                                             ))}

@@ -72,13 +72,16 @@ export const useMetamask = () => {
                 return
             }
             if (isConnecting) {
-                toast({ status: "warning", title: "MetaMask is connecting!" })
                 return
             }
             setIsConnecting(true)
             const { account, chainInfo, token, whitelistInfo } = await connectWallet()
             if (chainInfo.id !== CHAIN_ID) {
-                toast({ status: "error", title: "Wrong network!" })
+                toast({
+                    status: "error",
+                    title: "Wrong network!",
+                    message: "Please switch to ethereum mainnet and try again.",
+                })
                 setIsConnecting(false)
                 return
             }
@@ -92,21 +95,20 @@ export const useMetamask = () => {
             let now = new Date().getTime()
             if (now)
                 if (now > saleConfig!.endTime) {
-                    router.push("inventory/inu")
+                    router.push("inventory/neko")
                 } else if (now > saleConfig!.freeMintTime && whitelistInfo.freeMintCap > 0) {
                     router.push("/free-minting")
-                } else if (now > saleConfig!.privateTime && whitelistInfo.privateCap > 0) {
+                } else if (now > saleConfig!.publicEndTime && whitelistInfo.privateCap > 0) {
                     router.push("/private-sale")
                 } else {
                     router.push("/public-sale")
                 }
             setIsConnecting(false)
-            toast({ status: "success", title: "Connected to MetaMask!" })
         } catch (error: any) {
             if (error.code === 4001) {
                 toast({
                     status: "error",
-                    title: "User denied message signature",
+                    title: "User denied to sign message!",
                     message: "Please sign the message to continue!",
                 })
             } else {

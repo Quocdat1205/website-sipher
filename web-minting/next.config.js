@@ -5,7 +5,7 @@ module.exports = {
         return [
             {
                 source: "/inventory",
-                destination: "/inventory/inu",
+                destination: "/inventory/neko",
                 permanent: true,
             },
         ]

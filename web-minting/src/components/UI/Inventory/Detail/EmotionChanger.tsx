@@ -1,34 +1,4 @@
-import { IconButton } from "@chakra-ui/button"
-import { Flex } from "@chakra-ui/layout"
-import { Tooltip } from "@chakra-ui/tooltip"
-import { ImAngry2, ImEvil2, ImHappy2, ImNeutral2, ImSad2, ImSmile2 } from "react-icons/im"
-
-const emotionIcons = [
-    {
-        type: "DEFAULT",
-        icon: <ImHappy2 />,
-    },
-    {
-        type: "ANGRY",
-        icon: <ImAngry2 />,
-    },
-    {
-        type: "EVIL",
-        icon: <ImEvil2 />,
-    },
-    {
-        type: "MASK",
-        icon: <ImSmile2 />,
-    },
-    {
-        type: "NERVOUS",
-        icon: <ImNeutral2 />,
-    },
-    {
-        type: "SAD",
-        icon: <ImSad2 />,
-    },
-]
+import { Box, Wrap, Text } from "@chakra-ui/layout"
 
 interface EmotionChangerProps {
     availableEmotions: string[]
@@ -38,34 +8,38 @@ interface EmotionChangerProps {
 
 const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: EmotionChangerProps) => {
     return (
-        <Flex alignItems="center" justifyContent="space-between">
-            {emotionIcons
-                .filter(icon => availableEmotions.includes(icon.type))
-                .map(icon => (
-                    <Tooltip
-                        key={icon.type}
-                        hasArrow
-                        label={icon.type}
-                        placement="bottom"
-                        fontSize="xs"
-                        bg="blackAlpha.900"
-                        openDelay={1000}
+        <Wrap justify="center" alignItems="center" justifyContent="space-between" w="full">
+            {availableEmotions.map(emotion => (
+                <Box
+                    key={emotion}
+                    px={4}
+                    py={1}
+                    cursor="pointer"
+                    userSelect="none"
+                    onClick={() => onChangeEmotion(emotion)}
+                    pos="relative"
+                >
+                    <Text
+                        fontSize="sm"
+                        fontWeight="semibold"
+                        color={emotion === currentEmotion ? "black" : "main.yellow"}
+                        pos="relative"
+                        zIndex={2}
                     >
-                        <IconButton
-                            key={icon.type}
-                            variant="ghost"
-                            aria-label={icon.type}
-                            _hover={{ bg: "none" }}
-                            _focus={{ shadow: "none" }}
-                            _active={{ bg: "none" }}
-                            icon={icon.icon}
-                            fontSize="1.8rem"
-                            color={currentEmotion === icon.type ? "main.orange" : "whiteAlpha.500"}
-                            onClick={() => onChangeEmotion(icon.type)}
-                        />
-                    </Tooltip>
-                ))}
-        </Flex>
+                        {emotion}
+                    </Text>
+                    <Box
+                        pos="absolute"
+                        w="full"
+                        h="full"
+                        transform="skewX(-25deg)"
+                        bg={emotion === currentEmotion ? "main.yellow" : "whiteAlpha.100"}
+                        top={0}
+                        left={0}
+                    ></Box>
+                </Box>
+            ))}
+        </Wrap>
     )
 }
 

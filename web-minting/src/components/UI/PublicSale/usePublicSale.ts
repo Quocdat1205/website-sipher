@@ -9,7 +9,7 @@ import { useState } from "react"
 import { useQueryClient } from "react-query"
 import useSaleRecord from "@hooks/useSaleRecord"
 import { useTimer } from "react-timer-hook"
-
+import useTransactionToast from "@hooks/useTransactionToast"
 const usePublicSale = () => {
     const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
     const { saleConfig, salePhaseName, salePhase } = useSaleConfig()
@@ -22,6 +22,7 @@ const usePublicSale = () => {
         publicTime: saleConfig!.publicTime,
         publicEndTime: saleConfig!.publicEndTime,
     })
+    const transactionToast = useTransactionToast({ defaultDuration: 8000, isPublic: true })
     const isPriceDecreasing = timeAndPrice.currentPublicPrice > 0.1 && isOnSale
     const { publicSale: publicSaleRecord } = useSaleRecord()
     const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
@@ -29,6 +30,8 @@ const usePublicSale = () => {
     const endSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicEndTime) })
     const startSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicTime) })
     const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer
+    const isOnTier = timeAndPrice.currentPublicPrice >= 0.55
+
     const mint = async (currentPrice: number) => {
         let slotPrice = parseFloat((slot * currentPrice).toFixed(2))
         const {
@@ -36,12 +39,11 @@ const usePublicSale = () => {
             whitelistInfo: { freeMintCap, privateCap, proof },
         } = states
         await sendSmartContract({ address, slot, slotPrice, proof, privateCap, freeMintCap })
-        toast({ status: "success", title: "Transaction created successfully!", duration: 6000 })
+        transactionToast({ status: "success" })
         setSlot(0)
     }
     const handleMint = async () => {
         const currentPrice = await getPublicCurrentPrice()
-
         /** Check for balance */
         const balance = await getMetamaskBalance(states.accountLogin)
         if (balance < currentPrice) {
@@ -64,13 +66,14 @@ const usePublicSale = () => {
         /** Start minting if there's nothing wrong */
         try {
             setIsMinting(true)
+            transactionToast({ status: "processing" })
             await mint(currentPrice)
             queryClient.invalidateQueries("total-supply")
             queryClient.invalidateQueries("user-record")
             setIsMinting(false)
         } catch (error) {
             console.log(error)
-            toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
+            transactionToast({ status: "failed" })
             setIsMinting(false)
         }
     }
@@ -88,6 +91,7 @@ const usePublicSale = () => {
         currentPhase,
         timer,
         isPriceDecreasing,
+        isOnTier,
     }
 }
 

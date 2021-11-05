@@ -1,5 +1,5 @@
 import { web3 } from "./metamask"
-import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO } from "@constant/index"
+import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO, DELAY } from "@constant/index"
 import { NFT_ABI, SALE_ABI } from "../contract"
 import { checkGas } from "@api/smartContract"
 
@@ -38,7 +38,6 @@ interface SendSCInput {
  */
 export const sendSmartContract = async (input: SendSCInput) => {
     const { address, slot, slotPrice, proof, privateCap, freeMintCap } = input
-    console.log("INPUT", input)
     const _gaslimit =
         slot === 1
             ? 296656
@@ -89,6 +88,15 @@ export const getUserRecord = async (publicAddress: string): Promise<IUserRecord>
     }
 }
 
+/** Check if contract is paused
+ * @returns isPaused: boolean
+ */
+export const getIsPaused = async (): Promise<boolean> => {
+    const isPaused = await ContractProviderNFT.methods.paused().call()
+    console.log("Ispause", isPaused)
+    return isPaused
+}
+
 /** Get current price of NFT (Public Sale) */
 export const getPublicCurrentPrice = async () => {
     const data = await ContractProviderSALE.methods.getPublicSaleCurrentPrice().call()
@@ -106,11 +114,20 @@ export type ISaleConfig = Record<
 export const getSaleConfig = async (): Promise<ISaleConfig> => {
     const data = await ContractProviderSALE.methods.getSaleConfig().call()
     return {
-        publicTime: parseInt(data[0]) * 1000,
-        publicEndTime: parseInt(data[1]) * 1000,
-        privateTime: parseInt(data[2]) * 1000,
-        freeMintTime: parseInt(data[3]) * 1000,
-        endTime: parseInt(data[4]) * 1000,
+        publicTime: parseInt(data[0]) * 1000 + DELAY,
+        publicEndTime: parseInt(data[1]) * 1000 + DELAY,
+        privateTime: parseInt(data[2]) * 1000 + DELAY,
+        freeMintTime: parseInt(data[3]) * 1000 + DELAY,
+        endTime: parseInt(data[4]) * 1000 + DELAY,
         maxSupply: parseInt(data[5]),
     }
+    // For testing
+    // return {
+    //     publicTime: 1635605570943 + DELAY,
+    //     publicEndTime: 1635705570943 + DELAY,
+    //     privateTime: 1635805570943 + DELAY,
+    //     freeMintTime: 1635905570943 + DELAY,
+    //     endTime: 1636005570943 + DELAY,
+    //     maxSupply: 10000,
+    // }
 }

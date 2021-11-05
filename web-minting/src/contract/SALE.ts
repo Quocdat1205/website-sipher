@@ -19,6 +19,16 @@ const SALE_ABI: any = [
             { indexed: false, internalType: "uint32", name: "amount", type: "uint32" },
             { indexed: false, internalType: "uint256", name: "amountWeiPaid", type: "uint256" },
         ],
+        name: "FreeMintBought",
+        type: "event",
+    },
+    {
+        anonymous: false,
+        inputs: [
+            { indexed: true, internalType: "address", name: "buyer", type: "address" },
+            { indexed: false, internalType: "uint32", name: "amount", type: "uint32" },
+            { indexed: false, internalType: "uint256", name: "amountWeiPaid", type: "uint256" },
+        ],
         name: "OwnerBought",
         type: "event",
     },
@@ -29,6 +39,16 @@ const SALE_ABI: any = [
             { indexed: true, internalType: "address", name: "newOwner", type: "address" },
         ],
         name: "OwnershipTransferred",
+        type: "event",
+    },
+    {
+        anonymous: false,
+        inputs: [
+            { indexed: true, internalType: "address", name: "buyer", type: "address" },
+            { indexed: false, internalType: "uint32", name: "amount", type: "uint32" },
+            { indexed: false, internalType: "uint256", name: "amountWeiPaid", type: "uint256" },
+        ],
+        name: "PrivateBought",
         type: "event",
     },
     {
@@ -72,16 +92,6 @@ const SALE_ABI: any = [
         anonymous: false,
         inputs: [{ indexed: false, internalType: "uint64", name: "endTime", type: "uint64" }],
         name: "UpdateSaleEndTime",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            { indexed: true, internalType: "address", name: "buyer", type: "address" },
-            { indexed: false, internalType: "uint32", name: "amount", type: "uint32" },
-            { indexed: false, internalType: "uint256", name: "amountWeiPaid", type: "uint256" },
-        ],
-        name: "WhitelistBought",
         type: "event",
     },
     {
@@ -157,7 +167,7 @@ const SALE_ABI: any = [
     {
         inputs: [],
         name: "getPublicSaleCurrentPrice",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        outputs: [{ internalType: "uint256", name: "currentPrice", type: "uint256" }],
         stateMutability: "view",
         type: "function",
     },
@@ -277,7 +287,13 @@ const SALE_ABI: any = [
         type: "function",
     },
     {
-        inputs: [{ internalType: "uint64", name: "_endTime", type: "uint64" }],
+        inputs: [
+            { internalType: "uint64", name: "_publicTime", type: "uint64" },
+            { internalType: "uint64", name: "_publicEndTime", type: "uint64" },
+            { internalType: "uint64", name: "_privateTime", type: "uint64" },
+            { internalType: "uint64", name: "_freeMintTime", type: "uint64" },
+            { internalType: "uint64", name: "_endTime", type: "uint64" },
+        ],
         name: "updateSaleConfigTime",
         outputs: [],
         stateMutability: "nonpayable",

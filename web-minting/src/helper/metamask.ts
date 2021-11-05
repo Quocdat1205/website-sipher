@@ -106,7 +106,6 @@ export const connectWallet = async () => {
     const account = await getUser(address)
     const token = await getAccessToken(account)
     const whitelistInfo = await checkIsWhitelisted(address)
-
     return {
         chainInfo,
         account,

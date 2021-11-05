@@ -1,7 +1,7 @@
-import { Flex, Box, Input } from "@chakra-ui/react"
+import { Flex, Input } from "@chakra-ui/react"
 import { GradientButton } from "@components/shared/GradientButton"
 import React from "react"
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
+import { TiPlus, TiMinus } from "react-icons/ti"
 
 interface QuantitySelectorProps {
     onChange: (newValue: number) => void
@@ -18,8 +18,8 @@ const QuantitySelector = ({ onChange, value, maxValue, minValue = 0, isDisabled 
                 h="full"
                 onClick={() => onChange(value - 1)}
                 disabled={isDisabled || value === minValue}
-                px={3}
-                text={<AiOutlineMinus />}
+                px={2}
+                text={<TiMinus size="1rem" />}
                 rounded={0}
             />
             <Input
@@ -28,7 +28,6 @@ const QuantitySelector = ({ onChange, value, maxValue, minValue = 0, isDisabled 
                 bgColor="transparent"
                 bgGradient="linear(to-b, blackAlpha.900, blackAlpha.500, blackAlpha.900)"
                 readOnly={true}
-                fontSize="lg"
                 rounded="0"
                 _hover={{
                     bgColor: "transparent",
@@ -37,7 +36,6 @@ const QuantitySelector = ({ onChange, value, maxValue, minValue = 0, isDisabled 
                 _focus={{
                     shadow: "none",
                 }}
-                fontWeight="bold"
                 color="whiteAlpha.900"
                 textAlign="center"
                 value={`${value}/${maxValue}`}
@@ -49,8 +47,8 @@ const QuantitySelector = ({ onChange, value, maxValue, minValue = 0, isDisabled 
                 h="full"
                 onClick={() => onChange(value + 1)}
                 disabled={isDisabled || value === maxValue}
-                px={3}
-                text={<AiOutlinePlus />}
+                px={2}
+                text={<TiPlus size="1rem" />}
                 rounded={0}
             />
         </Flex>

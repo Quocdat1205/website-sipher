@@ -8,21 +8,27 @@ interface Props {}
 
 const DataAuctionBenefits = (props: Props) => {
     return (
-        <Grid templateRows="repeat(6, 200px)">
+        <Grid templateRows="repeat(6, 150px)">
             {dataAuctionBenefits.map(benefit => (
                 <GridItem key={benefit.id}>
                     <Grid templateColumns="repeat(4, 1fr)" h="full">
                         {benefit.content
                             ? benefit.content.map((item, index) => (
-                                  <GridItem key={item.text} bg={index % 2 === 0 ? "blackAlpha.900" : "blackAlpha.700"}>
-                                      <Flex justify="center" textAlign="center" p={8}>
-                                          <Text>{item.text}</Text>
+                                  <GridItem
+                                      bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
+                                      key={item.text}
+                                  >
+                                      <Flex h="full" align="center" justify="center" textAlign="center" p={4}>
+                                          <Text color="whiteAlpha.900">{item.text}</Text>
                                       </Flex>
                                   </GridItem>
                               ))
                             : benefit.contentArr.map((item, index) => (
-                                  <GridItem key={item.id} bg={index % 2 === 0 ? "blackAlpha.900" : "blackAlpha.700"}>
-                                      <Flex justify="center" textAlign="center" p={8}>
+                                  <GridItem
+                                      bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
+                                      key={item.id}
+                                  >
+                                      <Flex h="full" align="center" justify="center" textAlign="center" p={4}>
                                           <Text>
                                               {item.content?.map(item => (
                                                   <Fragment key={item.text}>
@@ -31,7 +37,7 @@ const DataAuctionBenefits = (props: Props) => {
                                                               {" " + item.text + " "}
                                                           </chakra.span>
                                                       ) : (
-                                                          <chakra.span>{item.text} </chakra.span>
+                                                          <chakra.span color="whiteAlpha.900">{item.text} </chakra.span>
                                                       )}
                                                   </Fragment>
                                               ))}

@@ -334,5 +334,4 @@ const NFT_ABI: any = [
     },
     { inputs: [], name: "unpause", outputs: [], stateMutability: "nonpayable", type: "function" },
 ]
-
 export default NFT_ABI

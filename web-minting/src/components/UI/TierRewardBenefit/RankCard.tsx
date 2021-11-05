@@ -10,7 +10,7 @@ const RankCard = ({ id, srcImg, ...rest }: RankCardProps) => {
     return (
         <Flex flexDir="column" align="center" h="full" justify="center" {...rest}>
             <Image h="4rem" src={srcImg} alt={id} />
-            <Text textTransform="uppercase" fontSize="sm">
+            <Text color="whiteAlpha.900" textTransform="uppercase" fontSize="sm">
                 {id}
             </Text>
         </Flex>

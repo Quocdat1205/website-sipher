@@ -1,5 +1,4 @@
-import { Flex, Text } from "@chakra-ui/layout"
-import { Typo } from "@components/shared/Typo"
+import { Flex, Text, chakra } from "@chakra-ui/react"
 import React from "react"
 import PriceWheel from "./PriceWheel"
 import QuantitySelector from "@components/shared/QuantitySelector"
@@ -30,13 +29,20 @@ const SaleForm = ({
 }: SaleFormProps) => {
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4}>
-            <Typo.Text textTransform="uppercase" fontWeight="semibold" fontSize="sm" mb={4}>
+            <Text textTransform="uppercase" fontWeight={500} fontSize="sm" mb={4}>
                 Current Price
-            </Typo.Text>
+            </Text>
             <PriceWheel price={price} />
             <Flex w="full" mt={4} align="center" justify="space-between">
-                <QuantitySelector onChange={setSlot} maxValue={maxSlot} value={currentSlot} isDisabled={!isOnSale} />
-                <Text fontWeight="semibold">{(currentSlot * price).toFixed(2)} ETH + GAS</Text>
+                <QuantitySelector
+                    onChange={setSlot}
+                    maxValue={maxSlot}
+                    value={currentSlot}
+                    isDisabled={!isOnSale || isMinting}
+                />
+                <Text fontWeight="bold" fontSize="sm">
+                    <chakra.span fontSize="xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
+                </Text>
             </Flex>
             <GradientButton
                 text="Mint"
@@ -48,9 +54,11 @@ const SaleForm = ({
                 loadingText="MINTING"
                 disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
             />
-            <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
-                You have purchased {boughtNFT}
-            </Text>
+            {boughtNFT > 0 && (
+                <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
+                    You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
+                </Text>
+            )}
         </Flex>
     )
 }
