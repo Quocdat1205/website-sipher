@@ -10,7 +10,7 @@ export const rankBenefits: RankCardProps[] = [
 export const titleAuctionBenefits = [
     { text: "Purchase price" },
     {
-        text: "Immortalize in Sipheria",
+        text: "Immortalized in Sipheria",
         tooltip:
             "Will use your name in the actual world building, you might get NPCs, Towns, Roads named after your easter egg style",
     },
@@ -82,7 +82,7 @@ export const dataAuctionBenefits = [
     {
         id: "FREE Swag on Maddies.co",
         content: [
-            { text: "Diamond Tier Swag Exclusive Sipher Bommer Jacker" },
+            { text: "Diamond Tier Swag Exclusive Sipher Bomber Jacket" },
             { text: "Platinum Tier Swag Exclusive Sipher Hoodie" },
             { text: "Gold Tier Swag Exclusive Sipher T-shirt" },
             { text: "Silver Tier Swag Exclusive Sipher Hat" },
