@@ -7,7 +7,7 @@ interface Props {}
 
 const DataAuctionBenefits = (props: Props) => {
     return (
-        <Grid templateRows="repeat(6, 140px)">
+        <Grid templateRows="100px repeat(5, 140px)" h="full">
             {dataAuctionBenefits.map((benefit, index) => (
                 <GridItem key={index}>
                     <Grid templateColumns="repeat(4, 1fr)" h="full">
