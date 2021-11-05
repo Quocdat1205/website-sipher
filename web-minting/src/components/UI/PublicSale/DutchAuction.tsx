@@ -16,7 +16,7 @@ const DutchAuction = ({}: DutchAuctionProps) => {
                             <chakra.span color="main.yellow" fontWeight={500}>
                                 0.9 ETH
                             </chakra.span>{" "}
-                            and will decrease by 0.1 ETH every 10 minutes until the lowest price of 0.1 ETH.
+                            and will decrease by 0.05 ETH every 10 minutes until the lowest price of 0.1 ETH.
                         </Text>
                     </ListItem>
                     <ListItem>
