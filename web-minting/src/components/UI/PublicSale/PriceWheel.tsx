@@ -1,33 +1,33 @@
-import { Flex, Box, FlexProps } from "@chakra-ui/react";
-import { motion, useAnimation } from "framer-motion";
-import React, { useEffect } from "react";
-import PriceCard from "./PriceCard";
-import useSaleConfig from "@hooks/useSaleConfig";
+import { Flex, Box, FlexProps } from "@chakra-ui/react"
+import { motion, useAnimation } from "framer-motion"
+import React, { useEffect } from "react"
+import PriceCard from "./PriceCard"
+import useSaleConfig from "@hooks/useSaleConfig"
 
-const MotionFlex = motion<Omit<FlexProps, "transition">>(Flex);
+const MotionFlex = motion<Omit<FlexProps, "transition">>(Flex)
 
 interface PriceWheelProps {
-    price: number;
+    price: number
 }
 
 const PriceWheel = ({ price }: PriceWheelProps) => {
-    const wheelControl = useAnimation();
-    const { priceSteps } = useSaleConfig();
+    const wheelControl = useAnimation()
+    const { priceSteps } = useSaleConfig()
     useEffect(() => {
         wheelControl.start({
-            y: `${Math.round((Math.round(price * 100) - 90) / 5) * 2.5 + 2.5}rem`,
+            y: `${Math.round((Math.round(price * 100) - 90) / 5) * 3 + 3}rem`,
             transition: {
                 duration: 1,
                 type: "tween",
             },
-        });
-    }, [price, wheelControl]);
+        })
+    }, [price, wheelControl])
 
     return (
-        <Box w="full" h="7.5rem" position="relative">
+        <Box w="full" h="9rem" position="relative">
             <Box h="full" overflow="hidden">
-                <MotionFlex direction="column" w="full" px={4} initial="2.5rem" animate={wheelControl}>
-                    {priceSteps.map((step) => (
+                <MotionFlex direction="column" w="full" px={4} initial="3rem" animate={wheelControl}>
+                    {priceSteps.map(step => (
                         <PriceCard
                             key={step.timeStamp}
                             price={step.value.toFixed(2)}
@@ -37,7 +37,7 @@ const PriceWheel = ({ price }: PriceWheelProps) => {
                 </MotionFlex>
             </Box>
         </Box>
-    );
-};
+    )
+}
 
-export default PriceWheel;
+export default PriceWheel
