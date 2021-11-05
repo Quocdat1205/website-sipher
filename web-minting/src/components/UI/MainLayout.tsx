@@ -66,7 +66,7 @@ const MainLayout = ({ children }: Props) => {
                         </Flex>
                     </Grid>
                 ) : (
-                    <Flex flex={1} overflow="visible" pt={20} bg="blackAlpha.500" pos="relative">
+                    <Flex flex={1} overflow="visible" pt={20} bg="blackAlpha.300" pos="relative">
                         <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>
                     </Flex>
                 )}
