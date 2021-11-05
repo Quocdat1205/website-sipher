@@ -59,7 +59,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 <>
                     <Flex align="center" justify="center" w="full" mb={4}>
                         {tier.image && (
-                            <Box h="2rem" mr={1}>
+                            <Box h="2.5rem" mr={1}>
                                 <Img src={tier.image} alt={tier.tier} h="full" />
                             </Box>
                         )}
