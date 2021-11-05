@@ -16,7 +16,7 @@ export const PUBLIC_CAP = 5
 // Price fetching interval
 export const FETCHING_INTERVAL = 1000
 // Maximum NFT public sale
-export const PUBLIC_MINTING_LIMIT = 6000
+export const PUBLIC_MINTING_LIMIT = 7038
 
 // deplay 15 seconds
 export const DELAY = 1000 * 15
