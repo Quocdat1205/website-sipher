@@ -5,7 +5,7 @@ import { getPublicCurrentPrice, sendSmartContract } from "@helper/smartContract"
 import useSaleConfig from "@hooks/useSaleConfig"
 import useTimeAndPrice from "@components/UI/PublicSale/useTimeAndPrice"
 import useWalletContext from "@hooks/useWalletContext"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useQueryClient } from "react-query"
 import useSaleRecord from "@hooks/useSaleRecord"
 import { useTimer } from "react-timer-hook"
@@ -22,7 +22,7 @@ const usePublicSale = () => {
         publicTime: saleConfig!.publicTime,
         publicEndTime: saleConfig!.publicEndTime,
     })
-    const transactionToast = useTransactionToast({ defaultDuration: 6000, isPublic: true })
+    const transactionToast = useTransactionToast({ defaultDuration: 8000, isPublic: true })
     const isPriceDecreasing = timeAndPrice.currentPublicPrice > 0.1 && isOnSale
     const { publicSale: publicSaleRecord } = useSaleRecord()
     const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =

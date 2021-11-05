@@ -72,7 +72,6 @@ export const useMetamask = () => {
                 return
             }
             if (isConnecting) {
-                toast({ status: "warning", title: "MetaMask is connecting!" })
                 return
             }
             setIsConnecting(true)
@@ -105,7 +104,6 @@ export const useMetamask = () => {
                     router.push("/public-sale")
                 }
             setIsConnecting(false)
-            toast({ status: "success", title: "Connected to MetaMask!" })
         } catch (error: any) {
             if (error.code === 4001) {
                 toast({

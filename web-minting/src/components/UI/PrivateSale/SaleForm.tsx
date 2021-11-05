@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/layout"
 import { GradientButton } from "@components/shared/GradientButton"
-import React, { useEffect } from "react"
+import React from "react"
 import QuantitySelector from "@components/shared/QuantitySelector"
 import Countdown from "./Countdown"
 import { chakra } from "@chakra-ui/system"

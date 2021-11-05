@@ -11,7 +11,7 @@ import useTransactionToast from "@hooks/useTransactionToast"
 const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const price = mode === "PRIVATE_SALE" ? 0.1 : 0
     const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
-    const transactionToast = useTransactionToast({ defaultDuration: 6000 })
+    const transactionToast = useTransactionToast({ defaultDuration: 8000 })
     const {
         salePhaseName,
         salePhase,
@@ -60,7 +60,7 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
             whitelistInfo: { freeMintCap, privateCap, proof },
         } = states
         await sendSmartContract({ address, slot, slotPrice: totalPrice, proof, privateCap, freeMintCap })
-        transactionToast({ status: "success", duration: 10000 })
+        transactionToast({ status: "success" })
         setSlot(0)
     }
 

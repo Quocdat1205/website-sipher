@@ -1,10 +1,8 @@
-import { Flex, Text, Tooltip, IconButton, chakra } from "@chakra-ui/react"
+import { Flex, Text, chakra } from "@chakra-ui/react"
 import React from "react"
 import PriceWheel from "./PriceWheel"
 import QuantitySelector from "@components/shared/QuantitySelector"
 import { GradientButton } from "@components/shared/GradientButton"
-import RefreshIcon from "@components/shared/RefreshIcon"
-import { PUBLIC_CAP } from "@constant/index"
 
 interface SaleFormProps {
     price: number
