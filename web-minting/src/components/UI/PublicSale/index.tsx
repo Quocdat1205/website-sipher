@@ -47,7 +47,7 @@ const PublicSale = () => {
             <Flex justify="center" align="center" direction="column">
                 <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {currentPhase === "NOT_STARTED"
-                        ? "AUCTION COMING UP"
+                        ? "AUCTION STARTING SOON"
                         : currentPhase === "ON_GOING"
                         ? "AUCTION IN PROGRESS"
                         : "AUCTION HAS ENDED"}
@@ -62,16 +62,10 @@ const PublicSale = () => {
                 >
                     <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
                         <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
-                            <chakra.span
-                                bgGradient="linear(to-b, bgGradient.orange)"
-                                backgroundClip="text"
-                                fontWeight="bold"
-                                fontFamily="Brandon"
-                            >
-                                {numberWithCommas(publicSale)}
-                            </chakra.span>
-                            {" / "}
-                            {!isLoadingCapLimit ? numberWithCommas(publicSaleCapLimit) : "..."} NEKOS ALREADY MINTED
+                            <chakra.span fontWeight="semibold" color="main.yellow">
+                                {publicSaleCapLimit ? numberWithCommas(publicSaleCapLimit - publicSale) : "..."}
+                            </chakra.span>{" "}
+                            {publicSaleCapLimit && publicSaleCapLimit - publicSale > 1 ? "NEKOS" : "NEKO"} REMAINING
                         </Typo.Heading>
                     </GridItem>
                     <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
