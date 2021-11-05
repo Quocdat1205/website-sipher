@@ -52,7 +52,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                             ".childmenu::-webkit-scrollbar": {
                                 display: "none",
                             },
-                            "@media (max-width: 480px)": {
+                            "@media (max-width: 1200px)": {
                                 display: "none",
                             },
                         }}
@@ -65,12 +65,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                         px={0}
                         placeItems="center"
                         onClick={() => setSideBarOn(!setBarOn)}
-                        display="none"
-                        sx={{
-                            "@media (max-width: 960px)": {
-                                display: "grid",
-                            },
-                        }}
+                        display={["grid", "grid", "none"]}
                     >
                         {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
                     </Grid>
