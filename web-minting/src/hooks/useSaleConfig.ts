@@ -74,10 +74,13 @@ const useSaleConfig = () => {
     })
 
     useEffect(() => {
-        let timeout = setTimeout(() => {
-            if (saleConfig) setSalePhase(getSalePhase(saleConfig))
-        }, 500)
-        return () => clearTimeout(timeout)
+        let timeout = setInterval(() => {
+            if (saleConfig) {
+                const salePhase = getSalePhase(saleConfig)
+                setSalePhase(salePhase)
+            }
+        }, 1000)
+        return () => clearInterval(timeout)
     })
 
     const salePhaseName = salePhases[salePhase]

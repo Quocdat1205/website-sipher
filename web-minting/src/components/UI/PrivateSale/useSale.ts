@@ -1,7 +1,6 @@
 import { checkSmartContract } from "@api/smartContract"
 import { getMetamaskBalance } from "@helper/metamask"
 import { sendSmartContract } from "@helper/smartContract"
-import useSaleConfig from "@hooks/useSaleConfig"
 import useWalletContext from "@hooks/useWalletContext"
 import { useState } from "react"
 import { useQueryClient } from "react-query"
@@ -10,13 +9,19 @@ import useTransactionToast from "@hooks/useTransactionToast"
 
 const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const price = mode === "PRIVATE_SALE" ? 0.1 : 0
-    const { states, toast, userRecord, isLoadingUserRecord } = useWalletContext()
-    const transactionToast = useTransactionToast({ defaultDuration: 8000 })
     const {
-        salePhaseName,
-        salePhase,
-        saleConfig: { freeMintTime, endTime, privateTime },
-    } = useSaleConfig()
+        states,
+        toast,
+        userRecord,
+        isLoadingUserRecord,
+        config: {
+            saleConfig: { freeMintTime, endTime, privateTime },
+            salePhase,
+            salePhaseName,
+        },
+    } = useWalletContext()
+    const transactionToast = useTransactionToast({ defaultDuration: 8000 })
+
     const [slot, setSlot] = useState(0)
     const [isMinting, setIsMinting] = useState(false)
     const queryClient = useQueryClient()

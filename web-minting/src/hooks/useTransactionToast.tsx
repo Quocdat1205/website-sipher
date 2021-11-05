@@ -19,6 +19,7 @@ export const useChakraToast = (
 
     return useCallback((options: ChakraToastOptions) => {
         const { status, duration } = options
+        toast.closeAll()
         setTimeout(
             () =>
                 toast({
