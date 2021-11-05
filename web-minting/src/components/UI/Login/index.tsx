@@ -1,13 +1,23 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Flex, Box, Img, VStack, Text, Stack } from "@chakra-ui/react"
 import isMobile from "is-mobile"
 import { Typo } from "@components/shared/Typo"
 import WalletCard from "./WalletCard"
 import useWalletContext from "@hooks/useWalletContext"
 import { MotionBox, MotionFlex } from "@components/shared/Motion"
+import { QueryClient } from "react-query"
+import { getIsPaused } from "@helper/smartContract"
 
 const Login = () => {
     const { states, connect, isConnecting } = useWalletContext()
+    const qc = new QueryClient()
+    const prefetch = async () => {
+        await qc.prefetchQuery("is-sale-paused", getIsPaused)
+    }
+
+    useEffect(() => {
+        prefetch()
+    }, [])
 
     return (
         <Box bg="url(/images/bgMintingNew.png)" w="100%" h="100vh" bgPosition="center" bgSize="cover">

@@ -49,7 +49,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/hat.png",
                 content: ["1 Free Exclusive Sipher Hat", "Personalized Thank You card"],
             }
-        return { tier: "Reward", imageTier: "/images/tier/notier.png" }
+        return { tier: "No Reward", imageTier: "/images/tier/notier.png" }
     }
     const tier = getTier()
 
@@ -94,7 +94,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 </>
             ) : (
                 <Flex flexDir="column" w="full" h="full" align="center" justify="center">
-                    <Img src={tier.imageTier} alt="rewar    d" h="8rem" />
+                    <Img src={tier.imageTier} alt="No Reward" h="8rem" />
                     <Text color="main.yellow" mt={6} fontWeight={500} textTransform="uppercase">
                         {tier.tier}
                     </Text>
