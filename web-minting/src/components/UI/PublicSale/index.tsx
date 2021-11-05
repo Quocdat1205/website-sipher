@@ -43,7 +43,7 @@ const PublicSale = () => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Flex justify="center" align="center" direction="column">
-                <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {currentPhase === "NOT_STARTED"
                         ? "AUCTION COMING UP"
                         : currentPhase === "ON_GOING"
@@ -59,7 +59,7 @@ const PublicSale = () => {
                     maxW={"64rem"}
                 >
                     <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
-                        <Typo.Heading w="full" textAlign="center" fontSize="3xl" mb={0}>
+                        <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
                             <chakra.span
                                 bgGradient="linear(to-b, bgGradient.orange)"
                                 backgroundClip="text"

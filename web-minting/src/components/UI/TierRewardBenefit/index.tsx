@@ -13,9 +13,9 @@ interface Props {}
 const TierRewardBenefit = (props: Props) => {
     return (
         <Flex align="center" flexDir="column" w="full" h="full" p={4}>
-            <Flex w="full" maxW="68rem" flexDir="column">
+            <Flex w="full" maxW="80rem" flexDir="column">
                 <NextLink href="/public-sale">
-                    <Flex _hover={{ color: "main.yellow" }} mb={8} cursor="pointer" wrap="wrap" align="center">
+                    <Flex _hover={{ color: "main.yellow" }} mb={4} cursor="pointer" wrap="wrap" align="center">
                         <FiArrowLeft size="1.2rem" />
                         <Text color="inherit" ml={2} fontWeight={500} fontSize="sm">
                             BACK TO MINTING
@@ -23,22 +23,14 @@ const TierRewardBenefit = (props: Props) => {
                     </Flex>
                 </NextLink>
                 <Flex flex={1} align="center" direction="column">
-                    <Grid
-                        templateRows="auto 1fr auto"
-                        templateColumns="1fr 3fr"
-                        gap={0.5}
-                        w="full"
-                        maxH="full"
-                        maxW="72rem"
-                        overflow="hidden"
-                    >
+                    <Grid templateRows="auto 1fr auto" templateColumns="1fr 3fr" gap={0.5} w="full" overflow="hidden">
                         <GridItem px={4} py={2} colSpan={2} rowSpan={1}>
                             <Flex w="full" justify="center">
                                 <Text
                                     bg="rgba(0, 0, 0, 0.9)"
                                     px={4}
-                                    py={2}
-                                    fontSize="xl"
+                                    py={1}
+                                    fontSize="3xl"
                                     mb={4}
                                     fontWeight={500}
                                     letterSpacing="1px"
@@ -48,9 +40,9 @@ const TierRewardBenefit = (props: Props) => {
                             </Flex>
                         </GridItem>
                         <GridItem bg="rgba(20,20,20,0.9)" py={4} px={8} colSpan={1} rowSpan={1}>
-                            <Typo.Heading letterSpacing="1px" fontSize="3xl" textAlign="left" mb={0}>
+                            <Text fontSize="3xl" fontWeight={500}>
                                 AUCTION BENEFITS
-                            </Typo.Heading>
+                            </Text>
                         </GridItem>
                         <GridItem colSpan={1}>
                             <DataRankBenefit />

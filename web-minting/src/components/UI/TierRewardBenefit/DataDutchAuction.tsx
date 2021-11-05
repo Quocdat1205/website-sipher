@@ -6,7 +6,7 @@ interface Props {}
 
 const DataDutchAuction = (props: Props) => {
     return (
-        <Flex bg="rgba(0, 0, 0, 0.9)" maxW="68rem" p={8} mt={8} flexDir="column" w="full">
+        <Flex bg="rgba(0, 0, 0, 0.9)" p={8} mt={8} flexDir="column" w="full">
             {dataDutchAuction.map((item, index) => (
                 <Box mb={8} _last={{ mb: 0 }} key={index}>
                     <Text color="main.yellow" fontWeight="semibold" textTransform="uppercase" mb={1}>

@@ -36,7 +36,7 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Flex justify="center" align="center" direction="column">
-                <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {mode === "PRIVATE_SALE"
                         ? currentPhase === "NOT_STARTED"
                             ? "PRIVATE SALE COMING UP"

@@ -7,7 +7,7 @@ interface Props {}
 
 const DataAuctionBenefits = (props: Props) => {
     return (
-        <Grid templateRows="100px repeat(5, 140px)" h="full">
+        <Grid templateRows="repeat(6, 120px)" h="full">
             {dataAuctionBenefits.map((benefit, index) => (
                 <GridItem key={index}>
                     <Grid templateColumns="repeat(4, 1fr)" h="full">
@@ -16,6 +16,7 @@ const DataAuctionBenefits = (props: Props) => {
                                   <GridItem
                                       bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
                                       key={index}
+                                      px={2}
                                   >
                                       <Flex h="full" align="center" justify="center" textAlign="center" px={3}>
                                           <Text color="white" fontWeight={500}>
@@ -28,6 +29,7 @@ const DataAuctionBenefits = (props: Props) => {
                                   <GridItem
                                       bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
                                       key={index}
+                                      px={2}
                                   >
                                       <Flex h="full" align="center" justify="center" textAlign="center" px={3}>
                                           <Text fontWeight={500}>
