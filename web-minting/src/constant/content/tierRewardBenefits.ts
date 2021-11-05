@@ -16,7 +16,7 @@ export const titleAuctionBenefits = [
     },
     { text: "Scuplture" },
     { text: "Hall Of Frame", tooltip: "A list in game and on the website, location in game is TBD" },
-    { text: "Free Swag on Maddies.co" },
+    { text: "FREE Swag on Maddies.co" },
     {
         text: "In-game Title",
         tooltip: "Will have icons, and icon borders, this will be promised to our early supporters",
@@ -80,7 +80,7 @@ export const dataAuctionBenefits = [
         ],
     },
     {
-        id: "Free Swag on Maddies",
+        id: "FREE Swag on Maddies.co",
         content: [
             { text: "Diamond Tier Swag Exclusive Sipher Bommer Jacker" },
             { text: "Platinum Tier Swag Exclusive Sipher Hoodie" },

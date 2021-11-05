@@ -121,7 +121,7 @@ const TierRewardBenefit = (props: Props) => {
                                 DUTCH AUCTION - MINTING DETAILS
                             </Typo.Heading>
                         </GridItem>
-                        <GridItem bg="blackAlpha.900" py={4} px={8} colSpan={1} rowSpan={1}>
+                        <GridItem bg="#000000" opacity="0.9" py={4} px={8} colSpan={1} rowSpan={1}>
                             <Typo.Heading letterSpacing="1px" fontSize="3xl" textAlign="left" mb={0}>
                                 AUCTION BENEFITS
                             </Typo.Heading>
@@ -129,7 +129,7 @@ const TierRewardBenefit = (props: Props) => {
                         <GridItem colSpan={1}>
                             <DataRankBenefit />
                         </GridItem>
-                        <GridItem bg="rgba(20, 20, 20, 0.9)" colSpan={1} rowSpan={1}>
+                        <GridItem bg="#000000" opacity="0.9" colSpan={1} rowSpan={1}>
                             <TitleAuctionBenefits />
                         </GridItem>
                         <GridItem colSpan={1}>

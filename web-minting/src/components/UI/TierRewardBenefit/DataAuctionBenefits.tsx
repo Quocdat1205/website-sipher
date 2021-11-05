@@ -1,6 +1,5 @@
 import { Flex, Grid, GridItem, Text } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { Typo } from "@components/shared/Typo"
 import { dataAuctionBenefits } from "@constant/content/tierRewardBenefits"
 import React, { Fragment } from "react"
 
@@ -9,29 +8,23 @@ interface Props {}
 const DataAuctionBenefits = (props: Props) => {
     return (
         <Grid templateRows="repeat(6, 140px)">
-            {dataAuctionBenefits.map(benefit => (
-                <GridItem key={benefit.id}>
+            {dataAuctionBenefits.map((benefit, index) => (
+                <GridItem key={index}>
                     <Grid templateColumns="repeat(4, 1fr)" h="full">
                         {benefit.content
                             ? benefit.content.map((item, index) => (
-                                  <GridItem
-                                      bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
-                                      key={item.text}
-                                  >
-                                      <Flex h="full" align="center" justify="center" textAlign="center" p={3}>
+                                  <GridItem bg={index % 2 === 0 ? "#000000" : "#141414"} opacity="0.9" key={index}>
+                                      <Flex h="full" align="center" justify="center" textAlign="center" px={3}>
                                           <Text color="whiteAlpha.900">{item.text}</Text>
                                       </Flex>
                                   </GridItem>
                               ))
                             : benefit.contentArr.map((item, index) => (
-                                  <GridItem
-                                      bg={index % 2 === 0 ? "rgba(0, 0, 0, 0.9)" : "rgba(20, 20, 20, 0.9)"}
-                                      key={item.id}
-                                  >
-                                      <Flex h="full" align="center" justify="center" textAlign="center" p={3}>
+                                  <GridItem bg={index % 2 === 0 ? "#000000" : "#141414"} opacity="0.9" key={index}>
+                                      <Flex h="full" align="center" justify="center" textAlign="center" px={3}>
                                           <Text>
-                                              {item.content?.map(item => (
-                                                  <Fragment key={item.text}>
+                                              {item.content?.map((item, index) => (
+                                                  <Fragment key={index}>
                                                       {item.type === "highlight" ? (
                                                           <chakra.span color="main.yellow">
                                                               {" " + item.text + " "}
