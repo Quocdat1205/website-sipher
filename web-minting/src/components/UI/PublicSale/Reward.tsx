@@ -67,7 +67,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             {tier.tier}
                         </Text>
                     </Flex>
-                    <Flex w="full" justify="center">
+                    <Flex w="full" justify="center" mb={4}>
                         <Img h="10rem" src={tier.imageTier} alt="reward" />
                     </Flex>
                     <Text color="main.yellow" fontWeight={500}>
