@@ -10,10 +10,9 @@ import { getIsPaused, getMaxPublicSaleCap } from "@helper/smartContract"
 
 const Login = () => {
     const { states, connect, isConnecting } = useWalletContext()
+    const qc = new QueryClient()
 
     useEffect(() => {
-        const qc = new QueryClient()
-
         const prefetch = async () => {
             await qc.prefetchQuery("is-sale-paused", getIsPaused)
             await qc.prefetchQuery("public-sale-cap-limit", getMaxPublicSaleCap)

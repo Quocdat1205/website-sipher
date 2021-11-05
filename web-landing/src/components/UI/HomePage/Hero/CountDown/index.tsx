@@ -3,27 +3,42 @@ import React, { useEffect, useRef, useState } from "react"
 import { differenceInSeconds } from "date-fns"
 import TimeCell from "./TimeCell"
 import Colon from "./Colon"
-
 const ONE_DAY = 60 * 60 * 24
 const ONE_HOUR = 60 * 60
 const ONE_MINUTE = 60
 
 interface CountDownProps {
-    deadline: number
+    startTime: number
+    endTime: number
 }
 
-export const CountDown = ({ deadline }: CountDownProps) => {
-    const runTimeOut = useRef(true)
+export const CountDown = ({ startTime, endTime }: CountDownProps) => {
+    const runTimeOut = useRef(new Date().getTime() < endTime)
     const timeToCountdown = () => {
         const currentTime = new Date().getTime()
-        const diffInSeconds = differenceInSeconds(deadline, currentTime)
-        if (diffInSeconds <= 1) runTimeOut.current = false
-        return {
-            days: Math.floor(diffInSeconds / ONE_DAY),
-            hours: Math.floor((diffInSeconds % ONE_DAY) / ONE_HOUR),
-            minutes: Math.floor((diffInSeconds % ONE_HOUR) / ONE_MINUTE),
-            seconds: Math.floor(diffInSeconds % ONE_MINUTE),
-        }
+        const diffInSecsBeforeStart = differenceInSeconds(startTime, currentTime)
+        const diffInSecsBeforeEnd = differenceInSeconds(endTime, currentTime)
+        if (new Date().getTime() > endTime)
+            return {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            }
+        else if (new Date().getTime() > startTime) {
+            return {
+                days: Math.floor(diffInSecsBeforeEnd / ONE_DAY),
+                hours: Math.floor((diffInSecsBeforeEnd % ONE_DAY) / ONE_HOUR),
+                minutes: Math.floor((diffInSecsBeforeEnd % ONE_HOUR) / ONE_MINUTE),
+                seconds: Math.floor(diffInSecsBeforeEnd % ONE_MINUTE),
+            }
+        } else
+            return {
+                days: Math.floor(diffInSecsBeforeStart / ONE_DAY),
+                hours: Math.floor((diffInSecsBeforeStart % ONE_DAY) / ONE_HOUR),
+                minutes: Math.floor((diffInSecsBeforeStart % ONE_HOUR) / ONE_MINUTE),
+                seconds: Math.floor(diffInSecsBeforeStart % ONE_MINUTE),
+            }
     }
     const [countdown, setCountdown] = useState(timeToCountdown())
 
