@@ -7,6 +7,10 @@ interface Props {}
 const DataDutchAuction = (props: Props) => {
     return (
         <Flex bg="rgba(0, 0, 0, 0.9)" p={8} mt={8} flexDir="column" w="full">
+            <Text color="main.yellow" fontWeight={500} textTransform="uppercase" mb={4}>
+                Minting your NFT at or above 0.4 ETH, will enter into a raffle that has a chance to win a Character
+                Vessel Core upon game launch!! (500 Vessel cores to be raffled away)
+            </Text>
             {dataDutchAuction.map((item, index) => (
                 <Box mb={8} _last={{ mb: 0 }} key={index}>
                     <Text color="main.yellow" fontWeight={500} textTransform="uppercase" mb={1}>
