@@ -29,7 +29,7 @@ const SaleForm = ({
 }: SaleFormProps) => {
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4}>
-            <Text textTransform="uppercase" fontWeight={500} mb={4}>
+            <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
                 Current Price
             </Text>
             <PriceWheel price={price} />

@@ -54,7 +54,7 @@ const PublicSale = () => {
                 </Text>
                 <Grid
                     templateRows="auto 1fr auto"
-                    templateColumns="2fr 1fr"
+                    templateColumns="5fr 3fr"
                     gap={2}
                     w="full"
                     maxH="full"
