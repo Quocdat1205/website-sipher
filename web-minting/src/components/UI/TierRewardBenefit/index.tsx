@@ -17,7 +17,7 @@ const TierRewardBenefit = (props: Props) => {
                 <NextLink href="/public-sale">
                     <Flex _hover={{ color: "main.yellow" }} mb={8} cursor="pointer" wrap="wrap" align="center">
                         <FiArrowLeft />
-                        <Text color="inherit" ml={2}>
+                        <Text color="inherit" ml={2} fontWeight={500} fontSize="sm">
                             BACK TO MINTING
                         </Text>
                     </Flex>
@@ -33,11 +33,21 @@ const TierRewardBenefit = (props: Props) => {
                         overflow="hidden"
                     >
                         <GridItem px={4} py={2} colSpan={2} rowSpan={1}>
-                            <Typo.Heading fontSize="3xl" letterSpacing="1px">
-                                DUTCH AUCTION - MINTING DETAILS
-                            </Typo.Heading>
+                            <Flex w="full" justify="center">
+                                <Text
+                                    bg="rgba(0, 0, 0, 0.9)"
+                                    px={4}
+                                    py={2}
+                                    fontSize="xl"
+                                    mb={4}
+                                    fontWeight={500}
+                                    letterSpacing="1px"
+                                >
+                                    DUTCH AUCTION - MINTING DETAILS
+                                </Text>
+                            </Flex>
                         </GridItem>
-                        <GridItem bg="#000000" opacity="0.9" py={4} px={8} colSpan={1} rowSpan={1}>
+                        <GridItem bg="rgba(20,20,20,0.9)" py={4} px={8} colSpan={1} rowSpan={1}>
                             <Typo.Heading letterSpacing="1px" fontSize="3xl" textAlign="left" mb={0}>
                                 AUCTION BENEFITS
                             </Typo.Heading>
@@ -45,7 +55,7 @@ const TierRewardBenefit = (props: Props) => {
                         <GridItem colSpan={1}>
                             <DataRankBenefit />
                         </GridItem>
-                        <GridItem bg="#000000" opacity="0.9" colSpan={1} rowSpan={1}>
+                        <GridItem bg="rgba(20,20,20,0.9)" colSpan={1} rowSpan={1}>
                             <TitleAuctionBenefits />
                         </GridItem>
                         <GridItem colSpan={1}>

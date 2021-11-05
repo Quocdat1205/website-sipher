@@ -43,7 +43,7 @@ const PublicSale = () => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Flex justify="center" align="center" direction="column">
-                <Text bg="blackAlpha.900" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {currentPhase === "NOT_STARTED"
                         ? "AUCTION COMING UP"
                         : currentPhase === "ON_GOING"
@@ -58,7 +58,7 @@ const PublicSale = () => {
                     maxH="full"
                     maxW={"64rem"}
                 >
-                    <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
+                    <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
                         <Typo.Heading w="full" textAlign="center" fontSize="3xl" mb={0}>
                             <chakra.span
                                 bgGradient="linear(to-b, bgGradient.orange)"
@@ -72,7 +72,7 @@ const PublicSale = () => {
                             {numberWithCommas(PUBLIC_MINTING_LIMIT)} NEKOS ALREADY MINTED
                         </Typo.Heading>
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1}>
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
                         <Flex h="full">
                             <CountDown
                                 minutesLeft={minutesLeft}
@@ -96,13 +96,13 @@ const PublicSale = () => {
                             />
                         </Flex>
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4}>
                         <Reward isOnTier={isOnTier} currentPublicPrice={currentPublicPrice} />
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <RewardInfo />
                     </GridItem>
                 </Grid>
