@@ -72,8 +72,8 @@ const TransactionToast = ({ status, onClose, isPublic }: TransactionToastProps) 
                     </Text>
                 ))}
                 <Text fontSize="xs" fontWeight={300} fontStyle="italic" mt={2} color="whiteAlpha.700">
-                    * Attempting to mint more than your max limit will result in failed transaction and you'll lose all
-                    gas fees.
+                    {`* Attempting to mint more than your max limit will result in failed transaction and you'll lose all
+                    gas fees.`}
                 </Text>
             </Box>
         </Box>
