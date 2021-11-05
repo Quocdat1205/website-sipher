@@ -1,6 +1,5 @@
 import { Flex, Grid, GridItem, Text } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { Typo } from "@components/shared/Typo"
 import { dataAuctionBenefits } from "@constant/content/tierRewardBenefits"
 import React, { Fragment } from "react"
 
@@ -8,7 +7,7 @@ interface Props {}
 
 const DataAuctionBenefits = (props: Props) => {
     return (
-        <Grid templateRows="repeat(6, 150px)">
+        <Grid templateRows="100px repeat(5, 150px)">
             {dataAuctionBenefits.map(benefit => (
                 <GridItem key={benefit.id}>
                     <Grid templateColumns="repeat(4, 1fr)" h="full">
@@ -19,7 +18,7 @@ const DataAuctionBenefits = (props: Props) => {
                                       key={item.text}
                                   >
                                       <Flex h="full" align="center" justify="center" textAlign="center" p={4}>
-                                          <Text color="whiteAlpha.900">{item.text}</Text>
+                                          <Text fontWeight={500}>{item.text}</Text>
                                       </Flex>
                                   </GridItem>
                               ))
@@ -29,7 +28,7 @@ const DataAuctionBenefits = (props: Props) => {
                                       key={item.id}
                                   >
                                       <Flex h="full" align="center" justify="center" textAlign="center" p={4}>
-                                          <Text>
+                                          <Text fontWeight={500}>
                                               {item.content?.map(item => (
                                                   <Fragment key={item.text}>
                                                       {item.type === "highlight" ? (

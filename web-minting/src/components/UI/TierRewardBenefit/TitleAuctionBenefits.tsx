@@ -7,9 +7,9 @@ interface Props {}
 
 const TitleAuctionBenefits = (props: Props) => {
     return (
-        <Grid templateRows="repeat(6, 150px)" h="full">
+        <Grid templateRows="100px repeat(5, 150px)" h="full">
             {titleAuctionBenefits.map(title => (
-                <GridItem key={title.text} p={8}>
+                <GridItem key={title.text} py={4} px={6}>
                     <Flex h="full" flexDir="row" alignItems="center">
                         <Text fontWeight="semibold" color="main.yellow">
                             {title.text}
