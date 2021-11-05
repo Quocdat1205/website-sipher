@@ -80,7 +80,7 @@ const SaleForm = ({
                     mb={2}
                     onClick={() => handleMint()}
                     isLoading={isMinting}
-                    loadingText="MINTING"
+                    loadingText="LOADING..."
                     disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
                 />
                 {boughtNFT > 0 && (

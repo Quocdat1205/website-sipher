@@ -36,7 +36,7 @@ const MainLayout = ({ children }: Props) => {
                 {isPaused ? (
                     <Grid
                         pos="absolute"
-                        bg="blackAlpha.900"
+                        bg="rgba(0, 0, 0, 0.9)"
                         w="full"
                         zIndex="dropdown"
                         placeItems="center"
@@ -66,7 +66,7 @@ const MainLayout = ({ children }: Props) => {
                         </Flex>
                     </Grid>
                 ) : (
-                    <Flex flex={1} overflow="visible" pt={20} pos="relative">
+                    <Flex flex={1} overflow="visible" pt={20} bg="rgba(0, 0, 0, 0.3)" pos="relative">
                         <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>
                     </Flex>
                 )}
