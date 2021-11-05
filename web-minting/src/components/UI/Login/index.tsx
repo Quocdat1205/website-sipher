@@ -6,16 +6,17 @@ import WalletCard from "./WalletCard"
 import useWalletContext from "@hooks/useWalletContext"
 import { MotionBox, MotionFlex } from "@components/shared/Motion"
 import { QueryClient } from "react-query"
-import { getIsPaused } from "@helper/smartContract"
+import { getIsPaused, getMaxPublicSaleCap } from "@helper/smartContract"
 
 const Login = () => {
     const { states, connect, isConnecting } = useWalletContext()
     const qc = new QueryClient()
-    const prefetch = async () => {
-        await qc.prefetchQuery("is-sale-paused", getIsPaused)
-    }
 
     useEffect(() => {
+        const prefetch = async () => {
+            await qc.prefetchQuery("is-sale-paused", getIsPaused)
+            await qc.prefetchQuery("public-sale-cap-limit", getMaxPublicSaleCap)
+        }
         prefetch()
     }, [])
 

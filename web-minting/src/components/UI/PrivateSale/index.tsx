@@ -39,12 +39,12 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                 <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {mode === "PRIVATE_SALE"
                         ? currentPhase === "NOT_STARTED"
-                            ? "PRIVATE SALE COMING UP"
+                            ? "PRIVATE SALE STARTING SOON"
                             : currentPhase === "ON_GOING"
                             ? "PRIVATE SALE ON PROGRESS"
                             : "PRIVATE SALE HAS ENDED"
                         : currentPhase === "NOT_STARTED"
-                        ? "FREE MINTING COMING UP"
+                        ? "FREE MINTING STARTING SOON"
                         : currentPhase === "ON_GOING"
                         ? "FREE MINTING ON PROGRESS"
                         : "FREE MINTING HAS ENDED"}

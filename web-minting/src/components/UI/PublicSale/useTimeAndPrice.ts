@@ -1,6 +1,7 @@
 import { INTERVAL, PRICE_STEP } from "@constant/index"
 import { useEffect, useState } from "react"
 
+const ONE_SECOND = 1000
 const ONE_MINUTE = 1000 * 60
 
 const useTimeAndPrice = ({ publicTime, publicEndTime }: { publicTime: number; publicEndTime: number }) => {
@@ -10,8 +11,8 @@ const useTimeAndPrice = ({ publicTime, publicEndTime }: { publicTime: number; pu
         return () => clearTimeout(timeout)
     }, [setCurrentTime, currentTime])
     const milisecondsLeft = INTERVAL - ((currentTime - publicTime) % INTERVAL)
-    const secondsLeft = Math.abs(Math.round((milisecondsLeft % ONE_MINUTE) / 1000))
-    const minutesLeft = Math.abs(Math.round((milisecondsLeft - secondsLeft * 1000) / ONE_MINUTE))
+    const minutesLeft = Math.floor(milisecondsLeft / ONE_MINUTE)
+    const secondsLeft = Math.floor((milisecondsLeft % ONE_MINUTE) / ONE_SECOND)
 
     const currentPublicPrice = Math.max(0.1, 0.9 - Math.floor((currentTime - publicTime) / INTERVAL) * PRICE_STEP)
 
