@@ -11,6 +11,7 @@ const useTotalSupply = (): ITotalSupply => {
         initialData: 0,
         refetchInterval: 2500,
     })
+
     return { totalSupply, isLoading } as ITotalSupply
 }
 
