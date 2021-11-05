@@ -18,7 +18,7 @@ const TotalSupply = ({}: Props) => {
         <Fragment>
             {isPrivate && (salePhase === 4 || salePhase === 5) ? (
                 <Box>
-                    <Text color="main.yellow" fontWeight="semibold">
+                    <Text color="main.yellow" fontWeight={500}>
                         {!isLoading && totalSupply ? numberWithCommas(totalSupply) : "..."} / {numberWithCommas(10000)}{" "}
                         NFTs
                     </Text>

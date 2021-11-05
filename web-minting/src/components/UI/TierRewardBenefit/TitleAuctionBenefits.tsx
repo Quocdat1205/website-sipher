@@ -11,7 +11,7 @@ const TitleAuctionBenefits = (props: Props) => {
             {titleAuctionBenefits.map(title => (
                 <GridItem key={title.text} py={4} px={6}>
                     <Flex h="full" flexDir="row" alignItems="center">
-                        <Text fontWeight="semibold" color="main.yellow">
+                        <Text fontWeight={500} color="main.yellow">
                             {title.text}
                         </Text>
                         {title.tooltip && (

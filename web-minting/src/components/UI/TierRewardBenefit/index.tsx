@@ -17,7 +17,7 @@ const TierRewardBenefit = (props: Props) => {
                 <NextLink href="/public-sale">
                     <Flex _hover={{ color: "main.yellow" }} mb={4} cursor="pointer" wrap="wrap" align="center">
                         <FiArrowLeft size="1.2rem" />
-                        <Text color="inherit" ml={2} fontWeight={500} fontSize="sm">
+                        <Text color="inherit" ml={2} fontWeight={500}>
                             BACK TO MINTING
                         </Text>
                     </Flex>

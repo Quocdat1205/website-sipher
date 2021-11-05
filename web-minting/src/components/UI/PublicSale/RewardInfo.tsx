@@ -6,18 +6,18 @@ const RewardInfo = () => {
 
     return (
         <Flex direction="column" h="full">
-            <Text color="main.yellow" fontSize="sm" fontWeight="500">
+            <Text color="main.yellow" fontWeight="500">
                 ABOUT REWARD TIERS
             </Text>
             <Box flex={1} overflow="auto">
                 <UnorderedList pl={1} color="whiteAlpha.700">
                     <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
+                        <Text color="whiteAlpha.700" fontWeight={500}>
                             Each price tier is eligible for different amounts of in-game rewards.
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
+                        <Text color="whiteAlpha.700" fontWeight={500}>
                             Read more about{" "}
                             <chakra.span
                                 cursor="pointer"

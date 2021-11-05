@@ -164,16 +164,16 @@ const Detail = ({ id, race }: PopupProps) => {
                                             </Typo.BoldText>
 
                                             <Flex align="center">
-                                                <Typo.BoldText
+                                                <Text
                                                     cursor="pointer"
                                                     fontSize="sm"
-                                                    fontWeight="semibold"
+                                                    fontWeight={500}
                                                     color="main.yellow"
                                                     letterSpacing="0px"
                                                     onClick={handleDownJSON}
                                                 >
                                                     Download
-                                                </Typo.BoldText>
+                                                </Text>
                                                 <Tooltip
                                                     hasArrow
                                                     label="How to verify proofs"

@@ -21,7 +21,7 @@ const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: 
                 >
                     <Text
                         fontSize="sm"
-                        fontWeight="semibold"
+                        fontWeight={500}
                         color={emotion === currentEmotion ? "black" : "main.yellow"}
                         pos="relative"
                         zIndex={2}

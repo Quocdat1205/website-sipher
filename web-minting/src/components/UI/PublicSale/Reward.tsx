@@ -63,26 +63,25 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                                 <Img src={tier.image} alt={tier.tier} h="full" />
                             </Box>
                         )}
-                        <Text color="main.yellow" fontWeight="semibold" textTransform="uppercase" fontSize="sm">
+                        <Text color="main.yellow" fontWeight={500} textTransform="uppercase">
                             {tier.tier}
                         </Text>
                     </Flex>
                     <Flex w="full" justify="center">
                         <Img h="10rem" src={tier.imageTier} alt="reward" />
                     </Flex>
-                    <Text color="main.yellow" fontSize="sm" fontWeight="semibold">
+                    <Text color="main.yellow" fontWeight={500}>
                         YOU WILL RECEIVE:
                     </Text>
                     <UnorderedList color="whiteAlpha.700">
                         {tier.content?.map((item, index) => (
                             <ListItem w="fit-content" key={index}>
-                                <Text color="whiteAlpha.700" fontSize="sm">
+                                <Text color="whiteAlpha.700" fontWeight={500}>
                                     {item}
                                 </Text>
                             </ListItem>
                         ))}
                         <chakra.span
-                            fontSize="sm"
                             cursor="pointer"
                             color="main.yellow"
                             fontWeight={500}
@@ -96,7 +95,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
             ) : (
                 <Flex flexDir="column" w="full" h="full" align="center" justify="center">
                     <Img src={tier.imageTier} alt="rewar    d" h="8rem" />
-                    <Text color="main.yellow" mt={6} fontWeight="semibold" textTransform="uppercase" fontSize="sm">
+                    <Text color="main.yellow" mt={6} fontWeight={500} textTransform="uppercase">
                         {tier.tier}
                     </Text>
                 </Flex>
