@@ -45,7 +45,7 @@ const SaleForm = ({
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={6}>
             <Flex direction="column" w="full">
-                <Text textTransform="uppercase" fontWeight="500" fontSize="sm">
+                <Text textAlign="center" textTransform="uppercase" fontWeight="500" fontSize="sm">
                     {genTitle()}
                 </Text>
                 <Countdown timeLeft={timeLeft} />
@@ -83,9 +83,11 @@ const SaleForm = ({
                     loadingText="MINTING"
                     disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
                 />
-                <Text w="full" textAlign="center" fontSize="sm">
-                    You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
-                </Text>
+                {boughtNFT > 0 && (
+                    <Text w="full" textAlign="center" fontSize="sm">
+                        You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
+                    </Text>
+                )}
             </Flex>
         </Flex>
     )

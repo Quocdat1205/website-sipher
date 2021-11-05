@@ -56,9 +56,11 @@ const SaleForm = ({
                 loadingText="MINTING"
                 disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
             />
-            <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
-                You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
-            </Text>
+            {boughtNFT > 0 && (
+                <Text w="full" textAlign="center" fontWeight={400} fontSize="sm">
+                    You have purchased {boughtNFT} {boughtNFT > 1 ? "NFTs" : "NFT"}
+                </Text>
+            )}
         </Flex>
     )
 }
