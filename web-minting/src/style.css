@@ -1,4 +1,9 @@
 @font-face {
+    font-family: "Hacked";
+    src: url("/fonts/HACKED.ttf");
+}
+
+@font-face {
     font-family: "Brandon";
     src: url("/fonts/BrandonGrotesque/main.otf");
     font-style: normal;

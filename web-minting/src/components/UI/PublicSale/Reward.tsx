@@ -16,7 +16,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/boomer.png",
                 content: [
                     "1 Free Exclusive Sipher Bomber Jacket",
-                    "1 Free Crystalis Neko & Cosmic Inu Limited Edition Sculptures",
+                    "1 Free Neko & Inu Limited Edition Sculptures",
                     "Personalized Thank You card",
                 ],
             }
@@ -27,7 +27,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/hoodie.png",
                 content: [
                     "1 Free Exclusive Sipher Hoodie",
-                    "1 Free Crystalis Neko Limited Edition Sculpture",
+                    "1 Free Neko Limited Edition Sculpture",
                     "Personalized Thank You card",
                 ],
             }
@@ -38,7 +38,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/tshirt.png",
                 content: [
                     "1 Free Exclusive Sipher T-Shirt",
-                    "1 Free Cosmic Inu Limited Edition Sculpture",
+                    "1 Free Inu Limited Edition Sculpture",
                     "Personalized Thank You card",
                 ],
             }
@@ -49,7 +49,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 imageTier: "/images/tier/hat.png",
                 content: ["1 Free Exclusive Sipher Hat", "Personalized Thank You card"],
             }
-        return { tier: "Reward", imageTier: "/images/tier/notier.png" }
+        return { tier: "No Reward", imageTier: "/images/tier/notier.png" }
     }
     const tier = getTier()
 
@@ -63,26 +63,25 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                                 <Img src={tier.image} alt={tier.tier} h="full" />
                             </Box>
                         )}
-                        <Text color="main.yellow" fontWeight="semibold" textTransform="uppercase" fontSize="sm">
+                        <Text color="main.yellow" fontWeight={500} textTransform="uppercase">
                             {tier.tier}
                         </Text>
                     </Flex>
                     <Flex w="full" justify="center">
                         <Img h="10rem" src={tier.imageTier} alt="reward" />
                     </Flex>
-                    <Text color="main.yellow" fontSize="sm" fontWeight="semibold">
+                    <Text color="main.yellow" fontWeight={500}>
                         YOU WILL RECEIVE:
                     </Text>
                     <UnorderedList color="whiteAlpha.700">
                         {tier.content?.map((item, index) => (
                             <ListItem w="fit-content" key={index}>
-                                <Text color="whiteAlpha.700" fontSize="sm">
+                                <Text color="whiteAlpha.700" fontWeight={500}>
                                     {item}
                                 </Text>
                             </ListItem>
                         ))}
                         <chakra.span
-                            fontSize="sm"
                             cursor="pointer"
                             color="main.yellow"
                             fontWeight={500}
@@ -95,8 +94,8 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 </>
             ) : (
                 <Flex flexDir="column" w="full" h="full" align="center" justify="center">
-                    <Img src={tier.imageTier} alt="rewar    d" h="8rem" />
-                    <Text color="main.yellow" mt={6} fontWeight="semibold" textTransform="uppercase" fontSize="sm">
+                    <Img src={tier.imageTier} alt="No Reward" h="8rem" />
+                    <Text color="main.yellow" mt={6} fontWeight={500} textTransform="uppercase">
                         {tier.tier}
                     </Text>
                 </Flex>

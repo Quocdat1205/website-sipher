@@ -112,13 +112,6 @@ const SALE_ABI: any = [
     },
     {
         inputs: [],
-        name: "MAX_PUBLIC_BOUGHT",
-        outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
         name: "PUBLIC_SALE_CAP_PER_ADDRESS",
         outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
         stateMutability: "view",
@@ -162,6 +155,13 @@ const SALE_ABI: any = [
         name: "buy",
         outputs: [],
         stateMutability: "payable",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "getMaxPublicSaleCap",
+        outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
+        stateMutability: "view",
         type: "function",
     },
     {
@@ -273,10 +273,20 @@ const SALE_ABI: any = [
         type: "function",
     },
     {
-        inputs: [{ internalType: "bytes32", name: "_whitelistedRoot", type: "bytes32" }],
+        inputs: [
+            { internalType: "bytes32", name: "_whitelistedRoot", type: "bytes32" },
+            { internalType: "uint32", name: "_totalWhitelisted", type: "uint32" },
+        ],
         name: "setWhitelistedMerkleRoot",
         outputs: [],
         stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "totalWhitelisted",
+        outputs: [{ internalType: "uint32", name: "", type: "uint32" }],
+        stateMutability: "view",
         type: "function",
     },
     {

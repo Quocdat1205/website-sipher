@@ -26,6 +26,7 @@ const QuantitySelector = ({ onChange, value, maxValue, minValue = 0, isDisabled 
                 w="3rem"
                 variant="filled"
                 bgColor="transparent"
+                fontWeight={500}
                 bgGradient="linear(to-b, blackAlpha.900, blackAlpha.500, blackAlpha.900)"
                 readOnly={true}
                 rounded="0"

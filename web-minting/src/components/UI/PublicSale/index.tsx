@@ -7,10 +7,11 @@ import DutchAuction from "./DutchAuction"
 import RewardInfo from "./RewardInfo"
 import Reward from "./Reward"
 import usePublicSale from "./usePublicSale"
-import { PUBLIC_MINTING_LIMIT, START_PRICE } from "@constant/index"
+import { START_PRICE } from "@constant/index"
 import { numberWithCommas } from "@utils/index"
 import useSaleRecord from "@hooks/useSaleRecord"
 import { MotionFlex } from "@components/shared/Motion"
+import usePublicCapLimit from "@hooks/usePublicCapLimit"
 
 const PublicSale = () => {
     const {
@@ -29,6 +30,7 @@ const PublicSale = () => {
         isPriceDecreasing,
     } = usePublicSale()
     const { publicSale } = useSaleRecord()
+    const { publicSaleCapLimit, isLoadingCapLimit } = usePublicCapLimit()
 
     return (
         <MotionFlex
@@ -43,7 +45,7 @@ const PublicSale = () => {
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
         >
             <Flex justify="center" align="center" direction="column">
-                <Text bg="blackAlpha.900" px={4} py={2} fontSize="xl" mb={4} fontWeight={500} letterSpacing="1px">
+                <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {currentPhase === "NOT_STARTED"
                         ? "AUCTION COMING UP"
                         : currentPhase === "ON_GOING"
@@ -56,10 +58,10 @@ const PublicSale = () => {
                     gap={2}
                     w="full"
                     maxH="full"
-                    maxW={"56rem"}
+                    maxW={"64rem"}
                 >
-                    <GridItem colSpan={2} px={4} py={2} bg="blackAlpha.900">
-                        <Typo.Heading w="full" textAlign="center" fontSize="3xl" mb={0}>
+                    <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
+                        <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
                             <chakra.span
                                 bgGradient="linear(to-b, bgGradient.orange)"
                                 backgroundClip="text"
@@ -69,10 +71,10 @@ const PublicSale = () => {
                                 {numberWithCommas(publicSale)}
                             </chakra.span>
                             {" / "}
-                            {numberWithCommas(PUBLIC_MINTING_LIMIT)} NEKOS ALREADY MINTED
+                            {!isLoadingCapLimit ? numberWithCommas(publicSaleCapLimit) : "..."} NEKOS ALREADY MINTED
                         </Typo.Heading>
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1}>
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
                         <Flex h="full">
                             <CountDown
                                 minutesLeft={minutesLeft}
@@ -96,13 +98,13 @@ const PublicSale = () => {
                             />
                         </Flex>
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4}>
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4}>
                         <Reward isOnTier={isOnTier} currentPublicPrice={currentPublicPrice} />
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />
                     </GridItem>
-                    <GridItem bg="blackAlpha.900" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
                         <RewardInfo />
                     </GridItem>
                 </Grid>

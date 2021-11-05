@@ -29,7 +29,7 @@ const SaleForm = ({
 }: SaleFormProps) => {
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4}>
-            <Text textTransform="uppercase" fontWeight={500} fontSize="sm" mb={4}>
+            <Text textTransform="uppercase" fontWeight={500} mb={4}>
                 Current Price
             </Text>
             <PriceWheel price={price} />
@@ -40,18 +40,18 @@ const SaleForm = ({
                     value={currentSlot}
                     isDisabled={!isOnSale || isMinting}
                 />
-                <Text fontWeight="bold" fontSize="sm">
+                <Text fontWeight="bold">
                     <chakra.span fontSize="xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
                 </Text>
             </Flex>
             <GradientButton
-                text="Mint"
+                text="Mint Now"
                 w="full"
                 mt={4}
                 mb={2}
                 onClick={() => handleMint()}
                 isLoading={isMinting}
-                loadingText="MINTING"
+                loadingText="LOADING..."
                 disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
             />
             {boughtNFT > 0 && (

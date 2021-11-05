@@ -36,7 +36,7 @@ const Countdown = ({
     }, [isPriceDecreasing, secondsLeft, minutesLeft, isRunning, setIsRunning])
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
-            <Text textTransform="uppercase" fontWeight={500} fontSize="sm" mb={4}>
+            <Text textTransform="uppercase" fontWeight={500} mb={4}>
                 {currentPhase === "NOT_STARTED"
                     ? "Countdown to public sale"
                     : isPriceDecreasing

@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/layout"
-import { Typo } from "@components/shared"
 import LinkButton from "@components/shared/LinkButton"
+import { Typo } from "@components/shared/Typo"
 import Head from "next/head"
 import { useRouter } from "next/router"
 interface NotfoundPageProps {}
@@ -12,15 +12,7 @@ const NotfoundPage = ({}: NotfoundPageProps) => {
             <Head>
                 <title>Page not found | Sipher</title>
             </Head>
-            <Flex
-                w="full"
-                h="100vh"
-                bg="black"
-                bgImage="/images/pc/home/homenew2.png"
-                align="center"
-                justify="center"
-                p={4}
-            >
+            <Flex w="full" h="100vh" bg="black" bgImage="/images/bgBlack.png" align="center" justify="center">
                 <Flex direction="column" align="center" maxW="64rem">
                     <Text
                         fontFamily="Hacked"

@@ -10,13 +10,13 @@ export const rankBenefits: RankCardProps[] = [
 export const titleAuctionBenefits = [
     { text: "Purchase price" },
     {
-        text: "Immortalize in Sipheria",
+        text: "Immortalized in Sipheria",
         tooltip:
             "Will use your name in the actual world building, you might get NPCs, Towns, Roads named after your easter egg style",
     },
     { text: "Scuplture" },
-    { text: "Hall Of Fame", tooltip: "A list in game and on the website, location in game is TBD" },
-    { text: "Free Swag on Maddies" },
+    { text: "Hall Of Frame", tooltip: "A list in game and on the website, location in game is TBD" },
+    { text: "FREE Swag on Maddies.co" },
     {
         text: "In-game Title",
         tooltip: "Will have icons, and icon borders, this will be promised to our early supporters",
@@ -29,7 +29,7 @@ export const dataAuctionBenefits = [
         content: [{ text: "0.9 - 0.85" }, { text: "0.8 - 0.75" }, { text: "0.7 - 0.65" }, { text: "0.6 - 0.55" }],
     },
     {
-        id: "Immortalize in Sipheria",
+        id: "Immortalized in Sipheria",
         content: [
             { text: "Names forever immortalized in Sipheria" },
             { text: "N/A" },
@@ -43,7 +43,7 @@ export const dataAuctionBenefits = [
             {
                 id: 1,
                 content: [
-                    { text: "Crystalis Neko & Cosmic INU Limited Edition Sculpture retailed at", type: "text" },
+                    { text: "Neko & INU Limited Edition Sculpture retailed at", type: "text" },
                     { text: "$1,000 USD", type: "highlight" },
                     { text: "each for FREE", type: "text" },
                 ],
@@ -51,7 +51,7 @@ export const dataAuctionBenefits = [
             {
                 id: 2,
                 content: [
-                    { text: "Crystalis Neko Limited Edition Sculpture retailed at", type: "text" },
+                    { text: "Neko Limited Edition Sculpture retailed at", type: "text" },
                     { text: "$1,000 USD", type: "highlight" },
                     { text: "for FREE", type: "text" },
                 ],
@@ -59,7 +59,7 @@ export const dataAuctionBenefits = [
             {
                 id: 3,
                 content: [
-                    { text: "Cosmic INU Limited Edition Sculpture retailed at", type: "text" },
+                    { text: "INU Limited Edition Sculpture retailed at", type: "text" },
                     { text: "$1,000 USD", type: "highlight" },
                     { text: "for FREE", type: "text" },
                 ],
@@ -71,21 +71,21 @@ export const dataAuctionBenefits = [
         ],
     },
     {
-        id: "Hall Of Fame",
+        id: "Hall Of Frame",
         content: [
-            { text: "Hall Of Fame Listing" },
-            { text: "Hall Of Fame Listing" },
-            { text: "Hall Of Fame Listing" },
-            { text: "Hall Of Fame Listing" },
+            { text: "Hall Of Frame Listing" },
+            { text: "Hall Of Frame Listing" },
+            { text: "Hall Of Frame Listing" },
+            { text: "Hall Of Frame Listing" },
         ],
     },
     {
-        id: "Free Swag on Maddies",
+        id: "FREE Swag on Maddies.co",
         content: [
-            { text: "Diamond Tier Swag Membership for Maddies" },
-            { text: "Platinum Tier Swag Membership for Maddies" },
-            { text: "Gold Tier Swag Membership for Maddies" },
-            { text: "Silver Tier Swag Membership for Maddies" },
+            { text: "Diamond Tier Swag Exclusive Sipher Bomber Jacket" },
+            { text: "Platinum Tier Swag Exclusive Sipher Hoodie" },
+            { text: "Gold Tier Swag Exclusive Sipher T-shirt" },
+            { text: "Silver Tier Swag Exclusive Sipher Hat" },
         ],
     },
     {

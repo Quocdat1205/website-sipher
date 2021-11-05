@@ -1,5 +1,4 @@
 import { Box, Flex, ListItem, UnorderedList, Text, chakra } from "@chakra-ui/react"
-import { MyText } from "@sipher/web-components"
 
 interface DutchAuctionProps {}
 
@@ -7,12 +6,12 @@ const DutchAuction = ({}: DutchAuctionProps) => {
     return (
         <Flex direction="column" h="full">
             <Box>
-                <Text fontWeight="500" color="main.yellow" fontSize="sm">
+                <Text fontWeight="500" color="main.yellow">
                     ABOUT DUTCH AUCTION
                 </Text>
                 <UnorderedList color="whiteAlpha.700" pl={1}>
                     <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
+                        <Text color="whiteAlpha.700" fontWeight={500}>
                             The auction starting price is{" "}
                             <chakra.span color="main.yellow" fontWeight={500}>
                                 0.9 ETH
@@ -21,34 +20,38 @@ const DutchAuction = ({}: DutchAuctionProps) => {
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
-                            The auction ends when either{" "}
-                            <chakra.span color="main.yellow" fontWeight={500}>
-                                6,000 bids
-                            </chakra.span>{" "}
-                            are received or the time runs out, whichever occurs first.
+                        <Text color="whiteAlpha.700" fontWeight={500}>
+                            The auction ends when all remaining bids are fulfilled or the time runs out, whichever
+                            occurs first.
                         </Text>
                     </ListItem>
                     <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
-                            If demand exceeds supply, bids will be fulfilled on a first-come first-serve basis.
-                        </Text>
-                    </ListItem>
-                    <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
-                            All winning bidders who receives NEKOs will pay the same price per NEKO.
+                        <Text color="whiteAlpha.700" fontWeight={500}>
+                            Bids will be fulfilled based on speed of the transaction accepted by the network (Factors
+                            include gas and time taken to click mint)
                         </Text>
                     </ListItem>
                 </UnorderedList>
             </Box>
             <Box mt={4}>
-                <Text fontWeight="500" color="main.yellow" fontSize="sm">
+                <Text fontWeight="500" color="main.yellow">
                     IMPORTANT
                 </Text>
+
                 <UnorderedList color="whiteAlpha.700" pl={1}>
                     <ListItem>
-                        <Text color="whiteAlpha.700" fontSize="sm">
-                            Minting close to next tier price change, may result to lower tier due to transaction time.
+                        <Text color="whiteAlpha.700" fontWeight={500}>
+                            Minting close to next tier price change, may result you dropping to a lower tier as the
+                            transaction will take time to be accepted!
+                        </Text>
+                    </ListItem>
+                    <ListItem>
+                        <Text color="whiteAlpha.700" fontWeight={500}>
+                            Minting your NFT at or above 0.4 ETH,{" "}
+                            <chakra.span color="main.yellow" fontWeight={500}>
+                                will enter into a raffle that has a chance to win a Character Vessel Core upon game
+                                launch! (500 Vessel cores to be raffled away)
+                            </chakra.span>
                         </Text>
                     </ListItem>
                 </UnorderedList>

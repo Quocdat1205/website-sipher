@@ -103,6 +103,13 @@ export const getPublicCurrentPrice = async () => {
     return parseFloat((data / 10 ** 18).toFixed(2))
 }
 
+//** Get max public sale cap */
+export const getMaxPublicSaleCap = async () => {
+    const data = await ContractProviderSALE.methods.getMaxPublicSaleCap().call()
+
+    return parseInt(data)
+}
+
 export type ISaleConfig = Record<
     "publicTime" | "publicEndTime" | "privateTime" | "freeMintTime" | "endTime" | "maxSupply",
     number
