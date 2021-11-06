@@ -23,7 +23,7 @@ const RewardInfo = () => {
                                 cursor="pointer"
                                 color="main.yellow"
                                 fontWeight={500}
-                                onClick={() => router.push("/tier-reward-benefits")}
+                                onClick={() => router.push("/public-sale/tier-reward-benefits")}
                                 textDecor="underline"
                             >
                                 Tier Reward Benefits

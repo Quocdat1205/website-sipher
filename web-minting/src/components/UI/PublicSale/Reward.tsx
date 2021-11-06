@@ -86,7 +86,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             color="main.yellow"
                             fontWeight={500}
                             textDecor="underline"
-                            onClick={() => router.push("/tier-reward-benefits")}
+                            onClick={() => router.push("/public-sale/tier-reward-benefits")}
                         >
                             And more ...
                         </chakra.span>
