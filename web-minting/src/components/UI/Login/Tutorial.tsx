@@ -16,22 +16,24 @@ const MetaMaskTutorial = ({}) => {
             bgColor="blackAlpha.500"
             p={4}
         >
-            <Link href="/">
-                <Flex
-                    _hover={{ color: "main.yellow" }}
-                    color="white"
-                    mb={4}
-                    cursor="pointer"
-                    wrap="wrap"
-                    align="center"
-                >
-                    <FiArrowLeft size="1.2rem" />
-                    <Text color="inherit" ml={2} fontWeight={500}>
-                        BACK TO HOME
-                    </Text>
-                </Flex>
-            </Link>
             <Flex align="center" justify="center" w="full" flex={1} color="whiteAlpha.900" direction="column" p={4}>
+                <Flex w="full" mb={2} maxW="28rem">
+                    <Link href="/">
+                        <Flex
+                            _hover={{ color: "main.yellow" }}
+                            color="white"
+                            mb={4}
+                            cursor="pointer"
+                            wrap="wrap"
+                            align="center"
+                        >
+                            <FiArrowLeft size="1.2rem" />
+                            <Text color="inherit" ml={2} fontWeight={500}>
+                                BACK TO HOME
+                            </Text>
+                        </Flex>
+                    </Link>
+                </Flex>
                 <MotionFlex
                     direction="column"
                     w="full"

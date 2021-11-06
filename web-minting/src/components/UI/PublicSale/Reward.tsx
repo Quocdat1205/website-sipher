@@ -83,7 +83,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                         </Text>
                     </Flex>
                     <Flex w="full" justify="center" mb={4} cursor="pointer" onClick={onOpen}>
-                        <Img h={"15rem"} src={tier.imageTier} alt="reward" />
+                        <Img h={"13rem"} src={tier.imageTier} alt="reward" />
                         <Modal
                             scrollBehavior="outside"
                             isCentered
