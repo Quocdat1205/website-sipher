@@ -86,7 +86,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                         <Img h={"15rem"} src={tier.imageTier} alt="reward" />
                         <Modal scrollBehavior="outside" isCentered size="4xl" isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay bg="blackAlpha.700" />
-                            <ModalContent bg="blackAlpha.900">
+                            <ModalContent bg="blackAlpha.200" boxShadow="none">
                                 <ModalBody p={0} position="relative" overflow="hidden">
                                     <ModalCloseButton
                                         size="lg"
