@@ -87,7 +87,7 @@ const PlayScreen = () => {
                                 textShadow: "-1px 0 s, 0 1px black, 1px 0 black, 0 -1px black",
                             }}
                         >
-                            {`Power by blockchain`}
+                            {`Powered by blockchain`}
                         </Typo.BoldText>
                         <Typo.Text
                             sx={{

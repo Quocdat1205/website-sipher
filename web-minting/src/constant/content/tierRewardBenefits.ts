@@ -16,7 +16,10 @@ export const titleAuctionBenefits = [
     },
     { text: "Scuplture" },
     { text: "Hall Of Frame", tooltip: "A list in game and on the website, location in game is TBD" },
-    { text: "Free Exclusive Swag" },
+    {
+        text: "Free Exclusive Swag",
+        tooltip: "Free Merchandise on Maddies.co. You just pay Shipping and Handling plus Taxes.",
+    },
     {
         text: "In-game Title",
         tooltip: "Will have icons, and icon borders, this will be promised to our early supporters",
