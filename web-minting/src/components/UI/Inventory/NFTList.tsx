@@ -7,6 +7,7 @@ import { getNFTs, getNFTQuantity } from "@api/index"
 import useWalletContext from "@hooks/useWalletContext"
 import { NFTRace } from "@@types"
 import LinkButton from "@components/shared/LinkButton"
+import ViewCollectionButton from "@components/shared/ViewCollectionButton"
 
 interface Props {
     race: NFTRace
@@ -71,7 +72,7 @@ const NFTList = ({ race }: Props) => {
                         </chakra.span>{" "}
                         {race} NFT
                     </Text>
-                    <LinkButton text="View Collection On Opensea" href="https://opensea.io/collection/sipherianflash" />
+                    <ViewCollectionButton />
                 </Flex>
             </Flex>
         )
