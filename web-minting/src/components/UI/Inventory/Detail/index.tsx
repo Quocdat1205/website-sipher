@@ -111,7 +111,7 @@ const Detail = (props: PopupProps) => {
                                                             </Text>
                                                         </Td>
                                                         <Td py={1} px={0} whiteSpace="nowrap">
-                                                            1 of {item.total}
+                                                            <Text fontWeight={500}>1 of {item.total}</Text>
                                                         </Td>
                                                     </Tr>
                                                 ))
