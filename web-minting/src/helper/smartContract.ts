@@ -129,11 +129,11 @@ export const getSaleConfig = async (): Promise<ISaleConfig> => {
     }
     // For testing
     // return {
-    //     publicTime: 1635605570943 + DELAY,
-    //     publicEndTime: 1635705570943 + DELAY,
-    //     privateTime: 1635805570943 + DELAY,
-    //     freeMintTime: 1635905570943 + DELAY,
-    //     endTime: 1636005570943 + DELAY,
+    //     publicTime: 1636132940843 + DELAY,
+    //     publicEndTime: 1636133040843 + DELAY,
+    //     privateTime: 1636150913535 + DELAY,
+    //     freeMintTime: 1636160913535 + DELAY,
+    //     endTime: 1636170913535 + DELAY,
     //     maxSupply: 10000,
     // }
 }

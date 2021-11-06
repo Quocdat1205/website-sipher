@@ -2,7 +2,7 @@ import { Flex, Box, FlexProps } from "@chakra-ui/react"
 import { motion, useAnimation } from "framer-motion"
 import React, { useEffect } from "react"
 import PriceCard from "./PriceCard"
-import useSaleConfig from "@hooks/useSaleConfig"
+import useWalletContext from "@hooks/useWalletContext"
 
 const MotionFlex = motion<Omit<FlexProps, "transition">>(Flex)
 
@@ -12,7 +12,9 @@ interface PriceWheelProps {
 
 const PriceWheel = ({ price }: PriceWheelProps) => {
     const wheelControl = useAnimation()
-    const { priceSteps } = useSaleConfig()
+    const {
+        config: { priceSteps },
+    } = useWalletContext()
     useEffect(() => {
         wheelControl.start({
             y: `${Math.round((Math.round(price * 100) - 90) / 5) * 3 + 3}rem`,

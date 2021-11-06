@@ -42,7 +42,7 @@ export const useMetamask = () => {
     const [isConnecting, setIsConnecting] = useState(false)
     const { values: states, setValue: setState, initForm } = useFormCore<AppState>(initialState)
     const toast = useChakraToast()
-    const { saleConfig } = useSaleConfig()
+    const config = useSaleConfig()
     const { data: userRecord, isLoading: isLoadingUserRecord } = useQuery(
         "user-record",
         () => getUserRecord(states.accountLogin),
@@ -94,11 +94,11 @@ export const useMetamask = () => {
             })
             let now = new Date().getTime()
             if (now)
-                if (now > saleConfig!.endTime) {
+                if (now > config.saleConfig!.endTime) {
                     router.push("inventory/neko")
-                } else if (now > saleConfig!.freeMintTime && whitelistInfo.freeMintCap > 0) {
+                } else if (now > config.saleConfig!.freeMintTime && whitelistInfo.freeMintCap > 0) {
                     router.push("/free-minting")
-                } else if (now > saleConfig!.publicEndTime && whitelistInfo.privateCap > 0) {
+                } else if (now > config.saleConfig!.publicEndTime && whitelistInfo.privateCap > 0) {
                     router.push("/private-sale")
                 } else {
                     router.push("/public-sale")
@@ -137,5 +137,6 @@ export const useMetamask = () => {
         toast,
         userRecord,
         isLoadingUserRecord,
+        config,
     }
 }

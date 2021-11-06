@@ -16,7 +16,10 @@ export const titleAuctionBenefits = [
     },
     { text: "Scuplture" },
     { text: "Hall Of Frame", tooltip: "A list in game and on the website, location in game is TBD" },
-    { text: "Free Exclusive Swag" },
+    {
+        text: "Free Exclusive Swag",
+        tooltip: "Free Merchandise on Maddies.co. You just pay Shipping and Handling plus Taxes.",
+    },
     {
         text: "In-game Title",
         tooltip: "Will have icons, and icon borders, this will be promised to our early supporters",
@@ -109,7 +112,7 @@ export const dataDutchAuction = [
     {
         id: `When, Where and How will this be Implemented for the NEKO launch?`,
         content: [
-            "The minting for NEKOs will happen on November 6, 2021, and will take place in the main website (https://sipher.xyz) - same as our previous Sipher INUs launch. However, the main difference is that instead of having a traditional launch in which buyers wait for the minting to start and then being pit against one another in a gas war, the Auction will start at the established launch time with a starting price will be 0.9 ETH. Afterwards, the price will programmatically drop every 10 minutes in decrements of 0.05, with the lowest price for the auction being 0.1 ETH.",
+            "The minting for NEKOs will happen on November 7, 2021, and will take place in the main website (https://sipher.xyz) - same as our previous Sipher INUs launch. However, the main difference is that instead of having a traditional launch in which buyers wait for the minting to start and then being pit against one another in a gas war, the Auction will start at the established launch time with a starting price will be 0.9 ETH. Afterwards, the price will programmatically drop every 10 minutes in decrements of 0.05, with the lowest price for the auction being 0.1 ETH.",
             "Regardless of purchase price, each participant can purchase up to 5 NEKOs per transaction, with a maximum of 5 per wallet.",
             "Do note that as a Dutch Auction with limited NFTs available for purchase, the sale will automatically end at the point of time in which all NEKO NFTs are sold out, regardless of the current price point.",
             "There will be different price points where buyers will have an opportunity to purchase the NFTs.",
