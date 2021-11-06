@@ -26,8 +26,12 @@ export const SubLink = ({ text, href }: SubLinkProps) => {
 
 export interface ViewCollectionButtonProps {
     size?: "large" | "medium"
+    text?: string
 }
-export const ViewCollectionButton = ({ size = "medium" }: ViewCollectionButtonProps) => {
+export const ViewCollectionButton = ({
+    size = "medium",
+    text = "VIEW COLLECTION ON OPENSEA",
+}: ViewCollectionButtonProps) => {
     const [isExpanded, setIsExpanded] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
     useOutsideClick({
@@ -37,7 +41,7 @@ export const ViewCollectionButton = ({ size = "medium" }: ViewCollectionButtonPr
     return (
         <Box pos="relative" ref={ref}>
             <GradientButton
-                text="VIEW COLLECTION ON OPENSEA"
+                text={text}
                 rounded="full"
                 onClick={() => setIsExpanded(!isExpanded)}
                 zIndex={2}
