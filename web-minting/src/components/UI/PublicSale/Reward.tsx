@@ -32,7 +32,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 content: [
                     "1 Free Exclusive Sipher Bomber Jacket",
                     "1 Free Neko & Inu Limited Edition Sculptures",
-                    "Name forever immortalized",
+                    "Name Forever Immortalized In Game",
                 ],
             }
         if (currentPublicPrice >= 0.75)
