@@ -1,4 +1,18 @@
-import { Flex, ListItem, Text, UnorderedList, Img, Box, chakra } from "@chakra-ui/react"
+import {
+    Flex,
+    ListItem,
+    Text,
+    UnorderedList,
+    Img,
+    Box,
+    chakra,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalBody,
+} from "@chakra-ui/react"
 import { useRouter } from "next/router"
 
 interface RewardProps {
@@ -7,6 +21,7 @@ interface RewardProps {
 }
 const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
     const router = useRouter()
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const getTier = () => {
         if (currentPublicPrice >= 0.85)
@@ -67,8 +82,31 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             {tier.tier}
                         </Text>
                     </Flex>
-                    <Flex w="full" justify="center" mb={4}>
+                    <Flex w="full" justify="center" mb={4} cursor="pointer" onClick={onOpen}>
                         <Img h={"15rem"} src={tier.imageTier} alt="reward" />
+                        <Modal scrollBehavior="outside" isCentered size="4xl" isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay bg="blackAlpha.700" />
+                            <ModalContent bg="blackAlpha.200" boxShadow="none">
+                                <ModalBody p={0} position="relative" overflow="hidden">
+                                    <ModalCloseButton
+                                        size="lg"
+                                        bgColor="white"
+                                        bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
+                                        color="white"
+                                        _hover={{ bgColor: "none" }}
+                                        _focus={{ boxShadow: "none" }}
+                                        zIndex="1"
+                                    />
+                                    <Flex justify="center" align="center" p={4} position="relative">
+                                        <Img
+                                            maxH={["auto", "24rem", "30rem", "36rem", "40rem"]}
+                                            src={tier.imageTier}
+                                            alt="reward"
+                                        />
+                                    </Flex>
+                                </ModalBody>
+                            </ModalContent>
+                        </Modal>
                     </Flex>
                     <Text color="main.yellow" fontWeight={500}>
                         YOU WILL RECEIVE:
