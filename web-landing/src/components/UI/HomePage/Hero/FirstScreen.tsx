@@ -65,7 +65,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 <Title />
                 <Box overflow="hidden">
                     <MotionBox animate={descriptionControl} initial={{ y: "100%" }}>
-                        <Typo.BoldText textAlign="center">OFFICIAL NEKO LAUNCH 06/11/2021</Typo.BoldText>
+                        <Typo.BoldText textAlign="center">OFFICIAL NEKO LAUNCH 07/11/2021</Typo.BoldText>
                         <Typo.BoldText textAlign="center">01:30 AM UTC</Typo.BoldText>
                         <Flex mt={4} justify="center">
                             <LinkButton text="Visit Minting Page" href="https://mint.sipher.xyz/" size="large" />
