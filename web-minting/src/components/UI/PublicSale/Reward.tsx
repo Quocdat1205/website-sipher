@@ -92,7 +92,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             onClose={onClose}
                             motionPreset="slideInBottom"
                         >
-                            <ModalOverlay />
+                            <ModalOverlay bg="blackAlpha.800" />
                             <ModalContent bg="transparent">
                                 <ModalBody>
                                     <Flex justify="center" align="center" direction="column">
