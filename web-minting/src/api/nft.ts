@@ -24,6 +24,12 @@ export const getNFTs = async ({ address, race, range }: GetNFTsInput): Promise<{
     return data.message
 }
 
+/** Get total quantity of NFTs of a race */
+export const getNFTQuantity = async ({ address, race }: Omit<GetNFTsInput, "range">) => {
+    const { data } = await fetcher.get(`/nft/get-list-nft?publicAddress=${address}&min=0&max=1&race=${race}`)
+    return data.message.total
+}
+
 export interface GetNFTInput {
     address: string
     race: NFTRace

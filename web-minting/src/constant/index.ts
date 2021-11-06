@@ -7,7 +7,7 @@ export const CHAIN_ID = "1"
 // Base URL
 export const baseURL = "https://be.sipher.xyz/api/sipher/v1.1"
 // Test URL
-// export const testURL = "https://be.sipherion.com/api/sipher/v1.1"
+// export const baseURL = "https://be.sipherion.com/api/sipher/v1.1"
 // Starting price of public sale
 export const START_PRICE = 0.9
 // Price step
