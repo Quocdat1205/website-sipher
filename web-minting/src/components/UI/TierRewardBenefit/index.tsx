@@ -7,10 +7,9 @@ import DataDutchAuction from "./DataDutchAuction"
 import DataRankBenefit from "./DataRankBenefit"
 import TitleAuctionBenefits from "./TitleAuctionBenefits"
 import DataAuctionBenefits from "./DataAuctionBenefits"
+import { MotionFlex } from "@components/shared/Motion"
 
-interface Props {}
-
-const TierRewardBenefit = (props: Props) => {
+const TierRewardBenefit = () => {
     return (
         <Flex align="center" flexDir="column" w="full" h="full" p={4}>
             <Flex w="full" maxW="80rem" flexDir="column">
@@ -22,7 +21,15 @@ const TierRewardBenefit = (props: Props) => {
                         </Text>
                     </Flex>
                 </NextLink>
-                <Flex flex={1} align="center" direction="column">
+                <MotionFlex
+                    flex={1}
+                    align="center"
+                    direction="column"
+                    initial={{ y: 200, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
+                >
                     <Grid templateRows="auto 1fr auto" templateColumns="1fr 3fr" gap={0.5} w="full" overflow="hidden">
                         <GridItem px={4} py={2} colSpan={2} rowSpan={1}>
                             <Flex w="full" justify="center">
@@ -55,7 +62,7 @@ const TierRewardBenefit = (props: Props) => {
                         </GridItem>
                     </Grid>
                     <DataDutchAuction />
-                </Flex>
+                </MotionFlex>
             </Flex>
         </Flex>
     )
