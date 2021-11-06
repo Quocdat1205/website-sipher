@@ -95,8 +95,8 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             <ModalContent bg="transparent">
                                 <ModalBody>
                                     <Flex pos="relative" justify="center" align="center" direction="column">
-                                        <Box mb={2}>
-                                            <Img maxW="full" w={"65vh"} src={tier.imageTier} alt="reward" />
+                                        <Box>
+                                            <Img maxH={"65vh"} src={tier.imageTier} alt="reward" />
                                         </Box>
                                         <Text
                                             pos="absolute"
