@@ -8,7 +8,7 @@ const TierRewardBenefitPage: NextPageWithLayout = () => {
     return (
         <>
             <Head>
-                <title>Tier Reward Benefits</title>
+                <title>Tier Reward Benefits | Sipher</title>
             </Head>
             <TierRewardBenefit />
         </>

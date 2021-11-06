@@ -42,7 +42,7 @@ const NFTList = ({ race }: Props) => {
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex align="center">
                         <Spinner size="sm" mr={2} />
-                        <Text>Loading</Text>
+                        <Text fontWeight={500}>Loading</Text>
                     </Flex>
                 </Flex>
             )
@@ -50,8 +50,12 @@ const NFTList = ({ race }: Props) => {
             return (
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex align="center" direction="column">
-                        <Text fontSize="lg">Failed to get data!</Text>
-                        <Text color="whiteAlpha.600">Try again later.</Text>
+                        <Text fontSize="lg" fontWeight={500}>
+                            Failed to get data!
+                        </Text>
+                        <Text color="whiteAlpha.600" fontWeight={500}>
+                            Try again later.
+                        </Text>
                     </Flex>
                 </Flex>
             )
@@ -59,7 +63,7 @@ const NFTList = ({ race }: Props) => {
     return (
         <Flex w="full" justify="center" p={4}>
             <Flex flexDir="column" h="full" w="full" overflow="hidden" maxW="64rem">
-                <Text textAlign="center" mb={4}>
+                <Text textAlign="center" mb={4} fontWeight={500}>
                     You currently have{" "}
                     <chakra.span fontWeight={500} color="main.yellow">
                         {isFetching ? "..." : total}
@@ -74,7 +78,7 @@ const NFTList = ({ race }: Props) => {
                         style={{ width: "100%", overflow: "hidden" }}
                         loader={
                             <Flex w="full" flex={1} align="center" justify="center" mt={4}>
-                                <Flex align="center">
+                                <Flex align="center" fontWeight={500}>
                                     <Spinner size="sm" mr={2} />
                                     <Text>Loading</Text>
                                 </Flex>

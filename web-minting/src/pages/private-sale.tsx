@@ -8,7 +8,7 @@ const MintingPrivate: NextPageWithLayout = () => {
     return (
         <>
             <Head>
-                <title>Private Sale</title>
+                <title>Private Sale | Sipher</title>
             </Head>
             <PrivateSale mode="PRIVATE_SALE" />
         </>

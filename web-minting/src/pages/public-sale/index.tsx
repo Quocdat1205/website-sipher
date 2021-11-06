@@ -8,7 +8,7 @@ const MintingPublic: NextPageWithLayout = () => {
     return (
         <>
             <Head>
-                <title>Public Sale</title>
+                <title>Public Sale | Sipher</title>
             </Head>
             <PublicSale />
         </>

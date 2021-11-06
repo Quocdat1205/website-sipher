@@ -6,7 +6,7 @@ import Metadata from "@components/shared/Metadata"
 const FagPage: NextPageWithLayout = () => {
     return (
         <>
-            <Metadata title="FAQ" description="Sipher's frequently asked questions" />
+            <Metadata title="FAQ | Sipher" description="Sipher's frequently asked questions" />
             <FagUI />
         </>
     )

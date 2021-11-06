@@ -8,7 +8,7 @@ const FreeMinting: NextPageWithLayout = () => {
     return (
         <>
             <Head>
-                <title>Free Minting</title>
+                <title>Free Minting | Sipher</title>
             </Head>
             <PrivateSale mode="FREE_MINTING" />
         </>

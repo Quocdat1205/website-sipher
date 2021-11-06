@@ -7,7 +7,7 @@ import { NextPageWithLayout } from "./_app"
 const NewsPage: NextPageWithLayout = () => {
     return (
         <>
-            <Metadata title="News" description="Sipheria worlds news at your fingertips!" />
+            <Metadata title="News | Sipher" description="Sipheria worlds news at your fingertips!" />
             <NewsUI />
         </>
     )

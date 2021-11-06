@@ -8,7 +8,7 @@ const WordSipherPage: NextPageWithLayout = () => {
     return (
         <>
             <Metadata
-                title="World Of Sipher"
+                title="World Of Sipher | Sipher"
                 description="Learn why we're the next awesome blockchain game you'll play!"
             />
             <WorldOfSipherUI />
