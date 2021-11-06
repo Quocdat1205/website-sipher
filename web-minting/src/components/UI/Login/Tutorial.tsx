@@ -2,24 +2,40 @@ import { Box, Flex, chakra, Text } from "@chakra-ui/react"
 import { BsInfoCircle } from "react-icons/bs"
 import { Typo } from "@components/shared/Typo"
 import { MotionFlex } from "@components/shared/Motion"
-
+import { FiArrowLeft } from "react-icons/fi"
+import Link from "next/link"
 const MetaMaskTutorial = ({}) => {
     return (
-        <Box bg="url(/images/bgMintingNew.png)" w="100%" h="100vh" bgPosition="center" bgSize="cover">
-            <Flex
-                justify="center"
-                align="center"
-                w="full"
-                h="full"
-                bgColor="blackAlpha.500"
-                color="whiteAlpha.900"
-                direction="column"
-                p={4}
-            >
+        <Flex
+            direction="column"
+            bg="url(/images/bgMintingNew.png)"
+            w="100%"
+            h="100vh"
+            bgPosition="center"
+            bgSize="cover"
+            bgColor="blackAlpha.500"
+            p={4}
+        >
+            <Link href="/">
+                <Flex
+                    _hover={{ color: "main.yellow" }}
+                    color="white"
+                    mb={4}
+                    cursor="pointer"
+                    wrap="wrap"
+                    align="center"
+                >
+                    <FiArrowLeft size="1.2rem" />
+                    <Text color="inherit" ml={2} fontWeight={500}>
+                        BACK TO HOME
+                    </Text>
+                </Flex>
+            </Link>
+            <Flex align="center" justify="center" w="full" flex={1} color="whiteAlpha.900" direction="column" p={4}>
                 <MotionFlex
                     direction="column"
                     w="full"
-                    maxW="32rem"
+                    maxW="28rem"
                     initial={{ x: "100%", opacity: 0 }}
                     animate={{ x: "0", opacity: 1 }}
                     transition={{ type: "tween", ease: "easeOut", duration: 0.5 }}
@@ -31,7 +47,7 @@ const MetaMaskTutorial = ({}) => {
                     </Typo.Heading>
                     <Flex w="full" justify="center" mb={4}>
                         <Box>
-                            <Text fontSize="lg">
+                            <Text fontWeight={500}>
                                 1. Install MetaMask extension{" "}
                                 <chakra.span
                                     as="a"
@@ -46,13 +62,13 @@ const MetaMaskTutorial = ({}) => {
                                 </chakra.span>
                                 .
                             </Text>
-                            <Text fontSize="lg">2. Follow the instruction to set up your wallet.</Text>
-                            <Text fontSize="lg">3. Reload this page and connect to your wallet.</Text>
+                            <Text fontWeight={500}>2. Follow the instruction to set up your wallet.</Text>
+                            <Text fontWeight={500}>3. Reload this page and connect to your wallet.</Text>
                         </Box>
                     </Flex>
-                    <Text ml={4} textAlign="justify">
+                    <Text textAlign="justify" fontSize="sm" color="whiteAlpha.700" fontWeight={500}>
                         <chakra.span>
-                            <BsInfoCircle style={{ display: "inline" }} size="1.2rem" />
+                            <BsInfoCircle style={{ display: "inline" }} size="1rem" />
                         </chakra.span>{" "}
                         When you created your first ethereum wallet, be sure to keep your mnemonic (presented as a
                         random 12-word phrase) at someplace safe. If you lose or forget the mnemonic, you might lose
@@ -60,7 +76,7 @@ const MetaMaskTutorial = ({}) => {
                     </Text>
                 </MotionFlex>
             </Flex>
-        </Box>
+        </Flex>
     )
 }
 
