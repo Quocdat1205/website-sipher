@@ -86,7 +86,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                         <Modal
                             scrollBehavior="outside"
                             isCentered
-                            size="3xl"
+                            size="4xl"
                             isOpen={isOpen}
                             onClose={onClose}
                             motionPreset="slideInBottom"
