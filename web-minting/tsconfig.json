@@ -28,6 +28,6 @@
             "@@types": ["src/types/index"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../web-components/src/components/ViewCollectionButton.tsx"],
     "exclude": ["node_modules"]
 }

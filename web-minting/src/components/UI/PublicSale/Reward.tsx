@@ -84,25 +84,35 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                     </Flex>
                     <Flex w="full" justify="center" mb={4} cursor="pointer" onClick={onOpen}>
                         <Img h={"15rem"} src={tier.imageTier} alt="reward" />
-                        <Modal scrollBehavior="outside" isCentered size="4xl" isOpen={isOpen} onClose={onClose}>
-                            <ModalOverlay bg="blackAlpha.700" />
-                            <ModalContent bg="blackAlpha.200" boxShadow="none">
-                                <ModalBody p={0} position="relative" overflow="hidden">
-                                    <ModalCloseButton
-                                        size="lg"
-                                        bgColor="white"
-                                        bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
-                                        color="white"
-                                        _hover={{ bgColor: "none" }}
-                                        _focus={{ boxShadow: "none" }}
-                                        zIndex="1"
-                                    />
-                                    <Flex justify="center" align="center" p={4} position="relative">
-                                        <Img
-                                            maxH={["auto", "24rem", "30rem", "36rem", "40rem"]}
-                                            src={tier.imageTier}
-                                            alt="reward"
-                                        />
+                        <Modal
+                            scrollBehavior="outside"
+                            isCentered
+                            size="2xl"
+                            isOpen={isOpen}
+                            onClose={onClose}
+                            motionPreset="slideInBottom"
+                        >
+                            <ModalOverlay />
+                            <ModalContent bg="transparent">
+                                <ModalBody>
+                                    <Flex justify="center" align="center" direction="column">
+                                        <Box mb={2}>
+                                            <Img
+                                                maxW="full"
+                                                w={["full", "15rem", "25rem", "35rem"]}
+                                                src={tier.imageTier}
+                                                alt="reward"
+                                            />
+                                        </Box>
+                                        <Text
+                                            fontWeight="bold"
+                                            bgGradient="linear(to-b, bgGradient.orange)"
+                                            bgClip="text"
+                                            cursor="pointer"
+                                            onClick={onClose}
+                                        >
+                                            CLOSE
+                                        </Text>
                                     </Flex>
                                 </ModalBody>
                             </ModalContent>

@@ -1,13 +1,12 @@
 import { Flex, SimpleGrid, Box, Spinner, Text, chakra } from "@chakra-ui/react"
-import React, { Fragment, useState } from "react"
+import React, { Fragment } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
 import { useInfiniteQuery, useQuery } from "react-query"
 import Card from "./Card"
 import { getNFTs, getNFTQuantity } from "@api/index"
 import useWalletContext from "@hooks/useWalletContext"
 import { NFTRace } from "@@types"
-import LinkButton from "@components/shared/LinkButton"
-import ViewCollectionButton from "@components/shared/ViewCollectionButton"
+import { ViewCollectionButton } from "@sipher/web-components"
 
 interface Props {
     race: NFTRace
