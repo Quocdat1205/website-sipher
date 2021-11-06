@@ -1,5 +1,5 @@
 import { checkSmartContract } from "@api/smartContract"
-import { PUBLIC_CAP, PUBLIC_MINTING_LIMIT } from "@constant/index"
+import { PUBLIC_CAP } from "@constant/index"
 import { getMetamaskBalance } from "@helper/metamask"
 import { getPublicCurrentPrice, sendSmartContract } from "@helper/smartContract"
 import useTimeAndPrice from "@components/UI/PublicSale/useTimeAndPrice"
@@ -9,6 +9,7 @@ import { useQueryClient } from "react-query"
 import useSaleRecord from "@hooks/useSaleRecord"
 import { useTimer } from "react-timer-hook"
 import useTransactionToast from "@hooks/useTransactionToast"
+import usePublicCapLimit from "@hooks/usePublicCapLimit"
 const usePublicSale = () => {
     const {
         states,
@@ -17,6 +18,7 @@ const usePublicSale = () => {
         isLoadingUserRecord,
         config: { saleConfig, salePhase, salePhaseName },
     } = useWalletContext()
+    const { publicSaleCapLimit } = usePublicCapLimit()
     const queryClient = useQueryClient()
     const [isMinting, setIsMinting] = useState(false)
     const [slot, setSlot] = useState(0)
@@ -64,7 +66,7 @@ const usePublicSale = () => {
         }
 
         /** Check public cap overflow */
-        if (publicSaleRecord + slot > PUBLIC_MINTING_LIMIT) {
+        if (publicSaleRecord + slot > publicSaleCapLimit!) {
             toast({ status: "error", title: "Failed to mint!", message: "Public sale capacity overflow." })
         }
 

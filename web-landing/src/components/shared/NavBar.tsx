@@ -8,6 +8,7 @@ import { useRouter } from "next/router"
 import { BaseNavigationBar, LinkButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
+import { ViewCollectionButton } from "@sipher/web-components"
 interface NavBarProps {
     isChildMenu?: boolean
 }
@@ -45,19 +46,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         >
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
-                    <LinkButton
-                        text="View Collection On Opensea"
-                        href="https://opensea.io/collection/sipherianflash"
-                        sx={{
-                            ".childmenu::-webkit-scrollbar": {
-                                display: "none",
-                            },
-                            "@media (max-width: 1200px)": {
-                                display: "none",
-                            },
-                        }}
-                    />
-
+                    <ViewCollectionButton />
                     <Grid
                         ml={4}
                         rounded="full"

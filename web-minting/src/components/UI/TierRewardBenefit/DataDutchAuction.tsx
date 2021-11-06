@@ -2,11 +2,9 @@ import { Flex, Box, UnorderedList, ListItem, Text } from "@chakra-ui/react"
 import { dataDutchAuction } from "@constant/content/tierRewardBenefits"
 import React from "react"
 
-interface Props {}
-
-const DataDutchAuction = (props: Props) => {
+const DataDutchAuction = () => {
     return (
-        <Flex bg="rgba(0, 0, 0, 0.9)" p={8} mt={8} flexDir="column" w="full">
+        <Flex bg="rgba(0, 0, 0, 0.9)" p={8} flexDir="column" w="full">
             <Text color="main.yellow" fontWeight={500} textTransform="uppercase" mb={4}>
                 Minting your NFT at or above 0.4 ETH, will enter into a raffle that has a chance to win a Character
                 Vessel Core upon game launch!! (500 Vessel cores to be raffled away)

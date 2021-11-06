@@ -8,7 +8,7 @@ import { NextPageWithLayout } from "./_app"
 const NFTPage: NextPageWithLayout = () => {
     return (
         <>
-            <Metadata title="NFT" description="Find all of our characters within clicks!" />
+            <Metadata title="NFT | Sipher" description="Find all of our characters within clicks!" />
             <NFTUI />
         </>
     )

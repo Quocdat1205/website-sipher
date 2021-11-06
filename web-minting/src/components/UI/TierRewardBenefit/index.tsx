@@ -1,5 +1,4 @@
 import { Flex, Grid, Text, GridItem } from "@chakra-ui/react"
-import { Typo } from "@components/shared/Typo"
 import NextLink from "next/link"
 import { FiArrowLeft } from "react-icons/fi"
 import React from "react"
@@ -8,6 +7,11 @@ import DataRankBenefit from "./DataRankBenefit"
 import TitleAuctionBenefits from "./TitleAuctionBenefits"
 import DataAuctionBenefits from "./DataAuctionBenefits"
 import { MotionFlex } from "@components/shared/Motion"
+
+const notes = [
+    "* Free Merchandise on Maddies.co. You just pay Shipping and Handling plus Taxes",
+    "** All Sculptures are Limited and not found in the 10,000 Neko and Inu Collection",
+]
 
 const TierRewardBenefit = () => {
     return (
@@ -61,6 +65,13 @@ const TierRewardBenefit = () => {
                             <DataAuctionBenefits />
                         </GridItem>
                     </Grid>
+                    <Flex direction="column" my={8} align="center">
+                        {notes.map(note => (
+                            <Text key={note} fontWeight={500} color="main.yellow">
+                                {note}
+                            </Text>
+                        ))}
+                    </Flex>
                     <DataDutchAuction />
                 </MotionFlex>
             </Flex>

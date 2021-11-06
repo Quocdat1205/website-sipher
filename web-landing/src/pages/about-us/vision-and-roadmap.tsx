@@ -11,7 +11,7 @@ AboutUsPage.getLayout = (page: ReactElement) => {
     return (
         <>
             <Head>
-                <title>{`Vision & Roadmap`}</title>
+                <title>{`Vision & Roadmap | Sipher`}</title>
             </Head>
             <AboutUsLayout>{page}</AboutUsLayout>
         </>

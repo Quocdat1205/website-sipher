@@ -1,5 +1,5 @@
-import axios from "axios"
-import config from "./config"
+import fetcher from "./fetcher"
+
 export interface IUser {
     address: string
     nonce: number
@@ -7,7 +7,7 @@ export interface IUser {
 
 /** Get user from address */
 export const getUsersByAddress = async (address: string): Promise<IUser> => {
-    const { data } = await axios.get(`/login?publicAddress=${address}`, config)
+    const { data } = await fetcher.get(`/login?publicAddress=${address}`)
 
     return {
         nonce: data.nonce,
@@ -17,7 +17,7 @@ export const getUsersByAddress = async (address: string): Promise<IUser> => {
 
 /** Sign up user by wallet address */
 export const signupUser = async (address: string): Promise<IUser> => {
-    const { data } = await axios.post(`/login`, { publicAddress: address }, config)
+    const { data } = await fetcher.post(`/login`, { publicAddress: address })
     return data
 }
 
@@ -25,7 +25,7 @@ export const signupUser = async (address: string): Promise<IUser> => {
 export const authenticateUser = async (address: string, signature: string): Promise<string> => {
     const {
         data: { accessToken },
-    } = await axios.post("/login/authentication", { publicAddress: address, signature }, config)
+    } = await fetcher.post("/login/authentication", { publicAddress: address, signature })
     return accessToken
 }
 

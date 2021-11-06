@@ -8,7 +8,7 @@ const InventoryPage: NextPageWithLayout = () => {
     return (
         <>
             <Head>
-                <title>Inventory: INU</title>
+                <title>Inventory: INU | Sipher</title>
             </Head>
             <NFTList race="INU" />
         </>

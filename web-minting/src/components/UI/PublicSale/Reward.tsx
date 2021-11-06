@@ -1,4 +1,18 @@
-import { Flex, ListItem, Text, UnorderedList, Img, Box, chakra } from "@chakra-ui/react"
+import {
+    Flex,
+    ListItem,
+    Text,
+    UnorderedList,
+    Img,
+    Box,
+    chakra,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalBody,
+} from "@chakra-ui/react"
 import { useRouter } from "next/router"
 
 interface RewardProps {
@@ -7,6 +21,7 @@ interface RewardProps {
 }
 const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
     const router = useRouter()
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const getTier = () => {
         if (currentPublicPrice >= 0.85)
@@ -17,7 +32,7 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                 content: [
                     "1 Free Exclusive Sipher Bomber Jacket",
                     "1 Free Neko & Inu Limited Edition Sculptures",
-                    "Personalized Thank You card",
+                    "Name forever immortalized",
                 ],
             }
         if (currentPublicPrice >= 0.75)
@@ -67,8 +82,41 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             {tier.tier}
                         </Text>
                     </Flex>
-                    <Flex w="full" justify="center" mb={4}>
-                        <Img w={"14rem"} src={tier.imageTier} alt="reward" />
+                    <Flex w="full" justify="center" mb={4} cursor="pointer" onClick={onOpen}>
+                        <Img h={"15rem"} src={tier.imageTier} alt="reward" />
+                        <Modal
+                            scrollBehavior="outside"
+                            isCentered
+                            size="2xl"
+                            isOpen={isOpen}
+                            onClose={onClose}
+                            motionPreset="slideInBottom"
+                        >
+                            <ModalOverlay />
+                            <ModalContent bg="transparent">
+                                <ModalBody>
+                                    <Flex justify="center" align="center" direction="column">
+                                        <Box mb={2}>
+                                            <Img
+                                                maxW="full"
+                                                w={["full", "15rem", "25rem", "35rem"]}
+                                                src={tier.imageTier}
+                                                alt="reward"
+                                            />
+                                        </Box>
+                                        <Text
+                                            fontWeight="bold"
+                                            bgGradient="linear(to-b, bgGradient.orange)"
+                                            bgClip="text"
+                                            cursor="pointer"
+                                            onClick={onClose}
+                                        >
+                                            CLOSE
+                                        </Text>
+                                    </Flex>
+                                </ModalBody>
+                            </ModalContent>
+                        </Modal>
                     </Flex>
                     <Text color="main.yellow" fontWeight={500}>
                         YOU WILL RECEIVE:

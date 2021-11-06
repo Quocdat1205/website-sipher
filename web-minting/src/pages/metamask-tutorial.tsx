@@ -4,7 +4,7 @@ const MetamaskTutorial = ({}) => {
     return (
         <>
             <Head>
-                <title>MetaMask Tutorial</title>
+                <title>MetaMask Tutorial | Sipher</title>
             </Head>
             <MetaMaskTutorial />
         </>
