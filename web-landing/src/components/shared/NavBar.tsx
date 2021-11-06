@@ -46,8 +46,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
                     <LinkButton
-                        text="Join Our Discord Community"
-                        href="https://discord.gg/sipherxyz"
+                        text="View Collection On Opensea"
+                        href="https://opensea.io/collection/sipherianflash"
                         sx={{
                             ".childmenu::-webkit-scrollbar": {
                                 display: "none",
