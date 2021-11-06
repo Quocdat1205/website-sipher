@@ -10,7 +10,6 @@ import {
     Modal,
     ModalOverlay,
     ModalContent,
-    ModalCloseButton,
     ModalBody,
 } from "@chakra-ui/react"
 import { useRouter } from "next/router"
@@ -92,19 +91,17 @@ const Reward = ({ isOnTier, currentPublicPrice }: RewardProps) => {
                             onClose={onClose}
                             motionPreset="slideInBottom"
                         >
-                            <ModalOverlay bg="blackAlpha.800" />
+                            <ModalOverlay bg="rgba(0,0,0, 0.88)" />
                             <ModalContent bg="transparent">
                                 <ModalBody>
-                                    <Flex justify="center" align="center" direction="column">
+                                    <Flex pos="relative" justify="center" align="center" direction="column">
                                         <Box mb={2}>
-                                            <Img
-                                                maxW="full"
-                                                w={["full", "15rem", "25rem", "35rem"]}
-                                                src={tier.imageTier}
-                                                alt="reward"
-                                            />
+                                            <Img maxW="full" w={"65vh"} src={tier.imageTier} alt="reward" />
                                         </Box>
                                         <Text
+                                            pos="absolute"
+                                            right="0"
+                                            top="0"
                                             fontWeight="bold"
                                             bgGradient="linear(to-b, bgGradient.orange)"
                                             bgClip="text"
