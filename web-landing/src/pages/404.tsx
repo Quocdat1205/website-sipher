@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/layout"
 import { Typo } from "@components/shared"
 import LinkButton from "@components/shared/LinkButton"
-import Head from "next/head"
+import Metadata from "@components/shared/Metadata"
 import { useRouter } from "next/router"
 interface NotfoundPageProps {}
 
@@ -9,9 +9,7 @@ const NotfoundPage = ({}: NotfoundPageProps) => {
     const router = useRouter()
     return (
         <>
-            <Head>
-                <title>Page not found | Sipher</title>
-            </Head>
+            <Metadata title="Page not found | Sipher" description="" />
             <Flex
                 w="full"
                 h="100vh"
