@@ -63,9 +63,10 @@ const PublicSale = () => {
                     <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
                         <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
                             <chakra.span fontWeight="semibold" color="main.yellow">
-                                {publicSaleCapLimit ? numberWithCommas(publicSaleCapLimit - publicSale) : "..."}
+                                {0}
+                                {/* {publicSaleCapLimit ? numberWithCommas(publicSaleCapLimit - publicSale) : "..."} */}
                             </chakra.span>{" "}
-                            {publicSaleCapLimit && publicSaleCapLimit - publicSale > 1 ? "NEKOS" : "NEKO"} REMAINING
+                            LEFT TO MINT
                         </Typo.Heading>
                     </GridItem>
                     <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
