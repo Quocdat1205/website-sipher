@@ -1,21 +1,19 @@
 import { NextPageWithLayout } from "@pages/_app"
 import { ReactElement } from "react"
-import Head from "next/head"
 import VisionAndRoadMap from "@components/UI/AboutUsPage/VisionAndRoadMap"
 import AboutUsLayout from "@components/UI/AboutUsLayout"
+import Metadata from "@components/shared/Metadata"
 const AboutUsPage: NextPageWithLayout = () => {
-    return <VisionAndRoadMap />
+    return (
+        <>
+            <Metadata title="Vision & Roadmap | Sipher" description="Get to know us and Sipher more!" />
+            <VisionAndRoadMap />
+        </>
+    )
 }
 
 AboutUsPage.getLayout = (page: ReactElement) => {
-    return (
-        <>
-            <Head>
-                <title>{`Vision & Roadmap | Sipher`}</title>
-            </Head>
-            <AboutUsLayout>{page}</AboutUsLayout>
-        </>
-    )
+    return <AboutUsLayout>{page}</AboutUsLayout>
 }
 
 export default AboutUsPage
