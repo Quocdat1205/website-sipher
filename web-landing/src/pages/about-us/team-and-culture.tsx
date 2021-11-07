@@ -3,19 +3,18 @@ import { ReactElement } from "react"
 import Head from "next/head"
 import TeamAndCulture from "@components/UI/AboutUsPage/TeamAndCulture"
 import AboutUsLayout from "@components/UI/AboutUsLayout"
+import Metadata from "@components/shared/Metadata"
 const AboutUsPage: NextPageWithLayout = () => {
-    return <TeamAndCulture />
+    return (
+        <>
+            <Metadata title="Team & Culture | Sipher" description="Get to know us and Sipher more!" />
+            <TeamAndCulture />
+        </>
+    )
 }
 
 AboutUsPage.getLayout = (page: ReactElement) => {
-    return (
-        <>
-            <Head>
-                <title>{`Team & Culture | Sipher`}</title>
-            </Head>
-            <AboutUsLayout>{page}</AboutUsLayout>
-        </>
-    )
+    return <AboutUsLayout>{page}</AboutUsLayout>
 }
 
 export default AboutUsPage

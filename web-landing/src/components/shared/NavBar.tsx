@@ -1,11 +1,11 @@
 // * DESCRIPTION:
 
-import { Grid, Flex } from "@chakra-ui/react"
+import { Grid, Flex, Box } from "@chakra-ui/react"
 import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
-import { BaseNavigationBar, LinkButton } from "."
+import { BaseNavigationBar } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
 import { ViewCollectionButton } from "@sipher/web-components"
@@ -46,7 +46,18 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         >
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
-                    <ViewCollectionButton />
+                    <Box
+                        sx={{
+                            "@media (max-width: 1200px) and (min-width: 960px)": {
+                                display: "none",
+                            },
+                            "@media (max-width: 480px)": {
+                                display: "none",
+                            },
+                        }}
+                    >
+                        <ViewCollectionButton />
+                    </Box>
                     <Grid
                         ml={4}
                         rounded="full"
