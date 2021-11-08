@@ -67,6 +67,7 @@ const usePublicSale = () => {
         /** Check public cap overflow */
         if (publicSaleRecord + slot > publicSaleCapLimit!) {
             toast({ status: "error", title: "Failed to mint!", message: "Public sale capacity overflow." })
+            return
         }
 
         /** Start minting if there's nothing wrong */
