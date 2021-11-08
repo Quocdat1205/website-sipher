@@ -63,7 +63,7 @@ const PublicSale = () => {
                             <chakra.span fontWeight="semibold" color="main.yellow">
                                 {publicSaleCapLimit ? numberWithCommas(publicSaleCapLimit - publicSale) : "..."}
                             </chakra.span>{" "}
-                            LEFT TO MINT
+                            Remaining
                         </Typo.Heading>
                     </GridItem>
                     <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={2} rowSpan={1}>
