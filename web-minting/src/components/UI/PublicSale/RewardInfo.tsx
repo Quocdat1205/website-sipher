@@ -6,7 +6,7 @@ const RewardInfo = () => {
 
     return (
         <Flex direction="column" h="full">
-            <Text color="main.yellow" fontWeight="500">
+            {/* <Text color="main.yellow" fontWeight="500">
                 ABOUT REWARD TIERS
             </Text>
             <Box flex={1} overflow="auto">
@@ -31,7 +31,7 @@ const RewardInfo = () => {
                         </Text>
                     </ListItem>
                 </UnorderedList>
-            </Box>
+            </Box> */}
         </Flex>
     )
 }
