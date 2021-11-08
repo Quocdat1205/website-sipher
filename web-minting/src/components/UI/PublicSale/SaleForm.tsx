@@ -38,7 +38,8 @@ const SaleForm = ({
                     onChange={setSlot}
                     maxValue={maxSlot}
                     value={currentSlot}
-                    isDisabled={!isOnSale || isMinting}
+                    // isDisabled={!isOnSale || isMinting}
+                    isDisabled
                 />
                 <Text fontWeight="bold">
                     <chakra.span fontSize="xl">{(currentSlot * price).toFixed(2)}</chakra.span> ETH + GAS
@@ -52,7 +53,8 @@ const SaleForm = ({
                 onClick={() => handleMint()}
                 isLoading={isMinting}
                 loadingText="LOADING..."
-                disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
+                // disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
+                disabled
                 py={3}
             />
             {boughtNFT > 0 && (
