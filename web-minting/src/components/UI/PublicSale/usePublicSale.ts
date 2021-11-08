@@ -1,15 +1,12 @@
-import { checkSmartContract } from "@api/smartContract"
+import { checkSmartContract } from "@api"
 import { PUBLIC_CAP } from "@constant/index"
-import { getMetamaskBalance } from "@helper/metamask"
-import { getPublicCurrentPrice, sendSmartContract } from "@helper/smartContract"
-import useTimeAndPrice from "@components/UI/PublicSale/useTimeAndPrice"
-import useWalletContext from "@hooks/useWalletContext"
+import { getMetamaskBalance, getPublicCurrentPrice, sendSmartContract } from "@helper"
+import useTimeAndPrice from "./useTimeAndPrice"
+import { useWalletContext, useSaleRecord, useTransactionToast, usePublicCapLimit } from "@hooks"
 import { useState } from "react"
 import { useQueryClient } from "react-query"
-import useSaleRecord from "@hooks/useSaleRecord"
 import { useTimer } from "react-timer-hook"
-import useTransactionToast from "@hooks/useTransactionToast"
-import usePublicCapLimit from "@hooks/usePublicCapLimit"
+
 const usePublicSale = () => {
     const {
         states,
@@ -19,11 +16,13 @@ const usePublicSale = () => {
         config: { saleConfig, salePhase, salePhaseName },
     } = useWalletContext()
     const { publicSaleCapLimit } = usePublicCapLimit()
+    const { publicSale } = useSaleRecord()
     const queryClient = useQueryClient()
     const [isMinting, setIsMinting] = useState(false)
     const [slot, setSlot] = useState(0)
-    const maxSlot = PUBLIC_CAP - (userRecord ? userRecord.publicBought : 0)
-    const isOnSale = salePhaseName === "PUBLIC_SALE"
+    const maxSlot = PUBLIC_CAP - userRecord!.publicBought
+    const nftRemaining = publicSaleCapLimit ? publicSaleCapLimit - publicSale : "..."
+    const isOnSale = salePhaseName === "PUBLIC_SALE" && nftRemaining > 0
     const timeAndPrice = useTimeAndPrice({
         publicTime: saleConfig!.publicTime,
         publicEndTime: saleConfig!.publicEndTime,
@@ -99,6 +98,7 @@ const usePublicSale = () => {
         timer,
         isPriceDecreasing,
         isOnTier,
+        nftRemaining,
     }
 }
 

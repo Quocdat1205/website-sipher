@@ -11,8 +11,8 @@ type ChakraToastOptions = {
     status: ComponentProps<typeof TransactionToast>["status"]
     duration?: number
 }
-// hehe
-export const useChakraToast = (
+
+export const useTransactionToast = (
     { defaultDuration, isPublic }: UseChakraToastOptions = { defaultDuration: 6000, isPublic: false }
 ) => {
     const toast = useToast()
@@ -33,4 +33,4 @@ export const useChakraToast = (
     }, [])
 }
 
-export default useChakraToast
+export default useTransactionToast

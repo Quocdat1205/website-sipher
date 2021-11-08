@@ -1,11 +1,9 @@
-import { checkSmartContract } from "@api/smartContract"
-import { getMetamaskBalance } from "@helper/metamask"
-import { sendSmartContract } from "@helper/smartContract"
-import useWalletContext from "@hooks/useWalletContext"
+import { checkSmartContract } from "@api"
+import { getMetamaskBalance, sendSmartContract } from "@helper"
+import { useTransactionToast, useWalletContext } from "@hooks"
 import { useState } from "react"
 import { useQueryClient } from "react-query"
 import { useTimer } from "react-timer-hook"
-import useTransactionToast from "@hooks/useTransactionToast"
 
 const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const price = mode === "PRIVATE_SALE" ? 0.1 : 0

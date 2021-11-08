@@ -1,13 +1,13 @@
-import { metaMaskProvider } from "@helper/metamask"
+import { metaMaskProvider } from "@helper"
 import { useEffect } from "react"
 
-interface UseMetaMaskListenerProps {
+export interface UseMetaMaskListenerProps {
     onAccountsChanged: (accounts: string[]) => void
     onChainChanged: () => void
 }
 
 /** Listen to "chainChanged" and "accountsChanged" events */
-const useMetaMaskListener = ({ onAccountsChanged, onChainChanged }: UseMetaMaskListenerProps) => {
+export const useMetaMaskListener = ({ onAccountsChanged, onChainChanged }: UseMetaMaskListenerProps) => {
     useEffect(() => {
         if (metaMaskProvider) {
             metaMaskProvider.on("accountsChanged", onAccountsChanged)

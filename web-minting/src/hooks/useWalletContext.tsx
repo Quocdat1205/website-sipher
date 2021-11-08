@@ -10,6 +10,6 @@ export const WalletProvider = ({ children }) => {
     return <WalletContext.Provider value={hook}>{children}</WalletContext.Provider>
 }
 
-const useWalletContext = () => useContext(WalletContext) as IWalletContext
+export const useWalletContext = () => useContext(WalletContext) as IWalletContext
 
 export default useWalletContext

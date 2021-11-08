@@ -6,10 +6,9 @@ import SaleForm from "./SaleForm"
 import DutchAuction from "./DutchAuction"
 import usePublicSale from "./usePublicSale"
 import { START_PRICE } from "@constant/index"
-import { numberWithCommas } from "@utils/index"
-import useSaleRecord from "@hooks/useSaleRecord"
+import { numberWithCommas } from "@utils"
+import { useSaleRecord, usePublicCapLimit } from "@hooks"
 import { MotionFlex } from "@components/shared/Motion"
-import usePublicCapLimit from "@hooks/usePublicCapLimit"
 
 const PublicSale = () => {
     const {
@@ -24,11 +23,9 @@ const PublicSale = () => {
         userRecord,
         currentPhase,
         timer,
-        isOnTier,
         isPriceDecreasing,
+        nftRemaining,
     } = usePublicSale()
-    const { publicSale } = useSaleRecord()
-    const { publicSaleCapLimit } = usePublicCapLimit()
 
     return (
         <MotionFlex
@@ -61,7 +58,7 @@ const PublicSale = () => {
                     <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
                         <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
                             <chakra.span fontWeight="semibold" color="main.yellow">
-                                {publicSaleCapLimit ? numberWithCommas(publicSaleCapLimit - publicSale) : "..."}
+                                {nftRemaining}
                             </chakra.span>{" "}
                             Remaining
                         </Typo.Heading>

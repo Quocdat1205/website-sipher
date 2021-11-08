@@ -1,7 +1,7 @@
 import { chakra } from "@chakra-ui/system"
 import { useCallback, useEffect, useState } from "react"
 
-const useTypeEffect = () => {
+export const useTypeEffect = () => {
     const [text, setText] = useState("")
     const [currentText, setcurrentText] = useState("")
     const [forward, setForward] = useState(true)
