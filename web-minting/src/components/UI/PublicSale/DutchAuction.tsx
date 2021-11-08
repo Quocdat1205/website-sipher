@@ -45,7 +45,7 @@ const DutchAuction = ({}: DutchAuctionProps) => {
                             transaction will take time to be accepted!
                         </Text>
                     </ListItem>
-                    <ListItem>
+                    {/* <ListItem>
                         <Text color="whiteAlpha.700" fontWeight={500}>
                             Minting your NFT at or above 0.4 ETH,{" "}
                             <chakra.span color="main.yellow" fontWeight={500}>
@@ -53,7 +53,7 @@ const DutchAuction = ({}: DutchAuctionProps) => {
                                 launch! (500 Vessel cores to be raffled away)
                             </chakra.span>
                         </Text>
-                    </ListItem>
+                    </ListItem> */}
                 </UnorderedList>
             </Box>
         </Flex>

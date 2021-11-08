@@ -10,12 +10,12 @@ interface CountDownScreenProps {
     isIOS?: boolean
 }
 
-const p1 = "Time left until the public sale begins."
+const p1 = "Count down to 2nd Dutch auction."
 const p2 =
     "The private sale for whitelisted members will start right after the public sale ends, and will last for 24 hours. Afterwards, applicable members that qualify for free NEKOs based on our programs & initiatives will have 24 hours to mint. All NEKOs will be revealed 48 hours after this last group of free mints."
 const p11 = "Time left until the public sale ends."
-const startPublicSaleTime = 1636248600000
-const endPublicSaleTime = 1636258800000
+const startPublicSaleTime = 1636390800000
+const endPublicSaleTime = 1636404000000
 
 const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
     const [text, setText] = useState(new Date().getTime() < startPublicSaleTime ? p1 : p11)

@@ -42,8 +42,9 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
             : "ON_GOING"
     const privateSaleStartTimer = useTimer({ expiryTimestamp: new Date(privateTime) })
     const privateSaleEndTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
-    const freeMintingStartTimer = privateSaleEndTimer
-    const freeMintingEndTimer = useTimer({ expiryTimestamp: new Date(endTime) })
+    // const freeMintingStartTimer = privateSaleEndTimer
+    const freeMintingStartTimer = useTimer({ expiryTimestamp: new Date(1636405201000) })
+    const freeMintingEndTimer = useTimer({ expiryTimestamp: new Date(1636491600000) })
     const timer = () => {
         if (currentPhase === "NOT_STARTED")
             return mode === "PRIVATE_SALE" ? privateSaleStartTimer : freeMintingStartTimer
