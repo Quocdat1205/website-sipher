@@ -32,10 +32,10 @@ export const NavBar = ({ isInventoryMenu }: NavBarProps) => {
                     item =>
                         item.id === "Public Sale 2.0" ||
                         item.id === "Inventory" ||
-                        // (item.id === "Private Sale" && states.whitelistInfo.privateCap > 0) ||
-                        // (item.id === "Free Minting" && states.whitelistInfo.freeMintCap > 0)
-                        item.id === "Private Sale" ||
-                        item.id === "Free Minting"
+                        (item.id === "Private Sale" && states.whitelistInfo.privateCap > 0) ||
+                        (item.id === "Free Minting" && states.whitelistInfo.freeMintCap > 0)
+                    // item.id === "Private Sale" ||
+                    // item.id === "Free Minting"
                 )}
             >
                 {/* <TotalSupply /> */}
