@@ -1,13 +1,13 @@
 // Sale contract address
-export const SMARTCONTRACT_SALE_NEKO = "0x39D6Fb4C116a2d41B2b7E73508Ce75326Bc8f830"
+export const SMARTCONTRACT_SALE_NEKO = "0x5e5e307CF868adD1DA654Ddc8BA2A446B7c27946"
 // Neko contract address
-export const SMARTCONTRACT_NEKO = "0x09E0dF4aE51111CA27d6B85708CFB3f1F7cAE982"
+export const SMARTCONTRACT_NEKO = "0x63f1c8F8Cb2D28Fc9e527450ebe54C45891445D7"
 // Rinkeby chain id
-export const CHAIN_ID = "1"
+export const CHAIN_ID = "4"
 // Base URL
-export const baseURL = "https://be.sipher.xyz/api/sipher/v1.1"
+// export const baseURL = "https://be.sipher.xyz/api/sipher/v1.1"
 // Test URL
-// export const baseURL = "https://be.sipherion.com/api/sipher/v1.1"
+export const baseURL = "https://be.sipherion.com/api/sipher/v1.1"
 // Starting price of public sale
 export const START_PRICE = 0.9
 // Price step
