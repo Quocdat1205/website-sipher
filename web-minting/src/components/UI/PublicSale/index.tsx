@@ -39,9 +39,9 @@ const PublicSale = () => {
         >
             <Flex justify="center" align="center" direction="column">
                 <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
-                    {currentPhase === "NOT_STARTED"
+                    {currentPhase === "NOT_STARTED" && nftRemaining > 0
                         ? "AUCTION STARTING SOON"
-                        : currentPhase === "ON_GOING"
+                        : currentPhase === "ON_GOING" && nftRemaining > 0
                         ? "AUCTION IN PROGRESS"
                         : "AUCTION HAS ENDED"}
                 </Text>
