@@ -4,8 +4,6 @@ import { Typo } from "@components/shared/Typo"
 import CountDown from "./Countdown"
 import SaleForm from "./SaleForm"
 import DutchAuction from "./DutchAuction"
-import RewardInfo from "./RewardInfo"
-import Reward from "./Reward"
 import usePublicSale from "./usePublicSale"
 import { START_PRICE } from "@constant/index"
 import { numberWithCommas } from "@utils/index"
@@ -53,12 +51,12 @@ const PublicSale = () => {
                         : "AUCTION HAS ENDED"}
                 </Text>
                 <Grid
-                    templateRows="auto 1fr auto"
-                    templateColumns="5fr 3fr"
+                    templateRows="1fr auto"
+                    templateColumns="1fr"
                     gap={2}
                     w="full"
                     maxH="full"
-                    maxW={"64rem"}
+                    maxW={["48rem", "48rem", "44rem", "48rem", "52rem"]}
                 >
                     <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
                         <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
@@ -69,7 +67,7 @@ const PublicSale = () => {
                             LEFT TO MINT
                         </Typo.Heading>
                     </GridItem>
-                    <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
+                    <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={2} rowSpan={1}>
                         <Flex h="full">
                             <CountDown
                                 minutesLeft={minutesLeft}
@@ -93,15 +91,15 @@ const PublicSale = () => {
                             />
                         </Flex>
                     </GridItem>
-                    <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4}>
+                    {/* <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4}>
                         <Reward isOnTier={isOnTier} currentPublicPrice={currentPublicPrice} />
-                    </GridItem>
-                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                    </GridItem> */}
+                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={2} rowSpan={1} p={4} overflow="hidden">
                         <DutchAuction />
                     </GridItem>
-                    <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
+                    {/* <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={2} rowSpan={1} p={4} overflow="hidden">
                         <RewardInfo />
-                    </GridItem>
+                    </GridItem> */}
                 </Grid>
             </Flex>
         </MotionFlex>
