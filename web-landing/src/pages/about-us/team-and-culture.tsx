@@ -1,6 +1,5 @@
 import { NextPageWithLayout } from "@pages/_app"
 import { ReactElement } from "react"
-import Head from "next/head"
 import TeamAndCulture from "@components/UI/AboutUsPage/TeamAndCulture"
 import AboutUsLayout from "@components/UI/AboutUsLayout"
 import Metadata from "@components/shared/Metadata"
