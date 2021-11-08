@@ -39,11 +39,11 @@ const Countdown = ({
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
             <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
-                {currentPhase === "NOT_STARTED"
+                {currentPhase === "NOT_STARTED" && nftRemaining > 0
                     ? "Countdown to public sale"
-                    : isPriceDecreasing
+                    : isPriceDecreasing && nftRemaining > 0
                     ? "Until Next Tier"
-                    : currentPhase === "ON_GOING"
+                    : currentPhase === "ON_GOING" && nftRemaining > 0
                     ? "Until End"
                     : "Public Sale Has Ended"}
             </Text>

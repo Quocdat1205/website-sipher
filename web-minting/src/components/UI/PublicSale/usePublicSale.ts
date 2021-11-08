@@ -30,8 +30,10 @@ const usePublicSale = () => {
     const transactionToast = useTransactionToast({ defaultDuration: 25000, isPublic: true })
     const isPriceDecreasing = timeAndPrice.currentPublicPrice > 0.1 && isOnSale
     const { publicSale: publicSaleRecord } = useSaleRecord()
+
     const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
         salePhase < 2 ? "NOT_STARTED" : salePhase > 2 ? "ENDED" : "ON_GOING"
+    console.log(currentPhase)
     const endSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicEndTime) })
     const startSaleTimer = useTimer({ expiryTimestamp: new Date(saleConfig.publicTime) })
     const timer = currentPhase === "NOT_STARTED" ? startSaleTimer : endSaleTimer
