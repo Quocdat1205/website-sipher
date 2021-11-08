@@ -1,7 +1,4 @@
-import { Flex, Box } from "@chakra-ui/react"
-import PublicCountdown from "@components/shared/PublicCountdown"
-import { Typo } from "@components/shared/Typo"
-import { MyText } from "@sipher/web-components"
+import { Flex } from "@chakra-ui/react"
 import PrivateCountdown from "./PrivateCountdown"
 
 interface CountdownProps {

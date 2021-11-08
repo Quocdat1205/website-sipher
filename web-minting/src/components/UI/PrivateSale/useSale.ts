@@ -24,28 +24,22 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const [isMinting, setIsMinting] = useState(false)
     const queryClient = useQueryClient()
     const totalPrice = parseFloat((slot * price).toFixed(2))
-    const isOnSale = mode === salePhaseName
+    const isOnSale = mode === salePhaseName && mode === "FREE_MINTING"
     // private sale = 3, free minting = 4
     const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
-        mode === "PRIVATE_SALE"
-            ? salePhase < 4
-                ? "NOT_STARTED"
-                : salePhase > 4
-                ? "ENDED"
-                : "ON_GOING"
-            : salePhase < 5
-            ? "NOT_STARTED"
-            : salePhase > 5
-            ? "ENDED"
-            : "ON_GOING"
-    const privateSaleStartTimer = useTimer({ expiryTimestamp: new Date(privateTime) })
-    const privateSaleEndTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
-    const freeMintingStartTimer = privateSaleEndTimer
+        mode === "PRIVATE_SALE" ? "ENDED" : salePhase < 5 ? "NOT_STARTED" : salePhase > 5 ? "ENDED" : "ON_GOING"
+    const freeMintingStartTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
     const freeMintingEndTimer = useTimer({ expiryTimestamp: new Date(endTime) })
     const timer = () => {
-        if (currentPhase === "NOT_STARTED")
-            return mode === "PRIVATE_SALE" ? privateSaleStartTimer : freeMintingStartTimer
-        else return mode === "PRIVATE_SALE" ? privateSaleEndTimer : freeMintingEndTimer
+        if (mode === "PRIVATE_SALE")
+            return {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            }
+        if (currentPhase === "NOT_STARTED") return freeMintingStartTimer
+        else return freeMintingEndTimer
     }
     const getMaxSlot = () => {
         if (mode === "PRIVATE_SALE") {
