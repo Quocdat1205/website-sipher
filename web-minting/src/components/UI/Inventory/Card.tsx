@@ -1,4 +1,4 @@
-import { NFTInfo } from "@api/nft"
+import { NFTInfo } from "@api"
 import { AspectRatio, Box, Img, Text, Flex } from "@chakra-ui/react"
 import { MotionFlex } from "@components/shared/Motion"
 import { useRouter } from "next/router"

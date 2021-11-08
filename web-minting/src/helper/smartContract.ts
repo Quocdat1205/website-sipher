@@ -1,7 +1,7 @@
 import { web3 } from "./metamask"
 import { SMARTCONTRACT_SALE_NEKO, SMARTCONTRACT_NEKO, DELAY } from "@constant/index"
 import { NFT_ABI, SALE_ABI } from "../contract"
-import { checkGas } from "@api/smartContract"
+import { checkGas } from "@api"
 
 export const ContractProviderSALE = new web3.eth.Contract(SALE_ABI, SMARTCONTRACT_SALE_NEKO)
 export const ContractProviderNFT = new web3.eth.Contract(NFT_ABI, SMARTCONTRACT_NEKO)

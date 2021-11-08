@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 import { BaseNavigationBar } from "@sipher/web-components"
 import AccountAddress from "./AccountAddress"
-import useWalletContext from "@hooks/useWalletContext"
+import { useWalletContext } from "@hooks"
 import { Flex } from "@chakra-ui/react"
 import ChildMenu from "@components/shared/ChildMenu"
 

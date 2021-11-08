@@ -2,7 +2,7 @@ import { Box, Flex, useOutsideClick, Text, Collapse } from "@chakra-ui/react"
 import React, { useRef, useState } from "react"
 import { BiWallet } from "react-icons/bi"
 import AddressCopier from "./AddressCopier"
-import useWalletContext from "@hooks/useWalletContext"
+import { useWalletContext } from "@hooks"
 import { GradientButton, MyText } from "@sipher/web-components"
 import { BsChevronDown, BsChevronUp } from "react-icons/bs"
 

@@ -1,6 +1,6 @@
 import { NFTRace } from "@@types"
-import { getNFT, getMerkle, changeEmotion } from "@api/nft"
-import useWalletContext from "@hooks/useWalletContext"
+import { getNFT, getMerkle, changeEmotion } from "@api"
+import { useWalletContext } from "@hooks"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useQueryClient, useQuery, useMutation } from "react-query"

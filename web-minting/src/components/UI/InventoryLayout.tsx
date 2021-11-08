@@ -1,6 +1,6 @@
 import { Flex, Box } from "@chakra-ui/layout"
 import Loading from "@components/shared/Loading"
-import useWalletContext from "@hooks/useWalletContext"
+import { useWalletContext } from "@hooks"
 import React, { useEffect } from "react"
 import { NavBar } from "./NavigationBar/NavBar"
 
