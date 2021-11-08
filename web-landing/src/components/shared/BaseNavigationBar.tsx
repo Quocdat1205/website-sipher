@@ -48,7 +48,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                     />
                 ))}
                 <Flex>
-                    <Img h="1.6rem" src="images/fire.gif" />
+                    <Img h="1.6rem" src="/images/fire.gif" />
                     <NavBarLink
                         text="minting"
                         href="#minting"
