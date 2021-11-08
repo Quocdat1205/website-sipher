@@ -21,7 +21,7 @@ const usePublicSale = () => {
     const [isMinting, setIsMinting] = useState(false)
     const [slot, setSlot] = useState(0)
     const maxSlot = PUBLIC_CAP - userRecord!.publicBought
-    const nftRemaining = publicSaleCapLimit ? publicSaleCapLimit - publicSale : "..."
+    const nftRemaining = publicSaleCapLimit! - publicSale
     const isOnSale = salePhaseName === "PUBLIC_SALE" && nftRemaining > 0
     const timeAndPrice = useTimeAndPrice({
         publicTime: saleConfig!.publicTime,

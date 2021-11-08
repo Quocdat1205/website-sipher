@@ -15,6 +15,7 @@ interface CountdownProps {
     timer: TimerResult
     isPriceDecreasing: boolean
     isOnSale: boolean
+    nftRemaining: number
 }
 
 const Countdown = ({
@@ -25,6 +26,7 @@ const Countdown = ({
     timer,
     isPriceDecreasing,
     isOnSale,
+    nftRemaining,
 }: CountdownProps) => {
     const [isRunning, setIsRunning] = useState(false)
     useEffect(() => {
@@ -49,21 +51,21 @@ const Countdown = ({
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     {isPriceDecreasing ? (
                         <PublicCountdown
-                            time1={{ value: minutesLeft, unit: "MINS" }}
-                            time2={{ value: secondsLeft, unit: "SECS" }}
+                            time1={{ value: nftRemaining > 0 ? minutesLeft : 0, unit: "MINS" }}
+                            time2={{ value: nftRemaining > 0 ? secondsLeft : 0, unit: "SECS" }}
                         />
                     ) : (
                         <PrivateCountdown
-                            time1={{ value: timer.days, unit: "DAYS" }}
-                            time2={{ value: timer.hours, unit: "HOURS" }}
-                            time3={{ value: timer.minutes, unit: "MINS" }}
-                            time4={{ value: timer.seconds, unit: "SECS" }}
+                            time1={{ value: nftRemaining > 0 ? timer.days : 0, unit: "DAYS" }}
+                            time2={{ value: nftRemaining > 0 ? timer.hours : 0, unit: "HOURS" }}
+                            time3={{ value: nftRemaining > 0 ? timer.minutes : 0, unit: "MINS" }}
+                            time4={{ value: nftRemaining > 0 ? timer.seconds : 0, unit: "SECS" }}
                         />
                     )}
                 </Flex>
                 {isPriceDecreasing && <Loader percent={percent} />}
             </Box>
-            {isOnSale && <PriceChangeText isRunning={isRunning} />}
+            {isOnSale && isPriceDecreasing && <PriceChangeText isRunning={isRunning} />}
             <Box
                 pos="absolute"
                 w="1px"

@@ -6,8 +6,6 @@ import SaleForm from "./SaleForm"
 import DutchAuction from "./DutchAuction"
 import usePublicSale from "./usePublicSale"
 import { START_PRICE } from "@constant/index"
-import { numberWithCommas } from "@utils"
-import { useSaleRecord, usePublicCapLimit } from "@hooks"
 import { MotionFlex } from "@components/shared/Motion"
 
 const PublicSale = () => {
@@ -69,10 +67,11 @@ const PublicSale = () => {
                                 minutesLeft={minutesLeft}
                                 secondsLeft={secondsLeft}
                                 percent={percent}
-                                currentPhase={currentPhase}
+                                currentPhase={isOnSale ? currentPhase : "ENDED"}
                                 timer={timer}
                                 isPriceDecreasing={isPriceDecreasing}
                                 isOnSale={isOnSale}
+                                nftRemaining={nftRemaining}
                             />
                             <SaleForm
                                 price={isOnSale ? currentPublicPrice : START_PRICE}
