@@ -2,6 +2,7 @@
 
 import { Flex, Img, Box } from "@chakra-ui/react"
 import { MotionFlex, MotionBox, Typo, LinkButton } from "@components/shared"
+import { ViewCollectionButton } from "@sipher/web-components"
 import { useStoreState } from "@store"
 import { useAnimation } from "framer-motion"
 import React, { useEffect, useRef } from "react"
@@ -65,10 +66,15 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 <Title />
                 <Box overflow="hidden">
                     <MotionBox animate={descriptionControl} initial={{ y: "100%" }}>
-                        <Typo.BoldText textAlign="center">SECOND DUTCH AUCTION 08/11/2021</Typo.BoldText>
-                        <Typo.BoldText textAlign="center">05:00 PM UTC</Typo.BoldText>
+                        <Typo.Heading size="large" textAlign="center">
+                            Sold Out
+                        </Typo.Heading>
+                        <Typo.BoldText textAlign="center">
+                            Thanks to all our early adopters and our community.
+                        </Typo.BoldText>
+                        <Typo.BoldText textAlign="center">Sipher Neko are now available on Opensea.</Typo.BoldText>
                         <Flex mt={4} justify="center">
-                            <LinkButton text="Visit Minting Page" href="https://mint.sipher.xyz/" size="large" />
+                            <ViewCollectionButton />
                         </Flex>
                     </MotionBox>
                 </Box>
