@@ -73,12 +73,12 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             Thanks to all our early adopters and our community.
                         </Typo.BoldText>
                         <Typo.BoldText textAlign="center">Sipher Neko are now available on Opensea.</Typo.BoldText>
-                        <Flex mt={4} justify="center">
-                            <ViewCollectionButton />
-                        </Flex>
                     </MotionBox>
                 </Box>
             </MotionFlex>
+            <Flex mt={4} justify="center">
+                <ViewCollectionButton />
+            </Flex>
         </Flex>
     )
 }
