@@ -30,12 +30,12 @@ const Countdown = ({
 }: CountdownProps) => {
     const [isRunning, setIsRunning] = useState(false)
     useEffect(() => {
-        if (isPriceDecreasing && secondsLeft <= 10 && minutesLeft == 0 && !isRunning) {
+        if (secondsLeft <= 10 && minutesLeft == 0 && !isRunning) {
             setIsRunning(true)
-        } else if (isPriceDecreasing && secondsLeft <= 50 && minutesLeft == INTERVAL / 60000 - 1 && isRunning) {
+        } else if (secondsLeft <= 50 && minutesLeft == INTERVAL / 60000 - 1 && isRunning) {
             setIsRunning(false)
         }
-    }, [isPriceDecreasing, secondsLeft, minutesLeft, isRunning, setIsRunning])
+    }, [, secondsLeft, minutesLeft, isRunning, setIsRunning])
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
             <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
@@ -47,9 +47,25 @@ const Countdown = ({
                     ? "Until End"
                     : "Public Sale Has Ended"}
             </Text>
+            <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
+                {currentPhase === "NOT_STARTED" ? "Countdown to public sale" : "Refresh Page"}
+            </Text>
             <Box boxSize="14rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
-                    {isPriceDecreasing ? (
+                    {/* {isPriceDecreasing ? (
+                        <PublicCountdown
+                            time1={{ value: minutesLeft, unit: "MINS" }}
+                            time2={{ value: secondsLeft, unit: "SECS" }}
+                        />
+                    ) : (
+                        <PrivateCountdown
+                            time1={{ value: timer.days, unit: "DAYS" }}
+                            time2={{ value: timer.hours, unit: "HOURS" }}
+                            time3={{ value: timer.minutes, unit: "MINS" }}
+                            time4={{ value: timer.seconds, unit: "SECS" }}
+                        />
+                    )} */}
+                    {!isRunning ? (
                         <PublicCountdown
                             time1={{ value: nftRemaining > 0 ? minutesLeft : 0, unit: "MINS" }}
                             time2={{ value: nftRemaining > 0 ? secondsLeft : 0, unit: "SECS" }}
@@ -63,7 +79,7 @@ const Countdown = ({
                         />
                     )}
                 </Flex>
-                {isPriceDecreasing && <Loader percent={percent} />}
+                {!isRunning && <Loader percent={percent} />}
             </Box>
             {isOnSale && isPriceDecreasing && <PriceChangeText isRunning={isRunning} />}
             <Box
