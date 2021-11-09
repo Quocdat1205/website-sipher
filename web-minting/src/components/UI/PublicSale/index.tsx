@@ -59,7 +59,7 @@ const PublicSale = () => {
                     <GridItem colSpan={2} px={4} py={2} bg="rgba(0, 0, 0, 0.9)">
                         <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
                             <chakra.span fontWeight="semibold" color="main.yellow">
-                                {nftRemaining}
+                                {0}
                             </chakra.span>{" "}
                             Remaining
                         </Typo.Heading>

@@ -119,21 +119,21 @@ export type ISaleConfig = Record<
  */
 export const getSaleConfig = async (): Promise<ISaleConfig> => {
     const data = await ContractProviderSALE.methods.getSaleConfig().call()
-    return {
-        publicTime: parseInt(data[0]) * 1000 + DELAY,
-        publicEndTime: parseInt(data[1]) * 1000 + DELAY,
-        privateTime: parseInt(data[2]) * 1000 + DELAY,
-        freeMintTime: parseInt(data[3]) * 1000 + DELAY,
-        endTime: parseInt(data[4]) * 1000 + DELAY,
-        maxSupply: parseInt(data[5]),
-    }
-    // For testing
     // return {
-    //     publicTime: 1636132940843 + DELAY,
-    //     publicEndTime: 1636133040843 + DELAY,
-    //     privateTime: 1636150913535 + DELAY,
-    //     freeMintTime: 1636160913535 + DELAY,
-    //     endTime: 1636170913535 + DELAY,
-    //     maxSupply: 10000,
+    //     publicTime: parseInt(data[0]) * 1000 + DELAY,
+    //     publicEndTime: parseInt(data[1]) * 1000 + DELAY,
+    //     privateTime: parseInt(data[2]) * 1000 + DELAY,
+    //     freeMintTime: parseInt(data[3]) * 1000 + DELAY,
+    //     endTime: parseInt(data[4]) * 1000 + DELAY,
+    //     maxSupply: parseInt(data[5]),
     // }
+    // For testing
+    return {
+        publicTime: 1636132940843 + DELAY,
+        publicEndTime: 1636133040843 + DELAY,
+        privateTime: 1636150913535 + DELAY,
+        freeMintTime: 1636160913535 + DELAY,
+        endTime: 1636170913535 + DELAY,
+        maxSupply: 10000,
+    }
 }
