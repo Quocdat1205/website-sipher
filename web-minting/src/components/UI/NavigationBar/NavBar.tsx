@@ -1,9 +1,8 @@
 // * DESCRIPTION:
-import { BaseNavigationBar } from "@sipher/web-components"
 import AccountAddress from "./AccountAddress"
-import { useWalletContext } from "@hooks"
 import { Flex } from "@chakra-ui/react"
 import ChildMenu from "@components/shared/ChildMenu"
+import BaseNavigationBar from "./BaseNavigationBar"
 
 interface NavBarProps {
     isInventoryMenu?: boolean
@@ -17,8 +16,6 @@ export const inventoryMenus = [
 ]
 
 export const NavBar = ({ isInventoryMenu }: NavBarProps) => {
-    const { states } = useWalletContext()
-
     return (
         <Flex direction="column" pos="fixed" w="full" zIndex="popover">
             <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus}>
