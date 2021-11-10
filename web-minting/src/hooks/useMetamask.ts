@@ -91,17 +91,7 @@ export const useMetamask = () => {
                 whitelistInfo: whitelistInfo,
                 accountLogin: account.address,
             })
-            let now = new Date().getTime()
-            if (now)
-                if (now > config.saleConfig!.endTime) {
-                    router.push("inventory/neko")
-                } else if (now > config.saleConfig!.freeMintTime && whitelistInfo.freeMintCap > 0) {
-                    router.push("/free-minting")
-                } else if (now > config.saleConfig!.publicEndTime && whitelistInfo.privateCap > 0) {
-                    router.push("/private-sale")
-                } else {
-                    router.push("/public-sale")
-                }
+            router.push("inventory/neko")
             setIsConnecting(false)
         } catch (error: any) {
             if (error.code === 4001) {

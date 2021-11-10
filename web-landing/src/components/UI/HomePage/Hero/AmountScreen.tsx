@@ -32,15 +32,14 @@ const Letter = ({ char, control, custom }: LetterProps) => {
     )
 }
 
-const p1 = "10,000 Nekos will be available in this collection, split between a public sale, and a private sale."
+const p1 = "10,000 Nekos in this collection, split between a public sale, and a private sale."
 const p2 = "Public Sale"
 const p3 =
-    "The public sale will occur on Nov 07, 2021 at 1:30 AM UTC and will follow a Dutch Auction format. The auction will start at a price of 0.9 ETH and will decrease by 0.05 ETH every 10 minutes, with the lowest purchase price being 0.1 ETH. Regardless of purchase price, each participant can purchase up to 5 Nekos per transaction, with a maximum of 5 per wallet."
+    "The Public Sale was helf on Nov 07, 2021 at 1:30 AM UTC in Dutch Auction Format. Participants Minting at higher price Tiers were eligible for Tier Reward Benefits."
 const p4 = "Private Sale"
 const p5 =
-    "The private sale will occur 12 hours after the public sale ended, for a price of 0.1 ETH per Neko. Whitelisted members have up to 24 hours to mint. More information about the private sale is in our Discord channel."
-const learnMore = "Learn more about out Dutch Auction."
-
+    "The Private Sale occurred 12 hours after the public sale ended. To increase your chances to join the next private sale please follow our "
+const joinDiscord = "Discord Channel."
 const AmountScreen = () => {
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -90,26 +89,6 @@ const AmountScreen = () => {
                             {char}
                         </motion.span>
                     ))}{" "}
-                    <chakra.span
-                        cursor="pointer"
-                        color="main.orange"
-                        fontWeight="semibold"
-                        as="a"
-                        rel="noreferrer"
-                        target="_blank"
-                        href="https://www.notion.so/sipherhq/The-Dutch-Auction-f98c600a2cbe4e2ba2918daf08b95210"
-                    >
-                        {learnMore.split("").map((char, i) => (
-                            <motion.span
-                                key={i}
-                                animate={contentControl}
-                                initial={{ opacity: 0 }}
-                                custom={i + p1.length + p2.length + p3.length}
-                            >
-                                {char}
-                            </motion.span>
-                        ))}
-                    </chakra.span>
                 </Typo.Text>
                 <Typo.Text
                     mt={4}
@@ -123,7 +102,7 @@ const AmountScreen = () => {
                             key={i}
                             animate={contentControl}
                             initial={{ opacity: 0 }}
-                            custom={i + p1.length + p2.length + p3.length + learnMore.length}
+                            custom={i + p1.length + p2.length + p3.length}
                         >
                             {char}
                         </motion.span>
@@ -139,11 +118,31 @@ const AmountScreen = () => {
                             key={i}
                             animate={contentControl}
                             initial={{ opacity: 0 }}
-                            custom={i + p1.length + p2.length + p3.length + p4.length + learnMore.length}
+                            custom={i + p1.length + p2.length + p3.length + p4.length}
                         >
                             {char}
                         </motion.span>
                     ))}
+                    <chakra.span
+                        cursor="pointer"
+                        color="main.orange"
+                        fontWeight="semibold"
+                        as="a"
+                        rel="noreferrer"
+                        target="_blank"
+                        href="https://discord.gg/sipherxyz"
+                    >
+                        {joinDiscord.split("").map((char, i) => (
+                            <motion.span
+                                key={i}
+                                animate={contentControl}
+                                initial={{ opacity: 0 }}
+                                custom={i + p1.length + p2.length + p3.length + p4.length + p5.length}
+                            >
+                                {char}
+                            </motion.span>
+                        ))}
+                    </chakra.span>
                 </Typo.Text>
             </>
         )

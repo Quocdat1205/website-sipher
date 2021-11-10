@@ -3,6 +3,7 @@ import { MotionBox, Typo } from "@components/shared"
 import { useAnimation, motion } from "framer-motion"
 import React, { useEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"
+import { fontSizes } from "."
 import CountDown from "./CountDown"
 import variants from "./variants"
 
@@ -10,19 +11,13 @@ interface CountDownScreenProps {
     isIOS?: boolean
 }
 
-const p1 = "Count down to 2nd Dutch auction."
+const p1 = "To our community for the massive support and positivity."
 const p2 =
-    "The private sale for whitelisted members will start right after the public sale ends, and will last for 24 hours. Afterwards, applicable members that qualify for free NEKOs based on our programs & initiatives will have 24 hours to mint. All NEKOs will be revealed 48 hours after this last group of free mints."
-const p11 = "Time left until the public sale ends."
-const startPublicSaleTime = 1636390800000
-const endPublicSaleTime = 1636404000000
+    "Our Dutch Auction was a massive success, we were able to lessen the gas wasted and deter the bots. And the Nexus Community Program has been seeded!"
+const p3 = "From the bottom of our hearts, thank you so much!"
+const p4 = "- The SIPHER Team"
 
 const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
-    const [text, setText] = useState(new Date().getTime() < startPublicSaleTime ? p1 : p11)
-    useEffect(() => {
-        const timeout = setInterval(() => setText(new Date().getTime() < startPublicSaleTime ? p1 : p11), 1000)
-        return () => clearInterval(timeout)
-    })
     const headingControl = useAnimation()
     const textControl = useAnimation()
     const [ref, inView] = useInView({
@@ -32,7 +27,7 @@ const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
     const contentControl = useAnimation()
 
     let generateP1 = () => {
-        return text.split("").map((char, i) => (
+        return p1.split("").map((char, i) => (
             <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={i}>
                 {char}
             </motion.span>
@@ -40,7 +35,26 @@ const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
     }
     let generateP2 = () => {
         return p2.split("").map((char, i) => (
-            <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={text.length + i}>
+            <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={p1.length + i}>
+                {char}
+            </motion.span>
+        ))
+    }
+    let generateP3 = () => {
+        return p3.split("").map((char, i) => (
+            <motion.span key={i} animate={contentControl} initial={{ opacity: 0 }} custom={p1.length + p2.length + i}>
+                {char}
+            </motion.span>
+        ))
+    }
+    let generateP4 = () => {
+        return p4.split("").map((char, i) => (
+            <motion.span
+                key={i}
+                animate={contentControl}
+                initial={{ opacity: 0 }}
+                custom={p1.length + p2.length + p3.length + i}
+            >
                 {char}
             </motion.span>
         ))
@@ -89,7 +103,9 @@ const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
                             duration: 0.5,
                         }}
                     >
-                        <CountDown startTime={startPublicSaleTime} endTime={endPublicSaleTime} />
+                        <Typo.Heading isGradient textAlign="left" fontWeight={900} fontSize={fontSizes} mb={0}>
+                            Thank You
+                        </Typo.Heading>
                     </MotionBox>
                     <MotionBox
                         w="full"
@@ -100,7 +116,7 @@ const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
                         transition={{ duration: 0.1 }}
                     >
                         <Typo.Text
-                            mb={2}
+                            mb={4}
                             sx={{
                                 textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
                             }}
@@ -113,6 +129,21 @@ const CountDownScreen = ({ isIOS }: CountDownScreenProps) => {
                             }}
                         >
                             {generateP2()}
+                        </Typo.Text>
+                        <Typo.Text
+                            sx={{
+                                textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                            }}
+                            mb={4}
+                        >
+                            {generateP3()}
+                        </Typo.Text>
+                        <Typo.Text
+                            sx={{
+                                textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+                            }}
+                        >
+                            {generateP4()}
                         </Typo.Text>
                     </MotionBox>
                 </Box>
