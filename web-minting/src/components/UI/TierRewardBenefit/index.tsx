@@ -21,7 +21,7 @@ const TierRewardBenefit = () => {
                     <Flex _hover={{ color: "main.yellow" }} mb={4} cursor="pointer" wrap="wrap" align="center">
                         <FiArrowLeft size="1.2rem" />
                         <Text color="inherit" ml={2} fontWeight={500}>
-                            BACK TO MINTING
+                            BACK TO DASHBOARD
                         </Text>
                     </Flex>
                 </NextLink>

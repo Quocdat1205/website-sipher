@@ -35,7 +35,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
 const p1 = "10,000 Nekos in this collection, split between a public sale, and a private sale."
 const p2 = "Public Sale"
 const p3 =
-    "The Public Sale was helf on Nov 07, 2021 at 1:30 AM UTC in Dutch Auction Format. Participants Minting at higher price Tiers were eligible for Tier Reward Benefits."
+    "The Public Sale was held on Nov 07, 2021 at 1:30 AM UTC in Dutch Auction Format. Participants Minting at higher price Tiers were eligible for Tier Reward Benefits."
 const p4 = "Private Sale"
 const p5 =
     "The Private Sale occurred 12 hours after the public sale ended. To increase your chances to join the next private sale please follow our "

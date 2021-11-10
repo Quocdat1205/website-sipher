@@ -20,7 +20,7 @@ const content = [
         text: "Guildmaster program",
         link: {
             text: "View Guildmaster Program",
-            path: "https://sipherhq.notion.site/Sipher-Programs-and-Initatives-1afd93650c044a338758418f8132343c",
+            path: "https://sipherhq.notion.site/The-Guildmaster-Program-e93e843d306d4b96bbf227108f45e8e3",
         },
     },
     {

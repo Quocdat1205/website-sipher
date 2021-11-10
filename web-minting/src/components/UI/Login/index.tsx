@@ -49,7 +49,7 @@ const Login = () => {
                                 transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
                             >
                                 <Typo.Heading fontSize="3xl" mb={4}>
-                                    CONNECT TO YOUR WALLET
+                                    CONNECT YOUR WALLET
                                 </Typo.Heading>
                             </MotionBox>
                             <VStack align="stretch" spacing={4}>

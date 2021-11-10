@@ -19,7 +19,7 @@ const AccountAddress = () => {
         handler: () => setPopup(false),
     })
     return (
-        <Flex borderLeft="1px" ml="4" pl="3" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
+        <Flex borderLeft="1px" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
             <Box zIndex="1" bg="black" color="main.yellow" p={[0, 1, 1.5, 2]} borderRadius="99" ref={btnRef}>
                 <Flex cursor="pointer" align="center" userSelect="none" onClick={() => setPopup(!popup)}>
                     <Box p={1} rounded="full" border="1px" borderColor="main.yellow">
