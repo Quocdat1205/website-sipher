@@ -37,7 +37,7 @@ const Detail = (props: PopupProps) => {
                         >
                             <FiArrowLeft size="1.2rem" />
                             <Text color="inherit" ml={2} fontWeight={500}>
-                                BACK TO DASHBOARD
+                                BACK TO MINTING
                             </Text>
                         </Flex>
                         <MotionFlex

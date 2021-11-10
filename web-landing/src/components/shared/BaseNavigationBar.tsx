@@ -50,8 +50,8 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                 <Flex>
                     {/* <Img h="1.6rem" src="/images/fire.gif" /> */}
                     <NavBarLink
-                        text="dashboard"
-                        href="#dashboard"
+                        text="minting"
+                        href="#minting"
                         onClick={() => window.open("https://mint.sipher.xyz/", "_blank")}
                     />
                 </Flex>
