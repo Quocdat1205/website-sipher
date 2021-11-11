@@ -52,7 +52,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 })
             })
         }
-    }, [inView, initialLoading, logoControl, descriptionControl])
+    }, [inView, initialLoading, logoControl, descriptionControl, boxControl])
 
     return (
         <Flex
@@ -90,7 +90,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         <Typo.BoldText letterSpacing={0} mb={4}>
                             Sipher NEKOs are now available on OpenSea.
                         </Typo.BoldText>
-                        <ViewCollectionButton />
+                        <ViewCollectionButton size="large" />
                     </MotionFlex>
                 </MotionBox>
             </Flex>
