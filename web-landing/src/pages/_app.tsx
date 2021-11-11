@@ -66,7 +66,16 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                             content="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/NEKO_3D.png"
                         />
                     </Head>
-
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                    window.dataLayer = window.dataLayer || [],
+                    function gtag() {(window as any).dataLayer.push(arguments)}
+                    gtag("js", new Date()) 
+                    gtag("config", "UA-203015581-1")
+                `,
+                        }}
+                    />
                     <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
                     {getLayout(<Component {...pageProps} />)}
                 </QueryClientProvider>
