@@ -5,10 +5,12 @@ import { StoreProvider } from "easy-peasy"
 import { NextPage } from "next"
 import type { AppProps } from "next/app"
 import Head from "next/head"
-import { ReactElement, ReactNode } from "react"
+import { ReactElement, ReactNode, useEffect } from "react"
 import Script from "next/script"
 import { QueryClient, QueryClientProvider } from "react-query"
 import "../style.css"
+import * as gtag from "../lib/gtag"
+import { useRouter } from "next/router"
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode
 }
@@ -22,9 +24,21 @@ declare global {
         dataLayer: any
     }
 }
-
+const isProduction = process.env.NODE_ENV === "production"
 const queryClient = new QueryClient()
+
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+    const router = useRouter()
+    useEffect(() => {
+        const handleRouteChange = (url: URL) => {
+            /* invoke analytics function only for production */
+            if (isProduction) gtag.pageview(url)
+        }
+        router.events.on("routeChangeComplete", handleRouteChange)
+        return () => {
+            router.events.off("routeChangeComplete", handleRouteChange)
+        }
+    }, [router.events])
     const getLayout = Component.getLayout || (page => page)
 
     return (
@@ -73,21 +87,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                             content="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/NEKO_3D.png"
                         />
                     </Head>
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `
-                    window.dataLayer = window.dataLayer || [],
-                    function gtag() {(window as any).dataLayer.push(arguments)}
-                    gtag("js", new Date()) 
-                    gtag("config", "UA-203015581-1")
-                `,
-                        }}
-                    />
-                    <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
-                    <Script id="analytic">
-                        window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments)}
-                        gtag(`js`, new Date()); gtag(`config`, `UA-203015581-1`);
-                    </Script>
+
                     {getLayout(<Component {...pageProps} />)}
                 </QueryClientProvider>
             </ChakraProvider>
