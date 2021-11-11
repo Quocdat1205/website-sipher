@@ -69,8 +69,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             </Head>
             <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
             <Script id="analytic">
-                window.dataLayer = window.dataLayer || []; function gtag()
-                {(window as any).dataLayer.push(arguments)}
+                window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments)}
                 gtag(`js`, new Date()); gtag(`config`, `UA-203015581-1`);
             </Script>
             {getLayout(<Component {...pageProps} />)}

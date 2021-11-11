@@ -16,6 +16,13 @@ export type NextPageWithLayout = NextPage & {
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
+
+declare global {
+    interface Window {
+        dataLayer: any
+    }
+}
+
 const queryClient = new QueryClient()
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout || (page => page)
@@ -78,8 +85,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                     />
                     <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
                     <Script id="analytic">
-                        window.dataLayer = window.dataLayer || []; function gtag()
-                        {(window as any).dataLayer.push(arguments)}
+                        window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments)}
                         gtag(`js`, new Date()); gtag(`config`, `UA-203015581-1`);
                     </Script>
                     {getLayout(<Component {...pageProps} />)}
