@@ -49,23 +49,26 @@ export const ViewCollectionButton = ({
             />
             <Box pos="absolute" top={"50%"} left={0} w="full">
                 <Collapse in={isExpanded}>
-                    <VStack
-                        direction="column"
-                        w="full"
-                        spacing={1}
-                        align="flex-start"
-                        px={size === "medium" ? 6 : 8}
-                        bg="blackAlpha.900"
-                        pt={7}
-                        pb={2}
-                        sx={{ borderRadius: "0 0 1rem 1rem" }}
-                        border="1px"
-                        borderColor="whiteAlpha.200"
-                        shadow="base"
-                    >
-                        <SubLink text="NEKO - SIPHERIAN FLASH" href="https://opensea.io/collection/sipherianflash" />
-                        <SubLink text="INU - SIPHERIAN SURGE" href="https://opensea.io/collection/sipheriansurge" />
-                    </VStack>
+                    <Box bgGradient="linear(to-b, bgGradient.orange)" p={1} sx={{ borderRadius: "0 0 1rem 1rem" }}>
+                        <VStack
+                            direction="column"
+                            w="full"
+                            spacing={3}
+                            align="flex-start"
+                            px={size === "medium" ? 6 : 8}
+                            bg="rgb(17, 17, 17)"
+                            pt={7}
+                            pb={3}
+                            sx={{ borderRadius: "0 0 1rem 1rem" }}
+                            shadow="base"
+                        >
+                            <SubLink
+                                text="NEKO - SIPHERIAN FLASH"
+                                href="https://opensea.io/collection/sipherianflash"
+                            />
+                            <SubLink text="INU - SIPHERIAN SURGE" href="https://opensea.io/collection/sipheriansurge" />
+                        </VStack>
+                    </Box>
                 </Collapse>
             </Box>
         </Box>
