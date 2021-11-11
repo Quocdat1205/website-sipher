@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex, Img, Box } from "@chakra-ui/react"
-import { MotionFlex, MotionBox, Typo, LinkButton } from "@components/shared"
+import { MotionFlex, MotionBox, Typo } from "@components/shared"
 import { ViewCollectionButton } from "@sipher/web-components"
 import { useStoreState } from "@store"
 import { useAnimation } from "framer-motion"

@@ -1,11 +1,11 @@
 // * DESCRIPTION:
 
-import { Grid, Flex, Box } from "@chakra-ui/react"
+import { Grid, Flex } from "@chakra-ui/react"
 import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
-import { BaseNavigationBar } from "."
+import { BaseNavigationBar, LinkButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
 import { ViewCollectionButton } from "@sipher/web-components"
@@ -46,7 +46,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         >
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
-                    <Box
+                    <Flex
                         sx={{
                             "@media (max-width: 1200px) and (min-width: 960px)": {
                                 display: "none",
@@ -56,8 +56,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                             },
                         }}
                     >
-                        <ViewCollectionButton />
-                    </Box>
+                        <LinkButton text="Join Our Discord Community" href="https://discord.gg/sipherxyz" />
+                    </Flex>
                     <Grid
                         ml={4}
                         rounded="full"
