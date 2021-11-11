@@ -51,11 +51,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                     content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon!  "
                 />
                 <meta name="twitter:image" content="https://sipher.xyz/images/logo.jpg" />
-                {/* <script>
-                    window.dataLayer = window.dataLayer || []; function gtag(){" "}
+                <script>
+                    window.dataLayer = window.dataLayer || []; function gtag()
                     {(window as any).dataLayer.push(arguments)}
                     gtag("js", new Date()); gtag("config", "UA-203015581-1");
-                </script> */}
+                </script>
             </Head>
             <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
             {getLayout(<Component {...pageProps} />)}
