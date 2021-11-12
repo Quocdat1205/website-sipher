@@ -56,7 +56,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                             },
                         }}
                     >
-                        <LinkButton text="Join Our Discord Community" href="https://discord.gg/sipherxyz" />
+                        <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
                     </Flex>
                     <Grid
                         ml={4}

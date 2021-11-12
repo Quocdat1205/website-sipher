@@ -20,7 +20,7 @@ const content = [
         text: "Guildmaster program",
         link: {
             text: "View Guildmaster Program",
-            path: "https://sipherhq.notion.site/The-Guildmaster-Program-e93e843d306d4b96bbf227108f45e8e3",
+            path: "http://t.ly/sipherguildmaster",
         },
     },
     {
@@ -28,7 +28,7 @@ const content = [
         text: "Whitelist fast-track",
         link: {
             text: "Check out other Benefits",
-            path: "https://sipherhq.notion.site/Benefits-of-Owning-a-Genesis-Sipher-02e788d128ef4e80a6b2d66813acf2e7",
+            path: "http://t.ly/siphergenesisbenefits",
         },
     },
 ]
