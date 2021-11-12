@@ -55,7 +55,7 @@ const MainLayout = ({ children }: Props) => {
                                     cursor="pointer"
                                     fontWeight="bold"
                                     as="a"
-                                    href="https://discord.gg/sipherxyz"
+                                    href="https://discord.gg/SIPHERxyz"
                                     target="_blank"
                                     rel="nonreferrer"
                                 >

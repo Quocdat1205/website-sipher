@@ -38,7 +38,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <JoinTheCommunity />
                 </VStack>
 
-                <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/sipherxyz" mt={8} />
+                <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" mt={8} />
             </Flex>
         </BackgroundContainer>
     )

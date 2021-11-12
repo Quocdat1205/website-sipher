@@ -130,7 +130,7 @@ const AmountScreen = () => {
                         as="a"
                         rel="noreferrer"
                         target="_blank"
-                        href="https://discord.gg/sipherxyz"
+                        href="https://discord.gg/SIPHERxyz"
                     >
                         {joinDiscord.split("").map((char, i) => (
                             <motion.span
