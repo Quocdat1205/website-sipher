@@ -56,7 +56,7 @@ export const ViewCollectionButton = ({
                             spacing={3}
                             align="flex-start"
                             px={size === "medium" ? 6 : 8}
-                            bg="rgb(17, 17, 17)"
+                            bg="rgb(8, 8, 8)"
                             pt={7}
                             pb={3}
                             sx={{ borderRadius: "0 0 1rem 1rem" }}
