@@ -50,9 +50,9 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                 <Flex>
                     {/* <Img h="1.6rem" src="/images/fire.gif" /> */}
                     <NavBarLink
-                        text="minting"
+                        text="inventory"
                         href="#minting"
-                        onClick={() => window.open("https://mint.sipher.xyz/", "_blank")}
+                        onClick={() => window.open("https://inventory.sipher.xyz/", "_blank")}
                     />
                 </Flex>
             </HStack>
