@@ -47,14 +47,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                         active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
                     />
                 ))}
-                <Flex>
-                    {/* <Img h="1.6rem" src="/images/fire.gif" /> */}
-                    <NavBarLink
-                        text="minting"
-                        href="#minting"
-                        onClick={() => window.open("https://mint.sipher.xyz/", "_blank")}
-                    />
-                </Flex>
+                <NavBarLink text="Inventory" onClick={() => window.open("https://inventory.sipher.xyz/", "_blank")} />
             </HStack>
 
             {children}

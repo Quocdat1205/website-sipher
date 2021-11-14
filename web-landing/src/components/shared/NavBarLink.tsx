@@ -8,7 +8,7 @@ interface NavBarLinkProps extends FlexProps {
     onClick?: () => void
     active?: boolean
     text: string
-    href: string
+    href?: string
     size?: MyTextProps["size"]
     isChild?: boolean
     lastChild?: boolean
@@ -47,7 +47,7 @@ export const NavBarLink = ({
                 size={isChild ? "medium" : "small"}
                 textAlign="center"
                 isTruncated
-                onClick={() => router.push(href)}
+                onClick={() => href && router.push(href)}
                 textTransform={isChild ? "capitalize" : "uppercase"}
                 letterSpacing={isChild ? "0px" : "3px"}
                 color={active ? "#FF710B" : "white"}
