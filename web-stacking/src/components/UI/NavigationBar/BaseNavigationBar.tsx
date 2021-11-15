@@ -4,7 +4,7 @@ import React from "react"
 import { Flex, HStack, Img } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import NavBarLink from "./NavBarLink"
-import { MyButton } from "@sipher/web-components"
+import ConnectWalletModal from "@components/shared/ConnectWalletModal"
 
 interface BaseNavigationBarProps {
     menus: Record<"id" | "path", string>[]
@@ -40,9 +40,7 @@ const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children }: BaseNavig
                 ))}
                 <NavBarLink text="Swap" href="#" />
                 <NavBarLink text="NFT" href="#" />
-                <MyButton _hover={{ bg: "hsla(0,0%,100%,1)" }} bg="hsla(0,0%,100%,.8)" color="stack.textBlack">
-                    Connect wallet
-                </MyButton>
+                <ConnectWalletModal rounded="full" _hover={{ bg: "hsla(0,0%,100%,1)" }} bg="hsla(0,0%,100%,.8)" />
             </HStack>
             {children}
         </Flex>

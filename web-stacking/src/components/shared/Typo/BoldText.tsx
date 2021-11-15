@@ -9,9 +9,9 @@ interface BoldTextProps extends MyTextProps {
 const BoldText = ({ isGradient, ...rest }: BoldTextProps) => {
     return (
         <MyText
+            letterSpacing="-.01rem"
             size="large"
-            fontWeight="semibold"
-            letterSpacing={["2px", "2px", "3px", "4px"]}
+            fontWeight="bold"
             bgClip={isGradient ? "text" : "border-box"}
             bgGradient={isGradient ? "linear(to-b,bgGradient.orange)" : ""}
             color="stack.textBlack"

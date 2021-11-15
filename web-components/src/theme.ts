@@ -41,6 +41,7 @@ export const theme = extendTheme({
         },
         stack: {
             textBlack: "#05070c",
+            cardWhite: "hsla(0,0%,100%,.5)",
         },
     },
     styles: {

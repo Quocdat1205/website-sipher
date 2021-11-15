@@ -13,7 +13,7 @@ const HeadingText = ({ isGradient, ...rest }: HeadingTextProps) => {
             w="full"
             textAlign="center"
             fontSize={["4xl", "5xl"]}
-            letterSpacing={["1px", "2px", "4px"]}
+            letterSpacing="-.01rem"
             mb={4}
             bgClip={isGradient ? "text" : "border-box"}
             bgGradient={isGradient ? "linear(to-b,bgGradient.orange)" : ""}
