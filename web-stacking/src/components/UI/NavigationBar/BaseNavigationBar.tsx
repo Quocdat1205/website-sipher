@@ -38,8 +38,8 @@ const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children }: BaseNavig
                         active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
                     />
                 ))}
-                <NavBarLink text="Swap" href="#" />
-                <NavBarLink text="NFT" href="#" />
+                <NavBarLink text="Swap" href="#" onClick={() => window.open("https://app.uniswap.org/", "_blank")} />
+                <NavBarLink isDisabled text="NFT" href="#" />
                 <ConnectWalletModal rounded="full" _hover={{ bg: "hsla(0,0%,100%,1)" }} bg="hsla(0,0%,100%,.8)" />
             </HStack>
             {children}

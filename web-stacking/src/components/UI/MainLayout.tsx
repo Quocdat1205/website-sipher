@@ -1,4 +1,4 @@
-import { Flex, Box } from "@chakra-ui/layout"
+import { Flex } from "@chakra-ui/layout"
 import { AnimatePresence } from "framer-motion"
 import React from "react"
 import { NavBar } from "./NavigationBar/NavBar"

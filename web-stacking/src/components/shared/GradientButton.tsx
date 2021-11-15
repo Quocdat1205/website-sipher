@@ -1,70 +1,18 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Box, BoxProps, Spinner, Flex, TextProps } from "@chakra-ui/react"
-import { MyText } from "@sipher/web-components"
+import { ButtonProps, Button } from "@chakra-ui/react"
 
-interface GradientButtonProps extends BoxProps {
-    text: React.ReactNode
-    as?: BoxProps["as"]
-    href?: string
-    isLoading?: boolean
-    loadingText?: string
-    rel?: string
-    fontSize?: TextProps["fontSize"]
-    disabled?: boolean
-    size?: "large" | "medium"
-}
+interface GradientButtonProps extends ButtonProps {}
 
-export const GradientButton = ({
-    text,
-    as = "button",
-    href,
-    isLoading,
-    loadingText = "Submitting",
-    rel,
-    fontSize,
-    disabled,
-    size = "medium",
-    ...rest
-}: GradientButtonProps) => {
-    const [px, py] = size === "large" ? [3, 8] : [2, 6]
+export const GradientButton = ({ ...rest }: GradientButtonProps) => {
     return (
-        <Box
-            as={as}
-            href={href}
-            target="_blank"
-            rel={rel}
-            textTransform="uppercase"
-            rounded="md"
-            py={px}
-            px={py}
-            bgColor="white"
-            bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
-            fontSize="xs"
+        <Button
+            _hover={{ boxShadow: "0 6px 16px rgb(151 54 0 / 20%)" }}
             color="white"
-            shadow="base"
-            letterSpacing="1px"
-            pos="relative"
-            textAlign="center"
-            pointerEvents={disabled || isLoading ? "none" : "all"}
+            bgGradient="linear(-190deg,#f2ba4d,#e1632a)"
+            p={2}
             {...rest}
-        >
-            {isLoading ? (
-                <Flex align="center" justify="center">
-                    <Spinner size="sm" thickness="3px" />
-                    <MyText fontSize={fontSize} ml={4} fontWeight="bold">
-                        {loadingText}
-                    </MyText>
-                </Flex>
-            ) : (
-                <MyText fontSize={fontSize} letterSpacing="2px" fontWeight="bold">
-                    {text}
-                </MyText>
-            )}
-            {disabled && (
-                <Box cursor="pointer" pos="absolute" top={0} left={0} w="full" h="full" bgColor="blackAlpha.500" />
-            )}
-        </Box>
+        ></Button>
     )
 }

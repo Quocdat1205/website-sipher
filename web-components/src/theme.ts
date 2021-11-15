@@ -42,6 +42,7 @@ export const theme = extendTheme({
         stack: {
             textBlack: "#05070c",
             cardWhite: "hsla(0,0%,100%,.5)",
+            cardGray: "#f1f3f5",
         },
     },
     styles: {
@@ -77,24 +78,108 @@ export const theme = extendTheme({
                 "-webkit-appearance": "none",
             },
         },
-    },
-    components: {
-        Heading: {
-            baseStyle: {
-                fontFamily: "Brandon",
-                letterSpacing: "1px",
-                color: "whiteAlpha.900",
+        components: {
+            Heading: {
+                baseStyle: {
+                    fontFamily: "Brandon",
+                    letterSpacing: "1px",
+                    color: "whiteAlpha.900",
+                },
+                size: {
+                    small: {
+                        fontSize: ["md", "lg"],
+                    },
+                    medium: {
+                        fontSize: ["lg", "xl"],
+                    },
+                    large: {
+                        fontSize: ["xl", "2xl"],
+                    },
+                },
+                defaultProps: {
+                    size: "medium",
+                },
+            },
+            Text: {
+                baseStyle: {
+                    fontFamily: "Mark Pro",
+                    color: "whiteAlpha.900",
+                    fontWeight: 300,
+                },
+                size: {
+                    small: {
+                        fontSize: ["xs", "sm", "sm", "md"],
+                    },
+                    medium: {
+                        fontSize: ["sm", "md", "md", "xl"],
+                    },
+                    large: {
+                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
+                    },
+                },
+                defaultProps: {
+                    size: "medium",
+                },
+            },
+            Button: {
+                baseStyle: {
+                    fontFamily: "Mark Pro",
+                    color: "whiteAlpha.900",
+                    fontWeight: 300,
+                },
+                size: {
+                    small: {
+                        fontSize: ["xs", "sm", "sm", "md"],
+                    },
+                    medium: {
+                        fontSize: ["sm", "md", "md", "xl"],
+                    },
+                    large: {
+                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
+                    },
+                },
+                defaultProps: {
+                    size: "medium",
+                },
+            },
+            Td: {
+                size: {
+                    small: {
+                        fontSize: ["xs", "sm", "sm", "md"],
+                    },
+                    medium: {
+                        fontSize: ["sm", "md", "md", "xl"],
+                    },
+                    large: {
+                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
+                    },
+                },
+                defaultProps: {
+                    size: "medium",
+                    textAlign: "left",
+                    px: 0,
+                },
+            },
+            Th: {
+                size: {
+                    small: {
+                        fontSize: ["xs", "sm", "sm", "md"],
+                    },
+                    medium: {
+                        fontSize: ["sm", "md", "md", "xl"],
+                    },
+                    large: {
+                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
+                    },
+                },
+                defaultProps: {
+                    size: "medium",
+                    textAlign: "left",
+                    px: 0,
+                },
             },
         },
-        Text: {
-            baseStyle: {
-                fontFamily: "Mark Pro",
-                color: "whiteAlpha.900",
-                fontWeight: 300,
-            },
-        },
+        breakpoints: ["0px", "480px", "960px", "1440px", "1920px"],
     },
-    breakpoints: ["0px", "480px", "960px", "1440px", "1920px"],
 })
-
 export default theme

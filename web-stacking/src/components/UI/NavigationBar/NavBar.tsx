@@ -12,7 +12,7 @@ export const navMenus = [
 
 export const NavBar = ({}: NavBarProps) => {
     return (
-        <Flex maxW="1200px" direction="column" w="full" zIndex="popover">
+        <Flex maxW="1200px" direction="column" w="full">
             <BaseNavigationBar logoPath="/images/mainlogo.svg" menus={navMenus}></BaseNavigationBar>
         </Flex>
     )

@@ -3,7 +3,11 @@ import ConnectWalletModal from "@components/shared/ConnectWalletModal"
 import { Typo } from "@components/shared/Typo"
 import React from "react"
 import MyGridItem from "./MyGridItem"
-import StackedUI from "./StackedUI"
+import CardRewards from "./CardRewards"
+import CardStacked from "./CardStacked"
+import CardTotal from "./CardTotal"
+import CardPools from "./CardPools"
+import CardDeposits from "./CardDeposits"
 
 interface OverviewUIProps {
     uaString: string
@@ -27,14 +31,34 @@ const Overview = ({ uaString }: OverviewUIProps) => {
                 w="full"
             >
                 <MyGridItem rowSpan={2} colSpan={1}>
-                    <StackedUI />
+                    <CardStacked />
                 </MyGridItem>
-                <MyGridItem rowSpan={2} colSpan={1}></MyGridItem>
+                <MyGridItem rowSpan={2} colSpan={1}>
+                    <CardRewards />
+                </MyGridItem>
                 <MyGridItem rowSpan={1} colSpan={2}></MyGridItem>
-                <MyGridItem rowSpan={1} colSpan={2}></MyGridItem>
+                <MyGridItem rowSpan={1} colSpan={2}>
+                    <CardTotal />
+                </MyGridItem>
                 <MyGridItem colSpan={4}>
                     <Box textAlign="center" p={12}>
                         <ConnectWalletModal />
+                    </Box>
+                </MyGridItem>
+                <Typo.Heading mt={8} textAlign="left">
+                    Pools
+                </Typo.Heading>
+                <MyGridItem colSpan={4}>
+                    <Box textAlign="center" p={12}>
+                        <CardPools />
+                    </Box>
+                </MyGridItem>
+                <Typo.Heading mt={8} textAlign="left">
+                    Deposits
+                </Typo.Heading>
+                <MyGridItem colSpan={4}>
+                    <Box textAlign="center" p={12}>
+                        <CardDeposits />
                     </Box>
                 </MyGridItem>
             </Grid>

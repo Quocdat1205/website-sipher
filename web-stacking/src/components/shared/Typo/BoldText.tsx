@@ -1,14 +1,14 @@
 // * DESCRIPTION:
 
-import { MyText, MyTextProps } from "@sipher/web-components"
+import { Text, TextProps } from "@chakra-ui/react"
 
-interface BoldTextProps extends MyTextProps {
+interface BoldTextProps extends TextProps {
     isGradient?: boolean
 }
 
 const BoldText = ({ isGradient, ...rest }: BoldTextProps) => {
     return (
-        <MyText
+        <Text
             letterSpacing="-.01rem"
             size="large"
             fontWeight="bold"

@@ -7,9 +7,9 @@ import React from "react"
 
 interface Props {}
 
-const StackedUI = (props: Props) => {
+const CardStacked = (props: Props) => {
     return (
-        <Flex flexDir="column" align="center" p={12}>
+        <Flex flexDir="column" justify="center" align="center" p={8}>
             <Image mb={4} src="/images/icons/stack.svg" alt="stack" />
             <Typo.BoldText color="stack.textBlack">Stacked</Typo.BoldText>
             <Typo.Heading m={0} fontWeight="bold" color="stack.textBlack">
@@ -22,4 +22,4 @@ const StackedUI = (props: Props) => {
     )
 }
 
-export default StackedUI
+export default CardStacked
