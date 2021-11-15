@@ -11,7 +11,8 @@
         "web-landing",
         "web-gallery",
         "web-components",
-        "web-minting"
+        "web-minting",
+        "web-stacking"
     ],
     "scripts": {
         "build-components": "cd web-components && yarn && yarn build",
@@ -20,6 +21,8 @@
         "install-minting-page": "yarn build-components && cd web-minting && yarn",
         "build-minting-page": "cd web-minting && yarn build",
         "install-gallery-page": "yarn build-components && cd web-gallery && yarn",
-        "build-gallery-page": "cd web-gallery && yarn build"
+        "build-gallery-page": "cd web-gallery && yarn build",
+        "install-stacking-page": "yarn build-components && cd web-stacking && yarn",
+        "build-stacking-page": "cd web-stacking && yarn build"
     }
 }
