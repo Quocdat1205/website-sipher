@@ -16,7 +16,13 @@ const NavBarLink = ({ onClick, size, text, active, href, isDisabled = false, ...
     const router = useRouter()
     return (
         <>
-            <Tooltip placement="bottom" label={isDisabled ? "Comming soon" : ""}>
+            <Tooltip
+                fontSize="xs"
+                placement="bottom"
+                label={isDisabled ? "Comming soon" : ""}
+                bg="rgba(97, 97, 97, 0.95)"
+                rounded="md"
+            >
                 <Flex
                     onClick={onClick}
                     _hover={{ bg: "rgba(0,0,0,.05)" }}

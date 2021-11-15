@@ -31,7 +31,7 @@ const theme = extendTheme({
             baseStyle: {
                 fontFamily: "Mark Pro",
                 color: "whiteAlpha.900",
-                fontWeight: 300,
+                fontWeight: 400,
             },
             sizes: {
                 small: {
@@ -54,7 +54,7 @@ const theme = extendTheme({
                     shadow: "none",
                 },
                 fontFamily: "Mark Pro",
-                fontWeight: 300,
+                fontWeight: 400,
             },
             sizes: {
                 small: {
