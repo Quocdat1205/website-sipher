@@ -51,9 +51,7 @@ const TransactionToast = ({ status, onClose, isPublic }: TransactionToastProps) 
                     <Box color="white" border="2px" rounded="full" p={0.5}>
                         <Icon size="1.2rem" />
                     </Box>
-                    <Text fontWeight="500" ml={2}>
-                        {title}
-                    </Text>
+                    <Text ml={2}>{title}</Text>
                 </Flex>
                 <Box cursor="pointer" onClick={onClose}>
                     <BsX size="1.2rem" />
@@ -61,7 +59,7 @@ const TransactionToast = ({ status, onClose, isPublic }: TransactionToastProps) 
             </Flex>
             <Box p={2} px={10}>
                 {status === "processing" && (
-                    <Text fontSize="sm" borderBottom="1px" borderColor="whiteAlpha.300" pb={2} mb={2} fontWeight="500">
+                    <Text fontSize="sm" borderBottom="1px" borderColor="whiteAlpha.300" pb={2} mb={2}>
                         WARNING: Do not REFRESH this page. Failure to do so may cause your transaction to fail or pay
                         double the gas fees.
                     </Text>

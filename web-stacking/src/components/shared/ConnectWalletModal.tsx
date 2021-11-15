@@ -23,8 +23,10 @@ const ConnectWalletModal = ({ ...rest }: Props) => {
     return (
         <>
             <Button
-                p={6}
+                px={6}
+                py={4}
                 rounded="lg"
+                size="small"
                 _hover={{ bg: "rgba(0,0,0,.15)" }}
                 bg="rgba(0,0,0,.1)"
                 color="stack.textBlack"

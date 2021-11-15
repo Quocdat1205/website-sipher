@@ -34,11 +34,7 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
             whileHover={{ scale: 1.05, color: "#F4B533" }}
         >
             <Flex w="full" align="center" justify="space-between">
-                <Text
-                    fontWeight={500}
-                    color={disabled ? "stack.textBlack" : active ? "main.lightGreen" : "inherit"}
-                    mr={8}
-                >
+                <Text color={disabled ? "stack.textBlack" : active ? "main.lightGreen" : "inherit"} mr={8}>
                     {title}
                 </Text>
 

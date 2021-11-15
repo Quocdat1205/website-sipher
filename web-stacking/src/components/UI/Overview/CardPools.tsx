@@ -1,6 +1,7 @@
 import React from "react"
-import { Table, Thead, Tbody, Tr, HStack, Flex, Button, Th, Td } from "@chakra-ui/react"
+import { Table, Thead, Tbody, Tr, HStack, Flex, Button } from "@chakra-ui/react"
 import { GradientButton } from "@components/shared/GradientButton"
+import { MyTable } from "@components/shared/MyTable"
 
 interface Props {}
 
@@ -10,20 +11,18 @@ const CardPools = (props: Props) => {
             <Table variant="unstyled">
                 <Thead>
                     <Tr color="stack.textBlack">
-                        <Th textTransform="capitalize">Core Pools</Th>
-                        <Th textTransform="capitalize">Total Value Locked</Th>
-                        <Th textTransform="capitalize" isNumeric>
-                            APR
-                        </Th>
-                        <Th textTransform="capitalize"></Th>
+                        <MyTable.Th textTransform="capitalize">Core Pools</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize">Total Value Locked</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize">APR</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize"></MyTable.Th>
                     </Tr>
                 </Thead>
                 <Tbody>
                     <Tr borderTop="1px" borderColor="rgba(33,42,75,.1)" color="stack.textBlack">
-                        <Td>MC</Td>
-                        <Td>millimetres (mm)</Td>
-                        <Td isNumeric>25.4</Td>
-                        <Td textAlign="right">
+                        <MyTable.Td>MC</MyTable.Td>
+                        <MyTable.Td>millimetres (mm)</MyTable.Td>
+                        <MyTable.Td>25.4</MyTable.Td>
+                        <MyTable.Td textAlign="right">
                             <HStack spacing={2} justify="flex-end">
                                 <Button
                                     p={2}
@@ -37,13 +36,13 @@ const CardPools = (props: Props) => {
                                 </Button>
                                 <GradientButton>Stack</GradientButton>
                             </HStack>
-                        </Td>
+                        </MyTable.Td>
                     </Tr>
                     <Tr borderTop="1px" borderColor="rgba(33,42,75,.1)" color="stack.textBlack">
-                        <Td>yards</Td>
-                        <Td>metres (m)</Td>
-                        <Td isNumeric>0.91444</Td>
-                        <Td textAlign="right">
+                        <MyTable.Td>yards</MyTable.Td>
+                        <MyTable.Td>metres (m)</MyTable.Td>
+                        <MyTable.Td>0.91444</MyTable.Td>
+                        <MyTable.Td textAlign="right">
                             <HStack spacing={2} justify="flex-end">
                                 <Button
                                     p={2}
@@ -67,7 +66,7 @@ const CardPools = (props: Props) => {
                                 </Button>
                                 <GradientButton>Stack</GradientButton>
                             </HStack>
-                        </Td>
+                        </MyTable.Td>
                     </Tr>
                 </Tbody>
             </Table>

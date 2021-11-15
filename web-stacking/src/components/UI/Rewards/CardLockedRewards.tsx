@@ -4,16 +4,17 @@ import { MyTable } from "@components/shared/MyTable"
 
 interface Props {}
 
-const CardDeposits = (props: Props) => {
+const CardLockedRewards = (props: Props) => {
     return (
         <Flex flexDir="column" justify="center" align="center" p={4}>
             <Table variant="unstyled">
                 <Thead>
                     <Tr color="stack.textBlack">
-                        <MyTable.Th textTransform="capitalize">Pool</MyTable.Th>
-                        <MyTable.Th textTransform="capitalize">Amount Staked</MyTable.Th>
-                        <MyTable.Th textTransform="capitalize">Lock Date</MyTable.Th>
-                        <MyTable.Th textTransform="capitalize">Unlock Date</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize">Token</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize">Amount</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize">Dollar value</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize">Status</MyTable.Th>
+                        <MyTable.Th textTransform="capitalize">Time Remaining</MyTable.Th>
                         <MyTable.Th textTransform="capitalize"></MyTable.Th>
                     </Tr>
                 </Thead>
@@ -22,4 +23,4 @@ const CardDeposits = (props: Props) => {
         </Flex>
     )
 }
-export default CardDeposits
+export default CardLockedRewards

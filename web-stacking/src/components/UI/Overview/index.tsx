@@ -17,7 +17,7 @@ const Overview = ({ uaString }: OverviewUIProps) => {
         <Flex flexDir="column" h="full" w="full">
             <Flex flexDir={["column", "row"]} justify={["flex-start", "space-between"]} w="full">
                 <Typo.Heading textAlign="left">Overview</Typo.Heading>
-                <Typo.Text fontWeight="normal" letterSpacing="-.01rem" color="stack.textBlack" maxW="560px">
+                <Typo.Text fontWeight="normal" size="large" color="stack.textBlack" maxW="560px">
                     The Merit Circle DAO offers two core pools. Variable locking for up to twelve months is available
                     for MC and LP staking.
                 </Typo.Text>
@@ -41,7 +41,7 @@ const Overview = ({ uaString }: OverviewUIProps) => {
                     <CardTotal />
                 </MyGridItem>
                 <MyGridItem colSpan={4}>
-                    <Box textAlign="center" p={12}>
+                    <Box textAlign="center" p={8}>
                         <ConnectWalletModal />
                     </Box>
                 </MyGridItem>
@@ -49,7 +49,7 @@ const Overview = ({ uaString }: OverviewUIProps) => {
                     Pools
                 </Typo.Heading>
                 <MyGridItem colSpan={4}>
-                    <Box textAlign="center" p={12}>
+                    <Box textAlign="center" p={8}>
                         <CardPools />
                     </Box>
                 </MyGridItem>
@@ -57,7 +57,7 @@ const Overview = ({ uaString }: OverviewUIProps) => {
                     Deposits
                 </Typo.Heading>
                 <MyGridItem colSpan={4}>
-                    <Box textAlign="center" p={12}>
+                    <Box textAlign="center" p={8}>
                         <CardDeposits />
                     </Box>
                 </MyGridItem>

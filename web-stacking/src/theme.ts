@@ -31,7 +31,9 @@ const theme = extendTheme({
             baseStyle: {
                 fontFamily: "Mark Pro",
                 color: "whiteAlpha.900",
-                fontWeight: 400,
+                fontWeight: 500,
+                lineHeight: "1.4",
+                letterSpacing: "-.01rem",
             },
             sizes: {
                 small: {
@@ -45,7 +47,7 @@ const theme = extendTheme({
                 },
             },
             defaultProps: {
-                size: "medium",
+                size: "small",
             },
         },
         Button: {
@@ -54,29 +56,11 @@ const theme = extendTheme({
                     shadow: "none",
                 },
                 fontFamily: "Mark Pro",
-                fontWeight: 400,
-            },
-            sizes: {
-                small: {
-                    fontSize: ["xs", "sm", "sm", "md"],
-                },
-                medium: {
-                    fontSize: ["sm", "md", "md", "xl"],
-                },
-                large: {
-                    fontSize: ["md", "lg", "lg", "xl", "2xl"],
-                },
-            },
-            defaultProps: {
+                fontWeight: 500,
+                lineHeight: "1.4",
+                letterSpacing: "-.01rem",
                 color: "#05070c",
             },
-        },
-        Td: {
-            baseStyle: {
-                fontFamily: "Mark Pro",
-                color: "whiteAlpha.900",
-                fontWeight: 300,
-            },
             sizes: {
                 small: {
                     fontSize: ["xs", "sm", "sm", "md"],
@@ -89,28 +73,7 @@ const theme = extendTheme({
                 },
             },
             defaultProps: {
-                size: "medium",
-            },
-        },
-        Th: {
-            baseStyle: {
-                fontFamily: "Mark Pro",
-                color: "whiteAlpha.900",
-                fontWeight: 300,
-            },
-            sizes: {
-                small: {
-                    fontSize: ["xs", "sm", "sm", "md"],
-                },
-                medium: {
-                    fontSize: ["sm", "md", "md", "xl"],
-                },
-                large: {
-                    fontSize: ["md", "lg", "lg", "xl", "2xl"],
-                },
-            },
-            defaultProps: {
-                size: "medium",
+                size: "small",
             },
         },
     },

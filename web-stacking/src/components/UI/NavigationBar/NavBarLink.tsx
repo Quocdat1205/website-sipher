@@ -35,7 +35,7 @@ const NavBarLink = ({ onClick, size, text, active, href, isDisabled = false, ...
                     {...rest}
                 >
                     <Text
-                        fontWeight="bold"
+                        fontWeight="normal"
                         size="small"
                         textAlign="center"
                         isTruncated
