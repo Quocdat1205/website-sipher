@@ -3,7 +3,6 @@ import router from "next/router"
 import { useChakraToast, useFormCore } from "@sipher/web-components"
 import { metaMaskProvider, connectWallet } from "@helper"
 import { CHAIN_ID } from "@constant/index"
-import { WhitelistInfo } from "@api"
 import useMetaMaskListener from "./useMetamaskListener"
 
 declare global {
@@ -19,20 +18,12 @@ export interface AppState {
         name: string
     } | null
     isScAvailable: boolean
-    whitelistInfo: WhitelistInfo
-    accessToken: string
 }
 
 const initialState: AppState = {
     accountLogin: "",
     chain: null,
     isScAvailable: false,
-    whitelistInfo: {
-        proof: [],
-        privateCap: 0,
-        freeMintCap: 0,
-    },
-    accessToken: "",
 }
 
 export const useMetamask = () => {
@@ -43,7 +34,6 @@ export const useMetamask = () => {
     useMetaMaskListener({
         onAccountsChanged: () => {
             setState("accountLogin", "")
-            setState("accessToken", "")
         },
         onChainChanged: () => window && window.location.reload(),
     })
@@ -59,7 +49,7 @@ export const useMetamask = () => {
                 return
             }
             setIsConnecting(true)
-            const { account, chainInfo, token, whitelistInfo } = await connectWallet()
+            const { account, chainInfo } = await connectWallet()
             if (chainInfo.id !== CHAIN_ID) {
                 toast({
                     status: "error",
@@ -72,11 +62,8 @@ export const useMetamask = () => {
             initForm({
                 ...states,
                 chain: chainInfo,
-                accessToken: token,
-                whitelistInfo: whitelistInfo,
-                accountLogin: account.address,
+                accountLogin: account,
             })
-            router.push("/neko")
             setIsConnecting(false)
         } catch (error: any) {
             if (error.code === 4001) {
@@ -97,7 +84,6 @@ export const useMetamask = () => {
         initForm({
             ...states,
             accountLogin: "",
-            accessToken: "",
         })
         toast({ status: "success", title: "Logged out successfully!" })
     }

@@ -102,13 +102,9 @@ export const connectWallet = async () => {
     const accounts = await getMetaMaskAccounts()
     const address = accounts[0]
     const chainInfo = await getChainInfo()
-    const account = await getUser(address)
-    const token = await getAccessToken(account)
-    const whitelistInfo = await checkIsWhitelisted(address)
+
     return {
         chainInfo,
-        account,
-        token,
-        whitelistInfo,
+        account: address,
     }
 }

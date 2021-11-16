@@ -50,6 +50,29 @@ const theme = extendTheme({
                 size: "small",
             },
         },
+        Input: {
+            baseStyle: {
+                fontFamily: "Mark Pro",
+                color: "whiteAlpha.900",
+                fontWeight: 500,
+                lineHeight: "1.4",
+                letterSpacing: "-.01rem",
+            },
+            sizes: {
+                small: {
+                    fontSize: ["xs", "sm", "sm", "md"],
+                },
+                medium: {
+                    fontSize: ["sm", "md", "md", "xl"],
+                },
+                large: {
+                    fontSize: ["md", "lg", "lg", "xl", "2xl"],
+                },
+            },
+            defaultProps: {
+                size: "small",
+            },
+        },
         Button: {
             baseStyle: {
                 _focus: {

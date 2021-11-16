@@ -2,12 +2,18 @@ import { Image } from "@chakra-ui/image"
 import { Flex, Box } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import ConnectWalletModal from "@components/shared/ConnectWalletModal"
+import GradientButton from "@components/shared/GradientButton"
 import { Typo } from "@components/shared/Typo"
+import { AppState } from "@hooks"
+import { useRouter } from "next/router"
 import React from "react"
 
-interface Props {}
+interface Props {
+    states: AppState
+}
 
-const CardRewards = (props: Props) => {
+const CardRewards = ({ states }: Props) => {
+    const router = useRouter()
     return (
         <Flex flexDir="column" justify="center" align="center" p={8}>
             <Image mb={4} src="/images/icons/stack.svg" alt="stack" />
@@ -22,7 +28,13 @@ const CardRewards = (props: Props) => {
                 </Typo.BoldText>
             </chakra.span>
             <Box borderTop="1px" borderColor="rgba(33,42,75,.1)" w="full" my={8} />
-            <ConnectWalletModal mt={2} />
+            {states.accountLogin !== "" ? (
+                <GradientButton w="full" onClick={() => router.push("/rewards")}>
+                    Claim
+                </GradientButton>
+            ) : (
+                <ConnectWalletModal mt={2} />
+            )}
         </Flex>
     )
 }

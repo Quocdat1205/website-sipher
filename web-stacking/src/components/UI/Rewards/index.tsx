@@ -1,6 +1,7 @@
 import { Flex, Grid, Box, chakra } from "@chakra-ui/react"
 import ConnectWalletModal from "@components/shared/ConnectWalletModal"
 import { Typo } from "@components/shared/Typo"
+import { useWalletContext } from "@hooks"
 import React from "react"
 import MyGridItem from "../Overview/MyGridItem"
 import CardLockedRewards from "./CardLockedRewards"
@@ -9,6 +10,8 @@ import CardRewards from "./CardRewards"
 interface Props {}
 
 const Rewards = (props: Props) => {
+    const { states } = useWalletContext()
+
     return (
         <Flex flexDir="column" h="full" w="full">
             <Flex flexDir={["column", "row"]} justify={["flex-start", "space-between"]} w="full">
@@ -37,7 +40,7 @@ const Rewards = (props: Props) => {
                 </Typo.BoldText>
                 <MyGridItem>
                     <Box textAlign="center" p={8}>
-                        <CardRewards />
+                        <CardRewards states={states} />
                     </Box>
                 </MyGridItem>
                 <Typo.Heading mt={8} textAlign="left">
@@ -45,7 +48,7 @@ const Rewards = (props: Props) => {
                 </Typo.Heading>
                 <MyGridItem>
                     <Box textAlign="center" p={8}>
-                        <CardLockedRewards />
+                        <CardLockedRewards states={states} />
                     </Box>
                 </MyGridItem>
             </Grid>

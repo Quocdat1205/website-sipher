@@ -1,6 +1,6 @@
 import React from "react"
 import { Table, Thead, Tbody, Tr, HStack, Flex, Button } from "@chakra-ui/react"
-import { GradientButton } from "@components/shared/GradientButton"
+import GradientButton from "@components/shared/GradientButton"
 import { MyTable } from "@components/shared/MyTable"
 
 interface Props {}

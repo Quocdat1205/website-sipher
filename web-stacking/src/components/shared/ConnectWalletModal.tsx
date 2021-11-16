@@ -11,6 +11,7 @@ import {
     VStack,
     ButtonProps,
 } from "@chakra-ui/react"
+import { useWalletContext } from "@hooks"
 import React from "react"
 import { Typo } from "./Typo"
 import WalletCard from "./WalletCard"
@@ -19,6 +20,7 @@ interface Props extends ButtonProps {}
 
 const ConnectWalletModal = ({ ...rest }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { states, connect, isConnecting } = useWalletContext()
 
     return (
         <>
@@ -47,7 +49,14 @@ const ConnectWalletModal = ({ ...rest }: Props) => {
                             </Typo.Text>
                         </Box>
                         <VStack w="full" align="stretch" spacing={4}>
-                            <WalletCard src="/images/icons/metaMask.png" title="MetaMask" custom={0} />
+                            <WalletCard
+                                onClick={connect}
+                                isLoading={isConnecting}
+                                active={!!states.accountLogin}
+                                src="/images/icons/metaMask.png"
+                                title="MetaMask"
+                                custom={0}
+                            />
                             <WalletCard
                                 disabled
                                 src="/images/icons/Binance.png"

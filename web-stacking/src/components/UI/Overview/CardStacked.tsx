@@ -1,13 +1,15 @@
-import { Image } from "@chakra-ui/image"
-import { Flex, Box } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
+import { Flex, Box, Image, chakra } from "@chakra-ui/react"
 import ConnectWalletModal from "@components/shared/ConnectWalletModal"
 import { Typo } from "@components/shared/Typo"
+import GradientButton from "@components/shared/GradientButton"
 import React from "react"
+import { AppState } from "@hooks"
 
-interface Props {}
+interface Props {
+    states: AppState
+}
 
-const CardStacked = (props: Props) => {
+const CardStacked = ({ states }: Props) => {
     return (
         <Flex flexDir="column" justify="center" align="center" p={8}>
             <Image mb={4} src="/images/icons/stack.svg" alt="stack" />
@@ -17,7 +19,11 @@ const CardStacked = (props: Props) => {
             </Typo.Heading>
 
             <Box borderTop="1px" borderColor="rgba(33,42,75,.1)" w="full" my={8} />
-            <ConnectWalletModal mt={2} />
+            {states.accountLogin !== "" ? (
+                <GradientButton w="full">Stake</GradientButton>
+            ) : (
+                <ConnectWalletModal mt={2} />
+            )}
         </Flex>
     )
 }

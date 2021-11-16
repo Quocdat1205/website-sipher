@@ -8,11 +8,14 @@ import CardStacked from "./CardStacked"
 import CardTotal from "./CardTotal"
 import CardPools from "./CardPools"
 import CardDeposits from "./CardDeposits"
+import { useWalletContext } from "@hooks"
 
 interface OverviewUIProps {
     uaString: string
 }
 const Overview = ({ uaString }: OverviewUIProps) => {
+    const { states } = useWalletContext()
+
     return (
         <Flex flexDir="column" h="full" w="full">
             <Flex flexDir={["column", "row"]} justify={["flex-start", "space-between"]} w="full">
@@ -31,36 +34,41 @@ const Overview = ({ uaString }: OverviewUIProps) => {
                 w="full"
             >
                 <MyGridItem rowSpan={2} colSpan={1}>
-                    <CardStacked />
+                    <CardStacked states={states} />
                 </MyGridItem>
                 <MyGridItem rowSpan={2} colSpan={1}>
-                    <CardRewards />
+                    <CardRewards states={states} />
                 </MyGridItem>
                 <MyGridItem rowSpan={1} colSpan={2}></MyGridItem>
                 <MyGridItem rowSpan={1} colSpan={2}>
                     <CardTotal />
                 </MyGridItem>
-                <MyGridItem colSpan={4}>
-                    <Box textAlign="center" p={8}>
-                        <ConnectWalletModal />
-                    </Box>
-                </MyGridItem>
-                <Typo.Heading mt={8} textAlign="left">
-                    Pools
-                </Typo.Heading>
-                <MyGridItem colSpan={4}>
-                    <Box textAlign="center" p={8}>
-                        <CardPools />
-                    </Box>
-                </MyGridItem>
-                <Typo.Heading mt={8} textAlign="left">
-                    Deposits
-                </Typo.Heading>
-                <MyGridItem colSpan={4}>
-                    <Box textAlign="center" p={8}>
-                        <CardDeposits />
-                    </Box>
-                </MyGridItem>
+                {states.accountLogin !== "" ? (
+                    <>
+                        <Typo.Heading mt={8} textAlign="left">
+                            Pools
+                        </Typo.Heading>
+                        <MyGridItem colSpan={4}>
+                            <Box textAlign="center" p={8}>
+                                <CardPools />
+                            </Box>
+                        </MyGridItem>
+                        <Typo.Heading mt={8} textAlign="left">
+                            Deposits
+                        </Typo.Heading>
+                        <MyGridItem colSpan={4}>
+                            <Box textAlign="center" p={8}>
+                                <CardDeposits />
+                            </Box>
+                        </MyGridItem>
+                    </>
+                ) : (
+                    <MyGridItem colSpan={4}>
+                        <Box textAlign="center" p={8}>
+                            <ConnectWalletModal />
+                        </Box>
+                    </MyGridItem>
+                )}
             </Grid>
         </Flex>
     )

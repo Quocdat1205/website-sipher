@@ -5,7 +5,7 @@ import { ButtonProps, Button } from "@chakra-ui/react"
 
 interface GradientButtonProps extends ButtonProps {}
 
-export const GradientButton = ({ ...rest }: GradientButtonProps) => {
+const GradientButton = ({ ...rest }: GradientButtonProps) => {
     return (
         <Button
             size="small"
@@ -17,3 +17,5 @@ export const GradientButton = ({ ...rest }: GradientButtonProps) => {
         ></Button>
     )
 }
+
+export default GradientButton
