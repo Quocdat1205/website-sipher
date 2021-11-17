@@ -1,5 +1,5 @@
 import MainLayout from "@components/UI/MainLayout"
-import HomeUI from "@components/UI/HomeUI"
+import HomeUI from "@components/UI/Home/HomeUI"
 import { ReactElement } from "react"
 
 import { NextPageWithLayout } from "./_app"

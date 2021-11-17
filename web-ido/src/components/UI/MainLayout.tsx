@@ -17,15 +17,7 @@ const MainLayout = ({ children }: Props) => {
             minH="100vh"
             pos="relative"
         >
-            <Flex
-                bg="blackAlpha.900"
-                py={8}
-                align="center"
-                color="whiteAlpha.900"
-                w="full"
-                minH="100vh"
-                flexDir="column"
-            >
+            <Flex bg="#1a1a28" py={8} align="center" color="whiteAlpha.900" w="full" minH="100vh" flexDir="column">
                 <NavBar />
                 <Flex maxW="1200px" w="full" flex={1} overflow="visible" pt={16} pos="relative">
                     <AnimatePresence exitBeforeEnter>{children}</AnimatePresence>

@@ -45,6 +45,99 @@ export const theme = extendTheme({
             cardGray: "#f1f3f5",
         },
     },
+    components: {
+        Heading: {
+            baseStyle: {
+                fontWeight: 600,
+            },
+            sizes: {
+                small: {
+                    fontSize: ["md", "lg"],
+                },
+                medium: {
+                    fontSize: ["lg", "xl"],
+                },
+                large: {
+                    fontSize: ["xl", "2xl"],
+                },
+            },
+            defaultProps: {
+                size: "medium",
+            },
+        },
+        Text: {
+            baseStyle: {
+                fontFamily: "Mark Pro",
+                color: "whiteAlpha.900",
+                fontWeight: 500,
+                lineHeight: "1.4",
+                letterSpacing: "-.01rem",
+            },
+            sizes: {
+                small: {
+                    fontSize: ["xs", "sm", "sm", "md"],
+                },
+                medium: {
+                    fontSize: ["sm", "md", "md", "xl"],
+                },
+                large: {
+                    fontSize: ["md", "lg", "lg", "xl", "2xl"],
+                },
+            },
+            defaultProps: {
+                size: "small",
+            },
+        },
+        Input: {
+            baseStyle: {
+                fontFamily: "Mark Pro",
+                color: "whiteAlpha.900",
+                fontWeight: 500,
+                lineHeight: "1.4",
+                letterSpacing: "-.01rem",
+            },
+            sizes: {
+                small: {
+                    fontSize: ["xs", "sm", "sm", "md"],
+                },
+                medium: {
+                    fontSize: ["sm", "md", "md", "xl"],
+                },
+                large: {
+                    fontSize: ["md", "lg", "lg", "xl", "2xl"],
+                },
+            },
+            defaultProps: {
+                size: "small",
+            },
+        },
+        Button: {
+            baseStyle: {
+                _focus: {
+                    shadow: "none",
+                },
+                fontFamily: "Mark Pro",
+                fontWeight: 500,
+                lineHeight: "1.4",
+                letterSpacing: "-.01rem",
+                color: "#05070c",
+            },
+            sizes: {
+                small: {
+                    fontSize: ["xs", "sm", "sm", "md"],
+                },
+                medium: {
+                    fontSize: ["sm", "md", "md", "xl"],
+                },
+                large: {
+                    fontSize: ["md", "lg", "lg", "xl", "2xl"],
+                },
+            },
+            defaultProps: {
+                size: "small",
+            },
+        },
+    },
     styles: {
         global: {
             "*": {
@@ -78,108 +171,7 @@ export const theme = extendTheme({
                 "-webkit-appearance": "none",
             },
         },
-        components: {
-            Heading: {
-                baseStyle: {
-                    fontFamily: "Brandon",
-                    letterSpacing: "1px",
-                    color: "whiteAlpha.900",
-                },
-                size: {
-                    small: {
-                        fontSize: ["md", "lg"],
-                    },
-                    medium: {
-                        fontSize: ["lg", "xl"],
-                    },
-                    large: {
-                        fontSize: ["xl", "2xl"],
-                    },
-                },
-                defaultProps: {
-                    size: "medium",
-                },
-            },
-            Text: {
-                baseStyle: {
-                    fontFamily: "Mark Pro",
-                    color: "whiteAlpha.900",
-                    fontWeight: 300,
-                },
-                size: {
-                    small: {
-                        fontSize: ["xs", "sm", "sm", "md"],
-                    },
-                    medium: {
-                        fontSize: ["sm", "md", "md", "xl"],
-                    },
-                    large: {
-                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
-                    },
-                },
-                defaultProps: {
-                    size: "medium",
-                },
-            },
-            Button: {
-                baseStyle: {
-                    fontFamily: "Mark Pro",
-                    color: "whiteAlpha.900",
-                    fontWeight: 300,
-                },
-                size: {
-                    small: {
-                        fontSize: ["xs", "sm", "sm", "md"],
-                    },
-                    medium: {
-                        fontSize: ["sm", "md", "md", "xl"],
-                    },
-                    large: {
-                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
-                    },
-                },
-                defaultProps: {
-                    size: "medium",
-                },
-            },
-            Td: {
-                size: {
-                    small: {
-                        fontSize: ["xs", "sm", "sm", "md"],
-                    },
-                    medium: {
-                        fontSize: ["sm", "md", "md", "xl"],
-                    },
-                    large: {
-                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
-                    },
-                },
-                defaultProps: {
-                    size: "medium",
-                    textAlign: "left",
-                    px: 0,
-                },
-            },
-            Th: {
-                size: {
-                    small: {
-                        fontSize: ["xs", "sm", "sm", "md"],
-                    },
-                    medium: {
-                        fontSize: ["sm", "md", "md", "xl"],
-                    },
-                    large: {
-                        fontSize: ["sm", "lg", "lg", "xl", "2xl"],
-                    },
-                },
-                defaultProps: {
-                    size: "medium",
-                    textAlign: "left",
-                    px: 0,
-                },
-            },
-        },
-        breakpoints: ["0px", "480px", "960px", "1440px", "1920px"],
     },
+    breakpoints: ["0px", "480px", "960px", "1440px", "1920px"],
 })
 export default theme
