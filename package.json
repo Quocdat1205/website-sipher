@@ -12,7 +12,8 @@
         "web-gallery",
         "web-components",
         "web-minting",
-        "web-stacking"
+        "web-stacking",
+        "web-ido"
     ],
     "scripts": {
         "build-components": "cd web-components && yarn && yarn build",
@@ -23,6 +24,8 @@
         "install-gallery-page": "yarn build-components && cd web-gallery && yarn",
         "build-gallery-page": "cd web-gallery && yarn build",
         "install-stacking-page": "yarn build-components && cd web-stacking && yarn",
-        "build-stacking-page": "cd web-stacking && yarn build"
+        "build-stacking-page": "cd web-stacking && yarn build",
+        "install-ido-page": "yarn build-components && cd web-ido && yarn",
+        "build-ido-page": "cd web-ido && yarn build"
     }
 }

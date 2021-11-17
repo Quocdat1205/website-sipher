@@ -21,13 +21,15 @@ const ConnectWalletNav = ({ ...rest }: Props) => {
     return (
         <>
             <Button
-                rounded="full"
-                _hover={{ bg: "hsla(0,0%,100%,1)" }}
-                bg="hsla(0,0%,100%,.8)"
+                rounded="2xl"
+                _hover={{ color: "white", bg: "main.orange" }}
+                bg="transparent"
+                border="1px solid"
+                borderColor="main.orange"
+                color="main.orange"
                 px={6}
                 py={4}
                 size="small"
-                color="stack.textBlack"
                 onClick={onOpen}
                 {...rest}
             >
