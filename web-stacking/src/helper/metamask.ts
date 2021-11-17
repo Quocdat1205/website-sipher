@@ -1,4 +1,4 @@
-import { authenticateUser, getUsersByAddress, IUser, checkIsWhitelisted } from "@api"
+import { authenticateUser, getUsersByAddress, IUser } from "@api"
 import Web3 from "web3"
 
 export const metaMaskProvider = typeof window !== "undefined" && window.ethereum
@@ -98,7 +98,7 @@ export const getMetamaskBalance = async (address: string): Promise<number> => {
 }
 
 /** Connect to metamask, return bunch of info */
-export const connectWallet = async () => {
+export const connectMetamask = async () => {
     const accounts = await getMetaMaskAccounts()
     const address = accounts[0]
     const chainInfo = await getChainInfo()

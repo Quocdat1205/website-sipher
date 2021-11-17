@@ -1,7 +1,6 @@
 import { useState } from "react"
-import router from "next/router"
 import { useChakraToast, useFormCore } from "@sipher/web-components"
-import { metaMaskProvider, connectWallet } from "@helper"
+import { metaMaskProvider, connectMetamask, connectWalletConnect } from "@helper"
 import { CHAIN_ID } from "@constant/index"
 import useMetaMaskListener from "./useMetamaskListener"
 
@@ -39,43 +38,56 @@ export const useMetamask = () => {
     })
 
     /** Connect to metamask */
-    const connect = async () => {
-        try {
-            if (!metaMaskProvider) {
-                toast({ status: "error", title: "MetaMask not found!", message: "Please install MetaMask extension." })
-                return
+    const connect = async type => {
+        if (type === "WalletConnect") {
+            try {
+                const { account, chainInfo } = await connectWalletConnect()
+                console.log(account, chainInfo)
+            } catch (error) {
+                console.log(error)
             }
-            if (isConnecting) {
-                return
-            }
-            setIsConnecting(true)
-            const { account, chainInfo } = await connectWallet()
-            if (chainInfo.id !== CHAIN_ID) {
-                toast({
-                    status: "error",
-                    title: "Wrong network!",
-                    message: "Please switch to ethereum mainnet and try again.",
+        } else {
+            try {
+                if (!metaMaskProvider) {
+                    toast({
+                        status: "error",
+                        title: "MetaMask not found!",
+                        message: "Please install MetaMask extension.",
+                    })
+                    return
+                }
+                if (isConnecting) {
+                    return
+                }
+                setIsConnecting(true)
+                const { account, chainInfo } = await connectMetamask()
+                if (chainInfo.id !== CHAIN_ID) {
+                    toast({
+                        status: "error",
+                        title: "Wrong network!",
+                        message: "Please switch to ethereum mainnet and try again.",
+                    })
+                    setIsConnecting(false)
+                    return
+                }
+                initForm({
+                    ...states,
+                    chain: chainInfo,
+                    accountLogin: account,
                 })
                 setIsConnecting(false)
-                return
+            } catch (error: any) {
+                if (error.code === 4001) {
+                    toast({
+                        status: "error",
+                        title: "User denied to sign message!",
+                        message: "Please sign the message to continue!",
+                    })
+                } else {
+                    toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
+                }
+                setIsConnecting(false)
             }
-            initForm({
-                ...states,
-                chain: chainInfo,
-                accountLogin: account,
-            })
-            setIsConnecting(false)
-        } catch (error: any) {
-            if (error.code === 4001) {
-                toast({
-                    status: "error",
-                    title: "User denied to sign message!",
-                    message: "Please sign the message to continue!",
-                })
-            } else {
-                toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
-            }
-            setIsConnecting(false)
         }
     }
 

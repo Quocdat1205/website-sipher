@@ -22,7 +22,7 @@ const ModalConnectWallet = ({ onClose }: Props) => {
             <VStack w="full" align="stretch" spacing={4}>
                 <WalletCard
                     onClick={() => {
-                        connect()
+                        connect("Metamask")
                         onClose()
                     }}
                     isLoading={isConnecting}
@@ -32,7 +32,17 @@ const ModalConnectWallet = ({ onClose }: Props) => {
                     custom={0}
                 />
                 <WalletCard disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" custom={1} />
-                <WalletCard disabled src="/images/icons/TWT.png" title="TrustWallet (Coming soon)" custom={2} />
+                <WalletCard
+                    onClick={() => {
+                        connect("WalletConnect")
+                        onClose()
+                    }}
+                    isLoading={isConnecting}
+                    active={!!states.accountLogin}
+                    src="/images/icons/walletConnect.png"
+                    title="Wallet Connect"
+                    custom={2}
+                />
             </VStack>
         </Stack>
     )
