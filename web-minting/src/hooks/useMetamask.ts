@@ -91,7 +91,7 @@ export const useMetamask = () => {
                 whitelistInfo: whitelistInfo,
                 accountLogin: account.address,
             })
-            router.push("inventory/neko")
+            router.push("/neko")
             setIsConnecting(false)
         } catch (error: any) {
             if (error.code === 4001) {

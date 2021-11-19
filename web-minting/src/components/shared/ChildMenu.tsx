@@ -17,7 +17,7 @@ const ChildMenu = ({ menus }: ChildMenuProps) => {
                     key={menu.id}
                     text={menu.id}
                     href={menu.path}
-                    isActive={router.pathname.split("/")[2] === menu.path.split("/")[2]}
+                    isActive={router.pathname.split("/")[1] === menu.path.split("/")[1]}
                 />
             ))}
         </HStack>

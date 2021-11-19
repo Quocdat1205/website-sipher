@@ -3,6 +3,7 @@ export * from "./MyHeading";
 export * from "./MyInput";
 export * from "./MySelect";
 export * from "./MyTd";
+export * from "./MyTh";
 export * from "./MyText";
 export * from "./GradientButton";
 export * from "./GradientText";

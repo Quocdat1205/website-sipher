@@ -34,7 +34,7 @@ const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children }: BaseNavig
                         key={menu.id}
                         text={menu.id}
                         href={menu.path}
-                        active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
+                        active={router.pathname.split("/")[1] === "neko" || router.pathname.split("/")[1] === "inu"}
                     />
                 ))}
             </HStack>

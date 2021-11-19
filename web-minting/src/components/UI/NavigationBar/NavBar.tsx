@@ -8,11 +8,11 @@ interface NavBarProps {
     isInventoryMenu?: boolean
 }
 
-export const navMenus = [{ id: "Inventory", path: "/inventory/neko" }]
+export const navMenus = [{ id: "Inventory", path: "/neko" }]
 
 export const inventoryMenus = [
-    { id: "INU", path: "/inventory/inu" },
-    { id: "NEKO", path: "/inventory/neko" },
+    { id: "INU", path: "/inu" },
+    { id: "NEKO", path: "/neko" },
 ]
 
 export const NavBar = ({ isInventoryMenu }: NavBarProps) => {
