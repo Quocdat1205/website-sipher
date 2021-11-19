@@ -1,13 +1,12 @@
-import { Flex, chakra, Box } from "@chakra-ui/react"
+import { Flex, chakra } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typo"
-import { GradientButton } from "@sipher/web-components"
 import { numberWithCommas } from "@utils"
 import React from "react"
 import { FlexContainer } from "./FlexContainer"
 import ImageETH from "./ImageETH"
 import InputUI from "./InputUI"
 import { useTimer } from "react-timer-hook"
-import Countdown from "../Countdown"
+import CountdownSale from "./CountdownSale"
 
 interface Props {
     mode: "Deposit" | "Withdraw"
@@ -19,39 +18,8 @@ const SaleUI = ({ mode }: Props) => {
     return (
         <Flex flexDir="column">
             <InputUI mode={mode} />
-            <chakra.span fontWeight={500} py={1} textAlign="right" color="gray.500" fontSize="xs">
-                balance: 1500
-            </chakra.span>
-            <GradientButton
-                my={4}
-                py={4}
-                rounded="lg"
-                fontSize="sm"
-                text={mode === "Deposit" ? "Deposit" : "Withdraw"}
-            />
             <FlexContainer flexDir="column">
-                <Box>
-                    <Typo.Text fontWeight="normal" color="gray.500">
-                        Sale Period Ends
-                    </Typo.Text>
-                    <Countdown
-                        time1={{ value: startSaleTimer.days, unit: "DAYS" }}
-                        time2={{ value: startSaleTimer.hours, unit: "HOURS" }}
-                        time3={{ value: startSaleTimer.minutes, unit: "MINS" }}
-                        time4={{ value: startSaleTimer.seconds, unit: "SECS" }}
-                    />
-                </Box>
-                <Box mt={4}>
-                    <Typo.Text fontWeight="normal" color="gray.500">
-                        Grace Period Ends
-                    </Typo.Text>
-                    <Countdown
-                        time1={{ value: startSaleTimer.days, unit: "DAYS" }}
-                        time2={{ value: startSaleTimer.hours, unit: "HOURS" }}
-                        time3={{ value: startSaleTimer.minutes, unit: "MINS" }}
-                        time4={{ value: startSaleTimer.seconds, unit: "SECS" }}
-                    />
-                </Box>
+                <CountdownSale timeLeft={startSaleTimer} />
             </FlexContainer>
             <FlexContainer flexDir="column">
                 <Typo.Text fontWeight="normal" color="gray.500">

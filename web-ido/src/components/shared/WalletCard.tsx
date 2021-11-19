@@ -1,7 +1,5 @@
 import { Spinner, Flex, Img, Text, Box } from "@chakra-ui/react"
-import { useRouter } from "next/router"
 import React from "react"
-import { BsInfoCircle } from "react-icons/bs"
 
 interface WalletCardProps {
     src: string
@@ -14,7 +12,6 @@ interface WalletCardProps {
 }
 
 const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading = false, custom }: WalletCardProps) => {
-    const router = useRouter()
     return (
         <Flex
             flex={1}
@@ -31,7 +28,6 @@ const WalletCard = ({ onClick, src, title, disabled = false, active, isLoading =
             alignItems="center"
             shadow="base"
             cursor="pointer"
-            whileHover={{ scale: 1.05, color: "#F4B533" }}
         >
             <Flex w="full" align="center" justify="space-between">
                 <Text color={disabled ? "stack.textBlack" : active ? "main.lightGreen" : "inherit"} mr={8}>

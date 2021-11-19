@@ -1,3 +1,4 @@
+import { useWalletContext } from "@hooks"
 import {
     Modal,
     Button,
@@ -7,7 +8,6 @@ import {
     useDisclosure,
     ButtonProps,
 } from "@chakra-ui/react"
-import { useWalletContext } from "@hooks"
 import React from "react"
 import ModalConnectWallet from "./ModalConnectWallet"
 import ModalLogoutWallet from "./ModalLogoutWallet"
@@ -16,8 +16,7 @@ interface Props extends ButtonProps {}
 
 const ConnectWalletNav = ({ ...rest }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { states } = useWalletContext()
-
+    const wallet = useWalletContext()
     return (
         <>
             <Button
@@ -33,12 +32,11 @@ const ConnectWalletNav = ({ ...rest }: Props) => {
                 onClick={onOpen}
                 {...rest}
             >
-                {states.accountLogin !== "" ? (
+                {wallet.account ? (
                     <>
-                        {states.accountLogin !== "" && states.accountLogin.slice(0, 6)}
+                        {wallet.account && wallet.account.slice(0, 6)}
                         ...
-                        {states.accountLogin !== "" &&
-                            states.accountLogin.slice(states.accountLogin.length - 4, states.accountLogin.length)}{" "}
+                        {wallet.account && wallet.account.slice(wallet.account.length - 4, wallet.account.length)}
                     </>
                 ) : (
                     "Connect Wallet"
@@ -48,7 +46,7 @@ const ConnectWalletNav = ({ ...rest }: Props) => {
                 <ModalOverlay bg="rgba(157,155,165,.2)" backdropFilter="blur(20px)" />
                 <ModalContent overflow="hidden" rounded="3xl">
                     <ModalCloseButton />
-                    {states.accountLogin !== "" ? (
+                    {wallet.account ? (
                         <ModalLogoutWallet onClose={onClose} />
                     ) : (
                         <ModalConnectWallet onClose={onClose} />

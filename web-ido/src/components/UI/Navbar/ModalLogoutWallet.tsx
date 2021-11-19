@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ModalLogoutWallet = ({ onClose }: Props) => {
-    const { logout } = useWalletContext()
+    const wallet = useWalletContext()
 
     return (
         <Flex align="center" direction={["column", "column", "column"]} spacing={16} p={8} maxW="full">
@@ -20,7 +20,7 @@ const ModalLogoutWallet = ({ onClose }: Props) => {
                 size="small"
                 color="stack.textBlack"
                 onClick={() => {
-                    logout()
+                    wallet.reset()
                     onClose()
                 }}
             >

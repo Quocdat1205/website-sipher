@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ModalConnectWallet = ({ onClose }: Props) => {
-    const { states, connect, isConnecting } = useWalletContext()
+    const wallet = useWalletContext()
 
     return (
         <Stack align="center" direction={["column", "column", "column"]} spacing={16} p={8} maxW="full">
@@ -22,23 +22,22 @@ const ModalConnectWallet = ({ onClose }: Props) => {
             <VStack w="full" align="stretch" spacing={4}>
                 <WalletCard
                     onClick={() => {
-                        connect("Metamask")
+                        wallet.connect()
                         onClose()
                     }}
-                    isLoading={isConnecting}
-                    active={!!states.accountLogin}
+                    isLoading={wallet.isConnecting}
+                    active={wallet.isActive}
                     src="/images/icons/metaMask.png"
                     title="MetaMask"
                     custom={0}
                 />
-                <WalletCard disabled src="/images/icons/Binance.png" title="Binance (Coming soon)" custom={1} />
                 <WalletCard
                     onClick={() => {
-                        connect("WalletConnect")
+                        wallet.connect("walletConnect")
                         onClose()
                     }}
-                    isLoading={isConnecting}
-                    active={!!states.accountLogin}
+                    isLoading={wallet.isConnecting}
+                    active={wallet.isActive}
                     src="/images/icons/walletConnect.png"
                     title="Wallet Connect"
                     custom={2}

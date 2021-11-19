@@ -9,11 +9,11 @@ interface Props {
     states: AppState
 }
 
-const CardStacked = ({ states }: Props) => {
+const CardStaked = ({ states }: Props) => {
     return (
         <Flex flexDir="column" justify="center" align="center" p={8}>
             <Image mb={4} src="/images/icons/stack.svg" alt="stack" />
-            <Typo.BoldText color="stack.textBlack">Stacked</Typo.BoldText>
+            <Typo.BoldText color="stack.textBlack">Staked</Typo.BoldText>
             <Typo.Heading m={0} fontWeight="bold" color="stack.textBlack">
                 $<chakra.span color="stack.textBlack">0.00</chakra.span>
             </Typo.Heading>
@@ -28,4 +28,4 @@ const CardStacked = ({ states }: Props) => {
     )
 }
 
-export default CardStacked
+export default CardStaked
