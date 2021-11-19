@@ -15,7 +15,6 @@ interface Props {
 
 const SaleUI = ({ mode }: Props) => {
     const startSaleTimer = useTimer({ expiryTimestamp: new Date() })
-    console.log(startSaleTimer)
 
     return (
         <Flex flexDir="column">
