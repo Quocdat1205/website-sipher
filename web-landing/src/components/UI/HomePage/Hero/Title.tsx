@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { HStack, Heading, HeadingProps } from "@chakra-ui/react"
+import { HStack, Heading, HeadingProps, Flex } from "@chakra-ui/react"
 import { AnimationControls, motion, useAnimation } from "framer-motion"
 import { useEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
@@ -58,6 +58,7 @@ const Title = ({}: TitleProps) => {
             }))
         }
     }, [controls, initialLoading, inView])
+
     return (
         <HStack align="baseline" spacing={6} overflow="hidden" ref={ref} userSelect="none">
             <Letter char="N" control={controls} custom={0} />

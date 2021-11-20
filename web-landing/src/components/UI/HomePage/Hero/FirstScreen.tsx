@@ -2,7 +2,7 @@
 
 import { Flex, Img, Box } from "@chakra-ui/react"
 import { MotionFlex, MotionBox, Typo } from "@components/shared"
-import { ViewCollectionButton } from "@sipher/web-components"
+import { GradientButton, ViewCollectionButton } from "@sipher/web-components"
 import { useStoreState } from "@store"
 import { useAnimation } from "framer-motion"
 import React, { useEffect, useRef } from "react"
@@ -67,11 +67,6 @@ const FirstScreen = ({}: FirstScreenProps) => {
             p={4}
         >
             <Flex direction="column" align="center" ref={ref}>
-                <Box overflow="hidden">
-                    <MotionBox animate={logoControl} initial={{ y: "-100%" }} mb={2}>
-                        <Img src="/images/logonew.svg" h={["2rem"]} alt="sipher-logo" />
-                    </MotionBox>
-                </Box>
                 <Title />
                 <MotionBox initial={{ overflow: "hidden" }} animate={boxControl}>
                     <MotionFlex
@@ -82,15 +77,12 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         align="center"
                     >
                         <Typo.Heading textAlign="center" mb={0}>
-                            SOLD OUT
+                            COMING SOON
                         </Typo.Heading>
-                        <Typo.BoldText letterSpacing={0}>
-                            Thanks to all our early adopters and our community.
+                        <Typo.BoldText textTransform="uppercase" letterSpacing={0} mb={4}>
+                            be part of the sipher universe
                         </Typo.BoldText>
-                        <Typo.BoldText letterSpacing={0} mb={4}>
-                            Sipher NEKOs are now available on OpenSea.
-                        </Typo.BoldText>
-                        <ViewCollectionButton size="large" />
+                        <GradientButton rounded="full" size="large" text="follow us on medium" />
                     </MotionFlex>
                 </MotionBox>
             </Flex>
