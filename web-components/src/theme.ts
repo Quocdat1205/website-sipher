@@ -61,17 +61,12 @@ export const theme = extendTheme({
                     fontSize: ["xl", "2xl"],
                 },
             },
-            defaultProps: {
-                size: "medium",
-            },
         },
         Text: {
             baseStyle: {
                 fontFamily: "Mark Pro",
                 color: "whiteAlpha.900",
                 fontWeight: 500,
-                lineHeight: "1.4",
-                letterSpacing: "-.01rem",
             },
             sizes: {
                 small: {
@@ -83,9 +78,6 @@ export const theme = extendTheme({
                 large: {
                     fontSize: ["md", "lg", "lg", "xl", "2xl"],
                 },
-            },
-            defaultProps: {
-                size: "small",
             },
         },
         Input: {
@@ -93,8 +85,6 @@ export const theme = extendTheme({
                 fontFamily: "Mark Pro",
                 color: "whiteAlpha.900",
                 fontWeight: 500,
-                lineHeight: "1.4",
-                letterSpacing: "-.01rem",
             },
             sizes: {
                 small: {
@@ -106,9 +96,6 @@ export const theme = extendTheme({
                 large: {
                     fontSize: ["md", "lg", "lg", "xl", "2xl"],
                 },
-            },
-            defaultProps: {
-                size: "small",
             },
         },
         Button: {
@@ -118,8 +105,6 @@ export const theme = extendTheme({
                 },
                 fontFamily: "Mark Pro",
                 fontWeight: 500,
-                lineHeight: "1.4",
-                letterSpacing: "-.01rem",
                 color: "#05070c",
             },
             sizes: {
@@ -132,9 +117,6 @@ export const theme = extendTheme({
                 large: {
                     fontSize: ["md", "lg", "lg", "xl", "2xl"],
                 },
-            },
-            defaultProps: {
-                size: "small",
             },
         },
     },
