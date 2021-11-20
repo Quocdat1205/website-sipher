@@ -1,9 +1,8 @@
 // * DESCRIPTION:
 
-import { Flex, Img, Box } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import { MotionFlex, MotionBox, Typo } from "@components/shared"
-import { GradientButton, ViewCollectionButton } from "@sipher/web-components"
-import { useStoreState } from "@store"
+import { GradientButton } from "@sipher/web-components"
 import { useAnimation } from "framer-motion"
 import React, { useEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
@@ -15,13 +14,12 @@ const FirstScreen = ({}: FirstScreenProps) => {
     const logoControl = useAnimation()
     const descriptionControl = useAnimation()
     const boxControl = useAnimation()
-    const initialLoading = useStoreState(s => s.initialLoading)
     const [ref, inView] = useInView({
         threshold: 0.5,
     })
     const firstLoad = useRef(true)
     useEffect(() => {
-        if (inView && !initialLoading) {
+        if (inView) {
             logoControl.start({
                 y: 0,
                 transition: { delay: firstLoad.current ? 1.5 : 0.5, duration: 0.25, type: "tween", ease: "easeIn" },
@@ -36,7 +34,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         overflow: "visible",
                     })
                 })
-        } else if (!inView && !initialLoading) {
+        } else if (!inView) {
             logoControl.start({
                 y: "-100%",
                 transition: {
@@ -52,7 +50,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 })
             })
         }
-    }, [inView, initialLoading, logoControl, descriptionControl, boxControl])
+    }, [inView, logoControl, descriptionControl, boxControl])
 
     return (
         <Flex

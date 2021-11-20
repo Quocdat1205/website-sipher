@@ -1,10 +1,9 @@
 // * DESCRIPTION:
 
-import { HStack, Heading, HeadingProps, Flex } from "@chakra-ui/react"
+import { HStack, Heading, HeadingProps } from "@chakra-ui/react"
 import { AnimationControls, motion, useAnimation } from "framer-motion"
 import { useEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
-import { useStoreState } from "@store"
 const letterVariants = {
     hidden: { y: "-100%" },
     visible: { y: "0%" },
@@ -43,21 +42,20 @@ const Title = ({}: TitleProps) => {
     const [ref, inView] = useInView({
         threshold: 0.5,
     })
-    const initialLoading = useStoreState(s => s.initialLoading)
     useEffect(() => {
-        if (!initialLoading && inView) {
+        if (inView) {
             controls.start(i => ({
                 ...letterVariants.visible,
                 transition: { delay: i * 0.15 + (firstLoad.current ? 0.5 : 0), duration: 0.75, ease: "easeOut" },
             }))
             firstLoad.current = false
-        } else if (!initialLoading && !inView) {
+        } else if (!inView) {
             controls.start(i => ({
                 ...letterVariants.hidden,
                 transition: { delay: 0, duration: 0.2 },
             }))
         }
-    }, [controls, initialLoading, inView])
+    }, [controls, inView])
 
     return (
         <HStack align="baseline" spacing={6} overflow="hidden" ref={ref} userSelect="none">

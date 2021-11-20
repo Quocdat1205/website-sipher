@@ -1,8 +1,6 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/layout"
-// import Loader from "@components/shared/InitialLoader"
-// import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
 import { useEffect, useRef } from "react"
 import HomeBody from "./HomeBody"
@@ -12,11 +10,6 @@ interface HomeUIProps {
 }
 
 const HomeUI = ({ uaString }: HomeUIProps) => {
-    // const initialLoading = useStoreState(s => s.initialLoading)
-    // const setInitialLoading = useStoreActions(a => a.setInitialLoading)
-    // useEffect(() => {
-    //     return () => setInitialLoading(true)
-    // }, [setInitialLoading])
     const ctnRef = useRef<HTMLDivElement>(null)
     const router = useRouter()
     useEffect(() => {
@@ -25,14 +18,8 @@ const HomeUI = ({ uaString }: HomeUIProps) => {
         }
     }, [router.pathname])
 
-    // useEffect(() => {
-    //     if (initialLoading) document.body.style.overflow = "hidden"
-    //     else document.body.style.overflow = "initial"
-    // }, [initialLoading])
-
     return (
         <Flex flex={1} overflow="overlay" direction="column" id="body" bg="black" ref={ctnRef}>
-            {/* <Loader isVisible={initialLoading} /> */}
             <HomeBody uaString={uaString} />
         </Flex>
     )
