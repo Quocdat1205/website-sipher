@@ -73,10 +73,10 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         direction="column"
                         align="center"
                     >
-                        <Typo.Heading textAlign="center" mb={0}>
+                        <Typo.Heading textAlign="center" mb={2}>
                             COMING SOON
                         </Typo.Heading>
-                        <Typo.BoldText textTransform="uppercase" letterSpacing={0} mb={4}>
+                        <Typo.BoldText size="medium" textTransform="uppercase" letterSpacing={0} mb={8}>
                             be part of the sipher universe
                         </Typo.BoldText>
                         <Flex>
