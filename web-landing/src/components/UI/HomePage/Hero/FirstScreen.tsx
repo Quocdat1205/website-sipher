@@ -1,8 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/react"
-import { MotionFlex, MotionBox, Typo } from "@components/shared"
-import { GradientButton } from "@sipher/web-components"
+import { MotionFlex, MotionBox, Typo, LinkButton } from "@components/shared"
 import { useAnimation } from "framer-motion"
 import React, { useEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
@@ -80,7 +79,9 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         <Typo.BoldText textTransform="uppercase" letterSpacing={0} mb={4}>
                             be part of the sipher universe
                         </Typo.BoldText>
-                        <GradientButton rounded="full" size="large" text="follow us on medium" />
+                        <Flex>
+                            <LinkButton text="follow us on medium" size="large" href="https://medium.com/SIPHERxyz" />
+                        </Flex>
                     </MotionFlex>
                 </MotionBox>
             </Flex>
