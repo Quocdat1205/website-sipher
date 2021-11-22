@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Grid, Flex } from "@chakra-ui/react"
+import { Grid, Flex, Box } from "@chakra-ui/react"
 import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
@@ -47,7 +47,15 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
                     {/* <WalletButton /> */}
-                    <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
+                    <Flex
+                        sx={{
+                            "@media (max-width: 640px)": {
+                                display: "none",
+                            },
+                        }}
+                    >
+                        <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
+                    </Flex>
                     <Grid
                         ml={4}
                         rounded="full"
