@@ -23,6 +23,8 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
             justify="space-between"
             overflow="visible"
             w="full"
+            pos="relative"
+            zIndex="3"
             {...rest}
         >
             <Flex flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
@@ -34,7 +36,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                 flex={1}
                 justify="center"
                 sx={{
-                    "@media (max-width: 960px)": {
+                    "@media (max-width: 1200px)": {
                         display: "none",
                     },
                 }}

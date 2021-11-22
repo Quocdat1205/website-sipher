@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
-import { BaseNavigationBar, LinkButton } from "."
+import { BaseNavigationBar, LinkButton, WalletButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
 interface NavBarProps {
@@ -37,6 +37,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
             flexDir="column"
             position="fixed"
             zIndex="3"
+            className="nav-bar"
             w="full"
             sx={{
                 ".childmenu::-webkit-scrollbar": {
@@ -46,18 +47,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         >
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
-                    <Flex
-                        sx={{
-                            "@media (max-width: 1200px) and (min-width: 960px)": {
-                                display: "none",
-                            },
-                            "@media (max-width: 480px)": {
-                                display: "none",
-                            },
-                        }}
-                    >
-                        <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
-                    </Flex>
+                    <WalletButton />
                     <Grid
                         ml={4}
                         rounded="full"
@@ -65,7 +55,12 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                         px={0}
                         placeItems="center"
                         onClick={() => setSideBarOn(!setBarOn)}
-                        display={["grid", "grid", "none"]}
+                        display={"none"}
+                        sx={{
+                            "@media (max-width: 1200px)": {
+                                display: "grid",
+                            },
+                        }}
                     >
                         {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
                     </Grid>

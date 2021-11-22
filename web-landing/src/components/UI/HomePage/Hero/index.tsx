@@ -33,7 +33,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{
-                        delay: 2.5,
+                        delay: 2,
                     }}
                 >
                     <Typo.Heading textAlign="center" mb={2}>

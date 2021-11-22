@@ -39,6 +39,8 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         }
                         rounded="xl"
                         onClick={handleClick}
+                        border="1px"
+                        borderColor="transparent"
                     />
                 ) : (
                     <Flex
@@ -54,9 +56,9 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         onClick={() => setMenu(true)}
                     >
                         <Box color="main.orange" mr={2}>
-                            <FaWallet size="1rem" />
+                            <FaWallet />
                         </Box>
-                        <Text fontWeight="semibold">
+                        <Text fontWeight="semibold" fontSize="sm">
                             {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
                                 wallet.account.length - 4,
                                 wallet.account.length

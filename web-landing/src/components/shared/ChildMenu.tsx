@@ -10,7 +10,7 @@ interface ChildMenuProps {
 const ChildMenu = ({ menus }: ChildMenuProps) => {
     const router = useRouter()
     return (
-        <HStack spacing={4} justify="center" px={4} py={4} bg="blackAlpha.700" overflowX="auto">
+        <HStack spacing={4} justify="center" px={4} py={2} bg="blackAlpha.700" overflowX="auto">
             {menus.map((menu, index) => (
                 <NavBarLink
                     lastChild={index === menus.length - 1}

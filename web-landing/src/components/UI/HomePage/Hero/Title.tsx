@@ -45,7 +45,7 @@ const Title = ({ text, startIndex = 0, ...rest }: TitleProps) => {
     useEffect(() => {
         controls.start(i => ({
             ...letterVariants.visible,
-            transition: { delay: i * 0.05 + 0.5, duration: 0.5, ease: "easeOut" },
+            transition: { delay: i * 0.05 + 0.5, duration: 0.35, ease: "easeOut" },
         }))
     }, [controls])
     const word1 = text.split(" ")[0]
@@ -55,12 +55,12 @@ const Title = ({ text, startIndex = 0, ...rest }: TitleProps) => {
         <Stack mb={4} align="center" direction={["column", "column", "row"]} spacing={[4, 4, 12]}>
             <HStack align="baseline" spacing={4} overflow="hidden" userSelect="none" {...rest}>
                 {word1.split("").map((char, idx) => (
-                    <Letter key={idx} char={char} control={controls} custom={idx + startIndex} />
+                    <Letter key={idx} char={char} control={controls} custom={startIndex} />
                 ))}
             </HStack>
             <HStack align="baseline" spacing={4} overflow="hidden" userSelect="none" {...rest}>
                 {word2.split("").map((char, idx) => (
-                    <Letter key={idx} char={char} control={controls} custom={idx + word1.length + startIndex} />
+                    <Letter key={idx} char={char} control={controls} custom={startIndex} />
                 ))}
             </HStack>
         </Stack>
