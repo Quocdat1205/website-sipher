@@ -18,8 +18,8 @@ export const navMenus = [
     { id: "World Of Sipher", path: "/world-of-sipher" },
     { id: "News", path: "/news" },
     { id: "Token Sale", path: "/token-sale" },
-    { id: "Swap", path: "/swap" },
-    { id: "Stake", path: "/stake" },
+    // { id: "Swap", path: "/swap" },
+    // { id: "Stake", path: "/stake" },
 ]
 
 export const menuChild = [
@@ -36,9 +36,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         <Flex
             flexDir="column"
             position="fixed"
-            zIndex="3"
-            className="nav-bar"
             w="full"
+            zIndex="popover"
             sx={{
                 ".childmenu::-webkit-scrollbar": {
                     display: "none",
@@ -47,7 +46,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         >
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
-                    <WalletButton />
+                    {/* <WalletButton /> */}
+                    <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
                     <Grid
                         ml={4}
                         rounded="full"
@@ -64,8 +64,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                     >
                         {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
                     </Grid>
+                    <MenuDrawer />
                 </Flex>
-                <MenuDrawer />
             </BaseNavigationBar>
             {isChildMenu && <ChildMenu menus={menuChild} />}
         </Flex>

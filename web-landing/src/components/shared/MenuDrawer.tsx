@@ -20,7 +20,7 @@ const MenuDrawer = ({}: MenuDrawerProps) => {
             onClose={() => setIsSideBarOn(false)}
             initialFocusRef={undefined}
         >
-            <DrawerOverlay zIndex="1" />
+            <DrawerOverlay />
             <DrawerContent bgSize="contain" bgColor="blackAlpha.900">
                 <DrawerBody p={0}>
                     <Flex w="full" align="center" justify="center" h="full">

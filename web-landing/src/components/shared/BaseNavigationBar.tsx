@@ -32,7 +32,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
             </Flex>
             <HStack
                 mx={6}
-                spacing={[6, 6, 6, 8]}
+                spacing={[6, 6, 8, 8]}
                 flex={1}
                 justify="center"
                 sx={{
