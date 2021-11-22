@@ -2,6 +2,7 @@ import { HStack } from "@chakra-ui/react"
 import { NavBarLink } from "."
 import { useRouter } from "next/router"
 import React from "react"
+import { useStoreState } from "@store"
 
 interface ChildMenuProps {
     menus: Record<"id" | "path", string>[]
@@ -9,8 +10,18 @@ interface ChildMenuProps {
 
 const ChildMenu = ({ menus }: ChildMenuProps) => {
     const router = useRouter()
+    const isSideBarOn = useStoreState(state => state.sidebarOn)
+
     return (
-        <HStack spacing={4} justify="center" px={4} py={4} bg="blackAlpha.700" overflowX="auto">
+        <HStack
+            spacing={4}
+            display={isSideBarOn ? "none" : "flex"}
+            justify="center"
+            px={4}
+            py={4}
+            bg="blackAlpha.700"
+            overflowX="auto"
+        >
             {menus.map((menu, index) => (
                 <NavBarLink
                     lastChild={index === menus.length - 1}

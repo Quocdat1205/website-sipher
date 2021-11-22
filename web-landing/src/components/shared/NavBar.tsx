@@ -36,8 +36,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         <Flex
             flexDir="column"
             position="fixed"
-            zIndex="3"
             w="full"
+            zIndex="popover"
             sx={{
                 ".childmenu::-webkit-scrollbar": {
                     display: "none",
@@ -69,8 +69,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                     >
                         {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
                     </Grid>
+                    <MenuDrawer />
                 </Flex>
-                <MenuDrawer />
             </BaseNavigationBar>
             {isChildMenu && <ChildMenu menus={menuChild} />}
         </Flex>
