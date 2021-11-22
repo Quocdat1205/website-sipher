@@ -1,10 +1,9 @@
 import React from "react"
 import ReactHtmlParser from "react-html-parser"
-import { Box, Flex, HStack } from "@chakra-ui/layout"
+import { Box, Flex } from "@chakra-ui/layout"
 import { DetailsNewsProps } from "./PopupCard"
-import UrlCopier from "./UrlCopier"
-import ButtonLinkTo from "./ButtonLinkTo"
 import { MyHeading } from "@sipher/web-components"
+import FooterPopupCard from "./FooterPopupCard"
 
 interface Props {
     details: DetailsNewsProps
@@ -33,10 +32,7 @@ const LayoutMedium = ({ details }: Props) => {
                             {ReactHtmlParser(details.description && details.description)}
                         </Box>
                     </Box>
-                    <HStack spacing={8} px={8} py={4} borderTop="1px" borderColor="about.textGray">
-                        <UrlCopier url={window.location.href} />
-                        <ButtonLinkTo url={details.link} typeSocial={details.type} />
-                    </HStack>
+                    <FooterPopupCard details={details} />
                 </Flex>
             </Box>
         </Flex>

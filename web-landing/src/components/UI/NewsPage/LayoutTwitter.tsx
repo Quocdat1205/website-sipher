@@ -5,6 +5,7 @@ import { Box, Flex, HStack, Image } from "@chakra-ui/react"
 import { DetailsNewsProps } from "./PopupCard"
 import UrlCopier from "./UrlCopier"
 import ButtonLinkTo from "./ButtonLinkTo"
+import FooterPopupCard from "./FooterPopupCard"
 
 interface Props {
     details: DetailsNewsProps
@@ -60,10 +61,7 @@ const LayoutTwitter = ({ details }: Props) => {
                         {ReactHtmlParser(details.description && details.description)}
                     </Box>
                 </Box>
-                <HStack spacing={8} px={8} py={4} borderTop="1px" borderColor="about.textGray">
-                    <UrlCopier url={window.location.href} />
-                    <ButtonLinkTo url={details.link} typeSocial={details.type} />
-                </HStack>
+                <FooterPopupCard details={details} />
             </Flex>
         </Flex>
     )
