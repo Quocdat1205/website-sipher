@@ -16,8 +16,12 @@ const FirstScreen = ({}: FirstScreenProps) => {
             h="100vh"
             w="full"
             flexShrink={0}
-            bg="black"
+            bgImage="/images/pc/home/background.png"
+            bgSize="cover"
+            bgPos="center"
+            bgRepeat="no-repeat"
             p={4}
+            pt={[16, 16, 4]}
         >
             <Flex direction="column" align="center" justify="center" w="full" maxW="64rem">
                 <Title text="$SIPHER TOKEN" />
@@ -29,7 +33,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{
-                        delay: 2,
+                        delay: 2.5,
                     }}
                 >
                     <Typo.Heading textAlign="center" mb={2}>

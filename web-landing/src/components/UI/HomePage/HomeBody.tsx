@@ -16,7 +16,7 @@ interface HomeBodyProps {
 const HomeBody = ({ uaString }: HomeBodyProps) => {
     return (
         <BackgroundContainer p={0} overflow="overlay">
-            <Hero uaString={uaString} />
+            <Hero />
             <Flex
                 direction="column"
                 align="center"
