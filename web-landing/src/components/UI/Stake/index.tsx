@@ -8,10 +8,13 @@ interface StakeProps {}
 
 const Stake = ({}: StakeProps) => {
     return (
-        <BackgroundContainer pos="relative" image="/images/demo/bg-new2.png" bgRepeat="no-repeat" bgSize="100%" px={0}>
-            <Flex direction="column" w="full" py={24} px={4} align="center">
-                <Image src="/images/demo/stake-demo.png" alt="" />
-            </Flex>
+        <BackgroundContainer
+            pos="relative"
+            image="/images/demo/swap-demo.png"
+            bgRepeat="no-repeat"
+            bgSize="100%"
+            px={0}
+        >
             <Flex
                 align="center"
                 justify="center"
@@ -19,13 +22,13 @@ const Stake = ({}: StakeProps) => {
                 w="full"
                 h="full"
                 bg="blackAlpha.600"
-                backdropFilter="blur(4px)"
+                // backdropFilter="blur(3px)"
             >
                 <Heading
                     fontFamily="Brandon"
                     letterSpacing="4px"
                     lineHeight={1}
-                    fontSize={["3rem", "5rem", "7rem"]}
+                    fontSize={["3rem", "4.5rem", "6rem"]}
                     fontWeight={700}
                 >
                     COMING SOON

@@ -6,7 +6,7 @@ import UrlCopier from "./UrlCopier"
 
 interface Props {
     item: {
-        type: "medium" | "twitter"
+        type: "medium" | "twitter" | "fb" | "ins" | "main"
         link: string
         title?: string
         updatedAt: string
@@ -15,13 +15,7 @@ interface Props {
     }
     onClick: () => void
 }
-// const regex = new RegExp(/^<.*>$/)
-// const contentArr = content.split("\n").map((line) =>
-// 	line
-// 		.split(" ")
-// 		.filter((word) => !regex.test(word))
-// 		.join(" ")
-// )
+
 const Card = ({ item, onClick }: Props) => {
     const { type, thumbnail, title, link, published } = item
 
@@ -62,7 +56,17 @@ const Card = ({ item, onClick }: Props) => {
                         }}
                         zIndex="2"
                         display="block"
-                        src={`/images/icons/community/${type === "medium" ? "medium" : "twitter"}.png`}
+                        src={`/images/icons/community/${
+                            type === "medium"
+                                ? "medium"
+                                : type === "twitter"
+                                ? "twitter"
+                                : type === "fb"
+                                ? "fb"
+                                : type === "ins"
+                                ? "ins"
+                                : "main"
+                        }.png`}
                         alt=""
                         h="2rem"
                     />
