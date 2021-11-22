@@ -18,7 +18,9 @@ export const navMenus = [
     { id: "About Us", path: "/about-us/vision-and-roadmap" },
     { id: "World Of Sipher", path: "/world-of-sipher" },
     { id: "News", path: "/news" },
-    { id: "NFT", path: "/nft" },
+    { id: "Token Sale", path: "/token-sale" },
+    { id: "Swap", path: "/swap" },
+    { id: "Stake", path: "/stake" },
 ]
 
 export const menuChild = [

@@ -1,11 +1,10 @@
 // * DESCRIPTION:
 
-import { Flex } from "@chakra-ui/react"
+import { Flex, Heading } from "@chakra-ui/react"
 import { MotionFlex, MotionBox, Typo, LinkButton } from "@components/shared"
 import { useAnimation } from "framer-motion"
 import React, { useEffect, useRef } from "react"
 import { useInView } from "react-intersection-observer"
-import Title from "./Title"
 
 interface FirstScreenProps {}
 
@@ -64,8 +63,35 @@ const FirstScreen = ({}: FirstScreenProps) => {
             p={4}
         >
             <Flex direction="column" align="center" ref={ref}>
-                <Title />
-                <MotionBox initial={{ overflow: "hidden" }} animate={boxControl}>
+                <MotionBox initial={{ overflow: "hidden" }} animate={logoControl}>
+                    <MotionFlex
+                        animate={logoControl}
+                        initial={{ y: "200%" }}
+                        w="full"
+                        direction="column"
+                        align="center"
+                    >
+                        <Heading
+                            fontFamily="Brandon"
+                            letterSpacing="4px"
+                            lineHeight={1}
+                            fontSize={["3rem", "5rem", "7rem"]}
+                            fontWeight={700}
+                        >
+                            $SIPHER TOKEN
+                        </Heading>
+                        <Heading
+                            fontFamily="Brandon"
+                            letterSpacing="4px"
+                            lineHeight={1}
+                            fontSize={["3rem", "5rem", "7rem"]}
+                            fontWeight={700}
+                        >
+                            PUBLIC SALE
+                        </Heading>
+                    </MotionFlex>
+                </MotionBox>
+                <MotionBox mt={8} initial={{ overflow: "hidden" }} animate={boxControl}>
                     <MotionFlex
                         animate={descriptionControl}
                         initial={{ y: "100%" }}
