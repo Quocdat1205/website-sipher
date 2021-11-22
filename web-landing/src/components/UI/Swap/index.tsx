@@ -8,7 +8,13 @@ interface SwapProps {}
 
 const Swap = ({}: SwapProps) => {
     return (
-        <BackgroundContainer pos="relative" px={0}>
+        <BackgroundContainer
+            pos="relative"
+            image="/images/demo/swap-demo.png"
+            bgRepeat="no-repeat"
+            bgSize="100%"
+            px={0}
+        >
             <Flex
                 align="center"
                 justify="center"
@@ -16,7 +22,7 @@ const Swap = ({}: SwapProps) => {
                 w="full"
                 h="full"
                 bg="blackAlpha.600"
-                backdropFilter="blur(4px)"
+                // backdropFilter="blur(3px)"
             >
                 <Heading
                     fontFamily="Brandon"

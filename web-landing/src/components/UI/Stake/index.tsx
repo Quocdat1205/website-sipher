@@ -19,7 +19,7 @@ const Stake = ({}: StakeProps) => {
                 w="full"
                 h="full"
                 bg="blackAlpha.600"
-                backdropFilter="blur(4px)"
+                backdropFilter="blur(3px)"
             >
                 <Heading
                     fontFamily="Brandon"
