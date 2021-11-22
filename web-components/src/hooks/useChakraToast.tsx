@@ -1,6 +1,6 @@
 import React, { useCallback } from "react"
 import { useToast, ToastOptions } from "@chakra-ui/react"
-import { Toast } from ".."
+import { Toast } from "../components"
 
 type UseChakraToastOptions = {
     defaultDuration: number
