@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Flex, Heading, Text } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import { LinkButton, MotionFlex, Typo } from "@components/shared"
 import Title from "./Title"
 
