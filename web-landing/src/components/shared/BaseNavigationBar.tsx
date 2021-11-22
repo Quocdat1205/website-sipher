@@ -25,14 +25,14 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
             w="full"
             {...rest}
         >
-            <Flex mr={8} flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
+            <Flex flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
                 <Img src={logoPath} h={["1.5rem", "2rem"]} alt="sipher-logo" />
             </Flex>
             <HStack
-                mr={8}
-                spacing={0}
+                mx={6}
+                spacing={[6, 6, 6, 8]}
                 flex={1}
-                justify="space-evenly"
+                justify="center"
                 sx={{
                     "@media (max-width: 960px)": {
                         display: "none",
@@ -47,7 +47,6 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                         active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
                     />
                 ))}
-                <NavBarLink text="Inventory" onClick={() => window.open("https://inventory.sipher.xyz/", "_blank")} />
             </HStack>
 
             {children}

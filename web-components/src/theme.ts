@@ -66,7 +66,7 @@ export const theme = extendTheme({
             baseStyle: {
                 fontFamily: "Mark Pro",
                 color: "whiteAlpha.900",
-                fontWeight: 500,
+                fontWeight: 400,
             },
             sizes: {
                 small: {

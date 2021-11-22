@@ -8,7 +8,6 @@ import { useRouter } from "next/router"
 import { BaseNavigationBar, LinkButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
-import { ViewCollectionButton } from "@sipher/web-components"
 interface NavBarProps {
     isChildMenu?: boolean
 }
@@ -18,7 +17,9 @@ export const navMenus = [
     { id: "About Us", path: "/about-us/vision-and-roadmap" },
     { id: "World Of Sipher", path: "/world-of-sipher" },
     { id: "News", path: "/news" },
-    { id: "NFT", path: "/nft" },
+    { id: "Token Sale", path: "/token-sale" },
+    { id: "Swap", path: "/swap" },
+    { id: "Stake", path: "/stake" },
 ]
 
 export const menuChild = [
@@ -31,7 +32,6 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const setBarOn = useStoreState(s => s.sidebarOn)
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
-
     return (
         <Flex
             flexDir="column"
