@@ -48,7 +48,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         <LinkButton
                             text="LEARN MORE ON MEDIUM"
                             size="large"
-                            href="https://medium.com/SIPHERxyz"
+                            href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
                             px={12}
                         />
                     </Flex>
