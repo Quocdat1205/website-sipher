@@ -1,6 +1,5 @@
 import { PRICE_STEP, START_PRICE, INTERVAL } from "@constant/index"
-import { metaMaskProvider } from "@helper/metamask"
-import { getSaleConfig, ISaleConfig } from "@helper/smartContract"
+import { metaMaskProvider, getSaleConfig, ISaleConfig } from "@helper"
 import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 
@@ -51,11 +50,12 @@ const genPriceSteps = (publicTime: number) => {
     return steps
 }
 
-const useSaleConfig = () => {
+export const useSaleConfig = () => {
     const [salePhase, setSalePhase] = useState(0)
     const [priceSteps, setPriceSteps] = useState<PublicPriceStep[]>([])
+    const [saleConfigAvailable, setSaleConfigAvailable] = useState(true)
     const { data: saleConfig } = useQuery("sale-config", getSaleConfig, {
-        enabled: !!metaMaskProvider,
+        enabled: !!metaMaskProvider && saleConfigAvailable,
         initialData: {
             publicTime: 0,
             privateTime: 0,
@@ -70,7 +70,9 @@ const useSaleConfig = () => {
         },
         onError: () => {
             console.log("Failed to get sale config!")
+            setSaleConfigAvailable(false)
         },
+        refetchInterval: 1000,
     })
 
     useEffect(() => {

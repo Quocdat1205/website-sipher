@@ -4,14 +4,11 @@ import { Typo } from "@components/shared/Typo"
 import CountDown from "./Countdown"
 import SaleForm from "./SaleForm"
 import DutchAuction from "./DutchAuction"
-import RewardInfo from "./RewardInfo"
-import Reward from "./Reward"
 import usePublicSale from "./usePublicSale"
 import { START_PRICE } from "@constant/index"
-import { numberWithCommas } from "@utils/index"
-import useSaleRecord from "@hooks/useSaleRecord"
 import { MotionFlex } from "@components/shared/Motion"
-import usePublicCapLimit from "@hooks/usePublicCapLimit"
+import Reward from "./Reward"
+import RewardInfo from "./RewardInfo"
 
 const PublicSale = () => {
     const {
@@ -26,11 +23,10 @@ const PublicSale = () => {
         userRecord,
         currentPhase,
         timer,
-        isOnTier,
         isPriceDecreasing,
+        isOnTier,
+        nftRemaining,
     } = usePublicSale()
-    const { publicSale } = useSaleRecord()
-    const { publicSaleCapLimit } = usePublicCapLimit()
 
     return (
         <MotionFlex
@@ -46,9 +42,9 @@ const PublicSale = () => {
         >
             <Flex justify="center" align="center" direction="column">
                 <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
-                    {currentPhase === "NOT_STARTED"
+                    {currentPhase === "NOT_STARTED" && nftRemaining > 0
                         ? "AUCTION STARTING SOON"
-                        : currentPhase === "ON_GOING"
+                        : currentPhase === "ON_GOING" && nftRemaining > 0
                         ? "AUCTION IN PROGRESS"
                         : "AUCTION HAS ENDED"}
                 </Text>
@@ -63,8 +59,9 @@ const PublicSale = () => {
                     <GridItem colSpan={2} px={4} py={6} bg="rgba(0, 0, 0, 0.9)">
                         <Typo.Heading w="full" textAlign="center" fontSize="4xl" mb={0}>
                             <chakra.span fontWeight="semibold" color="main.yellow">
-                                {/* {publicSaleCapLimit ? numberWithCommas(publicSaleCapLimit - publicSale) : "..."} */}
+                                {0}
                             </chakra.span>{" "}
+                            Remaining
                         </Typo.Heading>
                     </GridItem>
                     <GridItem transition="height 1.5s" bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1}>
@@ -77,6 +74,7 @@ const PublicSale = () => {
                                 timer={timer}
                                 isPriceDecreasing={isPriceDecreasing}
                                 isOnSale={isOnSale}
+                                nftRemaining={nftRemaining}
                             />
                             <SaleForm
                                 price={isOnSale ? currentPublicPrice : START_PRICE}
@@ -98,8 +96,8 @@ const PublicSale = () => {
                         <DutchAuction />
                     </GridItem>
                     {/* <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
-                        <RewardInfo />
-                    </GridItem> */}
+						<RewardInfo />
+					</GridItem> */}
                 </Grid>
             </Flex>
         </MotionFlex>

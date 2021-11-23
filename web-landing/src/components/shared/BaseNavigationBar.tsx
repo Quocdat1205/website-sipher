@@ -23,16 +23,18 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
             justify="space-between"
             overflow="visible"
             w="full"
+            pos="relative"
+            zIndex="3"
             {...rest}
         >
-            <Flex mr={8} flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
+            <Flex flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
                 <Img src={logoPath} h={["1.5rem", "2rem"]} alt="sipher-logo" />
             </Flex>
             <HStack
-                mr={8}
-                spacing={0}
+                mx={6}
+                spacing={[6, 6, 8, 8]}
                 flex={1}
-                justify="space-evenly"
+                justify="center"
                 sx={{
                     "@media (max-width: 960px)": {
                         display: "none",
@@ -47,14 +49,6 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                         active={router.pathname.split("/")[1] === menu.path.split("/")[1]}
                     />
                 ))}
-                <Flex>
-                    <Img h="1.6rem" src="/images/fire.gif" />
-                    <NavBarLink
-                        text="minting"
-                        href="#minting"
-                        onClick={() => window.open("https://mint.sipher.xyz/", "_blank")}
-                    />
-                </Flex>
             </HStack>
 
             {children}

@@ -1,10 +1,9 @@
 // * DESCRIPTION:
 
-import { HStack, Heading, HeadingProps } from "@chakra-ui/react"
+import { HStack, Heading, HeadingProps, StackProps, Stack } from "@chakra-ui/react"
 import { AnimationControls, motion, useAnimation } from "framer-motion"
-import { useEffect, useRef } from "react"
-import { useInView } from "react-intersection-observer"
-import { useStoreState } from "@store"
+import { useEffect } from "react"
+
 const letterVariants = {
     hidden: { y: "-100%" },
     visible: { y: "0%" },
@@ -24,7 +23,8 @@ const Letter = ({ char, control, custom }: LetterProps) => {
             initial="hidden"
             variants={letterVariants}
             animate={control}
-            fontSize={["5rem", "7rem", "11rem"]}
+            fontSize={["3rem", "4.5rem", "6rem"]}
+            fontFamily="Brandon"
             fontWeight={900}
             mb={0}
             lineHeight={1}
@@ -35,36 +35,35 @@ const Letter = ({ char, control, custom }: LetterProps) => {
     )
 }
 
-interface TitleProps {}
+interface TitleProps extends StackProps {
+    text: string
+    custom?: number
+}
 
-const Title = ({}: TitleProps) => {
-    const firstLoad = useRef(true)
+const Title = ({ text, custom = 0, ...rest }: TitleProps) => {
     const controls = useAnimation()
-    const [ref, inView] = useInView({
-        threshold: 0.5,
-    })
-    const initialLoading = useStoreState(s => s.initialLoading)
     useEffect(() => {
-        if (!initialLoading && inView) {
-            controls.start(i => ({
-                ...letterVariants.visible,
-                transition: { delay: i * 0.15 + (firstLoad.current ? 0.5 : 0), duration: 0.75, ease: "easeOut" },
-            }))
-            firstLoad.current = false
-        } else if (!initialLoading && !inView) {
-            controls.start(i => ({
-                ...letterVariants.hidden,
-                transition: { delay: 0, duration: 0.2 },
-            }))
-        }
-    }, [controls, initialLoading, inView])
+        controls.start(i => ({
+            ...letterVariants.visible,
+            transition: { delay: i * 0.25 + 0.5, duration: 0.35, ease: "easeOut" },
+        }))
+    }, [controls])
+    const word1 = text.split(" ")[0]
+    const word2 = text.split(" ")[1]
+
     return (
-        <HStack align="baseline" spacing={6} overflow="hidden" ref={ref} userSelect="none">
-            <Letter char="N" control={controls} custom={0} />
-            <Letter char="E" control={controls} custom={1} />
-            <Letter char="K" control={controls} custom={2} />
-            <Letter char="O" control={controls} custom={3} />
-        </HStack>
+        <Stack mb={4} align="center" direction={["column", "column", "row"]} spacing={[4, 4, 12]}>
+            <HStack align="baseline" spacing={4} overflow="hidden" userSelect="none" {...rest}>
+                {word1.split("").map((char, idx) => (
+                    <Letter key={idx} char={char} control={controls} custom={custom} />
+                ))}
+            </HStack>
+            <HStack align="baseline" spacing={4} overflow="hidden" userSelect="none" {...rest}>
+                {word2.split("").map((char, idx) => (
+                    <Letter key={idx} char={char} control={controls} custom={custom} />
+                ))}
+            </HStack>
+        </Stack>
     )
 }
 

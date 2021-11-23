@@ -37,7 +37,7 @@ const ProofsTable = ({ proofs, onDownload }: ProofsTableProps) => {
                             cursor="pointer"
                             ml={2}
                             as="a"
-                            href="https://www.notion.so/sipherhq/Step-by-Step-to-verify-your-Sipher-NFT-b18ae849204a403d9c987c5926c91f11"
+                            href="https://t.ly/verifysiphernft"
                             rel="nonreferrer"
                             target="_blank"
                         >

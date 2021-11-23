@@ -3,7 +3,6 @@
 import { Flex, Box, Heading, HeadingProps } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import { AnimatePresence, motion } from "framer-motion"
-import { fontSizes } from ".."
 
 interface TimeCellProps {
     value: number
@@ -27,7 +26,6 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         transition={{ type: "tween", duration: 0.5 }}
                         textAlign="center"
                         fontWeight={900}
-                        fontSize={fontSizes}
                         position="absolute"
                         left={0}
                         top={0}

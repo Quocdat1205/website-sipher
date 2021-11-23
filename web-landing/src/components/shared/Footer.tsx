@@ -1,4 +1,4 @@
-import { Flex, Stack } from "@chakra-ui/react"
+import { Flex, Stack, Text } from "@chakra-ui/react"
 import React, { useRef } from "react"
 import { GradientOutlineButton } from "."
 import { useChakraToast, MyText, GradientText } from "@sipher/web-components"
@@ -80,9 +80,9 @@ export const Footer = () => {
             zIndex="overlay"
         >
             <Flex direction="column" maxW="48rem" align="center" px="4">
-                <MyText size="large" fontWeight="bold" textTransform="uppercase" letterSpacing="3px">
+                <Text size="large" fontWeight="bold" textTransform="uppercase" letterSpacing="3px">
                     Stay in touch with us
-                </MyText>
+                </Text>
                 <Stack mt={4} align="center" direction={["column", "row"]} spacing={4} px={[0, 4, 8]} py={2} w="full">
                     <TextFormControl label="Your name" inputRef={nameInputRef} w={["full", "15rem"]} />
                     <TextFormControl label="Email address" inputRef={emailInputRef} w={["full", "20rem"]} />
@@ -110,9 +110,8 @@ export const Footer = () => {
                     spacing={[2, 2, 4]}
                     align={["center", "flex-start", "center"]}
                 >
-                    <MyText>Copyright © 2021 Sipher. All rights reserved</MyText>
-                    <MyText
-                        fontWeight="thin"
+                    <Text>Copyright © 2021 Sipher. All rights reserved</Text>
+                    <Text
                         sx={{
                             "@media (max-width: 960px)": {
                                 display: "none",
@@ -120,7 +119,7 @@ export const Footer = () => {
                         }}
                     >
                         |
-                    </MyText>
+                    </Text>
                     <GradientText
                         cursor="pointer"
                         onClick={() => router.push("/term-and-conditions")}
@@ -128,7 +127,7 @@ export const Footer = () => {
                     >
                         Terms & Conditions
                     </GradientText>
-                    <MyText
+                    <Text
                         fontWeight="thin"
                         sx={{
                             "@media (max-width: 960px)": {
@@ -137,7 +136,7 @@ export const Footer = () => {
                         }}
                     >
                         |
-                    </MyText>
+                    </Text>
                     <GradientText cursor="pointer" onClick={() => router.push("/faq")} fontWeight="bold">
                         FAQ
                     </GradientText>

@@ -1,14 +1,14 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Flex, FlexProps } from "@chakra-ui/react"
+import { Flex, FlexProps, Text } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
-import { MyText, MyTextProps } from "@sipher/web-components"
+import { MyTextProps } from "@sipher/web-components"
 interface NavBarLinkProps extends FlexProps {
     onClick?: () => void
     active?: boolean
     text: string
-    href: string
+    href?: string
     size?: MyTextProps["size"]
     isChild?: boolean
     lastChild?: boolean
@@ -42,23 +42,20 @@ export const NavBarLink = ({
             }}
             {...rest}
         >
-            <MyText
+            <Text
                 fontWeight={isChild ? "normal" : "bold"}
-                size={isChild ? "medium" : "small"}
+                fontSize={isChild ? ["sm", "sm", "md"] : ["xs", "xs", "sm", "sm", "md"]}
                 textAlign="center"
                 isTruncated
-                onClick={() => router.push(href)}
+                onClick={() => href && router.push(href)}
                 textTransform={isChild ? "capitalize" : "uppercase"}
                 letterSpacing={isChild ? "0px" : "3px"}
                 color={active ? "#FF710B" : "white"}
                 px={1}
                 py={isChild ? 0 : 1}
-                bgGradient={!isChild && active ? "linear(to-t, whiteAlpha.100, transparent)" : ""}
-                borderBottom={isChild ? "none" : "2px"}
-                borderColor={active ? "main.orange" : "transparent"}
             >
                 {text}
-            </MyText>
+            </Text>
         </Flex>
     )
 }

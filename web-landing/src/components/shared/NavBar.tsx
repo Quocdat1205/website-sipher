@@ -5,10 +5,9 @@ import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
-import { BaseNavigationBar } from "."
+import { BaseNavigationBar, LinkButton, WalletButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
-import { ViewCollectionButton } from "@sipher/web-components"
 interface NavBarProps {
     isChildMenu?: boolean
 }
@@ -18,7 +17,9 @@ export const navMenus = [
     { id: "About Us", path: "/about-us/vision-and-roadmap" },
     { id: "World Of Sipher", path: "/world-of-sipher" },
     { id: "News", path: "/news" },
-    { id: "NFT", path: "/nft" },
+    { id: "Token Sale", path: "/token-sale" },
+    // { id: "Swap", path: "/swap" },
+    // { id: "Stake", path: "/stake" },
 ]
 
 export const menuChild = [
@@ -31,13 +32,12 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const setBarOn = useStoreState(s => s.sidebarOn)
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
-
     return (
         <Flex
             flexDir="column"
             position="fixed"
-            zIndex="3"
             w="full"
+            zIndex="popover"
             sx={{
                 ".childmenu::-webkit-scrollbar": {
                     display: "none",
@@ -46,18 +46,16 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         >
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
-                    <Box
+                    <WalletButton />
+                    {/* <Flex
                         sx={{
-                            "@media (max-width: 1200px) and (min-width: 960px)": {
-                                display: "none",
-                            },
-                            "@media (max-width: 480px)": {
+                            "@media (max-width: 640px)": {
                                 display: "none",
                             },
                         }}
                     >
-                        <ViewCollectionButton />
-                    </Box>
+                        <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
+                    </Flex> */}
                     <Grid
                         ml={4}
                         rounded="full"
@@ -65,12 +63,17 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                         px={0}
                         placeItems="center"
                         onClick={() => setSideBarOn(!setBarOn)}
-                        display={["grid", "grid", "none"]}
+                        display={"none"}
+                        sx={{
+                            "@media (max-width: 1200px)": {
+                                display: "grid",
+                            },
+                        }}
                     >
                         {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
                     </Grid>
+                    <MenuDrawer />
                 </Flex>
-                <MenuDrawer />
             </BaseNavigationBar>
             {isChildMenu && <ChildMenu menus={menuChild} />}
         </Flex>

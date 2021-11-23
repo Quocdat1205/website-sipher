@@ -1,9 +1,8 @@
 import { Box, Text } from "@chakra-ui/react"
 import React, { Fragment } from "react"
-import useTotalSupply from "@hooks/useTotalSupply"
-import { numberWithCommas } from "@utils/index"
+import { useTotalSupply, useWalletContext } from "@hooks"
+import { numberWithCommas } from "@utils"
 import { useRouter } from "next/router"
-import useWalletContext from "@hooks/useWalletContext"
 
 interface Props {}
 

@@ -54,7 +54,7 @@ const SaleForm = ({
                 isLoading={isMinting}
                 loadingText="LOADING..."
                 // disabled={currentSlot === 0 || !isOnSale || isLoadingUserRecord}
-                disabled
+                // disabled
                 py={3}
             />
             {boughtNFT > 0 && (

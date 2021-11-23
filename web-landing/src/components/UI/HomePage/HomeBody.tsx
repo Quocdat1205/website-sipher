@@ -16,7 +16,7 @@ interface HomeBodyProps {
 const HomeBody = ({ uaString }: HomeBodyProps) => {
     return (
         <BackgroundContainer p={0} overflow="overlay">
-            <Hero uaString={uaString} />
+            <Hero />
             <Flex
                 direction="column"
                 align="center"
@@ -29,7 +29,6 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                 py={24}
             >
                 <VStack spacing={24} align="center" w="full">
-                    <NekoTeaser uaString={uaString} />
                     <DigitalCharacters />
                     <WhatIsSipher uaString={uaString} />
                     <OwnerBenefits />
@@ -38,7 +37,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <JoinTheCommunity />
                 </VStack>
 
-                <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/sipherxyz" mt={8} />
+                <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" mt={8} />
             </Flex>
         </BackgroundContainer>
     )

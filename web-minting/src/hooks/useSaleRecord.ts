@@ -1,7 +1,7 @@
-import { getSaleRecord, SaleRecord } from "@helper/smartContract"
+import { getSaleRecord, SaleRecord } from "@helper"
 import { useQuery } from "react-query"
 
-const useSaleRecord = () => {
+export const useSaleRecord = () => {
     const { data: saleRecord } = useQuery("sale-record", getSaleRecord, {
         initialData: {
             publicSale: 0,

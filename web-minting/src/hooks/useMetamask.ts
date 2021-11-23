@@ -1,11 +1,10 @@
 import { useState } from "react"
 import router from "next/router"
 import { useChakraToast, useFormCore } from "@sipher/web-components"
-import { metaMaskProvider, connectWallet } from "src/helper/metamask"
-import { getUserRecord } from "@helper/smartContract"
+import { getUserRecord, metaMaskProvider, connectWallet } from "@helper"
 import { useQuery } from "react-query"
 import { CHAIN_ID } from "@constant/index"
-import { WhitelistInfo } from "@api/smartContract"
+import { WhitelistInfo } from "@api"
 import useMetaMaskListener from "./useMetamaskListener"
 import useSaleConfig from "./useSaleConfig"
 
@@ -15,7 +14,7 @@ declare global {
     }
 }
 
-interface AppState {
+export interface AppState {
     accountLogin: string
     chain: {
         id: string | null
@@ -92,17 +91,7 @@ export const useMetamask = () => {
                 whitelistInfo: whitelistInfo,
                 accountLogin: account.address,
             })
-            let now = new Date().getTime()
-            if (now)
-                if (now > config.saleConfig!.endTime) {
-                    router.push("inventory/neko")
-                } else if (now > config.saleConfig!.freeMintTime && whitelistInfo.freeMintCap > 0) {
-                    router.push("/free-minting")
-                } else if (now > config.saleConfig!.publicEndTime && whitelistInfo.privateCap > 0) {
-                    router.push("/private-sale")
-                } else {
-                    router.push("/public-sale")
-                }
+            router.push("/neko")
             setIsConnecting(false)
         } catch (error: any) {
             if (error.code === 4001) {

@@ -21,7 +21,9 @@
             "@styles/*": ["src/styles/*"],
             "@components/*": ["src/components/*"],
             "@hooks/*": ["src/hooks/*"],
-            "@store": ["src/store"]
+            "@store": ["src/store"],
+            "@@types": ["src/types"],
+            "@source/*": ["src/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../web-minting/src/components/shared/ChildMenu.tsx"],

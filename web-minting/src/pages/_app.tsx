@@ -5,7 +5,8 @@ import { NextPage } from "next"
 import Head from "next/head"
 import Script from "next/script"
 import "../style.css"
-
+import { useRouter } from "next/router"
+import * as gtag from "../lib/gtag"
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode
 }
@@ -13,8 +14,25 @@ export type NextPageWithLayout = NextPage & {
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
+declare global {
+    interface Window {
+        dataLayer: any
+    }
+}
+const isProduction = process.env.NODE_ENV === "production"
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+    const router = useRouter()
+    useEffect(() => {
+        const handleRouteChange = (url: URL) => {
+            /* invoke analytics function only for production */
+            if (isProduction) gtag.pageview(url)
+        }
+        router.events.on("routeChangeComplete", handleRouteChange)
+        return () => {
+            router.events.off("routeChangeComplete", handleRouteChange)
+        }
+    }, [router.events])
     const getLayout = Component.getLayout || (page => page)
     return (
         <Provider>
@@ -51,13 +69,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                     content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon!  "
                 />
                 <meta name="twitter:image" content="https://sipher.xyz/images/logo.jpg" />
-                {/* <script>
-                    window.dataLayer = window.dataLayer || []; function gtag(){" "}
-                    {(window as any).dataLayer.push(arguments)}
-                    gtag("js", new Date()); gtag("config", "UA-203015581-1");
-                </script> */}
             </Head>
-            <Script async src="https://www.googletagmanager.com/gtag/js?id=UA-203015581-1" />
             {getLayout(<Component {...pageProps} />)}
         </Provider>
     )

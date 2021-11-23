@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react"
-import useWalletContext from "@hooks/useWalletContext"
+import { useWalletContext } from "@hooks"
 import React from "react"
 import { AiFillCopy } from "react-icons/ai"
 

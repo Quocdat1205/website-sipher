@@ -2,7 +2,7 @@ import { Box, Flex, useOutsideClick, Text, Collapse } from "@chakra-ui/react"
 import React, { useRef, useState } from "react"
 import { BiWallet } from "react-icons/bi"
 import AddressCopier from "./AddressCopier"
-import useWalletContext from "@hooks/useWalletContext"
+import { useWalletContext } from "@hooks"
 import { GradientButton, MyText } from "@sipher/web-components"
 import { BsChevronDown, BsChevronUp } from "react-icons/bs"
 
@@ -19,7 +19,7 @@ const AccountAddress = () => {
         handler: () => setPopup(false),
     })
     return (
-        <Flex borderLeft="1px" ml="4" pl="3" borderColor="whiteAlpha.300" flexDir="row" align="center" pos="relative">
+        <Flex flexDir="row" align="center" pos="relative">
             <Box zIndex="1" bg="black" color="main.yellow" p={[0, 1, 1.5, 2]} borderRadius="99" ref={btnRef}>
                 <Flex cursor="pointer" align="center" userSelect="none" onClick={() => setPopup(!popup)}>
                     <Box p={1} rounded="full" border="1px" borderColor="main.yellow">

@@ -9,8 +9,9 @@ interface HeadingTextProps extends HeadingProps {
 const HeadingText = ({ isGradient, ...rest }: HeadingTextProps) => {
     return (
         <Heading
+            fontFamily="Brandon"
             textTransform="uppercase"
-            fontWeight="normal"
+            fontWeight={500}
             w="full"
             textAlign="center"
             fontSize={["4xl", "5xl"]}

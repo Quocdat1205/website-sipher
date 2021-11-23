@@ -1,11 +1,9 @@
-import { checkSmartContract } from "@api/smartContract"
-import { getMetamaskBalance } from "@helper/metamask"
-import { sendSmartContract } from "@helper/smartContract"
-import useWalletContext from "@hooks/useWalletContext"
+import { checkSmartContract } from "@api"
+import { getMetamaskBalance, sendSmartContract } from "@helper"
+import { useTransactionToast, useWalletContext } from "@hooks"
 import { useState } from "react"
 import { useQueryClient } from "react-query"
 import { useTimer } from "react-timer-hook"
-import useTransactionToast from "@hooks/useTransactionToast"
 
 const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const price = mode === "PRIVATE_SALE" ? 0.1 : 0
@@ -26,29 +24,22 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
     const [isMinting, setIsMinting] = useState(false)
     const queryClient = useQueryClient()
     const totalPrice = parseFloat((slot * price).toFixed(2))
-    const isOnSale = mode === salePhaseName
+    const isOnSale = mode === salePhaseName && mode === "FREE_MINTING"
     // private sale = 3, free minting = 4
     const currentPhase: "NOT_STARTED" | "ENDED" | "ON_GOING" =
-        mode === "PRIVATE_SALE"
-            ? salePhase < 4
-                ? "NOT_STARTED"
-                : salePhase > 4
-                ? "ENDED"
-                : "ON_GOING"
-            : salePhase < 5
-            ? "NOT_STARTED"
-            : salePhase > 5
-            ? "ENDED"
-            : "ON_GOING"
-    const privateSaleStartTimer = useTimer({ expiryTimestamp: new Date(privateTime) })
-    const privateSaleEndTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
-    // const freeMintingStartTimer = privateSaleEndTimer
-    const freeMintingStartTimer = useTimer({ expiryTimestamp: new Date(1636405201000) })
-    const freeMintingEndTimer = useTimer({ expiryTimestamp: new Date(1636491600000) })
+        mode === "PRIVATE_SALE" ? "ENDED" : salePhase < 5 ? "NOT_STARTED" : salePhase > 5 ? "ENDED" : "ON_GOING"
+    const freeMintingStartTimer = useTimer({ expiryTimestamp: new Date(freeMintTime) })
+    const freeMintingEndTimer = useTimer({ expiryTimestamp: new Date(endTime) })
     const timer = () => {
-        if (currentPhase === "NOT_STARTED")
-            return mode === "PRIVATE_SALE" ? privateSaleStartTimer : freeMintingStartTimer
-        else return mode === "PRIVATE_SALE" ? privateSaleEndTimer : freeMintingEndTimer
+        if (mode === "PRIVATE_SALE")
+            return {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            }
+        if (currentPhase === "NOT_STARTED") return freeMintingStartTimer
+        else return freeMintingEndTimer
     }
     const getMaxSlot = () => {
         if (mode === "PRIVATE_SALE") {
@@ -94,7 +85,6 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
             queryClient.invalidateQueries("user-record")
             setIsMinting(false)
         } catch (error) {
-            console.log(error)
             transactionToast({ status: "failed" })
             setIsMinting(false)
         }

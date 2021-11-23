@@ -3,16 +3,16 @@ import { Flex, Box, Img, VStack, Text, Stack } from "@chakra-ui/react"
 import isMobile from "is-mobile"
 import { Typo } from "@components/shared/Typo"
 import WalletCard from "./WalletCard"
-import useWalletContext from "@hooks/useWalletContext"
+import { useWalletContext } from "@hooks"
 import { MotionBox, MotionFlex } from "@components/shared/Motion"
 import { QueryClient } from "react-query"
-import { getIsPaused, getMaxPublicSaleCap } from "@helper/smartContract"
+import { getIsPaused, getMaxPublicSaleCap } from "@helper"
 
 const Login = () => {
     const { states, connect, isConnecting } = useWalletContext()
-    const qc = new QueryClient()
 
     useEffect(() => {
+        const qc = new QueryClient()
         const prefetch = async () => {
             await qc.prefetchQuery("is-sale-paused", getIsPaused)
             await qc.prefetchQuery("public-sale-cap-limit", getMaxPublicSaleCap)
@@ -49,7 +49,7 @@ const Login = () => {
                                 transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
                             >
                                 <Typo.Heading fontSize="3xl" mb={4}>
-                                    CONNECT TO YOUR WALLET
+                                    CONNECT YOUR WALLET
                                 </Typo.Heading>
                             </MotionBox>
                             <VStack align="stretch" spacing={4}>

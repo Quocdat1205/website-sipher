@@ -19,7 +19,7 @@ export const Toast = ({ status, title, message }: ToastProps) => {
             ? "main.yellow"
             : "main.orange"
     return (
-        <Flex bg="blackAlpha.800" shadow="base" align="center" pos="relative" color="whiteAlpha.900">
+        <Flex bg="blackAlpha.800" shadow="base" align="center" pos="relative" zIndex="tooltip" color="whiteAlpha.900">
             <Box h="full" w="4px" bgGradient="linear(to-b, bgGradient.orange)" pos="absolute" top={0} left={0} />
             <Flex w="full" align="flex-start" py={2} px={4} direction="column">
                 <Text fontWeight="bold" textAlign="left" color={textColor}>

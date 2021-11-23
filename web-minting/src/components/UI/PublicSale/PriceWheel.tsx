@@ -2,7 +2,7 @@ import { Flex, Box, FlexProps } from "@chakra-ui/react"
 import { motion, useAnimation } from "framer-motion"
 import React, { useEffect } from "react"
 import PriceCard from "./PriceCard"
-import useWalletContext from "@hooks/useWalletContext"
+import { useWalletContext } from "@hooks"
 
 const MotionFlex = motion<Omit<FlexProps, "transition">>(Flex)
 

@@ -5,7 +5,7 @@ interface InfoProps {
     mode: "PRIVATE SALE" | "FREE MINTING"
 }
 
-const Info = ({ mode }) => {
+const Info = ({ mode }: InfoProps) => {
     return (
         <Flex direction="column">
             <Text color="main.yellow" fontWeight="500">
@@ -19,7 +19,7 @@ const Info = ({ mode }) => {
                             history to Sipher community.
                         </Text>
                     </ListItem>
-                    {mode === "FREE_MINTING" && (
+                    {mode === "FREE MINTING" && (
                         <ListItem>
                             <Text color="whiteAlpha.700" fontWeight={500}>
                                 For members minting under the Guildmaster program under the eligible tiers, you MUST

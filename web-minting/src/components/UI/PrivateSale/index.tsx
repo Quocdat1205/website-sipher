@@ -38,11 +38,7 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
             <Flex justify="center" align="center" direction="column">
                 <Text bg="rgba(0, 0, 0, 0.9)" px={4} py={1} fontSize="3xl" mb={4} fontWeight={500} letterSpacing="1px">
                     {mode === "PRIVATE_SALE"
-                        ? currentPhase === "NOT_STARTED"
-                            ? "PRIVATE SALE STARTING SOON"
-                            : currentPhase === "ON_GOING"
-                            ? "PRIVATE SALE IN PROGRESS"
-                            : "PRIVATE SALE HAS ENDED"
+                        ? "PRIVATE SALE HAS ENDED"
                         : currentPhase === "NOT_STARTED"
                         ? "FREE MINTING STARTING SOON"
                         : currentPhase === "ON_GOING"
@@ -72,15 +68,13 @@ const PrivateSale = ({ mode }: PrivateSaleProps) => {
                                 isMinting={isMinting}
                                 timeLeft={timer}
                                 currentPhase={currentPhase}
-                                boughtNFT={
-                                    mode === "PRIVATE_SALE" ? userRecord!.whitelistBought : userRecord!.freeMintBought
-                                }
+                                boughtNFT={userRecord![mode === "PRIVATE_SALE" ? "whitelistBought" : "freemintBought"]}
                                 mode={mode}
                             />
                         </Flex>
                     </GridItem>
                     <GridItem bg="rgba(0, 0, 0, 0.9)" colSpan={1} rowSpan={1} p={4} overflow="hidden">
-                        <Info mode={mode.replace("_", " ")} />
+                        <Info mode={mode.replace("_", " ") as "PRIVATE SALE" | "FREE MINTING"} />
                     </GridItem>
                 </Grid>
             </Flex>

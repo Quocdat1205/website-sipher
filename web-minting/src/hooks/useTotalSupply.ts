@@ -1,4 +1,4 @@
-import { getTotalSupply } from "@helper/smartContract"
+import { getTotalSupply } from "@helper"
 import { useQuery } from "react-query"
 
 interface ITotalSupply {
@@ -6,7 +6,7 @@ interface ITotalSupply {
     isLoading: boolean
 }
 
-const useTotalSupply = (): ITotalSupply => {
+export const useTotalSupply = (): ITotalSupply => {
     const { data: totalSupply, isLoading } = useQuery("total-supply", getTotalSupply, {
         initialData: 0,
         refetchInterval: 2500,

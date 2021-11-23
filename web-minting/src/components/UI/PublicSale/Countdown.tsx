@@ -15,6 +15,7 @@ interface CountdownProps {
     timer: TimerResult
     isPriceDecreasing: boolean
     isOnSale: boolean
+    nftRemaining: number
 }
 
 const Countdown = ({
@@ -25,6 +26,7 @@ const Countdown = ({
     timer,
     isPriceDecreasing,
     isOnSale,
+    nftRemaining,
 }: CountdownProps) => {
     const [isRunning, setIsRunning] = useState(false)
     useEffect(() => {
@@ -36,15 +38,15 @@ const Countdown = ({
     }, [, secondsLeft, minutesLeft, isRunning, setIsRunning])
     return (
         <Flex direction="column" align="center" flex={1} h="full" p={4} pos="relative">
-            {/* <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
-                {currentPhase === "NOT_STARTED"
+            <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
+                {currentPhase === "NOT_STARTED" && nftRemaining > 0
                     ? "Countdown to public sale"
-                    : isPriceDecreasing
+                    : isPriceDecreasing && nftRemaining > 0
                     ? "Until Next Tier"
-                    : currentPhase === "ON_GOING"
+                    : currentPhase === "ON_GOING" && nftRemaining > 0
                     ? "Until End"
                     : "Public Sale Has Ended"}
-            </Text> */}
+            </Text>
             <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
                 {currentPhase === "NOT_STARTED" ? "Countdown to public sale" : "Refresh Page"}
             </Text>
@@ -65,21 +67,21 @@ const Countdown = ({
                     )} */}
                     {!isRunning ? (
                         <PublicCountdown
-                            time1={{ value: minutesLeft, unit: "MINS" }}
-                            time2={{ value: secondsLeft, unit: "SECS" }}
+                            time1={{ value: nftRemaining > 0 ? minutesLeft : 0, unit: "MINS" }}
+                            time2={{ value: nftRemaining > 0 ? secondsLeft : 0, unit: "SECS" }}
                         />
                     ) : (
                         <PrivateCountdown
-                            time1={{ value: timer.days, unit: "DAYS" }}
-                            time2={{ value: timer.hours, unit: "HOURS" }}
-                            time3={{ value: timer.minutes, unit: "MINS" }}
-                            time4={{ value: timer.seconds, unit: "SECS" }}
+                            time1={{ value: nftRemaining > 0 ? timer.days : 0, unit: "DAYS" }}
+                            time2={{ value: nftRemaining > 0 ? timer.hours : 0, unit: "HOURS" }}
+                            time3={{ value: nftRemaining > 0 ? timer.minutes : 0, unit: "MINS" }}
+                            time4={{ value: nftRemaining > 0 ? timer.seconds : 0, unit: "SECS" }}
                         />
                     )}
                 </Flex>
                 {!isRunning && <Loader percent={percent} />}
             </Box>
-            {isOnSale && <PriceChangeText isRunning={isRunning} />}
+            {isOnSale && isPriceDecreasing && <PriceChangeText isRunning={isRunning} />}
             <Box
                 pos="absolute"
                 w="1px"

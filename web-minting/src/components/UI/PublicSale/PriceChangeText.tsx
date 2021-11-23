@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/layout"
-import useTypeEffect from "@hooks/useTypeEffect"
+import { useTypeEffect } from "@hooks"
 import { useEffect } from "react"
 
 interface PriceChangeTextProps {

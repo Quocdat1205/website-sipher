@@ -1,59 +1,68 @@
-import { Box, Flex, Img } from "@chakra-ui/react"
-import unityContext from "src/utils/unity"
-import { useStoreActions } from "@store"
-import FirstScreen from "./FirstScreen"
-import AmountScreen from "./AmountScreen"
-import Unity from "react-unity-webgl"
-import { MouseEvent, useEffect, useRef } from "react"
-import CountDownScreen from "./CountDownScreen"
-import PlayScreen from "./PlayScreen"
-import PlayForJoyScreen from "./PlayForJoyScreen"
-import { useUserAgent } from "next-useragent"
+// * DESCRIPTION:
 
-export const fontSizes = ["3.0rem", "3.5rem", "4rem", "4.5rem"]
+import { Flex, Box, Text } from "@chakra-ui/react"
+import { LinkButton, MotionFlex, Typo } from "@components/shared"
+import Title from "./Title"
+import { CgMouse } from "react-icons/cg"
+import { BiChevronDown } from "react-icons/bi"
 
-interface HeroProps {
-    uaString: string
-}
+interface FirstScreenProps {}
 
-const Hero = ({ uaString }: HeroProps) => {
-    const setInitialLoading = useStoreActions(action => action.setInitialLoading)
-    const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent)
-    const isIOS = isIos || isIpad || isIphone || isSafari
-
-    const ctnRef = useRef<HTMLDivElement>(null)
-    const handleMouseWheel = () => {
-        if (ctnRef.current)
-            unityContext.send("Main Camera", "angle", (window.scrollY / ctnRef.current.clientHeight) * 5)
-    }
-
-    const handleMouseMove = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-        unityContext.send("Main Camera", "effectNekoX", e.clientX / window.innerWidth)
-    }
-
-    useEffect(() => {
-        unityContext.on("loaded", () => setInitialLoading(false));
-    }, [setInitialLoading])
-
-    useEffect(() => {
-        window.addEventListener("scroll", handleMouseWheel)
-        return () => window.removeEventListener("scroll", handleMouseWheel)
-    }, [])
-
+const FirstScreen = ({}: FirstScreenProps) => {
     return (
-        <Box pos="relative" zIndex={0} overflowX="hidden" onMouseMove={handleMouseMove} ref={ctnRef} id="hero">
-            <Flex direction="column" w="full">
-                <FirstScreen />
-                <CountDownScreen isIOS={isIOS} />
-                <AmountScreen />
-                <PlayForJoyScreen isIOS={isIOS} />
-                <PlayScreen />
+        <Flex
+            direction="column"
+            align="center"
+            zIndex={2}
+            justify="center"
+            h="100vh"
+            w="full"
+            flexShrink={0}
+            bgImage="/images/pc/home/background.png"
+            bgSize="cover"
+            bgPos="center"
+            bgRepeat="no-repeat"
+            p={4}
+            pt={[16, 16, 4]}
+        >
+            <Flex direction="column" align="center" justify="center" w="full" maxW="64rem" pt={32}>
+                <Title text="$SIPHER TOKEN" />
+                <Title text="PUBLIC SALE" custom={1} />
+                <MotionFlex
+                    direction="column"
+                    align="center"
+                    mt={4}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                        delay: 1.5,
+                    }}
+                >
+                    <Typo.Heading textAlign="center" mb={[0, 0, 0, 4]}>
+                        COMING SOON
+                    </Typo.Heading>
+                    <Text mb={[4, 4, 4, 8]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
+                        BE PART OF THE SIPHER UNIVERSE
+                    </Text>
+                    <Flex>
+                        <LinkButton
+                            text="LEARN MORE ON MEDIUM"
+                            size="large"
+                            href="https://medium.com/SIPHERxyz"
+                            px={12}
+                        />
+                    </Flex>
+                    <Flex direction="column" align="center" mt={8}>
+                        <CgMouse size="2rem" />
+                        <Box mt={-1}>
+                            <BiChevronDown size="1.5rem" />
+                        </Box>
+                        <Text fontSize="xs">Scroll down to discover</Text>
+                    </Flex>
+                </MotionFlex>
             </Flex>
-            <Box pos="fixed" top={0} left={0} h="full" w="full">
-                <Unity unityContext={unityContext} style={{ width: "100%", height: "100%" }} />
-            </Box>
-        </Box>
+        </Flex>
     )
 }
 
-export default Hero
+export default FirstScreen

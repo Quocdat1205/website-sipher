@@ -1,5 +1,4 @@
-import { checkIsWhitelisted } from "@api/smartContract"
-import { authenticateUser, getUsersByAddress, IUser, signupUser } from "@api/user"
+import { authenticateUser, getUsersByAddress, IUser, checkIsWhitelisted } from "@api"
 import Web3 from "web3"
 
 export const metaMaskProvider = typeof window !== "undefined" && window.ethereum

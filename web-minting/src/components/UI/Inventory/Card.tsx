@@ -1,4 +1,4 @@
-import { NFTInfo } from "@api/nft"
+import { NFTInfo } from "@api"
 import { AspectRatio, Box, Img, Text, Flex } from "@chakra-ui/react"
 import { MotionFlex } from "@components/shared/Motion"
 import { useRouter } from "next/router"
@@ -48,7 +48,7 @@ const Card = ({ item, order }: CardProps) => {
             cursor="pointer"
             flexDir="column"
             onClick={() => {
-                if (name !== "???") router.push(`/inventory/${item.race.toLowerCase()}/${item.id}`)
+                if (name !== "???") router.push(`/${item.race.toLowerCase()}/${item.id}`)
             }}
             borderLeft="2px"
             sx={{ "--border": "#595959" }}
