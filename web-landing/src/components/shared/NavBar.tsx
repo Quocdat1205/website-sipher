@@ -46,8 +46,8 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
         >
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
-                    {/* <WalletButton /> */}
-                    <Flex
+                    <WalletButton />
+                    {/* <Flex
                         sx={{
                             "@media (max-width: 640px)": {
                                 display: "none",
@@ -55,7 +55,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                         }}
                     >
                         <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
-                    </Flex>
+                    </Flex> */}
                     <Grid
                         ml={4}
                         rounded="full"
