@@ -8,7 +8,7 @@ interface InuInventoryDetailProps {}
 const InuInventoryDetail = ({}: InuInventoryDetailProps) => {
     const router = useRouter()
     const { id } = router.query
-    return <Detail race="NEKO" id={parseInt(id as string)} />
+    return <Detail race="NEKO" />
 }
 
 InuInventoryDetail.getLayout = (page: ReactElement) => {

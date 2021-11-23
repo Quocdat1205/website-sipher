@@ -6,9 +6,7 @@ import { ReactElement } from "react"
 interface InuInventoryDetailProps {}
 
 const InuInventoryDetail = ({}: InuInventoryDetailProps) => {
-    const router = useRouter()
-    const { id } = router.query
-    return <Detail race="INU" id={parseInt(id as string)} />
+    return <Detail race="INU" />
 }
 
 InuInventoryDetail.getLayout = (page: ReactElement) => {
