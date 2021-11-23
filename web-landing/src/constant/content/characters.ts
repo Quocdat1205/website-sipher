@@ -17,5 +17,4 @@ export const characters = [
     },
 ]
 
-export const text =
-    '10,000 Beautifully-crafted and unique NEKO NFTs. Each one, purchased as a 2D Avatar, will be designed in 3D to be used as an in-game character. This collection is named "Sipherian Flash", which belongs to the second genesis sipher Race "Sipher NEKO"'
+export const text = `10,000 BEAUTIFULLY-CRAFTED AND UNIQUE NEKO NFTS. EACH ONE, PURCHASED AS A 2D AVATAR, DESIGNED IN 3D TO BE USED AS AN IN-GAME CHARACTER. THIS COLLECTION IS NAMED "SIPHERIAN FLASH", WHICH BELONGS TO THE SECOND GENESIS SIPHER RACE "SIPHER NEKO"`
