@@ -36,7 +36,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                 flex={1}
                 justify="center"
                 sx={{
-                    "@media (max-width: 1200px)": {
+                    "@media (max-width: 960px)": {
                         display: "none",
                     },
                 }}

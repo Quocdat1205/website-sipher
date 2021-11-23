@@ -18,7 +18,7 @@ const ChildMenu = ({ menus }: ChildMenuProps) => {
             display={isSideBarOn ? "none" : "flex"}
             justify="center"
             px={4}
-            py={4}
+            py={2}
             bg="blackAlpha.700"
             overflowX="auto"
         >

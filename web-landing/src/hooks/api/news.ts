@@ -1,14 +1,14 @@
-import config from "./config"
 import axios from "axios"
+import fetcher from "./fetcher"
 
 export const getListNews = async (min: number, max: number) => {
-    const { data } = await axios.get(`/communication/?min=${min}&max=${max}`, config)
+    const { data } = await fetcher.get(`/communication/?min=${min}&max=${max}`)
 
     return data
 }
 
 export const getDetailsNews = async published => {
-    const { data } = await axios.get(`/communication/details?published=${published}`, config)
+    const { data } = await fetcher.get(`/communication/details?published=${published}`)
 
     return data
 }

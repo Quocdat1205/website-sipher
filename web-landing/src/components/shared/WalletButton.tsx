@@ -5,8 +5,10 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 import { GradientButton } from "@sipher/web-components"
 import { useRef, useState } from "react"
 import { FaWallet } from "react-icons/fa"
+import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
 import { WalletModal } from "."
+import { useRouter } from "next/router"
 
 interface WalletButtonProps {}
 
@@ -14,6 +16,8 @@ export const WalletButton = ({}: WalletButtonProps) => {
     const wallet = useWalletContext()
     const [isOpen, setIsOpen] = useState(false)
     const [menu, setMenu] = useState(false)
+    const router = useRouter()
+
     const handleClick = () => {
         if (!wallet.isActive) setIsOpen(true)
     }
@@ -41,19 +45,23 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         onClick={handleClick}
                         border="1px"
                         borderColor="transparent"
+                        h="2.5rem"
+                        w="12.5rem"
                     />
                 ) : (
                     <Flex
                         bg="#131313"
                         border="1px"
                         borderColor="#383838"
-                        borderTopRadius="xl"
-                        borderBottomRadius={menu ? "none" : "xl"}
+                        borderTopRadius="lg"
+                        borderBottomRadius={menu ? "none" : "lg"}
                         align="center"
                         px={4}
                         py={2}
                         cursor="pointer"
                         onClick={() => setMenu(true)}
+                        h="2.5rem"
+                        w="12.5rem"
                     >
                         <Box color="main.orange" mr={2}>
                             <FaWallet />
@@ -64,7 +72,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                                 wallet.account.length
                             )}`}
                         </Text>
-                        <Box ml={2}>
+                        <Box ml={"auto"}>
                             <FiChevronDown size="1.2rem" />
                         </Box>
                     </Flex>
@@ -72,8 +80,26 @@ export const WalletButton = ({}: WalletButtonProps) => {
             </Box>
             <Box pos="absolute" w="full" top="0">
                 <Collapse in={menu}>
-                    <Box bg="#131313" border="1px" borderColor="#383838" rounded="2xl" px={4} py={2} pt={12}>
-                        hei
+                    <Box bg="#131313" border="1px" borderColor="#383838" rounded="lg" px={4} py={4} pt={14}>
+                        <Flex
+                            align="center"
+                            mb={4}
+                            cursor="pointer"
+                            px={4}
+                            py={2}
+                            rounded="lg"
+                            bg="#383838"
+                            shadow="base"
+                            onClick={() => router.push("/inventory")}
+                        >
+                            <Box color="main.orange" mr={2}>
+                                <BsInboxFill size="1.2rem" />
+                            </Box>
+                            <Text fontWeight="semibold" fontSize="sm">
+                                INVENTORY
+                            </Text>
+                        </Flex>
+                        <GradientButton text="Disconnect" w="full" />
                     </Box>
                 </Collapse>
             </Box>

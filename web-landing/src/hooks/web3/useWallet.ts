@@ -20,7 +20,7 @@ const useWallet = () => {
     const web3React = useWeb3React()
     const { account, chainId } = web3React
     const activationId = useRef(0)
-
+    console.log("Address", account)
     // Current chain id
     const chain = useMemo(() => (chainId ? getChain(chainId) : null), [chainId])
 
@@ -66,15 +66,12 @@ const useWallet = () => {
                 setConnectorName(connectorId)
                 // actual connect
                 await web3React.activate(web3ReactConnector, undefined, true)
-                console.log("Connect")
 
                 // save last connector name to login after refresh
                 setLastConnector(connectorId)
                 // listen to some event
                 if (connectorId === "injected") {
                     const account = await web3ReactConnector.getAccount()
-
-                    console.log(account)
                     account && setLastActiveAccount(account)
                     web3ReactConnector.getProvider().then(provider => {
                         provider.on("accountsChanged", () => {
@@ -89,7 +86,7 @@ const useWallet = () => {
                 }
                 setStatus("connected")
             } catch (err: any) {
-                console.log("Error", err)
+                console.log(err)
                 if (id !== activationId.current) return
                 setConnectorName(null)
                 setStatus("error")
@@ -119,7 +116,7 @@ const useWallet = () => {
         const lastConnector = getLastConnector()
         const lastActiveAccount = getLastActiveAccount()
 
-        if (lastActiveAccount && lastConnector === "injected") {
+        if (lastActiveAccount && lastConnector === "injected" && !account) {
             connect()
         }
     }, [connect])

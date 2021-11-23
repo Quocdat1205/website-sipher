@@ -41,9 +41,9 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     <Typo.Heading textAlign="center" mb={[0, 0, 0, 4]}>
                         COMING SOON
                     </Typo.Heading>
-                    <Typo.BoldText mb={[4, 4, 4, 8]} textAlign="center">
+                    <Text mb={[4, 4, 4, 8]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
                         BE PART OF THE SIPHER UNIVERSE
-                    </Typo.BoldText>
+                    </Text>
                     <Flex>
                         <LinkButton
                             text="LEARN MORE ON MEDIUM"

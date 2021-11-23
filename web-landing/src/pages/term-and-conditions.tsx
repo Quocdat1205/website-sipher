@@ -1,7 +1,6 @@
 import Metadata from "@components/shared/Metadata"
-import MainLayout from "@components/UI/MainLayout"
+import NewsLayout from "@components/UI/NewsLayout"
 import TermAndConditionsUI from "@components/UI/TermAndCondition"
-import Head from "next/head"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "./_app"
 
@@ -14,6 +13,6 @@ const NFTPage: NextPageWithLayout = () => {
     )
 }
 NFTPage.getLayout = (page: ReactElement) => {
-    return <MainLayout>{page}</MainLayout>
+    return <NewsLayout>{page}</NewsLayout>
 }
 export default NFTPage
