@@ -12,6 +12,7 @@ import {
     getLastConnector,
     getLastActiveAccount,
     setAccessToken,
+    clearAccessToken,
 } from "./utils"
 import Web3 from "web3"
 import WalletConnectProvider from "@walletconnect/web3-provider"
@@ -90,10 +91,12 @@ const useWallet = () => {
                     web3ReactConnector.getProvider().then(provider => {
                         provider.on("accountsChanged", () => {
                             reset()
+                            clearAccessToken()
                             console.log("Account changed!")
                         })
                         provider.on("chainChanged", () => {
                             reset()
+                            clearAccessToken()
                             console.log("Chain changed!")
                         })
                     })
