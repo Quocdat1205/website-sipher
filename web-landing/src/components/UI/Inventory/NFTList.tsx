@@ -14,11 +14,6 @@ interface Props {
 
 const STEP = 20
 
-const menuRace = [
-    { id: "INU", path: "/inventory/inu" },
-    { id: "NEKO", path: "/inventory/neko" },
-]
-
 const NFTList = ({ race }: Props) => {
     const wallet = useWalletContext()
     const { data: quantity } = useQuery(
