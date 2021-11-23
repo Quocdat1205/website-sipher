@@ -1,5 +1,6 @@
 const ACCOUNT_KEY = "LAST_ACTIVE_ACCOUNT"
 const CONNECTOR_KEY = "LAST_WALLET_CONNECTOR"
+const ACCESSTOKEN_KEY = "ACCESS_TOKEN"
 
 export const setLastActiveAccount = (account: string) => {
     localStorage?.setItem(ACCOUNT_KEY, account)
@@ -19,4 +20,12 @@ export const setLastConnector = (connector: string) => {
 
 export const getLastConnector = (): string | null => {
     return localStorage?.getItem(CONNECTOR_KEY)
+}
+
+export const setAccessToken = (accessToken: string) => {
+    localStorage?.setItem(ACCESSTOKEN_KEY, accessToken)
+}
+
+export const getAccessToken = (): string | null => {
+    return localStorage?.getItem(ACCESSTOKEN_KEY)
 }

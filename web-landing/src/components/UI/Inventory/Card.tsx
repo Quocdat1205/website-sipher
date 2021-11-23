@@ -48,7 +48,7 @@ const Card = ({ item, order }: CardProps) => {
             cursor="pointer"
             flexDir="column"
             onClick={() => {
-                if (name !== "???") router.push(`/${item.race.toLowerCase()}/${item.id}`)
+                if (name !== "???") router.push(`?id=${item.id}`, undefined, { scroll: false })
             }}
             borderLeft="2px"
             sx={{ "--border": "#595959" }}

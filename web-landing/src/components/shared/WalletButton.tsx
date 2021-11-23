@@ -99,7 +99,14 @@ export const WalletButton = ({}: WalletButtonProps) => {
                                 INVENTORY
                             </Text>
                         </Flex>
-                        <GradientButton text="Disconnect" w="full" />
+                        <GradientButton
+                            onClick={() => {
+                                setMenu(false)
+                                wallet.reset()
+                            }}
+                            text="Disconnect"
+                            w="full"
+                        />
                     </Box>
                 </Collapse>
             </Box>

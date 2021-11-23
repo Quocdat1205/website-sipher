@@ -1,11 +1,12 @@
 import { NFTRace } from "@@types"
 import { getNFT, getMerkle, changeEmotion } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
+import { getAccessToken } from "@hooks/web3/utils"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useQueryClient, useQuery, useMutation } from "react-query"
 
-const useInventoryDetail = ({ id, race }: { id: number; race: NFTRace }) => {
+const useInventoryDetail = ({ id, race }: { id: any; race: NFTRace }) => {
     const wallet = useWalletContext()
     const queryClient = useQueryClient()
     const [currentEmotion, setCurrentEmotion] = useState("DEFAULT")
@@ -13,17 +14,17 @@ const useInventoryDetail = ({ id, race }: { id: number; race: NFTRace }) => {
     const router = useRouter()
 
     const { data } = useQuery(["NFT", race, id], () => getNFT({ address: wallet.account as string, id, race }), {
-        enabled: !!wallet.account,
+        enabled: !!wallet.account && !!id,
         onSuccess: data => {
             setCurrentEmotion(data.emotion.toUpperCase())
         },
     })
-    const { data: merkle } = useQuery(["merkle", race, id], () => getMerkle(id, race.toLowerCase()))
+    const { data: merkle } = useQuery(["merkle", race, id], () => getMerkle(parseInt(id), race.toLowerCase()))
 
     const { mutate: mutateChangeEmotion } = useMutation<unknown, unknown, string>(
         newEmotion =>
             changeEmotion({
-                accessToken: "",
+                accessToken: getAccessToken() as string,
                 address: wallet.account as string,
                 emotion: newEmotion,
                 id,

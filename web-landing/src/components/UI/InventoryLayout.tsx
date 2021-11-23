@@ -11,6 +11,7 @@ const InventoryLayout = ({ children }: NewsLayoutProps) => {
     return (
         <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
             <NavBar />
+
             <Flex
                 flex={1}
                 overflow="overlay"

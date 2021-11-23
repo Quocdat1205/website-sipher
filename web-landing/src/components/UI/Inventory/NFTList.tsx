@@ -9,6 +9,7 @@ import { NFTRace } from "@source/types"
 import { getNFTQuantity, getNFTs } from "@hooks/api"
 import { Typo } from "@components/shared"
 import { useRouter } from "next/router"
+import Detail from "./Detail"
 interface Props {
     race: NFTRace
 }
@@ -180,6 +181,7 @@ const NFTList = ({ race }: Props) => {
                             ))}
                         </SimpleGrid>
                     </InfiniteScroll>
+                    <Detail race={race} />
                 </Box>
             </Flex>
         </Flex>
