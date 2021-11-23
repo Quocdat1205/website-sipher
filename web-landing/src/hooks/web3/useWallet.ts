@@ -142,7 +142,7 @@ const useWallet = () => {
                 )
                 console.log(signature)
             } else {
-                // await providerWC.enable()
+                await providerWC.enable()
                 signature = await web3.eth.personal.sign(
                     `I am signing my one-time nonce: ${nonce}`,
                     address,
