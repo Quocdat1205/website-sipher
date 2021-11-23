@@ -1,7 +1,6 @@
+import { baseURL } from "@constant/index"
 import axios from "axios"
 
-export const baseURL = "https://be.sipherion.com/api/sipher/v1.1"
-
-const fetcher = axios.create({ baseURL })
+const fetcher = axios.create({ baseURL: baseURL })
 
 export default fetcher
