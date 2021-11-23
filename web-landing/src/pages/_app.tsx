@@ -44,9 +44,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
     return (
         <StoreProvider store={store}>
-            <Web3ReactProvider getLibrary={e => e}>
-                <UseWalletProvider>
-                    <ChakraProvider theme={theme}>
+            <ChakraProvider theme={theme}>
+                <Web3ReactProvider getLibrary={e => e}>
+                    <UseWalletProvider>
                         <QueryClientProvider client={queryClient}>
                             <Head>
                                 <meta charSet="utf-8" />
@@ -92,9 +92,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                             </Head>
                             {getLayout(<Component {...pageProps} />)}
                         </QueryClientProvider>
-                    </ChakraProvider>
-                </UseWalletProvider>
-            </Web3ReactProvider>
+                    </UseWalletProvider>
+                </Web3ReactProvider>
+            </ChakraProvider>
         </StoreProvider>
     )
 }

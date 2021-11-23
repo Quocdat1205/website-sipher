@@ -17,6 +17,7 @@ import {
 import Web3 from "web3"
 import WalletConnectProvider from "@walletconnect/web3-provider"
 import { authenticateUser, getUsersByAddress, IUser } from "@hooks/api/user"
+import { useChakraToast } from "@sipher/web-components"
 
 declare global {
     interface Window {
@@ -35,7 +36,6 @@ const useWallet = () => {
     const web3React = useWeb3React()
     const { account, chainId } = web3React
     const activationId = useRef(0)
-    console.log("Address", account)
     // Current chain id
     const chain = useMemo(() => (chainId ? getChain(chainId) : null), [chainId])
 
@@ -45,6 +45,7 @@ const useWallet = () => {
             web3React.deactivate()
         }
         clearLastActiveAccount()
+        clearAccessToken()
         setConnectorName(null)
         setError(null)
         setStatus("disconnected")
@@ -58,7 +59,7 @@ const useWallet = () => {
             setError(new ChainUnsupportedError(web3React.error.message))
         }
     }, [web3React.error])
-
+    const toast = useChakraToast()
     // connect to wallet
     const connect = useCallback(
         async (connectorId: ConnectorId = "injected") => {
@@ -91,24 +92,20 @@ const useWallet = () => {
                     web3ReactConnector.getProvider().then(provider => {
                         provider.on("accountsChanged", () => {
                             reset()
-                            clearAccessToken()
-                            console.log("Account changed!")
                         })
                         provider.on("chainChanged", () => {
                             reset()
-                            clearAccessToken()
-                            console.log("Chain changed!")
                         })
                     })
                 }
                 setStatus("connected")
             } catch (err: any) {
-                console.log(err)
                 if (id !== activationId.current) return
                 setConnectorName(null)
                 setStatus("error")
                 if (err instanceof UnsupportedChainIdError) {
                     setError(new ChainUnsupportedError(err.message))
+                    toast({ title: err.name, message: err.message })
                     return
                 }
 
@@ -116,6 +113,7 @@ const useWallet = () => {
                 if (connector.handleActivationError) {
                     const handledError = connector.handleActivationError(err)
                     if (handledError) {
+                        toast({ title: handledError.name, message: handledError.message })
                         setError(handledError)
                         return
                     }
@@ -132,15 +130,13 @@ const useWallet = () => {
     const signMessage = useCallback(
         async (address: string, nonce: number) => {
             const web3 = new Web3(connectorName === "injected" ? providerMM : providerWC)
-            let signature
-            console.log(address)
+            let signature: string
             if (connectorName === "injected") {
                 signature = await web3.eth.personal.sign(
                     `I am signing my one-time nonce: ${nonce}`,
                     address,
                     "" // MetaMask will ignore the password argument here
                 )
-                console.log(signature)
             } else {
                 await providerWC.enable()
                 signature = await web3.eth.personal.sign(
@@ -148,12 +144,11 @@ const useWallet = () => {
                     address,
                     "" // WalletConnect will ignore the password argument here
                 )
-                console.log(signature)
             }
 
             return signature
         },
-        [web3React]
+        [web3React, connectorName]
     )
 
     /** Authenticate user by address and nonce

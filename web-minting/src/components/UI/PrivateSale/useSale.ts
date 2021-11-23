@@ -85,7 +85,6 @@ const useSale = (mode: "PRIVATE_SALE" | "FREE_MINTING") => {
             queryClient.invalidateQueries("user-record")
             setIsMinting(false)
         } catch (error) {
-            console.log(error)
             transactionToast({ status: "failed" })
             setIsMinting(false)
         }

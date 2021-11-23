@@ -3,7 +3,7 @@ import { Flex, Text, Box } from "@chakra-ui/layout"
 import { Collapse } from "@chakra-ui/transition"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { GradientButton } from "@sipher/web-components"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { FaWallet } from "react-icons/fa"
 import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
@@ -28,6 +28,15 @@ export const WalletButton = ({}: WalletButtonProps) => {
         ref: boxRef,
         handler: () => setMenu(false),
     })
+
+    useEffect(() => {
+        if (wallet.isActive) setIsOpen(false)
+        else {
+            if (router.pathname.includes("inventory")) {
+                router.push("/")
+            }
+        }
+    }, [wallet.isActive])
 
     return (
         <Box pos="relative" ref={boxRef}>
@@ -60,7 +69,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         px={4}
                         py={2}
                         cursor="pointer"
-                        onClick={() => setMenu(true)}
+                        onClick={() => setMenu(!menu)}
                         h="2.5rem"
                         w="12.5rem"
                     >
@@ -103,7 +112,6 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         <GradientButton
                             onClick={() => {
                                 setMenu(false)
-                                clearAccessToken()
                                 wallet.reset()
                             }}
                             text="Disconnect"

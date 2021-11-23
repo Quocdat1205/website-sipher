@@ -32,7 +32,6 @@ const WalletCard = ({ src, text, onClick }: WalletCard) => {
             _hover={{ bg: "blackAlpha.700" }}
             _active={{ bg: "blackAlpha.900" }}
             onClick={() => {
-                console.log("nice")
                 onClick()
             }}
         >
@@ -50,7 +49,7 @@ interface WalletModalProps {
 export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
     const wallet = useWalletContext()
     return (
-        <Modal isOpen={isOpen} onClose={onClose} size="lg">
+        <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
             <ModalOverlay />
             <ModalContent bg="gray.900" color="whiteAlpha.900">
                 <ModalHeader>{"Connect Wallet"}</ModalHeader>

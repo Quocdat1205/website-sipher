@@ -1,4 +1,4 @@
-import { Flex, SimpleGrid, Box, Spinner, Text, chakra, Button } from "@chakra-ui/react"
+import { Flex, SimpleGrid, Box, Spinner, Text, chakra } from "@chakra-ui/react"
 import React, { Fragment } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
 import { useInfiniteQuery, useQuery } from "react-query"
@@ -7,8 +7,6 @@ import { ViewCollectionButton } from "@sipher/web-components"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { NFTRace } from "@source/types"
 import { getNFTQuantity, getNFTs } from "@hooks/api"
-import { Typo } from "@components/shared"
-import { useRouter } from "next/router"
 import Detail from "./Detail"
 interface Props {
     race: NFTRace
@@ -23,7 +21,6 @@ const menuRace = [
 
 const NFTList = ({ race }: Props) => {
     const wallet = useWalletContext()
-    const router = useRouter()
     const { data: quantity } = useQuery(
         ["quantity", race],
         () => getNFTQuantity({ address: wallet.account as string, race }),
@@ -52,7 +49,7 @@ const NFTList = ({ race }: Props) => {
     if (!data) {
         if (isLoading)
             return (
-                <Flex w="full" flex={1} minH="100vh" align="center" justify="center">
+                <Flex w="full" flex={1} align="center" justify="center">
                     <Flex align="center">
                         <Spinner size="sm" mr={2} />
                         <Text fontWeight={500}>Loading</Text>
@@ -61,7 +58,7 @@ const NFTList = ({ race }: Props) => {
             )
         else
             return (
-                <Flex w="full" flex={1} minH="100vh" align="center" justify="center">
+                <Flex w="full" flex={1} align="center" justify="center">
                     <Flex align="center" direction="column">
                         <Text fontSize="2xl" fontWeight={500}>
                             Failed to get data!
@@ -75,7 +72,7 @@ const NFTList = ({ race }: Props) => {
     }
     if (data && data.pages[0].total == 0) {
         return (
-            <Flex w="full" flex={1} minH="100vh" align="center" justify="center">
+            <Flex w="full" flex={1} align="center" justify="center">
                 <Flex direction="column" align="center">
                     <Text textAlign="center" mb={4} fontWeight={500} fontSize="2xl">
                         You currently have{" "}
@@ -91,100 +88,44 @@ const NFTList = ({ race }: Props) => {
     }
 
     return (
-        <Flex flexDir="column" w="full" align="center" py={4} minH="100vh">
-            <Flex
-                pos="relative"
-                _before={{
-                    zIndex: 1,
-                    content: `""`,
-                    pos: "absolute",
-                    bottom: "-1px",
-                    left: 0,
-                    w: "full",
-                    h: "4px",
-                    bg: "linear-gradient(270deg, rgba(255, 218, 0, 0) 0%, #FFDA00 55.21%, rgba(252, 209, 31, 0) 100%)",
-                }}
-                align="center"
-                justify="center"
-                flexDir="column"
-                px={4}
-                w="full"
-                overflow="hidden"
-                maxW="64rem"
-            >
-                <Box mb={4} bg="blackAlpha.900" py={1} px={4}>
-                    <Typo.Text size="large" letterSpacing="0">
-                        INVENTORY
-                    </Typo.Text>
-                </Box>
-                <Flex flexDir="row">
-                    {menuRace.map(item => (
-                        <Button
-                            key={item.id}
-                            _hover={{ bgGradient: "linear(180deg, #ffe1a2 0%, #FCD11F 100%)", color: "black" }}
-                            rounded="none"
-                            pos="relative"
-                            ml={1}
-                            px={10}
-                            bg={
-                                router.pathname.split("/")[2] === item.path.split("/")[2]
-                                    ? "linear-gradient(180deg, #F4B533 0%, #FCD11F 100%)"
-                                    : "black"
-                            }
-                            backdrop-filter="blur(13px)"
-                            color={
-                                router.pathname.split("/")[2] === item.path.split("/")[2]
-                                    ? "black"
-                                    : "rgba(255,255,255,0.6)"
-                            }
-                            onClick={() => router.push(item.path)}
-                        >
-                            {item.id}
-                        </Button>
-                    ))}
-                </Flex>
-            </Flex>
-            <Flex flexDir="column" px={4} flex={1} w="full" overflow="hidden" maxW="64rem" bg="blackAlpha.800">
-                <Text textAlign="center" my={4} fontWeight={500}>
-                    You currently have{" "}
-                    <chakra.span fontWeight={500} color="main.yellow">
-                        {isFetching ? "..." : quantity}
-                    </chakra.span>{" "}
-                    {race} NFT{!isLoading && quantity > 1 && "s"}
-                </Text>
-                <Box flex={1}>
-                    <InfiniteScroll
-                        dataLength={
-                            data
-                                ? data.pages.map(page => page.data).reduce((init, cur) => init.concat(cur), []).length
-                                : 0
-                        }
-                        next={fetchNextPage}
-                        hasMore={!!hasNextPage}
-                        style={{ width: "100%", overflow: "hidden" }}
-                        loader={
-                            <Flex w="full" flex={1} align="center" justify="center" mt={4}>
-                                <Flex align="center" fontWeight={500}>
-                                    <Spinner size="sm" mr={2} />
-                                    <Text>Loading</Text>
-                                </Flex>
+        <Box>
+            <Text textAlign="center" my={4} fontWeight={500}>
+                You currently have{" "}
+                <chakra.span fontWeight={500} color="main.yellow">
+                    {isFetching ? "..." : quantity}
+                </chakra.span>{" "}
+                {race} NFT{!isLoading && quantity > 1 && "s"}
+            </Text>
+            <Box flex={1}>
+                <InfiniteScroll
+                    dataLength={
+                        data ? data.pages.map(page => page.data).reduce((init, cur) => init.concat(cur), []).length : 0
+                    }
+                    next={fetchNextPage}
+                    hasMore={!!hasNextPage}
+                    style={{ width: "100%", overflow: "hidden" }}
+                    loader={
+                        <Flex w="full" flex={1} align="center" justify="center" mt={4}>
+                            <Flex align="center" fontWeight={500}>
+                                <Spinner size="sm" mr={2} />
+                                <Text>Loading</Text>
                             </Flex>
-                        }
-                    >
-                        <SimpleGrid p={4} columns={[2, 3, 4, 4]} spacing={4}>
-                            {data.pages.map((page, i) => (
-                                <Fragment key={i}>
-                                    {page.data.map((item, index) => (
-                                        <Card key={item.id} item={item} order={(i + 1) * (index + 1)} />
-                                    ))}
-                                </Fragment>
-                            ))}
-                        </SimpleGrid>
-                    </InfiniteScroll>
-                    <Detail race={race} />
-                </Box>
-            </Flex>
-        </Flex>
+                        </Flex>
+                    }
+                >
+                    <SimpleGrid p={4} columns={[2, 3, 4, 4]} spacing={4}>
+                        {data.pages.map((page, i) => (
+                            <Fragment key={i}>
+                                {page.data.map((item, index) => (
+                                    <Card key={item.id} item={item} order={(i + 1) * (index + 1)} />
+                                ))}
+                            </Fragment>
+                        ))}
+                    </SimpleGrid>
+                </InfiniteScroll>
+                <Detail race={race} />
+            </Box>
+        </Box>
     )
 }
 export default NFTList
