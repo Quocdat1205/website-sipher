@@ -90,7 +90,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             rounded="lg"
                             bg="#383838"
                             shadow="base"
-                            onClick={() => router.push("/inventory")}
+                            onClick={() => router.push("/inventory/inu")}
                         >
                             <Box color="main.orange" mr={2}>
                                 <BsInboxFill size="1.2rem" />
