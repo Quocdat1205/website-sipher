@@ -13,7 +13,6 @@ const ProofsTable = ({ proofs, onDownload }: ProofsTableProps) => {
                 <Text fontWeight="700" fontSize="2xl" mb={1}>
                     Proofs
                 </Text>
-
                 <Flex align="center">
                     <Text
                         cursor="pointer"
@@ -40,6 +39,7 @@ const ProofsTable = ({ proofs, onDownload }: ProofsTableProps) => {
                             href="https://t.ly/verifysiphernft"
                             rel="nonreferrer"
                             target="_blank"
+                            color="white"
                         >
                             <BsQuestionCircle size="1rem" />
                         </Box>

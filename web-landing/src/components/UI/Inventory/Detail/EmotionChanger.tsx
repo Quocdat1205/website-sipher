@@ -1,4 +1,6 @@
 import { Box, Wrap, Text } from "@chakra-ui/layout"
+import useWalletContext from "@hooks/web3/useWalletContext"
+import { getAccessToken } from "@hooks/web3/utils"
 
 interface EmotionChangerProps {
     availableEmotions: string[]
@@ -7,6 +9,17 @@ interface EmotionChangerProps {
 }
 
 const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: EmotionChangerProps) => {
+    const wallet = useWalletContext()
+
+    const handleChange = async emotion => {
+        const accessToken = getAccessToken()
+        if (accessToken && accessToken !== "") {
+            onChangeEmotion(emotion)
+        } else {
+            wallet.getAccessToken(wallet.account)
+        }
+    }
+
     return (
         <Wrap justify="center" alignItems="center" justifyContent="space-between" w="full">
             {availableEmotions.map(emotion => (
@@ -16,7 +29,7 @@ const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: 
                     py={1}
                     cursor="pointer"
                     userSelect="none"
-                    onClick={() => onChangeEmotion(emotion)}
+                    onClick={() => handleChange(emotion)}
                     pos="relative"
                 >
                     <Text

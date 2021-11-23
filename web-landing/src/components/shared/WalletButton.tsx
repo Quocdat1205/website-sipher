@@ -9,6 +9,7 @@ import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
 import { WalletModal } from "."
 import { useRouter } from "next/router"
+import { clearAccessToken } from "@hooks/web3/utils"
 
 interface WalletButtonProps {}
 
@@ -90,7 +91,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             rounded="lg"
                             bg="#383838"
                             shadow="base"
-                            onClick={() => router.push("/inventory")}
+                            onClick={() => router.push("/inventory/inu")}
                         >
                             <Box color="main.orange" mr={2}>
                                 <BsInboxFill size="1.2rem" />
@@ -99,7 +100,15 @@ export const WalletButton = ({}: WalletButtonProps) => {
                                 INVENTORY
                             </Text>
                         </Flex>
-                        <GradientButton text="Disconnect" w="full" />
+                        <GradientButton
+                            onClick={() => {
+                                setMenu(false)
+                                clearAccessToken()
+                                wallet.reset()
+                            }}
+                            text="Disconnect"
+                            w="full"
+                        />
                     </Box>
                 </Collapse>
             </Box>
