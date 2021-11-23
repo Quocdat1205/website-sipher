@@ -76,8 +76,6 @@ export const useWallet = () => {
                 // listen to some event
                 if (connectorId === "injected") {
                     const account = await web3ReactConnector.getAccount()
-
-                    console.log(account)
                     account && setLastActiveAccount(account)
                     web3ReactConnector.getProvider().then(provider => {
                         provider.on("accountsChanged", () => {
