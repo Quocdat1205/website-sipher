@@ -22,7 +22,7 @@ export const GradientOutlineButton = ({
     backgroundColor = "black",
     p,
     px = 6,
-    py = 2,
+    py = 1,
     pt,
     pb,
     pl,
