@@ -6,7 +6,7 @@ import content from "@constant/content/ownerBenefits"
 
 const OwnerBenefits = () => {
     return (
-        <Flex justify="center" bgGradient="linear(180deg, #EF6F38 0%, #150800 84.37%)" w="full" py={16}>
+        <Flex justify="center" bgGradient="linear(180deg, #150800 0%, #601D00 84.37%)" w="full" py={16}>
             <TextContainer
                 headline={
                     <chakra.span color="white" fontWeight="inherit" fontFamily="inherit">
