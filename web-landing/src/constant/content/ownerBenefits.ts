@@ -20,7 +20,7 @@ const content = [
         text: "Guildmaster program",
         link: {
             text: "View Guildmaster Program",
-            path: "http://t.ly/sipherguildmaster",
+            path: "https://atlas.sipher.xyz/upcoming-programs/the-guildmaster-program",
         },
     },
     {
@@ -28,7 +28,7 @@ const content = [
         text: "Whitelist fast-track",
         link: {
             text: "Check out other Benefits",
-            path: "http://t.ly/siphergenesisbenefits",
+            path: "https://atlas.sipher.xyz/sipher-litepaper/benefits-of-owning-a-genesis-sipher",
         },
     },
 ]
