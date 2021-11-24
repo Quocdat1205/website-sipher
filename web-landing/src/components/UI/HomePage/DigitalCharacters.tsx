@@ -6,7 +6,6 @@ import { charactersNeko, charactersInu, textInu, textNeko } from "@constant/cont
 const DigitalCharacters = () => {
     const [tab, setTab] = useState(false)
 
-    const handleChange = () => setTab(!tab)
     return (
         <Flex justify="center" bgGradient="linear(180deg, #150800 0%, #601D00 84.37%)" w="full" py={16}>
             <TextContainer
@@ -22,13 +21,13 @@ const DigitalCharacters = () => {
                         w="12rem"
                         backgroundColor={tab ? "black" : "transparent"}
                         text="SIPHER INU"
-                        onClick={handleChange}
+                        onClick={() => setTab(false)}
                     />
                     <GradientOutlineButton
                         w="12rem"
                         backgroundColor={tab ? "transparent" : "black"}
                         text="SIPHER NEKO"
-                        onClick={handleChange}
+                        onClick={() => setTab(true)}
                     />
                 </HStack>
                 <SimpleGrid justifyContent="center" columns={[2, 4]} spacing="2rem" mt={8} w="full">
