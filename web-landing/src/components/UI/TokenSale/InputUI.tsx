@@ -35,7 +35,7 @@ const InputUI = ({ mode }: Props) => {
                 <Typo.Text size="small" textAlign="left" flex={1}>
                     I want to {mode === "Deposit" ? "deposit" : "withdraw"}
                 </Typo.Text>
-                <HStack justify="flex-end" spacing={4}>
+                <HStack justify="flex-end" spacing={2}>
                     {options.map(value => {
                         return (
                             <RadioCard key={value} active={percentage === value} onClick={() => handleSelect(value)}>
@@ -85,17 +85,16 @@ const InputUI = ({ mode }: Props) => {
                 >
                     <Progress className="process-amount" sx={{ ">div": { bg: "border.gray" } }} value={20} bg="black" />
                 </Box>
-                <chakra.span fontWeight={500} py={1} textAlign="right" color="gray.500" fontSize="xs">
-                    $ 220/$ 1000
-                </chakra.span>
+                <Flex w="full" justify="space-between">
+                    <chakra.span fontWeight={700} py={1} color="gray.500" fontSize="xs">
+                        $ 220
+                    </chakra.span>
+                    <chakra.span fontWeight={500} py={1} color="gray.500" fontSize="xs">
+                        $ 220/$ 1000
+                    </chakra.span>
+                </Flex>
             </Flex>
-            <GradientButton
-                disabled
-                py={4}
-                rounded="lg"
-                fontSize="sm"
-                text={mode === "Deposit" ? "Deposit" : "Withdraw"}
-            />
+            <GradientButton py={4} rounded="lg" fontSize="sm" text={mode === "Deposit" ? "Deposit" : "Withdraw"} />
         </Flex>
     )
 }
