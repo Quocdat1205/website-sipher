@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
-import { Image, Flex, Heading } from "@chakra-ui/react"
-import { BackgroundContainer } from "@components/shared"
+import { Box } from "@chakra-ui/react"
+import { BackgroundContainer, Typo } from "@components/shared"
 import React from "react"
 
 interface TokenSaleProps {}
@@ -10,30 +10,17 @@ const TokenSale = ({}: TokenSaleProps) => {
     return (
         <BackgroundContainer
             pos="relative"
-            image="/images/demo/swap-demo.png"
+            image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
             px={0}
+            pt={"8.5rem"}
+            pb="4rem"
         >
-            <Flex
-                align="center"
-                justify="center"
-                pos="absolute"
-                w="full"
-                h="full"
-                bg="blackAlpha.600"
-                // backdropFilter="blur(3px)"
-            >
-                <Heading
-                    fontFamily="Brandon"
-                    letterSpacing="4px"
-                    lineHeight={1}
-                    fontSize={["3rem", "4.5rem", "6rem"]}
-                    fontWeight={700}
-                >
-                    COMING SOON
-                </Heading>
-            </Flex>
+            <Box>
+                <Typo.Heading>$SIPHER TOKEN</Typo.Heading>
+                <Typo.Heading>PUBLIC SALE</Typo.Heading>
+            </Box>
         </BackgroundContainer>
     )
 }
