@@ -44,6 +44,9 @@ export const theme = extendTheme({
             cardWhite: "hsla(0,0%,100%,.5)",
             cardGray: "#f1f3f5",
         },
+        border: {
+            gray: "#383838",
+        },
     },
     components: {
         Heading: {
