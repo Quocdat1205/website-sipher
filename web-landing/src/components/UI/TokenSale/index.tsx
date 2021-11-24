@@ -1,16 +1,25 @@
 // * DESCRIPTION:
 
-import { Image, Flex, Grid, chakra, Link } from "@chakra-ui/react"
+import { Image, Flex, Grid, Box, Link, useDisclosure, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react"
 import { BackgroundContainer, Typo } from "@components/shared"
-import React from "react"
+import React, { useEffect } from "react"
 import CoinCard from "./CoinCard"
 import Countdown from "./CountDown"
 import MyGridItem from "./MyGridItem"
 import SaleForm from "./SaleForm"
+import { getSignIn } from "@hooks/web3/utils"
+import SignInModal from "./SignInModal"
 
 interface TokenSaleProps {}
 
 const TokenSale = ({}: TokenSaleProps) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    useEffect(() => {
+        let signIn = getSignIn()
+        if (!signIn && signIn !== "true") onOpen()
+    }, [])
+
     return (
         <BackgroundContainer pos="relative" px={0}>
             <Flex
@@ -52,12 +61,14 @@ const TokenSale = ({}: TokenSaleProps) => {
                         </Flex>
                     </MyGridItem>
                     <MyGridItem rowSpan={4} colSpan={3}>
-                        <Typo.Text size="large" textAlign="center" letterSpacing="3px">
-                            YOUR CONTRIBUTE
-                        </Typo.Text>
                         <Flex h="full">
                             <Countdown percent={10} />
-                            <SaleForm />
+                            <Box w="full">
+                                <Typo.Text size="large" textAlign="center" letterSpacing="3px">
+                                    YOUR CONTRIBUTE
+                                </Typo.Text>
+                                <SaleForm />
+                            </Box>
                         </Flex>
                     </MyGridItem>
                     <MyGridItem colSpan={1}>
@@ -75,6 +86,19 @@ const TokenSale = ({}: TokenSaleProps) => {
                     </MyGridItem>
                 </Grid>
             </Flex>
+            <Modal
+                closeOnOverlayClick={false}
+                motionPreset="slideInBottom"
+                isCentered
+                isOpen={isOpen}
+                onClose={onClose}
+                size="3xl"
+            >
+                <ModalOverlay bg="blackAlpha.800" />
+                <ModalContent bg="black" p={4} overflow="hidden" rounded="md">
+                    <SignInModal onClose={onClose} />
+                </ModalContent>
+            </Modal>
         </BackgroundContainer>
     )
 }

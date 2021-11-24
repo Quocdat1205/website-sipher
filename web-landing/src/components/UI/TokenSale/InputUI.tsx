@@ -1,4 +1,4 @@
-import { Flex, HStack, chakra, Image, Input, Box } from "@chakra-ui/react"
+import { Flex, HStack, chakra, Image, Input, Progress, Box } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
 import { Typo } from "@components/shared/Typography"
 import React, { useState } from "react"
@@ -71,23 +71,24 @@ const InputUI = ({ mode }: Props) => {
             <chakra.span fontWeight={500} py={1} textAlign="right" color="gray.500" fontSize="xs">
                 balance: 1500
             </chakra.span>
-            <Box mb={6}>
+            <Flex flexDir="column" mb={6}>
                 <Typo.Text mb={2} size="small" textAlign="left" flex={1}>
                     Locked amount
                 </Typo.Text>
-                <Flex transition="all .5s" border="1px" borderColor="border.gray" rounded="full" overflow="hidden">
-                    <chakra.span bg={mode === "Deposit" ? "border.gray" : "transparent"} flex={1} rounded="full" p={4}>
-                        <Typo.Text px={2} textAlign="left">
-                            {mode === "Deposit" ? "$95,000" : ""}
-                        </Typo.Text>
-                    </chakra.span>
-                    <chakra.span bg={mode === "Withdraw" ? "border.gray" : "transparent"} flex={1} rounded="full" p={4}>
-                        <Typo.Text px={2} textAlign="right">
-                            {mode === "Withdraw" ? "$95,000" : ""}
-                        </Typo.Text>
-                    </chakra.span>
-                </Flex>
-            </Box>
+                <Box
+                    textAlign="left"
+                    transition="all .5s"
+                    border="1px"
+                    borderColor="border.gray"
+                    rounded="full"
+                    overflow="hidden"
+                >
+                    <Progress className="process-amount" sx={{ ">div": { bg: "border.gray" } }} value={20} bg="black" />
+                </Box>
+                <chakra.span fontWeight={500} py={1} textAlign="right" color="gray.500" fontSize="xs">
+                    $ 220/$ 1000
+                </chakra.span>
+            </Flex>
             <GradientButton
                 disabled
                 py={4}

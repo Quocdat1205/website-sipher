@@ -9,8 +9,8 @@ interface CountdownProps {
 
 const Countdown = ({ percent }: CountdownProps) => {
     return (
-        <Flex direction="column" align="center" h="full" px={4} py={20} pos="relative">
-            <Text pt={2} textTransform="uppercase" fontWeight={500} mb={4}>
+        <Flex direction="column" align="center" h="full" px={4} pt={20} pb={10} pos="relative">
+            <Text py={3} textTransform="uppercase" fontWeight={500} mb={4}>
                 Sale Period Ends
             </Text>
             <Box boxSize="14rem" position="relative">
