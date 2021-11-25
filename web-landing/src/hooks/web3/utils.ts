@@ -1,9 +1,6 @@
 import { EthereumProvider } from "./types"
-
 const ACCOUNT_KEY = "LAST_ACTIVE_ACCOUNT"
 const CONNECTOR_KEY = "LAST_WALLET_CONNECTOR"
-const ACCESSTOKEN_KEY = "ACCESS_TOKEN"
-const SIGNIN_KEY = "SIGNIN"
 
 export const setLastActiveAccount = (account: string) => {
     localStorage?.setItem(ACCOUNT_KEY, account)
@@ -23,26 +20,6 @@ export const setLastConnector = (connector: string) => {
 
 export const getLastConnector = (): string | null => {
     return localStorage?.getItem(CONNECTOR_KEY)
-}
-
-export const setAccessToken = (accessToken: string) => {
-    localStorage?.setItem(ACCESSTOKEN_KEY, accessToken)
-}
-
-export const getAccessToken = (): string | null => {
-    return localStorage?.getItem(ACCESSTOKEN_KEY)
-}
-
-export const clearAccessToken = () => {
-    localStorage?.removeItem(ACCESSTOKEN_KEY)
-}
-
-export const setSignIn = (signIn: string) => {
-    localStorage?.setItem(SIGNIN_KEY, signIn)
-}
-
-export const getSignIn = (): string | null => {
-    return localStorage?.getItem(SIGNIN_KEY)
 }
 
 export function pollEvery<R, T>(

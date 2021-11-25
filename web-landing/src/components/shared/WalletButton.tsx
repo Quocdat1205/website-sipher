@@ -9,7 +9,6 @@ import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
 import { WalletModal } from "."
 import { useRouter } from "next/router"
-import { clearAccessToken } from "@hooks/web3/utils"
 
 interface WalletButtonProps {}
 
@@ -43,7 +42,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
             pos="relative"
             ref={boxRef}
             sx={{
-                "@media (max-width: 640px)": {
+                "@media (max-width: 768px)": {
                     display: "none",
                 },
             }}

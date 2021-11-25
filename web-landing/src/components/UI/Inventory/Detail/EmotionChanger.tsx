@@ -1,6 +1,6 @@
 import { Box, Wrap, Text } from "@chakra-ui/layout"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { getAccessToken } from "@hooks/web3/utils"
+import { getAccessToken } from "@source/utils"
 
 interface EmotionChangerProps {
     availableEmotions: string[]
@@ -16,7 +16,7 @@ const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: 
         if (accessToken && accessToken !== "") {
             onChangeEmotion(emotion)
         } else {
-            wallet.getAccessToken(wallet.account)
+            wallet.getAccessToken()
         }
     }
 

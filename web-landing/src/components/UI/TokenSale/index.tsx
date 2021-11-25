@@ -1,26 +1,11 @@
 // * DESCRIPTION:
 
-import {
-    Img,
-    Flex,
-    Grid,
-    Box,
-    useDisclosure,
-    Modal,
-    ModalContent,
-    ModalOverlay,
-    Tooltip,
-    Text,
-    GridItem,
-    VStack,
-} from "@chakra-ui/react"
+import { Flex, Grid, Box, Img, Tooltip, Text, GridItem, VStack } from "@chakra-ui/react"
 import { BackgroundContainer } from "@components/shared"
-import React, { useEffect } from "react"
+import React from "react"
 import CoinCard from "./CoinCard"
 import Countdown from "./CountDown"
 import SaleForm from "./SaleForm"
-import { getSignIn } from "@hooks/web3/utils"
-import { SignInModal } from "./Modal"
 import Header from "./Header"
 import { BsQuestionCircle } from "react-icons/bs"
 import useWalletContext from "@hooks/web3/useWalletContext"
@@ -30,20 +15,9 @@ import { numberWithCommas } from "@source/utils"
 interface TokenSaleProps {}
 
 const TokenSale = ({}: TokenSaleProps) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
-    useEffect(() => {
-        let signIn = getSignIn()
-        if (!signIn && signIn !== "true") onOpen()
-    }, [])
-
     const { scCaller } = useWalletContext()
 
-    const {
-        data: constants,
-        isLoading,
-        isError,
-    } = useQuery("sc-constants", () => scCaller.current!.getConstants(), {
+    const { data: constants, isLoading } = useQuery("sc-constants", () => scCaller.current!.getConstants(), {
         enabled: !!scCaller.current,
         onError: err => console.log(err),
     })
@@ -65,11 +39,12 @@ const TokenSale = ({}: TokenSaleProps) => {
             pos="relative"
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
-            bgColor="#090909"
+            bgSize="100%"
             pt={24}
             pb={16}
+            bgColor="#090909"
         >
-            <Flex direction="column" align="center" w="full" pt={[16, 16, 4]}>
+            <Flex direction="column" align="center" w="full">
                 <Header />
                 <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"64rem"}>
                     <GridItem
@@ -149,19 +124,6 @@ const TokenSale = ({}: TokenSaleProps) => {
                     </GridItem>
                 </Grid>
             </Flex>
-            <Modal
-                closeOnOverlayClick={false}
-                motionPreset="slideInBottom"
-                isCentered
-                isOpen={isOpen}
-                onClose={onClose}
-                size="3xl"
-            >
-                <ModalOverlay bg="blackAlpha.800" />
-                <ModalContent bg="black" p={4} overflow="hidden" rounded="md">
-                    <SignInModal onClose={onClose} />
-                </ModalContent>
-            </Modal>
         </BackgroundContainer>
     )
 }
