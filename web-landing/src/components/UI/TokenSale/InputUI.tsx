@@ -1,6 +1,6 @@
-import { Flex, HStack, Image, Input, Progress, Box, Text } from "@chakra-ui/react"
+import { Flex, HStack, Image, Input, Box, Text } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
-import React, { useState } from "react"
+import React, { ChangeEvent, useState } from "react"
 import { GradientButton } from "@sipher/web-components"
 import { numberWithCommas } from "@source/utils"
 import { DropdownOption } from "./SaleForm"
@@ -18,7 +18,7 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
     const [percentage, setPercentage] = useState("")
     const options = ["25%", "50%", "75%", "100%"]
 
-    const handleChange = e => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const toNumber = Number(e.target.value.replace(/\D/g, ""))
         const toLocale = toNumber.toLocaleString()
         setPercentage("")
@@ -55,7 +55,7 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
                     borderColor="#383838"
                     _disabled={{ borderColor: "border.gray", color: "border.gray" }}
                     value={value}
-                    onChange={handleChange}
+                    onChange={e => e}
                     flex={1}
                     px={6}
                     py={6}
@@ -70,7 +70,7 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
                 </Flex>
             </Flex>
             <Text my={1} textAlign="right" color="#979797" fontSize="sm">
-                Wallet Balance: {numberWithCommas(walletBalance)}
+                Wallet Balance: {walletBalance.toFixed(5)}
             </Text>
             <Flex flexDir="column" mb={6}>
                 <Text mb={2}>Locked amount</Text>

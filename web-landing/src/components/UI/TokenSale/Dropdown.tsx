@@ -14,7 +14,6 @@ const Dropdown = ({ dropdownOptions, selected, onChange }: DropdownProps) => {
 
     const renderedOptions = () => {
         const option = dropdownOptions.find(option => option !== selected)!
-        console.log(option)
         return (
             <Box
                 _hover={{ color: "white" }}

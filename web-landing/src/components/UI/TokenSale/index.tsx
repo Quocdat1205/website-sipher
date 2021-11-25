@@ -23,6 +23,9 @@ import { getSignIn } from "@hooks/web3/utils"
 import { SignInModal } from "./Modal"
 import Header from "./Header"
 import { BsQuestionCircle } from "react-icons/bs"
+import useWalletContext from "@hooks/web3/useWalletContext"
+import { useQuery } from "react-query"
+import { numberWithCommas } from "@source/utils"
 
 interface TokenSaleProps {}
 
@@ -33,6 +36,29 @@ const TokenSale = ({}: TokenSaleProps) => {
         let signIn = getSignIn()
         if (!signIn && signIn !== "true") onOpen()
     }, [])
+
+    const { scCaller } = useWalletContext()
+
+    const {
+        data: constants,
+        isLoading,
+        isError,
+    } = useQuery("sc-constants", () => scCaller.current!.getConstants(), {
+        enabled: !!scCaller.current,
+        onError: err => console.log(err),
+    })
+
+    const { data: price } = useQuery("estimate-token-price", () => scCaller.current!.getEstTokenPrice(), {
+        enabled: !!scCaller.current,
+    })
+
+    if (isLoading) {
+        return "Loading"
+    }
+
+    if (!constants) {
+        return "Error"
+    }
 
     return (
         <BackgroundContainer
@@ -59,7 +85,7 @@ const TokenSale = ({}: TokenSaleProps) => {
                         <Flex justify="center" alignItems="center">
                             <Img mr={4} boxSize="2rem" src="/images/icons/community/main-black.png" alt="main-icon" />
                             <Text letterSpacing="3px" fontSize="2xl" fontWeight="semibold">
-                                7,000,000 $SIPHER TOKEN FOR SALE
+                                {numberWithCommas(constants![2])} $SIPHER TOKEN FOR SALE
                             </Text>
                         </Flex>
                     </GridItem>
@@ -91,16 +117,7 @@ const TokenSale = ({}: TokenSaleProps) => {
                                         </Box>
                                     </Tooltip>
                                 </Flex>
-                                <Countdown
-                                    percent={10}
-                                    isSale
-                                    timeLeft={{
-                                        days: 0,
-                                        hours: 0,
-                                        minutes: 0,
-                                        seconds: 0,
-                                    }}
-                                />
+                                <Countdown startTime={constants![0]} endTime={constants![1]} />
                                 <Box
                                     pos="absolute"
                                     w="1px"
@@ -120,9 +137,9 @@ const TokenSale = ({}: TokenSaleProps) => {
                         </Flex>
                     </GridItem>
                     <GridItem>
-                        <VStack spacing={4}>
-                            <CoinCard text="ETH Contributed" iconSrc="/images/icons/eth.png" />
-                            <CoinCard text="Est. Token Price" iconSrc="/images/icons/eth.png" />
+                        <VStack spacing={4} h="full">
+                            <CoinCard text="ETH Contributed" iconSrc="/images/icons/eth.png" value={constants![3]} />
+                            <CoinCard text="Est. Token Price" iconSrc="/images/icons/eth.png" value={price} />
                             <CoinCard
                                 text="Est. $SIPHER token you will receive"
                                 iconSrc="/images/icons/community/main-black.png"

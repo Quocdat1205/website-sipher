@@ -4,7 +4,7 @@ import { EthereumProvider } from "./types"
 import { getAccountBalance, pollEvery } from "./utils"
 
 const NO_BALANCE = "-1"
-
+const POLL_INTERVAL = 5000 // 5 seconds
 interface UseWalletBalance {
     account?: string | null
     ethereum?: EthereumProvider
@@ -40,7 +40,7 @@ export function useWalletBalance({ account, ethereum }: UseWalletBalance) {
                     },
                 }
             },
-            5
+            POLL_INTERVAL
         )
 
         // start polling balance every x time

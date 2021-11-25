@@ -17,6 +17,8 @@ import {
 import Web3 from "web3"
 import { authenticateUser, getUsersByAddress } from "@hooks/api/user"
 import { useChakraToast } from "@sipher/web-components"
+import { useWalletBalance } from "./useWalletBalance"
+import { ContractCaller } from "@source/contract"
 
 declare global {
     interface Window {
@@ -30,10 +32,14 @@ const useWallet = () => {
     const [error, setError] = useState<Error | null>(null)
     const web3React = useWeb3React()
     const web3 = useRef<null | Web3>(null)
-    const { account, chainId } = web3React
+    const { account, chainId, library: ethereum } = web3React
     const activationId = useRef(0)
     // Current chain id
     const chain = useMemo(() => (chainId ? getChain(chainId) : null), [chainId])
+
+    const scCaller = useRef<ContractCaller | null>(null)
+
+    const balance = useWalletBalance({ account, ethereum })
 
     const reset = useCallback(() => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
@@ -60,6 +66,14 @@ const useWallet = () => {
         }
     }, [web3React.error])
     const toast = useChakraToast()
+
+    useEffect(() => {
+        if (web3React.library) {
+            if (!scCaller.current) scCaller.current = new ContractCaller(web3React.library)
+            if (!web3.current) web3.current = new Web3(web3React.library)
+        }
+    }, [web3React.library])
+
     // connect to wallet
     const connect = useCallback(
         async (connectorId: ConnectorId = "injected") => {
@@ -98,7 +112,6 @@ const useWallet = () => {
                         })
                     })
                 }
-                web3.current = new Web3(web3React.library)
                 setStatus("connected")
             } catch (err: any) {
                 if (id !== activationId.current) return
@@ -163,8 +176,10 @@ const useWallet = () => {
         isConnecting: status === "connecting",
         error,
         isActive: web3React.active,
-        ethereum: web3React.library,
+        ethereum,
         getAccessToken,
+        balance,
+        scCaller,
     }
 
     return wallet
