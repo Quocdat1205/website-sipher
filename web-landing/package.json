@@ -31,7 +31,8 @@
         "react-markdown": "^7.0.1",
         "react-query": "^3.23.2",
         "react-timer-hook": "^3.0.5",
-        "react-unity-webgl": "^8.5.1"
+        "react-unity-webgl": "^8.5.1",
+        "web3": "^1.6.1"
     },
     "devDependencies": {
         "@types/gtag.js": "^0.0.8",

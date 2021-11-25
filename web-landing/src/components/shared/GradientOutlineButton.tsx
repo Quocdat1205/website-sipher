@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
-import { Box, BoxProps, chakra, Spinner, Grid, Text, Flex } from "@chakra-ui/react"
-import { MyText } from "@sipher/web-components"
+import { Box, BoxProps, Spinner, Text, Flex } from "@chakra-ui/react"
+import { Typo } from "@components/shared/Typography"
 
 interface GradientOutlineButtonProps extends BoxProps {
     text: React.ReactNode
@@ -54,14 +54,14 @@ export const GradientOutlineButton = ({
                 {isLoading ? (
                     <Flex align="center" justify="center">
                         <Spinner size="sm" thickness="3px" />
-                        <MyText ml={4} fontWeight="bold" letterSpacing="2px">
+                        <Typo.Text fontSize="xs" ml={4} letterSpacing="2px">
                             {loadingText}
-                        </MyText>
+                        </Typo.Text>
                     </Flex>
                 ) : (
-                    <MyText fontWeight="bold" letterSpacing="2px">
+                    <Typo.Text py={2} px={4} fontSize="xs" fontWeight="bold" letterSpacing="2px">
                         {text}
-                    </MyText>
+                    </Typo.Text>
                 )}
             </Box>
         </Box>

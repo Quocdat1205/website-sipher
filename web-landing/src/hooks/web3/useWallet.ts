@@ -126,27 +126,29 @@ const useWallet = () => {
         [reset, web3React]
     )
 
+    const testSign = async () => {
+        const web3 = new Web3(web3React.library)
+        await web3.eth.personal.sign("hehe", account as string, "")
+    }
+
     // Signature message on provider
     const signMessage = useCallback(
         async (address: string, nonce: number) => {
             const web3 = new Web3(connectorName === "injected" ? providerMM : providerWC)
             let signature: string
             if (connectorName === "injected") {
-                signature = await web3.eth.personal.sign(
+                return await web3.eth.personal.sign(
                     `I am signing my one-time nonce: ${nonce}`,
                     address,
                     "" // MetaMask will ignore the password argument here
                 )
-            } else {
-                await providerWC.enable()
-                signature = await web3.eth.personal.sign(
-                    `I am signing my one-time nonce: ${nonce}`,
-                    address,
-                    "" // WalletConnect will ignore the password argument here
-                )
             }
-
-            return signature
+            await providerWC.enable()
+            return (signature = await web3.eth.personal.sign(
+                `I am signing my one-time nonce: ${nonce}`,
+                address,
+                "" // WalletConnect will ignore the password argument here
+            ))
         },
         [web3React, connectorName]
     )
@@ -200,6 +202,7 @@ const useWallet = () => {
         isActive: web3React.active,
         ethereum: web3React.library,
         getAccessToken,
+        testSign,
     }
 
     return wallet

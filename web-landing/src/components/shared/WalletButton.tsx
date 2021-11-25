@@ -39,7 +39,15 @@ export const WalletButton = ({}: WalletButtonProps) => {
     }, [wallet.isActive])
 
     return (
-        <Box pos="relative" ref={boxRef}>
+        <Box
+            pos="relative"
+            ref={boxRef}
+            sx={{
+                "@media (max-width: 640px)": {
+                    display: "none",
+                },
+            }}
+        >
             <Box zIndex={2} pos="relative">
                 {!wallet.isActive ? (
                     <GradientButton
@@ -54,29 +62,30 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         rounded="xl"
                         onClick={handleClick}
                         border="1px"
+                        px={[0, 4]}
                         borderColor="transparent"
                         h="2.5rem"
-                        w="12.5rem"
+                        w={["10rem", "12.5rem"]}
                     />
                 ) : (
                     <Flex
                         bg="#131313"
                         border="1px"
-                        borderColor="#383838"
+                        borderColor="border.gray"
                         borderTopRadius="lg"
                         borderBottomRadius={menu ? "none" : "lg"}
                         align="center"
-                        px={4}
+                        px={[0, 4]}
                         py={2}
                         cursor="pointer"
                         onClick={() => setMenu(!menu)}
                         h="2.5rem"
-                        w="12.5rem"
+                        w={["10rem", "12.5rem"]}
                     >
                         <Box color="main.orange" mr={2}>
                             <FaWallet />
                         </Box>
-                        <Text fontWeight="semibold" fontSize="sm">
+                        <Text fontWeight="semibold" fontSize={["xs", "sm"]}>
                             {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
                                 wallet.account.length - 4,
                                 wallet.account.length
@@ -90,7 +99,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
             </Box>
             <Box pos="absolute" w="full" top="0">
                 <Collapse in={menu}>
-                    <Box bg="#131313" border="1px" borderColor="#383838" rounded="lg" px={4} py={4} pt={14}>
+                    <Box bg="#131313" border="1px" borderColor="border.gray" rounded="lg" px={4} py={4} pt={14}>
                         <Flex
                             align="center"
                             mb={4}
@@ -98,14 +107,14 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             px={4}
                             py={2}
                             rounded="lg"
-                            bg="#383838"
+                            borderColor="border.gray"
                             shadow="base"
                             onClick={() => router.push("/inventory/inu")}
                         >
                             <Box color="main.orange" mr={2}>
                                 <BsInboxFill size="1.2rem" />
                             </Box>
-                            <Text fontWeight="semibold" fontSize="sm">
+                            <Text fontWeight="semibold" fontSize={["sm"]}>
                                 INVENTORY
                             </Text>
                         </Flex>
