@@ -41,7 +41,7 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
                 <Typo.Text size="small" textAlign="left" flex={1}>
                     I want to {mode === "Deposit" ? "deposit" : "withdraw"}
                 </Typo.Text>
-                <HStack justify="flex-end" spacing={2}>
+                <HStack justify="flex-end" spacing={1}>
                     {options.map(value => {
                         return (
                             <RadioCard key={value} active={percentage === value} onClick={() => handleSelect(value)}>
@@ -69,7 +69,7 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
                     border="1px"
                     borderColor="border.gray"
                 />
-                <Flex zIndex={1} pos="absolute" right="0" px={4} flexDir="row" align="center">
+                <Flex zIndex={1} pos="absolute" right="0" px={6} flexDir="row" align="center">
                     <Image h="1.6rem" src="/images/icons/eth.png" alt="icon" />
                     <Typo.Text ml={2} fontWeight={400}>
                         ETH
