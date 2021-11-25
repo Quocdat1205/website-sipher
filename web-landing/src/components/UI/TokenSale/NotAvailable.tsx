@@ -5,20 +5,7 @@ interface Props {}
 
 export const NotAvailable = (props: Props) => {
     return (
-        <Flex
-            display="none"
-            sx={{
-                "@media (max-width: 768px)": {
-                    display: "flex",
-                },
-            }}
-            align="center"
-            justify="center"
-            pos="absolute"
-            w="full"
-            h="full"
-            bg="blackAlpha.100"
-        >
+        <Flex align="center" justify="center" pos="absolute" w="full" h="full" bg="blackAlpha.100">
             <Heading
                 textAlign="center"
                 fontFamily="Brandon"

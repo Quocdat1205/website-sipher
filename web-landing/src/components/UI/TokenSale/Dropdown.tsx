@@ -10,34 +10,16 @@ interface DropdownProps {
 }
 
 const Dropdown = ({ dropdownOptions, selected, onChange }: DropdownProps) => {
-    const [open, setOpen] = useState(false)
-
-    const renderedOptions = () => {
-        const option = dropdownOptions.find(option => option !== selected)!
-        return (
-            <Box
-                _hover={{ color: "white" }}
-                color="#9B9E9D"
-                py={2}
-                px={6}
-                w="full"
-                cursor="pointer"
-                className="item"
-                onClick={() => onChange(option)}
-            >
-                {option}
-            </Box>
-        )
-    }
+    const [isOpen, setIsOpen] = useState(false)
 
     const boxRef = useRef<HTMLDivElement>(null)
     useOutsideClick({
         ref: boxRef,
-        handler: () => setOpen(false),
+        handler: () => setIsOpen(false),
     })
 
     return (
-        <Flex pos="relative" flexDir="column" w="full" ref={boxRef}>
+        <Flex pos="relative" flexDir="column" w="full" ref={boxRef} mb={8}>
             <Flex
                 align="center"
                 rounded="full"
@@ -47,29 +29,32 @@ const Dropdown = ({ dropdownOptions, selected, onChange }: DropdownProps) => {
                 zIndex={3}
                 py={3}
                 px={6}
-                mb={8}
                 justify="space-between"
                 cursor="pointer"
-                onClick={() => {
-                    setOpen(!open)
-                }}
+                onClick={() => setIsOpen(!isOpen)}
             >
                 <Text>{selected}</Text>
-                {open ? <BiChevronUp size="1.5rem" /> : <BiChevronDown size="1.5rem" />}
+                {isOpen ? <BiChevronUp size="1.5rem" /> : <BiChevronDown size="1.5rem" />}
             </Flex>
             <Box pos="absolute" w="full" top="50%" left={0} zIndex={2} borderBottomRadius={4}>
-                <Collapse in={open}>
+                <Collapse in={isOpen}>
                     <Box
-                        onClick={() => setOpen(false)}
+                        onClick={() => {
+                            onChange(dropdownOptions.find(option => option !== selected)!)
+                            setIsOpen(false)
+                        }}
                         bg="#131313"
                         border="1px"
-                        borderTop="none"
                         borderColor="#383838"
-                        pt={7}
                         sx={{ borderRadius: "0 0 1rem 1rem" }}
+                        py={3}
+                        px={6}
+                        pt={8}
                         shadow="base"
+                        userSelect="none"
+                        cursor="pointer"
                     >
-                        {renderedOptions()}
+                        {dropdownOptions.find(option => option !== selected)!}
                     </Box>
                 </Collapse>
             </Box>

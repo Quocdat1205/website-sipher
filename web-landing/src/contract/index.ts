@@ -61,8 +61,8 @@ export class ContractCaller {
         await this.SipherIBCO.methods.claim().send()
     }
 
-    async withdraw(from: string, amount: number) {
-        await this.SipherIBCO.methods.withdraw(amount).send()
+    async withdraw(from: string, amount: string) {
+        await this.SipherIBCO.methods.withdraw(Web3.utils.toWei(amount, "ether")).send()
     }
 
     async getEstTokenPrice() {

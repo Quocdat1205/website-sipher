@@ -13,7 +13,7 @@ const RadioCard = ({ active, ...rest }: Props) => {
             bgGradient={active ? "linear(to-b, bgGradient.orange)" : "none"}
             color={active ? "white" : "#979797"}
             fontWeight={400}
-            size="small"
+            fontSize="sm"
             _focus={{
                 boxShadow: "none",
             }}

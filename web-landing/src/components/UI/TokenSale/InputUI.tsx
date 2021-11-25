@@ -44,19 +44,46 @@ const InputUI = ({ mode }: Props) => {
         initialData: 0,
     })
 
-    const { mutate, isLoading } = useMutation(() => scCaller.current!.deposit(account!, value), {
+    const { data: withdrawableAmount } = useQuery(
+        "withdrawable-amount",
+        () => scCaller.current?.getWithdrawableAmount(),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
         onError: (err: any) => toast({ title: "Error", message: err.message }),
         onSuccess: () => {
             toast({ title: "Deposited successfully!" })
+            setValue("0")
             qc.invalidateQueries("total-deposited")
             qc.invalidateQueries("locked-amount")
         },
     })
 
+    const { mutate: withdraw, isLoading: isWithdrawing } = useMutation(
+        () => scCaller.current!.withdraw(account!, value),
+        {
+            onError: (err: any) => toast({ title: "Error", message: err.message }),
+            onSuccess: () => {
+                toast({ title: "Deposited successfully!" })
+                setValue("0")
+                qc.invalidateQueries("total-deposited")
+                qc.invalidateQueries("locked-amount")
+            },
+        }
+    )
+
+    const handleAction = () => {
+        mode === "Deposit" ? deposit() : withdraw()
+    }
+
     return (
         <Flex flexDir="column" w="full">
             <Flex mb={2} flexDir="row" align="center" justify="space-between">
-                <Text>I want to {mode === "Deposit" ? "deposit" : "withdraw"}</Text>
+                <Text>{mode === "Deposit" ? "I want to deposit" : "Withdraw collateral"}</Text>
                 <HStack justify="flex-end" spacing={1}>
                     {options.map(option => {
                         return (
@@ -72,7 +99,11 @@ const InputUI = ({ mode }: Props) => {
                 </HStack>
             </Flex>
             <Flex pos="relative" align="center">
-                <EtherInput value={value} setValue={setValue} maxValue={walletBalance} />
+                <EtherInput
+                    value={value}
+                    setValue={setValue}
+                    maxValue={mode === "Deposit" ? walletBalance : withdrawableAmount!}
+                />
                 <Flex zIndex={1} pos="absolute" right="0" px={6} flexDir="row" align="center">
                     <Image h="1.6rem" src="/images/icons/eth.png" alt="icon" />
                     <Text ml={2} fontWeight={400}>
@@ -81,7 +112,9 @@ const InputUI = ({ mode }: Props) => {
                 </Flex>
             </Flex>
             <Text my={1} textAlign="right" color="#979797" fontSize="sm">
-                Wallet Balance: {walletBalance.toFixed(5)}
+                {mode === "Deposit"
+                    ? `Wallet Balance: ${walletBalance.toFixed(5)}`
+                    : `Withdrawable Amount: ${withdrawableAmount!.toFixed(5)}`}
             </Text>
 
             <Flex flexDir="column" mb={6}>
@@ -89,7 +122,11 @@ const InputUI = ({ mode }: Props) => {
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box
                         bg="#383838"
-                        w={`${((lockedAmount! + (locked || 0)) / (totalDeposited! + parseFloat(value)!)) * 100}%`}
+                        w={`${
+                            ((lockedAmount! + mode === "Deposit" ? locked || 0 : 0) /
+                                (totalDeposited! + parseFloat(value)!)) *
+                            100
+                        }%`}
                         transition="width 0.5s linear"
                         h="full"
                         rounded="full"
@@ -99,20 +136,20 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(lockedAmount! + (locked || 0))} /
+                            {formatPrecision(lockedAmount! + mode === "Deposit" ? locked || 0 : 0)} /
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(totalDeposited! + parseFloat(value))}
+                            {formatPrecision(totalDeposited! + mode === "Deposit" ? parseFloat(value) : 0)}
                         </Text>
                     </Flex>
                 </Flex>
             </Flex>
             <ActionButton
                 text={mode}
-                isLoading={isLoading}
+                isLoading={isDepositing || isWithdrawing}
                 disabled={parseFloat(value) <= 0}
-                onClick={() => mutate()}
+                onClick={handleAction}
             />
         </Flex>
     )
