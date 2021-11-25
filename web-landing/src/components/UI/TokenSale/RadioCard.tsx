@@ -9,8 +9,9 @@ const RadioCard = ({ active, children, ...rest }: Props) => {
         <Box as="label">
             <Box
                 p={0.5}
+                rounded="sm"
                 cursor="pointer"
-                bg={active ? "main.orange" : "transparent"}
+                bgGradient={active ? "linear(to-b, #FF6795, #FF710B 84.37%)" : "none"}
                 color={active ? "white" : "#979797"}
                 fontWeight={500}
                 _focus={{

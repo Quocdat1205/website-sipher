@@ -1,7 +1,8 @@
-import { Box, Image, Flex } from "@chakra-ui/react"
+import { Box, Image, Flex, HStack } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typography"
 import { setSignIn } from "@hooks/web3/utils"
 import { GradientButton } from "@sipher/web-components"
+import router, { useRouter } from "next/router"
 import React from "react"
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const SignInModal = ({ onClose }: Props) => {
+    const router = useRouter()
     const handleSign = () => {
         setSignIn("true")
         onClose()
@@ -19,7 +21,7 @@ const SignInModal = ({ onClose }: Props) => {
             border="1px"
             borderColor="border.gray"
             rounded="lg"
-            py={8}
+            py={10}
             px={20}
             flexDir="column"
             align="center"
@@ -39,7 +41,26 @@ const SignInModal = ({ onClose }: Props) => {
                     corrupti.
                 </Typo.Text>
             </Box>
-            <GradientButton mt={4} textTransform="none" text="Sign message" onClick={handleSign} />
+            <Flex flexDir="row" mt={4} px={4} justify="space-between" w="full">
+                <GradientButton
+                    flex={1}
+                    px={8}
+                    rounded="full"
+                    bg="border.gray"
+                    textTransform="none"
+                    text="NEVERMIND"
+                    onClick={() => router.push("/")}
+                />
+                <GradientButton
+                    ml={10}
+                    flex={1}
+                    px={8}
+                    rounded="full"
+                    textTransform="none"
+                    text="CONFIRM"
+                    onClick={handleSign}
+                />
+            </Flex>
         </Flex>
     )
 }

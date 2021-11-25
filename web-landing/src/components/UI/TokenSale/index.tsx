@@ -9,7 +9,7 @@ import {
     Modal,
     ModalContent,
     ModalOverlay,
-    chakra,
+    Tooltip,
     Text,
     GridItem,
     VStack,
@@ -75,16 +75,27 @@ const TokenSale = ({}: TokenSaleProps) => {
                         <Flex h="full">
                             <Flex direction="column" align="center" flex={2} pos="relative">
                                 <Flex align="center" mb={4}>
-                                    <Text fontWeight="semibold" size="small" mr={2} letterSpacing="3px">
+                                    <Text fontWeight="semibold" size="small" letterSpacing="3px">
                                         SALE PERIOD ENDS
                                     </Text>
-                                    <BsQuestionCircle />
+                                    <Tooltip
+                                        hasArrow
+                                        label="abc ..."
+                                        placement="bottom-end"
+                                        fontSize="sm"
+                                        bg="border.gray"
+                                        openDelay={500}
+                                    >
+                                        <Box ml={2} cursor="pointer" color="white">
+                                            <BsQuestionCircle size="1rem" />
+                                        </Box>
+                                    </Tooltip>
                                 </Flex>
                                 <Countdown percent={10} />
                                 <Box
                                     pos="absolute"
                                     w="1px"
-                                    h="80%"
+                                    h="100%"
                                     top={"50%"}
                                     transform="translateY(-50%)"
                                     right={0}

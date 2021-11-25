@@ -3,12 +3,17 @@ import RadioCard from "./RadioCard"
 import { Typo } from "@components/shared/Typography"
 import React, { useState } from "react"
 import { GradientButton } from "@sipher/web-components"
+import { numberWithCommas } from "@source/utils"
 
 interface Props {
     mode: "Deposit" | "Withdraw"
+    lockedAmount: number
+    maxLockedAmount: number
+    walletBalance: number
+    isSale: boolean
 }
 
-const InputUI = ({ mode }: Props) => {
+const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 0, isSale = false }: Props) => {
     const [value, setValue] = useState("0")
     const [percentage, setPercentage] = useState("")
     const options = ["25%", "50%", "75%", "100%"]
@@ -22,12 +27,13 @@ const InputUI = ({ mode }: Props) => {
 
     const handleSelect = value => {
         setPercentage(value)
-        let valueSelect = 1500 * parseInt(value) * 0.01
+        let valueSelect = walletBalance * parseInt(value) * 0.01
         const toNumber = Number(valueSelect.toString().replace(/\D/g, ""))
         const toLocale = toNumber.toLocaleString()
         setValue(toLocale)
     }
 
+    //value input log
     // console.log(value.replace(/\D/g, ""))
     return (
         <Flex flexDir="column">
@@ -47,6 +53,8 @@ const InputUI = ({ mode }: Props) => {
             </Flex>
             <Flex pos="relative" flexDir="row" align="center">
                 <Input
+                    isDisabled={!isSale}
+                    _disabled={{ borderColor: "border.gray", color: "border.gray" }}
                     _focus={{ borderColor: "main.orange" }}
                     _hover={{ borderColor: "main.orange" }}
                     value={value}
@@ -68,8 +76,8 @@ const InputUI = ({ mode }: Props) => {
                     </Typo.Text>
                 </Flex>
             </Flex>
-            <chakra.span fontWeight={500} py={1} textAlign="right" color="gray.500" fontSize="xs">
-                balance: 1500
+            <chakra.span fontWeight={500} py={1} textAlign="right" color="#979797" fontSize="xs">
+                balance: {numberWithCommas(walletBalance)}
             </chakra.span>
             <Flex flexDir="column" mb={6}>
                 <Typo.Text mb={2} size="small" textAlign="left" flex={1}>
@@ -83,18 +91,29 @@ const InputUI = ({ mode }: Props) => {
                     rounded="full"
                     overflow="hidden"
                 >
-                    <Progress className="process-amount" sx={{ ">div": { bg: "border.gray" } }} value={20} bg="black" />
+                    <Progress
+                        className="process-amount"
+                        sx={{ ">div": { bg: "border.gray" } }}
+                        value={(lockedAmount / maxLockedAmount) * 100}
+                        bg="black"
+                    />
                 </Box>
                 <Flex w="full" justify="space-between">
-                    <chakra.span fontWeight={700} py={1} color="gray.500" fontSize="xs">
-                        $ 220
+                    <chakra.span fontWeight={700} py={1} color="#979797" fontSize="xs">
+                        $ {numberWithCommas(lockedAmount)}
                     </chakra.span>
-                    <chakra.span fontWeight={500} py={1} color="gray.500" fontSize="xs">
-                        $ 220/$ 1000
+                    <chakra.span fontWeight={500} py={1} color="#979797" fontSize="xs">
+                        $ {numberWithCommas(lockedAmount)}/$ {numberWithCommas(maxLockedAmount)}
                     </chakra.span>
                 </Flex>
             </Flex>
-            <GradientButton py={4} rounded="lg" fontSize="sm" text={mode === "Deposit" ? "Deposit" : "Withdraw"} />
+            <GradientButton
+                disabled={!isSale}
+                py={4}
+                rounded="lg"
+                fontSize="sm"
+                text={mode === "Deposit" ? "Deposit" : "Withdraw"}
+            />
         </Flex>
     )
 }

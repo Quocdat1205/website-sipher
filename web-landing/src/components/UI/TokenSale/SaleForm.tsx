@@ -66,8 +66,8 @@ const SaleForm = ({}: SaleFormProps) => {
     const [selected, setSelected] = useState(dropdownOptions[0])
 
     return (
-        <Flex pos="relative" w="full" direction="column" align="center">
-            <Box px={4} w="full">
+        <Flex pos="relative" w="full" direction="column" align="center" p={4} pt={8}>
+            <Box pl={4} w="full">
                 <Dropdown selected={selected} dropdownOptions={dropdownOptions} onSelectedChange={setSelected} />
             </Box>
             <Box w="full" h={height}>

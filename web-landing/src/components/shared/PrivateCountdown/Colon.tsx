@@ -7,8 +7,8 @@ interface ColonProps extends FlexProps {}
 
 const Colon = (props: ColonProps) => {
     return (
-        <Flex align="center" {...props} px={1} pb={7}>
-            <MyText fontSize="xl" fontWeight="bold">
+        <Flex align="center" {...props} px={1} pb={4}>
+            <MyText fontSize="2xl" fontWeight="bold">
                 :
             </MyText>
         </Flex>
