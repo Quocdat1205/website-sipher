@@ -11,13 +11,12 @@ import {
     setLastActiveAccount,
     getLastConnector,
     getLastActiveAccount,
-    setAccessToken,
-    clearAccessToken,
 } from "./utils"
 import Web3 from "web3"
 import WalletConnectProvider from "@walletconnect/web3-provider"
 import { authenticateUser, getUsersByAddress, IUser } from "@hooks/api/user"
 import { useChakraToast } from "@sipher/web-components"
+import { clearAccessToken, setAccessToken } from "@source/utils"
 
 declare global {
     interface Window {

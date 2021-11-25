@@ -9,7 +9,6 @@ import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
 import { WalletModal } from "."
 import { useRouter } from "next/router"
-import { clearAccessToken } from "@hooks/web3/utils"
 
 interface WalletButtonProps {}
 

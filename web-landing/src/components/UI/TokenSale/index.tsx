@@ -19,10 +19,10 @@ import React, { useEffect } from "react"
 import CoinCard from "./CoinCard"
 import Countdown from "./CountDown"
 import SaleForm from "./SaleForm"
-import { getSignIn } from "@hooks/web3/utils"
 import { SignInModal } from "./Modal"
 import Header from "./Header"
 import { BsQuestionCircle } from "react-icons/bs"
+import { getSignIn } from "@source/utils"
 
 interface TokenSaleProps {}
 
@@ -129,7 +129,7 @@ const TokenSale = ({}: TokenSaleProps) => {
                 isCentered
                 isOpen={isOpen}
                 onClose={onClose}
-                size="3xl"
+                size="4xl"
             >
                 <ModalOverlay bg="blackAlpha.800" />
                 <ModalContent bg="black" p={4} overflow="hidden" rounded="md">

@@ -1,3 +1,6 @@
+const SIGNIN_KEY = "SIGNIN"
+const ACCESSTOKEN_KEY = "ACCESS_TOKEN"
+
 export const textToPath = (text: string) => text.toLowerCase().replace(/&/g, "and").replace(/ /g, "-")
 export const isEmail = (email: string) => {
     const re =
@@ -6,4 +9,24 @@ export const isEmail = (email: string) => {
 }
 export const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
+export const setSignIn = (signIn: string) => {
+    localStorage?.setItem(SIGNIN_KEY, signIn)
+}
+
+export const getSignIn = (): string | null => {
+    return localStorage?.getItem(SIGNIN_KEY)
+}
+
+export const setAccessToken = (accessToken: string) => {
+    localStorage?.setItem(ACCESSTOKEN_KEY, accessToken)
+}
+
+export const getAccessToken = (): string | null => {
+    return localStorage?.getItem(ACCESSTOKEN_KEY)
+}
+
+export const clearAccessToken = () => {
+    localStorage?.removeItem(ACCESSTOKEN_KEY)
 }

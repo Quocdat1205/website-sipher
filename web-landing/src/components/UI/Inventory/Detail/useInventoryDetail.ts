@@ -1,7 +1,7 @@
 import { NFTRace } from "@@types"
 import { getNFT, getMerkle, changeEmotion } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { getAccessToken } from "@hooks/web3/utils"
+import { getAccessToken } from "@source/utils"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useQueryClient, useQuery, useMutation } from "react-query"
