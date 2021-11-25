@@ -8,7 +8,7 @@ export const getListNews = async (min: number, max: number) => {
 }
 
 export const getDetailsNews = async published => {
-    const { data } = await fetcher.get(`/communication/details?published=${published}`)
+    const { data } = await fetcher.get(`/communication/user-details?published=${published}`)
 
     return data
 }
