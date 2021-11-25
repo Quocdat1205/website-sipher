@@ -77,7 +77,7 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
                 </Flex>
             </Flex>
             <chakra.span fontWeight={500} py={1} textAlign="right" color="#979797" fontSize="xs">
-                balance: {numberWithCommas(walletBalance)}
+                Wallet balance: {numberWithCommas(walletBalance)}
             </chakra.span>
             <Flex flexDir="column" mb={6}>
                 <Typo.Text mb={2} size="small" textAlign="left" flex={1}>
