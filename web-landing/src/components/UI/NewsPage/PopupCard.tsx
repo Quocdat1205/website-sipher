@@ -9,12 +9,14 @@ import Loading from "./Loading"
 import { Typo } from "@components/shared"
 
 export interface DetailsNewsProps {
+    published: string
     thumbnail?: string
     title?: string
     content?: string
-    description?: string
+    description: string
     link: string
-    type: "medium" | "twitter"
+    type_thumbnail: "image" | "video"
+    type: "medium" | "twitter" | "fb" | "ins" | "post"
 }
 const PopupCard = () => {
     const router = useRouter()
@@ -36,14 +38,7 @@ const PopupCard = () => {
                 h={["100%", "auto"]}
                 overflow="hidden"
             >
-                <ModalBody pos="relative" overflow="hidden" h="100%" w="100%" p={0} bg="about.cardGray" zIndex={99}>
-                    <ModalCloseButton
-                        zIndex={1}
-                        color="main.darkRed"
-                        size="lg"
-                        _hover={{ color: "red" }}
-                        _focus={{ shadow: "none" }}
-                    />
+                <ModalBody pos="relative" overflow="hidden" h="100%" w="100%" p={0} bg="about.cardGray" zIndex={9}>
                     {!isLoading ? (
                         details ? (
                             details.type === "medium" ? (
