@@ -52,7 +52,7 @@ const Header = (props: Props) => {
                 <ModalContent bg="black" p={4} overflow="hidden">
                     <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
                         <ModalCloseButton color="red" fontSize="2xl" zIndex={1} />
-                        <VideoModal onClose={onClose} />
+                        <VideoModal />
                     </Box>
                 </ModalContent>
             </Modal>

@@ -16,7 +16,7 @@ const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: 
         if (accessToken && accessToken !== "") {
             onChangeEmotion(emotion)
         } else {
-            wallet.getAccessToken(wallet.account)
+            wallet.getAccessToken()
         }
     }
 

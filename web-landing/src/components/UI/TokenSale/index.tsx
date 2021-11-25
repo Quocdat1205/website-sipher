@@ -1,19 +1,6 @@
 // * DESCRIPTION:
 
-import {
-    Img,
-    Flex,
-    Grid,
-    Box,
-    useDisclosure,
-    Modal,
-    ModalContent,
-    ModalOverlay,
-    Tooltip,
-    Text,
-    GridItem,
-    VStack,
-} from "@chakra-ui/react"
+import { Flex, Grid, Box, useDisclosure, Tooltip, Text, GridItem, VStack } from "@chakra-ui/react"
 import { BackgroundContainer } from "@components/shared"
 import React, { useEffect } from "react"
 import CoinCard from "./CoinCard"
@@ -23,27 +10,48 @@ import { SignInModal } from "./Modal"
 import Header from "./Header"
 import { BsQuestionCircle } from "react-icons/bs"
 import { getSignIn } from "@source/utils"
+import NotAvailable from "./NotAvailable"
+import { TotalTokenSale } from "./TotalTokenSale"
+import { isMobile, isTablet } from "react-device-detect"
 
 interface TokenSaleProps {}
 
 const TokenSale = ({}: TokenSaleProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const isCheckMobile = isMobile || isTablet
 
     useEffect(() => {
         let signIn = getSignIn()
-        if (!signIn && signIn !== "true") onOpen()
-    }, [])
+        if (!signIn && signIn !== "true" && !isCheckMobile) onOpen()
+    }, [onOpen])
 
     return (
         <BackgroundContainer
             pos="relative"
-            image="/images/pc/home/background.png"
+            image={"/images/pc/home/background.png"}
             bgRepeat="no-repeat"
             bgColor="#090909"
             pt={24}
             pb={16}
+            sx={{
+                "@media (max-width: 768px)": {
+                    pt: 0,
+                    pb: 0,
+                    bg: "black",
+                },
+            }}
         >
-            <Flex direction="column" align="center" w="full" pt={[16, 16, 4]}>
+            <Flex
+                sx={{
+                    "@media (max-width: 768px)": {
+                        display: "none",
+                    },
+                }}
+                direction="column"
+                align="center"
+                w="full"
+                pt={[16, 16, 4]}
+            >
                 <Header />
                 <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"64rem"}>
                     <GridItem
@@ -56,12 +64,7 @@ const TokenSale = ({}: TokenSaleProps) => {
                         colSpan={2}
                         py={3}
                     >
-                        <Flex justify="center" alignItems="center">
-                            <Img mr={4} boxSize="2rem" src="/images/icons/community/main-black.png" alt="main-icon" />
-                            <Text letterSpacing="3px" fontSize="2xl" fontWeight="semibold">
-                                7,000,000 $SIPHER TOKEN FOR SALE
-                            </Text>
-                        </Flex>
+                        <TotalTokenSale maxTotalToken={7000000} />
                     </GridItem>
                     <GridItem
                         px={4}
@@ -132,19 +135,8 @@ const TokenSale = ({}: TokenSaleProps) => {
                     </GridItem>
                 </Grid>
             </Flex>
-            <Modal
-                closeOnOverlayClick={false}
-                motionPreset="slideInBottom"
-                isCentered
-                isOpen={isOpen}
-                onClose={onClose}
-                size="4xl"
-            >
-                <ModalOverlay bg="blackAlpha.800" />
-                <ModalContent bg="black" p={4} overflow="hidden" rounded="md">
-                    <SignInModal onClose={onClose} />
-                </ModalContent>
-            </Modal>
+            <NotAvailable />
+            <SignInModal onClose={onClose} isOpen={isOpen} />
         </BackgroundContainer>
     )
 }

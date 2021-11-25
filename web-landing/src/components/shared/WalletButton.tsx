@@ -42,7 +42,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
             pos="relative"
             ref={boxRef}
             sx={{
-                "@media (max-width: 640px)": {
+                "@media (max-width: 768px)": {
                     display: "none",
                 },
             }}

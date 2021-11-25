@@ -1,21 +1,9 @@
-import { Box, Image, Flex } from "@chakra-ui/react"
-import { Typo } from "@components/shared/Typography"
-import { setSignIn } from "@hooks/web3/utils"
-import { GradientButton } from "@sipher/web-components"
-import { useRouter } from "next/router"
+import { Flex } from "@chakra-ui/react"
 import React from "react"
 
-interface Props {
-    onClose: () => void
-}
+interface Props {}
 
-export const VideoModal = ({ onClose }: Props) => {
-    const router = useRouter()
-    const handleSign = () => {
-        setSignIn("true")
-        onClose()
-    }
-
+export const VideoModal = ({}: Props) => {
     return (
         <Flex flexDir="column" align="center" justify="center">
             <video
