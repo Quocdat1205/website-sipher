@@ -108,7 +108,7 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
                 </Flex>
             </Flex>
             <GradientButton
-                disabled={!isSale}
+                disabled={!isSale || value === "0"}
                 py={4}
                 rounded="lg"
                 fontSize="sm"

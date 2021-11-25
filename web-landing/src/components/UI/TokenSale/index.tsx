@@ -20,7 +20,7 @@ import CoinCard from "./CoinCard"
 import Countdown from "./CountDown"
 import SaleForm from "./SaleForm"
 import { getSignIn } from "@hooks/web3/utils"
-import SignInModal from "./SignInModal"
+import { SignInModal } from "./Modal"
 import Header from "./Header"
 import { BsQuestionCircle } from "react-icons/bs"
 

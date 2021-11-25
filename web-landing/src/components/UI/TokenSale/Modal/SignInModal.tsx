@@ -1,15 +1,15 @@
-import { Box, Image, Flex, HStack } from "@chakra-ui/react"
+import { Box, Image, Flex } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typography"
 import { setSignIn } from "@hooks/web3/utils"
 import { GradientButton } from "@sipher/web-components"
-import router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import React from "react"
 
 interface Props {
     onClose: () => void
 }
 
-const SignInModal = ({ onClose }: Props) => {
+export const SignInModal = ({ onClose }: Props) => {
     const router = useRouter()
     const handleSign = () => {
         setSignIn("true")
