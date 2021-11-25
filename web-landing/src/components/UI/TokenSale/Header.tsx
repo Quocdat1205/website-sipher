@@ -29,6 +29,8 @@ const Header = (props: Props) => {
                 borderColor="white"
                 color="white"
                 bg="transparent"
+                _hover={{ bg: "transparent" }}
+                _active={{ bg: "transparent" }}
                 fontWeight="normal"
                 px={8}
                 leftIcon={<BsPlayFill style={{ marginRight: "0.5rem" }} size="1.2rem" />}

@@ -1,31 +1,35 @@
 import { Box, Flex, Text, useOutsideClick, Collapse } from "@chakra-ui/react"
 import React, { useRef, useState } from "react"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
+import { DropdownOption } from "./SaleForm"
 
-const Dropdown = ({ dropdownOptions, selected, onSelectedChange }) => {
+interface DropdownProps {
+    selected: DropdownOption
+    dropdownOptions: readonly ["Deposit", "Withdraw"]
+    onChange: (option: DropdownOption) => void
+}
+
+const Dropdown = ({ dropdownOptions, selected, onChange }: DropdownProps) => {
     const [open, setOpen] = useState(false)
 
-    const renderedOptions = dropdownOptions.map(option => {
-        if (option.value === selected.value) {
-            return null
-        }
-
+    const renderedOptions = () => {
+        const option = dropdownOptions.find(option => option !== selected)!
+        console.log(option)
         return (
             <Box
                 _hover={{ color: "white" }}
                 color="#9B9E9D"
-                py={3}
+                py={2}
                 px={6}
                 w="full"
                 cursor="pointer"
-                key={option.value}
                 className="item"
-                onClick={() => onSelectedChange(option)}
+                onClick={() => onChange(option)}
             >
-                {option.label}
+                {option}
             </Box>
         )
-    })
+    }
 
     const boxRef = useRef<HTMLDivElement>(null)
     useOutsideClick({
@@ -44,13 +48,14 @@ const Dropdown = ({ dropdownOptions, selected, onSelectedChange }) => {
                 zIndex={3}
                 py={3}
                 px={6}
+                mb={8}
                 justify="space-between"
                 cursor="pointer"
                 onClick={() => {
                     setOpen(!open)
                 }}
             >
-                <Text>{selected.label}</Text>
+                <Text>{selected}</Text>
                 {open ? <BiChevronUp size="1.5rem" /> : <BiChevronDown size="1.5rem" />}
             </Flex>
             <Box pos="absolute" w="full" top="50%" left={0} zIndex={2} borderBottomRadius={4}>
@@ -62,11 +67,10 @@ const Dropdown = ({ dropdownOptions, selected, onSelectedChange }) => {
                         borderTop="none"
                         borderColor="#383838"
                         pt={7}
-                        pb={2}
                         sx={{ borderRadius: "0 0 1rem 1rem" }}
                         shadow="base"
                     >
-                        {renderedOptions}
+                        {renderedOptions()}
                     </Box>
                 </Collapse>
             </Box>

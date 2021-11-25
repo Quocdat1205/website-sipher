@@ -15,8 +15,7 @@ import {
     clearAccessToken,
 } from "./utils"
 import Web3 from "web3"
-import WalletConnectProvider from "@walletconnect/web3-provider"
-import { authenticateUser, getUsersByAddress, IUser } from "@hooks/api/user"
+import { authenticateUser, getUsersByAddress } from "@hooks/api/user"
 import { useChakraToast } from "@sipher/web-components"
 
 declare global {
@@ -24,16 +23,13 @@ declare global {
         ethereum: any
     }
 }
-const providerMM = typeof window !== "undefined" && window.ethereum
-const providerWC = new WalletConnectProvider({
-    infuraId: "52e62e876fe64ea2b200aea33d8e22f1", // Required
-})
 
 const useWallet = () => {
     const [connectorName, setConnectorName] = useState<ConnectorId | null>(null)
     const [status, setStatus] = useState<Status>("disconnected")
     const [error, setError] = useState<Error | null>(null)
     const web3React = useWeb3React()
+    const web3 = useRef<null | Web3>(null)
     const { account, chainId } = web3React
     const activationId = useRef(0)
     // Current chain id
@@ -43,7 +39,11 @@ const useWallet = () => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
         if (web3React.active) {
             web3React.deactivate()
+
+            // Manually remove walletconnect
+            localStorage.removeItem("walletconnect")
         }
+
         clearLastActiveAccount()
         clearAccessToken()
         setConnectorName(null)
@@ -98,6 +98,7 @@ const useWallet = () => {
                         })
                     })
                 }
+                web3.current = new Web3(web3React.library)
                 setStatus("connected")
             } catch (err: any) {
                 if (id !== activationId.current) return
@@ -126,60 +127,22 @@ const useWallet = () => {
         [reset, web3React]
     )
 
-    const testSign = async () => {
-        const web3 = new Web3(web3React.library)
-        await web3.eth.personal.sign("hehe", account as string, "")
-    }
-
-    // Signature message on provider
-    const signMessage = useCallback(
-        async (address: string, nonce: number) => {
-            const web3 = new Web3(connectorName === "injected" ? providerMM : providerWC)
-            let signature: string
-            if (connectorName === "injected") {
-                return await web3.eth.personal.sign(
-                    `I am signing my one-time nonce: ${nonce}`,
-                    address,
-                    "" // MetaMask will ignore the password argument here
-                )
-            }
-            await providerWC.enable()
-            return (signature = await web3.eth.personal.sign(
-                `I am signing my one-time nonce: ${nonce}`,
-                address,
-                "" // WalletConnect will ignore the password argument here
-            ))
-        },
-        [web3React, connectorName]
-    )
-
-    /** Authenticate user by address and nonce
-     * @returns string
-     */
-    const authenticateAddress = async (user: IUser): Promise<string> => {
-        const { address, nonce } = user
-        const signature = await signMessage(address, nonce)
-        const token = await authenticateUser(address, signature)
-        return token
-    }
-
-    /** Sign user up or log user in with address */
-    const getUser = async (address: string): Promise<IUser> => {
-        let account = await getUsersByAddress(address)
-        return account
-    }
-
     //** Get accessToken when change emotion */
-    const getAccessToken = useCallback(
-        async address => {
-            const account = await getUser(address)
-            const token = await authenticateAddress(account)
+    const getAccessToken = useCallback(async () => {
+        if (!account) throw Error("Account not found")
+        if (!web3.current) throw Error("Provider not found")
 
-            setAccessToken(token)
-            return token
-        },
-        [web3React]
-    )
+        const user = await getUsersByAddress(account)
+        const signature = await web3.current.eth.personal.sign(
+            `I am signing my one-time nonce: ${user.nonce}`,
+            account as string,
+            ""
+        )
+        const token = await authenticateUser(account, signature)
+
+        setAccessToken(token)
+        return token
+    }, [web3React])
     // auto connect on refresh
     useEffect(() => {
         const lastConnector = getLastConnector()
@@ -202,7 +165,6 @@ const useWallet = () => {
         isActive: web3React.active,
         ethereum: web3React.library,
         getAccessToken,
-        testSign,
     }
 
     return wallet

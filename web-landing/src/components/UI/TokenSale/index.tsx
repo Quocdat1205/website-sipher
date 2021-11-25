@@ -91,7 +91,16 @@ const TokenSale = ({}: TokenSaleProps) => {
                                         </Box>
                                     </Tooltip>
                                 </Flex>
-                                <Countdown percent={10} />
+                                <Countdown
+                                    percent={10}
+                                    isSale
+                                    timeLeft={{
+                                        days: 0,
+                                        hours: 0,
+                                        minutes: 0,
+                                        seconds: 0,
+                                    }}
+                                />
                                 <Box
                                     pos="absolute"
                                     w="1px"
@@ -115,7 +124,7 @@ const TokenSale = ({}: TokenSaleProps) => {
                             <CoinCard text="ETH Contributed" iconSrc="/images/icons/eth.png" />
                             <CoinCard text="Est. Token Price" iconSrc="/images/icons/eth.png" />
                             <CoinCard
-                                text="Est. $SIPHER token you will receve"
+                                text="Est. $SIPHER token you will receive"
                                 iconSrc="/images/icons/community/main-black.png"
                                 value={150}
                             />
