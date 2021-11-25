@@ -1,12 +1,12 @@
-import { Flex, HStack, chakra, Image, Input, Progress, Box } from "@chakra-ui/react"
+import { Flex, HStack, Image, Input, Progress, Box, Text } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
-import { Typo } from "@components/shared/Typography"
 import React, { useState } from "react"
 import { GradientButton } from "@sipher/web-components"
 import { numberWithCommas } from "@source/utils"
+import { DropdownOption } from "./SaleForm"
 
 interface Props {
-    mode: "Deposit" | "Withdraw"
+    mode: DropdownOption
     lockedAmount: number
     maxLockedAmount: number
     walletBalance: number
@@ -33,14 +33,10 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
         setValue(toLocale)
     }
 
-    //value input log
-    // console.log(value.replace(/\D/g, ""))
     return (
-        <Flex flexDir="column">
+        <Flex flexDir="column" w="full">
             <Flex mb={2} flexDir="row" align="center" justify="space-between">
-                <Typo.Text size="small" textAlign="left" flex={1}>
-                    I want to {mode === "Deposit" ? "deposit" : "withdraw"}
-                </Typo.Text>
+                <Text>I want to {mode === "Deposit" ? "deposit" : "withdraw"}</Text>
                 <HStack justify="flex-end" spacing={1}>
                     {options.map(value => {
                         return (
@@ -54,57 +50,40 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
             <Flex pos="relative" flexDir="row" align="center">
                 <Input
                     isDisabled={!isSale}
+                    bg="#131313"
+                    border="1px"
+                    borderColor="#383838"
                     _disabled={{ borderColor: "border.gray", color: "border.gray" }}
-                    _focus={{ borderColor: "main.orange" }}
-                    _hover={{ borderColor: "main.orange" }}
                     value={value}
-                    fontSize={["1rem", "1.2rem", "1.4rem"]}
                     onChange={handleChange}
                     flex={1}
                     px={6}
                     py={6}
                     pr="6rem"
-                    bg="black"
                     rounded="full"
-                    border="1px"
-                    borderColor="border.gray"
                 />
                 <Flex zIndex={1} pos="absolute" right="0" px={6} flexDir="row" align="center">
                     <Image h="1.6rem" src="/images/icons/eth.png" alt="icon" />
-                    <Typo.Text ml={2} fontWeight={400}>
+                    <Text ml={2} fontWeight={400}>
                         ETH
-                    </Typo.Text>
+                    </Text>
                 </Flex>
             </Flex>
-            <chakra.span fontWeight={500} py={1} textAlign="right" color="#979797" fontSize="xs">
-                Wallet balance: {numberWithCommas(walletBalance)}
-            </chakra.span>
+            <Text my={1} textAlign="right" color="#979797" fontSize="sm">
+                Wallet Balance: {numberWithCommas(walletBalance)}
+            </Text>
             <Flex flexDir="column" mb={6}>
-                <Typo.Text mb={2} size="small" textAlign="left" flex={1}>
-                    Locked amount
-                </Typo.Text>
-                <Box
-                    textAlign="left"
-                    transition="all .5s"
-                    border="1px"
-                    borderColor="border.gray"
-                    rounded="full"
-                    overflow="hidden"
-                >
-                    <Progress
-                        className="process-amount"
-                        sx={{ ">div": { bg: "border.gray" } }}
-                        value={(lockedAmount / maxLockedAmount) * 100}
-                        bg="black"
-                    />
+                <Text mb={2}>Locked amount</Text>
+                <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
+                    <Box bg="#383838" w={`${(lockedAmount / maxLockedAmount) * 100}%`} h="full" rounded="full" />
                 </Box>
-                <Flex w="full" justify="space-between">
-                    <chakra.span fontWeight={700} py={1} color="#979797" fontSize="xs">
-                        $ {numberWithCommas(lockedAmount)}
-                    </chakra.span>
-                    <chakra.span fontWeight={500} py={1} color="#979797" fontSize="xs">
-                        $ {numberWithCommas(lockedAmount)}/$ {numberWithCommas(maxLockedAmount)}
-                    </chakra.span>
+                <Flex w="full" justify="space-between" my={1}>
+                    <Text fontWeight={700} color="#979797" fontSize="sm">
+                        ${numberWithCommas(lockedAmount)}
+                    </Text>
+                    <Text color="#979797" fontSize="sm">
+                        ${numberWithCommas(lockedAmount)}/${numberWithCommas(maxLockedAmount)}
+                    </Text>
                 </Flex>
             </Flex>
             <GradientButton
