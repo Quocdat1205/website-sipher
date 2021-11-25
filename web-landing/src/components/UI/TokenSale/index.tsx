@@ -1,21 +1,28 @@
 // * DESCRIPTION:
 
-import { Flex, Grid, Box, Img, Tooltip, Text, GridItem, VStack } from "@chakra-ui/react"
-import { BackgroundContainer } from "@components/shared"
-import React from "react"
+import { Flex, Grid, Box, Img, Tooltip, Text, GridItem, VStack, useDisclosure } from "@chakra-ui/react"
+import React, { useEffect } from "react"
+import { useQuery } from "react-query"
+import { BsQuestionCircle } from "react-icons/bs"
+import { getSignIn, numberWithCommas } from "@source/utils"
+import { isMobile, isTablet } from "react-device-detect"
+
+import useWalletContext from "@hooks/web3/useWalletContext"
 import CoinCard from "./CoinCard"
 import Countdown from "./CountDown"
+import { BackgroundContainer } from "@components/shared"
 import SaleForm from "./SaleForm"
 import Header from "./Header"
-import { BsQuestionCircle } from "react-icons/bs"
-import useWalletContext from "@hooks/web3/useWalletContext"
-import { useQuery } from "react-query"
-import { numberWithCommas } from "@source/utils"
+import { SignInModal } from "./Modal"
+import NotAvailable from "./NotAvailable"
+import TotalTokenSale from "./TotalTokenSale"
 
 interface TokenSaleProps {}
 
 const TokenSale = ({}: TokenSaleProps) => {
     const { scCaller } = useWalletContext()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const isCheckMobile = isMobile || isTablet
 
     const { data: constants, isLoading } = useQuery("sc-constants", () => scCaller.current!.getConstants(), {
         enabled: !!scCaller.current,
@@ -25,6 +32,11 @@ const TokenSale = ({}: TokenSaleProps) => {
     const { data: price } = useQuery("estimate-token-price", () => scCaller.current!.getEstTokenPrice(), {
         enabled: !!scCaller.current,
     })
+
+    useEffect(() => {
+        let signIn = getSignIn()
+        if (!signIn && signIn !== "true" && !isCheckMobile) onOpen()
+    }, [])
 
     if (isLoading) {
         return "Loading"
@@ -43,8 +55,22 @@ const TokenSale = ({}: TokenSaleProps) => {
             pt={24}
             pb={16}
             bgColor="#090909"
+            sx={{
+                "@media (max-width: 768px)": {
+                    p: 0,
+                },
+            }}
         >
-            <Flex direction="column" align="center" w="full">
+            <Flex
+                direction="column"
+                align="center"
+                w="full"
+                sx={{
+                    "@media (max-width: 768px)": {
+                        display: "none",
+                    },
+                }}
+            >
                 <Header />
                 <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"64rem"}>
                     <GridItem
@@ -57,12 +83,7 @@ const TokenSale = ({}: TokenSaleProps) => {
                         colSpan={2}
                         py={3}
                     >
-                        <Flex justify="center" alignItems="center">
-                            <Img mr={4} boxSize="2rem" src="/images/icons/community/main-black.png" alt="main-icon" />
-                            <Text letterSpacing="3px" fontSize="2xl" fontWeight="semibold">
-                                {numberWithCommas(constants![2])} $SIPHER TOKEN FOR SALE
-                            </Text>
-                        </Flex>
+                        <TotalTokenSale maxTotalToken={constants![2]} />
                     </GridItem>
                     <GridItem
                         px={4}
@@ -124,6 +145,8 @@ const TokenSale = ({}: TokenSaleProps) => {
                     </GridItem>
                 </Grid>
             </Flex>
+            <NotAvailable />
+            <SignInModal onClose={onClose} isOpen={isOpen} />
         </BackgroundContainer>
     )
 }

@@ -6,7 +6,7 @@ interface Props {
     maxTotalToken: number
 }
 
-export const TotalTokenSale = ({ maxTotalToken = 0 }: Props) => {
+const TotalTokenSale = ({ maxTotalToken = 0 }: Props) => {
     return (
         <Flex justify="center" alignItems="center">
             <Img mr={4} boxSize="2rem" src="/images/icons/community/main-black.png" alt="main-icon" />
@@ -16,3 +16,5 @@ export const TotalTokenSale = ({ maxTotalToken = 0 }: Props) => {
         </Flex>
     )
 }
+
+export default TotalTokenSale
