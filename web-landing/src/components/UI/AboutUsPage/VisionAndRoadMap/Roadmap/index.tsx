@@ -7,7 +7,7 @@ import content from "@constant/content/roadmap"
 const RoadMap = () => {
     return (
         <TextContainer headline="ROADMAP">
-            <Accordion defaultIndex={[2]} allowMultiple>
+            <Accordion defaultIndex={[3]} allowMultiple>
                 {content.map(item => (
                     <MyAccordionItem key={item.name} data={item} />
                 ))}

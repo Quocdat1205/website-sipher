@@ -13,6 +13,7 @@ const content = [
     },
     {
         name: "Sipherian Flash - Cont'd",
+        completed: true,
         date: "October 2021",
         content: [
             "Introduction of the Neko Website & Minting Mechanics",
