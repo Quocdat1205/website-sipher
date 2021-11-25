@@ -1,67 +1,78 @@
-import { Flex, HStack, Image, Input, Box, Text } from "@chakra-ui/react"
+import { Flex, HStack, Image, Input, Box, Text, NumberInput } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
-import React, { ChangeEvent, useState } from "react"
-import { GradientButton } from "@sipher/web-components"
-import { numberWithCommas } from "@source/utils"
+import React, { useState } from "react"
 import { DropdownOption } from "./SaleForm"
+import EtherInput from "./EtherInput"
+import useWalletContext from "@hooks/web3/useWalletContext"
+import { useMutation, useQuery, useQueryClient } from "react-query"
+import { weiToEther } from "@source/contract"
+import { ActionButton } from "./ActionButton"
+import { FaEthereum } from "react-icons/fa"
+import { useChakraToast } from "@sipher/web-components"
 
 interface Props {
     mode: DropdownOption
-    lockedAmount: number
-    maxLockedAmount: number
-    walletBalance: number
-    isSale: boolean
 }
 
-const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 0, isSale = false }: Props) => {
+const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("0")
-    const [percentage, setPercentage] = useState("")
-    const options = ["25%", "50%", "75%", "100%"]
+    const options = [0.25, 0.5, 0.75, 1]
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const toNumber = Number(e.target.value.replace(/\D/g, ""))
-        const toLocale = toNumber.toLocaleString()
-        setPercentage("")
-        setValue(toLocale)
-    }
+    const formatPrecision = (value: number) => value.toString().slice(0, 11)
 
-    const handleSelect = value => {
-        setPercentage(value)
-        let valueSelect = walletBalance * parseInt(value) * 0.01
-        const toNumber = Number(valueSelect.toString().replace(/\D/g, ""))
-        const toLocale = toNumber.toLocaleString()
-        setValue(toLocale)
+    const handleSelect = (option: number) => {
+        setValue(formatPrecision(walletBalance * option))
     }
+    const { balance, scCaller, account } = useWalletContext()
+    const walletBalance = weiToEther(balance)
+
+    const qc = useQueryClient()
+    const toast = useChakraToast()
+
+    const { data: totalDeposited } = useQuery("total-deposited", () => scCaller.current?.getUserDeposited(account!), {
+        enabled: !!scCaller.current && !!account,
+        initialData: 0,
+    })
+
+    const { data: lockedAmount } = useQuery("locked-amount", () => scCaller.current?.getLockedAmount(), {
+        enabled: !!scCaller.current && !!account,
+        initialData: 0,
+    })
+
+    const { data: locked } = useQuery(["locked", value], () => scCaller.current?.calculateLocked(value), {
+        enabled: !!scCaller.current && !!account,
+        initialData: 0,
+    })
+
+    const { mutate, isLoading } = useMutation(() => scCaller.current!.deposit(account!, value), {
+        onError: (err: any) => toast({ title: "Error", message: err.message }),
+        onSuccess: () => {
+            toast({ title: "Deposited successfully!" })
+            qc.invalidateQueries("total-deposited")
+            qc.invalidateQueries("locked-amount")
+        },
+    })
 
     return (
         <Flex flexDir="column" w="full">
             <Flex mb={2} flexDir="row" align="center" justify="space-between">
                 <Text>I want to {mode === "Deposit" ? "deposit" : "withdraw"}</Text>
                 <HStack justify="flex-end" spacing={1}>
-                    {options.map(value => {
+                    {options.map(option => {
                         return (
-                            <RadioCard key={value} active={percentage === value} onClick={() => handleSelect(value)}>
-                                {value}
+                            <RadioCard
+                                key={option}
+                                active={Math.abs(parseFloat(value) / walletBalance - option) < 0.001}
+                                onClick={() => handleSelect(option)}
+                            >
+                                {`${option * 100}%`}
                             </RadioCard>
                         )
                     })}
                 </HStack>
             </Flex>
-            <Flex pos="relative" flexDir="row" align="center">
-                <Input
-                    isDisabled={!isSale}
-                    bg="#131313"
-                    border="1px"
-                    borderColor="#383838"
-                    _disabled={{ borderColor: "border.gray", color: "border.gray" }}
-                    value={value}
-                    onChange={e => e}
-                    flex={1}
-                    px={6}
-                    py={6}
-                    pr="6rem"
-                    rounded="full"
-                />
+            <Flex pos="relative" align="center">
+                <EtherInput value={value} setValue={setValue} maxValue={walletBalance} />
                 <Flex zIndex={1} pos="absolute" right="0" px={6} flexDir="row" align="center">
                     <Image h="1.6rem" src="/images/icons/eth.png" alt="icon" />
                     <Text ml={2} fontWeight={400}>
@@ -72,26 +83,36 @@ const InputUI = ({ mode, lockedAmount = 0, maxLockedAmount = 0, walletBalance = 
             <Text my={1} textAlign="right" color="#979797" fontSize="sm">
                 Wallet Balance: {walletBalance.toFixed(5)}
             </Text>
+
             <Flex flexDir="column" mb={6}>
                 <Text mb={2}>Locked amount</Text>
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
-                    <Box bg="#383838" w={`${(lockedAmount / maxLockedAmount) * 100}%`} h="full" rounded="full" />
+                    <Box
+                        bg="#383838"
+                        w={`${((lockedAmount! + (locked || 0)) / (totalDeposited! + parseFloat(value)!)) * 100}%`}
+                        transition="width 0.5s linear"
+                        h="full"
+                        rounded="full"
+                    />
                 </Box>
-                <Flex w="full" justify="space-between" my={1}>
-                    <Text fontWeight={700} color="#979797" fontSize="sm">
-                        ${numberWithCommas(lockedAmount)}
-                    </Text>
-                    <Text color="#979797" fontSize="sm">
-                        ${numberWithCommas(lockedAmount)}/${numberWithCommas(maxLockedAmount)}
-                    </Text>
+                <Flex w="full" justify="flex-end" my={1}>
+                    <Flex align="center">
+                        <FaEthereum />
+                        <Text fontSize="sm" color="#979797">
+                            {formatPrecision(lockedAmount! + (locked || 0))} /
+                        </Text>
+                        <FaEthereum />
+                        <Text fontSize="sm" color="#979797">
+                            {formatPrecision(totalDeposited! + parseFloat(value))}
+                        </Text>
+                    </Flex>
                 </Flex>
             </Flex>
-            <GradientButton
-                disabled={!isSale || value === "0"}
-                py={4}
-                rounded="lg"
-                fontSize="sm"
-                text={mode === "Deposit" ? "Deposit" : "Withdraw"}
+            <ActionButton
+                text={mode}
+                isLoading={isLoading}
+                disabled={parseFloat(value) <= 0}
+                onClick={() => mutate()}
             />
         </Flex>
     )

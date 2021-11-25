@@ -4,6 +4,7 @@ import InputUI from "./InputUI"
 import Dropdown from "./Dropdown"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { weiToEther } from "@source/contract"
+import { useQuery } from "react-query"
 
 interface SaleFormProps {}
 
@@ -12,17 +13,11 @@ export type DropdownOption = typeof dropdownOptions[number]
 
 const SaleForm = ({}: SaleFormProps) => {
     const [selected, setSelected] = useState<DropdownOption>(dropdownOptions[0])
-    const { balance } = useWalletContext()
+
     return (
         <Flex pos="relative" w="full" direction="column" align="center" p={4}>
             <Dropdown selected={selected} dropdownOptions={dropdownOptions} onChange={setSelected} />
-            <InputUI
-                mode={selected}
-                isSale
-                lockedAmount={100}
-                maxLockedAmount={200}
-                walletBalance={weiToEther(balance)}
-            />
+            <InputUI mode={selected} />
         </Flex>
     )
 }

@@ -19,10 +19,13 @@ const TokenSale = ({}: TokenSaleProps) => {
 
     const { data: constants, isLoading } = useQuery("sc-constants", () => scCaller.current!.getConstants(), {
         enabled: !!scCaller.current,
-        onError: err => console.log(err),
     })
 
     const { data: price } = useQuery("estimate-token-price", () => scCaller.current!.getEstTokenPrice(), {
+        enabled: !!scCaller.current,
+    })
+
+    const { data: token } = useQuery("estimate-token-receive", () => scCaller.current!.getEstReceivedToken(), {
         enabled: !!scCaller.current,
     })
 
@@ -118,7 +121,7 @@ const TokenSale = ({}: TokenSaleProps) => {
                             <CoinCard
                                 text="Est. $SIPHER token you will receive"
                                 iconSrc="/images/icons/community/main-black.png"
-                                value={150}
+                                value={token}
                             />
                         </VStack>
                     </GridItem>
