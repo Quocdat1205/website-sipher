@@ -39,32 +39,6 @@ const LayoutMedium = ({ details }: Props) => {
                         >
                             {ReactHtmlParser(details.description && details.description)}
                         </Box>
-                        <Box
-                            mt={[4, 6]}
-                            sx={{ ul: { listStylePos: "inside" }, img: { m: "0 auto", py: 8, maxHeight: "45rem" } }}
-                            color="about.textGray"
-                        >
-                            {ReactHtmlParser(details.content && details.content)}
-                        </Box>
-                        <Box
-                            sx={{ ul: { listStylePos: "inside" }, img: { m: "0 auto", py: 8, maxHeight: "45rem" } }}
-                            color="about.textGray"
-                        >
-                            {ReactHtmlParser(details.description && details.description)}
-                        </Box>
-                        <Box
-                            mt={[4, 6]}
-                            sx={{ ul: { listStylePos: "inside" }, img: { m: "0 auto", py: 8, maxHeight: "45rem" } }}
-                            color="about.textGray"
-                        >
-                            {ReactHtmlParser(details.content && details.content)}
-                        </Box>
-                        <Box
-                            sx={{ ul: { listStylePos: "inside" }, img: { m: "0 auto", py: 8, maxHeight: "45rem" } }}
-                            color="about.textGray"
-                        >
-                            {ReactHtmlParser(details.description && details.description)}
-                        </Box>
                     </Box>
                 </Flex>
             </Box>
