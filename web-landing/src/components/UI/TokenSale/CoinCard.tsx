@@ -10,7 +10,17 @@ interface Props {
 
 const CoinCard = ({ text, iconSrc, value = "N / A" }: Props) => {
     return (
-        <Flex flexDir="column" align="center" justify="center" h="full">
+        <Flex
+            flexDir="column"
+            align="center"
+            justify="center"
+            bg="rgba(0,0,0,0.9)"
+            border="1px"
+            borderColor="#383838"
+            w="full"
+            rounded="xl"
+            p={8}
+        >
             <Typo.Text textAlign="center" fontWeight={400} mb={4} size="small">
                 {text}
             </Typo.Text>

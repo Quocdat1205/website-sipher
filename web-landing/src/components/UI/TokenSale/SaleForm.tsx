@@ -1,29 +1,10 @@
-import { Flex, Tabs, TabList, Tab, TabPanels, TabPanel, Box } from "@chakra-ui/react"
+import { Flex, Box } from "@chakra-ui/react"
 import React, { useRef, useEffect, useState } from "react"
 import InputUI from "./InputUI"
 import { AnimatePresence, motion } from "framer-motion"
+import Dropdown from "./Dropdown"
 
 interface SaleFormProps {}
-
-const routesAnimationVariants = {
-    hidden: {
-        opacity: 0,
-        x: "-400px",
-    },
-    visible: {
-        opacity: 1,
-        x: 0,
-        transition: { delay: 0, duration: 1 },
-    },
-    exit: {
-        x: "400px",
-        opacity: 0,
-        transition: {
-            ease: "easeInOut",
-            duration: 0.6,
-        },
-    },
-}
 
 const routesAnimationVariantsTest = {
     hidden: {
@@ -45,7 +26,7 @@ const routesAnimationVariantsTest = {
     },
 }
 
-const TabPanelContent = ({ isChange = false, children, changeHeight }) => {
+const TabPanelContent = ({ children, changeHeight }) => {
     const currentPanelRef = useRef<HTMLDivElement | any>(null)
 
     useEffect(() => {
@@ -57,7 +38,7 @@ const TabPanelContent = ({ isChange = false, children, changeHeight }) => {
         <Box
             as={motion.div}
             pos="absolute"
-            variants={isChange ? routesAnimationVariants : routesAnimationVariantsTest}
+            variants={routesAnimationVariantsTest}
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -69,50 +50,33 @@ const TabPanelContent = ({ isChange = false, children, changeHeight }) => {
     )
 }
 
+const dropdownOptions = [
+    {
+        label: "Deposit",
+        value: "Deposit",
+    },
+    {
+        label: "Withdraw",
+        value: "Withdraw",
+    },
+]
+
 const SaleForm = ({}: SaleFormProps) => {
     const [height, setHeight] = useState("0px")
+    const [selected, setSelected] = useState(dropdownOptions[0])
 
-    const selectedCss = {
-        rounded: "full",
-        color: "#FF9800",
-        bg: "border.gray",
-    }
     return (
-        <Flex
-            pos="relative"
-            direction="column"
-            align="center"
-            flex={2}
-            h="full"
-            pt={12}
-            pb={10}
-            px={4}
-            overflow="hidden"
-        >
-            <Tabs isLazy w="full" align="center">
-                <TabList px={4} overflow="hidden" border="none">
-                    <Flex flexDir="row" w="full" border="1px" rounded="full" borderColor="border.gray">
-                        <Tab _focus={{ boxShadow: "none" }} flex={1} pos="relative" _selected={selectedCss}>
-                            Deposit
-                        </Tab>
-                        <Tab _focus={{ boxShadow: "none" }} flex={1} pos="relative" _selected={selectedCss}>
-                            Withdraw
-                        </Tab>
-                    </Flex>
-                </TabList>
-                <TabPanels h={height}>
-                    <TabPanel as={AnimatePresence}>
-                        <TabPanelContent changeHeight={setHeight}>
-                            <InputUI mode="Deposit" />
-                        </TabPanelContent>
-                    </TabPanel>
-                    <TabPanel as={AnimatePresence}>
-                        <TabPanelContent isChange changeHeight={setHeight}>
-                            <InputUI mode="Withdraw" />
-                        </TabPanelContent>
-                    </TabPanel>
-                </TabPanels>
-            </Tabs>
+        <Flex pos="relative" w="full" direction="column" align="center">
+            <Box px={4} w="full">
+                <Dropdown selected={selected} dropdownOptions={dropdownOptions} onSelectedChange={setSelected} />
+            </Box>
+            <Box w="full" h={height}>
+                <Box as={AnimatePresence}>
+                    <TabPanelContent changeHeight={setHeight}>
+                        {selected.value === "Deposit" ? <InputUI mode="Deposit" /> : <InputUI mode="Withdraw" />}
+                    </TabPanelContent>
+                </Box>
+            </Box>
         </Flex>
     )
 }

@@ -9,11 +9,8 @@ interface CountdownProps {
 
 const Countdown = ({ percent }: CountdownProps) => {
     return (
-        <Flex direction="column" align="center" h="full" px={4} pt={20} pb={10} pos="relative">
-            <Text py={3} textTransform="uppercase" fontWeight={500} mb={4}>
-                Sale Period Ends
-            </Text>
-            <Box boxSize="14rem" position="relative">
+        <Flex direction="column" align="center" h="full" pt={8} pos="relative">
+            <Box boxSize="16rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     <PrivateCountdown
                         time1={{ value: 0, unit: "DAYS" }}
@@ -23,15 +20,6 @@ const Countdown = ({ percent }: CountdownProps) => {
                 </Flex>
                 <Loader percent={percent} />
             </Box>
-            <Box
-                pos="absolute"
-                w="1px"
-                h="80%"
-                top={"50%"}
-                transform="translateY(-50%)"
-                right={0}
-                bgGradient="linear(to-b, transparent, #FFC266, transparent)"
-            />
         </Flex>
     )
 }

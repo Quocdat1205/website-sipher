@@ -71,7 +71,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                     <Flex
                         bg="#131313"
                         border="1px"
-                        borderColor="border.gray"
+                        borderColor="#383838"
                         borderTopRadius="lg"
                         borderBottomRadius={menu ? "none" : "lg"}
                         align="center"
@@ -99,7 +99,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
             </Box>
             <Box pos="absolute" w="full" top="0">
                 <Collapse in={menu}>
-                    <Box bg="#131313" border="1px" borderColor="border.gray" rounded="lg" px={4} py={4} pt={14}>
+                    <Box bg="#131313" border="1px" borderColor="#383838" rounded="lg" px={4} py={4} pt={14}>
                         <Flex
                             align="center"
                             mb={4}
@@ -107,7 +107,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             px={4}
                             py={2}
                             rounded="lg"
-                            borderColor="border.gray"
+                            bg="#383838"
                             shadow="base"
                             onClick={() => router.push("/inventory/inu")}
                         >
