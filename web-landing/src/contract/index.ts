@@ -58,7 +58,7 @@ export class ContractCaller {
     }
 
     async claim(from: string) {
-        await this.SipherIBCO.methods.claim().send()
+        await this.SipherIBCO.methods.claim().send({ from })
     }
 
     async withdraw(from: string, amount: string) {

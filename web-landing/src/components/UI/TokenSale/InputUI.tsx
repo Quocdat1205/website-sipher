@@ -1,4 +1,4 @@
-import { Flex, HStack, Image, Input, Box, Text, NumberInput } from "@chakra-ui/react"
+import { Flex, HStack, Image, Box, Text } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
 import React, { useState } from "react"
 import { DropdownOption } from "./SaleForm"
@@ -68,7 +68,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => toast({ title: "Error", message: err.message }),
             onSuccess: () => {
-                toast({ title: "Deposited successfully!" })
+                toast({ title: "Withdrawal successfully!" })
                 setValue("0")
                 qc.invalidateQueries("total-deposited")
                 qc.invalidateQueries("locked-amount")
