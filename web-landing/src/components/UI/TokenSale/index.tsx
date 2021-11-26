@@ -36,8 +36,8 @@ const TokenSale = () => {
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
-            pt={24}
-            pb={16}
+            pt={!isCheckMobile ? 24 : 0}
+            pb={!isCheckMobile ? 16 : 0}
             bgColor="#090909"
         >
             <Flex direction="column" align="center" w="full" display={isCheckMobile ? "none" : "flex"}>
