@@ -50,7 +50,6 @@ export class ContractCaller {
     }
 
     async deposit(from: string, amount: string) {
-        console.log(from, amount)
         await this.SipherIBCO.methods.deposit().send({
             from,
             value: Web3.utils.toWei(amount, "ether"),
@@ -62,23 +61,23 @@ export class ContractCaller {
     }
 
     async withdraw(from: string, amount: string) {
-        await this.SipherIBCO.methods.withdraw(Web3.utils.toWei(amount, "ether")).send()
+        await this.SipherIBCO.methods.withdraw(Web3.utils.toWei(amount, "ether")).send({ from })
     }
 
     async getEstTokenPrice() {
         return weiToEther(await this.SipherIBCO.methods.getEstTokenPrice().call())
     }
 
-    async getEstReceivedToken() {
-        return weiToEther(await this.SipherIBCO.methods.getEstReceivedToken().call())
+    async getEstReceivedToken(from: string) {
+        return weiToEther(await this.SipherIBCO.methods.getEstReceivedToken(from).call())
     }
 
-    async getWithdrawableAmount() {
-        return weiToEther(await this.SipherIBCO.methods.getWithdrawableAmount().call())
+    async getWithdrawableAmount(from: string) {
+        return weiToEther(await this.SipherIBCO.methods.getWithdrawableAmount(from).call())
     }
 
-    async getLockedAmount(): Promise<number> {
-        return weiToEther(await this.SipherIBCO.methods.getLockedAmount().call())
+    async getLockedAmount(from: string): Promise<number> {
+        return weiToEther(await this.SipherIBCO.methods.getLockedAmount(from).call())
     }
 
     async calculateLocked(amount: string): Promise<number> {

@@ -9,8 +9,7 @@ interface EtherInputProps {
 
 const EtherInput = ({ value, setValue, maxValue }: EtherInputProps) => {
     const format = (value: string) => {
-        console.log(value === "")
-        return value === "" ? "0" : value.slice(0, 11)
+        return value === "" ? "0" : value
     }
 
     return (

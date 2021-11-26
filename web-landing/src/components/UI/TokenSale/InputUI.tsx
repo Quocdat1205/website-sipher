@@ -20,9 +20,6 @@ const InputUI = ({ mode }: Props) => {
 
     const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
 
-    const handleSelect = (option: number) => {
-        setValue(formatPrecision(walletBalance * option))
-    }
     const { balance, scCaller, account } = useWalletContext()
     const walletBalance = weiToEther(balance)
 
@@ -34,24 +31,47 @@ const InputUI = ({ mode }: Props) => {
         initialData: 0,
     })
 
-    const { data: lockedAmount } = useQuery("locked-amount", () => scCaller.current?.getLockedAmount(), {
+    const { data: lockedAmount } = useQuery("locked-amount", () => scCaller.current?.getLockedAmount(account!), {
         enabled: !!scCaller.current && !!account,
         initialData: 0,
     })
 
-    const { data: locked } = useQuery(["locked", value], () => scCaller.current?.calculateLocked(value), {
-        enabled: !!scCaller.current && !!account,
-        initialData: 0,
-    })
-
-    const { data: withdrawableAmount } = useQuery(
-        "withdrawable-amount",
-        () => scCaller.current?.getWithdrawableAmount(),
+    const { data: locked, isLoading: isLocked } = useQuery(
+        ["locked", value],
+        () =>
+            scCaller.current?.calculateLocked(
+                mode === "Deposit" ? (parseFloat(value) + totalDeposited!).toString() : totalDeposited!.toString()
+            ),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )
+
+    const { data: withdrawableAmount } = useQuery(
+        "withdrawable-amount",
+        () => scCaller.current?.getWithdrawableAmount(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const floorPrecised = (number, precision) => {
+        let power = Math.pow(10, precision)
+
+        return Math.floor(number * power) / power
+    }
+
+    const handleSelect = (option: number) => {
+        setValue(
+            formatPrecision(
+                mode === "Deposit"
+                    ? floorPrecised(walletBalance * option, 5)
+                    : floorPrecised(withdrawableAmount! * option, 5)
+            )
+        )
+    }
 
     const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
         onError: (err: any) => toast({ title: "Error", message: err.message }),
@@ -80,6 +100,8 @@ const InputUI = ({ mode }: Props) => {
         mode === "Deposit" ? deposit() : withdraw()
     }
 
+    console.log(withdrawableAmount)
+
     return (
         <Flex flexDir="column" w="full">
             <Flex mb={2} flexDir="row" align="center" justify="space-between">
@@ -89,7 +111,11 @@ const InputUI = ({ mode }: Props) => {
                         return (
                             <RadioCard
                                 key={option}
-                                active={Math.abs(parseFloat(value) / walletBalance - option) < 0.001}
+                                active={
+                                    mode === "Deposit"
+                                        ? Math.abs(parseFloat(value) / walletBalance - option) < 0.001
+                                        : Math.abs(parseFloat(value) / withdrawableAmount! - option) < 0.001
+                                }
                                 onClick={() => handleSelect(option)}
                             >
                                 {`${option * 100}%`}
@@ -113,8 +139,8 @@ const InputUI = ({ mode }: Props) => {
             </Flex>
             <Text my={1} textAlign="right" color="#979797" fontSize="sm">
                 {mode === "Deposit"
-                    ? `Wallet Balance: ${walletBalance.toFixed(5)}`
-                    : `Withdrawable Amount: ${withdrawableAmount!.toFixed(5)}`}
+                    ? `Wallet Balance: ${floorPrecised(walletBalance, 5)}`
+                    : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}
             </Text>
 
             <Flex flexDir="column" mb={6}>
@@ -123,8 +149,8 @@ const InputUI = ({ mode }: Props) => {
                     <Box
                         bg="#383838"
                         w={`${
-                            ((lockedAmount! + (mode === "Deposit" ? locked || 0 : 0)) /
-                                (totalDeposited! + (mode === "Deposit" ? parseFloat(value) : 0))) *
+                            ((locked || 0) /
+                                (totalDeposited! + (mode === "Deposit" ? parseFloat(value) : lockedAmount!))) *
                             100
                         }%`}
                         transition="width 0.5s linear"
@@ -136,19 +162,26 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(lockedAmount! + (mode === "Deposit" ? locked || 0 : 0), 7)} /
+                            {floorPrecised(locked!, 5)} /
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(totalDeposited! + (mode === "Deposit" ? parseFloat(value) : 0), 7)}
+                            {floorPrecised(
+                                totalDeposited! + (mode === "Deposit" ? parseFloat(value) : lockedAmount!),
+                                5
+                            )}
                         </Text>
                     </Flex>
                 </Flex>
             </Flex>
             <ActionButton
                 text={mode}
-                isLoading={isDepositing || isWithdrawing}
-                disabled={parseFloat(value) <= 0}
+                isLoading={isLocked || isDepositing || isWithdrawing}
+                disabled={
+                    parseFloat(value) <= 0 || mode === "Withdraw"
+                        ? parseFloat(value) > withdrawableAmount!
+                        : parseFloat(value) > walletBalance
+                }
                 onClick={handleAction}
             />
         </Flex>

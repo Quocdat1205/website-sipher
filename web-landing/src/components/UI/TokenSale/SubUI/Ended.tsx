@@ -13,7 +13,7 @@ const Ended = ({}: EndedProps) => {
     const qc = useQueryClient()
     const toast = useChakraToast()
 
-    const { data: ReceivedToken } = useQuery("received-token", () => scCaller.current?.getEstReceivedToken(), {
+    const { data: ReceivedToken } = useQuery("received-token", () => scCaller.current?.getEstReceivedToken(account!), {
         enabled: !!scCaller.current && !!account,
         initialData: 0,
     })
@@ -60,7 +60,7 @@ const Ended = ({}: EndedProps) => {
                     <chakra.span display="flex" alignItems="center">
                         <Image mr={4} h="2.4rem" src="/images/icons/community/main-black.png" alt="icon" />
                         <Text mb={2} letterSpacing="3px" fontSize="2xl" fontWeight="semibold" textTransform="uppercase">
-                            {numberWithCommas(ReceivedToken!)} $SIPHER
+                            {numberWithCommas(parseInt(ReceivedToken!.toString()))} $SIPHER
                         </Text>
                     </chakra.span>
                     <ActionButton

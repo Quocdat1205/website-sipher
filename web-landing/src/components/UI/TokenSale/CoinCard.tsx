@@ -1,6 +1,5 @@
 import { Flex, Image, chakra, FlexProps } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
-import { numberWithCommas } from "@source/utils"
 import React from "react"
 
 interface Props extends FlexProps {
@@ -21,7 +20,7 @@ const CoinCard = ({ text, iconSrc, value = "N/A", ...rest }: Props) => {
             rounded="xl"
             flex={1}
             p={8}
-            w="240px"
+            w="320px"
             {...rest}
         >
             <Typo.Text textAlign="center" fontWeight="thin" mb={4} size="small">
@@ -29,9 +28,7 @@ const CoinCard = ({ text, iconSrc, value = "N/A", ...rest }: Props) => {
             </Typo.Text>
             <chakra.span display="flex" alignItems="center" justifyContent="center">
                 <Image mr={4} h="2.4rem" src={iconSrc} alt="icon" />
-                <Typo.BoldText size="large">
-                    {value === "N/A" ? value : numberWithCommas(value as number)}
-                </Typo.BoldText>
+                <Typo.BoldText size="large">{value}</Typo.BoldText>
             </chakra.span>
         </Flex>
     )

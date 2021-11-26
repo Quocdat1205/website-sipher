@@ -1,4 +1,4 @@
-export const SipherIBCOAddress = "0x14B6992E36793A61db2a7EFF581a9A4135Beb2E3"
+export const SipherIBCOAddress = "0x9501Fa9b5e60e35B4CC9507A40c9f3F80400fc5e"
 
 export const SipherIBCOAbi: any = [
     {
@@ -72,7 +72,7 @@ export const SipherIBCOAbi: any = [
     { inputs: [], name: "claim", outputs: [], stateMutability: "nonpayable", type: "function" },
     { inputs: [], name: "deposit", outputs: [], stateMutability: "payable", type: "function" },
     {
-        inputs: [],
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getEstReceivedToken",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
@@ -86,7 +86,7 @@ export const SipherIBCOAbi: any = [
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getLockedAmount",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
@@ -100,14 +100,14 @@ export const SipherIBCOAbi: any = [
         type: "function",
     },
     {
-        inputs: [{ internalType: "address", name: "_userAddress", type: "address" }],
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getUserDeposited",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getWithdrawableAmount",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
