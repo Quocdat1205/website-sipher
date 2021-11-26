@@ -1,22 +1,27 @@
-import { Box, Image, Flex, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react"
+import { Box, Image, Flex, Modal, ModalContent, ModalOverlay, useDisclosure } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typography"
 import { GradientButton } from "@sipher/web-components"
-import { setSignIn } from "@source/utils"
+import { getSignIn, setSignIn } from "@source/utils"
 import { useRouter } from "next/router"
-import React from "react"
+import React, { useEffect } from "react"
+import { isMobile, isTablet } from "react-device-detect"
 
-interface Props {
-    onClose: () => void
-    isOpen: boolean
-}
-
-export const SignInModal = ({ onClose, isOpen }: Props) => {
+export const SignInModal = () => {
     const router = useRouter()
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const isCheckMobile = isMobile || isTablet
 
     const handleSign = () => {
         setSignIn("true")
         onClose()
     }
+
+    useEffect(() => {
+        let signIn = getSignIn()
+        if (!signIn && signIn !== "true" && !isCheckMobile) onOpen()
+    }, [])
 
     return (
         <Modal

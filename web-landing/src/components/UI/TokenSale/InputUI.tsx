@@ -18,7 +18,7 @@ const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("0")
     const options = [0.25, 0.5, 0.75, 1]
 
-    const formatPrecision = (value: number) => value.toString().slice(0, 11)
+    const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
 
     const handleSelect = (option: number) => {
         setValue(formatPrecision(walletBalance * option))
@@ -123,8 +123,8 @@ const InputUI = ({ mode }: Props) => {
                     <Box
                         bg="#383838"
                         w={`${
-                            ((lockedAmount! + mode === "Deposit" ? locked || 0 : 0) /
-                                (totalDeposited! + parseFloat(value)!)) *
+                            ((lockedAmount! + (mode === "Deposit" ? locked || 0 : 0)) /
+                                (totalDeposited! + (mode === "Deposit" ? parseFloat(value) : 0))) *
                             100
                         }%`}
                         transition="width 0.5s linear"
@@ -136,11 +136,11 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(lockedAmount! + mode === "Deposit" ? locked || 0 : 0)} /
+                            {formatPrecision(lockedAmount! + (mode === "Deposit" ? locked || 0 : 0), 7)} /
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(totalDeposited! + mode === "Deposit" ? parseFloat(value) : 0)}
+                            {formatPrecision(totalDeposited! + (mode === "Deposit" ? parseFloat(value) : 0), 7)}
                         </Text>
                     </Flex>
                 </Flex>

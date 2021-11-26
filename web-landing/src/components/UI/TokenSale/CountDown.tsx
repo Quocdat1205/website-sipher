@@ -3,16 +3,28 @@ import Loader from "@components/shared/Loader"
 import { useTimer } from "react-timer-hook"
 import PrivateCountdown from "@components/shared/PrivateCountdown"
 import { useEffect, useState } from "react"
+import { useQuery } from "react-query"
+import useWalletContext from "@hooks/web3/useWalletContext"
 
-interface CountdownProps {
-    startTime: number
-    endTime: number
-}
+interface CountdownProps {}
 
-const Countdown = ({ startTime, endTime }: CountdownProps) => {
-    const timer = useTimer({ expiryTimestamp: new Date(endTime) })
+const Countdown = () => {
     const [now, setNow] = useState(0)
-    const isSale = now >= startTime && now <= endTime
+    const { scCaller } = useWalletContext()
+
+    const { data: startTime } = useQuery("start-time", () => scCaller.current!.getStartTime(), {
+        initialData: new Date().getTime(),
+        enabled: !!scCaller.current,
+    })
+
+    const { data: endTime } = useQuery("end-time", () => scCaller.current!.getEndTime(), {
+        initialData: new Date().getTime(),
+        enabled: !!scCaller.current,
+        onSuccess: data => timer.restart(new Date(data)),
+    })
+
+    const isSale = now >= startTime! && now <= endTime!
+    const timer = useTimer({ expiryTimestamp: new Date(endTime!) })
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -31,7 +43,7 @@ const Countdown = ({ startTime, endTime }: CountdownProps) => {
                         time3={{ value: isSale ? timer.minutes : 0, unit: "mins" }}
                     />
                 </Flex>
-                <Loader percent={isSale ? ((endTime - now) * 100) / (endTime - startTime) : 100} />
+                <Loader percent={isSale ? ((endTime! - now) * 100) / (endTime! - startTime!) : 100} />
             </Box>
         </Flex>
     )

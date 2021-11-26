@@ -1,11 +1,21 @@
 import { Flex, Heading } from "@chakra-ui/layout"
-import React from "react"
+import { isMobile, isTablet } from "react-device-detect"
 
 interface Props {}
 
 export const NotAvailable = (props: Props) => {
+    const isCheckMobile = isMobile || isTablet
+
     return (
-        <Flex align="center" justify="center" pos="absolute" w="full" h="full" bg="blackAlpha.100">
+        <Flex
+            display={isCheckMobile ? "flex" : "none"}
+            align="center"
+            justify="center"
+            pos="absolute"
+            w="full"
+            h="full"
+            bg="blackAlpha.100"
+        >
             <Heading
                 textAlign="center"
                 fontFamily="Brandon"
