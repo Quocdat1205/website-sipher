@@ -100,8 +100,6 @@ const InputUI = ({ mode }: Props) => {
         mode === "Deposit" ? deposit() : withdraw()
     }
 
-    console.log(withdrawableAmount)
-
     return (
         <Flex flexDir="column" w="full">
             <Flex mb={2} flexDir="row" align="center" justify="space-between">
@@ -149,9 +147,9 @@ const InputUI = ({ mode }: Props) => {
                     <Box
                         bg="#383838"
                         w={`${
-                            ((locked || 0) /
-                                (totalDeposited! + (mode === "Deposit" ? parseFloat(value) : lockedAmount!))) *
-                            100
+                            mode === "Deposit"
+                                ? ((locked || 0) / (totalDeposited! + parseFloat(value))) * 100
+                                : ((lockedAmount || 0) / totalDeposited!) * 100
                         }%`}
                         transition="width 0.5s linear"
                         h="full"
@@ -162,12 +160,12 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {floorPrecised(locked!, 5)} /
+                            {mode === "Deposit" ? floorPrecised(locked!, 5) : floorPrecised(lockedAmount, 5)} /
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
                             {floorPrecised(
-                                totalDeposited! + (mode === "Deposit" ? parseFloat(value) : lockedAmount!),
+                                mode === "Deposit" ? totalDeposited! + parseFloat(value) : totalDeposited!,
                                 5
                             )}
                         </Text>
