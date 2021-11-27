@@ -1,11 +1,12 @@
 import { Box, Image, Flex, Modal, ModalContent, ModalOverlay, useDisclosure } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typography"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { GradientButton, useChakraToast } from "@sipher/web-components"
+import { useChakraToast } from "@sipher/web-components"
 import { getSignIn, setSignIn } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useEffect } from "react"
 import { isMobile, isTablet } from "react-device-detect"
+import { GradientButton } from "./GradientButton"
 
 export const SignInModal = () => {
     const router = useRouter()
@@ -73,7 +74,8 @@ export const SignInModal = () => {
                             flex={1}
                             px={8}
                             rounded="full"
-                            bg="border.gray"
+                            bgColor="border.gray"
+                            bgGradient="linear(to-b, #393939, #393939 84.37%)"
                             textTransform="none"
                             text="NEVERMIND"
                             onClick={() => router.push("/")}
