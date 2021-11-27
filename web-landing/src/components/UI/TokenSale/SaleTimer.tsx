@@ -13,7 +13,7 @@ const SaleTimer = ({ status }: SaleTimerProps) => {
         <Flex direction="column" align="center" flex={2} pos="relative">
             <Flex align="center" mb={4}>
                 <Text fontWeight="semibold" size="small" letterSpacing="3px">
-                    {status === "NOT_STARTED" ? "SALE PERIOD BEGINS" : "SALE PERIOD ENDS"}
+                    {status === "NOT_STARTED" ? "COUNTDOWN TO BEGIN" : "SALE PERIOD ENDS"}
                 </Text>
                 <Tooltip hasArrow label="abc ..." placement="bottom-end" fontSize="sm" bg="border.gray" openDelay={500}>
                     <Box ml={2} cursor="pointer" color="white">
