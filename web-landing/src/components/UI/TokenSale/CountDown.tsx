@@ -27,9 +27,7 @@ const Countdown = ({ status }: CountdownProps) => {
     })
 
     const isSale = now >= startTime! && now <= endTime!
-
     const isEndSale = now > endTime!
-
     const timerStart = useTimer({ expiryTimestamp: new Date(startTime!) })
     const timerEnd = useTimer({ expiryTimestamp: new Date(endTime!) })
 
@@ -59,7 +57,7 @@ const Countdown = ({ status }: CountdownProps) => {
                         }}
                     />
                 </Flex>
-                {isSale && <Loader percent={isSale ? ((endTime! - now) * 100) / (endTime! - startTime!) : 100} />}
+                {isSale && <Loader percent={((endTime! - now) * 100) / (endTime! - startTime!)} />}
             </Box>
         </Flex>
     )

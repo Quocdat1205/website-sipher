@@ -85,4 +85,12 @@ export class ContractCaller {
         // const lockedAmount = Web3.utils.toHex(Web3.utils.toWei(amount, "ether"))
         return weiToEther(await this.SipherIBCO.methods.getLockedInvestment(Web3.utils.toWei(amount, "ether")).call())
     }
+
+    async getLockAmountAfterDeposit(address: string, amount: string) {
+        return weiToEther(await this.SipherIBCO.methods.getLockAmountAfterDeposit(address, amount).call())
+    }
+
+    async getAccumulatedAfterDeposit(address: string, amount: string) {
+        return weiToEther(await this.SipherIBCO.methods.getAccumulatedAfterDeposit(address, amount).call())
+    }
 }

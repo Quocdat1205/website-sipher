@@ -29,21 +29,25 @@ const InputUI = ({ mode }: Props) => {
     const qc = useQueryClient()
     const toast = useChakraToast()
 
-    const { data: totalDeposited } = useQuery("total-deposited", () => scCaller.current?.getUserDeposited(account!), {
-        enabled: !!scCaller.current && !!account,
-        initialData: 0,
-    })
-
-    const { data: lockedAmount } = useQuery("locked-amount", () => scCaller.current?.getLockedAmount(account!), {
-        enabled: !!scCaller.current && !!account,
-        initialData: 0,
-    })
-
-    const { data: locked, isLoading: isLocked } = useQuery(
-        ["locked", value],
+    const { data: accumulated } = useQuery(
+        "accumulated-deposit",
         () =>
-            scCaller.current?.calculateLocked(
-                mode === "Deposit" ? (parseFloat(value) + totalDeposited!).toString() : totalDeposited!.toString()
+            scCaller.current?.getAccumulatedAfterDeposit(
+                account!,
+                mode === "Deposit" ? parseFloat(value).toString() : "0"
+            ),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const { data: lockedAmount, isLoading: isLocked } = useQuery(
+        ["locked-amount", value],
+        () =>
+            scCaller.current?.getLockAmountAfterDeposit(
+                account!,
+                mode === "Deposit" ? parseFloat(value).toString() : "0"
             ),
         {
             enabled: !!scCaller.current && !!account,
@@ -167,11 +171,7 @@ const InputUI = ({ mode }: Props) => {
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box
                         bg="#383838"
-                        w={`${
-                            mode === "Deposit"
-                                ? ((locked || 0) / (totalDeposited! + parseFloat(value))) * 100
-                                : ((lockedAmount || 0) / totalDeposited!) * 100
-                        }%`}
+                        w={`${((lockedAmount || 0) / accumulated!) * 100}%`}
                         transition="width 0.5s linear"
                         h="full"
                         rounded="full"
@@ -181,19 +181,11 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {mode === "Deposit"
-                                ? value === "0"
-                                    ? floorPrecised(lockedAmount!, 5)
-                                    : floorPrecised(locked!, 5)
-                                : floorPrecised(lockedAmount, 5)}
-                            /
+                            {floorPrecised(lockedAmount!, 5)}
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {floorPrecised(
-                                mode === "Deposit" ? totalDeposited! + parseFloat(value) : totalDeposited!,
-                                5
-                            )}
+                            {floorPrecised(accumulated, 5)}
                         </Text>
                     </Flex>
                 </Flex>
