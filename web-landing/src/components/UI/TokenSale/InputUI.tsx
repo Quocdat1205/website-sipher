@@ -181,7 +181,12 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {mode === "Deposit" ? floorPrecised(locked!, 5) : floorPrecised(lockedAmount, 5)} /
+                            {mode === "Deposit"
+                                ? value === "0"
+                                    ? floorPrecised(lockedAmount!, 5)
+                                    : floorPrecised(locked!, 5)
+                                : floorPrecised(lockedAmount, 5)}
+                            /
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">

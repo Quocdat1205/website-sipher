@@ -26,7 +26,7 @@ const Countdown = ({ status }: CountdownProps) => {
         onSuccess: data => timerEnd.restart(new Date(data)),
     })
 
-    // const isSale = now >= startTime! && now <= endTime!
+    const isSale = now >= startTime! && now <= endTime!
 
     const isEndSale = now > endTime!
 
@@ -59,15 +59,7 @@ const Countdown = ({ status }: CountdownProps) => {
                         }}
                     />
                 </Flex>
-                <Loader
-                    percent={
-                        !isEndSale
-                            ? status === "NOT_STARTED"
-                                ? ((startTime! - now) * 100) / startTime!
-                                : ((endTime! - now) * 100) / (endTime! - startTime!)
-                            : 100
-                    }
-                />
+                {isSale && <Loader percent={isSale ? ((endTime! - now) * 100) / (endTime! - startTime!) : 100} />}
             </Box>
         </Flex>
     )
