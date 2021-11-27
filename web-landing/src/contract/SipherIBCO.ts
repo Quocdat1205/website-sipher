@@ -1,4 +1,4 @@
-export const SipherIBCOAddress = "0x9501Fa9b5e60e35B4CC9507A40c9f3F80400fc5e"
+export const SipherIBCOAddress = "0x6EF1BA5347C53ba647C10fcAfe670875592b3d81"
 
 export const SipherIBCOAbi: any = [
     {
@@ -13,7 +13,7 @@ export const SipherIBCOAbi: any = [
             { indexed: false, internalType: "uint256", name: "userShare", type: "uint256" },
             { indexed: false, internalType: "uint256", name: "sipherAmount", type: "uint256" },
         ],
-        name: "Claimed",
+        name: "Claim",
         type: "event",
     },
     {
@@ -22,7 +22,7 @@ export const SipherIBCOAbi: any = [
             { indexed: true, internalType: "address", name: "account", type: "address" },
             { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
         ],
-        name: "Deposited",
+        name: "Deposit",
         type: "event",
     },
     {
@@ -111,13 +111,6 @@ export const SipherIBCOAbi: any = [
         name: "getWithdrawableAmount",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [{ internalType: "uint256", name: "userAccumulated", type: "uint256" }],
-        name: "getWithdrawableInvestment",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "pure",
         type: "function",
     },
     {

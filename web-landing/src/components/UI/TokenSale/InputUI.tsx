@@ -1,4 +1,4 @@
-import { Flex, HStack, Image, Box, Text } from "@chakra-ui/react"
+import { Flex, HStack, Image, Box, Text, chakra, Tooltip } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
 import React, { useState } from "react"
 import { DropdownOption } from "./SaleForm"
@@ -9,6 +9,8 @@ import { weiToEther } from "@source/contract"
 import { ActionButton } from "./ActionButton"
 import { FaEthereum } from "react-icons/fa"
 import { useChakraToast } from "@sipher/web-components"
+import useSaleTime from "./useSaleTime"
+import { BsQuestionCircle } from "react-icons/bs"
 
 interface Props {
     mode: DropdownOption
@@ -22,6 +24,7 @@ const InputUI = ({ mode }: Props) => {
 
     const { balance, scCaller, account } = useWalletContext()
     const walletBalance = weiToEther(balance)
+    const { status } = useSaleTime()
 
     const qc = useQueryClient()
     const toast = useChakraToast()
@@ -64,13 +67,15 @@ const InputUI = ({ mode }: Props) => {
     }
 
     const handleSelect = (option: number) => {
-        setValue(
-            formatPrecision(
-                mode === "Deposit"
-                    ? floorPrecised(walletBalance * option, 5)
-                    : floorPrecised(withdrawableAmount! * option, 5)
+        if (status === "ONGOING") {
+            setValue(
+                formatPrecision(
+                    mode === "Deposit"
+                        ? floorPrecised(walletBalance * option, 5)
+                        : floorPrecised(withdrawableAmount! * option, 5)
+                )
             )
-        )
+        }
     }
 
     const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
@@ -108,6 +113,7 @@ const InputUI = ({ mode }: Props) => {
                     {options.map(option => {
                         return (
                             <RadioCard
+                                isDisable={status !== "ONGOING"}
                                 key={option}
                                 active={
                                     mode === "Deposit"
@@ -124,6 +130,7 @@ const InputUI = ({ mode }: Props) => {
             </Flex>
             <Flex pos="relative" align="center">
                 <EtherInput
+                    status={status}
                     value={value}
                     setValue={setValue}
                     maxValue={mode === "Deposit" ? walletBalance : withdrawableAmount!}
@@ -142,7 +149,21 @@ const InputUI = ({ mode }: Props) => {
             </Text>
 
             <Flex flexDir="column" mb={6}>
-                <Text mb={2}>Locked amount</Text>
+                <chakra.span mb={2} display="flex" alignItems="center">
+                    <Text>Locked amount</Text>
+                    <Tooltip
+                        hasArrow
+                        label="abc ..."
+                        placement="bottom-end"
+                        fontSize="sm"
+                        bg="border.gray"
+                        openDelay={500}
+                    >
+                        <Box ml={2} cursor="pointer" color="white">
+                            <BsQuestionCircle size="1rem" />
+                        </Box>
+                    </Tooltip>
+                </chakra.span>
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box
                         bg="#383838"
@@ -176,9 +197,9 @@ const InputUI = ({ mode }: Props) => {
                 text={mode}
                 isLoading={isLocked || isDepositing || isWithdrawing}
                 disabled={
-                    parseFloat(value) <= 0 || mode === "Withdraw"
-                        ? parseFloat(value) > withdrawableAmount!
-                        : parseFloat(value) > walletBalance
+                    status !== "ONGOING" ||
+                    parseFloat(value) <= 0 ||
+                    (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
                 }
                 onClick={handleAction}
             />

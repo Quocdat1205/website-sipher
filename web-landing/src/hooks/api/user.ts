@@ -22,11 +22,14 @@ export const signupUser = async (address: string): Promise<IUser> => {
 }
 
 /** Authenticate user by address and signature */
-export const authenticateUser = async (address: string, signature: string): Promise<string> => {
+export const authenticateUser = async (
+    address: string,
+    signature: string
+): Promise<{ accessToken: string; tracking: boolean }> => {
     const {
-        data: { accessToken },
+        data: { accessToken, tracking },
     } = await fetcher.post("/login/authentication", { publicAddress: address, signature })
-    return accessToken
+    return { accessToken, tracking }
 }
 
 // export const logLocation = async (cookies) => {

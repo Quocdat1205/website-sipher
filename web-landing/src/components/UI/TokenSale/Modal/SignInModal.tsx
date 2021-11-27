@@ -1,6 +1,7 @@
 import { Box, Image, Flex, Modal, ModalContent, ModalOverlay, useDisclosure } from "@chakra-ui/react"
 import { Typo } from "@components/shared/Typography"
-import { GradientButton } from "@sipher/web-components"
+import useWalletContext from "@hooks/web3/useWalletContext"
+import { GradientButton, useChakraToast } from "@sipher/web-components"
 import { getSignIn, setSignIn } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useEffect } from "react"
@@ -10,12 +11,18 @@ export const SignInModal = () => {
     const router = useRouter()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-
+    const wallet = useWalletContext()
     const isCheckMobile = isMobile || isTablet
+    const toast = useChakraToast()
 
-    const handleSign = () => {
-        setSignIn("true")
-        onClose()
+    const handleSign = async () => {
+        const { tracking } = await wallet.getAccessToken()
+        if (tracking) {
+            setSignIn("true")
+            onClose()
+        } else {
+            toast({ status: "error", title: "Error", message: "" })
+        }
     }
 
     useEffect(() => {
@@ -79,7 +86,7 @@ export const SignInModal = () => {
                             rounded="full"
                             textTransform="none"
                             text="CONFIRM"
-                            onClick={handleSign}
+                            onClick={() => handleSign()}
                         />
                     </Flex>
                 </Flex>

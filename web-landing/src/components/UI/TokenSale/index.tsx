@@ -26,8 +26,6 @@ const TokenSale = () => {
 
     if (status === "LOADING") return <Loading />
 
-    if (status === "NOT_STARTED") return <NotStarted />
-
     if (status === "ENDED") return <Ended />
 
     return (
@@ -65,7 +63,7 @@ const TokenSale = () => {
                         borderColor="#383838"
                     >
                         <Flex h="full">
-                            <SaleTimer />
+                            <SaleTimer status={status} />
                             <SaleForm />
                         </Flex>
                     </GridItem>

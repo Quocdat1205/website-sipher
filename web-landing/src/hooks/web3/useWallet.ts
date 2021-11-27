@@ -150,10 +150,10 @@ const useWallet = () => {
             account as string,
             ""
         )
-        const token = await authenticateUser(account, signature)
+        const { accessToken, tracking } = await authenticateUser(account, signature)
 
-        setAccessToken(token)
-        return token
+        setAccessToken(tracking ? accessToken : "")
+        return { accessToken, tracking }
     }, [web3React])
     // auto connect on refresh
     useEffect(() => {
