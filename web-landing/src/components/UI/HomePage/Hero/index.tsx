@@ -6,6 +6,7 @@ import Title from "./Title"
 import { CgMouse } from "react-icons/cg"
 import { BiChevronDown } from "react-icons/bi"
 import CountDown from "./CountDown"
+import { startTime, endTime } from "@constant/index"
 
 interface FirstScreenProps {}
 
@@ -45,7 +46,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     <Text mb={[4, 4, 4, 8]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
                         OFFICIAL LAUNCH 06/12/2021 - 09:00AM GMT+7
                     </Text>
-                    <CountDown startTime={1637988300000} endTime={1638247500000} />
+                    <CountDown startTime={startTime} endTime={endTime} />
                     <Flex mt={6}>
                         <LinkButton
                             text="LEARN MORE ON MEDIUM"
