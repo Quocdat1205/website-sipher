@@ -87,10 +87,14 @@ export class ContractCaller {
     }
 
     async getLockAmountAfterDeposit(address: string, amount: string) {
-        return weiToEther(await this.SipherIBCO.methods.getLockAmountAfterDeposit(address, amount).call())
+        return weiToEther(
+            await this.SipherIBCO.methods.getLockAmountAfterDeposit(address, Web3.utils.toWei(amount, "ether")).call()
+        )
     }
 
     async getAccumulatedAfterDeposit(address: string, amount: string) {
-        return weiToEther(await this.SipherIBCO.methods.getAccumulatedAfterDeposit(address, amount).call())
+        return weiToEther(
+            await this.SipherIBCO.methods.getAccumulatedAfterDeposit(address, Web3.utils.toWei(amount, "ether")).call()
+        )
     }
 }

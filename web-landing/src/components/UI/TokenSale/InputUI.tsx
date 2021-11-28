@@ -42,7 +42,7 @@ const InputUI = ({ mode }: Props) => {
         }
     )
 
-    const { data: lockedAmount, isLoading: isLocked } = useQuery(
+    const { data: lockedAmount } = useQuery(
         ["locked-amount", value],
         () =>
             scCaller.current?.getLockAmountAfterDeposit(
@@ -181,7 +181,7 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {floorPrecised(lockedAmount!, 5)}
+                            {floorPrecised(lockedAmount!, 5)} /
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
@@ -192,7 +192,7 @@ const InputUI = ({ mode }: Props) => {
             </Flex>
             <ActionButton
                 text={mode}
-                isLoading={isLocked || isDepositing || isWithdrawing}
+                isLoading={isDepositing || isWithdrawing}
                 disabled={
                     status !== "ONGOING" ||
                     parseFloat(value) <= 0 ||
