@@ -53,12 +53,12 @@ const Title = ({ text, custom = 0, ...rest }: TitleProps) => {
 
     return (
         <Stack mb={4} align="center" direction={["column", "column", "row"]} spacing={[4, 4, 12]}>
-            <HStack align="baseline" spacing={4} overflow="hidden" userSelect="none" {...rest}>
+            <HStack align="baseline" spacing={3} overflow="hidden" userSelect="none" {...rest}>
                 {word1.split("").map((char, idx) => (
                     <Letter key={idx} char={char} control={controls} custom={custom} />
                 ))}
             </HStack>
-            <HStack align="baseline" spacing={4} overflow="hidden" userSelect="none" {...rest}>
+            <HStack align="baseline" spacing={3} overflow="hidden" userSelect="none" {...rest}>
                 {word2.split("").map((char, idx) => (
                     <Letter key={idx} char={char} control={controls} custom={custom} />
                 ))}
