@@ -1,26 +1,26 @@
-import { Box, BoxProps } from "@chakra-ui/layout"
+import { Text, TextProps } from "@chakra-ui/layout"
 
-interface Props extends BoxProps {
+interface Props extends TextProps {
     active: boolean
+    isDisable: boolean
 }
 
-const RadioCard = ({ active, children, ...rest }: Props) => {
+const RadioCard = ({ isDisable, active, ...rest }: Props) => {
     return (
-        <Box as="label">
-            <Box
-                cursor="pointer"
-                rounded="full"
-                bg="transparent"
-                color={active ? "white" : "#979797"}
-                fontWeight={500}
-                _focus={{
-                    boxShadow: "none",
-                }}
-                {...rest}
-            >
-                {children}
-            </Box>
-        </Box>
+        <Text
+            px={1}
+            rounded="md"
+            cursor="pointer"
+            pointerEvents={isDisable ? "none" : "unset"}
+            bgGradient={active ? "linear(to-b, bgGradient.orange)" : "none"}
+            color={active ? "white" : "#979797"}
+            fontWeight={400}
+            fontSize="sm"
+            _focus={{
+                boxShadow: "none",
+            }}
+            {...rest}
+        />
     )
 }
 export default RadioCard

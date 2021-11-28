@@ -1,100 +1,215 @@
-import { Flex, HStack, chakra, Image, Input, Progress, Box } from "@chakra-ui/react"
+import { Flex, HStack, Image, Box, Text, chakra, Tooltip } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
-import { Typo } from "@components/shared/Typography"
 import React, { useState } from "react"
-import { GradientButton } from "@sipher/web-components"
+import { DropdownOption } from "./SaleForm"
+import EtherInput from "./EtherInput"
+import useWalletContext from "@hooks/web3/useWalletContext"
+import { useMutation, useQuery, useQueryClient } from "react-query"
+import { weiToEther } from "@source/contract"
+import { ActionButton } from "./ActionButton"
+import { FaEthereum } from "react-icons/fa"
+import { useChakraToast } from "@sipher/web-components"
+import useSaleTime from "./useSaleTime"
+import { BsQuestionCircle } from "react-icons/bs"
 
 interface Props {
-    mode: "Deposit" | "Withdraw"
+    mode: DropdownOption
 }
 
 const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("0")
-    const [percentage, setPercentage] = useState("")
-    const options = ["25%", "50%", "75%", "100%"]
+    const options = [0.25, 0.5, 0.75, 1]
+    const { balance, scCaller, account, getTracking } = useWalletContext()
 
-    const handleChange = e => {
-        const toNumber = Number(e.target.value.replace(/\D/g, ""))
-        const toLocale = toNumber.toLocaleString()
-        setPercentage("")
-        setValue(toLocale)
+    const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
+
+    const walletBalance = weiToEther(balance)
+    const { status } = useSaleTime()
+
+    const qc = useQueryClient()
+    const toast = useChakraToast()
+
+    const { data: accumulated } = useQuery(
+        "accumulated-deposit",
+        () =>
+            scCaller.current?.getAccumulatedAfterDeposit(
+                account!,
+                mode === "Deposit" ? parseFloat(value).toString() : "0"
+            ),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const { data: lockedAmount } = useQuery(
+        ["locked-amount", value],
+        () =>
+            scCaller.current?.getLockAmountAfterDeposit(
+                account!,
+                mode === "Deposit" ? parseFloat(value).toString() : "0"
+            ),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const { data: withdrawableAmount } = useQuery(
+        "withdrawable-amount",
+        () => scCaller.current?.getWithdrawableAmount(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const floorPrecised = (number, precision) => {
+        let power = Math.pow(10, precision)
+
+        return Math.floor(number * power) / power
     }
 
-    const handleSelect = value => {
-        setPercentage(value)
-        let valueSelect = 1500 * parseInt(value) * 0.01
-        const toNumber = Number(valueSelect.toString().replace(/\D/g, ""))
-        const toLocale = toNumber.toLocaleString()
-        setValue(toLocale)
+    const handleSelect = (option: number) => {
+        if (status === "ONGOING") {
+            setValue(
+                formatPrecision(
+                    mode === "Deposit"
+                        ? floorPrecised(walletBalance * option, 5)
+                        : floorPrecised(withdrawableAmount! * option, 5)
+                )
+            )
+        }
     }
 
-    // console.log(value.replace(/\D/g, ""))
+    const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
+        onError: (err: any) => toast({ title: "Error", message: err.message }),
+        onSuccess: () => {
+            toast({ title: "Deposited successfully!" })
+            setValue("0")
+            qc.invalidateQueries("total-deposited")
+            qc.invalidateQueries("locked-amount")
+        },
+    })
+
+    const { mutate: withdraw, isLoading: isWithdrawing } = useMutation(
+        () => scCaller.current!.withdraw(account!, value),
+        {
+            onError: (err: any) => toast({ title: "Error", message: err.message }),
+            onSuccess: () => {
+                toast({ title: "Withdrawal successfully!" })
+                setValue("0")
+                qc.invalidateQueries("total-deposited")
+                qc.invalidateQueries("locked-amount")
+            },
+        }
+    )
+
+    const handleAction = async () => {
+        mode === "Deposit" ? deposit() : withdraw()
+
+        // try {
+        //     const isTracking = await getTracking(mode)
+        //     if (isTracking) {
+        //         mode === "Deposit" ? deposit() : withdraw()
+        //     } else {
+        //         toast({ title: "Error!", message: "IP not supported by SIPHER" })
+        //     }
+        // } catch (error) {
+        //     toast({ title: "Error!", message: "Please try again later" })
+        // }
+    }
+
     return (
-        <Flex flexDir="column">
+        <Flex flexDir="column" w="full">
             <Flex mb={2} flexDir="row" align="center" justify="space-between">
-                <Typo.Text size="small" textAlign="left" flex={1}>
-                    I want to {mode === "Deposit" ? "deposit" : "withdraw"}
-                </Typo.Text>
-                <HStack justify="flex-end" spacing={4}>
-                    {options.map(value => {
+                <Text>{mode === "Deposit" ? "I want to deposit" : "Withdraw collateral"}</Text>
+                <HStack justify="flex-end" spacing={1}>
+                    {options.map(option => {
                         return (
-                            <RadioCard key={value} active={percentage === value} onClick={() => handleSelect(value)}>
-                                {value}
+                            <RadioCard
+                                isDisable={status !== "ONGOING"}
+                                key={option}
+                                active={
+                                    mode === "Deposit"
+                                        ? Math.abs(parseFloat(value) / walletBalance - option) < 0.001
+                                        : Math.abs(parseFloat(value) / withdrawableAmount! - option) < 0.001
+                                }
+                                onClick={() => handleSelect(option)}
+                            >
+                                {`${option * 100}%`}
                             </RadioCard>
                         )
                     })}
                 </HStack>
             </Flex>
-            <Flex pos="relative" flexDir="row" align="center">
-                <Input
-                    _focus={{ borderColor: "main.orange" }}
-                    _hover={{ borderColor: "main.orange" }}
+            <Flex pos="relative" align="center">
+                <EtherInput
+                    status={status}
                     value={value}
-                    fontSize={["1rem", "1.2rem", "1.4rem"]}
-                    onChange={handleChange}
-                    flex={1}
-                    px={6}
-                    py={6}
-                    pr="6rem"
-                    bg="black"
-                    rounded="full"
-                    border="1px"
-                    borderColor="border.gray"
+                    setValue={setValue}
+                    maxValue={mode === "Deposit" ? walletBalance : withdrawableAmount!}
                 />
-                <Flex zIndex={1} pos="absolute" right="0" px={4} flexDir="row" align="center">
+                <Flex zIndex={1} pos="absolute" right="0" px={6} flexDir="row" align="center">
                     <Image h="1.6rem" src="/images/icons/eth.png" alt="icon" />
-                    <Typo.Text ml={2} fontWeight={400}>
+                    <Text ml={2} fontWeight={400}>
                         ETH
-                    </Typo.Text>
+                    </Text>
                 </Flex>
             </Flex>
-            <chakra.span fontWeight={500} py={1} textAlign="right" color="gray.500" fontSize="xs">
-                balance: 1500
-            </chakra.span>
+            <Text my={1} textAlign="right" color="#979797" fontSize="sm">
+                {mode === "Deposit"
+                    ? `Wallet Balance: ${floorPrecised(walletBalance, 5)}`
+                    : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}
+            </Text>
+
             <Flex flexDir="column" mb={6}>
-                <Typo.Text mb={2} size="small" textAlign="left" flex={1}>
-                    Locked amount
-                </Typo.Text>
-                <Box
-                    textAlign="left"
-                    transition="all .5s"
-                    border="1px"
-                    borderColor="border.gray"
-                    rounded="full"
-                    overflow="hidden"
-                >
-                    <Progress className="process-amount" sx={{ ">div": { bg: "border.gray" } }} value={20} bg="black" />
-                </Box>
-                <chakra.span fontWeight={500} py={1} textAlign="right" color="gray.500" fontSize="xs">
-                    $ 220/$ 1000
+                <chakra.span mb={2} display="flex" alignItems="center">
+                    <Text>Locked amount</Text>
+                    <Tooltip
+                        hasArrow
+                        label="abc ..."
+                        placement="bottom-end"
+                        fontSize="sm"
+                        bg="border.gray"
+                        openDelay={500}
+                    >
+                        <Box ml={2} cursor="pointer" color="white">
+                            <BsQuestionCircle size="1rem" />
+                        </Box>
+                    </Tooltip>
                 </chakra.span>
+                <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
+                    <Box
+                        bg="#383838"
+                        w={`${((lockedAmount || 0) / accumulated!) * 100}%`}
+                        transition="width 0.5s linear"
+                        h="full"
+                        rounded="full"
+                    />
+                </Box>
+                <Flex w="full" justify="flex-end" my={1}>
+                    <Flex align="center">
+                        <FaEthereum />
+                        <Text fontSize="sm" color="#979797">
+                            {floorPrecised(lockedAmount!, 5)} /
+                        </Text>
+                        <FaEthereum />
+                        <Text fontSize="sm" color="#979797">
+                            {floorPrecised(accumulated, 5)}
+                        </Text>
+                    </Flex>
+                </Flex>
             </Flex>
-            <GradientButton
-                disabled
-                py={4}
-                rounded="lg"
-                fontSize="sm"
-                text={mode === "Deposit" ? "Deposit" : "Withdraw"}
+            <ActionButton
+                text={mode}
+                isLoading={isDepositing || isWithdrawing}
+                disabled={
+                    status !== "ONGOING" ||
+                    parseFloat(value) <= 0 ||
+                    (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
+                }
+                onClick={handleAction}
             />
         </Flex>
     )

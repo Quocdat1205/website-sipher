@@ -11,41 +11,47 @@ import {
     setLastActiveAccount,
     getLastConnector,
     getLastActiveAccount,
-    setAccessToken,
-    clearAccessToken,
 } from "./utils"
 import Web3 from "web3"
-import WalletConnectProvider from "@walletconnect/web3-provider"
-import { authenticateUser, getUsersByAddress, IUser } from "@hooks/api/user"
+import { authenticateUser, getUsersByAddress, trackingIP } from "@hooks/api/user"
 import { useChakraToast } from "@sipher/web-components"
+import { clearAccessToken, clearSignIn, setAccessToken, setSignIn, getAccessToken } from "@source/utils"
+import { ContractCaller } from "@source/contract"
+import { useWalletBalance } from "./useWalletBalance"
 
 declare global {
     interface Window {
         ethereum: any
     }
 }
-const providerMM = typeof window !== "undefined" && window.ethereum
-const providerWC = new WalletConnectProvider({
-    infuraId: "52e62e876fe64ea2b200aea33d8e22f1", // Required
-})
 
 const useWallet = () => {
     const [connectorName, setConnectorName] = useState<ConnectorId | null>(null)
     const [status, setStatus] = useState<Status>("disconnected")
     const [error, setError] = useState<Error | null>(null)
     const web3React = useWeb3React()
-    const { account, chainId } = web3React
+    const web3 = useRef<null | Web3>(null)
+    const { account, chainId, library: ethereum } = web3React
     const activationId = useRef(0)
     // Current chain id
     const chain = useMemo(() => (chainId ? getChain(chainId) : null), [chainId])
+
+    const scCaller = useRef<ContractCaller | null>(null)
+
+    const balance = useWalletBalance({ account, ethereum })
 
     const reset = useCallback(() => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
         if (web3React.active) {
             web3React.deactivate()
+
+            // Manually remove walletconnect
+            localStorage.removeItem("walletconnect")
         }
+
         clearLastActiveAccount()
         clearAccessToken()
+        clearSignIn()
         setConnectorName(null)
         setError(null)
         setStatus("disconnected")
@@ -60,6 +66,14 @@ const useWallet = () => {
         }
     }, [web3React.error])
     const toast = useChakraToast()
+
+    useEffect(() => {
+        if (web3React.library) {
+            if (!scCaller.current) scCaller.current = new ContractCaller(web3React.library)
+            if (!web3.current) web3.current = new Web3(web3React.library)
+        }
+    }, [web3React.library])
+
     // connect to wallet
     const connect = useCallback(
         async (connectorId: ConnectorId = "injected") => {
@@ -126,58 +140,37 @@ const useWallet = () => {
         [reset, web3React]
     )
 
-    // Signature message on provider
-    const signMessage = useCallback(
-        async (address: string, nonce: number) => {
-            const web3 = new Web3(connectorName === "injected" ? providerMM : providerWC)
-            let signature: string
-            if (connectorName === "injected") {
-                signature = await web3.eth.personal.sign(
-                    `I am signing my one-time nonce: ${nonce}`,
-                    address,
-                    "" // MetaMask will ignore the password argument here
-                )
-            } else {
-                await providerWC.enable()
-                signature = await web3.eth.personal.sign(
-                    `I am signing my one-time nonce: ${nonce}`,
-                    address,
-                    "" // WalletConnect will ignore the password argument here
-                )
-            }
-
-            return signature
-        },
-        [web3React, connectorName]
-    )
-
-    /** Authenticate user by address and nonce
-     * @returns string
-     */
-    const authenticateAddress = async (user: IUser): Promise<string> => {
-        const { address, nonce } = user
-        const signature = await signMessage(address, nonce)
-        const token = await authenticateUser(address, signature)
-        return token
-    }
-
-    /** Sign user up or log user in with address */
-    const getUser = async (address: string): Promise<IUser> => {
-        let account = await getUsersByAddress(address)
-        return account
-    }
-
     //** Get accessToken when change emotion */
-    const getAccessToken = useCallback(
-        async address => {
-            const account = await getUser(address)
-            const token = await authenticateAddress(account)
+    const getAccessTokenAPI = useCallback(async () => {
+        if (!account) throw Error("Account not found")
+        if (!web3.current) throw Error("Provider not found")
 
-            setAccessToken(token)
-            return token
+        const user = await getUsersByAddress(account)
+        const signature = await web3.current.eth.personal.sign(
+            `I am signing my one-time nonce: ${user.nonce}`,
+            account as string,
+            ""
+        )
+        const { accessToken, tracking } = await authenticateUser(account, signature)
+
+        setAccessToken(tracking ? accessToken : "")
+        setSignIn(tracking ? "true" : "false")
+        return { accessToken, tracking }
+    }, [web3React])
+
+    //** Tracking user wallet address */
+    const getTracking = useCallback(
+        async action => {
+            if (!account) throw Error("Account not found")
+            if (!web3.current) throw Error("Provider not found")
+
+            let accessToken = getAccessToken()
+            const isTracking = await trackingIP(account, accessToken!, action)
+            return isTracking
         },
         [web3React]
     )
+
     // auto connect on refresh
     useEffect(() => {
         const lastConnector = getLastConnector()
@@ -198,8 +191,11 @@ const useWallet = () => {
         isConnecting: status === "connecting",
         error,
         isActive: web3React.active,
-        ethereum: web3React.library,
-        getAccessToken,
+        ethereum,
+        getAccessToken: getAccessTokenAPI,
+        getTracking,
+        balance,
+        scCaller,
     }
 
     return wallet

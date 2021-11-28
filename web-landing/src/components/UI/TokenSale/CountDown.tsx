@@ -1,37 +1,76 @@
 import { Flex, Box, Text } from "@chakra-ui/react"
 import Loader from "@components/shared/Loader"
-import { TimerResult } from "react-timer-hook"
+import { useTimer } from "react-timer-hook"
 import PrivateCountdown from "@components/shared/PrivateCountdown"
+import { useEffect, useState } from "react"
+import { useQuery } from "react-query"
+import useWalletContext from "@hooks/web3/useWalletContext"
+import { Status } from "./useSaleTime"
 
 interface CountdownProps {
-    percent: number
+    status: Status
 }
 
-const Countdown = ({ percent }: CountdownProps) => {
+const Countdown = ({ status }: CountdownProps) => {
+    const [now, setNow] = useState(0)
+    const { scCaller } = useWalletContext()
+
+    const { data: startTime } = useQuery("start-time", () => scCaller.current!.getStartTime(), {
+        initialData: new Date().getTime(),
+        enabled: !!scCaller.current,
+    })
+
+    const { data: endTime } = useQuery("end-time", () => scCaller.current!.getEndTime(), {
+        initialData: new Date().getTime(),
+        enabled: !!scCaller.current,
+        onSuccess: data => timerEnd.restart(new Date(data)),
+    })
+
+    const isSale = now >= startTime! && now <= endTime!
+    const isEndSale = now > endTime!
+    const timerStart = useTimer({ expiryTimestamp: new Date(startTime!) })
+    const timerEnd = useTimer({ expiryTimestamp: new Date(endTime!) })
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setNow(new Date().getTime())
+        }, 1000)
+        return () => clearInterval(interval)
+    }, [])
+
     return (
-        <Flex direction="column" align="center" h="full" px={4} pt={20} pb={10} pos="relative">
-            <Text py={3} textTransform="uppercase" fontWeight={500} mb={4}>
-                Sale Period Ends
-            </Text>
-            <Box boxSize="14rem" position="relative">
+        <Flex direction="column" align="center" h="full" pt={8} pos="relative">
+            <Box boxSize="16rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     <PrivateCountdown
-                        time1={{ value: 0, unit: "DAYS" }}
-                        time2={{ value: 0, unit: "HOURS" }}
-                        time3={{ value: 0, unit: "MINS" }}
+                        time1={{
+                            value: !isEndSale ? (status === "NOT_STARTED" ? timerStart.days : timerEnd.days) : 0,
+                            unit: "days",
+                        }}
+                        time2={{
+                            value: !isEndSale ? (status === "NOT_STARTED" ? timerStart.hours : timerEnd.hours) : 0,
+                            unit: "hours",
+                        }}
+                        time3={{
+                            value: !isEndSale ? (status === "NOT_STARTED" ? timerStart.minutes : timerEnd.minutes) : 0,
+                            unit: "mins",
+                        }}
                     />
                 </Flex>
-                <Loader percent={percent} />
+                {isSale && <Loader percent={((endTime! - now) * 100) / (endTime! - startTime!)} />}
+                <Box pos="absolute" boxSize="14rem" top="50%" left="50%" transform="translate(-50%, -50%)">
+                    {!isEndSale && (
+                        <Loader
+                            isSecond
+                            percent={
+                                status === "NOT_STARTED"
+                                    ? (timerStart.seconds / 60) * 100
+                                    : (timerEnd.seconds / 60) * 100
+                            }
+                        />
+                    )}
+                </Box>
             </Box>
-            <Box
-                pos="absolute"
-                w="1px"
-                h="80%"
-                top={"50%"}
-                transform="translateY(-50%)"
-                right={0}
-                bgGradient="linear(to-b, transparent, #FFC266, transparent)"
-            />
         </Flex>
     )
 }

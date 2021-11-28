@@ -12,6 +12,7 @@ const initWalletConnect = (): Connector => {
         })
     }
     const handleActivationError = (err: Error) => {
+        console.log(err)
         return err instanceof UserRejectedRequestError ? new ConnectionRejectedError() : null
     }
     return {
