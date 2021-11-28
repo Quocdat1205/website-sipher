@@ -20,14 +20,14 @@ const CoinCard = ({ text, iconSrc, value = "N/A", ...rest }: Props) => {
             rounded="xl"
             flex={1}
             p={8}
-            w="320px"
+            w="300px"
             {...rest}
         >
-            <Typo.Text textAlign="center" fontWeight="thin" mb={4} size="small">
+            <Typo.Text px={4} textAlign="center" fontWeight="thin" mb={4} size="small">
                 {text}
             </Typo.Text>
             <chakra.span display="flex" alignItems="center" justifyContent="center">
-                <Image mr={4} h="2.4rem" src={iconSrc} alt="icon" />
+                <Image mr={4} h="2.2rem" src={iconSrc} alt="icon" />
                 <Typo.BoldText size="large">{value}</Typo.BoldText>
             </chakra.span>
         </Flex>

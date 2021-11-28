@@ -19,6 +19,10 @@ export const getSignIn = (): string | null => {
     return localStorage?.getItem(SIGNIN_KEY)
 }
 
+export const clearSignIn = () => {
+    localStorage?.removeItem(SIGNIN_KEY)
+}
+
 export const setAccessToken = (accessToken: string) => {
     localStorage?.setItem(ACCESSTOKEN_KEY, accessToken)
 }

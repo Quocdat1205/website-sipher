@@ -14,7 +14,6 @@ import RightBarInfo from "./RightBarInfo"
 import useSaleTime from "./useSaleTime"
 import NotConnected from "./SubUI/NotConnected"
 import Loading from "./SubUI/Loading"
-import NotStarted from "./SubUI/NotStarted"
 import Ended from "./SubUI/Ended"
 
 const TokenSale = () => {

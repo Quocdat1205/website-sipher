@@ -58,6 +58,18 @@ const Countdown = ({ status }: CountdownProps) => {
                     />
                 </Flex>
                 {isSale && <Loader percent={((endTime! - now) * 100) / (endTime! - startTime!)} />}
+                <Box pos="absolute" boxSize="14rem" top="50%" left="50%" transform="translate(-50%, -50%)">
+                    {!isEndSale && (
+                        <Loader
+                            isSecond
+                            percent={
+                                status === "NOT_STARTED"
+                                    ? (timerStart.seconds / 60) * 100
+                                    : (timerEnd.seconds / 60) * 100
+                            }
+                        />
+                    )}
+                </Box>
             </Box>
         </Flex>
     )

@@ -19,10 +19,10 @@ interface Props {
 const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("0")
     const options = [0.25, 0.5, 0.75, 1]
+    const { balance, scCaller, account, getTracking } = useWalletContext()
 
     const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
 
-    const { balance, scCaller, account } = useWalletContext()
     const walletBalance = weiToEther(balance)
     const { status } = useSaleTime()
 
@@ -105,8 +105,19 @@ const InputUI = ({ mode }: Props) => {
         }
     )
 
-    const handleAction = () => {
+    const handleAction = async () => {
         mode === "Deposit" ? deposit() : withdraw()
+
+        // try {
+        //     const isTracking = await getTracking(mode)
+        //     if (isTracking) {
+        //         mode === "Deposit" ? deposit() : withdraw()
+        //     } else {
+        //         toast({ title: "Error!", message: "IP not supported by SIPHER" })
+        //     }
+        // } catch (error) {
+        //     toast({ title: "Error!", message: "Please try again later" })
+        // }
     }
 
     return (

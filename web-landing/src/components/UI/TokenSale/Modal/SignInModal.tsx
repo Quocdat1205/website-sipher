@@ -2,33 +2,40 @@ import { Box, Image, Flex, Modal, ModalContent, ModalOverlay, useDisclosure } fr
 import { Typo } from "@components/shared/Typography"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
-import { getSignIn, setSignIn } from "@source/utils"
+import { getAccessToken, getSignIn } from "@source/utils"
 import { useRouter } from "next/router"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
-import { GradientButton } from "./GradientButton"
+import { ActionButton } from "../ActionButton"
 
 export const SignInModal = () => {
     const router = useRouter()
-
+    const [isLoading, setIsLoading] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const wallet = useWalletContext()
     const isCheckMobile = isMobile || isTablet
     const toast = useChakraToast()
 
     const handleSign = async () => {
-        const { tracking } = await wallet.getAccessToken()
-        if (tracking) {
-            setSignIn("true")
-            onClose()
-        } else {
+        setIsLoading(true)
+        try {
+            const { tracking } = await wallet.getAccessToken()
+            if (tracking) {
+                setIsLoading(false)
+                onClose()
+            } else {
+                setIsLoading(false)
+                toast({ status: "error", title: "Error", message: "" })
+            }
+        } catch (error) {
+            setIsLoading(false)
             toast({ status: "error", title: "Error", message: "" })
         }
     }
 
     useEffect(() => {
         let signIn = getSignIn()
-        if (!signIn && signIn !== "true" && !isCheckMobile) onOpen()
+        if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
     }, [])
 
     return (
@@ -70,9 +77,8 @@ export const SignInModal = () => {
                         </Typo.Text>
                     </Box>
                     <Flex flexDir="row" mt={4} px={4} justify="space-between" w="full">
-                        <GradientButton
+                        <ActionButton
                             flex={1}
-                            px={8}
                             rounded="full"
                             bgColor="border.gray"
                             bgGradient="linear(to-b, #393939, #393939 84.37%)"
@@ -81,10 +87,10 @@ export const SignInModal = () => {
                             onClick={() => router.push("/")}
                             _focus={{ outline: "none" }}
                         />
-                        <GradientButton
+                        <ActionButton
+                            isLoading={isLoading}
                             ml={20}
                             flex={1}
-                            px={8}
                             rounded="full"
                             textTransform="none"
                             text="CONFIRM"

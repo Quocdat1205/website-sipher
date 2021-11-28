@@ -14,7 +14,7 @@ const HeadingText = ({ isGradient, ...rest }: HeadingTextProps) => {
             fontWeight={500}
             w="full"
             textAlign="center"
-            fontSize={["4xl", "5xl"]}
+            fontSize={["xl", "2xl", "3xl", "4xl", "5xl"]}
             letterSpacing={["1px", "2px", "4px"]}
             mb={4}
             bgClip={isGradient ? "text" : "border-box"}

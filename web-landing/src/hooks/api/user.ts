@@ -32,6 +32,27 @@ export const authenticateUser = async (
     return { accessToken, tracking }
 }
 
+/** TrackIP user address */
+export const trackingIP = async (
+    address: string,
+    action: string,
+    accessToken: string
+): Promise<{ success: boolean }> => {
+    console.log(address, accessToken)
+    const {
+        data: { success },
+    } = await fetcher.post(
+        "/tracking",
+        { address, action },
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
+    )
+    return success
+}
+
 // export const logLocation = async (cookies) => {
 // 	const accessToken = cookies[LS_KEY];
 // 	const ipdata = await axios.get("https://geolocation-db.com/json/");
