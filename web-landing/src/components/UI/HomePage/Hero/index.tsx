@@ -44,7 +44,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         BE PART OF THE SIPHER UNIVERSE
                     </Typo.Heading>
                     <Text mb={[4, 4, 4, 8]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
-                        OFFICIAL LAUNCH 06/12/2021 - 08:00AM GMT+7
+                        OFFICIAL LAUNCH 06/12/2021 - 01:00AM UTC
                     </Text>
                     <CountDown startTime={startTime} endTime={endTime} />
                     <Flex mt={6}>
