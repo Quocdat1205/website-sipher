@@ -15,7 +15,6 @@ const content = [
         name: "Sipherian Flash - Cont'd",
         completed: true,
         date: "October 2021",
-        completed: true,
         content: [
             "Introduction of the Neko Website & Minting Mechanics",
             "Introduction of the Sipher Community Program",
