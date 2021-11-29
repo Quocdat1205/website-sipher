@@ -7,6 +7,7 @@ import { CgMouse } from "react-icons/cg"
 import { BiChevronDown } from "react-icons/bi"
 import CountDown from "./CountDown"
 import { startTime, endTime } from "@constant/index"
+import { BrowserView } from "react-device-detect"
 
 interface FirstScreenProps {}
 
@@ -27,8 +28,8 @@ const FirstScreen = ({}: FirstScreenProps) => {
             p={4}
             pt={[16, 16, 4]}
         >
-            <Flex direction="column" align="center" justify="center" w="full" maxW="64rem" pt={32}>
-                <Title text="$SIPHER TOKEN" />
+            <Flex direction="column" align="center" justify="center" w="full" maxW="64rem" pt={[8, 16, 20, 32]}>
+                <Title text="$SIPHER INITIAL" />
                 <Title text="PUBLIC SALE" custom={1} />
                 <MotionFlex
                     direction="column"
@@ -40,10 +41,10 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         delay: 1.5,
                     }}
                 >
-                    <Typo.Heading textAlign="center" mb={[0, 0, 0, 4]}>
+                    <Typo.Heading fontSize="3xl" textAlign="center" mb={[2, 2, 2, 4]}>
                         BE PART OF THE SIPHER UNIVERSE
                     </Typo.Heading>
-                    <Text mb={[4, 4, 4, 8]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
+                    <Text mb={[2, 2, 2, 4]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
                         OFFICIAL LAUNCH 06/12/2021 - 01:00AM UTC
                     </Text>
                     <CountDown startTime={startTime} endTime={endTime} />
@@ -55,13 +56,15 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             px={12}
                         />
                     </Flex>
-                    <Flex direction="column" align="center" mt={8}>
-                        <CgMouse size="2rem" />
-                        <Box mt={-1}>
-                            <BiChevronDown size="1.5rem" />
-                        </Box>
-                        <Text fontSize="xs">Scroll down to discover</Text>
-                    </Flex>
+                    <BrowserView>
+                        <Flex direction="column" align="center" mt={[4, 4, 4, 8]}>
+                            <CgMouse size="2rem" />
+                            <Box mt={-1}>
+                                <BiChevronDown size="1.5rem" />
+                            </Box>
+                            <Text fontSize="xs">Scroll down to discover</Text>
+                        </Flex>
+                    </BrowserView>
                 </MotionFlex>
             </Flex>
         </Flex>

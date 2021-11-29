@@ -35,7 +35,7 @@ const Loader = ({ isSecond = false, percent = 50 }: LoaderProps) => {
                     strokeLinecap="round"
                     fill="transparent"
                     stroke={isSecond ? "#383838" : "url(#linear)"}
-                    filter="url(#glow)"
+                    filter={!isSecond ? "url(#glow)" : ""}
                 ></circle>
             </svg>
         </Box>

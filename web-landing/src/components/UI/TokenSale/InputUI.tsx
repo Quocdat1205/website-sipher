@@ -168,11 +168,15 @@ const InputUI = ({ mode }: Props) => {
                     <Text>Locked amount</Text>
                     <Tooltip
                         hasArrow
-                        label="abc ..."
+                        label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation."
                         placement="bottom-end"
                         fontSize="sm"
-                        bg="border.gray"
+                        bg="#383838DD"
+                        fontWeight={400}
+                        rounded="lg"
+                        p={2}
                         openDelay={500}
+                        w="240px"
                     >
                         <Box ml={2} cursor="pointer" color="white">
                             <BsQuestionCircle size="1rem" />

@@ -21,7 +21,7 @@ const Header = (props: Props) => {
 
     return (
         <Flex direction="column" mb={4} align="center">
-            <Typo.Heading>$SIPHER TOKEN PUBLIC SALE</Typo.Heading>
+            <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
             <Button
                 onClick={() => onOpen()}
                 rounded="full"
@@ -32,8 +32,8 @@ const Header = (props: Props) => {
                 _hover={{ bg: "transparent" }}
                 _active={{ bg: "transparent" }}
                 fontWeight="normal"
-                px={8}
-                leftIcon={<BsPlayFill style={{ marginRight: "0.5rem" }} size="1.2rem" />}
+                px={12}
+                leftIcon={<BsPlayFill size="1.2rem" />}
                 mb={4}
             >
                 Watch video
@@ -45,7 +45,7 @@ const Header = (props: Props) => {
                 fontWeight="semibold"
                 letterSpacing="1px"
             >
-                Learn About $SIPHER Token Public Sale
+                Learn About $SIPHER Initial Public Sale
             </Link>
             <Modal motionPreset="slideInBottom" isCentered isOpen={isOpen} onClose={onClose} size="6xl">
                 <ModalOverlay bg="blackAlpha.800" />

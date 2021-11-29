@@ -12,6 +12,8 @@ interface TimeCellProps {
 const MotionText = motion<Omit<HeadingProps, "transition">>(Heading)
 
 const TimeCell = ({ value, unit }: TimeCellProps) => {
+    const text = value.toString().length === 1 ? `0${value.toString()}` : value.toString()
+
     return (
         <Flex direction="column" justify="center" align="center">
             <Box
@@ -30,7 +32,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         bgGradient={"linear(to-b,bgGradient.orange)"}
                         transition={{ type: "tween", duration: 0.5 }}
                         textAlign="center"
-                        fontWeight={900}
+                        fontWeight="bold"
                         position="absolute"
                         left={0}
                         top={0}
@@ -38,7 +40,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         w="full"
                         mb={0}
                     >
-                        {value.toString()}
+                        {text}
                     </MotionText>
                 </AnimatePresence>
             </Box>
