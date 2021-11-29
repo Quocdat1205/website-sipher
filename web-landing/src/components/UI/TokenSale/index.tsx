@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Flex, Grid, GridItem } from "@chakra-ui/react"
+import { Flex, Grid, GridItem, Heading } from "@chakra-ui/react"
 import React from "react"
 import { isMobile, isTablet } from "react-device-detect"
 import SaleTimer from "./SaleTimer"
@@ -14,7 +14,6 @@ import RightBarInfo from "./RightBarInfo"
 import useSaleTime from "./useSaleTime"
 import NotConnected from "./SubUI/NotConnected"
 import Loading from "./SubUI/Loading"
-import NotStarted from "./SubUI/NotStarted"
 import Ended from "./SubUI/Ended"
 
 const TokenSale = () => {
@@ -26,8 +25,6 @@ const TokenSale = () => {
 
     if (status === "LOADING") return <Loading />
 
-    // if (status === "NOT_STARTED") return <NotStarted />
-
     if (status === "ENDED") return <Ended />
 
     return (
@@ -36,13 +33,13 @@ const TokenSale = () => {
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
-            pt={24}
-            pb={16}
+            pt={!isCheckMobile ? 24 : 0}
+            pb={!isCheckMobile ? 16 : 0}
             bgColor="#090909"
         >
             <Flex direction="column" align="center" w="full" display={isCheckMobile ? "none" : "flex"}>
                 <Header />
-                <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"64rem"}>
+                <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"68rem"}>
                     <GridItem
                         p={4}
                         rounded="xl"
@@ -65,7 +62,7 @@ const TokenSale = () => {
                         borderColor="#383838"
                     >
                         <Flex h="full">
-                            <SaleTimer />
+                            <SaleTimer status={status} />
                             <SaleForm />
                         </Flex>
                     </GridItem>
@@ -77,6 +74,33 @@ const TokenSale = () => {
             <NotAvailable />
             <SignInModal />
         </BackgroundContainer>
+        // <BackgroundContainer
+        //     pos="relative"
+        //     image="/images/demo/swap-demo.png"
+        //     bgRepeat="no-repeat"
+        //     bgSize="100%"
+        //     px={0}
+        // >
+        //     <Flex
+        //         align="center"
+        //         justify="center"
+        //         pos="absolute"
+        //         w="full"
+        //         h="full"
+        //         bg="blackAlpha.600"
+        //         // backdropFilter="blur(3px)"
+        //     >
+        //         <Heading
+        //             fontFamily="Brandon"
+        //             letterSpacing="4px"
+        //             lineHeight={1}
+        //             fontSize={["3rem", "4.5rem", "6rem"]}
+        //             fontWeight={700}
+        //         >
+        //             COMING SOON
+        //         </Heading>
+        //     </Flex>
+        // </BackgroundContainer>
     )
 }
 

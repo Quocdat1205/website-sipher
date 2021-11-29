@@ -13,9 +13,9 @@ import {
     getLastActiveAccount,
 } from "./utils"
 import Web3 from "web3"
-import { authenticateUser, getUsersByAddress } from "@hooks/api/user"
+import { authenticateUser, getUsersByAddress, trackingIP } from "@hooks/api/user"
 import { useChakraToast } from "@sipher/web-components"
-import { clearAccessToken, setAccessToken } from "@source/utils"
+import { clearAccessToken, clearSignIn, setAccessToken, setSignIn, getAccessToken } from "@source/utils"
 import { ContractCaller } from "@source/contract"
 import { useWalletBalance } from "./useWalletBalance"
 
@@ -51,6 +51,7 @@ const useWallet = () => {
 
         clearLastActiveAccount()
         clearAccessToken()
+        clearSignIn()
         setConnectorName(null)
         setError(null)
         setStatus("disconnected")
@@ -140,7 +141,7 @@ const useWallet = () => {
     )
 
     //** Get accessToken when change emotion */
-    const getAccessToken = useCallback(async () => {
+    const getAccessTokenAPI = useCallback(async () => {
         if (!account) throw Error("Account not found")
         if (!web3.current) throw Error("Provider not found")
 
@@ -150,11 +151,26 @@ const useWallet = () => {
             account as string,
             ""
         )
-        const token = await authenticateUser(account, signature)
+        const { accessToken, tracking } = await authenticateUser(account, signature)
 
-        setAccessToken(token)
-        return token
+        setAccessToken(tracking ? accessToken : "")
+        setSignIn(tracking ? "true" : "false")
+        return { accessToken, tracking }
     }, [web3React])
+
+    //** Tracking user wallet address */
+    const getTracking = useCallback(
+        async action => {
+            if (!account) throw Error("Account not found")
+            if (!web3.current) throw Error("Provider not found")
+
+            let accessToken = await getAccessToken()
+            const isTracking = await trackingIP(account, accessToken!, action)
+            return isTracking
+        },
+        [web3React]
+    )
+
     // auto connect on refresh
     useEffect(() => {
         const lastConnector = getLastConnector()
@@ -176,7 +192,8 @@ const useWallet = () => {
         error,
         isActive: web3React.active,
         ethereum,
-        getAccessToken,
+        getAccessToken: getAccessTokenAPI,
+        getTracking,
         balance,
         scCaller,
     }

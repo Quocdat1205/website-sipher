@@ -1,4 +1,4 @@
-import { Flex, HStack, Image, Input, Box, Text, NumberInput } from "@chakra-ui/react"
+import { Flex, HStack, Image, Box, Text, chakra, Tooltip } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
 import React, { useState } from "react"
 import { DropdownOption } from "./SaleForm"
@@ -9,6 +9,8 @@ import { weiToEther } from "@source/contract"
 import { ActionButton } from "./ActionButton"
 import { FaEthereum } from "react-icons/fa"
 import { useChakraToast } from "@sipher/web-components"
+import useSaleTime from "./useSaleTime"
+import { BsQuestionCircle } from "react-icons/bs"
 
 interface Props {
     mode: DropdownOption
@@ -17,42 +19,68 @@ interface Props {
 const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("0")
     const options = [0.25, 0.5, 0.75, 1]
+    const { balance, scCaller, account, getTracking } = useWalletContext()
 
     const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
 
-    const handleSelect = (option: number) => {
-        setValue(formatPrecision(walletBalance * option))
-    }
-    const { balance, scCaller, account } = useWalletContext()
     const walletBalance = weiToEther(balance)
+    const { status } = useSaleTime()
 
     const qc = useQueryClient()
     const toast = useChakraToast()
 
-    const { data: totalDeposited } = useQuery("total-deposited", () => scCaller.current?.getUserDeposited(account!), {
-        enabled: !!scCaller.current && !!account,
-        initialData: 0,
-    })
-
-    const { data: lockedAmount } = useQuery("locked-amount", () => scCaller.current?.getLockedAmount(account!), {
-        enabled: !!scCaller.current && !!account,
-        onSuccess: data => console.log(data),
-        initialData: 0,
-    })
-
-    const { data: locked } = useQuery(["locked", value], () => scCaller.current?.calculateLocked(value), {
-        enabled: !!scCaller.current && !!account,
-        initialData: 0,
-    })
-
-    const { data: withdrawableAmount } = useQuery(
-        "withdrawable-amount",
-        () => scCaller.current?.getWithdrawableAmount(),
+    const { data: accumulated } = useQuery(
+        "accumulated-deposit",
+        () =>
+            scCaller.current?.getAccumulatedAfterDeposit(
+                account!,
+                mode === "Deposit" ? parseFloat(value).toString() : "0"
+            ),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )
+
+    const { data: lockedAmount } = useQuery(
+        ["locked-amount", value],
+        () =>
+            scCaller.current?.getLockAmountAfterDeposit(
+                account!,
+                mode === "Deposit" ? parseFloat(value).toString() : "0"
+            ),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const { data: withdrawableAmount } = useQuery(
+        "withdrawable-amount",
+        () => scCaller.current?.getWithdrawableAmount(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
+    const floorPrecised = (number, precision) => {
+        let power = Math.pow(10, precision)
+
+        return Math.floor(number * power) / power
+    }
+
+    const handleSelect = (option: number) => {
+        if (status === "ONGOING") {
+            setValue(
+                formatPrecision(
+                    mode === "Deposit"
+                        ? floorPrecised(walletBalance * option, 5)
+                        : floorPrecised(withdrawableAmount! * option, 5)
+                )
+            )
+        }
+    }
 
     const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
         onError: (err: any) => toast({ title: "Error", message: err.message }),
@@ -69,7 +97,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => toast({ title: "Error", message: err.message }),
             onSuccess: () => {
-                toast({ title: "Deposited successfully!" })
+                toast({ title: "Withdrawal successfully!" })
                 setValue("0")
                 qc.invalidateQueries("total-deposited")
                 qc.invalidateQueries("locked-amount")
@@ -77,8 +105,19 @@ const InputUI = ({ mode }: Props) => {
         }
     )
 
-    const handleAction = () => {
-        mode === "Deposit" ? deposit() : withdraw()
+    const handleAction = async () => {
+        // mode === "Deposit" ? deposit() : withdraw()
+
+        try {
+            const isTracking = await getTracking(mode)
+            if (isTracking) {
+                mode === "Deposit" ? deposit() : withdraw()
+            } else {
+                toast({ title: "Error!", message: "IP not supported by SIPHER" })
+            }
+        } catch (error) {
+            toast({ title: "Error!", message: "Please try again later" })
+        }
     }
 
     return (
@@ -89,8 +128,13 @@ const InputUI = ({ mode }: Props) => {
                     {options.map(option => {
                         return (
                             <RadioCard
+                                isDisable={status !== "ONGOING"}
                                 key={option}
-                                active={Math.abs(parseFloat(value) / walletBalance - option) < 0.001}
+                                active={
+                                    mode === "Deposit"
+                                        ? Math.abs(parseFloat(value) / walletBalance - option) < 0.001
+                                        : Math.abs(parseFloat(value) / withdrawableAmount! - option) < 0.001
+                                }
                                 onClick={() => handleSelect(option)}
                             >
                                 {`${option * 100}%`}
@@ -101,6 +145,7 @@ const InputUI = ({ mode }: Props) => {
             </Flex>
             <Flex pos="relative" align="center">
                 <EtherInput
+                    status={status}
                     value={value}
                     setValue={setValue}
                     maxValue={mode === "Deposit" ? walletBalance : withdrawableAmount!}
@@ -114,20 +159,30 @@ const InputUI = ({ mode }: Props) => {
             </Flex>
             <Text my={1} textAlign="right" color="#979797" fontSize="sm">
                 {mode === "Deposit"
-                    ? `Wallet Balance: ${walletBalance.toFixed(5)}`
-                    : `Withdrawable Amount: ${withdrawableAmount!.toFixed(5)}`}
+                    ? `Wallet Balance: ${floorPrecised(walletBalance, 5)}`
+                    : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}
             </Text>
 
             <Flex flexDir="column" mb={6}>
-                <Text mb={2}>Locked amount</Text>
+                <chakra.span mb={2} display="flex" alignItems="center">
+                    <Text>Locked amount</Text>
+                    <Tooltip
+                        hasArrow
+                        label="abc ..."
+                        placement="bottom-end"
+                        fontSize="sm"
+                        bg="border.gray"
+                        openDelay={500}
+                    >
+                        <Box ml={2} cursor="pointer" color="white">
+                            <BsQuestionCircle size="1rem" />
+                        </Box>
+                    </Tooltip>
+                </chakra.span>
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box
                         bg="#383838"
-                        w={`${
-                            ((lockedAmount! + (mode === "Deposit" ? locked || 0 : 0)) /
-                                (totalDeposited! + (mode === "Deposit" ? parseFloat(value) : 0))) *
-                            100
-                        }%`}
+                        w={`${((lockedAmount || 0) / accumulated!) * 100}%`}
                         transition="width 0.5s linear"
                         h="full"
                         rounded="full"
@@ -137,11 +192,11 @@ const InputUI = ({ mode }: Props) => {
                     <Flex align="center">
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(lockedAmount! + (mode === "Deposit" ? locked || 0 : 0), 7)} /
+                            {floorPrecised(lockedAmount!, 5)} /
                         </Text>
                         <FaEthereum />
                         <Text fontSize="sm" color="#979797">
-                            {formatPrecision(totalDeposited! + (mode === "Deposit" ? parseFloat(value) : 0), 7)}
+                            {floorPrecised(accumulated, 5)}
                         </Text>
                     </Flex>
                 </Flex>
@@ -149,7 +204,11 @@ const InputUI = ({ mode }: Props) => {
             <ActionButton
                 text={mode}
                 isLoading={isDepositing || isWithdrawing}
-                disabled={parseFloat(value) <= 0}
+                disabled={
+                    status !== "ONGOING" ||
+                    parseFloat(value) <= 0 ||
+                    (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
+                }
                 onClick={handleAction}
             />
         </Flex>

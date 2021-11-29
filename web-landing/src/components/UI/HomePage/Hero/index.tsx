@@ -5,6 +5,8 @@ import { LinkButton, MotionFlex, Typo } from "@components/shared"
 import Title from "./Title"
 import { CgMouse } from "react-icons/cg"
 import { BiChevronDown } from "react-icons/bi"
+import CountDown from "./CountDown"
+import { startTime, endTime } from "@constant/index"
 
 interface FirstScreenProps {}
 
@@ -39,16 +41,17 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     }}
                 >
                     <Typo.Heading textAlign="center" mb={[0, 0, 0, 4]}>
-                        COMING SOON
+                        BE PART OF THE SIPHER UNIVERSE
                     </Typo.Heading>
                     <Text mb={[4, 4, 4, 8]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
-                        BE PART OF THE SIPHER UNIVERSE
+                        OFFICIAL LAUNCH 06/12/2021 - 01:00AM UTC
                     </Text>
-                    <Flex>
+                    <CountDown startTime={startTime} endTime={endTime} />
+                    <Flex mt={6}>
                         <LinkButton
                             text="LEARN MORE ON MEDIUM"
                             size="large"
-                            href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
+                            href="https://medium.com/sipherxyz/sipher-initial-public-sale-mechanic-8ff988e9ede1"
                             px={12}
                         />
                     </Flex>

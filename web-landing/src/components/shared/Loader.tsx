@@ -2,9 +2,10 @@ import { Box } from "@chakra-ui/layout"
 
 interface LoaderProps {
     percent?: number
+    isSecond?: boolean
 }
 
-const Loader = ({ percent = 50 }: LoaderProps) => {
+const Loader = ({ isSecond = false, percent = 50 }: LoaderProps) => {
     return (
         <Box transform="rotateY(180deg) rotateZ(-90deg)">
             <svg viewBox="0 0 50 50" className="css-14uf48">
@@ -21,17 +22,19 @@ const Loader = ({ percent = 50 }: LoaderProps) => {
                         </feMerge>
                     </filter>
                 </defs>
-                <circle cx="25" cy="25" r="20" strokeWidth="2px" fill="transparent" stroke="#222"></circle>
+                {!isSecond && (
+                    <circle cx="25" cy="25" r="20" strokeWidth="2px" fill="transparent" stroke="#222"></circle>
+                )}
                 <circle
                     cx="25"
                     cy="25"
                     r="20"
-                    strokeWidth="2px"
+                    strokeWidth={isSecond ? "1px" : "2px"}
                     strokeDashoffset="0"
                     strokeDasharray={`${(percent / 100) * 125} 360`}
                     strokeLinecap="round"
                     fill="transparent"
-                    stroke="url(#linear)"
+                    stroke={isSecond ? "#383838" : "url(#linear)"}
                     filter="url(#glow)"
                 ></circle>
             </svg>

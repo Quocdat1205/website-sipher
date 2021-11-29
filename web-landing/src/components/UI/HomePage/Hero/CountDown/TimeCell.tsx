@@ -13,8 +13,13 @@ const MotionText = motion<Omit<HeadingProps, "transition">>(Heading)
 
 const TimeCell = ({ value, unit }: TimeCellProps) => {
     return (
-        <Flex direction="column" align="center" flex={1}>
-            <Box pos="relative" h={["4rem", "5rem"]} w={["4rem", "5rem", "5.5rem"]} overflow="hidden">
+        <Flex direction="column" justify="center" align="center">
+            <Box
+                pos="relative"
+                h={["3em", "4em", "4em", "4em", "4.5rem"]}
+                w={["4rem", "5em", "5em", "5em", "6rem"]}
+                overflow="hidden"
+            >
                 <AnimatePresence initial={false}>
                     <MotionText
                         key={value.toString()}
@@ -29,6 +34,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         position="absolute"
                         left={0}
                         top={0}
+                        fontSize={["4xl", "5xl", "5xl", "5xl", "6xl"]}
                         w="full"
                         mb={0}
                     >
@@ -36,7 +42,9 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                     </MotionText>
                 </AnimatePresence>
             </Box>
-            <Typo.BoldText textTransform="uppercase">{unit}</Typo.BoldText>
+            <Typo.BoldText fontSize="sm" textTransform="uppercase">
+                {unit}
+            </Typo.BoldText>
         </Flex>
     )
 }

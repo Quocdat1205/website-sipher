@@ -1,4 +1,4 @@
-export const SipherIBCOAddress = "0xD773A878d4fB3C08bA2Fed6CE4FB0Ed9C60be1d2"
+export const SipherIBCOAddress = "0x94d0840F1E6BE9cF10Cf16EEfF0968ee08679820"
 
 export const SipherIBCOAbi: any = [
     {
@@ -13,7 +13,7 @@ export const SipherIBCOAbi: any = [
             { indexed: false, internalType: "uint256", name: "userShare", type: "uint256" },
             { indexed: false, internalType: "uint256", name: "sipherAmount", type: "uint256" },
         ],
-        name: "Claimed",
+        name: "Claim",
         type: "event",
     },
     {
@@ -22,7 +22,7 @@ export const SipherIBCOAbi: any = [
             { indexed: true, internalType: "address", name: "account", type: "address" },
             { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
         ],
-        name: "Deposited",
+        name: "Deposit",
         type: "event",
     },
     {
@@ -32,6 +32,15 @@ export const SipherIBCOAbi: any = [
             { indexed: true, internalType: "address", name: "newOwner", type: "address" },
         ],
         name: "OwnershipTransferred",
+        type: "event",
+    },
+    {
+        anonymous: false,
+        inputs: [
+            { indexed: true, internalType: "address", name: "account", type: "address" },
+            { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "Withdraw",
         type: "event",
     },
     {
@@ -72,7 +81,17 @@ export const SipherIBCOAbi: any = [
     { inputs: [], name: "claim", outputs: [], stateMutability: "nonpayable", type: "function" },
     { inputs: [], name: "deposit", outputs: [], stateMutability: "payable", type: "function" },
     {
-        inputs: [],
+        inputs: [
+            { internalType: "address", name: "_user", type: "address" },
+            { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "getAccumulatedAfterDeposit",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getEstReceivedToken",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
@@ -86,38 +105,34 @@ export const SipherIBCOAbi: any = [
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [
+            { internalType: "address", name: "_user", type: "address" },
+            { internalType: "uint256", name: "amount", type: "uint256" },
+        ],
+        name: "getLockAmountAfterDeposit",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getLockedAmount",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
         type: "function",
     },
     {
-        inputs: [{ internalType: "uint256", name: "userAccumulated", type: "uint256" }],
-        name: "getLockedInvestment",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "pure",
-        type: "function",
-    },
-    {
-        inputs: [{ internalType: "address", name: "_userAddress", type: "address" }],
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getUserDeposited",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [{ internalType: "address", name: "_user", type: "address" }],
         name: "getWithdrawableAmount",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [{ internalType: "uint256", name: "userAccumulated", type: "uint256" }],
-        name: "getWithdrawableInvestment",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "pure",
         type: "function",
     },
     {

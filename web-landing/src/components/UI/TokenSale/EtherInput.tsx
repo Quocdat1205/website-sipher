@@ -1,16 +1,16 @@
 import { NumberInput, NumberInputField } from "@chakra-ui/react"
-import { useState } from "react"
+import { Status } from "./useSaleTime"
 
 interface EtherInputProps {
     value: string
     setValue: (newValue: string) => void
     maxValue: number
+    status: Status
 }
 
-const EtherInput = ({ value, setValue, maxValue }: EtherInputProps) => {
+const EtherInput = ({ value, setValue, maxValue, status }: EtherInputProps) => {
     const format = (value: string) => {
-        console.log(value === "")
-        return value === "" ? "0" : value.slice(0, 11)
+        return value === "" ? "0" : value
     }
 
     return (
@@ -19,6 +19,7 @@ const EtherInput = ({ value, setValue, maxValue }: EtherInputProps) => {
                 bg="#131313"
                 border="1px"
                 borderColor="#383838"
+                disabled={status !== "ONGOING"}
                 _disabled={{ borderColor: "border.gray", color: "border.gray" }}
                 _focus={{ shadow: "none" }}
                 _hover={{ borderColor: "#383838" }}
