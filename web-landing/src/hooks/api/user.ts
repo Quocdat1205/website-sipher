@@ -35,15 +35,15 @@ export const authenticateUser = async (
 /** TrackIP user address */
 export const trackingIP = async (
     address: string,
-    action: string,
-    accessToken: string
+    accessToken: string,
+    action: string
 ): Promise<{ success: boolean }> => {
-    console.log(address, accessToken)
+    const type = action === "Deposit" ? 1 : 2
     const {
         data: { success },
     } = await fetcher.post(
         "/tracking",
-        { address, action },
+        { add: address, type },
         {
             headers: {
                 Authorization: `Bearer ${accessToken}`,

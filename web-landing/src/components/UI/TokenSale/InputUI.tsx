@@ -106,18 +106,18 @@ const InputUI = ({ mode }: Props) => {
     )
 
     const handleAction = async () => {
-        mode === "Deposit" ? deposit() : withdraw()
+        // mode === "Deposit" ? deposit() : withdraw()
 
-        // try {
-        //     const isTracking = await getTracking(mode)
-        //     if (isTracking) {
-        //         mode === "Deposit" ? deposit() : withdraw()
-        //     } else {
-        //         toast({ title: "Error!", message: "IP not supported by SIPHER" })
-        //     }
-        // } catch (error) {
-        //     toast({ title: "Error!", message: "Please try again later" })
-        // }
+        try {
+            const isTracking = await getTracking(mode)
+            if (isTracking) {
+                mode === "Deposit" ? deposit() : withdraw()
+            } else {
+                toast({ title: "Error!", message: "IP not supported by SIPHER" })
+            }
+        } catch (error) {
+            toast({ title: "Error!", message: "Please try again later" })
+        }
     }
 
     return (

@@ -164,7 +164,7 @@ const useWallet = () => {
             if (!account) throw Error("Account not found")
             if (!web3.current) throw Error("Provider not found")
 
-            let accessToken = getAccessToken()
+            let accessToken = await getAccessToken()
             const isTracking = await trackingIP(account, accessToken!, action)
             return isTracking
         },
