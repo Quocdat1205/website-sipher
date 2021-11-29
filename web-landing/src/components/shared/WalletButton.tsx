@@ -120,6 +120,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         <GradientButton
                             onClick={() => {
                                 setMenu(false)
+                                wallet.resetToken()
                                 wallet.reset()
                             }}
                             text="Disconnect"
