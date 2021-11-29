@@ -3,6 +3,7 @@ import { Typo } from "@components/shared"
 import React from "react"
 import DashBoard from "./DashBoard"
 import StackingPools from "./StackingPools"
+import StakingDeposits from "./StakingDeposits"
 
 interface Props {}
 
@@ -25,7 +26,7 @@ const Body = (props: Props) => {
                 <Typo.Heading fontWeight="semibold" textAlign="left">
                     YOUR STAKING DEPOSITS
                 </Typo.Heading>
-                <DashBoard />
+                <StakingDeposits />
             </Box>
         </Flex>
     )

@@ -1,6 +1,4 @@
-import { Image } from "@chakra-ui/image"
-import { Box, Flex, Link } from "@chakra-ui/layout"
-import { chakra, Heading } from "@chakra-ui/react"
+import { Box, Flex, Link, chakra, Heading, Image } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import React from "react"
 

@@ -1,6 +1,5 @@
-import { Image } from "@chakra-ui/image"
-import { Flex, Box, Text } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
+import { Flex, Box, Text, chakra, Image } from "@chakra-ui/react"
+import {} from "@chakra-ui/system"
 import { Typo } from "@components/shared"
 import React from "react"
 import { ActionButton } from "./ActionButton"
@@ -39,7 +38,7 @@ const DashboardCard = ({ img, title, dollarValue, sipherValue, textButton = "", 
             </chakra.span>
             {textButton !== "" && (
                 <Box w="full" pt={8} borderTop="1px" borderColor="rgba(155,158,157, 0.5)">
-                    <ActionButton onClick={onClick} text={textButton} w="full" />
+                    <ActionButton px={6} py={4} onClick={onClick} text={textButton} w="full" />
                 </Box>
             )}
         </Flex>

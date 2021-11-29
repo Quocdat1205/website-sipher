@@ -3,12 +3,18 @@
 import { Flex, Box } from "@chakra-ui/react"
 import { BackgroundContainer } from "@components/shared"
 import React from "react"
+import NotConnected from "../TokenSale/SubUI/NotConnected"
+import useSaleTime from "../TokenSale/useSaleTime"
 import Body from "./Body"
 import Header from "./Header"
 
 interface StakeProps {}
 
 const Stake = ({}: StakeProps) => {
+    const { status } = useSaleTime()
+
+    if (status === "NOT_CONNECTED") return <NotConnected />
+
     return (
         <BackgroundContainer
             pos="relative"

@@ -1,7 +1,7 @@
-import { Flex } from "@chakra-ui/layout"
-import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table"
+import { Flex, Box } from "@chakra-ui/layout"
 import React from "react"
-import AccordionTable from "./AccordionTable"
+import { AccordionTable } from "./FlexTable"
+import { FlexHeader } from "./FlexTable/FlexHeader"
 
 interface Props {}
 
@@ -15,23 +15,16 @@ const StackingPools = (props: Props) => {
             flexDir="column"
             align="center"
             justify="center"
+            bg="blackAlpha.900"
         >
-            <Table variant="unstyled" style={{ borderCollapse: "separate", borderSpacing: 0 }}>
-                <Thead>
-                    <Tr>
-                        <Th textTransform="none" fontWeight="semibold" fontSize="lg" w="35%">
-                            Pools
-                        </Th>
-                        <Th textTransform="none" fontWeight="semibold" fontSize="lg" w="25%">
-                            Total Value Locked
-                        </Th>
-                        <Th textTransform="none" fontWeight="semibold" fontSize="lg" w="15%">
-                            APR
-                        </Th>
-                        <Th w="25%"></Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
+            <Box w="full" h="full" overflow="hidden">
+                <Flex flexDir="row" w="full">
+                    <FlexHeader text="Pools" w="25%" />
+                    <FlexHeader text="Total Value Locked" w="25%" />
+                    <FlexHeader text="APR" w="20%" />
+                    <FlexHeader text="" w="30%" />
+                </Flex>
+                <Flex flexDir="column" w="full">
                     <AccordionTable
                         img="/images/icons/community/main-black.png"
                         valueLocked={125424241.04}
@@ -49,8 +42,8 @@ const StackingPools = (props: Props) => {
                         pendingReward={0.0}
                         liquidity={0.0}
                     />
-                </Tbody>
-            </Table>
+                </Flex>
+            </Box>
         </Flex>
     )
 }
