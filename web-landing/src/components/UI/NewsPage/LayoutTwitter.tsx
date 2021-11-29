@@ -78,13 +78,13 @@ const LayoutTwitter = ({ details }: Props) => {
                     <MyHeading color="white" size="large">
                         {details.title}
                     </MyHeading>
-                    <Box mt={[4, 6]} sx={{ img: { m: "0 auto", maxHeight: "45rem" } }} color="about.textGray">
+                    <Box mt={[4, 6]} sx={{ img: { m: "0 auto" } }} color="about.textGray">
                         {ReactHtmlParser(details.content && details.content)}
                     </Box>
                     <Box
                         sx={{
                             ul: { listStylePos: "inside" },
-                            img: { m: "0 auto", py: 8, maxHeight: "45rem" },
+                            img: { m: "0 auto", py: 8 },
                             a: { color: "blue.500" },
                         }}
                         color="about.textGray"

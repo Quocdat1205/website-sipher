@@ -11,7 +11,7 @@ interface Props {
 
 const LayoutMedium = ({ details }: Props) => {
     return (
-        <Flex pt={["64px", "0"]} overflow={["hidden", "auto"]} flexDir="column" h={["100vh", "80vh"]}>
+        <Flex pt={["64px", "0"]} overflow={"hidden"} flexDir="column" h={["100vh", "80vh"]}>
             <ModalCloseButton
                 top={["10%", "0", "0", "0", "0"]}
                 zIndex={10}
@@ -20,21 +20,27 @@ const LayoutMedium = ({ details }: Props) => {
                 _hover={{ color: "red" }}
                 _focus={{ shadow: "none" }}
             />
-            <Box overflow={["auto", "unset"]} maxW="64rem" pos="relative" h="full">
-                <Flex flexDir="column" p={[4, 8]}>
-                    <Box flex={1}>
+            <Box flex={1} overflow={"auto"} maxW="64rem" pos="relative" h="full" className="body">
+                <Flex flexDir="column" p={[4, 8]} h="full">
+                    <Box flex={1} h="full">
                         <MyHeading color="white" textAlign="center" size="large">
                             {details.title}
                         </MyHeading>
                         <Box
-                            mt={[4, 6]}
-                            sx={{ ul: { listStylePos: "inside" }, img: { m: "0 auto", py: 8, maxHeight: "45rem" } }}
+                            sx={{
+                                ul: { listStylePos: "inside" },
+                                img: { m: "0 auto", py: 8 },
+                            }}
                             color="about.textGray"
                         >
                             {ReactHtmlParser(details.content && details.content)}
                         </Box>
                         <Box
-                            sx={{ ul: { listStylePos: "inside" }, img: { m: "0 auto", py: 8, maxHeight: "45rem" } }}
+                            pb={4}
+                            sx={{
+                                ul: { listStylePos: "inside" },
+                                img: { m: "0 auto", py: 8 },
+                            }}
                             color="about.textGray"
                         >
                             {ReactHtmlParser(details.description && details.description)}
