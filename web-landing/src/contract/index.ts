@@ -1,4 +1,3 @@
-import { AnyPointerEvent } from "framer-motion/types/gestures/PanSession"
 import Web3 from "web3"
 import { SipherIBCOAbi, SipherIBCOAddress } from "./SipherIBCO"
 
@@ -77,8 +76,8 @@ export class ContractCaller {
         return weiToEther(await this.SipherIBCO.methods.getWithdrawableAmount().call())
     }
 
-    async getLockedAmount(): Promise<number> {
-        return weiToEther(await this.SipherIBCO.methods.getLockedAmount().call())
+    async getLockedAmount(account: string): Promise<number> {
+        return weiToEther(await this.SipherIBCO.methods.getLockedAmount().call({ from: account }))
     }
 
     async calculateLocked(amount: string): Promise<number> {

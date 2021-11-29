@@ -26,7 +26,7 @@ const TokenSale = () => {
 
     if (status === "LOADING") return <Loading />
 
-    if (status === "NOT_STARTED") return <NotStarted />
+    // if (status === "NOT_STARTED") return <NotStarted />
 
     if (status === "ENDED") return <Ended />
 

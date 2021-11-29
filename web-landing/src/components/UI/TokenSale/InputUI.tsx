@@ -34,8 +34,9 @@ const InputUI = ({ mode }: Props) => {
         initialData: 0,
     })
 
-    const { data: lockedAmount } = useQuery("locked-amount", () => scCaller.current?.getLockedAmount(), {
+    const { data: lockedAmount } = useQuery("locked-amount", () => scCaller.current?.getLockedAmount(account!), {
         enabled: !!scCaller.current && !!account,
+        onSuccess: data => console.log(data),
         initialData: 0,
     })
 
