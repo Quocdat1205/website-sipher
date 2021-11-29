@@ -50,11 +50,15 @@ const useWallet = () => {
         }
 
         clearLastActiveAccount()
-        clearAccessToken()
-        clearSignIn()
+
         setConnectorName(null)
         setError(null)
         setStatus("disconnected")
+    }, [web3React])
+
+    const resetToken = useCallback(() => {
+        clearAccessToken()
+        clearSignIn()
     }, [web3React])
 
     // if the user switched networks on the wallet itself
@@ -106,6 +110,7 @@ const useWallet = () => {
                     web3ReactConnector.getProvider().then(provider => {
                         provider.on("accountsChanged", () => {
                             reset()
+                            resetToken()
                         })
                         provider.on("chainChanged", () => {
                             reset()
@@ -196,6 +201,7 @@ const useWallet = () => {
         getTracking,
         balance,
         scCaller,
+        resetToken,
     }
 
     return wallet
