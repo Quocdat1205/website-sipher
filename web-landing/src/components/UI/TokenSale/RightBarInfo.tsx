@@ -37,19 +37,14 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
         <VStack spacing={4} h="full">
             <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
                 <CoinCard text="Total ETH Contributed" iconSrc="/images/icons/eth.png" value={totalProvided} />
-                <CoinCard
-                    isBorderTop
-                    text="Est. Current Token Price"
-                    iconSrc="/images/icons/eth.png"
-                    value={price!.toFixed(5)}
-                />
+                <CoinCard isBorderTop text="Est. Current Token Price" iconSrc="/images/icons/eth.png" value={price!} />
             </Box>
             <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
-                <CoinCard text="Your ETH Contributed" iconSrc="/images/icons/eth.png" value={userDeposit!.toFixed(5)} />
+                <CoinCard text="Your ETH Contributed" iconSrc="/images/icons/eth.png" value={userDeposit!} />
                 <CoinCard
                     isBorderTop
                     text="Est. $SIPHER Received"
-                    icon={<IconSipher src="/images/icons/sipher2.png" mr={2} boxSize="2.2rem" />}
+                    icon={<IconSipher src="/images/icons/sipher2.png" ml={2} boxSize="1.6rem" />}
                     value={numberWithCommas(parseInt(token!.toString()))}
                 />
             </Box>

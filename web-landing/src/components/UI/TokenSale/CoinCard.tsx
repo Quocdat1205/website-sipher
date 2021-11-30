@@ -19,16 +19,27 @@ const CoinCard = ({ icon, text, iconSrc = "", isBorderTop = false, value = "N/A"
             flex={1}
             py={4}
             px={4}
-            w="260px"
+            w="240px"
             {...rest}
         >
             <Text px={4} textAlign="center" fontWeight="thin" mb={2} size="small">
                 {text}
             </Text>
-            <Flex alignItems="center" justifyContent="center" w="full">
-                {iconSrc !== "" && <Image mr={2} h="2.2rem" src={iconSrc} alt="icon" />}
-                {icon}
-                <Text fontWeight="semibold" letterSpacing="3px" size="medium" isTruncated title={value.toString()}>
+            <Flex px={4} flexDir="row" alignItems="center" justify="flex-start" w="full">
+                <Box textAlign="left">
+                    {iconSrc !== "" && <Image ml={2} boxSize="1.6rem" src={iconSrc} alt="icon" />}
+                    {icon}
+                </Box>
+                <Text
+                    ml={2}
+                    flex={1}
+                    textAlign="center"
+                    fontWeight="semibold"
+                    letterSpacing="3px"
+                    size="medium"
+                    isTruncated
+                    title={value.toString()}
+                >
                     {value}
                 </Text>
             </Flex>
