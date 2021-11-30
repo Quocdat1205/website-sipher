@@ -32,7 +32,7 @@ const Header = (props: Props) => {
             <Box maxW="320px" w="full">
                 <Flex flexDir="row" justify="space-between" w="full" align="center">
                     <chakra.span display="flex" alignItems="center">
-                        <Image mr={1} h="1rem" src="/images/icons/community/main-black.png" />
+                        <Image alt="icon" mr={1} h="1rem" src="/images/icons/community/main-black.png" />
                         <Typo.Text size="small">$SIPHER PRICE</Typo.Text>
                         <Typo.Text size="small" px={2} fontWeight="semibold">
                             $6,49

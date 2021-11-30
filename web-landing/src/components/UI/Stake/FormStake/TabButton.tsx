@@ -23,6 +23,7 @@ const TabButton = ({ selected, tabOptions, onChange }: Props) => {
         >
             {tabOptions.map(option => (
                 <Flex
+                    key={option}
                     align="center"
                     justify="center"
                     rounded="full"

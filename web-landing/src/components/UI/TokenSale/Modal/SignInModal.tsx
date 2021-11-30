@@ -72,7 +72,7 @@ export const SignInModal = () => {
                                 <Text mb={1}>{item.title}</Text>
                                 <UnorderedList mr={2} color="#9B9E9D">
                                     {item.content.map(line => (
-                                        <ListItem>
+                                        <ListItem key={line}>
                                             <Text size="small" color="#9B9E9D">
                                                 {line}
                                             </Text>
