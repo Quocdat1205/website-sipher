@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { GradientButton, useChakraToast } from "@sipher/web-components"
-import { getAccessToken, getSignIn } from "@source/utils"
+import { getSignIn } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
@@ -44,7 +44,7 @@ export const SignInModal = () => {
     useEffect(() => {
         let signIn = getSignIn()
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
-    }, [])
+    }, [wallet])
 
     return (
         <Modal
