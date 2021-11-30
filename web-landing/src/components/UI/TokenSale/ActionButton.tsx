@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Box, BoxProps, Spinner, Flex, TextProps, Text } from "@chakra-ui/react"
+import { Box, BoxProps, Spinner, Flex, Text } from "@chakra-ui/react"
 
 interface ActionButtonProps extends BoxProps {
     text: React.ReactNode

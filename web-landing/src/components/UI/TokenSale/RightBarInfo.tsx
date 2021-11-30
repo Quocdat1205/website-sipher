@@ -36,12 +36,29 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
     return (
         <VStack spacing={4} h="full">
             <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
-                <CoinCard text="Total ETH Contributed" iconSrc="/images/icons/eth.png" value={totalProvided} />
-                <CoinCard isBorderTop text="Est. Current Token Price" iconSrc="/images/icons/eth.png" value={price!} />
+                <CoinCard
+                    size="medium"
+                    text="Total ETH Contributed"
+                    iconSrc="/images/icons/eth.png"
+                    value={totalProvided}
+                />
+                <CoinCard
+                    size="medium"
+                    isBorderTop
+                    text="Est. Current Token Price"
+                    iconSrc="/images/icons/eth.png"
+                    value={price!}
+                />
             </Box>
             <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
-                <CoinCard text="Your ETH Contributed" iconSrc="/images/icons/eth.png" value={userDeposit!} />
                 <CoinCard
+                    size="small"
+                    text="Your ETH Contributed"
+                    iconSrc="/images/icons/eth.png"
+                    value={userDeposit!}
+                />
+                <CoinCard
+                    size="small"
                     isBorderTop
                     text="Est. $SIPHER Received"
                     icon={<IconSipher src="/images/icons/sipher2.png" ml={2} boxSize="1.6rem" />}

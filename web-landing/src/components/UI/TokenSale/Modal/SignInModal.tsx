@@ -65,7 +65,6 @@ export const SignInModal = () => {
                     <Text mb={4} textAlign="left" size="large" fontWeight="semibold" letterSpacing="3px">
                         JUST A SEC!
                     </Text>
-                    {/* <Img h="8rem" src="/images/pc/token_sale/modal-sign.png" alt="" my={4} /> */}
                     <Box>
                         {signContent.map(item => (
                             <Box mb={4} key={item.title}>
@@ -81,18 +80,6 @@ export const SignInModal = () => {
                                 </UnorderedList>
                             </Box>
                         ))}
-
-                        {/* <Text textAlign="center" mb={4}>
-                            Please confirm that you are not a citizen or permanent resident of, you do not have a
-                            primary residence in and you are not physically located in the following territories or
-                            possessions:
-                        </Text>
-                        <Text size="small" textAlign="center" color="#9B9E9D" mb={4}>
-                            {`Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Haiti, Jamaica, Malta, Morocco, Myanmar,
-                    Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Democratic
-                    People's Republic of Korea (DPRK), Jordan, Mali, United States of America, People’s Republic of
-                    China, Hong Kong SAR, Macau SAR, Singapore, Philippines and Turkey`}
-                        </Text> */}
                         <Text>For more information, please read our Terms of Services (add link here).</Text>
                     </Box>
                     <Flex mt={4} px={4} justify="center" w="full">

@@ -100,7 +100,7 @@ export const AccordionTable = ({
                             w="full"
                         >
                             <DetailRow pl={10}>
-                                <ActionButton text="Buy SP/ETH Uniswap LP" />
+                                <ActionButton fontWeight={400} text="Buy SP/ETH Uniswap LP" />
                             </DetailRow>
                             <DetailRow pl={14}>
                                 <Typo.Text size="small">TVL</Typo.Text>
@@ -123,7 +123,6 @@ export const AccordionTable = ({
                             borderBottomRightRadius="xl"
                             borderColor="border.gray"
                             flexDir="column"
-                            justify="center"
                             px={8}
                             py={6}
                         >
@@ -131,12 +130,6 @@ export const AccordionTable = ({
                                 <Typo.Text size="small">Pending rewards</Typo.Text>
                                 <Typo.Text size="small" fontWeight="semibold">
                                     {pendingReward} ETH
-                                </Typo.Text>
-                            </DetailRow>
-                            <DetailRow>
-                                <Typo.Text size="small">Pool APR</Typo.Text>
-                                <Typo.Text size="small" fontWeight="semibold">
-                                    $
                                 </Typo.Text>
                             </DetailRow>
                             <DetailRow>

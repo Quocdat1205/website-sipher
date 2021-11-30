@@ -7,9 +7,19 @@ interface Props extends FlexProps {
     value?: number | string
     icon?: React.ReactNode
     isBorderTop?: boolean
+    size?: string
 }
 
-const CoinCard = ({ icon, text, iconSrc = "", isBorderTop = false, value = "N/A", ...rest }: Props) => {
+const CoinCard = ({
+    justify = "flex-start",
+    size = "medium",
+    icon,
+    text,
+    iconSrc = "",
+    isBorderTop = false,
+    value = "N/A",
+    ...rest
+}: Props) => {
     return (
         <Flex
             pos="relative"
@@ -22,21 +32,21 @@ const CoinCard = ({ icon, text, iconSrc = "", isBorderTop = false, value = "N/A"
             w="240px"
             {...rest}
         >
-            <Text px={4} textAlign="center" fontWeight="thin" mb={2} size="small">
+            <Text px={4} textAlign="center" color="#828282" fontWeight={400} mb={2} size="small">
                 {text}
             </Text>
-            <Flex px={4} flexDir="row" alignItems="center" justify="flex-start" w="full">
+            <Flex px={size === "small" ? 10 : 6} flexDir="row" alignItems="center" w="full">
                 <Box textAlign="left">
                     {iconSrc !== "" && <Image ml={2} boxSize="1.6rem" src={iconSrc} alt="icon" />}
                     {icon}
                 </Box>
                 <Text
-                    ml={2}
                     flex={1}
                     textAlign="center"
-                    fontWeight="semibold"
+                    ml={2}
+                    fontWeight={400}
                     letterSpacing="3px"
-                    size="medium"
+                    size={size}
                     isTruncated
                     title={value.toString()}
                 >

@@ -19,7 +19,7 @@ const DashBoard = (props: Props) => {
             <GridItem w="full" h="full" bg="rgba(0,0,0,0.8)" placeSelf="center">
                 <DashboardCard
                     img="/images/pc/stake/treasure.png"
-                    title="UnClaimed Rewards"
+                    title="Unclaimed Rewards"
                     dollarValue={10}
                     sipherValue={0}
                     textButton="CLAIM"

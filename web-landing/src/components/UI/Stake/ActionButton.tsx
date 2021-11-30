@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Box, BoxProps, Spinner, Flex, TextProps, Text } from "@chakra-ui/react"
+import { Box, BoxProps, Spinner, Flex, Text } from "@chakra-ui/react"
 
 interface ActionButtonProps extends BoxProps {
     text: React.ReactNode
@@ -10,26 +10,49 @@ interface ActionButtonProps extends BoxProps {
     disabled?: boolean
 }
 
-export const ActionButton = ({ text, isLoading, loadingText = "Loading", disabled, ...rest }: ActionButtonProps) => {
+export const ActionButton = ({
+    fontWeight = "bold",
+    text,
+    isLoading,
+    loadingText = "Loading",
+    disabled,
+    px = 4,
+    py = 2,
+    ...rest
+}: ActionButtonProps) => {
     return (
         <Box
             as="button"
+            textTransform="uppercase"
             rounded="md"
-            bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
-            color="white"
+            bgGradient={
+                disabled
+                    ? "linear-gradient(180deg, #131313 0%, #232323 84.37%)"
+                    : "linear(to-b, #FF6795, #FF710B 84.37%)"
+            }
+            color={disabled ? "#979797" : "white"}
             shadow="base"
-            fontSize={["xs", "sm", "sm", "md"]}
             letterSpacing="1px"
             textAlign="center"
+            pointerEvents={disabled ? "none" : "all"}
             overflow="hidden"
             userSelect="none"
-            py={2}
-            px={4}
             {...rest}
         >
-            <Text letterSpacing="2px" fontWeight="bold" color="inherit">
-                {text}
-            </Text>
+            <Box py={py} px={px} h="full">
+                {isLoading ? (
+                    <Flex align="center" justify="center">
+                        <Spinner size="sm" thickness="3px" />
+                        <Text ml={4} fontWeight={fontWeight} color="inherit">
+                            {loadingText}
+                        </Text>
+                    </Flex>
+                ) : (
+                    <Text letterSpacing="2px" fontWeight={fontWeight} color="inherit">
+                        {text}
+                    </Text>
+                )}
+            </Box>
         </Box>
     )
 }
