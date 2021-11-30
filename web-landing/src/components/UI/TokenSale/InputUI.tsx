@@ -108,7 +108,7 @@ const InputUI = ({ mode }: Props) => {
             if (isTracking) {
                 mode === "Deposit" ? deposit() : withdraw()
             } else {
-                toast({ title: "Error!", message: "IP not supported by SIPHER" })
+                toast({ title: "Error!", message: "Your IP address is in restricted territory" })
             }
         } catch (error) {
             toast({ title: "Error!", message: "Please try again later" })
