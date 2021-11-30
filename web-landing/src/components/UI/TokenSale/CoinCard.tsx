@@ -4,11 +4,12 @@ import React from "react"
 
 interface Props extends FlexProps {
     text: string
-    iconSrc: string
+    iconSrc?: string
     value?: number | string
+    icon?: React.ReactNode
 }
 
-const CoinCard = ({ text, iconSrc, value = "N/A", ...rest }: Props) => {
+const CoinCard = ({ icon, text, iconSrc = "", value = "N/A", ...rest }: Props) => {
     return (
         <Flex
             flexDir="column"
@@ -27,7 +28,8 @@ const CoinCard = ({ text, iconSrc, value = "N/A", ...rest }: Props) => {
                 {text}
             </Text>
             <Flex alignItems="center" justifyContent="center" w="full">
-                <Image mr={4} h="2.2rem" src={iconSrc} alt="icon" />
+                {iconSrc !== "" && <Image mr={4} h="2.2rem" src={iconSrc} alt="icon" />}
+                {icon}
                 <Text fontWeight="semibold" letterSpacing="3px" size="large" isTruncated title={value.toString()}>
                     {value}
                 </Text>

@@ -11,6 +11,7 @@ import { FaEthereum } from "react-icons/fa"
 import { useChakraToast } from "@sipher/web-components"
 import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
+import { floorPrecised } from "@source/utils"
 
 interface Props {
     mode: DropdownOption
@@ -63,12 +64,6 @@ const InputUI = ({ mode }: Props) => {
             initialData: 0,
         }
     )
-
-    const floorPrecised = (number, precision) => {
-        let power = Math.pow(10, precision)
-
-        return Math.floor(number * power) / power
-    }
 
     const handleSelect = (option: number) => {
         if (status === "ONGOING") {
@@ -163,7 +158,7 @@ const InputUI = ({ mode }: Props) => {
                     : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}
             </Text>
 
-            <Flex flexDir="column" mb={6}>
+            <Flex flexDir="column" mb={8}>
                 <chakra.span mb={2} display="flex" alignItems="center">
                     <Text>Locked amount</Text>
                     <Tooltip

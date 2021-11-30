@@ -3,6 +3,7 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 import { useQuery } from "react-query"
 import CoinCard from "./CoinCard"
 import { numberWithCommas } from "@source/utils"
+import { IconSipher } from "@components/shared/IconSipher"
 
 interface RightBarInfoProps {}
 
@@ -33,7 +34,7 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
             <CoinCard text="Est. Token Price" iconSrc="/images/icons/eth.png" value={price!.toFixed(5)} />
             <CoinCard
                 text="Est. $SIPHER token you will receive"
-                iconSrc="/images/icons/community/main-black.png"
+                icon={<IconSipher boxSize="2.8rem" />}
                 value={numberWithCommas(parseInt(token!.toString()))}
             />
         </VStack>

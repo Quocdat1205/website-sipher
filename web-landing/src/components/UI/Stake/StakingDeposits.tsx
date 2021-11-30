@@ -1,7 +1,8 @@
 import { Flex } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
+import { IconSipher } from "@components/shared/IconSipher"
 import React from "react"
-import { FlexCell, FlexHeader, FlexRow, IconETH, IconSipher } from "./FlexTable"
+import { FlexCell, FlexHeader, FlexRow, IconETH } from "./FlexTable"
 
 interface Props {}
 
