@@ -33,7 +33,7 @@ export const SignInModal = () => {
                 onClose()
             } else {
                 setIsLoading(false)
-                toast({ status: "error", title: "Error", message: "" })
+                toast({ status: "error", title: "Error", message: "Your IP is blacklisted" })
             }
         } catch (error) {
             setIsLoading(false)
