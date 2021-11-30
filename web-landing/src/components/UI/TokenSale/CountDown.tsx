@@ -72,8 +72,8 @@ const Countdown = ({ status }: CountdownProps) => {
     }, [])
 
     return (
-        <Flex direction="column" align="center" pos="relative">
-            <Box boxSize="16.5rem" position="relative">
+        <Flex direction="column" align="center" pos="relative" pt={10}>
+            <Box boxSize="18rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     <PrivateCountdown
                         time1={{
@@ -95,7 +95,7 @@ const Countdown = ({ status }: CountdownProps) => {
                     <Box
                         zIndex={1}
                         pos="absolute"
-                        boxSize="15rem"
+                        boxSize="16.5rem"
                         top="50%"
                         left="50%"
                         transform="translate(-50%, -50%)"
@@ -110,7 +110,7 @@ const Countdown = ({ status }: CountdownProps) => {
                     <Box
                         overflow="hidden"
                         pos="absolute"
-                        boxSize="12rem"
+                        boxSize="13rem"
                         top="50%"
                         left="50%"
                         transform="translate(-50%, -50%)"

@@ -1,5 +1,4 @@
-import { Flex, Image, chakra, FlexProps, Text } from "@chakra-ui/react"
-import { Typo } from "@components/shared"
+import { Flex, Image, chakra, FlexProps, Text, Box } from "@chakra-ui/react"
 import React from "react"
 
 interface Props extends FlexProps {
@@ -7,25 +6,23 @@ interface Props extends FlexProps {
     iconSrc?: string
     value?: number | string
     icon?: React.ReactNode
+    isBorderTop?: boolean
 }
 
-const CoinCard = ({ icon, text, iconSrc = "", value = "N/A", ...rest }: Props) => {
+const CoinCard = ({ icon, text, iconSrc = "", isBorderTop = false, value = "N/A", ...rest }: Props) => {
     return (
         <Flex
+            pos="relative"
             flexDir="column"
             align="center"
             justify="center"
-            bg="rgba(0,0,0,0.9)"
-            border="1px"
-            borderColor="#383838"
-            rounded="xl"
             flex={1}
-            py={8}
-            px={6}
+            py={4}
+            px={4}
             w="260px"
             {...rest}
         >
-            <Text px={4} textAlign="center" fontWeight="thin" mb={4} size="small">
+            <Text px={4} textAlign="center" fontWeight="thin" mb={2} size="small">
                 {text}
             </Text>
             <Flex alignItems="center" justifyContent="center" w="full">
@@ -35,6 +32,9 @@ const CoinCard = ({ icon, text, iconSrc = "", value = "N/A", ...rest }: Props) =
                     {value}
                 </Text>
             </Flex>
+            {isBorderTop && (
+                <Box pos="absolute" left="50%" top="0" transform="translateX(-50%)" w="80%" h="1px" bg="border.gray" />
+            )}
         </Flex>
     )
 }

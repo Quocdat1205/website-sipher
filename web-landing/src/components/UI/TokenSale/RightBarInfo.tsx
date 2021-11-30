@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/layout"
+import { Box, VStack } from "@chakra-ui/layout"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useQuery } from "react-query"
 import CoinCard from "./CoinCard"
@@ -28,15 +28,31 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
         initialData: 0,
     })
 
+    const { data: userDeposit } = useQuery("user-deposit", () => scCaller.current?.getUserDeposited(account!), {
+        enabled: !!scCaller.current && !!account,
+        initialData: 0,
+    })
+
     return (
         <VStack spacing={4} h="full">
-            <CoinCard text="Total ETH Contributed" iconSrc="/images/icons/eth.png" value={totalProvided} />
-            <CoinCard text="Estimated Current Token Price" iconSrc="/images/icons/eth.png" value={price!.toFixed(5)} />
-            <CoinCard
-                text="Estimated $SIPHER Token you will receive"
-                icon={<IconSipher mr={2} boxSize="2.8rem" />}
-                value={numberWithCommas(parseInt(token!.toString()))}
-            />
+            <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
+                <CoinCard text="Total ETH Contributed" iconSrc="/images/icons/eth.png" value={totalProvided} />
+                <CoinCard
+                    isBorderTop
+                    text="Est. Current Token Price"
+                    iconSrc="/images/icons/eth.png"
+                    value={price!.toFixed(5)}
+                />
+            </Box>
+            <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
+                <CoinCard text="Your ETH Contributed" iconSrc="/images/icons/eth.png" value={userDeposit!.toFixed(5)} />
+                <CoinCard
+                    isBorderTop
+                    text="Est. $SIPHER Received"
+                    icon={<IconSipher src="/images/icons/sipher2.png" mr={2} boxSize="2.2rem" />}
+                    value={numberWithCommas(parseInt(token!.toString()))}
+                />
+            </Box>
         </VStack>
     )
 }

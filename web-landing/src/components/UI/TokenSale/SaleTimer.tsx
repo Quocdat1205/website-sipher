@@ -1,9 +1,6 @@
-import { Flex, Tooltip, Box, Text, chakra, Image } from "@chakra-ui/react"
-import useWalletContext from "@hooks/web3/useWalletContext"
-import { floorPrecised } from "@source/utils"
+import { Flex, Tooltip, Box, Text } from "@chakra-ui/react"
 import React from "react"
 import { BsQuestionCircle } from "react-icons/bs"
-import { useQuery } from "react-query"
 import Countdown from "./CountDown"
 import { Status } from "./useSaleTime"
 
@@ -12,13 +9,6 @@ interface SaleTimerProps {
 }
 
 const SaleTimer = ({ status }: SaleTimerProps) => {
-    const { scCaller, account } = useWalletContext()
-
-    const { data: userDeposit } = useQuery("user-deposit", () => scCaller.current?.getUserDeposited(account!), {
-        enabled: !!scCaller.current && !!account,
-        initialData: 0,
-    })
-
     return (
         <Flex direction="column" align="center" flex={2} pos="relative">
             <Flex align="center" mb={4}>
@@ -43,25 +33,6 @@ const SaleTimer = ({ status }: SaleTimerProps) => {
                 </Tooltip>
             </Flex>
             <Countdown status={status} />
-            <Flex p={4} pos="relative" flexDir="column" align="center" justify="center">
-                <Text textAlign="center" size="small" fontWeight="semibold" letterSpacing="3px">
-                    YOUR ETH CONTRIBUTION
-                </Text>
-                <chakra.span py={4} display="flex" alignItems="center" justifyContent="center" w="full">
-                    <Image mr={4} h="2.2rem" src="/images/icons/eth.png" alt="icon" />
-                    <Text fontWeight="semibold" letterSpacing="3px" size="medium" isTruncated>
-                        {floorPrecised(userDeposit, 5)}
-                    </Text>
-                </chakra.span>
-                <Box
-                    pos="absolute"
-                    w="100%"
-                    h="1px"
-                    top={0}
-                    left={0}
-                    bgGradient="linear(to-r, transparent, #FFC266, transparent)"
-                />
-            </Flex>
             <Box
                 pos="absolute"
                 w="1px"

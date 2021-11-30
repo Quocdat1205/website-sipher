@@ -2,7 +2,7 @@ import Metadata from "@components/shared/Metadata"
 import NewsLayout from "@components/UI/NewsLayout"
 import Stake from "@components/UI/Stake"
 import { ReactElement } from "react"
-import { NextPageWithLayout } from "./_app"
+import { NextPageWithLayout } from "../_app"
 
 const StakePage: NextPageWithLayout = () => {
     return (
