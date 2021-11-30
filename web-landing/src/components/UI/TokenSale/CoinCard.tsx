@@ -20,7 +20,8 @@ const CoinCard = ({ icon, text, iconSrc = "", value = "N/A", ...rest }: Props) =
             borderColor="#383838"
             rounded="xl"
             flex={1}
-            p={8}
+            py={8}
+            px={6}
             w="260px"
             {...rest}
         >

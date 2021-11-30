@@ -30,10 +30,10 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
 
     return (
         <VStack spacing={4} h="full">
-            <CoinCard text="ETH Contributed" iconSrc="/images/icons/eth.png" value={totalProvided} />
-            <CoinCard text="Est. Token Price" iconSrc="/images/icons/eth.png" value={price!.toFixed(5)} />
+            <CoinCard text="Total ETH Contributed" iconSrc="/images/icons/eth.png" value={totalProvided} />
+            <CoinCard text="Estimated Current Token Price" iconSrc="/images/icons/eth.png" value={price!.toFixed(5)} />
             <CoinCard
-                text="Est. $SIPHER token you will receive"
+                text="Estimated $SIPHER Token you will receive"
                 icon={<IconSipher mr={2} boxSize="2.8rem" />}
                 value={numberWithCommas(parseInt(token!.toString()))}
             />
