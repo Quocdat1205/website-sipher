@@ -34,7 +34,7 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
             <CoinCard text="Est. Token Price" iconSrc="/images/icons/eth.png" value={price!.toFixed(5)} />
             <CoinCard
                 text="Est. $SIPHER token you will receive"
-                icon={<IconSipher boxSize="2.8rem" />}
+                icon={<IconSipher mr={2} boxSize="2.8rem" />}
                 value={numberWithCommas(parseInt(token!.toString()))}
             />
         </VStack>

@@ -21,16 +21,16 @@ const CoinCard = ({ icon, text, iconSrc = "", value = "N/A", ...rest }: Props) =
             rounded="xl"
             flex={1}
             p={8}
-            w="240px"
+            w="260px"
             {...rest}
         >
             <Text px={4} textAlign="center" fontWeight="thin" mb={4} size="small">
                 {text}
             </Text>
             <Flex alignItems="center" justifyContent="center" w="full">
-                {iconSrc !== "" && <Image mr={4} h="2.2rem" src={iconSrc} alt="icon" />}
+                {iconSrc !== "" && <Image mr={2} h="2.2rem" src={iconSrc} alt="icon" />}
                 {icon}
-                <Text fontWeight="semibold" letterSpacing="3px" size="large" isTruncated title={value.toString()}>
+                <Text fontWeight="semibold" letterSpacing="3px" size="medium" isTruncated title={value.toString()}>
                     {value}
                 </Text>
             </Flex>

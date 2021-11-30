@@ -49,7 +49,7 @@ const SaleTimer = ({ status }: SaleTimerProps) => {
                 </Text>
                 <chakra.span py={4} display="flex" alignItems="center" justifyContent="center" w="full">
                     <Image mr={4} h="2.2rem" src="/images/icons/eth.png" alt="icon" />
-                    <Text fontWeight="semibold" letterSpacing="3px" size="large" isTruncated>
+                    <Text fontWeight="semibold" letterSpacing="3px" size="medium" isTruncated>
                         {floorPrecised(userDeposit, 5)}
                     </Text>
                 </chakra.span>
