@@ -23,7 +23,7 @@ const InputUI = ({ mode }: Props) => {
 
     const options = [0.25, 0.5, 0.75, 1]
 
-    const { scCaller, account, getTracking } = useWalletContext()
+    const { scCaller, account, getTracking, ethereum } = useWalletContext()
 
     const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
 
@@ -70,7 +70,7 @@ const InputUI = ({ mode }: Props) => {
     )
 
     const { data: balance } = useQuery(["balance", account], () => scCaller.current?.getBalance(account!), {
-        enabled: !!scCaller.current && !!account,
+        enabled: !!scCaller.current && !!account && !!ethereum,
         initialData: 0,
         refetchInterval: 2000,
     })
