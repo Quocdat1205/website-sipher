@@ -63,7 +63,7 @@ const Claim = () => {
 
             <ActionButton
                 text="CLAIM"
-                px={24}
+                w="14rem"
                 py={2}
                 onClick={() => claim()}
                 fontSize="sm"
