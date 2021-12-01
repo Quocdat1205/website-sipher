@@ -1,32 +1,25 @@
-import { Flex, Heading } from "@chakra-ui/layout"
+import { Flex } from "@chakra-ui/layout"
+import { BackgroundContainer, Typo } from "@components/shared"
 import { isMobile, isTablet } from "react-device-detect"
 
-interface Props {}
-
-export const NotAvailable = (props: Props) => {
+export const NotAvailable = () => {
     const isCheckMobile = isMobile || isTablet
 
     return (
-        <Flex
-            display={isCheckMobile ? "flex" : "none"}
-            align="center"
-            justify="center"
-            pos="absolute"
-            w="full"
-            h="full"
-            bg="blackAlpha.100"
+        <BackgroundContainer
+            pos="relative"
+            image="/images/pc/home/background.png"
+            bgRepeat="no-repeat"
+            bgSize="100%"
+            pt={!isCheckMobile ? 24 : 0}
+            pb={!isCheckMobile ? 16 : 0}
+            bgColor="#090909"
+            h="100vh"
         >
-            <Heading
-                textAlign="center"
-                fontFamily="Brandon"
-                letterSpacing="4px"
-                lineHeight={1}
-                fontSize={["3rem", "4.5rem", "6rem"]}
-                fontWeight={700}
-            >
-                NOT AVAILABLE
-            </Heading>
-        </Flex>
+            <Flex align="center" justify="center" w="full" h="full">
+                <Typo.Heading>NOT AVAILABLE</Typo.Heading>
+            </Flex>
+        </BackgroundContainer>
     )
 }
 

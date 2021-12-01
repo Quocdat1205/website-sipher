@@ -1,6 +1,6 @@
 import { Flex, HStack, Image, Box, Text, chakra, Tooltip } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
-import React, { useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { DropdownOption } from "./SaleForm"
 import EtherInput from "./EtherInput"
 import useWalletContext from "@hooks/web3/useWalletContext"
@@ -19,7 +19,10 @@ interface Props {
 
 const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("0")
+    const setValueCb = useCallback((value: string) => setValue(value), [])
+
     const options = [0.25, 0.5, 0.75, 1]
+
     const { balance, scCaller, account, getTracking } = useWalletContext()
 
     const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
@@ -31,7 +34,7 @@ const InputUI = ({ mode }: Props) => {
     const toast = useChakraToast()
 
     const { data: accumulated } = useQuery(
-        "accumulated-deposit",
+        ["accumulated-deposit", value, account, mode],
         () =>
             scCaller.current?.getAccumulatedAfterDeposit(
                 account!,
@@ -40,11 +43,12 @@ const InputUI = ({ mode }: Props) => {
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
+            keepPreviousData: true,
         }
     )
 
     const { data: lockedAmount } = useQuery(
-        ["locked-amount", value],
+        ["locked-amount", value, account, mode],
         () =>
             scCaller.current?.getLockAmountAfterDeposit(
                 account!,
@@ -53,11 +57,12 @@ const InputUI = ({ mode }: Props) => {
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
+            keepPreviousData: true,
         }
     )
 
     const { data: withdrawableAmount } = useQuery(
-        "withdrawable-amount",
+        ["withdrawable-amount", account, mode],
         () => scCaller.current?.getWithdrawableAmount(account!),
         {
             enabled: !!scCaller.current && !!account,
@@ -78,12 +83,13 @@ const InputUI = ({ mode }: Props) => {
     }
 
     const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
-        onError: (err: any) => toast({ title: "Error", message: err.message }),
+        onError: (err: any) => toast({ status: "error", title: "Error", message: err.message || "" }),
         onSuccess: () => {
-            toast({ title: "Deposited successfully!" })
+            toast({ status: "success", title: "Deposited successfully!" })
             setValue("0")
-            qc.invalidateQueries("total-deposited")
+            qc.invalidateQueries("user-deposited")
             qc.invalidateQueries("locked-amount")
+            qc.invalidateQueries("withdrawable-amount")
         },
     })
 
@@ -92,17 +98,15 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => toast({ title: "Error", message: err.message }),
             onSuccess: () => {
-                toast({ title: "Withdrawal successfully!" })
+                toast({ status: "success", title: "Withdrawal successfully!" })
                 setValue("0")
-                qc.invalidateQueries("total-deposited")
-                qc.invalidateQueries("locked-amount")
+                qc.invalidateQueries("user-deposited")
+                qc.invalidateQueries("withdrawable-amount")
             },
         }
     )
 
     const handleAction = async () => {
-        // mode === "Deposit" ? deposit() : withdraw()
-
         try {
             const isTracking = await getTracking(mode)
             if (isTracking) {
@@ -115,9 +119,13 @@ const InputUI = ({ mode }: Props) => {
         }
     }
 
+    useEffect(() => {
+        setValueCb("0")
+    }, [setValueCb, mode])
+
     return (
         <Flex flexDir="column" w="full">
-            <Flex mb={2} flexDir="row" align="center" justify="space-between">
+            <Flex mb={2} align="center" justify="space-between">
                 <Text>{mode === "Deposit" ? "I want to deposit" : "Withdraw collateral"}</Text>
                 <HStack justify="flex-end" spacing={1}>
                     {options.map(option => {
@@ -159,8 +167,8 @@ const InputUI = ({ mode }: Props) => {
             </Text>
 
             <Flex flexDir="column" mb={8}>
-                <chakra.span mb={2} display="flex" alignItems="center">
-                    <Text>Locked amount</Text>
+                <Flex mb={2} align="center">
+                    <Text mr={2}>Locked amount</Text>
                     <Tooltip
                         hasArrow
                         label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation."
@@ -172,11 +180,11 @@ const InputUI = ({ mode }: Props) => {
                         p={2}
                         w="240px"
                     >
-                        <Box ml={2} cursor="pointer" color="white">
+                        <Box>
                             <BsQuestionCircle size="1rem" />
                         </Box>
                     </Tooltip>
-                </chakra.span>
+                </Flex>
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box
                         bg="#383838"

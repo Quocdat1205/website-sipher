@@ -8,9 +8,21 @@ interface ActionButtonProps extends BoxProps {
     isLoading?: boolean
     loadingText?: string
     disabled?: boolean
+    px?: number
+    py?: number
+    fontSize?: BoxProps["fontSize"]
 }
 
-export const ActionButton = ({ text, isLoading, loadingText = "Loading", disabled, ...rest }: ActionButtonProps) => {
+export const ActionButton = ({
+    text,
+    isLoading,
+    loadingText = "Loading",
+    disabled,
+    px = 8,
+    py = 4,
+    fontSize = "md",
+    ...rest
+}: ActionButtonProps) => {
     return (
         <Box
             as="button"
@@ -26,16 +38,16 @@ export const ActionButton = ({ text, isLoading, loadingText = "Loading", disable
             userSelect="none"
             {...rest}
         >
-            <Box py={4} px={8} h="full" bg={disabled ? "blackAlpha.500" : "transparent"}>
+            <Box py={py} px={px} h="full" bg={disabled ? "blackAlpha.500" : "transparent"}>
                 {isLoading ? (
                     <Flex align="center" justify="center">
                         <Spinner size="sm" thickness="3px" />
-                        <Text ml={4} fontWeight="bold" color="inherit">
+                        <Text ml={4} fontWeight="bold" color="inherit" fontSize={fontSize}>
                             {loadingText}
                         </Text>
                     </Flex>
                 ) : (
-                    <Text letterSpacing="2px" fontWeight="bold" color="inherit">
+                    <Text letterSpacing="2px" fontWeight="bold" color="inherit" fontSize={fontSize}>
                         {text}
                     </Text>
                 )}
