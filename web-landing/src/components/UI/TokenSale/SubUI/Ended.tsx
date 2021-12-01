@@ -51,7 +51,7 @@ const Ended = () => {
                     <Flex align="center" mb={3}>
                         <IconSipher mr={4} />
                         <Text letterSpacing="3px" size="large" fontWeight="semibold">
-                            {numberWithCommas(parseFloat(ReceivedToken!).toFixed(2))} $SIPHER
+                            {numberWithCommas(parseFloat(ReceivedToken!.toFixed(2)))} $SIPHER
                         </Text>
                     </Flex>
                     <FormStake />
