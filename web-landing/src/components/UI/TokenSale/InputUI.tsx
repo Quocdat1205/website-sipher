@@ -73,6 +73,8 @@ const InputUI = ({ mode }: Props) => {
         enabled: !!scCaller.current && !!account && !!ethereum,
         initialData: 0,
         refetchInterval: 2000,
+        onSuccess: () => console.log("Nice"),
+        onError: err => console.log(err),
     })
 
     const walletBalance = weiToEther(balance!.toString())

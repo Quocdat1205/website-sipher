@@ -6,7 +6,6 @@ export type Status = "LOADING" | "NOT_STARTED" | "ONGOING" | "ENDED" | "NOT_CONN
 
 const useSaleTime = () => {
     const { scCaller, account } = useWalletContext()
-
     const { data: startTime, isLoading: isLoadingStartTime } = useQuery(
         "start-time",
         () => scCaller.current!.getStartTime(),

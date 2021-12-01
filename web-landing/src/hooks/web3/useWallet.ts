@@ -40,6 +40,7 @@ const useWallet = () => {
     const reset = useCallback(() => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
         if (web3React.active) {
+            resetToken()
             web3React.deactivate()
 
             // Manually remove walletconnect
@@ -70,6 +71,7 @@ const useWallet = () => {
 
     useEffect(() => {
         if (web3React.library) {
+            console.log("library", web3React.library)
             scCaller.current = new ContractCaller(web3React.library)
             web3.current = new Web3(web3React.library)
         }
