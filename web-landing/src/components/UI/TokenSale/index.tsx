@@ -27,7 +27,7 @@ const TokenSale = () => {
 
     if (status === "LOADING") return <Loading />
 
-    if (true) return <Ended />
+    if (status === "ENDED") return <Ended />
 
     return (
         <BackgroundContainer
