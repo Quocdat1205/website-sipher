@@ -109,7 +109,7 @@ export class ContractCaller {
         const dur = Math.max(duration * 7 * 24 * 60 * 60, 600)
         const { maxFeePerGas, maxPriorityFeePerGas } = await checkGas()
         await this.SipherIBCO.methods
-            .claimAndDepositForStaking(amount, dur)
+            .claimAndDepositForStaking(Web3.utils.toWei(amount, "ether"), dur)
             .send({ from, maxFeePerGas, maxPriorityFeePerGas })
     }
 
