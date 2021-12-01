@@ -1,6 +1,4 @@
 import { Flex, Box, Text, chakra, Image } from "@chakra-ui/react"
-import {} from "@chakra-ui/system"
-import { Typo } from "@components/shared"
 import React from "react"
 import { ActionButton } from "./ActionButton"
 
@@ -26,15 +24,15 @@ const DashboardCard = ({ img, title, dollarValue, sipherValue, textButton = "", 
             h="full"
         >
             <Image mb={4} src={img} alt="icon" h="5rem" />
-            <Typo.Text lineHeight="1" color="#9B9E9D" fontWeight="semibold">
+            <Text lineHeight="1" color="#9B9E9D" fontWeight="semibold">
                 {title}
-            </Typo.Text>
+            </Text>
             <Text py={3} lineHeight="1" fontSize={["2rem", "2.5rem", "2.5rem", "2.5rem", "3rem"]} fontWeight="semibold">
                 ${dollarValue}
             </Text>
             <chakra.span pb={4} display="flex" alignItems="center">
                 <Image mr={1} src="/images/icons/community/main-black.png" alt="icon" h="1.5rem" />
-                <Typo.Text size="small">$SIPHER {sipherValue}</Typo.Text>
+                <Text size="small">$SIPHER {sipherValue}</Text>
             </chakra.span>
             {textButton !== "" && (
                 <Box w="full" pt={8} borderTop="1px" borderColor="rgba(155,158,157, 0.5)">

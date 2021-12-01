@@ -12,7 +12,7 @@ const data = [
         type: 1,
         amount: "24567",
         rewards: "0.00023",
-        lockDate: 1638272266000,
+        status: "Locked",
         unlockDate: 1638272266000,
         active: true,
     },
@@ -21,22 +21,22 @@ const data = [
         type: 2,
         amount: "24567",
         rewards: "0.00023",
-        lockDate: 1638272266000,
+        status: "Unlock",
         unlockDate: 1638272266000,
         active: false,
     },
 ]
 
-const StakingDeposits = (props: Props) => {
+const LockedRewards = (props: Props) => {
     let options: any = { year: "numeric", month: "short", day: "numeric" }
     return (
         <Flex py={8} px={4} bg="blackAlpha.900" border="1px" borderColor="border.gray" rounded="xl" flexDir="column">
             <Flex flexDir="row" w="full">
-                <FlexHeader p={2} text="Pools" w="24%" />
-                <FlexHeader p={2} text="Amount Staked" w="18%" />
-                <FlexHeader p={2} text="Est. Rewards" w="18%" />
-                <FlexHeader p={2} text="Lock Date" w="14%" />
-                <FlexHeader p={2} text="Unlock Date" w="14%" />
+                <FlexHeader p={2} text="Token" w="24%" />
+                <FlexHeader p={2} text="Amount" w="18%" />
+                <FlexHeader p={2} text="Dollar value" w="18%" />
+                <FlexHeader p={2} text="Status" w="14%" />
+                <FlexHeader p={2} text="Time Remaining" w="14%" />
                 <FlexHeader p={2} text="" w="12%" />
             </Flex>
             {data.map(item => (
@@ -57,7 +57,7 @@ const StakingDeposits = (props: Props) => {
                         <Text size="small">${item.rewards}</Text>
                     </FlexCell>
                     <FlexCell p={2} w="14%">
-                        <Text size="small">{new Date(item.lockDate).toLocaleDateString("en-GB", options)}</Text>
+                        <Text size="small">{item.status}</Text>
                     </FlexCell>
                     <FlexCell p={2} w="14%">
                         <Text size="small">{new Date(item.unlockDate).toLocaleDateString("en-GB", options)}</Text>
@@ -71,4 +71,4 @@ const StakingDeposits = (props: Props) => {
     )
 }
 
-export default StakingDeposits
+export default LockedRewards

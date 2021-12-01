@@ -61,7 +61,7 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
                     size="small"
                     isBorderTop
                     text="Est. $SIPHER Received"
-                    icon={<IconSipher src="/images/icons/sipher2.png" ml={2} boxSize="1.6rem" />}
+                    icon={<IconSipher ml={2} boxSize="1.6rem" />}
                     value={numberWithCommas(parseInt(token!.toString()))}
                 />
             </Box>

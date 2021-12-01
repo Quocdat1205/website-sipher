@@ -1,5 +1,4 @@
-import { Image, Flex, HStack } from "@chakra-ui/react"
-import { Typo } from "@components/shared"
+import { Image, Flex, HStack, Text } from "@chakra-ui/react"
 import { ActionButton } from "../ActionButton"
 import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from "react"
@@ -18,6 +17,7 @@ interface Props {
     pendingReward: number
     poolAPR?: number
     liquidity: number
+    pools: string
 }
 
 export const AccordionTable = ({
@@ -32,28 +32,33 @@ export const AccordionTable = ({
     pendingReward = 0,
     poolAPR = 0,
     liquidity = 0,
+    pools,
 }: Props) => {
     const [open, setOpen] = useState(false)
 
     return (
         <Flex flexDir="column" mb={4}>
             <FlexRow>
-                <FlexCell border={open ? "1px" : "none"} borderRight="none" borderTopLeftRadius="xl" w="25%">
-                    <Flex pos="relative" flexDir="row" align="center">
+                <FlexCell
+                    pos="relative"
+                    border={open ? "1px" : "none"}
+                    borderRight="none"
+                    borderTopLeftRadius="xl"
+                    w="25%"
+                >
+                    <Flex flexDir="row" align="center">
                         <Image h="2rem" src={img} alt="icon" />
-                        {img1 !== "" && (
-                            <Image pos="absolute" left="15%" top="0" zIndex={1} h="2rem" src={img1} alt="icon" />
-                        )}
-                        <Typo.Text pl={6} size="small">
-                            $SIPHER
-                        </Typo.Text>
+                        {img1 !== "" && <Image pos="absolute" left="20%" zIndex={1} h="2rem" src={img1} alt="icon" />}
+                        <Text pl={6} size="small">
+                            {pools}
+                        </Text>
                     </Flex>
                 </FlexCell>
                 <FlexCell borderTop={open ? "1px" : "none"} borderBottom={open ? "1px" : "none"} w="25%">
-                    <Typo.Text size="small">${valueLocked}</Typo.Text>
+                    <Text size="small">${valueLocked}</Text>
                 </FlexCell>
                 <FlexCell borderTop={open ? "1px" : "none"} borderBottom={open ? "1px" : "none"} w="20%">
-                    <Typo.Text size="small">{APR}%</Typo.Text>
+                    <Text size="small">{APR}%</Text>
                 </FlexCell>
                 <FlexCell
                     border={open ? "1px" : "none"}
@@ -64,9 +69,9 @@ export const AccordionTable = ({
                 >
                     <HStack spacing={4}>
                         <Flex cursor="pointer" flexDir="row" align="center" onClick={() => setOpen(!open)}>
-                            <Typo.Text size="small" fontWeight="semibold" mr={2}>
+                            <Text size="small" fontWeight="semibold" mr={2}>
                                 DETAILS
-                            </Typo.Text>
+                            </Text>
                             {open ? <FaAngleUp size="1.2rem" /> : <FaAngleDown size="1.2rem" />}
                         </Flex>
                         <ActionButton onClick={onClickStake} px={4} text="STAKE" />
@@ -103,16 +108,16 @@ export const AccordionTable = ({
                                 <ActionButton fontWeight={400} text="Buy SP/ETH Uniswap LP" />
                             </DetailRow>
                             <DetailRow pl={14}>
-                                <Typo.Text size="small">TVL</Typo.Text>
-                                <Typo.Text size="small" fontWeight="semibold">
+                                <Text size="small">TVL</Text>
+                                <Text size="small" fontWeight="semibold">
                                     $
-                                </Typo.Text>
+                                </Text>
                             </DetailRow>
                             <DetailRow pl={14}>
-                                <Typo.Text size="small">Weight</Typo.Text>
-                                <Typo.Text size="small" fontWeight="semibold">
+                                <Text size="small">Weight</Text>
+                                <Text size="small" fontWeight="semibold">
                                     20.0%
-                                </Typo.Text>
+                                </Text>
                             </DetailRow>
                         </Flex>
                         <Flex
@@ -127,16 +132,16 @@ export const AccordionTable = ({
                             py={6}
                         >
                             <DetailRow>
-                                <Typo.Text size="small">Pending rewards</Typo.Text>
-                                <Typo.Text size="small" fontWeight="semibold">
+                                <Text size="small">Pending rewards</Text>
+                                <Text size="small" fontWeight="semibold">
                                     {pendingReward} ETH
-                                </Typo.Text>
+                                </Text>
                             </DetailRow>
                             <DetailRow>
-                                <Typo.Text size="small">My liquidity</Typo.Text>
-                                <Typo.Text size="small" fontWeight="semibold">
+                                <Text size="small">My liquidity</Text>
+                                <Text size="small" fontWeight="semibold">
                                     {liquidity} ETH
-                                </Typo.Text>
+                                </Text>
                             </DetailRow>
                         </Flex>
                     </motion.div>

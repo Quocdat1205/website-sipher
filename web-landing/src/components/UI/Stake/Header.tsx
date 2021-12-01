@@ -1,5 +1,4 @@
-import { Box, Flex, Link, chakra, Heading, Image } from "@chakra-ui/react"
-import { Typo } from "@components/shared"
+import { Box, Flex, Link, chakra, Heading, Image, Text } from "@chakra-ui/react"
 import React from "react"
 
 interface Props {}
@@ -16,9 +15,9 @@ const Header = (props: Props) => {
                 >
                     STAKE
                 </Heading>
-                <Typo.Heading fontWeight="semibold" letterSpacing="3px">
+                <Heading fontWeight="semibold" letterSpacing="3px">
                     DONEC VIVERRA METUS EU
-                </Typo.Heading>
+                </Heading>
                 <Link
                     href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
                     textDecoration="underline"
@@ -33,14 +32,14 @@ const Header = (props: Props) => {
                 <Flex flexDir="row" justify="space-between" w="full" align="center">
                     <chakra.span display="flex" alignItems="center">
                         <Image alt="icon" mr={1} h="1rem" src="/images/icons/community/main-black.png" />
-                        <Typo.Text size="small">$SIPHER PRICE</Typo.Text>
-                        <Typo.Text size="small" px={2} fontWeight="semibold">
+                        <Text size="small">$SIPHER PRICE</Text>
+                        <Text size="small" px={2} fontWeight="semibold">
                             $6,49
-                        </Typo.Text>
+                        </Text>
                     </chakra.span>
-                    <Typo.Text fontWeight="semibold" color="#25B700" size="small">
+                    <Text fontWeight="semibold" color="#25B700" size="small">
                         +4.5%
-                    </Typo.Text>
+                    </Text>
                 </Flex>
                 <Flex
                     flexDir="column"
@@ -51,12 +50,12 @@ const Header = (props: Props) => {
                     mt={4}
                     rounded="lg"
                 >
-                    <Typo.Text size="small">Total Amount Staked:</Typo.Text>
-                    <Typo.Text fontWeight="semibold">$185,940,234</Typo.Text>
-                    <Typo.Text size="small" mt={4}>
+                    <Text size="small">Total Amount Staked:</Text>
+                    <Text fontWeight="semibold">$185,940,234</Text>
+                    <Text size="small" mt={4}>
                         Total Amount Claimed:
-                    </Typo.Text>
-                    <Typo.Text fontWeight="semibold">$440,940,234</Typo.Text>
+                    </Text>
+                    <Text fontWeight="semibold">$440,940,234</Text>
                 </Flex>
             </Box>
         </Flex>
