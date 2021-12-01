@@ -106,7 +106,7 @@ export class ContractCaller {
     }
 
     async claimAndStake(from: string, amount: string, duration: number) {
-        const dur = duration * 7 * 24 * 60 * 60
+        const dur = Math.max(duration * 7 * 24 * 60 * 60, 600)
         const { maxFeePerGas, maxPriorityFeePerGas } = await checkGas()
         await this.SipherIBCO.methods
             .claimAndDepositForStaking(amount, dur)
