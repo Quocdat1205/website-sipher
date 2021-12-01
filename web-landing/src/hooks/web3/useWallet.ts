@@ -124,7 +124,7 @@ const useWallet = () => {
                 setStatus("error")
                 if (err instanceof UnsupportedChainIdError) {
                     setError(new ChainUnsupportedError(err.message))
-                    toast({ title: err.name, message: err.message })
+                    toast({ title: "Unsupported chain", message: err.message })
                     return
                 }
 
