@@ -23,11 +23,10 @@ const InputUI = ({ mode }: Props) => {
 
     const options = [0.25, 0.5, 0.75, 1]
 
-    const { balance, scCaller, account, getTracking } = useWalletContext()
+    const { scCaller, account, getTracking } = useWalletContext()
 
     const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
 
-    const walletBalance = weiToEther(balance)
     const { status } = useSaleTime()
 
     const qc = useQueryClient()
@@ -69,6 +68,14 @@ const InputUI = ({ mode }: Props) => {
             initialData: 0,
         }
     )
+
+    const { data: balance } = useQuery(["balance", account], () => scCaller.current?.getBalance(account!), {
+        enabled: !!scCaller.current && !!account,
+        initialData: 0,
+        refetchInterval: 2000,
+    })
+
+    const walletBalance = weiToEther(balance!.toString())
 
     const handleSelect = (option: number) => {
         if (status === "ONGOING") {

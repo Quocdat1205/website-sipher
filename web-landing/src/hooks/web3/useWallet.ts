@@ -17,7 +17,6 @@ import { authenticateUser, getUsersByAddress, trackingIP } from "@hooks/api/user
 import { useChakraToast } from "@sipher/web-components"
 import { clearAccessToken, clearSignIn, setAccessToken, setSignIn, getAccessToken } from "@source/utils"
 import { ContractCaller } from "@source/contract"
-import { useWalletBalance } from "./useWalletBalance"
 
 declare global {
     interface Window {
@@ -37,8 +36,6 @@ const useWallet = () => {
     const chain = useMemo(() => (chainId ? getChain(chainId) : null), [chainId])
 
     const scCaller = useRef<ContractCaller | null>(null)
-
-    const balance = useWalletBalance({ account, ethereum })
 
     const reset = useCallback(() => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
@@ -73,8 +70,8 @@ const useWallet = () => {
 
     useEffect(() => {
         if (web3React.library) {
-            if (!scCaller.current) scCaller.current = new ContractCaller(web3React.library)
-            if (!web3.current) web3.current = new Web3(web3React.library)
+            scCaller.current = new ContractCaller(web3React.library)
+            web3.current = new Web3(web3React.library)
         }
     }, [web3React.library])
 
@@ -202,7 +199,6 @@ const useWallet = () => {
         ethereum,
         getAccessToken: getAccessTokenAPI,
         getTracking,
-        balance,
         scCaller,
         resetToken,
     }

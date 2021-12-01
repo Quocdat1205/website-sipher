@@ -112,4 +112,8 @@ export class ContractCaller {
             .claimAndDepositForStaking(amount, dur)
             .send({ from, maxFeePerGas, maxPriorityFeePerGas })
     }
+
+    async getBalance(from: string) {
+        return parseInt(await this.web3.eth.getBalance(from))
+    }
 }
