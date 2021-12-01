@@ -18,7 +18,7 @@ const ClaimAndStake = () => {
 
     const setSliderValueCb = useCallback((value: number) => setSliderValue(value), [])
 
-    const weight = (sliderValue / 26).toFixed(2)
+    const weight = (1 + (sliderValue * 7) / 365).toFixed(2)
 
     const { scCaller, account } = useWalletContext()
 
