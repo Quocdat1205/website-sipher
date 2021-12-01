@@ -151,6 +151,7 @@ const useWallet = () => {
         if (!web3.current) throw Error("Provider not found")
 
         const user = await getUsersByAddress(account)
+
         const signature = await web3.current.eth.personal.sign(
             `I am signing my one-time nonce: ${user.nonce}`,
             account as string,

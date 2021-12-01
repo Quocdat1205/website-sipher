@@ -46,7 +46,7 @@ const Claim = () => {
                 <Text mr={2}>{`Don't want to receive rewards? Claim assets`}</Text>
                 <Tooltip
                     hasArrow
-                    label="to be d"
+                    label="..."
                     placement="bottom-end"
                     fontSize="sm"
                     bg="#383838DD"

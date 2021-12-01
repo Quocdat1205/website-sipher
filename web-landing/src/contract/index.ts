@@ -16,11 +16,11 @@ export class ContractCaller {
     }
 
     async getStartTime() {
-        return parseInt(await this.SipherIBCO.methods.START().call()) * 1000
+        return parseInt(await this.SipherIBCO.methods.START().call()) * 1000 + 15000
     }
 
     async getEndTime() {
-        return parseInt(await this.SipherIBCO.methods.END().call()) * 1000
+        return parseInt(await this.SipherIBCO.methods.END().call()) * 1000 + 15000
     }
 
     async getTotalDistributeAmount() {
@@ -54,8 +54,8 @@ export class ContractCaller {
         await this.SipherIBCO.methods.deposit().send({
             from,
             value: Web3.utils.toWei(amount, "ether"),
-            maxFeePerGas,
-            maxPriorityFeePerGas,
+            maxFeePerGas: Web3.utils.toHex(maxFeePerGas),
+            maxPriorityFeePerGas: Web3.utils.toHex(maxPriorityFeePerGas),
         })
     }
 
