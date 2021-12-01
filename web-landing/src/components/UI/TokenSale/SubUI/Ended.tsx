@@ -9,21 +9,15 @@ import FormStake from "@components/UI/TokenSale/FormStake"
 
 const Ended = () => {
     const { scCaller, account } = useWalletContext()
-    const qc = useQueryClient()
-    const toast = useChakraToast()
 
-    const { data: ReceivedToken } = useQuery("received-token", () => scCaller.current?.getEstReceivedToken(account!), {
-        enabled: !!scCaller.current && !!account,
-        initialData: 0,
-    })
-
-    const { mutate: claim, isLoading: isClaiming } = useMutation(() => scCaller.current!.claim(account!), {
-        onError: (err: any) => toast({ title: "Error", message: err.message }),
-        onSuccess: () => {
-            toast({ title: "Claimed successfully!" })
-            qc.invalidateQueries("received-token")
-        },
-    })
+    const { data: ReceivedToken } = useQuery(
+        ["estimate-received-token", account],
+        () => scCaller.current?.getEstReceivedToken(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
 
     return (
         <BackgroundContainer
