@@ -11,6 +11,7 @@ interface Props {
 const TabButton = ({ selected, tabOptions, onChange }: Props) => {
     return (
         <Flex
+            w="full"
             overflow="hidden"
             bg="#131313"
             border="1px"
@@ -23,14 +24,14 @@ const TabButton = ({ selected, tabOptions, onChange }: Props) => {
         >
             {tabOptions.map(option => (
                 <Flex
+                    flex={1}
                     key={option}
                     align="center"
                     justify="center"
                     rounded="full"
-                    w="240px"
                     px={8}
                     py={4}
-                    fontWeight="semibold"
+                    fontWeight={400}
                     color={selected === option ? "#FF9800" : "white"}
                     bg={selected === option ? "#1d1d1d" : "transparent"}
                     onClick={() => {

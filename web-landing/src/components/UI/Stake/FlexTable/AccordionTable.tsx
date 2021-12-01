@@ -4,13 +4,13 @@ import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from "react"
 import { FaAngleDown, FaAngleUp } from "react-icons/fa"
 import { DetailRow, FlexCell, FlexRow } from "."
+import { useRouter } from "next/router"
 
 interface Props {
     img: string
     img1?: string
     valueLocked: number
     APR: number
-    onClickStake?: () => void
     onClickBuy?: () => void
     TVL?: number
     weight: number
@@ -18,6 +18,7 @@ interface Props {
     poolAPR?: number
     liquidity: number
     pools: string
+    href: string
 }
 
 export const AccordionTable = ({
@@ -25,7 +26,6 @@ export const AccordionTable = ({
     img1 = "",
     valueLocked = 0,
     APR = 0,
-    onClickStake,
     onClickBuy,
     TVL = 0,
     weight = 0,
@@ -33,7 +33,9 @@ export const AccordionTable = ({
     poolAPR = 0,
     liquidity = 0,
     pools,
+    href = "",
 }: Props) => {
+    const router = useRouter()
     const [open, setOpen] = useState(false)
 
     return (
@@ -74,7 +76,7 @@ export const AccordionTable = ({
                             </Text>
                             {open ? <FaAngleUp size="1.2rem" /> : <FaAngleDown size="1.2rem" />}
                         </Flex>
-                        <ActionButton onClick={onClickStake} px={4} text="STAKE" />
+                        <ActionButton onClick={() => router.push(href)} px={4} text="STAKE" />
                     </HStack>
                 </FlexCell>
             </FlexRow>

@@ -38,12 +38,12 @@ export const trackingIP = async (
     accessToken: string,
     action: string
 ): Promise<{ success: boolean }> => {
-    const type = action === "Deposit" ? 1 : 2
+    const type = action.toLowerCase()
     const {
         data: { success },
     } = await fetcher.post(
         "/tracking",
-        { add: address, type },
+        { address, type },
         {
             headers: {
                 Authorization: `Bearer ${accessToken}`,

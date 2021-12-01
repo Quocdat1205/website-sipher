@@ -7,8 +7,8 @@ import { NextPageWithLayout } from "../_app"
 const StakePage: NextPageWithLayout = () => {
     return (
         <>
-            <Metadata title="Stake | Sipher" description="Form Stake" />
-            <FormStake />
+            <Metadata title="Stake | Sipher/ETH" description="Form Stake" />
+            <FormStake type="SIPHER/ETH" />
         </>
     )
 }
