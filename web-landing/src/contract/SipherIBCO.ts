@@ -1,4 +1,4 @@
-export const SipherIBCOAddress = "0xb549Aa315737728Ce7F54e9316A17AcEECB66a10"
+export const SipherIBCOAddress = "0xe1C4ff2033CBD65C3D7C6E1fB3E5446965975671"
 
 export const SipherIBCOAbi: any = [
     {
