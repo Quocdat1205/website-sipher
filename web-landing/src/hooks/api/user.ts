@@ -52,21 +52,3 @@ export const trackingIP = async (
     )
     return success
 }
-
-// export const logLocation = async (cookies) => {
-// 	const accessToken = cookies[LS_KEY];
-// 	const ipdata = await axios.get("https://geolocation-db.com/json/");
-// 	const { data } = await axios.put(
-// 		`/log`,
-// 		{
-// 			ip: ipdata.data.IPv4,
-// 		},
-// 		{
-// 			baseURL: config.baseURL,
-// 			headers: {
-// 				Authorization: `Bearer ${accessToken}`,
-// 			},
-// 		}
-// 	);
-// 	return data;
-// };

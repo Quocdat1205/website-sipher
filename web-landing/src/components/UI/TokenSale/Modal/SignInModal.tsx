@@ -38,9 +38,10 @@ export const SignInModal = () => {
                 setIsLoading(false)
                 toast({ status: "error", title: "Error", message: "Your IP address is in restricted territory" })
             }
-        } catch (error) {
+        } catch (error: any) {
             setIsLoading(false)
-            toast({ status: "error", title: "Error", message: "" })
+            console.log(error)
+            toast({ status: "error", title: "Error", message: error.message || "" })
         }
     }
 

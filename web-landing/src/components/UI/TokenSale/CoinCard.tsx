@@ -21,18 +21,8 @@ const CoinCard = ({
     ...rest
 }: Props) => {
     return (
-        <Flex
-            pos="relative"
-            flexDir="column"
-            align="center"
-            justify="center"
-            flex={1}
-            py={4}
-            px={4}
-            w="240px"
-            {...rest}
-        >
-            <Text px={4} textAlign="center" color="#828282" fontWeight={400} mb={2} size="small">
+        <Flex flexDir="column" align="center" justify="center" flex={1} py={4} w="224px" {...rest}>
+            <Text px={4} textAlign="center" color="#828282" fontWeight={400} mb={4} size="small">
                 {text}
             </Text>
             <Flex px={size === "small" ? 10 : 6} flexDir="row" alignItems="center" w="full">
@@ -53,9 +43,6 @@ const CoinCard = ({
                     {value}
                 </Text>
             </Flex>
-            {isBorderTop && (
-                <Box pos="absolute" left="50%" top="0" transform="translateX(-50%)" w="80%" h="1px" bg="border.gray" />
-            )}
         </Flex>
     )
 }

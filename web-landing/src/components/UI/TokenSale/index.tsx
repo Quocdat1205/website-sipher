@@ -21,6 +21,8 @@ const TokenSale = () => {
 
     const { status } = useSaleTime()
 
+    if (isCheckMobile) return <NotAvailable />
+
     if (status === "NOT_CONNECTED") return <NotConnected />
 
     if (status === "LOADING") return <Loading />
@@ -71,7 +73,6 @@ const TokenSale = () => {
                     </GridItem>
                 </Grid>
             </Flex>
-            <NotAvailable />
             <SignInModal />
         </BackgroundContainer>
     )

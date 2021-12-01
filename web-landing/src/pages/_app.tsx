@@ -26,7 +26,13 @@ declare global {
     }
 }
 const isProduction = process.env.NODE_ENV === "production"
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            keepPreviousData: true,
+        },
+    },
+})
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const router = useRouter()

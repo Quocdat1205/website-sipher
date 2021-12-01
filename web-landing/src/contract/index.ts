@@ -1,3 +1,4 @@
+import { checkGas } from "@hooks/api"
 import Web3 from "web3"
 import { SipherIBCOAbi, SipherIBCOAddress } from "./SipherIBCO"
 
@@ -49,18 +50,25 @@ export class ContractCaller {
     }
 
     async deposit(from: string, amount: string) {
+        const { maxFeePerGas, maxPriorityFeePerGas } = await checkGas()
         await this.SipherIBCO.methods.deposit().send({
             from,
             value: Web3.utils.toWei(amount, "ether"),
+            maxFeePerGas,
+            maxPriorityFeePerGas,
         })
     }
 
     async claim(from: string) {
-        await this.SipherIBCO.methods.claim().send({ from })
+        const { maxFeePerGas, maxPriorityFeePerGas } = await checkGas()
+        await this.SipherIBCO.methods.claim().send({ from, maxFeePerGas, maxPriorityFeePerGas })
     }
 
     async withdraw(from: string, amount: string) {
-        await this.SipherIBCO.methods.withdraw(Web3.utils.toWei(amount, "ether")).send({ from })
+        const { maxFeePerGas, maxPriorityFeePerGas } = await checkGas()
+        await this.SipherIBCO.methods
+            .withdraw(Web3.utils.toWei(amount, "ether"))
+            .send({ from, maxFeePerGas, maxPriorityFeePerGas })
     }
 
     async getEstTokenPrice() {
@@ -76,7 +84,7 @@ export class ContractCaller {
     }
 
     async getLockedAmount(from: string): Promise<number> {
-        return weiToEther(await this.SipherIBCO.methods.getLockedAmount().call({ from }))
+        return weiToEther(await this.SipherIBCO.methods.getLockedAmount(from).call())
     }
 
     async calculateLocked(amount: string): Promise<number> {
@@ -95,5 +103,13 @@ export class ContractCaller {
         return weiToEther(
             await this.SipherIBCO.methods.getAccumulatedAfterDeposit(address, Web3.utils.toWei(amount, "ether")).call()
         )
+    }
+
+    async claimAndStake(from: string, amount: string, duration: number) {
+        const dur = duration * 7 * 24 * 60 * 60
+        const { maxFeePerGas, maxPriorityFeePerGas } = await checkGas()
+        await this.SipherIBCO.methods
+            .claimAndDepositForStaking(amount, dur)
+            .send({ from, maxFeePerGas, maxPriorityFeePerGas })
     }
 }
