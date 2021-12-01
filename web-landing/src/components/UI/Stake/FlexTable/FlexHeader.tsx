@@ -7,7 +7,7 @@ interface Props extends FlexProps {
 
 export const FlexHeader = ({ text = "", ...rest }: Props) => {
     return (
-        <Flex py={4} px={8} textTransform="none" fontWeight="semibold" fontSize="lg" {...rest}>
+        <Flex py={4} px={8} textTransform="none" fontWeight="semibold" fontSize="md" {...rest}>
             {text}
         </Flex>
     )

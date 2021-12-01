@@ -72,7 +72,7 @@ const Countdown = ({ status }: CountdownProps) => {
     }, [])
 
     return (
-        <Flex direction="column" align="center" h="full" pt={8} pos="relative">
+        <Flex direction="column" align="center" pos="relative" pt={10}>
             <Box boxSize="18rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     <PrivateCountdown
@@ -102,7 +102,7 @@ const Countdown = ({ status }: CountdownProps) => {
                     >
                         <Loader
                             isSecond
-                            percent={(status === "NOT_STARTED" ? timerStart.seconds : timerEnd.seconds / 60) * 100}
+                            percent={((status === "NOT_STARTED" ? timerStart.seconds : timerEnd.seconds) / 60) * 100}
                         />
                     </Box>
                 )}

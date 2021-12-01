@@ -68,11 +68,11 @@ export class ContractCaller {
     }
 
     async getEstReceivedToken(from: string) {
-        return weiToEther(await this.SipherIBCO.methods.getEstReceivedToken().call({ from }))
+        return weiToEther(await this.SipherIBCO.methods.getEstReceivedToken(from).call())
     }
 
     async getWithdrawableAmount(from: string) {
-        return weiToEther(await this.SipherIBCO.methods.getWithdrawableAmount().call({ from }))
+        return weiToEther(await this.SipherIBCO.methods.getWithdrawableAmount(from).call())
     }
 
     async getLockedAmount(from: string): Promise<number> {

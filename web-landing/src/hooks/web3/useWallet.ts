@@ -158,8 +158,10 @@ const useWallet = () => {
         )
         const { accessToken, tracking } = await authenticateUser(account, signature)
 
-        setAccessToken(tracking ? accessToken : "")
-        setSignIn(tracking ? "true" : "false")
+        if (tracking) {
+            setAccessToken(accessToken)
+            setSignIn("true")
+        }
         return { accessToken, tracking }
     }, [web3React])
 

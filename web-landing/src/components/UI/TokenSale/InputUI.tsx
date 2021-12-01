@@ -11,6 +11,7 @@ import { FaEthereum } from "react-icons/fa"
 import { useChakraToast } from "@sipher/web-components"
 import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
+import { floorPrecised } from "@source/utils"
 
 interface Props {
     mode: DropdownOption
@@ -64,12 +65,6 @@ const InputUI = ({ mode }: Props) => {
         }
     )
 
-    const floorPrecised = (number, precision) => {
-        let power = Math.pow(10, precision)
-
-        return Math.floor(number * power) / power
-    }
-
     const handleSelect = (option: number) => {
         if (status === "ONGOING") {
             setValue(
@@ -113,7 +108,7 @@ const InputUI = ({ mode }: Props) => {
             if (isTracking) {
                 mode === "Deposit" ? deposit() : withdraw()
             } else {
-                toast({ title: "Error!", message: "IP not supported by SIPHER" })
+                toast({ title: "Error!", message: "Your IP address is in restricted territory" })
             }
         } catch (error) {
             toast({ title: "Error!", message: "Please try again later" })
@@ -163,7 +158,7 @@ const InputUI = ({ mode }: Props) => {
                     : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}
             </Text>
 
-            <Flex flexDir="column" mb={6}>
+            <Flex flexDir="column" mb={8}>
                 <chakra.span mb={2} display="flex" alignItems="center">
                     <Text>Locked amount</Text>
                     <Tooltip
@@ -175,7 +170,6 @@ const InputUI = ({ mode }: Props) => {
                         fontWeight={400}
                         rounded="lg"
                         p={2}
-                        openDelay={500}
                         w="240px"
                     >
                         <Box ml={2} cursor="pointer" color="white">

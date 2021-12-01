@@ -24,7 +24,6 @@ const SaleTimer = ({ status }: SaleTimerProps) => {
                     fontWeight={400}
                     rounded="lg"
                     p={2}
-                    openDelay={500}
                     w="240px"
                 >
                     <Box ml={2} cursor="pointer" color="white">

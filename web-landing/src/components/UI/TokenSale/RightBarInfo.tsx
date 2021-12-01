@@ -1,8 +1,9 @@
-import { VStack } from "@chakra-ui/layout"
+import { Box, VStack } from "@chakra-ui/layout"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useQuery } from "react-query"
 import CoinCard from "./CoinCard"
 import { numberWithCommas } from "@source/utils"
+import { IconSipher } from "@components/shared/IconSipher"
 
 interface RightBarInfoProps {}
 
@@ -27,15 +28,43 @@ const RightBarInfo = ({}: RightBarInfoProps) => {
         initialData: 0,
     })
 
+    const { data: userDeposit } = useQuery("user-deposit", () => scCaller.current?.getUserDeposited(account!), {
+        enabled: !!scCaller.current && !!account,
+        initialData: 0,
+    })
+
     return (
         <VStack spacing={4} h="full">
-            <CoinCard text="ETH Contributed" iconSrc="/images/icons/eth.png" value={totalProvided} />
-            <CoinCard text="Est. Token Price" iconSrc="/images/icons/eth.png" value={price!.toFixed(5)} />
-            <CoinCard
-                text="Est. $SIPHER token you will receive"
-                iconSrc="/images/icons/community/main-black.png"
-                value={numberWithCommas(parseInt(token!.toString()))}
-            />
+            <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
+                <CoinCard
+                    size="medium"
+                    text="Total ETH Contributed"
+                    iconSrc="/images/icons/eth.png"
+                    value={totalProvided}
+                />
+                <CoinCard
+                    size="medium"
+                    isBorderTop
+                    text="Est. Current Token Price"
+                    iconSrc="/images/icons/eth.png"
+                    value={price!}
+                />
+            </Box>
+            <Box py={4} h="full" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838" rounded="xl">
+                <CoinCard
+                    size="small"
+                    text="Your ETH Contributed"
+                    iconSrc="/images/icons/eth.png"
+                    value={userDeposit!}
+                />
+                <CoinCard
+                    size="small"
+                    isBorderTop
+                    text="Est. $SIPHER Received"
+                    icon={<IconSipher ml={2} boxSize="1.6rem" />}
+                    value={numberWithCommas(parseInt(token!.toString()))}
+                />
+            </Box>
         </VStack>
     )
 }

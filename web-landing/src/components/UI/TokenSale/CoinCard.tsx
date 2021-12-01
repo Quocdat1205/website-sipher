@@ -1,37 +1,61 @@
-import { Flex, Image, chakra, FlexProps, Text } from "@chakra-ui/react"
-import { Typo } from "@components/shared"
+import { Flex, Image, chakra, FlexProps, Text, Box } from "@chakra-ui/react"
 import React from "react"
 
 interface Props extends FlexProps {
     text: string
-    iconSrc: string
+    iconSrc?: string
     value?: number | string
+    icon?: React.ReactNode
+    isBorderTop?: boolean
+    size?: string
 }
 
-const CoinCard = ({ text, iconSrc, value = "N/A", ...rest }: Props) => {
+const CoinCard = ({
+    justify = "flex-start",
+    size = "medium",
+    icon,
+    text,
+    iconSrc = "",
+    isBorderTop = false,
+    value = "N/A",
+    ...rest
+}: Props) => {
     return (
         <Flex
+            pos="relative"
             flexDir="column"
             align="center"
             justify="center"
-            bg="rgba(0,0,0,0.9)"
-            border="1px"
-            borderColor="#383838"
-            rounded="xl"
             flex={1}
-            p={8}
+            py={4}
+            px={4}
             w="240px"
             {...rest}
         >
-            <Text px={4} textAlign="center" fontWeight="thin" mb={4} size="small">
+            <Text px={4} textAlign="center" color="#828282" fontWeight={400} mb={2} size="small">
                 {text}
             </Text>
-            <Flex alignItems="center" justifyContent="center" w="full">
-                <Image mr={4} h="2.2rem" src={iconSrc} alt="icon" />
-                <Text fontWeight="semibold" letterSpacing="3px" size="large" isTruncated title={value.toString()}>
+            <Flex px={size === "small" ? 10 : 6} flexDir="row" alignItems="center" w="full">
+                <Box textAlign="left">
+                    {iconSrc !== "" && <Image ml={2} boxSize="1.6rem" src={iconSrc} alt="icon" />}
+                    {icon}
+                </Box>
+                <Text
+                    flex={1}
+                    textAlign="center"
+                    ml={2}
+                    fontWeight={400}
+                    letterSpacing="3px"
+                    size={size}
+                    isTruncated
+                    title={value.toString()}
+                >
                     {value}
                 </Text>
             </Flex>
+            {isBorderTop && (
+                <Box pos="absolute" left="50%" top="0" transform="translateX(-50%)" w="80%" h="1px" bg="border.gray" />
+            )}
         </Flex>
     )
 }

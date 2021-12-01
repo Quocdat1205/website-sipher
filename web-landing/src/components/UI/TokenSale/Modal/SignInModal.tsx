@@ -8,10 +8,13 @@ import {
     useDisclosure,
     Text,
     ModalCloseButton,
+    UnorderedList,
+    ListItem,
 } from "@chakra-ui/react"
+import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { GradientButton, useChakraToast } from "@sipher/web-components"
-import { getAccessToken, getSignIn } from "@source/utils"
+import { getSignIn } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
@@ -33,7 +36,7 @@ export const SignInModal = () => {
                 onClose()
             } else {
                 setIsLoading(false)
-                toast({ status: "error", title: "Error", message: "" })
+                toast({ status: "error", title: "Error", message: "Your IP address is in restricted territory" })
             }
         } catch (error) {
             setIsLoading(false)
@@ -44,7 +47,7 @@ export const SignInModal = () => {
     useEffect(() => {
         let signIn = getSignIn()
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
-    }, [])
+    }, [wallet])
 
     return (
         <Modal
@@ -59,22 +62,25 @@ export const SignInModal = () => {
             <ModalContent bg="black" p={0} overflow="hidden" rounded="md">
                 <ModalCloseButton _focus={{ shadow: "none" }} color="#9B9E9D" onClick={() => router.push("/")} />
                 <Flex rounded="lg" py={10} px={20} flexDir="column" align="center" justify="center">
-                    <Text textAlign="left" size="large" fontWeight="semibold" letterSpacing="3px">
+                    <Text mb={4} textAlign="left" size="large" fontWeight="semibold" letterSpacing="3px">
                         JUST A SEC!
                     </Text>
-                    <Img h="8rem" src="/images/pc/token_sale/modal-sign.png" alt="" my={4} />
                     <Box>
-                        <Text textAlign="center" mb={4}>
-                            Please confirm that you are not a citizen or permanent resident of, you do not have a
-                            primary residence in and you are not physically located in the following territories or
-                            possessions:
-                        </Text>
-                        <Text size="small" textAlign="center" color="#9B9E9D" mb={4}>
-                            {`Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Haiti, Jamaica, Malta, Morocco, Myanmar,
-                    Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Democratic
-                    People's Republic of Korea (DPRK), Jordan, Mali, United States of America, People’s Republic of
-                    China, Hong Kong SAR, Macau SAR, Singapore, Philippines and Turkey`}
-                        </Text>
+                        {signContent.map(item => (
+                            <Box mb={4} key={item.title}>
+                                <Text mb={1}>{item.title}</Text>
+                                <UnorderedList mr={2} color="#9B9E9D">
+                                    {item.content.map(line => (
+                                        <ListItem key={line}>
+                                            <Text size="small" color="#9B9E9D">
+                                                {line}
+                                            </Text>
+                                        </ListItem>
+                                    ))}
+                                </UnorderedList>
+                            </Box>
+                        ))}
+                        <Text>For more information, please read our Terms of Services (add link here).</Text>
                     </Box>
                     <Flex mt={4} px={4} justify="center" w="full">
                         <GradientButton
