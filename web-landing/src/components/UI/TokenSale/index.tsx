@@ -15,6 +15,7 @@ import useSaleTime from "./useSaleTime"
 import NotConnected from "./SubUI/NotConnected"
 import Loading from "./SubUI/Loading"
 import Ended from "./SubUI/Ended"
+import Ended2 from "./SubUI/Ended2"
 
 const TokenSale = () => {
     const isCheckMobile = isMobile || isTablet
