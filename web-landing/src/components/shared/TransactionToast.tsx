@@ -31,7 +31,7 @@ const TransactionToast = ({ status, onClose }: TransactionToastProps) => {
             "TRANSACTION SUCCESSFUL",
             "green.500",
             BsCheck,
-            ["You $SIPHER Tokens will be available after the Sale ends."],
+            ["You SIPHER Tokens will be available after the Sale ends."],
         ]
     }
     const [title, color, Icon, content] = genContext()

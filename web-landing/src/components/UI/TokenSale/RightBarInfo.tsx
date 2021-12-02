@@ -79,7 +79,7 @@ const RightBarInfo = () => {
                 <Box w="full" h="1px" bg="#383838" />
                 <CoinCard
                     size="small"
-                    text="Est. $SIPHER Received"
+                    text="Est. SIPHER Received"
                     icon={<IconSipher ml={2} boxSize="1.6rem" />}
                     value={numberWithCommas(parseInt(token!.toString()))}
                 />

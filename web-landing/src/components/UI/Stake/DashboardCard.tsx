@@ -32,7 +32,7 @@ const DashboardCard = ({ img, title, dollarValue, sipherValue, textButton = "", 
             </Text>
             <chakra.span pb={4} display="flex" alignItems="center">
                 <Image mr={1} src="/images/icons/community/main-black.png" alt="icon" h="1.5rem" />
-                <Text size="small">$SIPHER {sipherValue}</Text>
+                <Text size="small">SIPHER {sipherValue}</Text>
             </chakra.span>
             {textButton !== "" && (
                 <Box w="full" pt={8} borderTop="1px" borderColor="rgba(155,158,157, 0.5)">

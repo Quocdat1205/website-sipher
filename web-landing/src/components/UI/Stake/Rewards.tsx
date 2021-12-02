@@ -38,7 +38,7 @@ const Rewards = (props: Props) => {
                             {(item.type === 1 || item.type === 2) && <IconSipher boxSize="2rem" />}
                             {item.type === 2 && <IconETH boxSize="2rem" pos="absolute" left="15%" top="0" zIndex={1} />}
                             <Text pl={6} size="small">
-                                $SIPHER
+                                SIPHER
                             </Text>
                         </Flex>
                     </FlexCell>

@@ -1,26 +1,28 @@
 import { Flex, Text, Tooltip, Box } from "@chakra-ui/react"
+import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { useChakraToast } from "@sipher/web-components"
 import { BsQuestionCircle } from "react-icons/bs"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { ActionButton } from "../ActionButton"
 
 const Claim = () => {
     const { scCaller, account } = useWalletContext()
+    const transactionToast = useTransactionToast()
 
     const qc = useQueryClient()
 
     const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.claim(account!), {
+        onMutate: () => {
+            transactionToast({ status: "processing" })
+        },
         onSuccess: () => {
-            toast({ status: "success", title: "Claimed successfully!" })
+            transactionToast({ status: "success" })
             qc.invalidateQueries("estimate-received-token")
         },
         onError: (error: any) => {
-            toast({ status: "error", title: "Error", message: error.message || "" })
+            transactionToast({ status: "failed" })
         },
     })
-
-    const toast = useChakraToast()
 
     const { data: receivedToken } = useQuery(
         ["estimate-received-token", account],

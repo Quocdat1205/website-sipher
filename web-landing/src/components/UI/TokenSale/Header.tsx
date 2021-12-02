@@ -28,7 +28,7 @@ const Header = (props: Props) => {
 
     return (
         <Flex direction="column" mb={4} align="center">
-            <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
+            <Typo.Heading>SIPHER INITIAL PUBLIC SALE</Typo.Heading>
             <Button
                 onClick={() => openModal(1)}
                 rounded="full"
@@ -52,7 +52,7 @@ const Header = (props: Props) => {
                 fontWeight="semibold"
                 letterSpacing="1px"
             >
-                Learn About $SIPHER Initial Public Sale
+                Learn About SIPHER Initial Public Sale
             </Link>
             <Modal
                 motionPreset="slideInBottom"

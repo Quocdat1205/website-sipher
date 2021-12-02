@@ -1,25 +1,27 @@
 import { Flex } from "@chakra-ui/react"
+import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { useChakraToast } from "@sipher/web-components"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { ActionButton } from "../ActionButton"
 
 const Claim2 = () => {
     const { scCaller, account } = useWalletContext()
+    const transactionToast = useTransactionToast()
 
     const qc = useQueryClient()
 
     const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.claim(account!), {
+        onMutate: () => {
+            transactionToast({ status: "processing" })
+        },
         onSuccess: () => {
-            toast({ status: "success", title: "Claimed successfully!" })
+            transactionToast({ status: "success" })
             qc.invalidateQueries("estimate-received-token")
         },
         onError: (error: any) => {
-            toast({ status: "error", title: "Error", message: error.message || "" })
+            transactionToast({ status: "failed" })
         },
     })
-
-    const toast = useChakraToast()
 
     const { data: receivedToken } = useQuery(
         ["estimate-received-token", account],
@@ -33,7 +35,7 @@ const Claim2 = () => {
     return (
         <Flex w="full" direction="column" align="center" bg="rgba(0,0,0,0.9)" rounded="xl" py={4}>
             <ActionButton
-                text="CLAIM $SIPHER"
+                text="CLAIM SIPHER"
                 py={4}
                 w="full"
                 onClick={() => claim()}

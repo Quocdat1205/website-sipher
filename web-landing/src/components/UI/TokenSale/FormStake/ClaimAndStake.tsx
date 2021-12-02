@@ -6,7 +6,7 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import TabButton from "./TabButton"
 import { numberWithCommas } from "@source/utils"
-import { useChakraToast } from "@sipher/web-components"
+import useTransactionToast from "@hooks/useTransactionToast"
 
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
@@ -33,7 +33,7 @@ const ClaimAndStake = () => {
         }
     )
 
-    const toast = useChakraToast()
+    const transactionToast = useTransactionToast()
 
     const qc = useQueryClient()
 
@@ -42,13 +42,18 @@ const ClaimAndStake = () => {
     const { mutate: claimAndStake, isLoading: isStaking } = useMutation(
         () => scCaller.current!.claimAndStake(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
         {
+            onMutate: () => {
+                transactionToast({ status: "processing" })
+            },
             onSuccess: () => {
-                toast({ status: "success", title: "Staked successfully!" })
+                transactionToast({ status: "success" })
+                // toast({ status: "success", title: "Staked successfully!" })
                 setSipherValue("")
                 qc.invalidateQueries("estimate-received-token")
             },
             onError: (error: any) => {
-                toast({ status: "error", title: "Error", message: error.message || "" })
+                // toast({ status: "error", title: "Error", message: error.message || "" })
+                transactionToast({ status: "failed" })
             },
         }
     )
@@ -95,7 +100,7 @@ const ClaimAndStake = () => {
                             Est. APR: <chakra.span fontWeight="semibold">...</chakra.span>
                         </Text>
                         <Text fontSize="sm" color="#9B9E9D">
-                            $Sipher Balance: {numberWithCommas(receivedSipher)}
+                            Sipher Balance: {numberWithCommas(receivedSipher)}
                         </Text>
                     </Flex>
                 </Box>
@@ -109,8 +114,10 @@ const ClaimAndStake = () => {
                 </Text>
                 <ActionButton
                     w="full"
-                    text="Claim and stake $Sipher"
-                    onClick={() => claimAndStake()}
+                    text="Claim and stake Sipher"
+                    onClick={() => {
+                        claimAndStake()
+                    }}
                     isLoading={isStaking}
                     disabled={receivedSipher <= 0 || sipherValue === ""}
                 />

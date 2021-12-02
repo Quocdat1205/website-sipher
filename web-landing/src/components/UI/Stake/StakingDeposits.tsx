@@ -46,7 +46,7 @@ const StakingDeposits = (props: Props) => {
                             {(item.type === 1 || item.type === 2) && <IconSipher boxSize="2rem" />}
                             {item.type === 2 && <IconETH boxSize="2rem" pos="absolute" left="10%" zIndex={1} />}
                             <Text pl={6} size="small">
-                                {item.type === 1 ? "$SIPHER" : "$SIPHER/ETH Uniswap LP"}
+                                {item.type === 1 ? "SIPHER" : "SIPHER/ETH LP"}
                             </Text>
                         </Flex>
                     </FlexCell>

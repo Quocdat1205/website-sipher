@@ -30,7 +30,7 @@ const Ended = () => {
             bgColor="#090909"
         >
             <Grid h="full" placeItems="center">
-                <Typo.Heading>$SIPHER TOKEN PUBLIC SALE</Typo.Heading>
+                <Typo.Heading>SIPHER TOKEN PUBLIC SALE</Typo.Heading>
                 <Flex
                     direction="column"
                     align="center"
@@ -47,12 +47,12 @@ const Ended = () => {
                         SUCCESSFULLY ENDED!
                     </Text>
                     <Text textAlign="center" mb={3}>
-                        Amount of $Sipher tokens that you are available to claim:
+                        Amount of Sipher tokens that you are available to claim:
                     </Text>
                     <Flex align="center" mb={3}>
                         <IconSipher mr={4} />
                         <Text letterSpacing="3px" size="large" fontWeight="semibold">
-                            {numberWithCommas(parseFloat(ReceivedToken!.toFixed(2)))} $SIPHER
+                            {numberWithCommas(parseFloat(ReceivedToken!.toFixed(2)))} SIPHER
                         </Text>
                     </Flex>
                     <FormStake />

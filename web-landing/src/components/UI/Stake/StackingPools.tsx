@@ -32,7 +32,7 @@ const StackingPools = (props: Props) => {
                         weight={20.0}
                         pendingReward={0.0}
                         liquidity={0.0}
-                        pools="$SIPHER"
+                        pools="SIPHER"
                         href="stake/sipher"
                     />
                     <AccordionTable
@@ -43,7 +43,7 @@ const StackingPools = (props: Props) => {
                         weight={20.0}
                         pendingReward={0.0}
                         liquidity={0.0}
-                        pools="$SIPHER/ETH Uniswap LP"
+                        pools="SIPHER/ETH LP"
                         href="stake/sipher-eth"
                     />
                 </Flex>

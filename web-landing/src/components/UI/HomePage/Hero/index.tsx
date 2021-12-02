@@ -29,7 +29,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
             pt={[16, 16, 4]}
         >
             <Flex direction="column" align="center" justify="center" w="full" maxW="64rem" pt={[8, 16, 20, 32]}>
-                <Title text="$SIPHER INITIAL" />
+                <Title text="SIPHER INITIAL" />
                 <Title text="PUBLIC SALE" custom={1} />
                 <MotionFlex
                     direction="column"

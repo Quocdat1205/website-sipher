@@ -32,7 +32,7 @@ const Header = (props: Props) => {
                 <Flex flexDir="row" justify="space-between" w="full" align="center">
                     <chakra.span display="flex" alignItems="center">
                         <Image alt="icon" mr={1} h="1rem" src="/images/icons/community/main-black.png" />
-                        <Text size="small">$SIPHER PRICE</Text>
+                        <Text size="small">SIPHER PRICE</Text>
                         <Text size="small" px={2} fontWeight="semibold">
                             $6,49
                         </Text>
