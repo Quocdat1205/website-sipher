@@ -12,6 +12,7 @@ import { useChakraToast } from "@sipher/web-components"
 import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
 import { floorPrecised } from "@source/utils"
+import useTransactionToast from "@hooks/useTransactionToast"
 
 interface Props {
     mode: DropdownOption
@@ -31,6 +32,7 @@ const InputUI = ({ mode }: Props) => {
 
     const qc = useQueryClient()
     const toast = useChakraToast()
+    const transactionToast = useTransactionToast()
 
     const { data: accumulated } = useQuery(
         ["accumulated-deposit", value, account, mode],
@@ -92,9 +94,9 @@ const InputUI = ({ mode }: Props) => {
     }
 
     const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
-        onError: (err: any) => toast({ status: "error", title: "Error", message: err.message || "" }),
+        onError: (err: any) => transactionToast({ status: "failed" }),
         onSuccess: () => {
-            toast({ status: "success", title: "Deposited successfully!" })
+            transactionToast({ status: "success" })
             setValue("")
             qc.invalidateQueries("user-deposited")
             qc.invalidateQueries("locked-amount")
@@ -105,9 +107,9 @@ const InputUI = ({ mode }: Props) => {
     const { mutate: withdraw, isLoading: isWithdrawing } = useMutation(
         () => scCaller.current!.withdraw(account!, value),
         {
-            onError: (err: any) => toast({ title: "Error", message: err.message }),
+            onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                toast({ status: "success", title: "Withdrawal successfully!" })
+                transactionToast({ status: "success" })
                 setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("withdrawable-amount")
@@ -119,6 +121,7 @@ const InputUI = ({ mode }: Props) => {
         try {
             const isTracking = await getTracking(mode)
             if (isTracking) {
+                transactionToast({ status: "processing" })
                 mode === "Deposit" ? deposit() : withdraw()
             } else {
                 toast({ title: "Error!", message: "Your IP address is in restricted territory" })
@@ -221,7 +224,7 @@ const InputUI = ({ mode }: Props) => {
                 isLoading={isDepositing || isWithdrawing}
                 disabled={
                     status !== "ONGOING" ||
-                    parseFloat(value) <= 0 ||
+                    value === "" ||
                     (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
                 }
                 onClick={handleAction}

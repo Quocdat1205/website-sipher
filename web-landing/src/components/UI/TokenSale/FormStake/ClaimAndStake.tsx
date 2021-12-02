@@ -112,7 +112,7 @@ const ClaimAndStake = () => {
                     text="Claim and stake $Sipher"
                     onClick={() => claimAndStake()}
                     isLoading={isStaking}
-                    disabled={receivedSipher <= 0}
+                    disabled={receivedSipher <= 0 || sipherValue === ""}
                 />
             </Box>
         </Box>
