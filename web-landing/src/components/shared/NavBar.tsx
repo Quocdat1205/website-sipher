@@ -19,7 +19,7 @@ export const navMenus = [
     { id: "News", path: "/news" },
     { id: "Token Sale", path: "/token-sale" },
     // { id: "Swap", path: "/swap" },
-    { id: "Stake", path: "/stake" },
+    // { id: "Stake", path: "/stake" },
 ]
 
 export const menuChild = [
