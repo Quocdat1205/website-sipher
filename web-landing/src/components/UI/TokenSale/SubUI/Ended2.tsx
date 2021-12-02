@@ -28,7 +28,7 @@ const Ended2 = () => {
             bgColor="#090909"
         >
             <Flex flex={1} flexDir="column" h="full" justify="center" align="center">
-                <Typo.Heading>$SIPHER TOKEN PUBLIC SALE</Typo.Heading>
+                <Typo.Heading>$SIPHER TOKEN INITIAL SALE</Typo.Heading>
                 <Flex
                     direction="column"
                     align="center"
