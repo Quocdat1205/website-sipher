@@ -33,7 +33,17 @@ const Claim2 = () => {
     )
 
     return (
-        <Flex w="full" direction="column" align="center" bg="rgba(0,0,0,0.9)" rounded="xl" py={4}>
+        <Flex
+            flex={1}
+            w="full"
+            h="full"
+            direction="column"
+            justify="center"
+            align="center"
+            bg="rgba(0,0,0,0.9)"
+            rounded="xl"
+            py={4}
+        >
             <ActionButton
                 text="CLAIM SIPHER"
                 py={4}

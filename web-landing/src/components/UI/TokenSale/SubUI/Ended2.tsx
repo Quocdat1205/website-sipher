@@ -1,4 +1,4 @@
-import { Flex, Grid, Text } from "@chakra-ui/react"
+import { Flex, Text } from "@chakra-ui/react"
 import { BackgroundContainer, IconSipher, Typo } from "@components/shared"
 import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
@@ -27,7 +27,7 @@ const Ended2 = () => {
             pb={16}
             bgColor="#090909"
         >
-            <Grid h="full" placeItems="center">
+            <Flex flex={1} flexDir="column" h="full" justify="center" align="center">
                 <Typo.Heading>SIPHER TOKEN PUBLIC SALE</Typo.Heading>
                 <Flex
                     direction="column"
@@ -56,7 +56,7 @@ const Ended2 = () => {
                     </Flex>
                     <Claim2 />
                 </Flex>
-            </Grid>
+            </Flex>
         </BackgroundContainer>
     )
 }
