@@ -140,6 +140,19 @@ export const Footer = () => {
                     <GradientText cursor="pointer" onClick={() => router.push("/faq")} fontWeight="bold">
                         FAQ
                     </GradientText>
+                    <Text
+                        fontWeight="thin"
+                        sx={{
+                            "@media (max-width: 960px)": {
+                                display: "none",
+                            },
+                        }}
+                    >
+                        |
+                    </Text>
+                    <GradientText cursor="pointer" onClick={() => router.push("/privacy-policy")} fontWeight="bold">
+                        Privacy Policy (IBCO)
+                    </GradientText>
                 </Stack>
                 <CommunityIcons size="small" />
             </Stack>
