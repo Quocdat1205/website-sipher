@@ -22,7 +22,7 @@ const ClaimAndStake = () => {
 
     const { scCaller, account } = useWalletContext()
 
-    const [sipherValue, setSipherValue] = useState("0")
+    const [sipherValue, setSipherValue] = useState("")
 
     const { data: receivedToken } = useQuery(
         ["estimate-received-token", account],
@@ -40,11 +40,11 @@ const ClaimAndStake = () => {
     const receivedSipher = Math.floor(receivedToken!)
 
     const { mutate: claimAndStake, isLoading: isStaking } = useMutation(
-        () => scCaller.current!.claimAndStake(account!, sipherValue, sliderValue),
+        () => scCaller.current!.claimAndStake(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
         {
             onSuccess: () => {
                 toast({ status: "success", title: "Staked successfully!" })
-                setSipherValue("0")
+                setSipherValue("")
                 qc.invalidateQueries("estimate-received-token")
             },
             onError: (error: any) => {
@@ -99,7 +99,6 @@ const ClaimAndStake = () => {
                         </Text>
                     </Flex>
                 </Box>
-
                 <Text textAlign="center" fontSize="sm" mb={4}>
                     Be aware that there are always risks associated with staking contracts. You assume all
                     responsibility. Staking rewards enter a 12 month vesting period after claiming.{" "}
@@ -108,7 +107,6 @@ const ClaimAndStake = () => {
                     </chakra.span>
                     .
                 </Text>
-
                 <ActionButton
                     w="full"
                     text="Claim and stake $Sipher"

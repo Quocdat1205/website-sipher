@@ -60,7 +60,6 @@ const Claim = () => {
                     </Box>
                 </Tooltip>
             </Flex>
-
             <ActionButton
                 text="CLAIM"
                 w="14rem"

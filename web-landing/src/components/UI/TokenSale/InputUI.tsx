@@ -18,7 +18,7 @@ interface Props {
 }
 
 const InputUI = ({ mode }: Props) => {
-    const [value, setValue] = useState("0")
+    const [value, setValue] = useState("")
     const setValueCb = useCallback((value: string) => setValue(value), [])
 
     const options = [0.25, 0.5, 0.75, 1]
@@ -37,7 +37,7 @@ const InputUI = ({ mode }: Props) => {
         () =>
             scCaller.current?.getAccumulatedAfterDeposit(
                 account!,
-                mode === "Deposit" ? parseFloat(value).toString() : "0"
+                mode === "Deposit" ? (value === "" ? "0" : parseFloat(value).toString()) : "0"
             ),
         {
             enabled: !!scCaller.current && !!account,
@@ -51,7 +51,7 @@ const InputUI = ({ mode }: Props) => {
         () =>
             scCaller.current?.getLockAmountAfterDeposit(
                 account!,
-                mode === "Deposit" ? parseFloat(value).toString() : "0"
+                mode === "Deposit" ? (value === "" ? "0" : parseFloat(value).toString()) : "0"
             ),
         {
             enabled: !!scCaller.current && !!account,
@@ -95,7 +95,7 @@ const InputUI = ({ mode }: Props) => {
         onError: (err: any) => toast({ status: "error", title: "Error", message: err.message || "" }),
         onSuccess: () => {
             toast({ status: "success", title: "Deposited successfully!" })
-            setValue("0")
+            setValue("")
             qc.invalidateQueries("user-deposited")
             qc.invalidateQueries("locked-amount")
             qc.invalidateQueries("withdrawable-amount")
@@ -108,7 +108,7 @@ const InputUI = ({ mode }: Props) => {
             onError: (err: any) => toast({ title: "Error", message: err.message }),
             onSuccess: () => {
                 toast({ status: "success", title: "Withdrawal successfully!" })
-                setValue("0")
+                setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("withdrawable-amount")
             },
@@ -129,7 +129,7 @@ const InputUI = ({ mode }: Props) => {
     }
 
     useEffect(() => {
-        setValueCb("0")
+        setValueCb("")
     }, [setValueCb, mode])
 
     return (

@@ -7,14 +7,14 @@ interface EtherInputProps {
 }
 
 const SipherInput = ({ value, setValue, maxValue }: EtherInputProps) => {
-    const format = (value: string) => {
-        return value === "" ? "0" : value
-    }
+    // const format = (value: string) => {
+    //     return value === "" ? "0" : value
+    // }
 
     return (
         <NumberInput
             flex={1}
-            onChange={newValue => setValue(format(newValue))}
+            onChange={newValue => setValue(newValue)}
             value={value}
             max={maxValue}
             min={0}

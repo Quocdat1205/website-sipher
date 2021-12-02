@@ -1,5 +1,5 @@
 import { Flex, chakra, Grid, Stack, Text } from "@chakra-ui/react"
-import { BackgroundContainer, IconSipher } from "@components/shared"
+import { BackgroundContainer, IconSipher, Typo } from "@components/shared"
 import { ActionButton } from "../ActionButton"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
@@ -30,6 +30,7 @@ const Ended = () => {
             bgColor="#090909"
         >
             <Grid h="full" placeItems="center">
+                <Typo.Heading>$SIPHER TOKEN PUBLIC SALE</Typo.Heading>
                 <Flex
                     direction="column"
                     align="center"
