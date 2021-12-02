@@ -45,7 +45,7 @@ const Claim2 = () => {
             py={4}
         >
             <ActionButton
-                text="CLAIM SIPHER"
+                text="CLAIM $SIPHER"
                 py={4}
                 w="full"
                 onClick={() => claim()}
