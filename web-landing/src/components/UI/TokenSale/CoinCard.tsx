@@ -21,7 +21,7 @@ const CoinCard = ({
     ...rest
 }: Props) => {
     return (
-        <Flex flexDir="column" align="center" justify="center" flex={1} py={4} w="224px" {...rest}>
+        <Flex flexDir="column" align="center" justify="center" flex={1} py={4} w="240px" {...rest}>
             <Text px={4} textAlign="center" color="#828282" fontWeight={400} mb={4} size="small">
                 {text}
             </Text>
