@@ -36,7 +36,7 @@ const TokenSale = () => {
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
-            pt={!isCheckMobile ? 24 : 0}
+            pt={!isCheckMobile ? 28 : 0}
             pb={!isCheckMobile ? 16 : 0}
             bgColor="#090909"
         >

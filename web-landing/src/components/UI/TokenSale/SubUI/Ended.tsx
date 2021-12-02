@@ -25,7 +25,7 @@ const Ended = () => {
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
-            pt={24}
+            pt={28}
             pb={16}
             bgColor="#090909"
         >

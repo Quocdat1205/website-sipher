@@ -18,7 +18,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
         <Flex
             px={4}
             py={4}
-            bg="blackAlpha.800"
+            bg="blackAlpha.900"
             align="center"
             justify="space-between"
             overflow="visible"
