@@ -14,8 +14,8 @@ import RightBarInfo from "./RightBarInfo"
 import useSaleTime from "./useSaleTime"
 import NotConnected from "./SubUI/NotConnected"
 import Loading from "./SubUI/Loading"
-import Ended from "./SubUI/Ended"
-import Ended2 from "./SubUI/Ended2"
+import EndedClaimStake from "./SubUI/EndedClaimStake"
+import EndedClaim from "./SubUI/EndedClaim"
 
 const TokenSale = () => {
     const isCheckMobile = isMobile || isTablet
@@ -28,7 +28,7 @@ const TokenSale = () => {
 
     if (status === "LOADING") return <Loading />
 
-    if (status === "ENDED") return <Ended2 />
+    if (status === "ENDED") return <EndedClaim />
 
     return (
         <BackgroundContainer

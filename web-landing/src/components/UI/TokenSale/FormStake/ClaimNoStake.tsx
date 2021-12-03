@@ -4,7 +4,7 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { ActionButton } from "../ActionButton"
 
-const Claim2 = () => {
+const ClaimNoStake = () => {
     const { scCaller, account } = useWalletContext()
     const transactionToast = useTransactionToast()
 
@@ -57,4 +57,4 @@ const Claim2 = () => {
     )
 }
 
-export default Claim2
+export default ClaimNoStake

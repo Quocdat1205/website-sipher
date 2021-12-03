@@ -1,12 +1,12 @@
 import { Box } from "@chakra-ui/react"
 import React from "react"
 import Claim from "./Claim"
-import ClaimAndStake from "./ClaimAndStake"
+import Stake from "./Stake"
 
 const FormStake = () => {
     return (
         <Box>
-            <ClaimAndStake />
+            <Stake />
             <Claim />
         </Box>
     )

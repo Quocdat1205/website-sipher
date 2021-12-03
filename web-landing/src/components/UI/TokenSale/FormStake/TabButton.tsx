@@ -1,5 +1,5 @@
-import { Flex, Box } from "@chakra-ui/react"
-import { TabOptionProps } from "./ClaimAndStake"
+import { Flex } from "@chakra-ui/react"
+import { TabOptionProps } from "./Stake"
 
 interface Props {
     selected: string

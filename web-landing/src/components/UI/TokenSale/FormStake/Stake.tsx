@@ -11,7 +11,7 @@ import useTransactionToast from "@hooks/useTransactionToast"
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
 
-const ClaimAndStake = () => {
+const Stake = () => {
     const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
 
     const [sliderValue, setSliderValue] = useState(0)
@@ -126,4 +126,4 @@ const ClaimAndStake = () => {
     )
 }
 
-export default ClaimAndStake
+export default Stake
