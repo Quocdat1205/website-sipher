@@ -90,7 +90,7 @@ export const SignInModal = () => {
                             </Box>
                         ))}
                         <CheckboxGroup colorScheme="orange">
-                            <Stack mb={4} sx={{ input: { _focus: { boxShadow: "none" } } }}>
+                            <Stack mb={4} sx={{ span: { _focus: { boxShadow: "none" } } }}>
                                 <Checkbox
                                     isChecked={dataCheck.check1}
                                     value="check1"
