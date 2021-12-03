@@ -55,6 +55,13 @@ export const SipherIBCOAbi: any = [
     },
     {
         inputs: [],
+        name: "DECIMALS",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
         name: "END",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
