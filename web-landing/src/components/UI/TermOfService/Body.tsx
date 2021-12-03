@@ -86,7 +86,7 @@ const HomeBody = ({}: HomeBodyProps) => {
                                                     {chapter.content}
                                                 </Text>
                                                 {chapter.table && (
-                                                    <chakra.table mt={8} w="full">
+                                                    <chakra.table my={8} w="full">
                                                         <chakra.thead>
                                                             <chakra.tr>
                                                                 {chapter.table.map(item =>
