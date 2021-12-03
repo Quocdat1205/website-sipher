@@ -8,6 +8,8 @@ import { useRouter } from "next/router"
 import { BaseNavigationBar, LinkButton, WalletButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
+import { useScrollPosition } from "@hooks/useScrollPosition"
+import { useState } from "react"
 interface NavBarProps {
     isChildMenu?: boolean
 }
@@ -32,12 +34,25 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
     const setBarOn = useStoreState(s => s.sidebarOn)
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
+    const [hideOnScroll, setHideOnScroll] = useState(true)
+
+    useScrollPosition(
+        ({ prevPos, currPos }) => {
+            const isShow = currPos.y > prevPos.y
+            if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+        },
+        [hideOnScroll]
+    )
+
     return (
         <Flex
+            id="navbar"
             flexDir="column"
             position="fixed"
             w="full"
             zIndex="popover"
+            transition="top 0.25s"
+            top={hideOnScroll ? 0 : "-7.2rem"}
             sx={{
                 ".childmenu::-webkit-scrollbar": {
                     display: "none",

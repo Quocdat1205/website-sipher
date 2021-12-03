@@ -11,7 +11,7 @@ export const signContent = [
     {
         title: "Please confirm that you are not a citizen or permanent resident of, you do not have a primary residence in, and you are not physically located in the following territories or possessions:",
         content: [
-            `Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Democratic People's Republic of Korea (DPRK), Jordan, Mali, United States of America, People’s Republic of China, Macau SAR, and Turkey`,
+            `Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Democratic People's Republic of Korea (DPRK), Jordan, Mali, United States of America, People’s Republic of China, Macau SAR and Turkey`,
         ],
     },
 ]

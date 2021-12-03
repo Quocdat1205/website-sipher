@@ -37,7 +37,7 @@ const TokenSale = () => {
             bgRepeat="no-repeat"
             bgSize="100%"
             pt={!isCheckMobile ? 24 : 0}
-            pb={!isCheckMobile ? 16 : 0}
+            pb={!isCheckMobile ? 48 : 0}
             bgColor="#090909"
         >
             <Flex direction="column" align="center" w="full" display={isCheckMobile ? "none" : "flex"}>
