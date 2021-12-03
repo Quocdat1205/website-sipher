@@ -3,9 +3,9 @@ import { BackgroundContainer, IconSipher, Typo } from "@components/shared"
 import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { numberWithCommas } from "@source/utils"
-import Claim2 from "../FormStake/Claim2"
+import ClaimNoStake from "../FormStake/ClaimNoStake"
 
-const Ended2 = () => {
+const EndedClaim = () => {
     const { scCaller, account } = useWalletContext()
 
     const { data: ReceivedToken } = useQuery(
@@ -54,11 +54,11 @@ const Ended2 = () => {
                             {numberWithCommas(parseFloat(ReceivedToken!.toFixed(2)))} $SIPHER
                         </Text>
                     </Flex>
-                    <Claim2 />
+                    <ClaimNoStake />
                 </Flex>
             </Flex>
         </BackgroundContainer>
     )
 }
 
-export default Ended2
+export default EndedClaim

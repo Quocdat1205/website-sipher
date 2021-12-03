@@ -28,7 +28,7 @@ const StakingPools = ({ totalValueLocked = 0, APR = 0, pendingRewards = 0, myLiq
             <Box rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
                 <Box w="full">
                     <Flex w="full" pb={4} px={4}>
-                        <Text fontWeight="semibold" w="30%">
+                        <Text fontWeight="semibold" w="25%">
                             Pool
                         </Text>
                         <Text fontWeight="semibold" w="25%">
@@ -48,7 +48,7 @@ const StakingPools = ({ totalValueLocked = 0, APR = 0, pendingRewards = 0, myLiq
                     >
                         <Box borderBottom="1px" borderColor="#383838" p={4}>
                             <Flex w="full" align="center">
-                                <Flex align="center" w="30%">
+                                <Flex align="center" w="25%">
                                     <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
                                     <Text ml={4}>$SIPHER</Text>
                                 </Flex>
@@ -68,9 +68,9 @@ const StakingPools = ({ totalValueLocked = 0, APR = 0, pendingRewards = 0, myLiq
                                 </Flex>
                                 <ActionButton
                                     text="STAKE"
-                                    fontSize="sm"
                                     ml={4}
                                     onClick={() => router.push("/stake/deposit")}
+                                    size="small"
                                     w="10rem"
                                 />
                             </Flex>

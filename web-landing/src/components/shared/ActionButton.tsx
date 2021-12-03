@@ -8,6 +8,7 @@ interface ActionButtonProps extends BoxProps {
     isLoading?: boolean
     loadingText?: string
     disabled?: boolean
+    size?: "small" | "medium" | "large"
 }
 
 export const ActionButton = ({
@@ -18,6 +19,7 @@ export const ActionButton = ({
     disabled,
     px = 4,
     py = 2,
+    size,
     ...rest
 }: ActionButtonProps) => {
     return (
@@ -39,12 +41,12 @@ export const ActionButton = ({
                 {isLoading ? (
                     <Flex align="center" justify="center">
                         <Spinner size="sm" thickness="3px" />
-                        <Text ml={4} fontWeight={fontWeight} color="inherit">
+                        <Text ml={4} fontWeight={fontWeight} color="inherit" size={size}>
                             {loadingText}
                         </Text>
                     </Flex>
                 ) : (
-                    <Text letterSpacing="2px" fontWeight={fontWeight} color="inherit">
+                    <Text letterSpacing="2px" fontWeight={fontWeight} color="inherit" size={size}>
                         {text}
                     </Text>
                 )}

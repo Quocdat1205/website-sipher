@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { Box, Flex, Text, Slider, SliderFilledTrack, SliderTrack, SliderThumb, chakra } from "@chakra-ui/react"
 import SipherInput from "./SipherInput"
-import { ActionButton } from "../ActionButton"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import TabButton from "./TabButton"
 import { numberWithCommas } from "@source/utils"
 import useTransactionToast from "@hooks/useTransactionToast"
+import { ActionButton } from "@components/shared"
 
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
 
-const ClaimAndStake = () => {
+const Stake = () => {
     const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
 
     const [sliderValue, setSliderValue] = useState(0)
@@ -100,7 +100,7 @@ const ClaimAndStake = () => {
                             Est. APR: <chakra.span fontWeight="semibold">...</chakra.span>
                         </Text>
                         <Text fontSize="sm" color="#9B9E9D">
-                            Sipher Balance: {numberWithCommas(receivedSipher)}
+                            $Sipher Balance: {numberWithCommas(receivedSipher)}
                         </Text>
                     </Flex>
                 </Box>
@@ -114,7 +114,7 @@ const ClaimAndStake = () => {
                 </Text>
                 <ActionButton
                     w="full"
-                    text="Claim and stake Sipher"
+                    text="Claim and stake $Sipher"
                     onClick={() => {
                         claimAndStake()
                     }}
@@ -126,4 +126,4 @@ const ClaimAndStake = () => {
     )
 }
 
-export default ClaimAndStake
+export default Stake

@@ -6,13 +6,13 @@ import EtherInput from "./EtherInput"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { weiToEther } from "@source/contract"
-import { ActionButton } from "./ActionButton"
 import { FaEthereum } from "react-icons/fa"
 import { useChakraToast } from "@sipher/web-components"
 import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
 import { floorPrecised } from "@source/utils"
 import useTransactionToast from "@hooks/useTransactionToast"
+import { ActionButton } from "@components/shared"
 
 interface Props {
     mode: DropdownOption
@@ -229,6 +229,7 @@ const InputUI = ({ mode }: Props) => {
                     (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
                 }
                 onClick={handleAction}
+                py={4}
             />
         </Flex>
     )

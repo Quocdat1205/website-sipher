@@ -1,13 +1,11 @@
-import { Flex, chakra, Grid, Stack, Text } from "@chakra-ui/react"
+import { Flex, Grid, Text } from "@chakra-ui/react"
 import { BackgroundContainer, IconSipher, Typo } from "@components/shared"
-import { ActionButton } from "../ActionButton"
-import { useMutation, useQuery, useQueryClient } from "react-query"
+import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { numberWithCommas } from "@source/utils"
-import { useChakraToast } from "@sipher/web-components"
 import FormStake from "@components/UI/TokenSale/FormStake"
 
-const Ended = () => {
+const EndedClaimStake = () => {
     const { scCaller, account } = useWalletContext()
 
     const { data: ReceivedToken } = useQuery(
@@ -62,4 +60,4 @@ const Ended = () => {
     )
 }
 
-export default Ended
+export default EndedClaimStake

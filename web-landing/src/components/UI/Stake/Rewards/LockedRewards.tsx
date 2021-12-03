@@ -67,10 +67,10 @@ const LockedRewards = ({ deposits }: LockedRewardsProps) => {
                                 </Text>
                                 <ActionButton
                                     text="UNLOCK"
-                                    fontSize="sm"
                                     ml="auto"
                                     w="10rem"
                                     disabled={new Date().getTime() <= deposit.end}
+                                    size="small"
                                 />
                             </Flex>
                         ))}

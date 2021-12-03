@@ -13,7 +13,7 @@ const MotionText = motion<Omit<HeadingProps, "transition">>(Heading)
 const TimeCell = ({ value, unit }: TimeCellProps) => {
     return (
         <Flex direction="column">
-            <Box pos="relative" h={"2rem"} w="2.5rem" overflow="hidden" mb={1}>
+            <Box pos="relative" h={"2rem"} w="3rem" overflow="hidden" mb={1}>
                 <AnimatePresence initial={false}>
                     <MotionText
                         key={value.toString()}
@@ -31,7 +31,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         w="full"
                         mb={0}
                     >
-                        {value.toLocaleString("en-US", { minimumIntegerDigits: 2 })}
+                        {value.toLocaleString(undefined, { minimumIntegerDigits: 2 })}
                     </MotionText>
                 </AnimatePresence>
             </Box>

@@ -52,10 +52,11 @@ const StakingPools = ({ amountStaked = 0, claimableRewards = 0 }: StakingPoolsIn
 
                             <ActionButton
                                 text="CLAIM"
-                                fontSize="sm"
                                 ml="auto"
                                 onClick={() => claim()}
                                 isLoading={isClaiming}
+                                disabled={claimableRewards <= 0}
+                                size="small"
                                 w="10rem"
                             />
                         </Flex>

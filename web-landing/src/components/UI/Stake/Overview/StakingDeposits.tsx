@@ -90,11 +90,11 @@ const StakingDeposits = ({ deposits, reward }: StakingDepositsProps) => {
                                 </Text>
                                 <ActionButton
                                     text="UNLOCK"
-                                    fontSize="sm"
                                     ml="auto"
                                     onClick={() => unlock(idx)}
                                     disabled={new Date().getTime() <= deposit.end}
                                     isLoading={unlockingId === idx}
+                                    size="small"
                                     w="10rem"
                                 />
                             </Flex>

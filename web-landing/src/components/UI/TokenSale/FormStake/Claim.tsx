@@ -1,9 +1,9 @@
 import { Flex, Text, Tooltip, Box } from "@chakra-ui/react"
+import { ActionButton } from "@components/shared"
 import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { BsQuestionCircle } from "react-icons/bs"
 import { useMutation, useQuery, useQueryClient } from "react-query"
-import { ActionButton } from "../ActionButton"
 
 const Claim = () => {
     const { scCaller, account } = useWalletContext()

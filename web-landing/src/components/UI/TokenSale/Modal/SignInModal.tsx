@@ -1,6 +1,6 @@
 import {
     Box,
-    Img,
+    Link,
     Flex,
     Modal,
     ModalContent,
@@ -9,11 +9,15 @@ import {
     Text,
     ModalCloseButton,
     UnorderedList,
+    CheckboxGroup,
     ListItem,
+    Stack,
+    Checkbox,
 } from "@chakra-ui/react"
+import { ActionButton } from "@components/shared"
 import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { GradientButton, useChakraToast } from "@sipher/web-components"
+import { useChakraToast } from "@sipher/web-components"
 import { getSignIn } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
@@ -22,9 +26,16 @@ import { isMobile, isTablet } from "react-device-detect"
 export const SignInModal = () => {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
+    const [dataCheck, setDataCheck] = useState({
+        check1: false,
+        check2: false,
+    })
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     const wallet = useWalletContext()
+
     const isCheckMobile = isMobile || isTablet
+
     const toast = useChakraToast()
 
     const handleSign = async () => {
@@ -48,7 +59,7 @@ export const SignInModal = () => {
     useEffect(() => {
         let signIn = getSignIn()
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
-    }, [wallet])
+    }, [wallet, isCheckMobile, onOpen])
 
     return (
         <Modal
@@ -81,29 +92,55 @@ export const SignInModal = () => {
                                 </UnorderedList>
                             </Box>
                         ))}
-                        <Text>For more information, please read our Terms of Services (add link here).</Text>
+                        <CheckboxGroup colorScheme="orange">
+                            <Stack mb={4} sx={{ span: { _focus: { boxShadow: "none" } } }}>
+                                <Checkbox
+                                    isChecked={dataCheck.check1}
+                                    value="check1"
+                                    onChange={e => setDataCheck({ ...dataCheck, check1: e.target.checked })}
+                                >
+                                    <Text>
+                                        I have read, understood, and agree with the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/term-of-service">
+                                            Term of Service
+                                        </Link>
+                                    </Text>
+                                </Checkbox>
+                                <Checkbox
+                                    isChecked={dataCheck.check2}
+                                    value="check2"
+                                    onChange={e => setDataCheck({ ...dataCheck, check2: e.target.checked })}
+                                >
+                                    <Text>
+                                        I have read, understood, and agree with the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/privacy-policy">
+                                            Privacy Policy
+                                        </Link>
+                                    </Text>
+                                </Checkbox>
+                            </Stack>
+                        </CheckboxGroup>
                     </Box>
                     <Flex mt={4} px={4} justify="center" w="full">
-                        <GradientButton
+                        <ActionButton
                             rounded="full"
                             bgColor="border.gray"
                             bgGradient="linear(to-b, #393939, #393939 84.37%)"
-                            textTransform="none"
                             text="NEVERMIND"
-                            size="medium"
                             onClick={() => router.push("/")}
                             w="12rem"
+                            size="small"
                         />
-                        <GradientButton
+                        <ActionButton
                             isLoading={isLoading}
                             loadingText="CONFIRMING"
                             ml={8}
                             rounded="full"
-                            size="medium"
-                            textTransform="none"
                             text="CONFIRM"
                             onClick={() => handleSign()}
                             w="12rem"
+                            disabled={dataCheck.check1 === false || dataCheck.check2 === false}
+                            size="small"
                         />
                     </Flex>
                 </Flex>

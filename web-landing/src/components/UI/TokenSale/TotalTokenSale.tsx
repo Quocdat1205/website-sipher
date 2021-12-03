@@ -20,7 +20,7 @@ const TotalTokenSale = () => {
         <Flex justify="center" alignItems="center">
             <IconSipher boxSize="2.4rem" mr={4} />
             <Text letterSpacing="3px" size="large" fontWeight="semibold">
-                {numberWithCommas(totalDistributed!)} SIPHER TOKEN FOR SALE
+                {numberWithCommas(totalDistributed!)} $SIPHER TOKENS FOR SALE
             </Text>
         </Flex>
     )

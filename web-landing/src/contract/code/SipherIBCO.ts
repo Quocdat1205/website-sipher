@@ -1,4 +1,4 @@
-export const SipherIBCOAddress = "0xe1C4ff2033CBD65C3D7C6E1fB3E5446965975671"
+export const SipherIBCOAddress = "0xA22db208d1e00CcC07c31BEFf4da2ccbFA0011f5"
 
 export const SipherIBCOAbi: any = [
     {
@@ -52,6 +52,13 @@ export const SipherIBCOAbi: any = [
         ],
         name: "Withdraw",
         type: "event",
+    },
+    {
+        inputs: [],
+        name: "DECIMALS",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
     },
     {
         inputs: [],
