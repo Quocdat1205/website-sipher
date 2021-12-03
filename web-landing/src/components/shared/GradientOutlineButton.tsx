@@ -22,7 +22,7 @@ export const GradientOutlineButton = ({
     backgroundColor = "black",
     p,
     px = 6,
-    py = 1,
+    py = 2,
     pt,
     pb,
     pl,
@@ -38,14 +38,11 @@ export const GradientOutlineButton = ({
             rel={rel}
             textTransform="uppercase"
             rounded="md"
-            // bg="linear-gradient(#111, #111) padding-box, linear-gradient(180deg, #FF6795 0%, #FF710B 84.37%) border-box"
             bgGradient="linear(to-b, bgGradient.orange)"
-            borderRadius="99"
+            borderRadius="full"
             p="1px"
-            fontWeight="bold"
             color="white"
             shadow="base"
-            letterSpacing="1px"
             pos="relative"
             textAlign="center"
             {...rest}
@@ -54,14 +51,14 @@ export const GradientOutlineButton = ({
                 {isLoading ? (
                     <Flex align="center" justify="center">
                         <Spinner size="sm" thickness="3px" />
-                        <Typo.Text fontSize="xs" ml={4} letterSpacing="2px">
+                        <Text size="small" ml={4} letterSpacing="2px">
                             {loadingText}
-                        </Typo.Text>
+                        </Text>
                     </Flex>
                 ) : (
-                    <Typo.Text py={2} px={4} fontSize="xs" fontWeight="bold" letterSpacing="2px">
+                    <Text size="small" fontWeight="bold" letterSpacing="2px">
                         {text}
-                    </Typo.Text>
+                    </Text>
                 )}
             </Box>
         </Box>

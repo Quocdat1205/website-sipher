@@ -10,7 +10,7 @@ const Ended2 = () => {
 
     const { data: ReceivedToken } = useQuery(
         ["estimate-received-token", account],
-        () => scCaller.current?.getEstReceivedToken(account!),
+        () => scCaller.current?.SipherIBCO.getEstReceivedToken(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,

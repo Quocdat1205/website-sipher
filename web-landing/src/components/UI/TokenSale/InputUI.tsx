@@ -37,7 +37,7 @@ const InputUI = ({ mode }: Props) => {
     const { data: accumulated } = useQuery(
         ["accumulated-deposit", value, account, mode],
         () =>
-            scCaller.current?.getAccumulatedAfterDeposit(
+            scCaller.current?.SipherIBCO.getAccumulatedAfterDeposit(
                 account!,
                 mode === "Deposit" ? (value === "" ? "0" : parseFloat(value).toString()) : "0"
             ),
@@ -51,7 +51,7 @@ const InputUI = ({ mode }: Props) => {
     const { data: lockedAmount } = useQuery(
         ["locked-amount", value, account, mode],
         () =>
-            scCaller.current?.getLockAmountAfterDeposit(
+            scCaller.current?.SipherIBCO.getLockAmountAfterDeposit(
                 account!,
                 mode === "Deposit" ? (value === "" ? "0" : parseFloat(value).toString()) : "0"
             ),
@@ -64,7 +64,7 @@ const InputUI = ({ mode }: Props) => {
 
     const { data: withdrawableAmount } = useQuery(
         ["withdrawable-amount", account, mode],
-        () => scCaller.current?.getWithdrawableAmount(account!),
+        () => scCaller.current?.SipherIBCO.getWithdrawableAmount(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
@@ -75,8 +75,6 @@ const InputUI = ({ mode }: Props) => {
         enabled: !!scCaller.current && !!account && !!ethereum,
         initialData: 0,
         refetchInterval: 2000,
-        onSuccess: () => console.log("Nice"),
-        onError: err => console.log(err),
     })
 
     const walletBalance = weiToEther(balance!.toString())
@@ -93,19 +91,22 @@ const InputUI = ({ mode }: Props) => {
         }
     }
 
-    const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
-        onError: (err: any) => transactionToast({ status: "failed" }),
-        onSuccess: () => {
-            transactionToast({ status: "success" })
-            setValue("")
-            qc.invalidateQueries("user-deposited")
-            qc.invalidateQueries("locked-amount")
-            qc.invalidateQueries("withdrawable-amount")
-        },
-    })
+    const { mutate: deposit, isLoading: isDepositing } = useMutation(
+        () => scCaller.current!.SipherIBCO.deposit(account!, value),
+        {
+            onError: (err: any) => transactionToast({ status: "failed" }),
+            onSuccess: () => {
+                transactionToast({ status: "success" })
+                setValue("")
+                qc.invalidateQueries("user-deposited")
+                qc.invalidateQueries("locked-amount")
+                qc.invalidateQueries("withdrawable-amount")
+            },
+        }
+    )
 
     const { mutate: withdraw, isLoading: isWithdrawing } = useMutation(
-        () => scCaller.current!.withdraw(account!, value),
+        () => scCaller.current!.SipherIBCO.withdraw(account!, value),
         {
             onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {

@@ -48,12 +48,12 @@ const Countdown = ({ status }: CountdownProps) => {
     const [now, setNow] = useState(0)
     const { scCaller } = useWalletContext()
 
-    const { data: startTime } = useQuery("start-time", () => scCaller.current!.getStartTime(), {
+    const { data: startTime } = useQuery("start-time", () => scCaller.current!.SipherIBCO.getStartTime(), {
         initialData: new Date().getTime(),
         enabled: !!scCaller.current,
     })
 
-    const { data: endTime } = useQuery("end-time", () => scCaller.current!.getEndTime(), {
+    const { data: endTime } = useQuery("end-time", () => scCaller.current!.SipherIBCO.getEndTime(), {
         initialData: new Date().getTime(),
         enabled: !!scCaller.current,
         onSuccess: data => timerEnd.restart(new Date(data)),

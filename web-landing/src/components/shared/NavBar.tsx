@@ -8,9 +8,6 @@ import { useRouter } from "next/router"
 import { BaseNavigationBar, LinkButton, WalletButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
-interface NavBarProps {
-    isChildMenu?: boolean
-}
 
 export const navMenus = [
     { id: "Home", path: "/" },
@@ -19,16 +16,32 @@ export const navMenus = [
     { id: "News", path: "/news" },
     { id: "Token Sale", path: "/token-sale" },
     // { id: "Swap", path: "/swap" },
-    // { id: "Stake", path: "/stake" },
+    { id: "Stake", path: "/stake/overview" },
 ]
 
-export const menuChild = [
+export const aboutMenus = [
     { id: "Vision & Roadmap", path: "/about-us/vision-and-roadmap" },
     { id: "Team & Culture", path: "/about-us/team-and-culture" },
     { id: "Careers", path: "/about-us/careers" },
 ]
 
-export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
+export const stakeMenus = [
+    { id: "Overview", path: "/stake/overview" },
+    { id: "Deposit", path: "/stake/deposit" },
+    { id: "Reward", path: "/stake/rewards" },
+]
+
+export const childMenus = {
+    aboutMenus,
+    stakeMenus,
+}
+
+interface NavBarProps {
+    isChildMenu?: boolean
+    menus?: string
+}
+
+export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProps) => {
     const setBarOn = useStoreState(s => s.sidebarOn)
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
@@ -75,7 +88,7 @@ export const NavBar = ({ isChildMenu = false }: NavBarProps) => {
                     <MenuDrawer />
                 </Flex>
             </BaseNavigationBar>
-            {isChildMenu && <ChildMenu menus={menuChild} />}
+            {isChildMenu && <ChildMenu menus={childMenus[menus]} />}
         </Flex>
     )
 }

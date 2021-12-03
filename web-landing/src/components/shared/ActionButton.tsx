@@ -25,11 +25,7 @@ export const ActionButton = ({
             as="button"
             textTransform="uppercase"
             rounded="md"
-            bgGradient={
-                disabled
-                    ? "linear-gradient(180deg, #131313 0%, #232323 84.37%)"
-                    : "linear(to-b, #FF6795, #FF710B 84.37%)"
-            }
+            bgGradient={disabled ? "linear(to-b, #131313 0%, #232323 84.37%)" : "linear(to-b, #FF6795, #FF710B 84.37%)"}
             color={disabled ? "#979797" : "white"}
             shadow="base"
             letterSpacing="1px"

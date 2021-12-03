@@ -26,7 +26,7 @@ const ClaimAndStake = () => {
 
     const { data: receivedToken } = useQuery(
         ["estimate-received-token", account],
-        () => scCaller.current!.getEstReceivedToken(account!),
+        () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
         {
             enabled: !!scCaller && !!account,
             initialData: 0,
@@ -40,7 +40,7 @@ const ClaimAndStake = () => {
     const receivedSipher = Math.floor(receivedToken!)
 
     const { mutate: claimAndStake, isLoading: isStaking } = useMutation(
-        () => scCaller.current!.claimAndStake(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
+        () => scCaller.current!.SipherIBCO.claimAndStake(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
         {
             onMutate: () => {
                 transactionToast({ status: "processing" })

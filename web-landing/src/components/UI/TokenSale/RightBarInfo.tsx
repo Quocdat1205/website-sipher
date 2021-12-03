@@ -8,13 +8,13 @@ import { IconSipher } from "@components/shared/IconSipher"
 const RightBarInfo = () => {
     const { scCaller, account } = useWalletContext()
 
-    const { data: totalProvided } = useQuery("total-provided", () => scCaller.current!.getTotalProvided(), {
+    const { data: totalProvided } = useQuery("total-provided", () => scCaller.current!.SipherIBCO.getTotalProvided(), {
         enabled: !!scCaller.current,
         refetchInterval: 2000,
         initialData: 0,
     })
 
-    const { data: price } = useQuery("estimate-token-price", () => scCaller.current!.getEstTokenPrice(), {
+    const { data: price } = useQuery("estimate-token-price", () => scCaller.current!.SipherIBCO.getEstTokenPrice(), {
         enabled: !!scCaller.current,
         refetchInterval: 2000,
         initialData: 0,
@@ -22,7 +22,7 @@ const RightBarInfo = () => {
 
     const { data: token } = useQuery(
         ["estimate-received-token", account],
-        () => scCaller.current!.getEstReceivedToken(account!),
+        () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
         {
             enabled: !!scCaller.current,
             refetchInterval: 2000,
@@ -32,7 +32,7 @@ const RightBarInfo = () => {
 
     const { data: userDeposit } = useQuery(
         ["user-deposited", account],
-        () => scCaller.current?.getUserDeposited(account!),
+        () => scCaller.current?.SipherIBCO.getUserDeposited(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
