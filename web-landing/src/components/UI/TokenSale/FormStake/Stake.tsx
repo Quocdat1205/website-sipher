@@ -100,7 +100,7 @@ const Stake = () => {
                             Est. APR: <chakra.span fontWeight="semibold">...</chakra.span>
                         </Text>
                         <Text fontSize="sm" color="#9B9E9D">
-                            Sipher Balance: {numberWithCommas(receivedSipher)}
+                            $Sipher Balance: {numberWithCommas(receivedSipher)}
                         </Text>
                     </Flex>
                 </Box>
@@ -114,7 +114,7 @@ const Stake = () => {
                 </Text>
                 <ActionButton
                     w="full"
-                    text="Claim and stake Sipher"
+                    text="Claim and stake $Sipher"
                     onClick={() => {
                         claimAndStake()
                     }}
