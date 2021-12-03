@@ -96,7 +96,7 @@ const Detail = ({ race }: PopupProps) => {
                                     _hover={{ color: "red" }}
                                     _focus={{ shadow: "none" }}
                                 />
-                                <Flex overflow="hidden" w="full" justify="center" px={4} py={8}>
+                                <Flex overflow="hidden" w="full" justify="center" px={4} py={6}>
                                     <Head>
                                         <title>{data ? `${data.name} | Sipher` : "Loading... | Sipher"}</title>
                                     </Head>
@@ -109,8 +109,17 @@ const Detail = ({ race }: PopupProps) => {
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
                                         >
-                                            <Box w="20rem" h={["50vh", "50vh", "50vh", "50vh", "auto"]}>
-                                                <Box pos="relative" w="full" h="22.5rem" mb={4}>
+                                            <Box
+                                                w={["17.5rem", "17.5rem", "17.5rem", "20rem", "20rem"]}
+                                                h={["55vh", "55vh", "55vh", "55vh", "auto"]}
+                                                overflow="hidden"
+                                            >
+                                                <Box
+                                                    pos="relative"
+                                                    w="full"
+                                                    h={["20rem", "20rem", "20rem", "22.5rem", "22.5rem"]}
+                                                    mb={4}
+                                                >
                                                     <AnimatePresence>
                                                         <MotionBox
                                                             initial={{ opacity: 0 }}
@@ -128,8 +137,8 @@ const Detail = ({ race }: PopupProps) => {
                                                                         .image
                                                                 }
                                                                 alt={currentEmotion}
-                                                                width={320}
-                                                                height={361}
+                                                                width={[280, 280, 280, 320, 320]}
+                                                                height={[316, 316, 316, 361, 361]}
                                                             />
                                                         </MotionBox>
                                                     </AnimatePresence>
@@ -141,7 +150,7 @@ const Detail = ({ race }: PopupProps) => {
                                                 />
                                             </Box>
                                             <Flex
-                                                h={["50vh", "50vh", "50vh", "50vh", "auto"]}
+                                                h={["55vh", "55vh", "55vh", "55vh", "auto"]}
                                                 overflow="auto"
                                                 direction="column"
                                                 flex={3}
