@@ -1,6 +1,6 @@
 import {
     Box,
-    Img,
+    Link,
     Flex,
     Modal,
     ModalContent,
@@ -9,7 +9,10 @@ import {
     Text,
     ModalCloseButton,
     UnorderedList,
+    CheckboxGroup,
     ListItem,
+    Stack,
+    Checkbox,
 } from "@chakra-ui/react"
 import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
@@ -22,6 +25,10 @@ import { isMobile, isTablet } from "react-device-detect"
 export const SignInModal = () => {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
+    const [dataCheck, setDataCheck] = useState({
+        check1: false,
+        check2: false,
+    })
     const { isOpen, onOpen, onClose } = useDisclosure()
     const wallet = useWalletContext()
     const isCheckMobile = isMobile || isTablet
@@ -81,7 +88,34 @@ export const SignInModal = () => {
                                 </UnorderedList>
                             </Box>
                         ))}
-                        <Text>For more information, please read our Terms of Services (add link here).</Text>
+                        <CheckboxGroup colorScheme="orange">
+                            <Stack mb={4}>
+                                <Checkbox
+                                    isChecked={dataCheck.check1}
+                                    value="check1"
+                                    onChange={e => setDataCheck({ ...dataCheck, check1: e.target.checked })}
+                                >
+                                    <Text>
+                                        I have read, understood, and agree with the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/term-of-service">
+                                            Term of Service
+                                        </Link>
+                                    </Text>
+                                </Checkbox>
+                                <Checkbox
+                                    isChecked={dataCheck.check2}
+                                    value="check2"
+                                    onChange={e => setDataCheck({ ...dataCheck, check2: e.target.checked })}
+                                >
+                                    <Text>
+                                        I have read, understood, and agree with the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/privacy-policy">
+                                            Privacy Policy
+                                        </Link>
+                                    </Text>
+                                </Checkbox>
+                            </Stack>
+                        </CheckboxGroup>
                     </Box>
                     <Flex mt={4} px={4} justify="center" w="full">
                         <GradientButton
@@ -104,6 +138,7 @@ export const SignInModal = () => {
                             text="CONFIRM"
                             onClick={() => handleSign()}
                             w="12rem"
+                            disabled={dataCheck.check1 === false || dataCheck.check2 === false}
                         />
                     </Flex>
                 </Flex>
