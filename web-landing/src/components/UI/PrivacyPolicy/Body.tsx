@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
-import { VStack, chakra } from "@chakra-ui/react"
-import { TextContainer, Li, BackgroundContainer, Typo } from "@components/shared"
+import { VStack, chakra, Text } from "@chakra-ui/react"
+import { TextContainer, Li, BackgroundContainer } from "@components/shared"
 import { introduction, privacyPolicies } from "@constant/content/privacyPolicy"
 interface HomeBodyProps {}
 
@@ -40,14 +40,13 @@ const HomeBody = ({}: HomeBodyProps) => {
                                             key={chapter.content}
                                             headline={chapter.content}
                                             type={levelToListType(chapter.level)}
-                                            fontSize="md"
                                             level={chapter.level === 3 ? 3 : chapter.level === 4 ? 4 : 1}
                                             listKey={chapter.key}
                                         >
                                             {chapter.text && (
-                                                <Typo.Text mb={2} textAlign="justify">
+                                                <Text size="medium" mb={2} textAlign="justify">
                                                     {chapter.text}
-                                                </Typo.Text>
+                                                </Text>
                                             )}
                                         </Li>
                                     ))}

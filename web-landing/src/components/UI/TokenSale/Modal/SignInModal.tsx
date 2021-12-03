@@ -16,11 +16,12 @@ import {
 } from "@chakra-ui/react"
 import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { GradientButton, useChakraToast } from "@sipher/web-components"
+import { useChakraToast } from "@sipher/web-components"
 import { getSignIn } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
+import { ActionButton } from "../ActionButton"
 
 export const SignInModal = () => {
     const router = useRouter()
@@ -89,7 +90,7 @@ export const SignInModal = () => {
                             </Box>
                         ))}
                         <CheckboxGroup colorScheme="orange">
-                            <Stack mb={4}>
+                            <Stack mb={4} sx={{ input: { _focus: { boxShadow: "none" } } }}>
                                 <Checkbox
                                     isChecked={dataCheck.check1}
                                     value="check1"
@@ -118,27 +119,29 @@ export const SignInModal = () => {
                         </CheckboxGroup>
                     </Box>
                     <Flex mt={4} px={4} justify="center" w="full">
-                        <GradientButton
+                        <ActionButton
                             rounded="full"
                             bgColor="border.gray"
                             bgGradient="linear(to-b, #393939, #393939 84.37%)"
                             textTransform="none"
                             text="NEVERMIND"
-                            size="medium"
                             onClick={() => router.push("/")}
                             w="12rem"
+                            px={4}
+                            py={2}
                         />
-                        <GradientButton
+                        <ActionButton
                             isLoading={isLoading}
                             loadingText="CONFIRMING"
                             ml={8}
                             rounded="full"
-                            size="medium"
                             textTransform="none"
                             text="CONFIRM"
                             onClick={() => handleSign()}
                             w="12rem"
                             disabled={dataCheck.check1 === false || dataCheck.check2 === false}
+                            px={4}
+                            py={2}
                         />
                     </Flex>
                 </Flex>

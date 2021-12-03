@@ -107,10 +107,10 @@ export const Footer = () => {
             >
                 <Stack
                     direction={["column", "column", "row"]}
-                    spacing={[2, 2, 4]}
-                    align={["center", "flex-start", "center"]}
+                    spacing={[0, 0, 1, 2, 4]}
+                    align={["center", "center", "center", "center", "center"]}
                 >
-                    <Text>Copyright © 2021 Sipher. All rights reserved</Text>
+                    <Text size="small">Copyright © 2021 Sipher. All rights reserved</Text>
                     <Text
                         sx={{
                             "@media (max-width: 960px)": {
@@ -121,6 +121,7 @@ export const Footer = () => {
                         |
                     </Text>
                     <GradientText
+                        size="small"
                         cursor="pointer"
                         onClick={() => router.push("/term-and-conditions")}
                         fontWeight="bold"
@@ -137,7 +138,7 @@ export const Footer = () => {
                     >
                         |
                     </Text>
-                    <GradientText cursor="pointer" onClick={() => router.push("/faq")} fontWeight="bold">
+                    <GradientText size="small" cursor="pointer" onClick={() => router.push("/faq")} fontWeight="bold">
                         FAQ
                     </GradientText>
                     <Text
@@ -150,7 +151,12 @@ export const Footer = () => {
                     >
                         |
                     </Text>
-                    <GradientText cursor="pointer" onClick={() => router.push("/privacy-policy")} fontWeight="bold">
+                    <GradientText
+                        size="small"
+                        cursor="pointer"
+                        onClick={() => router.push("/privacy-policy")}
+                        fontWeight="bold"
+                    >
                         Privacy Policy (IBCO)
                     </GradientText>
                     <Text
@@ -163,7 +169,12 @@ export const Footer = () => {
                     >
                         |
                     </Text>
-                    <GradientText cursor="pointer" onClick={() => router.push("/term-of-service")} fontWeight="bold">
+                    <GradientText
+                        size="small"
+                        cursor="pointer"
+                        onClick={() => router.push("/term-of-service")}
+                        fontWeight="bold"
+                    >
                         Term of Service (IBCO)
                     </GradientText>
                 </Stack>
