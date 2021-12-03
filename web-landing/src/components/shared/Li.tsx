@@ -20,10 +20,15 @@ export const Li = ({ headline, children, type = "decimal", level = 1, listKey, b
             ml={(level - 1) * 8}
             mb={bottomSpace}
         >
-            <Text size="medium" textAlign="justify" {...rest}>
+            <Text
+                size="medium"
+                textAlign="justify"
+                _before={{ content: `counter(${listKey || type}, ${type}) ". "` }}
+                {...rest}
+            >
                 {headline}
             </Text>
-            <Text size="medium">{children}</Text>
+            {children}
         </chakra.li>
     )
 }
