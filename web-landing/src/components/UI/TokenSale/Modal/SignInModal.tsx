@@ -18,8 +18,9 @@ import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { getSignIn } from "@source/utils"
+import axios from "axios"
 import { useRouter } from "next/router"
-import React, { useEffect, useState } from "react"
+import React, { ChangeEvent, useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
 import { ActionButton } from "../ActionButton"
 
@@ -29,6 +30,7 @@ export const SignInModal = () => {
     const [dataCheck, setDataCheck] = useState({
         check1: false,
         check2: false,
+        check3: false,
     })
     const { isOpen, onOpen, onClose } = useDisclosure()
     const wallet = useWalletContext()
@@ -58,6 +60,16 @@ export const SignInModal = () => {
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
     }, [wallet])
 
+    useEffect(() => {
+        const handleGetLocation = async () => {
+            if (dataCheck.check3) {
+                const location = await axios.get("https://geolocation-db.com/json/")
+                console.log(location)
+            }
+        }
+        handleGetLocation()
+    }, [dataCheck])
+
     return (
         <Modal
             closeOnOverlayClick={false}
@@ -65,7 +77,7 @@ export const SignInModal = () => {
             isCentered
             isOpen={isOpen}
             onClose={onClose}
-            size="4xl"
+            size="5xl"
         >
             <ModalOverlay bg="rgba(19, 19, 19, 0.8)" />
             <ModalContent bg="black" p={0} overflow="hidden" rounded="md">
@@ -97,10 +109,8 @@ export const SignInModal = () => {
                                     onChange={e => setDataCheck({ ...dataCheck, check1: e.target.checked })}
                                 >
                                     <Text>
-                                        I have read, understood, and agree with the{" "}
-                                        <Link color="main.orange" cursor="pointer" as="a" href="/term-of-service">
-                                            Term of Service
-                                        </Link>
+                                        I declare that I am NOT a resident of the prohibited territories or possessions
+                                        as listed above.
                                     </Text>
                                 </Checkbox>
                                 <Checkbox
@@ -111,9 +121,20 @@ export const SignInModal = () => {
                                     <Text>
                                         I have read, understood, and agree with the{" "}
                                         <Link color="main.orange" cursor="pointer" as="a" href="/privacy-policy">
-                                            Privacy Policy
+                                            Privacy Policy{" "}
+                                        </Link>
+                                        and the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/term-of-service">
+                                            Term of Service
                                         </Link>
                                     </Text>
+                                </Checkbox>
+                                <Checkbox
+                                    isChecked={dataCheck.check3}
+                                    value="check3"
+                                    onChange={e => setDataCheck({ ...dataCheck, check3: e.target.checked })}
+                                >
+                                    <Text>I declare that I am a resident of [country]</Text>
                                 </Checkbox>
                             </Stack>
                         </CheckboxGroup>
@@ -139,7 +160,7 @@ export const SignInModal = () => {
                             text="CONFIRM"
                             onClick={() => handleSign()}
                             w="12rem"
-                            disabled={dataCheck.check1 === false || dataCheck.check2 === false}
+                            disabled={!dataCheck.check1 || !dataCheck.check2 || !dataCheck.check3}
                             px={4}
                             py={2}
                         />
