@@ -20,7 +20,7 @@ import { BiChevronDown } from "react-icons/bi"
 import CountDown from "./CountDown"
 import { startTime, endTime } from "@constant/index"
 import { BrowserView } from "react-device-detect"
-import SaleTime from "./CountDown/SaleTime"
+import useSaleTime from "./CountDown/useSaleTime"
 import { BsPlayFill } from "react-icons/bs"
 import { LearnAboutModal, VideoModal } from "@components/UI/TokenSale/Modal"
 import { useState } from "react"
@@ -28,7 +28,7 @@ import { useState } from "react"
 interface FirstScreenProps {}
 
 const FirstScreen = ({}: FirstScreenProps) => {
-    const { status } = SaleTime()
+    const { status } = useSaleTime()
     const [modal, setModal] = useState(1)
     const { isOpen, onOpen, onClose } = useDisclosure()
 

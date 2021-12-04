@@ -3,7 +3,7 @@ import { startTime, endTime } from "@constant/index"
 
 export type Status = "NOT_STARTED" | "ONGOING" | "ENDED"
 
-const SaleTime = () => {
+const useSaleTime = () => {
     const [now, setNow] = useState(new Date().getTime())
 
     useEffect(() => {
@@ -20,4 +20,4 @@ const SaleTime = () => {
     }
 }
 
-export default SaleTime
+export default useSaleTime
