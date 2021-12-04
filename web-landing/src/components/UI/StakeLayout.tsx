@@ -11,16 +11,9 @@ interface StakeLayoutProps {
 }
 
 const StakeLayout = ({ children }: StakeLayoutProps) => {
-    const ctnRef = useRef<HTMLDivElement>(null)
-
     const { account } = useWalletContext()
 
     const router = useRouter()
-    useEffect(() => {
-        if (ctnRef.current) {
-            ctnRef.current.scrollTop = 0
-        }
-    }, [router.pathname])
 
     return (
         <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900">

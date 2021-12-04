@@ -1,8 +1,10 @@
 import { Img, Flex, Box, Text } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
-import React from "react"
+import React, { useState } from "react"
 import { format } from "date-fns"
+import { useMutation } from "react-query"
+import useWalletContext from "@hooks/web3/useWalletContext"
 
 interface LockedRewardsProps {
     deposits: {
@@ -14,6 +16,18 @@ interface LockedRewardsProps {
 
 const LockedRewards = ({ deposits }: LockedRewardsProps) => {
     const sipherPrice = useSipherPrice()
+
+    const { scCaller, account } = useWalletContext()
+
+    const [unlockingId, setUnlockingId] = useState<number | null>(null)
+
+    const { mutate: unlock } = useMutation<unknown, unknown, number>(
+        depositId => scCaller.current!.EscrowPools.withdraw(depositId, account!),
+        {
+            onMutate: depositId => setUnlockingId(depositId),
+            onSettled: () => setUnlockingId(null),
+        }
+    )
 
     return (
         <Box>
@@ -40,7 +54,7 @@ const LockedRewards = ({ deposits }: LockedRewardsProps) => {
                         </Text>
                     </Flex>
                     <Box borderTop="1px" borderColor="#383838">
-                        {deposits.map(deposit => (
+                        {deposits.map((deposit, idx) => (
                             <Flex
                                 key={deposit.start}
                                 w="full"
@@ -71,6 +85,8 @@ const LockedRewards = ({ deposits }: LockedRewardsProps) => {
                                     w="10rem"
                                     disabled={new Date().getTime() <= deposit.end}
                                     size="small"
+                                    onClick={() => unlock(idx)}
+                                    isLoading={unlockingId === idx}
                                 />
                             </Flex>
                         ))}
