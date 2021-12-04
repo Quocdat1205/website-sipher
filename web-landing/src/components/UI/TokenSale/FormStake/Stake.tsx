@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { Box, Flex, Text, Slider, SliderFilledTrack, SliderTrack, SliderThumb, chakra } from "@chakra-ui/react"
 import SipherInput from "./SipherInput"
-import { ActionButton } from "../ActionButton"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import TabButton from "./TabButton"
 import { numberWithCommas } from "@source/utils"
 import useTransactionToast from "@hooks/useTransactionToast"
+import { ActionButton } from "@components/shared"
 
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
@@ -26,7 +26,7 @@ const Stake = () => {
 
     const { data: receivedToken } = useQuery(
         ["estimate-received-token", account],
-        () => scCaller.current!.getEstReceivedToken(account!),
+        () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
         {
             enabled: !!scCaller && !!account,
             initialData: 0,
@@ -40,7 +40,7 @@ const Stake = () => {
     const receivedSipher = Math.floor(receivedToken!)
 
     const { mutate: claimAndStake, isLoading: isStaking } = useMutation(
-        () => scCaller.current!.claimAndStake(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
+        () => scCaller.current!.SipherIBCO.claimAndStake(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
         {
             onMutate: () => {
                 transactionToast({ status: "processing" })

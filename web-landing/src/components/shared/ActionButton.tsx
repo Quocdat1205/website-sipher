@@ -8,19 +8,18 @@ interface ActionButtonProps extends BoxProps {
     isLoading?: boolean
     loadingText?: string
     disabled?: boolean
-    px?: number
-    py?: number
-    fontSize?: BoxProps["fontSize"]
+    size?: "small" | "medium" | "large"
 }
 
 export const ActionButton = ({
+    fontWeight = "bold",
     text,
     isLoading,
     loadingText = "Loading",
     disabled,
-    px = 8,
-    py = 4,
-    fontSize = "md",
+    px = 4,
+    py = 2,
+    size,
     ...rest
 }: ActionButtonProps) => {
     return (
@@ -28,7 +27,7 @@ export const ActionButton = ({
             as="button"
             textTransform="uppercase"
             rounded="md"
-            bgGradient="linear(to-b, #FF6795, #FF710B 84.37%)"
+            bgGradient={disabled ? "linear(to-b, #131313 0%, #232323 84.37%)" : "linear(to-b, #FF6795, #FF710B 84.37%)"}
             color={disabled ? "#979797" : "white"}
             shadow="base"
             letterSpacing="1px"
@@ -38,16 +37,16 @@ export const ActionButton = ({
             userSelect="none"
             {...rest}
         >
-            <Box py={py} px={px} h="full" bg={disabled ? "blackAlpha.500" : "transparent"}>
+            <Box py={py} px={px} h="full">
                 {isLoading ? (
                     <Flex align="center" justify="center">
                         <Spinner size="sm" thickness="3px" />
-                        <Text ml={4} fontWeight="bold" color="inherit" fontSize={fontSize}>
+                        <Text ml={4} fontWeight={fontWeight} color="inherit" size={size}>
                             {loadingText}
                         </Text>
                     </Flex>
                 ) : (
-                    <Text letterSpacing="2px" fontWeight="bold" color="inherit" fontSize={fontSize}>
+                    <Text letterSpacing="2px" fontWeight={fontWeight} color="inherit" size={size}>
                         {text}
                     </Text>
                 )}

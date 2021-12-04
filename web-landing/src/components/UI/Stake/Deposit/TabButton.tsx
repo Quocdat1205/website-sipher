@@ -1,10 +1,9 @@
-import React from "react"
+import { Flex, Box } from "@chakra-ui/react"
 import { TabOptionProps } from "."
-import { Flex } from "@chakra-ui/react"
 
 interface Props {
-    selected: TabOptionProps
-    tabOptions: readonly ["Flexible", "Locked"]
+    selected: string
+    tabOptions: string[]
     onChange: (option: TabOptionProps) => void
 }
 
@@ -21,6 +20,7 @@ const TabButton = ({ selected, tabOptions, onChange }: Props) => {
             userSelect="none"
             cursor="pointer"
             p={1}
+            mb={4}
         >
             {tabOptions.map(option => (
                 <Flex
@@ -29,9 +29,9 @@ const TabButton = ({ selected, tabOptions, onChange }: Props) => {
                     align="center"
                     justify="center"
                     rounded="full"
-                    px={8}
-                    py={4}
-                    fontWeight={400}
+                    px={6}
+                    py={2}
+                    fontWeight={selected === option ? "semibold" : "normal"}
                     color={selected === option ? "#FF9800" : "white"}
                     bg={selected === option ? "#1d1d1d" : "transparent"}
                     onClick={() => {

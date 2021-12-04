@@ -9,7 +9,7 @@ const TotalTokenSale = () => {
 
     const { data: totalDistributed } = useQuery(
         "total-distributed",
-        () => scCaller.current!.getTotalDistributeAmount(),
+        () => scCaller.current!.SipherIBCO.getTotalDistributeAmount(),
         {
             enabled: !!scCaller.current,
             initialData: 0,

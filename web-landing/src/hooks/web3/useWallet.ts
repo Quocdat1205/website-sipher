@@ -36,7 +36,7 @@ const useWallet = () => {
     const chain = useMemo(() => (chainId ? getChain(chainId) : null), [chainId])
 
     const scCaller = useRef<ContractCaller | null>(null)
-    console.log(scCaller)
+
     const reset = useCallback(() => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
         if (web3React.active) {
@@ -71,13 +71,10 @@ const useWallet = () => {
 
     useEffect(() => {
         if (web3React.library) {
-            console.log("library", web3React.library)
             scCaller.current = new ContractCaller(web3React.library)
             web3.current = new Web3(web3React.library)
         }
     }, [web3React.library])
-
-    console.log(scCaller)
 
     // connect to wallet
     const connect = useCallback(

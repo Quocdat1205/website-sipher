@@ -35,7 +35,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                 router.push("/")
             }
         }
-    }, [wallet.isActive])
+    }, [wallet.isActive, router])
 
     return (
         <Box

@@ -14,15 +14,15 @@ import {
     Stack,
     Checkbox,
 } from "@chakra-ui/react"
+import { ActionButton } from "@components/shared"
 import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { getSignIn } from "@source/utils"
 import axios from "axios"
 import { useRouter } from "next/router"
-import React, { ChangeEvent, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
-import { ActionButton } from "../ActionButton"
 
 export const SignInModal = () => {
     const router = useRouter()
@@ -33,8 +33,11 @@ export const SignInModal = () => {
         check3: false,
     })
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     const wallet = useWalletContext()
+
     const isCheckMobile = isMobile || isTablet
+
     const toast = useChakraToast()
 
     const handleSign = async () => {
@@ -58,7 +61,7 @@ export const SignInModal = () => {
     useEffect(() => {
         let signIn = getSignIn()
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
-    }, [wallet])
+    }, [wallet, isCheckMobile, onOpen])
 
     useEffect(() => {
         const handleGetLocation = async () => {
@@ -144,19 +147,16 @@ export const SignInModal = () => {
                             rounded="full"
                             bgColor="border.gray"
                             bgGradient="linear(to-b, #393939, #393939 84.37%)"
-                            textTransform="none"
                             text="NEVERMIND"
                             onClick={() => router.push("/")}
                             w="12rem"
-                            px={4}
-                            py={2}
+                            size="small"
                         />
                         <ActionButton
                             isLoading={isLoading}
                             loadingText="CONFIRMING"
                             ml={8}
                             rounded="full"
-                            textTransform="none"
                             text="CONFIRM"
                             onClick={() => handleSign()}
                             w="12rem"

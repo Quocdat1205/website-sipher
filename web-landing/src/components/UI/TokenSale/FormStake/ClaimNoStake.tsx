@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react"
+import { ActionButton } from "@components/shared"
 import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
-import { ActionButton } from "../ActionButton"
 
 const ClaimNoStake = () => {
     const { scCaller, account } = useWalletContext()
@@ -10,7 +10,7 @@ const ClaimNoStake = () => {
 
     const qc = useQueryClient()
 
-    const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.claim(account!), {
+    const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.SipherIBCO.claim(account!), {
         onMutate: () => {
             transactionToast({ status: "processing" })
         },
@@ -25,7 +25,7 @@ const ClaimNoStake = () => {
 
     const { data: receivedToken } = useQuery(
         ["estimate-received-token", account],
-        () => scCaller.current!.getEstReceivedToken(account!),
+        () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
         {
             enabled: !!scCaller && !!account,
             initialData: 0,
