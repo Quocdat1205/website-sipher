@@ -25,11 +25,11 @@ export const signupUser = async (address: string): Promise<IUser> => {
 export const authenticateUser = async (
     address: string,
     signature: string,
-    countryCode?: string
+    country?: string
 ): Promise<{ accessToken: string; tracking: boolean }> => {
     const {
         data: { accessToken, tracking },
-    } = await fetcher.post("/login/authentication", { publicAddress: address, signature, national: countryCode })
+    } = await fetcher.post("/login/authentication", { publicAddress: address, signature, national: country })
     return { accessToken, tracking }
 }
 

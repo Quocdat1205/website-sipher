@@ -63,7 +63,7 @@ export const SignInModal = () => {
     const handleSign = async () => {
         setIsLoading(true)
         try {
-            const { tracking } = await wallet.getAccessToken(valueSelect.code)
+            const { tracking } = await wallet.getAccessToken(valueSelect.name)
             if (tracking) {
                 setIsLoading(false)
                 onClose()
