@@ -80,7 +80,6 @@ const usePublicSale = () => {
             queryClient.invalidateQueries("user-record")
             setIsMinting(false)
         } catch (error) {
-            console.log(error)
             transactionToast({ status: "failed" })
             setIsMinting(false)
         }

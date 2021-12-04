@@ -1,5 +1,5 @@
 import Web3 from "web3"
-import { SipherIBCO, View, SipherToken, StakingPools } from "./class"
+import { SipherIBCO, View, SipherToken, StakingPools, EscrowPools } from "./class"
 import { StakingPoolAddress, EscrowPoolAddress } from "./code"
 
 export const weiToEther = (balance: string) => {
@@ -12,6 +12,7 @@ export class ContractCaller {
     View: View
     SipherToken: SipherToken
     StakingPools: StakingPools
+    EscrowPools: EscrowPools
 
     constructor(provider: any) {
         this.web3 = new Web3(provider)
@@ -19,6 +20,7 @@ export class ContractCaller {
         this.View = new View(this.web3)
         this.SipherToken = new SipherToken(this.web3)
         this.StakingPools = new StakingPools(this.web3)
+        this.EscrowPools = new EscrowPools(this.web3)
     }
 
     async getBalance(from: string) {

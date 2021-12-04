@@ -1,7 +1,7 @@
 import { Img, Flex, Box, Text, Collapse } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
-import { numberWithCommas } from "@source/utils"
+import { currency, numberWithCommas } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
@@ -53,7 +53,7 @@ const StakingPools = ({ totalValueLocked = 0, APR = 0, pendingRewards = 0, myLiq
                                     <Text ml={4}>$SIPHER</Text>
                                 </Flex>
                                 <Text w="25%" textAlign="left">
-                                    ${numberWithCommas(Math.round(totalValueLocked * sipherPrice))}
+                                    {currency(totalValueLocked * sipherPrice, "$")}
                                 </Text>
                                 <Text w="10%" textAlign="left">
                                     {(APR * 100).toFixed(2)}%

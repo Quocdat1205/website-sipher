@@ -1,15 +1,14 @@
 // * DESCRIPTION:
 
-import { Grid, Flex, Box } from "@chakra-ui/react"
+import { Grid, Flex } from "@chakra-ui/react"
 import { GiHamburgerMenu } from "react-icons/gi"
 import MenuDrawer from "./MenuDrawer"
 import { useStoreActions, useStoreState } from "@store"
 import { useRouter } from "next/router"
-import { BaseNavigationBar, LinkButton, WalletButton } from "."
+import { BaseNavigationBar, WalletButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
-import { useScrollPosition } from "@hooks/useScrollPosition"
-import { useState } from "react"
+import { useScrollDirection } from "@hooks/useScrollDirection"
 
 export const navMenus = [
     { id: "Home", path: "/" },
@@ -44,18 +43,13 @@ interface NavBarProps {
 }
 
 export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProps) => {
-    const setBarOn = useStoreState(s => s.sidebarOn)
-    const setSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()
-    const [hideOnScroll, setHideOnScroll] = useState(true)
 
-    useScrollPosition(
-        ({ prevPos, currPos }) => {
-            const isShow = currPos.y > prevPos.y
-            if (isShow !== hideOnScroll) setHideOnScroll(isShow)
-        },
-        [hideOnScroll]
-    )
+    const isUp = useScrollDirection()
+
+    const sidebarOn = useStoreState(s => s.sidebarOn)
+
+    const setSideBarOn = useStoreActions(action => action.setSidebarOn)
 
     return (
         <Flex
@@ -64,8 +58,10 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
             position="fixed"
             w="full"
             zIndex="popover"
-            transition="top 0.25s"
-            top={hideOnScroll ? 0 : "-7.2rem"}
+            transition="transform 0.25s ease-out"
+            top={0}
+            // top={isUp ? "0" : "-7.2rem"}
+            transform={`translateY(${isUp ? "0" : "-100%"})`}
             sx={{
                 ".childmenu::-webkit-scrollbar": {
                     display: "none",
@@ -90,7 +86,7 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                         color="white"
                         px={0}
                         placeItems="center"
-                        onClick={() => setSideBarOn(!setBarOn)}
+                        onClick={() => setSideBarOn(!sidebarOn)}
                         display={"none"}
                         sx={{
                             "@media (max-width: 1200px)": {
@@ -98,7 +94,7 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                             },
                         }}
                     >
-                        {setBarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
+                        {sidebarOn ? <IoMdClose size="2rem" /> : <GiHamburgerMenu size="2rem" />}
                     </Grid>
                     <MenuDrawer />
                 </Flex>
