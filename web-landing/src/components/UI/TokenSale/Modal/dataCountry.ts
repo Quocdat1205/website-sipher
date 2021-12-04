@@ -584,10 +584,6 @@ const dataCountry = [
         code: "QA",
     },
     {
-        name: "Republic of the Congo",
-        code: "CG",
-    },
-    {
         name: "Reunion",
         code: "RE",
     },
