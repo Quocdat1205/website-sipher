@@ -145,7 +145,7 @@ const useWallet = () => {
 
     //** Get accessToken when change emotion */
     const getAccessTokenAPI = useCallback(
-        async (valueSelect?: string) => {
+        async (countryCode?: string) => {
             if (!account) throw Error("Account not found")
             if (!web3.current) throw Error("Provider not found")
 
@@ -156,7 +156,7 @@ const useWallet = () => {
                 account as string,
                 ""
             )
-            const { accessToken, tracking } = await authenticateUser(account, signature, valueSelect)
+            const { accessToken, tracking } = await authenticateUser(account, signature, countryCode)
 
             if (tracking) {
                 setAccessToken(accessToken)

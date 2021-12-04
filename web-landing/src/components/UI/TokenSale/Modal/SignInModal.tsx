@@ -7,7 +7,6 @@ import {
     ModalOverlay,
     useDisclosure,
     Text,
-    Select,
     ModalCloseButton,
     UnorderedList,
     CheckboxGroup,
@@ -16,27 +15,41 @@ import {
     Checkbox,
 } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
+import Select from "@components/shared/Select"
 import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { getSignIn } from "@source/utils"
-import { useStoreState } from "@store"
+import axios from "axios"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
+import { useQuery } from "react-query"
 import dataCountry from "./dataCountry"
 
 export const SignInModal = () => {
     const router = useRouter()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isFetched, setIsFetched] = useState(false)
+    const [valueSelect, setValueSelect] = useState<any>()
     const [isLoading, setIsLoading] = useState(false)
     const [dataCheck, setDataCheck] = useState({
         check1: false,
         check2: false,
         check3: false,
     })
-    const location = useStoreState(_ => _.location)
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [valueSelect, setValueSelect] = useState("")
+
+    useQuery("location", () => axios.get("https://geolocation-db.com/json/"), {
+        enabled: !isFetched,
+        onSuccess: (data: any) => {
+            setValueSelect(
+                data && dataCountry.find((item: any) => item.code === data.data.country_code)
+                    ? { code: data.data.country_code, name: data.data.country_name }
+                    : null
+            )
+            setIsFetched(true)
+        },
+    })
 
     const wallet = useWalletContext()
 
@@ -47,13 +60,18 @@ export const SignInModal = () => {
     const handleSign = async () => {
         setIsLoading(true)
         try {
-            const { tracking } = await wallet.getAccessToken(valueSelect === "" ? location.name : valueSelect)
+            const { tracking } = await wallet.getAccessToken(valueSelect.code)
             if (tracking) {
                 setIsLoading(false)
                 onClose()
             } else {
                 setIsLoading(false)
-                toast({ status: "error", title: "Error", message: "Your IP address is in restricted territory" })
+                toast({
+                    status: "error",
+                    title: "Error",
+                    message:
+                        "Thank you for your interest in taking part in our Token Sale. However, due to restrictions and our ongoing compliance efforts, we will be unable to provide this offering to you.",
+                })
             }
         } catch (error: any) {
             setIsLoading(false)
@@ -64,6 +82,7 @@ export const SignInModal = () => {
 
     useEffect(() => {
         let signIn = getSignIn()
+
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
     }, [wallet, isCheckMobile, onOpen])
 
@@ -77,7 +96,7 @@ export const SignInModal = () => {
             size="5xl"
         >
             <ModalOverlay bg="rgba(19, 19, 19, 0.8)" />
-            <ModalContent bg="black" p={0} overflow="hidden" rounded="md">
+            <ModalContent bg="black" p={0} rounded="md">
                 <ModalCloseButton _focus={{ shadow: "none" }} color="#9B9E9D" onClick={() => router.push("/")} />
                 <Flex rounded="lg" py={10} px={20} flexDir="column" align="center" justify="center">
                     <Text mb={4} textAlign="left" size="large" fontWeight="semibold" letterSpacing="3px">
@@ -134,32 +153,16 @@ export const SignInModal = () => {
                                     >
                                         <Text>I declare that I am a resident of </Text>
                                     </Checkbox>
-                                    {dataCheck.check3 && (
-                                        <Select
-                                            defaultValue={
-                                                dataCountry.find((item: any) => item.code === location.code)
-                                                    ? location.code
-                                                    : "AF"
-                                            }
-                                            ml={4}
-                                            borderColor="main.orange"
-                                            w="15rem"
-                                            color="white"
-                                            sx={{ option: { bg: "black", color: "white" } }}
-                                            placeholder="Select"
-                                            onChange={e =>
-                                                setValueSelect(
-                                                    dataCountry.find((item: any) => item.code === e.target.value)!.name
-                                                )
-                                            }
-                                        >
-                                            {dataCountry.map(item => (
-                                                <option key={item.code} value={item.code}>
-                                                    {item.name}
-                                                </option>
-                                            ))}
-                                        </Select>
-                                    )}
+                                    <Box ml={8} w="20rem">
+                                        {dataCheck.check3 && (
+                                            <Select
+                                                searchable
+                                                value={valueSelect}
+                                                selection={dataCountry}
+                                                onSelect={newValue => setValueSelect(newValue)}
+                                            />
+                                        )}
+                                    </Box>
                                 </Flex>
                             </Stack>
                         </CheckboxGroup>

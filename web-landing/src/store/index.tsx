@@ -5,11 +5,6 @@ export interface StoreModel {
     setSidebarOn: Action<StoreModel, boolean>
     initialLoading: boolean
     setInitialLoading: Action<StoreModel, boolean>
-    location: {
-        code: string
-        name: string
-    }
-    setLocation: Action<StoreModel, any>
 }
 
 const store = createStore<StoreModel>({
@@ -21,10 +16,6 @@ const store = createStore<StoreModel>({
     initialLoading: true,
     setInitialLoading: action((state, payload) => {
         state.initialLoading = payload
-    }),
-    location: { code: "", name: "" },
-    setLocation: action((state, payload) => {
-        state.location = payload
     }),
 })
 
