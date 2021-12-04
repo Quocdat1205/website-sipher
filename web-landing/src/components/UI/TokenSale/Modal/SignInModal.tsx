@@ -39,13 +39,16 @@ export const SignInModal = () => {
         check3: false,
     })
 
-    useQuery("location", () => axios.get("https://geolocation-db.com/json/"), {
+    useQuery("location", () => axios.get("https://ip.nf/me.json"), {
         enabled: !isFetched,
         onSuccess: (data: any) => {
             setValueSelect(
-                data && dataCountry.find((item: any) => item.code === data.data.country_code)
-                    ? { code: data.data.country_code, name: data.data.country_name }
-                    : null
+                data && dataCountry.find((item: any) => item.code === data.data.ip.country_code)
+                    ? { code: data.data.ip.country_code, name: data.data.ip.country }
+                    : {
+                          name: "Afghanistan",
+                          code: "AF",
+                      }
             )
             setIsFetched(true)
         },
