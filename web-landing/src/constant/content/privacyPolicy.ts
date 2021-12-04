@@ -126,13 +126,13 @@ export const privacyPolicies: TermAndConditionItem[] = [
         level: 3,
         key: "regard",
         content:
-          "(a)	your financial information, including but not limited to, your transaction history such as your initial deposit amount, your withdrawal requests, your digital wallet address(es), your investment details, and any other information or documents in order to comply with domestic and international industry standards, government rules and regulations, particularly Anti-Money Laundering (AML) regulations, Know Your Customer (KYC) rules, and Counter-Terrorist Financing (CTF) regulations;",
+          "your financial information, including but not limited to, your transaction history such as your initial deposit amount, your withdrawal requests, your digital wallet address(es), your investment details, and any other information or documents in order to comply with domestic and international industry standards, government rules and regulations, particularly Anti-Money Laundering (AML) regulations, Know Your Customer (KYC) rules, and Counter-Terrorist Financing (CTF) regulations;",
       },
       {
         level: 3,
         key: "regard",
         content:
-          "Technical information, including but not limited to the Internet protocol (IP) address used to connect your computer to the Internet, your login information, browser type and version, time zone setting, browser plug-in types and versions, and information relating to your operating system and platform;",
+          "technical information, including but not limited to the Internet protocol (IP) address used to connect your computer to the Internet, your login information, browser type and version, time zone setting, browser plug-in types and versions, and information relating to your operating system and platform;",
       },
       {
         level: 3,
@@ -161,46 +161,50 @@ export const privacyPolicies: TermAndConditionItem[] = [
         content: "How we collect your personal data",
       },
       {
-        level: 3,
-        key: "howwe",
-        content: "When you register an account with us through our Applications;",
+        level: 2,
+        content: "We may collect your personal data directly or indirectly through various channels, such as:",
       },
       {
         level: 3,
         key: "howwe",
-        content: "When you log in, visit, use, access or download our Applications and services;",
+        content: "when you register an account with us through our Applications;",
       },
       {
         level: 3,
         key: "howwe",
-        content: "When you authorize us to obtain your personal data from a third party;",
+        content: "when you log in, visit, use, access or download our Applications and services;",
       },
       {
         level: 3,
         key: "howwe",
-        content: "When you enter into agreements with us;",
+        content: "when you authorize us to obtain your personal data from a third party;",
       },
       {
         level: 3,
         key: "howwe",
-        content:
-          "When you transact with us, contact us or request that we contact you through various communication channels, for example, through social media platforms, messenger platforms, face-to-face meetings, telephone calls, emails and letters;",
-      },
-      {
-        level: 3,
-        key: "howwe",
-        content: "When you attend events or functions organized by us;",
+        content: "when you enter into agreements with us;",
       },
       {
         level: 3,
         key: "howwe",
         content:
-          "We seek information about you and receive your personal data in connection with your relationship with us;",
+          "when you transact with us, contact us or request that we contact you through various communication channels, for example, through social media platforms, messenger platforms, face-to-face meetings, telephone calls, emails and letters;",
       },
       {
         level: 3,
         key: "howwe",
-        content: "When you submit your personal data to us for any other reason;",
+        content: "when you attend events or functions organized by us;",
+      },
+      {
+        level: 3,
+        key: "howwe",
+        content:
+          "we seek information about you and receive your personal data in connection with your relationship with us;",
+      },
+      {
+        level: 3,
+        key: "howwe",
+        content: "when you submit your personal data to us for any other reason;",
       },
       {
         level: 3,
@@ -211,13 +215,13 @@ export const privacyPolicies: TermAndConditionItem[] = [
       {
         level: 3,
         key: "howwe",
-        content: "Through automated data collection technologies upon visiting our Applications; and",
+        content: "through automated data collection technologies upon visiting our Applications; and",
       },
       {
         level: 3,
         key: "howwe",
         content:
-          "In other situations where we may collect your information as may be described in this Privacy Policy or in our terms and conditions. ",
+          "in other situations where we may collect your information as may be described in this Privacy Policy or in our terms and conditions. ",
       },
       {
         level: 1,
@@ -232,23 +236,23 @@ export const privacyPolicies: TermAndConditionItem[] = [
       {
         level: 3,
         key: "depending",
-        content: "Public databases, public agencies, other public sources, credit bureaus, blockchain data;",
+        content: "public databases, public agencies, other public sources, credit bureaus, blockchain data;",
       },
       {
         level: 3,
         key: "depending",
-        content: "Third parties whom you have authorised us to obtain your personal data from;",
+        content: "third parties whom you have authorised us to obtain your personal data from;",
       },
       {
         level: 3,
         key: "depending",
         content:
-          "Our business partners such as third parties providing services to us (including but not limited to, our ID verification partners, marketing partners, advertising partners, our sub-contractors in technical, payment and delivery services, advertising networks, analytics providers, search information providers and credit reference agencies); and/or",
+          "our business partners such as third parties providing services to us (including but not limited to, our ID verification partners, marketing partners, advertising partners, our sub-contractors in technical, payment and delivery services, advertising networks, analytics providers, search information providers and credit reference agencies); and/or",
       },
       {
         level: 3,
         key: "depending",
-        content: "Your family members or friends who provide your personal data to us on your behalf.",
+        content: "your family members or friends who provide your personal data to us on your behalf.",
       },
       {
         level: 2,
@@ -275,92 +279,87 @@ export const privacyPolicies: TermAndConditionItem[] = [
         level: 3,
         key: "wemay",
         content:
-          "For the fulfilment of contractual obligations and/or transactions entered into between you and us, and to provide you with the information, products and/or services that you request from us;",
+          "for the fulfilment of contractual obligations and/or transactions entered into between you and us, and to provide you with the information, products and/or services that you request from us;",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Facilitating the use of our Applications, including verifying, authenticating and/or establishing your identify;",
+          "facilitating the use of our Applications, including verifying, authenticating and/or establishing your identify;",
       },
       {
         level: 3,
         key: "wemay",
-        content: "Facilitating business asset transactions;",
+        content: "facilitating business asset transactions;",
       },
       {
         level: 3,
         key: "wemay",
-        content: "To notify you about changes to our services;",
-      },
-      {
-        level: 3,
-        key: "wemay",
-        content:
-          "To comply with any legal or regulatory obligations, applicable laws, regulations, codes of practices, guidelines, industry standards (domestic or global), government requests, or rules (including but not limited to Anti-Money Laundering (AML) regulations, Know Your Customer (KYC) rules, and Counter-Terrorist Financing (CTF) regulations), or to assist in law enforcement and investigations conducted by any governmental and/or regulatory authority;",
+        content: "to notify you about changes to our services;",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Where it is strictly necessary (i.e. to protect the vital interests of the users or other natural persons, to fulfil the purpose of public interest, or to pursue our reasonable interests);",
+          "to comply with any legal or regulatory obligations, applicable laws, regulations, codes of practices, guidelines, industry standards (domestic or global), government requests, or rules (including but not limited to Anti-Money Laundering (AML) regulations, Know Your Customer (KYC) rules, and Counter-Terrorist Financing (CTF) regulations), or to assist in law enforcement and investigations conducted by any governmental and/or regulatory authority;",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Security purposes, e.g. to monitor and detect suspicious activities, to protect users from fraudulent activities, to protect our Applications, users' accounts, and archives from unauthorised access or usage, to prevent damage to our Applications and systems, and to protect against automated abuse such as spam, phishing, and Distributed Denial of Service (DDoS) attacks;",
-      },
-      {
-        level: 3,
-        key: "wemay",
-        content: "Personal data and/or information we collect about you;",
+          "where it is strictly necessary (i.e. to protect the vital interests of the users or other natural persons, to fulfil the purpose of public interest, or to pursue our reasonable interests);",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Communicating with you (through messages, emails, telephone, live chats or otherwise) and assisting you with your queries, requests, applications, complaints and feedback;",
+          "security purposes, e.g. to monitor and detect suspicious activities, to protect users from fraudulent activities, to protect our Applications, users' accounts, and archives from unauthorised access or usage, to prevent damage to our Applications and systems, and to protect against automated abuse such as spam, phishing, and Distributed Denial of Service (DDoS) attacks;",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Resolving any disputes or legal claims, investigating any complaint, claim or dispute or any actual or suspected illegal or unlawful conduct;",
+          "communicating with you (through messages, emails, telephone, live chats or otherwise) and assisting you with your queries, requests, applications, complaints and feedback;",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Administrative purposes, including finance, IT and HR purposes, quality assurance and staff training, and compliance with internal policies and procedures, including audit, accounting, risk management and record keeping;",
+          "resolving any disputes or legal claims, investigating any complaint, claim or dispute or any actual or suspected illegal or unlawful conduct;",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Carrying out research and statistical analysis, including development of new products and services or evaluation, and improvement of our existing products and services (including but not limited to, gaining better understanding of users' needs and behaviors, diagnosing any problems with our server, and quality assurance);",
+          "administrative purposes, including finance, IT and HR purposes, quality assurance and staff training, and compliance with internal policies and procedures, including audit, accounting, risk management and record keeping;",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Performing data analytics and related technologies on data, to enable us to deliver relevant content and information to you, and to improve our websites and digital platforms (e.g. ensuring that content from our Applications are presented in the most effective manner for you and for your computer);",
+          "carrying out research and statistical analysis, including development of new products and services or evaluation, and improvement of our existing products and services (including but not limited to, gaining better understanding of users' needs and behaviors, diagnosing any problems with our server, and quality assurance);",
       },
       {
         level: 3,
         key: "wemay",
         content:
-          "Managing and engaging third parties, data processors or subcontractors that provide services to us, e.g. IT services, technological services, delivery services, and other professional services (e.g. accountants, lawyers and auditors);",
+          "performing data analytics and related technologies on data, to enable us to deliver relevant content and information to you, and to improve our websites and digital platforms (e.g. ensuring that content from our Applications are presented in the most effective manner for you and for your computer);",
       },
       {
         level: 3,
         key: "wemay",
-        content: "Such purposes that may be informed to you when your personal data is collected; and/or",
+        content:
+          "managing and engaging third parties, data processors or subcontractors that provide services to us, e.g. IT services, technological services, delivery services, and other professional services (e.g. accountants, lawyers and auditors);",
       },
       {
         level: 3,
         key: "wemay",
-        content: "Any other reasonable purposes related to the aforesaid.",
+        content: "such purposes that may be informed to you when your personal data is collected; and/or",
+      },
+      {
+        level: 3,
+        key: "wemay",
+        content: "any other reasonable purposes related to the aforesaid.",
       },
       {
         level: 2,
@@ -398,53 +397,53 @@ export const privacyPolicies: TermAndConditionItem[] = [
         level: 3,
         key: "wemayalso",
         content:
-          "Processing of personal data for the purposes of our daily operations including billing and debt collecting;",
+          "processing of personal data for the purposes of our daily operations including billing and debt collecting;",
       },
       {
         level: 3,
         key: "wemayalso",
         content:
-          "Managing our business and relationship with you (e.g. accurately carrying out and confirming your instructions, or for the purposes of providing you with rebates and other benefits), and providing services to our customers;",
+          "managing our business and relationship with you (e.g. accurately carrying out and confirming your instructions, or for the purposes of providing you with rebates and other benefits), and providing services to our customers;",
       },
       {
         level: 3,
         key: "wemayalso",
-        content: "Assistance of carrying out corporate restructuring plans;",
-      },
-      {
-        level: 3,
-        key: "wemayalso",
-        content:
-          "Protecting our rights and interests, and those of our customers (e.g. processing of your data for the protection of the company’s legal position in the event of legal proceedings);",
+        content: "assistance of carrying out corporate restructuring plans;",
       },
       {
         level: 3,
         key: "wemayalso",
         content:
-          "Processing for the purpose of reporting possible criminal acts (e.g. fraud) or threats to public security to competent authorities;",
+          "protecting our rights and interests, and those of our customers (e.g. processing of your data for the protection of the company’s legal position in the event of legal proceedings);",
       },
       {
         level: 3,
         key: "wemayalso",
         content:
-          "Enforcing our terms and conditions, and obligations owed to us, or protecting ourselves from legal liability;",
-      },
-      {
-        level: 3,
-        key: "wemayalso",
-        content: "Managing our investor and shareholder relations;",
+          "processing for the purpose of reporting possible criminal acts (e.g. fraud) or threats to public security to competent authorities;",
       },
       {
         level: 3,
         key: "wemayalso",
         content:
-          "Complying with internal policies, procedures, and operations, including troubleshooting, data analysis, testing, research, statistical and survey purposes; and/or",
+          "enforcing our terms and conditions, and obligations owed to us, or protecting ourselves from legal liability;",
+      },
+      {
+        level: 3,
+        key: "wemayalso",
+        content: "managing our investor and shareholder relations;",
       },
       {
         level: 3,
         key: "wemayalso",
         content:
-          "Process or share your personal data to facilitate acquisitions, mergers, or transfers of our business.",
+          "complying with internal policies, procedures, and operations, including troubleshooting, data analysis, testing, research, statistical and survey purposes; and/or",
+      },
+      {
+        level: 3,
+        key: "wemayalso",
+        content:
+          "process or share your personal data to facilitate acquisitions, mergers, or transfers of our business.",
       },
     ],
   },
@@ -518,7 +517,7 @@ export const privacyPolicies: TermAndConditionItem[] = [
         level: 3,
         key: "wemay",
         content:
-          "To administer or process a transaction, or services you have authorized or requested, or in the context of facilitating the execution of a transaction;",
+          "to administer or process a transaction, or services you have authorized or requested, or in the context of facilitating the execution of a transaction;",
       },
       {
         level: 3,
@@ -599,33 +598,33 @@ export const privacyPolicies: TermAndConditionItem[] = [
       {
         level: 4,
         key: "circumstances",
-        content: "To comply, as necessary, with applicable laws and regulatory requirements;",
+        content: "to comply, as necessary, with applicable laws and regulatory requirements;",
       },
       {
         level: 4,
         key: "circumstances",
-        content: "Respond to mandatory legal or governmental requests or demands for information;",
+        content: "respond to mandatory legal or governmental requests or demands for information;",
       },
       {
         level: 4,
         key: "circumstances",
-        content: "Meet national security requirements;",
+        content: "meet national security requirements;",
       },
       {
         level: 4,
         key: "circumstances",
-        content: "Enforce our agreements, policies, procedures and/or T&Cs;",
+        content: "enforce our agreements, policies, procedures and/or T&Cs;",
       },
       {
         level: 4,
         key: "circumstances",
         content:
-          "Protect ourselves, our affiliates, our users, our counterparties or the general public from illegal activities; and",
+          "protect ourselves, our affiliates, our users, our counterparties or the general public from illegal activities; and",
       },
       {
         level: 4,
         key: "circumstances",
-        content: "To respond to an emergency that requires disclosure of your personal data.",
+        content: "to respond to an emergency that requires disclosure of your personal data.",
       },
       {
         level: 2,
@@ -650,11 +649,11 @@ export const privacyPolicies: TermAndConditionItem[] = [
       {
         level: 3,
         content:
-          "From the jurisdiction where it is collected (or where you are located) to any other jurisdictions that we operate in; and",
+          "from the jurisdiction where it is collected (or where you are located) to any other jurisdictions that we operate in; and",
       },
       {
         level: 3,
-        content: "To third parties in other jurisdictions.",
+        content: "to third parties in other jurisdictions.",
       },
       {
         level: 2,
