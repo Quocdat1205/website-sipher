@@ -144,25 +144,28 @@ const useWallet = () => {
     )
 
     //** Get accessToken when change emotion */
-    const getAccessTokenAPI = useCallback(async () => {
-        if (!account) throw Error("Account not found")
-        if (!web3.current) throw Error("Provider not found")
+    const getAccessTokenAPI = useCallback(
+        async (valueSelect?: string) => {
+            if (!account) throw Error("Account not found")
+            if (!web3.current) throw Error("Provider not found")
 
-        const user = await getUsersByAddress(account)
+            const user = await getUsersByAddress(account)
 
-        const signature = await web3.current.eth.personal.sign(
-            `I am signing my one-time nonce: ${user.nonce}`,
-            account as string,
-            ""
-        )
-        const { accessToken, tracking } = await authenticateUser(account, signature)
+            const signature = await web3.current.eth.personal.sign(
+                `I am signing my one-time nonce: ${user.nonce}`,
+                account as string,
+                ""
+            )
+            const { accessToken, tracking } = await authenticateUser(account, signature, valueSelect)
 
-        if (tracking) {
-            setAccessToken(accessToken)
-            setSignIn("true")
-        }
-        return { accessToken, tracking }
-    }, [web3React])
+            if (tracking) {
+                setAccessToken(accessToken)
+                setSignIn("true")
+            }
+            return { accessToken, tracking }
+        },
+        [web3React]
+    )
 
     //** Tracking user wallet address */
     const getTracking = useCallback(

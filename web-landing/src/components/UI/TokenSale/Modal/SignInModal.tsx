@@ -7,6 +7,7 @@ import {
     ModalOverlay,
     useDisclosure,
     Text,
+    Select,
     ModalCloseButton,
     UnorderedList,
     CheckboxGroup,
@@ -19,9 +20,11 @@ import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { getSignIn } from "@source/utils"
+import { useStoreState } from "@store"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
+import dataCountry from "./dataCountry"
 
 export const SignInModal = () => {
     const router = useRouter()
@@ -29,8 +32,11 @@ export const SignInModal = () => {
     const [dataCheck, setDataCheck] = useState({
         check1: false,
         check2: false,
+        check3: false,
     })
+    const location = useStoreState(_ => _.location)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [valueSelect, setValueSelect] = useState("")
 
     const wallet = useWalletContext()
 
@@ -41,7 +47,7 @@ export const SignInModal = () => {
     const handleSign = async () => {
         setIsLoading(true)
         try {
-            const { tracking } = await wallet.getAccessToken()
+            const { tracking } = await wallet.getAccessToken(valueSelect === "" ? location.name : valueSelect)
             if (tracking) {
                 setIsLoading(false)
                 onClose()
@@ -68,7 +74,7 @@ export const SignInModal = () => {
             isCentered
             isOpen={isOpen}
             onClose={onClose}
-            size="4xl"
+            size="5xl"
         >
             <ModalOverlay bg="rgba(19, 19, 19, 0.8)" />
             <ModalContent bg="black" p={0} overflow="hidden" rounded="md">
@@ -100,10 +106,8 @@ export const SignInModal = () => {
                                     onChange={e => setDataCheck({ ...dataCheck, check1: e.target.checked })}
                                 >
                                     <Text>
-                                        I have read, understood, and agree with the{" "}
-                                        <Link color="main.orange" cursor="pointer" as="a" href="/term-of-service">
-                                            Term of Service
-                                        </Link>
+                                        I declare that I am NOT a resident of the prohibited territories or possessions
+                                        as listed above.
                                     </Text>
                                 </Checkbox>
                                 <Checkbox
@@ -114,10 +118,49 @@ export const SignInModal = () => {
                                     <Text>
                                         I have read, understood, and agree with the{" "}
                                         <Link color="main.orange" cursor="pointer" as="a" href="/privacy-policy">
-                                            Privacy Policy
+                                            Privacy Policy{" "}
+                                        </Link>
+                                        and the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/term-of-service">
+                                            Term of Service
                                         </Link>
                                     </Text>
                                 </Checkbox>
+                                <Flex align="center">
+                                    <Checkbox
+                                        isChecked={dataCheck.check3}
+                                        value="check3"
+                                        onChange={e => setDataCheck({ ...dataCheck, check3: e.target.checked })}
+                                    >
+                                        <Text>I declare that I am a resident of </Text>
+                                    </Checkbox>
+                                    {dataCheck.check3 && (
+                                        <Select
+                                            defaultValue={
+                                                dataCountry.find((item: any) => item.code === location.code)
+                                                    ? location.code
+                                                    : "AF"
+                                            }
+                                            ml={4}
+                                            borderColor="main.orange"
+                                            w="15rem"
+                                            color="white"
+                                            sx={{ option: { bg: "black", color: "white" } }}
+                                            placeholder="Select"
+                                            onChange={e =>
+                                                setValueSelect(
+                                                    dataCountry.find((item: any) => item.code === e.target.value)!.name
+                                                )
+                                            }
+                                        >
+                                            {dataCountry.map(item => (
+                                                <option key={item.code} value={item.code}>
+                                                    {item.name}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    )}
+                                </Flex>
                             </Stack>
                         </CheckboxGroup>
                     </Box>
@@ -139,8 +182,9 @@ export const SignInModal = () => {
                             text="CONFIRM"
                             onClick={() => handleSign()}
                             w="12rem"
-                            disabled={dataCheck.check1 === false || dataCheck.check2 === false}
-                            size="small"
+                            disabled={!dataCheck.check1 || !dataCheck.check2 || !dataCheck.check3}
+                            px={4}
+                            py={2}
                         />
                     </Flex>
                 </Flex>

@@ -24,11 +24,12 @@ export const signupUser = async (address: string): Promise<IUser> => {
 /** Authenticate user by address and signature */
 export const authenticateUser = async (
     address: string,
-    signature: string
+    signature: string,
+    valueSelect?: string
 ): Promise<{ accessToken: string; tracking: boolean }> => {
     const {
         data: { accessToken, tracking },
-    } = await fetcher.post("/login/authentication", { publicAddress: address, signature })
+    } = await fetcher.post("/login/authentication", { publicAddress: address, signature, national: valueSelect })
     return { accessToken, tracking }
 }
 
