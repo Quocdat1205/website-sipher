@@ -10,9 +10,10 @@ import { FaEthereum } from "react-icons/fa"
 import { useChakraToast } from "@sipher/web-components"
 import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
-import { floorPrecised } from "@source/utils"
+import { floorPrecised } from "@source/utils/index"
 import useTransactionToast from "@hooks/useTransactionToast"
 import { ActionButton } from "@components/shared"
+import { useETHPrice } from "@hooks/api"
 
 interface Props {
     mode: DropdownOption
@@ -21,6 +22,7 @@ interface Props {
 const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("")
     const setValueCb = useCallback((value: string) => setValue(value), [])
+    const ethPrice = useETHPrice()
 
     const options = [0.25, 0.5, 0.75, 1]
 
@@ -173,11 +175,23 @@ const InputUI = ({ mode }: Props) => {
                     </Text>
                 </Flex>
             </Flex>
-            <Text my={1} textAlign="right" color="#979797" fontSize="sm">
-                {mode === "Deposit"
-                    ? `Wallet Balance: ${floorPrecised(walletBalance, 5)}`
-                    : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}
-            </Text>
+            <Flex justify="space-between">
+                <Flex align="center">
+                    <Image src="/images/icons/usd.png" alt="icon" h="1rem" />
+                    <Text ml={1} textAlign="left" color="#979797" fontSize="sm">
+                        $
+                        {(ethPrice * walletBalance).toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                        })}
+                    </Text>
+                </Flex>
+                <Text my={1} textAlign="right" color="#979797" fontSize="sm">
+                    {mode === "Deposit"
+                        ? `Wallet Balance: ${floorPrecised(walletBalance, 5)}`
+                        : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}{" "}
+                    ETH
+                </Text>
+            </Flex>
 
             <Flex flexDir="column" mb={8}>
                 <Flex mb={2} align="center">

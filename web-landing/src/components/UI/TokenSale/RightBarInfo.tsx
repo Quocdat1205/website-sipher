@@ -70,15 +70,10 @@ const RightBarInfo = () => {
                 rounded="xl"
                 flex={1}
             >
-                <CoinCard
-                    size="small"
-                    text="Your ETH Contributed"
-                    iconSrc="/images/icons/eth.png"
-                    value={userDeposit!}
-                />
+                <CoinCard text="Your ETH Contributed" iconSrc="/images/icons/eth.png" value={userDeposit!} />
                 <Box w="full" h="1px" bg="#383838" />
                 <CoinCard
-                    size="small"
+                    disableDollar
                     text="Est. $SIPHER Received"
                     icon={<IconSipher ml={2} boxSize="1.6rem" />}
                     value={numberWithCommas(parseInt(token!.toString()))}

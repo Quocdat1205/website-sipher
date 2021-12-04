@@ -6,8 +6,21 @@ export const getPrice = async (): Promise<number> => {
     return data.message.data.sipher.usd
 }
 
+export const getETHPrice = async (): Promise<number> => {
+    const { data } = await fetcher.get("/smartcontract/check-price")
+    return data.message.data.ethereum.usd
+}
+
 export const useSipherPrice = () => {
     const { data } = useQuery("sipher-price", getPrice, {
+        initialData: 0,
+    })
+
+    return data as number
+}
+
+export const useETHPrice = () => {
+    const { data } = useQuery("eth-price", getETHPrice, {
         initialData: 0,
     })
 

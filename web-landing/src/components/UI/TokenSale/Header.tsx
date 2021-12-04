@@ -38,7 +38,7 @@ const Header = (props: Props) => {
                 bg="transparent"
                 _hover={{ bg: "transparent" }}
                 _active={{ bg: "transparent" }}
-                fontWeight="normal"
+                fontWeight="semibold"
                 px={12}
                 leftIcon={<BsPlayFill size="1.2rem" />}
                 mb={4}

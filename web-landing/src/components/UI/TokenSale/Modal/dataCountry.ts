@@ -68,10 +68,6 @@ const dataCountry = [
         code: "BD",
     },
     {
-        name: "Belarus",
-        code: "BY",
-    },
-    {
         name: "Belgium",
         code: "BE",
     },
@@ -180,10 +176,6 @@ const dataCountry = [
         code: "HR",
     },
     {
-        name: "Cuba",
-        code: "CU",
-    },
-    {
         name: "Curacao",
         code: "CW",
     },
@@ -194,10 +186,6 @@ const dataCountry = [
     {
         name: "Czech Republic",
         code: "CZ",
-    },
-    {
-        name: "Democratic Republic of the Congo",
-        code: "CD",
     },
     {
         name: "Denmark",
@@ -336,10 +324,6 @@ const dataCountry = [
         code: "HN",
     },
     {
-        name: "Hong Kong",
-        code: "HK",
-    },
-    {
         name: "Hungary",
         code: "HU",
     },
@@ -356,10 +340,6 @@ const dataCountry = [
         code: "ID",
     },
     {
-        name: "Iraq",
-        code: "IQ",
-    },
-    {
         name: "Ireland",
         code: "IE",
     },
@@ -374,14 +354,6 @@ const dataCountry = [
     {
         name: "Italy",
         code: "IT",
-    },
-    {
-        name: "Ivory Coast",
-        code: "CI",
-    },
-    {
-        name: "Jamaica",
-        code: "JM",
     },
     {
         name: "Japan",
@@ -432,10 +404,6 @@ const dataCountry = [
         code: "LS",
     },
     {
-        name: "Liberia",
-        code: "LR",
-    },
-    {
         name: "Libya",
         code: "LY",
     },
@@ -470,10 +438,6 @@ const dataCountry = [
     {
         name: "Maldives",
         code: "MV",
-    },
-    {
-        name: "Mali",
-        code: "ML",
     },
     {
         name: "Marshall Islands",
