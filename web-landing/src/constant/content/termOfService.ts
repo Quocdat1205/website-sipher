@@ -43,7 +43,7 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "Descriptions of the Service, the SIPHER Tokens, and other information about SIPHER JSC, the Token Sale and Sipher JSC's overall project related to the Service are available on the Service's website at https://sipher.xyz, as well as official documentations at https://atlas.sipher.xyz/ (the 'Project Documentation'). The Project Documentation states Sipher JSC's current view of the subjects it covers. Sipher JSC may from time to time revise the Project Documentation in any respect and without notice to or approval from you. The information presented in the Project Documentation is indicative only, and the Project Documentation does not form part of these Terms.",
+                    "Descriptions of the Service, the SIPHER Tokens, and other information about SIPHER JSC, the Token Sale and Sipher JSC's overall project related to the Service are available on the Service's website at https://sipher.xyz, as well as official documentation at https://atlas.sipher.xyz/ (the 'Project Documentation'). The Project Documentation states Sipher JSC's current view of the subjects it covers. Sipher JSC may from time to time revise the Project Documentation in any respect and without notice to or approval from you. The information presented in the Project Documentation is indicative only, and the Project Documentation does not form part of these Terms.",
             },
         ],
     },
@@ -57,7 +57,7 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "The individual who accepted these Terms by the process designated at […] (the “Signatory”); or",
+                    "The individual who accepted these Terms by the process designated at https://sipher.xyz/term-of-service (the “Signatory”); or",
             },
             {
                 level: 2,
@@ -86,7 +86,7 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "You are not a citizen or permanent resident of, you do not have a primary residence in, and you are not physically located in the United States of America, Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Democratic People's Republic of Korea (DPRK), Jordan, Mali, People’s Republic of China, Hong Kong SAR, Macau SAR, Singapore, Philippines and Turkey or its territories or possessions.",
+                    "You are not a citizen or permanent resident of, you do not have a primary residence in, and you are not physically located in the United States of America, Albania, Barbados, Burkina Faso, Balkans, Belarus Cambodia, Cayman Islands, Cote D'Ivoire (Ivory Coast), Cuba, Democratic Republic of Congo, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan,  Syria, Uganda, Yemen, Zimbabwe, Iran, Iraq, Liberia, North Korea, Democratic People's Republic of Korea (DPRK), Jordan, Mali, People’s Republic of China, Hong Kong SAR, Macau SAR and Turkey or its territories or possessions or any country (A) where participation in token sales is prohibited, restricted or unauthorized by applicable law, decree, regulation, treaty, or administrative act, or (B) where it is likely that the sale of the Sipher Tokens would be construed as the sale of a security (howsoever named), financial service or investment product. ",
             },
             {
                 level: 2,
@@ -152,7 +152,7 @@ export const termService: TermAndConditionItem[] = [
         chapters: [
             {
                 level: 1,
-                content: `Key elements of the Token Sale are implemented in smart contracts deployed on Ethereum (the Token Sale smart contract system or the “SSC System”). The SSC System is open source and available for inspection at [Insert GitHub Link]. The executable code of the SSC System is incorporated into these Terms by this reference. For the avoidance of doubt, the comments and other non-executable code in the source code of the SSC System are for convenience only and are not incorporated into these Terms.`,
+                content: `Key elements of the Token Sale are implemented in smart contracts deployed on Ethereum (the Token Sale smart contract system or the “SSC System”). The SSC System is open source and available for inspection at https://github.com/sipherxyz/token-and-initial-public-sale. The executable code of the SSC System is incorporated into these Terms by this reference. For the avoidance of doubt, the comments and other non-executable code in the source code of the SSC System are for convenience only and are not incorporated into these Terms.`,
             },
             {
                 level: 1,
@@ -181,7 +181,7 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "The SIPHER Tokens do not confer ownership, governce, equity, participation, conversion, redemption, liquidation, or similar rights over, or rights in the revenues, profits, or other financial aspects of, Sipher JSC, the Service, or any technology or intellectual property developed, acquired, or licensed by Sipher JSC. The SIPHER Tokens do not constitute and are not intended to be securities or any other type of financial or investment instrument in any jurisdiction.",
+                    "The SIPHER Tokens currently do not confer ownership, governance, equity, participation, conversion, redemption, liquidation, or similar rights over, or rights in the revenues, profits, or other financial aspects of, Sipher JSC, the Service, or any technology or intellectual property developed, acquired, or licensed by Sipher JSC, however, this is subject to change at Sipher JSC’s sole discretion. The SIPHER Tokens do not constitute and are not intended to be securities or any other type of financial or investment instrument in any jurisdiction.",
             },
         ],
     },
@@ -190,12 +190,12 @@ export const termService: TermAndConditionItem[] = [
         chapters: [
             {
                 level: 1,
-                content: `Sipher JSC will conduct the Token Sale only through its website at sipher.xyz (the “Token Sale Site”). Important information about the Token Sale is set out in Schedule 1 (Details of the Token Sale), including the dates of the Token Sale, pricing, payment instructions, the SIPHER Token distribution process, and Sipher JSC’s expected use of the Token Sale proceeds. If you fail to follow the instructions or observe the other information about the Token Sale in Schedule 1 (Details of the Token Sale) or on the Token Sale Site, you may be delayed or prevented from participating in the Token Sale and you may not be able to purchase SIPHER Tokens.`,
+                content: `Sipher JSC will conduct the Token Sale only through its website at https://sipher.xyz/token-sale (the “Token Sale Site”). Important information about the Token Sale is set out in Schedule 1 (Details of the Token Sale), including the dates of the Token Sale, pricing, payment instructions, the SIPHER Token distribution process, and Sipher JSC’s expected use of the Token Sale proceeds. If you fail to follow the instructions or observe the other information about the Token Sale in Schedule 1 (Details of the Token Sale) or on the Token Sale Site, you may be delayed or prevented from participating in the Token Sale and you may not be able to purchase SIPHER Tokens.`,
             },
             {
                 level: 1,
                 content:
-                    "The Token Sale Site is the only site authorised by Sipher JSC to provide information about the Token Sale. Before submitting your payment, you must confirm that your web browser shows sipher.xyz and that your https connection is secure. If you have submitted your payment to an address obtained from any other site you may lose the entire amount of your payment and/or may not receive the SIPHER Tokens you intend to purchase. Sipher JSC is not affiliated with and takes no responsibility for any such other sites.",
+                    "The Token Sale Site is the only site authorised by Sipher JSC to provide information about the Token Sale. Before submitting your payment, you must confirm that your web browser shows https://sipher.xyz/token-sale and that your https connection is secure. If you have submitted your payment to an address obtained from any other site you may lose the entire amount of your payment and/or may not receive the SIPHER Tokens you intend to purchase. Sipher JSC is not affiliated with and takes no responsibility for any such other sites.",
             },
             {
                 level: 1,
@@ -229,7 +229,11 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "If the Token Sale has not been cancelled under Clause V.7, you are one of the participants in the Token Sale whose Order Sipher JSC has accepted in its discretion (“Accepted”), and you have complied with these Terms (including the applicable provisions in Schedule 1 (Details of the Token Sale)), the SSC System will distribute the number of SIPHER Tokens specified in your Order in accordance with paragraph 12 of Schedule 1 (Details of the Token Sale).",
+                    "If the Token Sale has not been cancelled under Clause V.6, you are one of the participants in the Token Sale whose Order Sipher JSC has accepted in its discretion (“Accepted”), and you have complied with these Terms (including the applicable provisions in Schedule 1 (Details of the Token Sale)), the SSC System will distribute the number of SIPHER Tokens specified in your Order in accordance with paragraph 12 of Schedule 1 (Details of the Token Sale).",
+            },
+            {
+                level: 1,
+                content: "This Clause is intentionally left blank.",
             },
             {
                 level: 1,
@@ -238,9 +242,13 @@ export const termService: TermAndConditionItem[] = [
             },
             {
                 level: 1,
-                content:
-                    "Sipher JSC may at any time before Sipher JSC has delivered SIPHER Tokens to you to fulfil your Order, require you to provide documents and information that Sipher JSC determines in its discretion to be required to enable Sipher JSC to satisfy its obligations under applicable laws and regulations regarding anti-money laundering or countering the financing of terrorism or otherwise requiring Sipher JSC to vet the parties it transacts with (“KYC Check”). In Sipher JSC’s discretion, the KYC Check may include requiring you to submit, and Sipher JSC reviewing, documents and information relating to you, to your beneficial owner(s)/shareholder(s), director(s), and officer(s) (if you are an entity), and to persons otherwise affiliated or associated with you. If you do not provide such documents and information to the extent satisfactory to Sipher JSC in its discretion, or if after receiving any such documents and information (whether or not provided by you), Sipher JSC determines in its discretion not to transact with you, Sipher JSC will cancel your Order and refund the Refund Amount. Sipher JSC is not obligated to notify you of the reasons for its decision not to transact with you or to disclose the content or source of other documents or information that Sipher JSC may have relied on to make its decision.",
+                content: "This Clause is intentionally left blank.",
             },
+            {
+                level: 1,
+                content: "This Clause is intentionally left blank.",
+            },
+
             {
                 level: 1,
                 content:
@@ -283,7 +291,7 @@ export const termService: TermAndConditionItem[] = [
             },
             {
                 level: 2,
-                content: `You have carefully reviewed in full, and fully understand, the source code of the SSC System available at [INSERT GITHUB LINK]. To the extent the SSC System may operate in a manner that is inconsistent with these Terms, you accept those inconsistencies and understand that the operation of the SSC System will supersede these Terms to the extent of any such inconsistency and will not be a breach of these Terms.`,
+                content: `The source code of the SSC System is made publicly available at https://github.com/sipherxyz/token-and-initial-public-sale, and you acknowledge that you have had the full opportunity to review, and to the extent you deem appropriate, have reviewed or engaged a qualified technical adviser to review and advise you concerning the source code. To the extent the SSC System may operate in a manner that is inconsistent with these Terms, you accept those inconsistencies and understand that the operation of the SSC System will supersede these Terms to the extent of any such inconsistency and will not be a breach of these Terms. `,
             },
             {
                 level: 2,
@@ -399,7 +407,7 @@ export const termService: TermAndConditionItem[] = [
             },
             {
                 level: 2,
-                content: `Refusal, rejection, or cancellation of your Order under Clause V.5(c) (for the Main Sale), Clause V.6(b) (for the Pre-Sale) or Clause V.8, or cancellation of your Order under Clause V.9;`,
+                content: `refusal, rejection, or cancellation of your Order under Clause V.5;`,
             },
             {
                 level: 2,
@@ -407,7 +415,7 @@ export const termService: TermAndConditionItem[] = [
             },
             {
                 level: 2,
-                content: `Delay in the distribution of SIPHER Tokens under Clause V.5(e) (for the Main Sale) or Clause V.6(c) (for the Pre-Sale);`,
+                content: `delay in the distribution of SIPHER Tokens under Clause V.5;`,
             },
             {
                 level: 2,
@@ -582,7 +590,7 @@ export const termService: TermAndConditionItem[] = [
             },
             {
                 level: 1,
-                content: `Notwithstanding the expiry of the Token Sale Period, any distribution of SIPHER Tokens to you, any rejection, refusal or cancellation of your Order under Clause V.5(c), Clause V.6(b), or Clause V.8, any cancellation of the Token Sale under Clause V.7, any cancellation of your Order under Clause V.9, any termination of the Token Sale under Clause V.10, or any refund of the Refund Amount under Clause V.12, Clause VII (Your Representations and Warranties), Clause IX (Intellectual Property), Clause X (Indemnification), Clause XI (Disclaimers and Release), Clause XII (Limitation of Liability), Clause XIII (Governing Law and Dispute Resolution), Clause XIV (General), and Schedule 2 (Risk Disclosures) shall remain valid and in full force and effect.`,
+                content: `Notwithstanding the expiry of the Token Sale Period, any distribution of SIPHER Tokens to you, any rejection, refusal or cancellation of your Order under Clause V.5,  any cancellation of the Token Sale under Clause V.7,  any termination of the Token Sale under Clause V.10, or any refund of the Refund Amount under Clause V.12, Clause VII (Your Representations and Warranties), Clause IX (Intellectual Property), Clause X (Indemnification), Clause XI (Disclaimers and Release), Clause XII (Limitation of Liability), Clause XIII (Governing Law and Dispute Resolution), Clause XIV (General), and Schedule 2 (Risk Disclosures) shall remain valid and in full force and effect.`,
             },
             {
                 level: 1,
@@ -649,7 +657,7 @@ export const schedule1: schedule1Propps[] = [
         chapters: [
             {
                 level: 1,
-                content: "The landing page of the Token Sale Site is sipher.xyz",
+                content: "The landing page of the Token Sale Site is https://sipher.xyz/token-sale.",
             },
         ],
     },
@@ -663,25 +671,25 @@ export const schedule1: schedule1Propps[] = [
             },
             {
                 level: 2,
-                content: "Navigate to sipher.xyz",
-            },
-            {
-                level: 2,
-                content:
-                    "You will be asked to verify and confirm that you fulfil certain eligibility information (see Clause II.2).",
-            },
-            {
-                level: 2,
-                content:
-                    "You will be presented with a screen that describes the Token Sale Process, and any relevant Information that you are required to accept.",
-            },
-            {
-                level: 2,
-                content: "You will be presented with the Token Sale Contribution Page.",
+                content: "Navigate to https://sipher.xyz/token-sale",
             },
             {
                 level: 2,
                 content: "You will be asked to connect your Web 3 Wallet to our website.",
+            },
+            {
+                level: 2,
+                content:
+                    "You will be asked to a) verify and confirm that you fulfill certain eligibility information (see Clause II.2), b) have read, understood and agreed with a copy of these Terms, c) have read, understood and agreed with the Privacy Policy and d) declare that you are a resident of your country.",
+            },
+            {
+                level: 2,
+                content: "You will be asked to sign the Signature Request from your Web 3 Wallet.",
+            },
+            {
+                level: 2,
+                content:
+                    "You will be presented with the Token Sale Contribution Page, with links that describe the Token Sale Process.",
             },
             {
                 level: 2,
@@ -695,11 +703,6 @@ export const schedule1: schedule1Propps[] = [
             {
                 level: 2,
                 content:
-                    "You will be presented with a copy of these Terms; you are required to agree to these Terms before continuing.",
-            },
-            {
-                level: 2,
-                content:
                     "Your Web 3 Wallet will display the transaction with your contribution amounts. Please verify all information is correct and as you intended before broadcasting it to the blockchain.",
             },
         ],
@@ -709,7 +712,7 @@ export const schedule1: schedule1Propps[] = [
         chapters: [
             {
                 level: 1,
-                content: `Sipher JSC will only accept Orders from the participants of the Token Sale during the period that begins at XXXX (UTC) on 6 December 2021 (the 'Token Sale Start Time") and ends at XXXX (UTC) on 9 December 2021 (the "Token Sale End Time"). The period from the Token Sale Start Time until the Token Sale End Time shall be referred to as the "Token Sale Period".`,
+                content: `Sipher JSC will only accept Orders from the participants of the Token Sale during the period that begins at 01:00 (UTC) on 6 December 2021 (the 'Token Sale Start Time") and ends at 01:00 (UTC) on 9 December 2021 (the "Token Sale End Time"). The period from the Token Sale Start Time until the Token Sale End Time shall be referred to as the "Token Sale Period".`,
             },
             {
                 level: 1,
@@ -749,7 +752,7 @@ export const schedule1: schedule1Propps[] = [
         chapters: [
             {
                 level: 1,
-                content: `During the Token Sale Period, assuming you have already contributed funds to the Token Sale Contract, you will be allowed to withdraw your committed funds at any point during the 72 Hours that the IBCO is live, with varying withdrawal limits applied to contributions made above 1 ETH. The reason for these restrictions are on the basis of deterring price manipulation during the Token Sale. These withdrawal limits will be programmatically enforced by the SSC System. and will be displayed to you prior to your contribution. By accepting these Terms, you accept the displayed withdrawal limits for your contribution and agree that SIPHER JSC is not obligated to accept any request for further withdrawals beyond what has been programmatically set by the SSC System.`,
+                content: `During the Token Sale Period, assuming you have already contributed funds to the Token Sale Contract, you will be allowed to withdraw your committed funds at any point during the 72 Hours that the IBCO is live, with varying withdrawal limits applied to contributions made above 1 ETH. The reason for these restrictions are on the basis of deterring price manipulation during the Token Sale. These withdrawal limits will be programmatically enforced by the SSC System and will be displayed to you prior to your contribution. By accepting these Terms, you accept the displayed withdrawal limits for your contribution and agree that SIPHER JSC is not obligated to accept any request for further withdrawals beyond what has been programmatically set by the SSC System.`,
             },
         ],
     },
@@ -765,25 +768,30 @@ export const schedule1: schedule1Propps[] = [
                         td: [
                             [
                                 "Game Incentives & Marketing",
-                                "34.4%",
-                                "344,000,000",
+                                "30.4%",
+                                "304,000,000",
                                 "1 Month Cliff, followed by 36 Months Vesting",
                             ],
                             [
                                 "Team & Advisors",
-                                "22.0%",
-                                "220,000,000",
+                                "25.0%",
+                                "250,000,000",
                                 "16 Month Cliff, followed by 24 Months Vesting",
                             ],
                             [
                                 "Foundation & Reserve",
-                                "13.0%",
-                                "130,000,000",
+                                "14.0%",
+                                "140,000,000",
                                 "30 Month Cliff, followed by 24 Months Vesting",
                             ],
                             ["Seed Sale", "11.3%", "113,000,000", "16 Month Cliff, followed by 18 Months Vesting"],
-                            ["Private Sale", "5.0%", "50,000,000", "16 Month Cliff, followed by 18 Months Vesting"],
-                            ["Promotions", "0.3%", "3,000,000", "6 Month Cliff, followed by 12 Months Vesting"],
+                            ["Strategic Sale", "5.0%", "50,000,000", "16 Month Cliff, followed by 18 Months Vesting"],
+                            [
+                                "Promotions and Partnerships",
+                                "0.3%",
+                                "3,000,000",
+                                "3 Month Cliff, followed by 12 Months Vesting",
+                            ],
                             [
                                 "Listing & Liquidity Rewards",
                                 "10.0%",
@@ -800,18 +808,18 @@ export const schedule1: schedule1Propps[] = [
                 level: 1,
                 content: `However, Sipher JSC may in its discretion allocate SIPHER Tokens in any manner, whether or not consistent with the foregoing. Sipher JSC makes no undertaking, representation, or warranty in respect of its allocation of SIPHER Tokens.`,
             },
-            {
-                level: 1,
-                content: `No further SIPHER Tokens will be created after the TGE.`,
-            },
         ],
+    },
+    {
+        title: "This Clause is intentionally left blank",
+        chapters: [],
     },
     {
         title: "Minimum Token Target Strike Price",
         chapters: [
             {
                 level: 1,
-                content: `If at the Token Sale End Time the target strike price of US$0.60 (in ETH) / SIPHER Token is not met, Sipher JSC may opt to exchange all contributions made at the target strike price and return unsold tokens to the Foundation and Reserve, or cancel the Token Sale under Clause V.7 of these Terms.`,
+                content: `If at the Token Sale End Time the target strike price of US$0.36 (in ETH) / SIPHER Token is not met, Sipher JSC may opt to exchange all contributions made at the target strike price and return unsold tokens to the Foundation and Reserve, or cancel the Token Sale under Clause V.7 of these Terms.`,
             },
         ],
     },
@@ -824,7 +832,7 @@ export const schedule1: schedule1Propps[] = [
             },
             {
                 level: 1,
-                content: `To pay for your Order, during the Token Sale Period, you will be required to interact with the Token Sale Smart Contract with your intended contribution and other information as required and identified on the Token Sale Site. Your failure to include sufficient gas with your payment, network congestion or fault, or other errors in the systems processing your payment could result in your payment being delayed, rejected, or otherwise not processed.`,
+                content: `To pay for your Order, during the Token Sale Period, you will be required to interact with the Token Sale Smart Contract with your intended contribution and other information as required and identified on the Token Sale Site. Your failure to include sufficient gas with your payment, network congestion or fault, or other errors in the systems processing your contributions could result in your contributions being delayed, rejected, or otherwise not processed.`,
             },
             {
                 level: 1,
@@ -846,13 +854,17 @@ export const schedule1: schedule1Propps[] = [
         ],
     },
     {
-        title: "Distribution of SIPHER TokensAfter the end of the Token Sale, the settlement price per token will be finalized and the SSC System will allocate your SIPHER Tokens based on the amount you have contributed. You will be required to use the same ETH Address you used to contribute in order to claim the SIPHER Tokens you were allocated on our website.",
+        title: "Distribution of SIPHER Tokens. After the end of the Token Sale, the settlement price per token will be finalized and the SSC System will allocate your SIPHER Tokens based on the amount you have contributed. You will be required to use the same ETH Address you used to contribute in order to claim the SIPHER Tokens you were allocated on our website.",
         chapters: [
             {
                 level: 1,
                 content: `You are in all respects solely responsible for creating the Ethereum account corresponding to your Registered ETH Address, and for safeguarding the private keys, passwords, and other credentials relating to that account and any wallet or other token management mechanism you use to manage that account.`,
             },
         ],
+    },
+    {
+        title: "Thí Clause is intentionally left blank",
+        chapters: [],
     },
     {
         title: "SIPHER Token Transferability",
