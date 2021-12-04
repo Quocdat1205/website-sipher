@@ -7,6 +7,7 @@ import {
     ModalOverlay,
     useDisclosure,
     Text,
+    Select,
     ModalCloseButton,
     UnorderedList,
     CheckboxGroup,
@@ -19,10 +20,11 @@ import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { getSignIn } from "@source/utils"
-import axios from "axios"
+import { useStoreState } from "@store"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
+import dataCountry from "./dataCountry"
 
 export const SignInModal = () => {
     const router = useRouter()
@@ -32,7 +34,9 @@ export const SignInModal = () => {
         check2: false,
         check3: false,
     })
+    const location = useStoreState(_ => _.location)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [valueSelect, setValueSelect] = useState("")
 
     const wallet = useWalletContext()
 
@@ -43,7 +47,7 @@ export const SignInModal = () => {
     const handleSign = async () => {
         setIsLoading(true)
         try {
-            const { tracking } = await wallet.getAccessToken()
+            const { tracking } = await wallet.getAccessToken(valueSelect === "" ? location.name : valueSelect)
             if (tracking) {
                 setIsLoading(false)
                 onClose()
@@ -62,16 +66,6 @@ export const SignInModal = () => {
         let signIn = getSignIn()
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
     }, [wallet, isCheckMobile, onOpen])
-
-    useEffect(() => {
-        const handleGetLocation = async () => {
-            if (dataCheck.check3) {
-                const location = await axios.get("https://geolocation-db.com/json/")
-                console.log(location)
-            }
-        }
-        handleGetLocation()
-    }, [dataCheck])
 
     return (
         <Modal
@@ -132,13 +126,41 @@ export const SignInModal = () => {
                                         </Link>
                                     </Text>
                                 </Checkbox>
-                                <Checkbox
-                                    isChecked={dataCheck.check3}
-                                    value="check3"
-                                    onChange={e => setDataCheck({ ...dataCheck, check3: e.target.checked })}
-                                >
-                                    <Text>I declare that I am a resident of [country]</Text>
-                                </Checkbox>
+                                <Flex align="center">
+                                    <Checkbox
+                                        isChecked={dataCheck.check3}
+                                        value="check3"
+                                        onChange={e => setDataCheck({ ...dataCheck, check3: e.target.checked })}
+                                    >
+                                        <Text>I declare that I am a resident of </Text>
+                                    </Checkbox>
+                                    {dataCheck.check3 && (
+                                        <Select
+                                            defaultValue={
+                                                dataCountry.find((item: any) => item.code === location.code)
+                                                    ? location.code
+                                                    : "AF"
+                                            }
+                                            ml={4}
+                                            borderColor="main.orange"
+                                            w="15rem"
+                                            color="white"
+                                            sx={{ option: { bg: "black", color: "white" } }}
+                                            placeholder="Select"
+                                            onChange={e =>
+                                                setValueSelect(
+                                                    dataCountry.find((item: any) => item.code === e.target.value)!.name
+                                                )
+                                            }
+                                        >
+                                            {dataCountry.map(item => (
+                                                <option key={item.code} value={item.code}>
+                                                    {item.name}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    )}
+                                </Flex>
                             </Stack>
                         </CheckboxGroup>
                     </Box>

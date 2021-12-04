@@ -111,7 +111,7 @@ const Detail = ({ race }: PopupProps) => {
                                         >
                                             <Box
                                                 w={["17.5rem", "17.5rem", "17.5rem", "20rem", "20rem"]}
-                                                h={["55vh", "55vh", "55vh", "55vh", "auto"]}
+                                                h={["60vh", "60vh", "60vh", "60vh", "auto"]}
                                                 overflow="hidden"
                                             >
                                                 <Box
@@ -150,7 +150,7 @@ const Detail = ({ race }: PopupProps) => {
                                                 />
                                             </Box>
                                             <Flex
-                                                h={["55vh", "55vh", "55vh", "55vh", "auto"]}
+                                                h={["60vh", "60vh", "60vh", "60vh", "auto"]}
                                                 overflow="auto"
                                                 direction="column"
                                                 flex={3}
