@@ -2,6 +2,7 @@ import { Img, Flex, Box, Text } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
+import { currency } from "@source/utils"
 import React from "react"
 import { useMutation } from "react-query"
 
@@ -44,10 +45,10 @@ const StakingPools = ({ amountStaked = 0, claimableRewards = 0 }: StakingPoolsIn
                                 <Text ml={4}>$SIPHER</Text>
                             </Flex>
                             <Text w="25%" textAlign="left">
-                                ${(amountStaked * sipherPrice).toFixed(2)}
+                                ${currency(amountStaked * sipherPrice)}
                             </Text>
                             <Text w="25%" textAlign="left">
-                                {claimableRewards.toFixed(2)} SIPHER
+                                {currency(claimableRewards)} SIPHER
                             </Text>
 
                             <ActionButton

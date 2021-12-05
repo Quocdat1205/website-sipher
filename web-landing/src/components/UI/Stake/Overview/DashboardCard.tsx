@@ -1,5 +1,6 @@
 import { Flex, Box, Text, Img } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
+import { currency } from "@source/utils"
 import React from "react"
 
 interface Props {
@@ -52,12 +53,12 @@ const DashboardCard = ({
                     w="full"
                     textAlign="center"
                 >
-                    ${dollarValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                    ${currency(dollarValue)}
                 </Text>
                 <Flex align="center">
                     <Img mr={1} src="/images/icons/sipher.png" alt="sipher-token-icon" h="1rem" />
                     <Text size="small" isTruncated>
-                        $SIPHER {sipherValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                        $SIPHER {currency(sipherValue)}
                     </Text>
                 </Flex>
                 {buttonText !== "" && (

@@ -5,6 +5,7 @@ import React, { useState } from "react"
 import { format } from "date-fns"
 import { useMutation } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
+import { currency } from "@source/utils"
 
 interface LockedRewardsProps {
     deposits: {
@@ -68,10 +69,10 @@ const LockedRewards = ({ deposits }: LockedRewardsProps) => {
                                     <Text ml={4}>$SIPHER</Text>
                                 </Flex>
                                 <Text w="13%" textAlign="left">
-                                    {deposit.amount.toFixed(2)}
+                                    {currency(deposit.amount)}
                                 </Text>
                                 <Text w="13%" textAlign="left">
-                                    {(deposit.amount * sipherPrice).toFixed(2)}
+                                    {currency(deposit.amount * sipherPrice)}
                                 </Text>
                                 <Text w="13%" textAlign="left">
                                     {new Date().getTime() > deposit.end ? "Available" : "Locked"}

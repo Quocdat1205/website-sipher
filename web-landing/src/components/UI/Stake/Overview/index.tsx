@@ -47,10 +47,7 @@ const StakeOverview = () => {
                         pendingRewards={data?.pendingRewards}
                         myLiquidity={data?.pool.accountTotalDeposit}
                     />
-                    <StakingDeposits
-                        deposits={data?.pool.deposits || []}
-                        reward={TOTAL_REWARDS_FOR_POOL / stakeTotalSupply! / 365}
-                    />
+                    <StakingDeposits deposits={data?.pool.deposits || []} stakingDeposit={stakeTotalSupply!} />
                 </VStack>
             </Box>
         </Flex>

@@ -80,13 +80,13 @@ const StakingPools = ({ totalValueLocked = 0, APR = 0, pendingRewards = 0, myLiq
                                 <Flex w="full" justify="space-between" mb={4}>
                                     <Text size="small">Pending rewards</Text>
                                     <Text fontWeight="semibold" size="small">
-                                        {pendingRewards} SIPHER
+                                        {currency(pendingRewards)} SIPHER
                                     </Text>
                                 </Flex>
                                 <Flex w="full" justify="space-between">
                                     <Text size="small">My liquidity</Text>
                                     <Text fontWeight="semibold" size="small">
-                                        {myLiquidity} SIPHER
+                                        {currency(myLiquidity)} SIPHER
                                     </Text>
                                 </Flex>
                             </Box>

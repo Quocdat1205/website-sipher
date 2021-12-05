@@ -2,7 +2,7 @@ import { Box, Flex, Link, Img, Text, chakra } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { numberWithCommas } from "@source/utils"
+import { currency, numberWithCommas } from "@source/utils"
 import React from "react"
 import { useQuery } from "react-query"
 
@@ -47,7 +47,7 @@ const Header = () => {
                     <Flex align="center">
                         <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                         <Text size="small">
-                            $SIPHER PRICE <chakra.span fontWeight="semibold">${sipherPrice.toFixed(2)}</chakra.span>
+                            $SIPHER PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
                         </Text>
                     </Flex>
                 </Flex>
@@ -61,11 +61,11 @@ const Header = () => {
                     rounded="lg"
                 >
                     <Text size="small">Total Amount Staked:</Text>
-                    <Text fontWeight="semibold">${numberWithCommas(Math.round(totalStaked! * sipherPrice))}</Text>
+                    <Text fontWeight="semibold">${currency(totalStaked! * sipherPrice)}</Text>
                     <Text size="small" mt={4}>
                         Total Amount Claimed:
                     </Text>
-                    <Text fontWeight="semibold">${numberWithCommas(Math.round(totalClaimed! * sipherPrice))}</Text>
+                    <Text fontWeight="semibold">${currency(totalClaimed! * sipherPrice)}</Text>
                 </Flex>
             </Box>
         </Flex>
