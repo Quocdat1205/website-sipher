@@ -17,7 +17,7 @@ export const LearnAboutModal = ({}: Props) => {
                 <LinkButton
                     text="LEARN MORE ON MEDIUM"
                     size="large"
-                    href="https://medium.com/sipherxyz/sipher-initial-public-sale-mechanic-8ff988e9ede1"
+                    href="https://medium.com/sipherxyz/how-to-participate-in-sipher-public-sale-108e1c1d776a"
                     px={12}
                 />
             </Flex>
