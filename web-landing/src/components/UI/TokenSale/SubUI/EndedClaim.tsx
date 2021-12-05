@@ -22,8 +22,10 @@ const EndedClaim = () => {
             pos="relative"
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
-            bgSize="100%"
-            bgColor="#090909"
+            bgSize="cover"
+            bgPosition="center"
+            h="100vh"
+            maxH="1080px"
         >
             <Flex pt={24} pb={16} flexDir="column" h="100vh" maxH="1080px" justify="center" align="center">
                 <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
