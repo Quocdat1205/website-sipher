@@ -15,7 +15,7 @@ const ClaimNoStake = () => {
             transactionToast({ status: "processing" })
         },
         onSuccess: () => {
-            transactionToast({ status: "success" })
+            transactionToast({ status: "successClaim" })
             qc.invalidateQueries("estimate-received-token")
         },
         onError: (error: any) => {
