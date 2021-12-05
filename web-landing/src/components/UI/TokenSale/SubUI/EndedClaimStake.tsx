@@ -1,5 +1,5 @@
-import { Flex, Grid, Text } from "@chakra-ui/react"
-import { BackgroundContainer, IconSipher, Typo } from "@components/shared"
+import { Flex, Grid, Text, Box } from "@chakra-ui/react"
+import { AddressContractCopy, BackgroundContainer, IconSipher, Typo } from "@components/shared"
 import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { numberWithCommas } from "@source/utils"
@@ -23,12 +23,10 @@ const EndedClaimStake = () => {
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
-            pt={24}
-            pb={16}
             bgColor="#090909"
         >
-            <Grid h="full" placeItems="center">
-                <Typo.Heading>$SIPHER TOKEN INITIAL SALE</Typo.Heading>
+            <Grid pt={24} pb={16} h="100vh" maxH="1080px" placeItems="center">
+                <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
                 <Flex
                     direction="column"
                     align="center"
@@ -45,7 +43,7 @@ const EndedClaimStake = () => {
                         SUCCESSFULLY ENDED!
                     </Text>
                     <Text textAlign="center" mb={3}>
-                        Amount of $Sipher tokens that you are available to claim:
+                        Amount of $Sipher tokens that you can claim:
                     </Text>
                     <Flex align="center" mb={3}>
                         <IconSipher mr={4} />
@@ -54,6 +52,12 @@ const EndedClaimStake = () => {
                         </Text>
                     </Flex>
                     <FormStake />
+                    <Box>
+                        <Text py={1} textAlign="center" color="#828282">
+                            $SIPHER Contract Address:
+                        </Text>
+                        <AddressContractCopy />
+                    </Box>
                 </Flex>
             </Grid>
         </BackgroundContainer>

@@ -1,4 +1,4 @@
-export const SipherTokenAddress = "0x3eD27d895A9069651066726579f90D705aC85963"
+export const SipherTokenAddress = "0x9F52c8ecbEe10e00D9faaAc5Ee9Ba0fF6550F511"
 
 export const SipherTokenAbi: any = [
     {
@@ -50,7 +50,7 @@ export const SipherTokenAbi: any = [
     },
     {
         inputs: [],
-        name: "DECIMAL",
+        name: "DECIMALS",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
         type: "function",

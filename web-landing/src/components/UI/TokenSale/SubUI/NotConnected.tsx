@@ -25,11 +25,9 @@ const NotConnected = ({}: NotConnectedProps) => {
             bgRepeat="no-repeat"
             bgSize="100%"
             h="100vh"
-            pt={24}
-            pb={16}
             bgColor="#090909"
         >
-            <Grid h="full" placeItems="center">
+            <Grid pt={24} pb={16} h="100vh" maxH="1080px" placeItems="center">
                 <Stack align="center" spacing={8}>
                     <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
                     <WalletButton />
