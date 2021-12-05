@@ -15,7 +15,17 @@ const SaleTimer = ({ status }: SaleTimerProps) => {
                 <Text fontWeight="semibold" size="small" letterSpacing="3px">
                     {status === "NOT_STARTED" ? "COUNTDOWN TO BEGIN" : "SALE PERIOD ENDS"}
                 </Text>
-                <Tooltip hasArrow label="abc ..." placement="bottom-end" fontSize="sm" bg="border.gray" openDelay={500}>
+                <Tooltip
+                    hasArrow
+                    label="The $SIPHER Initial Public Sale will span 72 hours from 01:00AM (UTC) 06/12/2021 to 01:00AM (UTC) 09/12/2021."
+                    placement="bottom-end"
+                    fontSize="sm"
+                    bg="#383838DD"
+                    fontWeight={400}
+                    rounded="lg"
+                    p={2}
+                    w="240px"
+                >
                     <Box ml={2} cursor="pointer" color="white">
                         <BsQuestionCircle size="1rem" />
                     </Box>

@@ -41,11 +41,13 @@ const Detail = ({ race }: PopupProps) => {
                     <Modal
                         isOpen={!!id}
                         isCentered
+                        size="4xl"
                         onClose={() => router.push(`/inventory/${race.toLowerCase()}`, undefined, { scroll: false })}
                     >
-                        <ModalOverlay bg="blackAlpha.700" />
-                        <ModalContent maxW="64rem" h={["100%", "auto"]} overflow="hidden" rounded="none">
+                        <ModalOverlay bg="blackAlpha.800" />
+                        <ModalContent h={["100%", "auto"]} rounded="none" overflow="hidden">
                             <ModalBody
+                                overflow="hidden"
                                 borderLeft="2px"
                                 borderColor="#f4143599"
                                 p={4}
@@ -53,7 +55,6 @@ const Detail = ({ race }: PopupProps) => {
                                 bg="blackAlpha.900"
                                 pr="calc(1rem + 4px)"
                                 shadow="lg"
-                                overflow="hidden"
                                 position="relative"
                                 role="group"
                                 _before={{
@@ -95,11 +96,11 @@ const Detail = ({ race }: PopupProps) => {
                                     _hover={{ color: "red" }}
                                     _focus={{ shadow: "none" }}
                                 />
-                                <Flex w="full" justify="center" px={4} py={8}>
+                                <Flex overflow="hidden" w="full" justify="center" px={4} py={6}>
                                     <Head>
                                         <title>{data ? `${data.name} | Sipher` : "Loading... | Sipher"}</title>
                                     </Head>
-                                    <Flex direction="column" w="full" maxW="56rem" zIndex="popover">
+                                    <Flex flex={1} direction="column" w="full" zIndex="popover">
                                         <MotionFlex
                                             w="full"
                                             overflow="hidden"
@@ -108,8 +109,17 @@ const Detail = ({ race }: PopupProps) => {
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
                                         >
-                                            <Box w="20rem">
-                                                <Box pos="relative" w="full" h="22.5rem" mb={4}>
+                                            <Box
+                                                w={["17.5rem", "17.5rem", "17.5rem", "20rem", "20rem"]}
+                                                h={["60vh", "60vh", "60vh", "60vh", "auto"]}
+                                                overflow="hidden"
+                                            >
+                                                <Box
+                                                    pos="relative"
+                                                    w="full"
+                                                    h={["20rem", "20rem", "20rem", "22.5rem", "22.5rem"]}
+                                                    mb={4}
+                                                >
                                                     <AnimatePresence>
                                                         <MotionBox
                                                             initial={{ opacity: 0 }}
@@ -127,8 +137,8 @@ const Detail = ({ race }: PopupProps) => {
                                                                         .image
                                                                 }
                                                                 alt={currentEmotion}
-                                                                width={320}
-                                                                height={361}
+                                                                width={[280, 280, 280, 320, 320]}
+                                                                height={[316, 316, 316, 361, 361]}
                                                             />
                                                         </MotionBox>
                                                     </AnimatePresence>
@@ -139,7 +149,13 @@ const Detail = ({ race }: PopupProps) => {
                                                     onChangeEmotion={mutateChangeEmotion}
                                                 />
                                             </Box>
-                                            <Flex direction="column" flex={3} ml="4" overflow="hidden">
+                                            <Flex
+                                                h={["60vh", "60vh", "60vh", "60vh", "auto"]}
+                                                overflow="auto"
+                                                direction="column"
+                                                flex={3}
+                                                ml="4"
+                                            >
                                                 <Text
                                                     textTransform="uppercase"
                                                     fontSize="3xl"

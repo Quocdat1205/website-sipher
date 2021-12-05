@@ -9,12 +9,12 @@ interface EtherInputProps {
 }
 
 const EtherInput = ({ value, setValue, maxValue, status }: EtherInputProps) => {
-    const format = (value: string) => {
-        return value === "" ? "0" : value
-    }
+    // const format = (value: string) => {
+    //     return value === "" ? "" : value
+    // }
 
     return (
-        <NumberInput onChange={newValue => setValue(format(newValue))} value={value} max={maxValue} flex={1}>
+        <NumberInput onChange={newValue => setValue(newValue)} value={value} max={maxValue} flex={1}>
             <NumberInputField
                 bg="#131313"
                 border="1px"

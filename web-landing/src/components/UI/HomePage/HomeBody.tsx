@@ -26,7 +26,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                 }}
                 pos="relative"
                 zIndex="2"
-                py={24}
+                pb={24}
             >
                 <VStack spacing={24} align="center" w="full">
                     <DigitalCharacters />

@@ -1,74 +1,85 @@
 import { Flex, HStack, Image, Box, Text, chakra, Tooltip } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
-import React, { useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { DropdownOption } from "./SaleForm"
 import EtherInput from "./EtherInput"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { weiToEther } from "@source/contract"
-import { ActionButton } from "./ActionButton"
 import { FaEthereum } from "react-icons/fa"
 import { useChakraToast } from "@sipher/web-components"
 import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
+import { floorPrecised } from "@source/utils/index"
+import useTransactionToast from "@hooks/useTransactionToast"
+import { ActionButton } from "@components/shared"
+import { useETHPrice } from "@hooks/api"
 
 interface Props {
     mode: DropdownOption
 }
 
 const InputUI = ({ mode }: Props) => {
-    const [value, setValue] = useState("0")
+    const [value, setValue] = useState("")
+    const setValueCb = useCallback((value: string) => setValue(value), [])
+    const ethPrice = useETHPrice()
+
     const options = [0.25, 0.5, 0.75, 1]
-    const { balance, scCaller, account, getTracking } = useWalletContext()
+
+    const { scCaller, account, getTracking, ethereum } = useWalletContext()
 
     const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
 
-    const walletBalance = weiToEther(balance)
     const { status } = useSaleTime()
 
     const qc = useQueryClient()
     const toast = useChakraToast()
+    const transactionToast = useTransactionToast()
 
     const { data: accumulated } = useQuery(
-        "accumulated-deposit",
+        ["accumulated-deposit", value, account, mode],
         () =>
-            scCaller.current?.getAccumulatedAfterDeposit(
+            scCaller.current?.SipherIBCO.getAccumulatedAfterDeposit(
                 account!,
-                mode === "Deposit" ? parseFloat(value).toString() : "0"
+                mode === "Deposit" ? (value === "" ? "0" : parseFloat(value).toString()) : "0"
             ),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
+            keepPreviousData: true,
         }
     )
 
     const { data: lockedAmount } = useQuery(
-        ["locked-amount", value],
+        ["locked-amount", value, account, mode],
         () =>
-            scCaller.current?.getLockAmountAfterDeposit(
+            scCaller.current?.SipherIBCO.getLockAmountAfterDeposit(
                 account!,
-                mode === "Deposit" ? parseFloat(value).toString() : "0"
+                mode === "Deposit" ? (value === "" ? "0" : parseFloat(value).toString()) : "0"
             ),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
+            keepPreviousData: true,
         }
     )
 
     const { data: withdrawableAmount } = useQuery(
-        "withdrawable-amount",
-        () => scCaller.current?.getWithdrawableAmount(account!),
+        ["withdrawable-amount", account, mode],
+        () => scCaller.current?.SipherIBCO.getWithdrawableAmount(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )
 
-    const floorPrecised = (number, precision) => {
-        let power = Math.pow(10, precision)
+    const { data: balance } = useQuery(["balance", account], () => scCaller.current?.getBalance(account!), {
+        enabled: !!scCaller.current && !!account && !!ethereum,
+        initialData: 0,
+        refetchInterval: 2000,
+    })
 
-        return Math.floor(number * power) / power
-    }
+    const walletBalance = weiToEther(balance!.toString())
 
     const handleSelect = (option: number) => {
         if (status === "ONGOING") {
@@ -82,47 +93,54 @@ const InputUI = ({ mode }: Props) => {
         }
     }
 
-    const { mutate: deposit, isLoading: isDepositing } = useMutation(() => scCaller.current!.deposit(account!, value), {
-        onError: (err: any) => toast({ title: "Error", message: err.message }),
-        onSuccess: () => {
-            toast({ title: "Deposited successfully!" })
-            setValue("0")
-            qc.invalidateQueries("total-deposited")
-            qc.invalidateQueries("locked-amount")
-        },
-    })
+    const { mutate: deposit, isLoading: isDepositing } = useMutation(
+        () => scCaller.current!.SipherIBCO.deposit(account!, value),
+        {
+            onError: (err: any) => transactionToast({ status: "failed" }),
+            onSuccess: () => {
+                transactionToast({ status: "success" })
+                setValue("")
+                qc.invalidateQueries("user-deposited")
+                qc.invalidateQueries("locked-amount")
+                qc.invalidateQueries("withdrawable-amount")
+            },
+        }
+    )
 
     const { mutate: withdraw, isLoading: isWithdrawing } = useMutation(
-        () => scCaller.current!.withdraw(account!, value),
+        () => scCaller.current!.SipherIBCO.withdraw(account!, value),
         {
-            onError: (err: any) => toast({ title: "Error", message: err.message }),
+            onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                toast({ title: "Withdrawal successfully!" })
-                setValue("0")
-                qc.invalidateQueries("total-deposited")
-                qc.invalidateQueries("locked-amount")
+                transactionToast({ status: "success" })
+                setValue("")
+                qc.invalidateQueries("user-deposited")
+                qc.invalidateQueries("withdrawable-amount")
             },
         }
     )
 
     const handleAction = async () => {
-        mode === "Deposit" ? deposit() : withdraw()
-
-        // try {
-        //     const isTracking = await getTracking(mode)
-        //     if (isTracking) {
-        //         mode === "Deposit" ? deposit() : withdraw()
-        //     } else {
-        //         toast({ title: "Error!", message: "IP not supported by SIPHER" })
-        //     }
-        // } catch (error) {
-        //     toast({ title: "Error!", message: "Please try again later" })
-        // }
+        try {
+            const isTracking = await getTracking(mode)
+            if (isTracking) {
+                transactionToast({ status: "processing" })
+                mode === "Deposit" ? deposit() : withdraw()
+            } else {
+                toast({ title: "Error!", message: "Your IP address is in restricted territory" })
+            }
+        } catch (error) {
+            toast({ title: "Error!", message: "Please try again later" })
+        }
     }
+
+    useEffect(() => {
+        setValueCb("")
+    }, [setValueCb, mode])
 
     return (
         <Flex flexDir="column" w="full">
-            <Flex mb={2} flexDir="row" align="center" justify="space-between">
+            <Flex mb={2} align="center" justify="space-between">
                 <Text>{mode === "Deposit" ? "I want to deposit" : "Withdraw collateral"}</Text>
                 <HStack justify="flex-end" spacing={1}>
                     {options.map(option => {
@@ -157,28 +175,43 @@ const InputUI = ({ mode }: Props) => {
                     </Text>
                 </Flex>
             </Flex>
-            <Text my={1} textAlign="right" color="#979797" fontSize="sm">
-                {mode === "Deposit"
-                    ? `Wallet Balance: ${floorPrecised(walletBalance, 5)}`
-                    : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}
-            </Text>
+            <Flex justify="space-between">
+                <Flex align="center">
+                    <Image src="/images/icons/usd.png" alt="icon" h="1rem" />
+                    <Text ml={1} textAlign="left" color="#979797" fontSize="sm">
+                        $
+                        {(ethPrice * walletBalance).toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                        })}
+                    </Text>
+                </Flex>
+                <Text my={1} textAlign="right" color="#979797" fontSize="sm">
+                    {mode === "Deposit"
+                        ? `Wallet Balance: ${floorPrecised(walletBalance, 5)}`
+                        : `Withdrawable Amount: ${floorPrecised(withdrawableAmount, 5)}`}{" "}
+                    ETH
+                </Text>
+            </Flex>
 
-            <Flex flexDir="column" mb={6}>
-                <chakra.span mb={2} display="flex" alignItems="center">
-                    <Text>Locked amount</Text>
+            <Flex flexDir="column" mb={8}>
+                <Flex mb={2} align="center">
+                    <Text mr={2}>Locked amount</Text>
                     <Tooltip
                         hasArrow
-                        label="abc ..."
+                        label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation."
                         placement="bottom-end"
                         fontSize="sm"
-                        bg="border.gray"
-                        openDelay={500}
+                        bg="#383838DD"
+                        fontWeight={400}
+                        rounded="lg"
+                        p={2}
+                        w="240px"
                     >
-                        <Box ml={2} cursor="pointer" color="white">
+                        <Box>
                             <BsQuestionCircle size="1rem" />
                         </Box>
                     </Tooltip>
-                </chakra.span>
+                </Flex>
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box
                         bg="#383838"
@@ -206,10 +239,11 @@ const InputUI = ({ mode }: Props) => {
                 isLoading={isDepositing || isWithdrawing}
                 disabled={
                     status !== "ONGOING" ||
-                    parseFloat(value) <= 0 ||
+                    value === "" ||
                     (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
                 }
                 onClick={handleAction}
+                py={4}
             />
         </Flex>
     )

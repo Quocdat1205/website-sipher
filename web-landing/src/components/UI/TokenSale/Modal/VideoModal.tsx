@@ -7,7 +7,7 @@ export const VideoModal = ({}: Props) => {
     return (
         <Flex flexDir="column" align="center" justify="center">
             <video
-                src={"/video/whatissipher.mp4"}
+                src={"/video/ibco.mp4"}
                 playsInline={true}
                 controls
                 data-reactid=".0.1.0.0"

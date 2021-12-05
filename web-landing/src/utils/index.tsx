@@ -11,6 +11,20 @@ export const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
+export const floorPrecised = (number, precision) => {
+    let power = Math.pow(10, precision)
+
+    return Math.floor(number * power) / power
+}
+
+export const currency = (
+    amount: number,
+    prefix = "",
+    options: { maximumFractionDigits: number } = { maximumFractionDigits: 2 }
+) => {
+    return prefix + amount.toLocaleString(undefined, { ...options })
+}
+
 export const setSignIn = (signIn: string) => {
     localStorage?.setItem(SIGNIN_KEY, signIn)
 }

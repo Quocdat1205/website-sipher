@@ -24,26 +24,27 @@ export const signupUser = async (address: string): Promise<IUser> => {
 /** Authenticate user by address and signature */
 export const authenticateUser = async (
     address: string,
-    signature: string
+    signature: string,
+    country?: string
 ): Promise<{ accessToken: string; tracking: boolean }> => {
     const {
         data: { accessToken, tracking },
-    } = await fetcher.post("/login/authentication", { publicAddress: address, signature })
+    } = await fetcher.post("/login/authentication", { publicAddress: address, signature, national: country })
     return { accessToken, tracking }
 }
 
 /** TrackIP user address */
 export const trackingIP = async (
     address: string,
-    action: string,
-    accessToken: string
+    accessToken: string,
+    action: string
 ): Promise<{ success: boolean }> => {
-    console.log(address, accessToken)
+    const type = action.toLowerCase()
     const {
         data: { success },
     } = await fetcher.post(
         "/tracking",
-        { address, action },
+        { address, type },
         {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -52,21 +53,3 @@ export const trackingIP = async (
     )
     return success
 }
-
-// export const logLocation = async (cookies) => {
-// 	const accessToken = cookies[LS_KEY];
-// 	const ipdata = await axios.get("https://geolocation-db.com/json/");
-// 	const { data } = await axios.put(
-// 		`/log`,
-// 		{
-// 			ip: ipdata.data.IPv4,
-// 		},
-// 		{
-// 			baseURL: config.baseURL,
-// 			headers: {
-// 				Authorization: `Bearer ${accessToken}`,
-// 			},
-// 		}
-// 	);
-// 	return data;
-// };

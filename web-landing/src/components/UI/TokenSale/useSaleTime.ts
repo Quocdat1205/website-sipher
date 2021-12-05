@@ -6,18 +6,21 @@ export type Status = "LOADING" | "NOT_STARTED" | "ONGOING" | "ENDED" | "NOT_CONN
 
 const useSaleTime = () => {
     const { scCaller, account } = useWalletContext()
-
     const { data: startTime, isLoading: isLoadingStartTime } = useQuery(
         "start-time",
-        () => scCaller.current!.getStartTime(),
+        () => scCaller.current!.SipherIBCO.getStartTime(),
         {
             enabled: !!scCaller.current,
         }
     )
 
-    const { data: endTime, isLoading: isLoadingEndTime } = useQuery("end-time", () => scCaller.current!.getEndTime(), {
-        enabled: !!scCaller.current,
-    })
+    const { data: endTime, isLoading: isLoadingEndTime } = useQuery(
+        "end-time",
+        () => scCaller.current!.SipherIBCO.getEndTime(),
+        {
+            enabled: !!scCaller.current,
+        }
+    )
 
     const [now, setNow] = useState(new Date().getTime())
 

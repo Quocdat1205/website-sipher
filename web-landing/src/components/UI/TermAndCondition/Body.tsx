@@ -44,7 +44,6 @@ const HomeBody = ({}: HomeBodyProps) => {
                                             key={chapter.content}
                                             headline={chapter.content}
                                             type={levelToListType(chapter.level)}
-                                            fontSize="md"
                                             level={chapter.level}
                                             listKey={chapter.key}
                                         >
@@ -80,7 +79,6 @@ const HomeBody = ({}: HomeBodyProps) => {
                                 key={paragraph.content}
                                 headline={paragraph.content}
                                 type={paragraph.level === 0 ? "1" : paragraph.level === 1 ? "upper-roman" : "decimal"}
-                                fontSize="md"
                                 level={paragraph.level + 1}
                                 listKey={paragraph.key}
                             >

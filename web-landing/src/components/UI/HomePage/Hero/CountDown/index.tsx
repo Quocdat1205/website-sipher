@@ -1,5 +1,5 @@
 import { HStack } from "@chakra-ui/react"
-import React, { useEffect, useRef, useState } from "react"
+import React, { SetStateAction, useEffect, useRef, useState } from "react"
 import { differenceInSeconds } from "date-fns"
 import TimeCell from "./TimeCell"
 import Colon from "./Colon"
@@ -18,6 +18,7 @@ export const CountDown = ({ startTime, endTime }: CountDownProps) => {
         const currentTime = new Date().getTime()
         const diffInSecsBeforeStart = differenceInSeconds(startTime, currentTime)
         const diffInSecsBeforeEnd = differenceInSeconds(endTime, currentTime)
+
         if (new Date().getTime() > endTime)
             return {
                 days: 0,

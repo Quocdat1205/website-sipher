@@ -1,5 +1,4 @@
 import { ChakraProvider } from "@chakra-ui/react"
-import { theme } from "@sipher/web-components"
 import store from "@store"
 import { StoreProvider } from "easy-peasy"
 import { NextPage } from "next"
@@ -12,6 +11,7 @@ import * as gtag from "../lib/gtag"
 import { useRouter } from "next/router"
 import UseWalletProvider from "@hooks/web3/UseWalletProvider"
 import { Web3ReactProvider } from "@web3-react/core"
+import theme from "@source/theme"
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode
 }
@@ -26,7 +26,13 @@ declare global {
     }
 }
 const isProduction = process.env.NODE_ENV === "production"
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            keepPreviousData: true,
+        },
+    },
+})
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const router = useRouter()

@@ -17,7 +17,6 @@ import { authenticateUser, getUsersByAddress, trackingIP } from "@hooks/api/user
 import { useChakraToast } from "@sipher/web-components"
 import { clearAccessToken, clearSignIn, setAccessToken, setSignIn, getAccessToken } from "@source/utils"
 import { ContractCaller } from "@source/contract"
-import { useWalletBalance } from "./useWalletBalance"
 
 declare global {
     interface Window {
@@ -38,11 +37,10 @@ const useWallet = () => {
 
     const scCaller = useRef<ContractCaller | null>(null)
 
-    const balance = useWalletBalance({ account, ethereum })
-
     const reset = useCallback(() => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
         if (web3React.active) {
+            resetToken()
             web3React.deactivate()
 
             // Manually remove walletconnect
@@ -50,11 +48,15 @@ const useWallet = () => {
         }
 
         clearLastActiveAccount()
-        clearAccessToken()
-        clearSignIn()
+
         setConnectorName(null)
         setError(null)
         setStatus("disconnected")
+    }, [web3React])
+
+    const resetToken = useCallback(() => {
+        clearAccessToken()
+        clearSignIn()
     }, [web3React])
 
     // if the user switched networks on the wallet itself
@@ -69,8 +71,8 @@ const useWallet = () => {
 
     useEffect(() => {
         if (web3React.library) {
-            if (!scCaller.current) scCaller.current = new ContractCaller(web3React.library)
-            if (!web3.current) web3.current = new Web3(web3React.library)
+            scCaller.current = new ContractCaller(web3React.library)
+            web3.current = new Web3(web3React.library)
         }
     }, [web3React.library])
 
@@ -106,6 +108,7 @@ const useWallet = () => {
                     web3ReactConnector.getProvider().then(provider => {
                         provider.on("accountsChanged", () => {
                             reset()
+                            resetToken()
                         })
                         provider.on("chainChanged", () => {
                             reset()
@@ -119,7 +122,7 @@ const useWallet = () => {
                 setStatus("error")
                 if (err instanceof UnsupportedChainIdError) {
                     setError(new ChainUnsupportedError(err.message))
-                    toast({ title: err.name, message: err.message })
+                    toast({ title: "Unsupported chain", message: err.message })
                     return
                 }
 
@@ -141,22 +144,28 @@ const useWallet = () => {
     )
 
     //** Get accessToken when change emotion */
-    const getAccessTokenAPI = useCallback(async () => {
-        if (!account) throw Error("Account not found")
-        if (!web3.current) throw Error("Provider not found")
+    const getAccessTokenAPI = useCallback(
+        async (country?: string) => {
+            if (!account) throw Error("Account not found")
+            if (!web3.current) throw Error("Provider not found")
 
-        const user = await getUsersByAddress(account)
-        const signature = await web3.current.eth.personal.sign(
-            `I am signing my one-time nonce: ${user.nonce}`,
-            account as string,
-            ""
-        )
-        const { accessToken, tracking } = await authenticateUser(account, signature)
+            const user = await getUsersByAddress(account)
 
-        setAccessToken(tracking ? accessToken : "")
-        setSignIn(tracking ? "true" : "false")
-        return { accessToken, tracking }
-    }, [web3React])
+            const signature = await web3.current.eth.personal.sign(
+                `I am signing my one-time nonce: ${user.nonce}`,
+                account as string,
+                ""
+            )
+            const { accessToken, tracking } = await authenticateUser(account, signature, country)
+
+            if (tracking) {
+                setAccessToken(accessToken)
+                setSignIn("true")
+            }
+            return { accessToken, tracking }
+        },
+        [web3React]
+    )
 
     //** Tracking user wallet address */
     const getTracking = useCallback(
@@ -164,7 +173,7 @@ const useWallet = () => {
             if (!account) throw Error("Account not found")
             if (!web3.current) throw Error("Provider not found")
 
-            let accessToken = getAccessToken()
+            let accessToken = await getAccessToken()
             const isTracking = await trackingIP(account, accessToken!, action)
             return isTracking
         },
@@ -194,8 +203,8 @@ const useWallet = () => {
         ethereum,
         getAccessToken: getAccessTokenAPI,
         getTracking,
-        balance,
         scCaller,
+        resetToken,
     }
 
     return wallet

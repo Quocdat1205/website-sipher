@@ -1,42 +1,93 @@
-import { Box, Image, Flex, Modal, ModalContent, ModalOverlay, useDisclosure } from "@chakra-ui/react"
-import { Typo } from "@components/shared/Typography"
+import {
+    Box,
+    Link,
+    Flex,
+    Modal,
+    ModalContent,
+    ModalOverlay,
+    useDisclosure,
+    Text,
+    ModalCloseButton,
+    UnorderedList,
+    CheckboxGroup,
+    ListItem,
+    Stack,
+    Checkbox,
+} from "@chakra-ui/react"
+import { ActionButton } from "@components/shared"
+import Select from "@components/shared/Select"
+import { signContent } from "@constant/content/signModal"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
-import { getAccessToken, getSignIn } from "@source/utils"
+import { getSignIn } from "@source/utils"
+import axios from "axios"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { isMobile, isTablet } from "react-device-detect"
-import { ActionButton } from "../ActionButton"
+import { useQuery } from "react-query"
+import dataCountry from "./dataCountry"
 
 export const SignInModal = () => {
     const router = useRouter()
-    const [isLoading, setIsLoading] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isFetched, setIsFetched] = useState(false)
+    const [valueSelect, setValueSelect] = useState<any>()
+    const [isLoading, setIsLoading] = useState(false)
+    const [dataCheck, setDataCheck] = useState({
+        check1: false,
+        check2: false,
+        check3: false,
+    })
+
+    useQuery("location", () => axios.get("https://ip.nf/me.json"), {
+        enabled: !isFetched,
+        onSuccess: (data: any) => {
+            setValueSelect(
+                data && dataCountry.find((item: any) => item.code === data.data.ip.country_code)
+                    ? { code: data.data.ip.country_code, name: data.data.ip.country }
+                    : {
+                          name: "Afghanistan",
+                          code: "AF",
+                      }
+            )
+            setIsFetched(true)
+        },
+    })
+
     const wallet = useWalletContext()
+
     const isCheckMobile = isMobile || isTablet
+
     const toast = useChakraToast()
 
     const handleSign = async () => {
         setIsLoading(true)
         try {
-            const { tracking } = await wallet.getAccessToken()
+            const { tracking } = await wallet.getAccessToken(valueSelect.name)
             if (tracking) {
                 setIsLoading(false)
                 onClose()
             } else {
                 setIsLoading(false)
-                toast({ status: "error", title: "Error", message: "" })
+                toast({
+                    status: "error",
+                    title: "Error",
+                    message:
+                        "Thank you for your interest in taking part in our Token Sale. However, due to restrictions and our ongoing compliance efforts, we will be unable to provide this offering to you.",
+                })
             }
-        } catch (error) {
+        } catch (error: any) {
             setIsLoading(false)
-            toast({ status: "error", title: "Error", message: "" })
+            console.log(error)
+            toast({ status: "error", title: "Error", message: error.message || "" })
         }
     }
 
     useEffect(() => {
         let signIn = getSignIn()
+
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
-    }, [])
+    }, [wallet, isCheckMobile, onOpen])
 
     return (
         <Modal
@@ -45,56 +96,101 @@ export const SignInModal = () => {
             isCentered
             isOpen={isOpen}
             onClose={onClose}
-            size="4xl"
+            size="5xl"
         >
-            <ModalOverlay bg="blackAlpha.800" />
-            <ModalContent bg="black" p={4} overflow="hidden" rounded="md">
-                <Flex
-                    border="1px"
-                    borderColor="border.gray"
-                    rounded="lg"
-                    py={10}
-                    px={20}
-                    flexDir="column"
-                    align="center"
-                    justify="center"
-                >
-                    <Typo.Text py={4} textAlign="left" size="large" fontWeight={600}>
+            <ModalOverlay bg="rgba(19, 19, 19, 0.8)" />
+            <ModalContent bg="black" p={0} rounded="md">
+                <ModalCloseButton _focus={{ shadow: "none" }} color="#9B9E9D" onClick={() => router.push("/")} />
+                <Flex rounded="lg" py={10} px={20} flexDir="column" align="center" justify="center">
+                    <Text mb={4} textAlign="left" size="large" fontWeight="semibold" letterSpacing="3px">
                         JUST A SEC!
-                    </Typo.Text>
-                    <Image h="14rem" src="/images/pc/token_sale/modal-sign.png" alt="" />
+                    </Text>
                     <Box>
-                        <Typo.Text py={4} textAlign="center" size="medium">
-                            Please confirm that you are not a citizen or permanent resident of, you do not have a
-                            primary residence in and you are not physically located in the following territories or
-                            possessions:
-                        </Typo.Text>
-                        <Typo.Text py={4} textAlign="center" size="small" color="#9B9E9D">
-                            {`Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Haiti, Jamaica, Malta, Morocco, Myanmar,
-                    Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Democratic
-                    People's Republic of Korea (DPRK), Jordan, Mali, United States of America, People’s Republic of
-                    China, Hong Kong SAR, Macau SAR, Singapore, Philippines and Turkey`}
-                        </Typo.Text>
+                        {signContent.map(item => (
+                            <Box mb={4} key={item.title}>
+                                <Text mb={1}>{item.title}</Text>
+                                <UnorderedList mr={2} color="#9B9E9D">
+                                    {item.content.map(line => (
+                                        <ListItem key={line}>
+                                            <Text size="small" color="#9B9E9D">
+                                                {line}
+                                            </Text>
+                                        </ListItem>
+                                    ))}
+                                </UnorderedList>
+                            </Box>
+                        ))}
+                        <CheckboxGroup colorScheme="orange">
+                            <Stack mb={4} sx={{ span: { _focus: { boxShadow: "none" } } }}>
+                                <Checkbox
+                                    isChecked={dataCheck.check1}
+                                    value="check1"
+                                    onChange={e => setDataCheck({ ...dataCheck, check1: e.target.checked })}
+                                >
+                                    <Text>
+                                        I declare that I am NOT a resident of the prohibited territories or possessions
+                                        as listed above.
+                                    </Text>
+                                </Checkbox>
+                                <Checkbox
+                                    isChecked={dataCheck.check2}
+                                    value="check2"
+                                    onChange={e => setDataCheck({ ...dataCheck, check2: e.target.checked })}
+                                >
+                                    <Text>
+                                        I have read, understood, and agree with the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/privacy-policy">
+                                            Privacy Policy{" "}
+                                        </Link>
+                                        and the{" "}
+                                        <Link color="main.orange" cursor="pointer" as="a" href="/term-of-service">
+                                            Term of Service
+                                        </Link>
+                                    </Text>
+                                </Checkbox>
+                                <Flex align="center">
+                                    <Checkbox
+                                        isChecked={dataCheck.check3}
+                                        value="check3"
+                                        onChange={e => setDataCheck({ ...dataCheck, check3: e.target.checked })}
+                                    >
+                                        <Text>I declare that I am a resident of </Text>
+                                    </Checkbox>
+                                    <Box ml={8} w="20rem">
+                                        {dataCheck.check3 && (
+                                            <Select
+                                                searchable
+                                                value={valueSelect}
+                                                selection={dataCountry}
+                                                onSelect={newValue => setValueSelect(newValue)}
+                                            />
+                                        )}
+                                    </Box>
+                                </Flex>
+                            </Stack>
+                        </CheckboxGroup>
                     </Box>
-                    <Flex flexDir="row" mt={4} px={4} justify="space-between" w="full">
+                    <Flex mt={4} px={4} justify="center" w="full">
                         <ActionButton
-                            flex={1}
                             rounded="full"
                             bgColor="border.gray"
                             bgGradient="linear(to-b, #393939, #393939 84.37%)"
-                            textTransform="none"
                             text="NEVERMIND"
                             onClick={() => router.push("/")}
-                            _focus={{ outline: "none" }}
+                            w="12rem"
+                            size="small"
                         />
                         <ActionButton
                             isLoading={isLoading}
-                            ml={20}
-                            flex={1}
+                            loadingText="CONFIRMING"
+                            ml={8}
                             rounded="full"
-                            textTransform="none"
                             text="CONFIRM"
                             onClick={() => handleSign()}
+                            w="12rem"
+                            disabled={!dataCheck.check1 || !dataCheck.check2 || !dataCheck.check3}
+                            px={4}
+                            py={2}
                         />
                     </Flex>
                 </Flex>

@@ -35,7 +35,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                 router.push("/")
             }
         }
-    }, [wallet.isActive])
+    }, [wallet.isActive, router])
 
     return (
         <Box
@@ -120,6 +120,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         <GradientButton
                             onClick={() => {
                                 setMenu(false)
+                                wallet.resetToken()
                                 wallet.reset()
                             }}
                             text="Disconnect"

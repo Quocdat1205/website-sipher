@@ -1,6 +1,6 @@
-import { AnyPointerEvent } from "framer-motion/types/gestures/PanSession"
 import Web3 from "web3"
-import { SipherIBCOAbi, SipherIBCOAddress } from "./SipherIBCO"
+import { SipherIBCO, View, SipherToken, StakingPools, EscrowPools } from "./class"
+import { StakingPoolAddress, EscrowPoolAddress } from "./code"
 
 export const weiToEther = (balance: string) => {
     return parseFloat(Web3.utils.fromWei(balance))
@@ -8,93 +8,30 @@ export const weiToEther = (balance: string) => {
 
 export class ContractCaller {
     web3: Web3
-    SipherIBCO
+    SipherIBCO: SipherIBCO
+    View: View
+    SipherToken: SipherToken
+    StakingPools: StakingPools
+    EscrowPools: EscrowPools
 
     constructor(provider: any) {
         this.web3 = new Web3(provider)
-        this.SipherIBCO = new this.web3.eth.Contract(SipherIBCOAbi, SipherIBCOAddress)
+        this.SipherIBCO = new SipherIBCO(this.web3)
+        this.View = new View(this.web3)
+        this.SipherToken = new SipherToken(this.web3)
+        this.StakingPools = new StakingPools(this.web3)
+        this.EscrowPools = new EscrowPools(this.web3)
     }
 
-    async getStartTime() {
-        return parseInt(await this.SipherIBCO.methods.START().call()) * 1000
+    async getBalance(from: string) {
+        return parseInt(await this.web3.eth.getBalance(from))
     }
 
-    async getEndTime() {
-        return parseInt(await this.SipherIBCO.methods.END().call()) * 1000
+    async getTotalStaked() {
+        return await this.SipherToken.getBalance(StakingPoolAddress)
     }
 
-    async getTotalDistributeAmount() {
-        const value = await this.SipherIBCO.methods.TOTAL_DISTRIBUTE_AMOUNT().call()
-        return weiToEther(value)
-    }
-
-    async getTotalProvided() {
-        return weiToEther(await this.SipherIBCO.methods.totalProvided().call())
-    }
-
-    async getUserDeposited(address: string) {
-        return weiToEther(await this.SipherIBCO.methods.getUserDeposited(address).call())
-    }
-
-    /**
-     *
-     * @returns [startTime, endTime, totalDistributeAmount, totalProvided]
-     */
-    async getConstants(): Promise<[number, number, number, number]> {
-        return await Promise.all([
-            this.getStartTime(),
-            this.getEndTime(),
-            this.getTotalDistributeAmount(),
-            this.getTotalProvided(),
-        ])
-    }
-
-    async deposit(from: string, amount: string) {
-        await this.SipherIBCO.methods.deposit().send({
-            from,
-            value: Web3.utils.toWei(amount, "ether"),
-        })
-    }
-
-    async claim(from: string) {
-        await this.SipherIBCO.methods.claim().send({ from })
-    }
-
-    async withdraw(from: string, amount: string) {
-        await this.SipherIBCO.methods.withdraw(Web3.utils.toWei(amount, "ether")).send({ from })
-    }
-
-    async getEstTokenPrice() {
-        return weiToEther(await this.SipherIBCO.methods.getEstTokenPrice().call())
-    }
-
-    async getEstReceivedToken(from: string) {
-        return weiToEther(await this.SipherIBCO.methods.getEstReceivedToken(from).call())
-    }
-
-    async getWithdrawableAmount(from: string) {
-        return weiToEther(await this.SipherIBCO.methods.getWithdrawableAmount(from).call())
-    }
-
-    async getLockedAmount(from: string): Promise<number> {
-        return weiToEther(await this.SipherIBCO.methods.getLockedAmount(from).call())
-    }
-
-    async calculateLocked(amount: string): Promise<number> {
-        // console.log(amount)
-        // const lockedAmount = Web3.utils.toHex(Web3.utils.toWei(amount, "ether"))
-        return weiToEther(await this.SipherIBCO.methods.getLockedInvestment(Web3.utils.toWei(amount, "ether")).call())
-    }
-
-    async getLockAmountAfterDeposit(address: string, amount: string) {
-        return weiToEther(
-            await this.SipherIBCO.methods.getLockAmountAfterDeposit(address, Web3.utils.toWei(amount, "ether")).call()
-        )
-    }
-
-    async getAccumulatedAfterDeposit(address: string, amount: string) {
-        return weiToEther(
-            await this.SipherIBCO.methods.getAccumulatedAfterDeposit(address, Web3.utils.toWei(amount, "ether")).call()
-        )
+    async getTotalClaimed() {
+        return await this.SipherToken.getBalance(EscrowPoolAddress)
     }
 }

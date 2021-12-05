@@ -1,8 +1,4 @@
-POST https://be.sipher.xyz/api/sipher/v1.0/subscribe
-content-type: "application/json"
-accept: "application/json"
 
-{
-    "email": "test@gmail.com",
-    "full_name": "awesome"
-}
+###
+GET https://be.sipherion.com/api/sipher/v1.1/smartcontract/check-price
+content-type: "application/json"

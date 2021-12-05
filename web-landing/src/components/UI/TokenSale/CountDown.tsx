@@ -2,7 +2,7 @@ import { Flex, Box, Text } from "@chakra-ui/react"
 import Loader from "@components/shared/Loader"
 import { useTimer } from "react-timer-hook"
 import PrivateCountdown from "@components/shared/PrivateCountdown"
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { Status } from "./useSaleTime"
@@ -11,16 +11,49 @@ interface CountdownProps {
     status: Status
 }
 
+const createBorder = () => {
+    const elements: ReactNode[] = []
+    for (let i = 0; i < 12; i++) {
+        elements.push(
+            <Box
+                key={i}
+                transformOrigin="0% 100%"
+                transform={`rotate(${i * 30}deg)`}
+                pos="absolute"
+                overflow="hidden"
+                top="0"
+                right="0"
+                w="50%"
+                h="50%"
+                bg="transparent"
+            >
+                <Box
+                    pos="absolute"
+                    w="2px"
+                    h={i % 3 === 0 ? "8px" : "4px"}
+                    textAlign="center"
+                    bg={i % 3 === 0 ? "#404040" : "border.gray"}
+                />
+            </Box>
+        )
+    }
+    return (
+        <Box overflow="hidden" borderRadius="full" w="full" h="full" pos="relative">
+            {elements}
+        </Box>
+    )
+}
+
 const Countdown = ({ status }: CountdownProps) => {
     const [now, setNow] = useState(0)
     const { scCaller } = useWalletContext()
 
-    const { data: startTime } = useQuery("start-time", () => scCaller.current!.getStartTime(), {
+    const { data: startTime } = useQuery("start-time", () => scCaller.current!.SipherIBCO.getStartTime(), {
         initialData: new Date().getTime(),
         enabled: !!scCaller.current,
     })
 
-    const { data: endTime } = useQuery("end-time", () => scCaller.current!.getEndTime(), {
+    const { data: endTime } = useQuery("end-time", () => scCaller.current!.SipherIBCO.getEndTime(), {
         initialData: new Date().getTime(),
         enabled: !!scCaller.current,
         onSuccess: data => timerEnd.restart(new Date(data)),
@@ -39,8 +72,8 @@ const Countdown = ({ status }: CountdownProps) => {
     }, [])
 
     return (
-        <Flex direction="column" align="center" h="full" pt={8} pos="relative">
-            <Box boxSize="16rem" position="relative">
+        <Flex direction="column" align="center" pos="relative" pt={10}>
+            <Box boxSize="18rem" position="relative">
                 <Flex pos="absolute" w="full" h="full" align="center" justify="center">
                     <PrivateCountdown
                         time1={{
@@ -58,18 +91,33 @@ const Countdown = ({ status }: CountdownProps) => {
                     />
                 </Flex>
                 {isSale && <Loader percent={((endTime! - now) * 100) / (endTime! - startTime!)} />}
-                <Box pos="absolute" boxSize="14rem" top="50%" left="50%" transform="translate(-50%, -50%)">
-                    {!isEndSale && (
+                {!isEndSale && (
+                    <Box
+                        zIndex={1}
+                        pos="absolute"
+                        boxSize="16.5rem"
+                        top="50%"
+                        left="50%"
+                        transform="translate(-50%, -50%)"
+                    >
                         <Loader
                             isSecond
-                            percent={
-                                status === "NOT_STARTED"
-                                    ? (timerStart.seconds / 60) * 100
-                                    : (timerEnd.seconds / 60) * 100
-                            }
+                            percent={((status === "NOT_STARTED" ? timerStart.seconds : timerEnd.seconds) / 60) * 100}
                         />
-                    )}
-                </Box>
+                    </Box>
+                )}
+                {!isEndSale && (
+                    <Box
+                        overflow="hidden"
+                        pos="absolute"
+                        boxSize="13rem"
+                        top="50%"
+                        left="50%"
+                        transform="translate(-50%, -50%)"
+                    >
+                        {createBorder()}
+                    </Box>
+                )}
             </Box>
         </Flex>
     )
