@@ -1,7 +1,6 @@
 // * DESCRIPTION:
 
 import { Box, BoxProps } from "@chakra-ui/react"
-import { GradientHeading } from "@sipher/web-components"
 import { Typo } from "."
 
 interface TextContainerProps extends BoxProps {
