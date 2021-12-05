@@ -32,7 +32,7 @@ const TimeCell = ({ value, unit }: TimeCellProps) => {
                         bgGradient={"linear(to-b,bgGradient.orange)"}
                         transition={{ type: "tween", duration: 0.5 }}
                         textAlign="center"
-                        fontWeight="bold"
+                        fontWeight={900}
                         position="absolute"
                         left={0}
                         top={0}
