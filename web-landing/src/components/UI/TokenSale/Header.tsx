@@ -30,6 +30,7 @@ const Header = (props: Props) => {
         <Flex direction="column" mb={4} align="center">
             <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
             <Button
+                _focus={{ boxShadow: "none" }}
                 onClick={() => openModal(1)}
                 rounded="full"
                 border="1px"
@@ -54,13 +55,7 @@ const Header = (props: Props) => {
             >
                 Learn About $SIPHER Initial Public Sale
             </Link>
-            <Modal
-                motionPreset="slideInBottom"
-                isCentered
-                isOpen={isOpen}
-                onClose={onClose}
-                size={modal === 1 ? "6xl" : "4xl"}
-            >
+            <Modal motionPreset="slideInBottom" isCentered isOpen={isOpen} onClose={onClose} size={"4xl"}>
                 <ModalOverlay bg="blackAlpha.800" />
                 <ModalContent bg="black" p={4} overflow="hidden">
                     <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
