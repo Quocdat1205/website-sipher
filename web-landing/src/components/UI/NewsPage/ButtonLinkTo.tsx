@@ -5,7 +5,7 @@ import React from "react"
 
 interface ButtonLinkToProps extends ButtonProps {
     url: string
-    typeSocial: "medium" | "twitter" | "fb" | "ins" | "main"
+    typeSocial: "medium" | "twitter" | "fb" | "ins" | "post"
 }
 
 const ButtonLinkTo = ({ url, typeSocial, ...rest }: ButtonLinkToProps) => {

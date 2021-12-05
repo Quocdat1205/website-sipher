@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react"
 import { BackgroundContainer, WalletButton, Typo } from "@components/shared"
 import { LearnAboutModal } from "../Modal/"
+import ReactPlayer from "react-player"
 
 interface NotConnectedProps {}
 
@@ -30,10 +31,7 @@ const NotConnected = ({}: NotConnectedProps) => {
         >
             <Grid h="full" placeItems="center">
                 <Stack align="center" spacing={8}>
-                    <Box>
-                        <Typo.Heading fontSize="4.5rem">$SIPHER INITIAL</Typo.Heading>
-                        <Typo.Heading fontSize="4.5rem">PUBLIC SALE</Typo.Heading>
-                    </Box>
+                    <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
                     <WalletButton />
                     <Link
                         onClick={() => onOpen()}
@@ -44,15 +42,21 @@ const NotConnected = ({}: NotConnectedProps) => {
                     >
                         Learn About $SIPHER Initial Public Sale
                     </Link>
-                    <Box maxW="40rem">
-                        <video
+                    <Box maxW="40rem" sx={{ ".video-player": { w: "100%!important", h: "auto!important" } }}>
+                        {/* <video
                             src={"/video/ibco.mp4"}
                             playsInline={true}
                             controls
                             data-reactid=".0.1.0.0"
                             datatype="video/mp4"
                             poster="/video/whatissipher_poster.jpg"
-                        ></video>
+                        ></video> */}
+                        <ReactPlayer
+                            className="video-player"
+                            controls
+                            config={{ file: { attributes: { poster: "/video/whatissipher_poster.jpg" } } }}
+                            url={"/video/ibco.mp4"}
+                        />
                     </Box>
                     <Modal motionPreset="slideInBottom" isCentered isOpen={isOpen} onClose={onClose} size="4xl">
                         <ModalOverlay bg="blackAlpha.800" />

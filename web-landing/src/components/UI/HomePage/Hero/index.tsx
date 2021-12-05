@@ -54,7 +54,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
             pt={[16, 16, 4]}
         >
             <Flex direction="column" align="center" justify="center" w="full" maxW="64rem" pt={[8, 16, 20, 32]}>
-                <Title text="SIPHER INITIAL" />
+                <Title text="$SIPHER INITIAL" />
                 <Title text="PUBLIC SALE" custom={1} />
                 <MotionFlex
                     direction="column"
@@ -95,6 +95,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             <LinkButton w="full" text="JOIN THE TOKEN SALE" size="large" href="/token-sale" px={12} />
                         )}
                         <Button
+                            _focus={{ boxShadow: "none" }}
                             w="full"
                             onClick={() => onOpen()}
                             rounded="full"
@@ -135,13 +136,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         </BrowserView> */}
                 </MotionFlex>
             </Flex>
-            <Modal
-                motionPreset="slideInBottom"
-                isCentered
-                isOpen={isOpen}
-                onClose={onClose}
-                size={modal === 1 ? "6xl" : "4xl"}
-            >
+            <Modal motionPreset="slideInBottom" isCentered isOpen={isOpen} onClose={onClose} size={"4xl"}>
                 <ModalOverlay bg="blackAlpha.800" />
                 <ModalContent bg="black" p={4} overflow="hidden">
                     <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">

@@ -2,24 +2,18 @@ import { Image } from "@chakra-ui/image"
 import { Flex, Box, HStack } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import React from "react"
+import { DetailsNewsProps } from "./PopupCard"
 import UrlCopier from "./UrlCopier"
 
 interface Props {
-    item: {
-        type: "medium" | "twitter" | "fb" | "ins" | "main"
-        link: string
-        title?: string
-        updatedAt: string
-        thumbnail?: string
-        published: string
-    }
+    item: DetailsNewsProps
     onClick: () => void
 }
 
 const Card = ({ item, onClick }: Props) => {
-    const { type, thumbnail, title, link, published } = item
+    const { type, thumbnail, title, link, published, type_thumbnail } = item
 
-    const createDate = new Date(parseInt(published))
+    const createDate = new Date(type === "post" ? parseInt(published) * 1000 : parseInt(published))
     return (
         <Flex
             m="2"
@@ -37,14 +31,25 @@ const Card = ({ item, onClick }: Props) => {
             overflow="hidden"
         >
             <Box>
-                <Image
-                    w="full"
-                    h="auto"
-                    src={
-                        thumbnail !== "" ? thumbnail : "https://sipherstorage.s3.ap-southeast-1.amazonaws.com/Logo.png"
-                    }
-                    alt=""
-                />
+                {type_thumbnail === "video" ? (
+                    <Image
+                        w="full"
+                        h="auto"
+                        src={"https://testsipher.s3.ap-southeast-1.amazonaws.com/public/MicrosoftTeams-image.png"}
+                        alt=""
+                    />
+                ) : (
+                    <Image
+                        w="full"
+                        h="auto"
+                        src={
+                            thumbnail !== ""
+                                ? thumbnail
+                                : "https://sipherstorage.s3.ap-southeast-1.amazonaws.com/Logo.png"
+                        }
+                        alt=""
+                    />
+                )}
             </Box>
             <Box>
                 <Box p={4}>

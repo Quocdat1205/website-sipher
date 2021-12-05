@@ -1,6 +1,5 @@
 // * DESCRIPTION:
 
-import { Flex, Box } from "@chakra-ui/react"
 import { BackgroundContainer } from "@components/shared"
 import HeaderBackground from "@components/shared/HeaderBackground"
 import React from "react"
