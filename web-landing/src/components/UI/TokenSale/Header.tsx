@@ -1,16 +1,6 @@
 import React, { useState } from "react"
 import { BsPlayFill } from "react-icons/bs"
-import {
-    Button,
-    Modal,
-    ModalOverlay,
-    Box,
-    ModalContent,
-    ModalCloseButton,
-    useDisclosure,
-    Link,
-    Flex,
-} from "@chakra-ui/react"
+import { Button, Modal, ModalOverlay, Box, ModalContent, ModalCloseButton, Link, Flex } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import { VideoModal } from "./Modal"
 import LearnAboutModal from "./Modal/LearnAboutModal"
@@ -18,12 +8,10 @@ import LearnAboutModal from "./Modal/LearnAboutModal"
 interface Props {}
 
 const Header = (props: Props) => {
-    const [modal, setModal] = useState(1)
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [modal, setModal] = useState("")
 
-    const openModal = (modal: number) => {
+    const openModal = (modal: string) => {
         setModal(modal)
-        onOpen()
     }
 
     return (
@@ -31,7 +19,7 @@ const Header = (props: Props) => {
             <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
             <Button
                 _focus={{ boxShadow: "none" }}
-                onClick={() => openModal(1)}
+                onClick={() => openModal("1")}
                 rounded="full"
                 border="1px"
                 borderColor="white"
@@ -47,7 +35,7 @@ const Header = (props: Props) => {
                 Watch video
             </Button>
             <Link
-                onClick={() => openModal(2)}
+                onClick={() => openModal("2")}
                 textDecoration="underline"
                 textAlign="center"
                 fontWeight="semibold"
@@ -55,12 +43,18 @@ const Header = (props: Props) => {
             >
                 Learn About $SIPHER Initial Public Sale
             </Link>
-            <Modal motionPreset="slideInBottom" isCentered isOpen={isOpen} onClose={onClose} size={"4xl"}>
+            <Modal
+                motionPreset="slideInBottom"
+                isCentered
+                isOpen={modal !== ""}
+                onClose={() => setModal("")}
+                size={"4xl"}
+            >
                 <ModalOverlay bg="blackAlpha.800" />
                 <ModalContent bg="black" p={4} overflow="hidden">
                     <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
-                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="red" fontSize="2xl" zIndex={1} />
-                        {modal === 1 ? <VideoModal /> : <LearnAboutModal />}
+                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="red" fontSize="xl" zIndex={1} />
+                        {modal === "1" ? <VideoModal /> : <LearnAboutModal />}
                     </Box>
                 </ModalContent>
             </Modal>

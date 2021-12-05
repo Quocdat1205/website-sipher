@@ -2,7 +2,7 @@ import { Flex, Text, Box } from "@chakra-ui/react"
 import { AddressContractCopy, BackgroundContainer, IconSipher, Typo } from "@components/shared"
 import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { numberWithCommas } from "@source/utils"
+import { currency, numberWithCommas } from "@source/utils"
 import ClaimNoStake from "../FormStake/ClaimNoStake"
 
 const EndedClaim = () => {
@@ -49,10 +49,11 @@ const EndedClaim = () => {
                     <Flex align="center" mb={3}>
                         <IconSipher mr={4} />
                         <Text letterSpacing="3px" size="large" fontWeight="semibold">
-                            {numberWithCommas(parseFloat(ReceivedToken!.toFixed(2)))} $SIPHER
+                            {currency(ReceivedToken!)} $SIPHER
                         </Text>
                     </Flex>
                     <ClaimNoStake />
+
                     <Box>
                         <Text py={1} textAlign="center" color="#828282">
                             $SIPHER Contract Address:

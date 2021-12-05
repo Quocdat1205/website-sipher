@@ -12,11 +12,11 @@ const Header = () => {
     const sipherPrice = useSipherPrice()
 
     const { data: totalStaked } = useQuery("total-staked", () => scCaller.current!.getTotalStaked(), {
-        enabled: !!scCaller,
+        enabled: !!scCaller.current,
         initialData: 0,
     })
     const { data: totalClaimed } = useQuery("total-claimed", () => scCaller.current!.getTotalClaimed(), {
-        enabled: !!scCaller,
+        enabled: !!scCaller.current,
         initialData: 0,
     })
 

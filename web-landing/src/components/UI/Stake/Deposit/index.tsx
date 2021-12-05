@@ -31,7 +31,7 @@ const StakeForm = () => {
         ["sipher-balance", account],
         () => scCaller.current!.SipherToken.getBalance(account!),
         {
-            enabled: !!scCaller && !!account,
+            enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )
@@ -40,7 +40,7 @@ const StakeForm = () => {
         "stake-total-supply",
         () => scCaller.current?.StakingPools.totalSupply(),
         {
-            enabled: !!scCaller,
+            enabled: !!scCaller.current,
             initialData: 1,
         }
     )
