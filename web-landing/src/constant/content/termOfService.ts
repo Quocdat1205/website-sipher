@@ -86,7 +86,7 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "You are not a citizen or permanent resident of, you do not have a primary residence in, and you are not physically located in the United States of America, Albania, Barbados, Burkina Faso, Balkans, Belarus Cambodia, Cayman Islands, Cote D'Ivoire (Ivory Coast), Cuba, Democratic Republic of Congo, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan,  Syria, Uganda, Yemen, Zimbabwe, Iran, Iraq, Liberia, North Korea, Democratic People's Republic of Korea (DPRK), Jordan, Mali, People’s Republic of China, Hong Kong SAR, Macau SAR and Turkey or its territories or possessions or any country (A) where participation in token sales is prohibited, restricted or unauthorized by applicable law, decree, regulation, treaty, or administrative act, or (B) where it is likely that the sale of the Sipher Tokens would be construed as the sale of a security (howsoever named), financial service or investment product. ",
+                    "You are not a citizen or permanent resident of, you do not have a primary residence in, and you are not physically located in the United States of America, Albania, Barbados, Burkina Faso, Balkans, Belarus Cambodia, Cayman Islands, Cote D'Ivoire (Ivory Coast), Cuba, Democratic Republic of Congo, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan,  Syria, Uganda, Yemen, Zimbabwe, Iran, Iraq, Liberia, North Korea, Democratic People's Republic of Korea (DPRK), Jordan, Mali, People’s Republic of China, Hong Kong SAR, Macau SAR and Turkey or its territories or possessions or any country (A) where participation in token sales is prohibited, restricted or unauthorized by applicable law, decree, regulation, treaty, or administrative act, or (B) where it is likely that the sale of the Sipher Tokens would be construed as the sale of a security (howsoever named), financial service or investment product.",
             },
             {
                 level: 2,
@@ -108,7 +108,7 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 2,
                 content:
-                    "You are not a resident for tax purposes of, you do not have a domicile in, and you are not physically located in or otherwise subject to the jurisdiction of, the United States of America, Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Democratic People's Republic of Korea (DPRK), Jordan, Mali, People’s Republic of China, Hong Kong SAR, Macau SAR, Singapore, Philippines and Turkey or its territories or possessions.",
+                    "You are not a resident for tax purposes of, you do not have a domicile in, and you are not physically located in or otherwise subject to the jurisdiction of, the United States of America, Albania, Barbados, Burkina Faso, Balkans, Belarus Cambodia, Cayman Islands, Cote D'Ivoire (Ivory Coast), Cuba, Democratic Republic of Congo, Haiti, Jamaica, Malta, Morocco, Myanmar, Nicaragua, Pakistan, Panama, Senegal, South Sudan, Syria, Uganda, Yemen, Zimbabwe, Iran, Iraq, Liberia, North Korea, Democratic People's Republic of Korea (DPRK), Jordan, Mali, People’s Republic of China, Hong Kong SAR, Macau SARand Turkey or its territories or possessions or any country (A) where participation in token sales is prohibited, restricted or unauthorized by applicable law, decree, regulation, treaty, or administrative act, or (B) where it is likely that the sale of the Sipher Tokens would be construed as the sale of a security (howsoever named), financial service or investment product.",
             },
             {
                 level: 2,
@@ -210,7 +210,7 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "If you are a participant in the Token Sale, the process for placing and fulfilling your Order in the Token Sale is as follows (capitalised terms used but not defined in this Clause V.5 are defined in Schedule 1 (Details of the Token Sale)):",
+                    "If you are a participant in the Token Sale, the process for placing and fulfilling your Order in the Token Sale is as follows (capitalised terms used but not defined in this Clause 5.5 are defined in Schedule 1 (Details of the Token Sale)):",
             },
             {
                 level: 2,
@@ -252,12 +252,16 @@ export const termService: TermAndConditionItem[] = [
             {
                 level: 1,
                 content:
-                    "Sipher JSC reserves the right, without notice or limitation, to deny, terminate, modify, throttle, disconnect, or suspend the Token Sale (in whole or in part) with respect to anyone who engages in unfair, excessive, or abusive usage or if Sipher JSC, at its discretion, determines that action is necessary to protect the integrity or security of Sipher JSC or any part of the Token Sale",
+                    "Sipher JSC reserves the right, without notice or limitation, to deny, terminate, modify, throttle, disconnect, or suspend the Token Sale (in whole or in part) with respect to anyone who engages in unfair, excessive, or abusive usage or if Sipher JSC, at its discretion, determines that action is necessary to protect the integrity or security of Sipher JSC or any part of the Token Sale.",
             },
             {
                 level: 1,
                 content:
-                    "Sipher JSC does not have access to or control over your payment until confirmed by the Ethereum blockchain and upon Conclusion of the Token Sale; you accept sole responsibility for all risks related to your contribution before it is confirmed by the Ethereum blockchain and upon Conclusion of the Token Sale. If your Order is Accepted, the transaction is final and no refund of payment or cancellation of the Order will be made for any reason.",
+                    "Sipher JSC does not have access to or control over your payment until confirmed by the Ethereum blockchain and upon Conclusion of the Token Sale; you accept sole responsibility for all risks related to your contribution before it is confirmed by the Ethereum blockchain and upon Conclusion of the Token Sale. If your Order is Accepted, the transaction is final and no refund of payment or cancellation of the Order will be made except to the extent, if any, required by law.",
+            },
+            {
+                level: 1,
+                content: "This Clause is intentionally left blank",
             },
         ],
     },
@@ -291,7 +295,7 @@ export const termService: TermAndConditionItem[] = [
             },
             {
                 level: 2,
-                content: `The source code of the SSC System is made publicly available at https://github.com/sipherxyz/token-and-initial-public-sale, and you acknowledge that you have had the full opportunity to review, and to the extent you deem appropriate, have reviewed or engaged a qualified technical adviser to review and advise you concerning the source code. To the extent the SSC System may operate in a manner that is inconsistent with these Terms, you accept those inconsistencies and understand that the operation of the SSC System will supersede these Terms to the extent of any such inconsistency and will not be a breach of these Terms. `,
+                content: `The source code of the SSC System is made publicly available at https://github.com/sipherxyz/token-and-initial-public-sale, and you acknowledge that you have had the full opportunity to review, and to the extent you deem appropriate, have reviewed or engaged a qualified technical adviser to review and advise you concerning the source code. To the extent the SSC System may operate in a manner that is inconsistent with these Terms, you accept those inconsistencies and understand that the operation of the SSC System will supersede these Terms to the extent of any such inconsistency and will not be a breach of these Terms.`,
             },
             {
                 level: 2,
@@ -770,7 +774,7 @@ export const schedule1: schedule1Propps[] = [
                                 "Game Incentives & Marketing",
                                 "30.4%",
                                 "304,000,000",
-                                "1 Month Cliff, followed by 36 Months Vesting",
+                                "1 Month Cliff, and Release by demand",
                             ],
                             [
                                 "Team & Advisors",
@@ -863,7 +867,7 @@ export const schedule1: schedule1Propps[] = [
         ],
     },
     {
-        title: "Thí Clause is intentionally left blank",
+        title: "This Clause is intentionally left blank",
         chapters: [],
     },
     {
@@ -1117,7 +1121,7 @@ export const schedule2: schedulePropps[] = [
             {
                 level: 1,
                 content:
-                    "Incompatible Wallet. The technical requirements for receiving SIPHER Tokens are described in Clause 5.4 of these Terms. If you use a wallet or other technology that does not conform to those technical requirements, or if you use a third party service whose wallet or other technology does not conform to those technical requirements, your SIPHER Tokens may be permanently lost.",
+                    "Incompatible Wallet. The technical requirements for receiving SIPHER Tokens are described in Clause V.4 of these Terms. If you use a wallet or other technology that does not conform to those technical requirements, or if you use a third party service whose wallet or other technology does not conform to those technical requirements, your SIPHER Tokens may be permanently lost.",
             },
             {
                 level: 1,
