@@ -54,7 +54,7 @@ const NotConnected = ({}: NotConnectedProps) => {
                         <ReactPlayer
                             className="video-player"
                             controls
-                            config={{ file: { attributes: { poster: "/video/whatissipher_poster.jpg" } } }}
+                            config={{ file: { attributes: { poster: "/video/poster.png" } } }}
                             url={"/video/ibco.mp4"}
                         />
                     </Box>
