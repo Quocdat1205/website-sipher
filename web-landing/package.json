@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start -p 9998",
+        "start": "next start -p 1112",
         "lint": "next lint"
     },
     "dependencies": {
@@ -29,6 +29,7 @@
         "react-dom": "17.0.2",
         "react-html-parser": "^2.0.2",
         "react-icons": "^4.2.0",
+        "react-infinite-scroll-component": "^6.1.0",
         "react-intersection-observer": "^8.32.1",
         "react-markdown": "^7.0.1",
         "react-player": "^2.9.0",
