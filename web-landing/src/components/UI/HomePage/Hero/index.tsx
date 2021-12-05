@@ -5,7 +5,6 @@ import {
     Box,
     Text,
     Button,
-    useDisclosure,
     Stack,
     Modal,
     ModalOverlay,
@@ -15,11 +14,11 @@ import {
 } from "@chakra-ui/react"
 import { LinkButton, MotionFlex, Typo } from "@components/shared"
 import Title from "./Title"
-import { CgMouse } from "react-icons/cg"
-import { BiChevronDown } from "react-icons/bi"
+// import { CgMouse } from "react-icons/cg"
+// import { BiChevronDown } from "react-icons/bi"
 import CountDown from "./CountDown"
 import { startTime, endTime } from "@constant/index"
-import { BrowserView } from "react-device-detect"
+// import { BrowserView } from "react-device-detect"
 import useSaleTime from "./CountDown/useSaleTime"
 import { BsPlayFill } from "react-icons/bs"
 import { LearnAboutModal, VideoModal } from "@components/UI/TokenSale/Modal"
@@ -29,12 +28,10 @@ interface FirstScreenProps {}
 
 const FirstScreen = ({}: FirstScreenProps) => {
     const { status } = useSaleTime()
-    const [modal, setModal] = useState(1)
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [modal, setModal] = useState("")
 
-    const openModal = (modal: number) => {
+    const openModal = (modal: string) => {
         setModal(modal)
-        onOpen()
     }
 
     return (
@@ -97,7 +94,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         <Button
                             _focus={{ boxShadow: "none" }}
                             w="full"
-                            onClick={() => onOpen()}
+                            onClick={() => openModal("1")}
                             rounded="full"
                             border="1px"
                             borderColor="white"
@@ -115,7 +112,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         </Button>
                         {status === "ONGOING" && (
                             <Link
-                                onClick={() => openModal(2)}
+                                onClick={() => openModal("2")}
                                 textDecoration="underline"
                                 textAlign="center"
                                 fontWeight="semibold"
@@ -136,12 +133,18 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         </BrowserView> */}
                 </MotionFlex>
             </Flex>
-            <Modal motionPreset="slideInBottom" isCentered isOpen={isOpen} onClose={onClose} size={"4xl"}>
+            <Modal
+                motionPreset="slideInBottom"
+                isCentered
+                isOpen={modal !== ""}
+                onClose={() => setModal("")}
+                size="4xl"
+            >
                 <ModalOverlay bg="blackAlpha.800" />
                 <ModalContent bg="black" p={4} overflow="hidden">
                     <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
-                        <ModalCloseButton color="red" fontSize="2xl" zIndex={1} />
-                        {modal === 1 ? <VideoModal /> : <LearnAboutModal />}
+                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="red" fontSize="xl" zIndex={1} />
+                        {modal === "1" ? <VideoModal /> : <LearnAboutModal />}
                     </Box>
                 </ModalContent>
             </Modal>
