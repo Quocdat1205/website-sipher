@@ -1,4 +1,4 @@
-export const SipherIBCOAddress = "0x5c61d38343158fBAe6eea502Ffe9cf0102453646"
+export const SipherIBCOAddress = "0xF05e0a149e4ab0253aA5e1575302E721d02369C0"
 
 export const SipherIBCOAbi: any = [
     {
@@ -14,16 +14,6 @@ export const SipherIBCOAbi: any = [
             { indexed: false, internalType: "uint256", name: "sipherAmount", type: "uint256" },
         ],
         name: "Claim",
-        type: "event",
-    },
-    {
-        anonymous: false,
-        inputs: [
-            { indexed: true, internalType: "address", name: "account", type: "address" },
-            { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
-            { indexed: false, internalType: "uint256", name: "duration", type: "uint256" },
-        ],
-        name: "ClaimAndDepositToStake",
         type: "event",
     },
     {
@@ -90,29 +80,12 @@ export const SipherIBCOAbi: any = [
     },
     {
         inputs: [],
-        name: "SipherStakingPool",
-        outputs: [{ internalType: "contract ITimeLockPool", name: "", type: "address" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
         name: "TOTAL_DISTRIBUTE_AMOUNT",
         outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
         stateMutability: "view",
         type: "function",
     },
     { inputs: [], name: "claim", outputs: [], stateMutability: "nonpayable", type: "function" },
-    {
-        inputs: [
-            { internalType: "uint256", name: "amount", type: "uint256" },
-            { internalType: "uint256", name: "duration", type: "uint256" },
-        ],
-        name: "claimAndDepositForStaking",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
     { inputs: [], name: "deposit", outputs: [], stateMutability: "payable", type: "function" },
     {
         inputs: [
@@ -184,13 +157,6 @@ export const SipherIBCOAbi: any = [
         type: "function",
     },
     { inputs: [], name: "renounceOwnership", outputs: [], stateMutability: "nonpayable", type: "function" },
-    {
-        inputs: [{ internalType: "address", name: "_sipherStakingPool", type: "address" }],
-        name: "setApproveForStaking",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
     {
         inputs: [],
         name: "totalProvided",

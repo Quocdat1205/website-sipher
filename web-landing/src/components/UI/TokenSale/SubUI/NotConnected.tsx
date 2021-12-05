@@ -25,11 +25,9 @@ const NotConnected = ({}: NotConnectedProps) => {
             bgRepeat="no-repeat"
             bgSize="100%"
             h="100vh"
-            pt={24}
-            pb={16}
             bgColor="#090909"
         >
-            <Grid h="full" placeItems="center">
+            <Grid pt={24} pb={16} h="100vh" maxH="1080px" placeItems="center">
                 <Stack align="center" spacing={8}>
                     <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
                     <WalletButton />
@@ -62,7 +60,12 @@ const NotConnected = ({}: NotConnectedProps) => {
                         <ModalOverlay bg="blackAlpha.800" />
                         <ModalContent bg="black" p={4} overflow="hidden">
                             <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
-                                <ModalCloseButton color="red" fontSize="2xl" zIndex={1} />
+                                <ModalCloseButton
+                                    _focus={{ boxShadow: "none" }}
+                                    color="red"
+                                    fontSize="2xl"
+                                    zIndex={1}
+                                />
                                 <LearnAboutModal />
                             </Box>
                         </ModalContent>

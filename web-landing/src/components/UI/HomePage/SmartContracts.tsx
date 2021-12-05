@@ -1,7 +1,5 @@
-import { Image } from "@chakra-ui/image"
-import { Box, Flex, Link, Text, Stack } from "@chakra-ui/layout"
-import { Typo } from "@components/shared"
-import { useChakraToast } from "@sipher/web-components"
+import { Box, Flex, Link, Text, Stack, Image } from "@chakra-ui/react"
+import { AddressContractCopy, Typo } from "@components/shared"
 import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
 import React from "react"
 
@@ -11,13 +9,6 @@ const contractData = [
 ]
 
 const SmartContracts = () => {
-    const toast = useChakraToast()
-
-    const handleCopy = async () => {
-        await navigator.clipboard.writeText(SipherTokenAddress)
-        toast({ status: "success", title: "Copied address to clipboard", message: "", duration: 1500 })
-    }
-
     return (
         <Flex justify="center" w="full" pt={16}>
             <Stack direction={["column", "column", "row"]} align="center" spacing={8} maxW="72rem" w="full">
@@ -36,7 +27,7 @@ const SmartContracts = () => {
                         <Text mb={1} fontWeight="semibold" textAlign="left" letterSpacing="3px" fontSize="lg">
                             $SIPHER CONTRACT ADDRESS
                         </Text>
-                        <Text fontSize={["sm", "md"]}>{SipherTokenAddress}</Text>
+                        <AddressContractCopy />
                     </Box>
                     <Box mb={8}>
                         <Text fontWeight="semibold" mb={2} fontSize="lg">
@@ -72,7 +63,7 @@ const SmartContracts = () => {
                             <Link
                                 _focus={{ boxShadow: "none" }}
                                 textDecor="underline"
-                                href="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/audit/Verichains_Public_Audit_Report_Sipher_Tokens_and_IBCO_v1_1.pdf"
+                                href="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/audit/Verichains_Public_Audit_Report_Sipher_Tokens_and_IBCO_v1_2.pdf"
                                 target="_blank"
                             >
                                 Token Generation Audit Report & IBCO Audit Report

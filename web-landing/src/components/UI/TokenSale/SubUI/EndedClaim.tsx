@@ -1,5 +1,5 @@
-import { Flex, Text } from "@chakra-ui/react"
-import { BackgroundContainer, IconSipher, Typo } from "@components/shared"
+import { Flex, Text, Box } from "@chakra-ui/react"
+import { AddressContractCopy, BackgroundContainer, IconSipher, Typo } from "@components/shared"
 import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { numberWithCommas } from "@source/utils"
@@ -23,12 +23,10 @@ const EndedClaim = () => {
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
-            pt={24}
-            pb={16}
             bgColor="#090909"
         >
-            <Flex flex={1} flexDir="column" h="full" justify="center" align="center">
-                <Typo.Heading>$SIPHER TOKEN INITIAL SALE</Typo.Heading>
+            <Flex pt={24} pb={16} flexDir="column" h="100vh" maxH="1080px" justify="center" align="center">
+                <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
                 <Flex
                     direction="column"
                     align="center"
@@ -44,9 +42,9 @@ const EndedClaim = () => {
                     <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={3}>
                         SUCCESSFULLY ENDED!
                     </Text>
-                    <Text textAlign="center">Amount of $SIPHER tokens</Text>
+                    <Text textAlign="center">Amount of $Sipher tokens</Text>
                     <Text textAlign="center" mb={6}>
-                        that you are available to claim:
+                        that you can claim:
                     </Text>
                     <Flex align="center" mb={3}>
                         <IconSipher mr={4} />
@@ -55,6 +53,12 @@ const EndedClaim = () => {
                         </Text>
                     </Flex>
                     <ClaimNoStake />
+                    <Box>
+                        <Text py={1} textAlign="center" color="#828282">
+                            $SIPHER Contract Address:
+                        </Text>
+                        <AddressContractCopy />
+                    </Box>
                 </Flex>
             </Flex>
         </BackgroundContainer>

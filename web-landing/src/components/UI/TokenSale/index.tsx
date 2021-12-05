@@ -36,11 +36,18 @@ const TokenSale = () => {
             image="/images/pc/home/background.png"
             bgRepeat="no-repeat"
             bgSize="100%"
-            pt={!isCheckMobile ? 24 : 0}
-            pb={!isCheckMobile ? 48 : 0}
             bgColor="#090909"
         >
-            <Flex direction="column" align="center" w="full" display={isCheckMobile ? "none" : "flex"}>
+            <Flex
+                pt={!isCheckMobile ? 24 : 0}
+                pb={!isCheckMobile ? 16 : 0}
+                direction="column"
+                align="center"
+                w="full"
+                h="100vh"
+                maxH="1080px"
+                display={isCheckMobile ? "none" : "flex"}
+            >
                 <Header />
                 <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"64rem"}>
                     <GridItem
