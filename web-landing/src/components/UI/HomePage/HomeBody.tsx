@@ -8,6 +8,7 @@ import OwnerBenefits from "./OwnerBenefits"
 import DigitalCharacters from "./DigitalCharacters"
 import WhatIsSipher from "./WhatIsSipher"
 import Backers from "./Backers"
+import SmartContracts from "./SmartContracts"
 
 interface HomeBodyProps {
     uaString: string
@@ -29,6 +30,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                 pb={24}
             >
                 <VStack spacing={24} align="center" w="full">
+                    <SmartContracts />
                     <DigitalCharacters />
                     <WhatIsSipher uaString={uaString} />
                     <OwnerBenefits />
