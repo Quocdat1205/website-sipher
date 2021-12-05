@@ -180,9 +180,11 @@ const InputUI = ({ mode }: Props) => {
                     <Image src="/images/icons/usd.png" alt="icon" h="1rem" />
                     <Text ml={1} textAlign="left" color="#979797" fontSize="sm">
                         $
-                        {(ethPrice * walletBalance).toLocaleString(undefined, {
-                            maximumFractionDigits: 2,
-                        })}
+                        {value !== ""
+                            ? (ethPrice * parseFloat(value)).toLocaleString(undefined, {
+                                  maximumFractionDigits: 2,
+                              })
+                            : 0}
                     </Text>
                 </Flex>
                 <Text my={1} textAlign="right" color="#979797" fontSize="sm">

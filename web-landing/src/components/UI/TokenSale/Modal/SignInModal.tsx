@@ -43,7 +43,7 @@ export const SignInModal = () => {
         enabled: !isFetched,
         onSuccess: (data: any) => {
             setValueSelect(
-                data && dataCountry.find((item: any) => item.code === data.data.ip.country_code)
+                dataCountry.find((item: any) => item.code === data.data.ip.country_code)
                     ? { code: data.data.ip.country_code, name: data.data.ip.country }
                     : {
                           name: "Afghanistan",
@@ -89,6 +89,7 @@ export const SignInModal = () => {
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
     }, [wallet, isCheckMobile, onOpen])
 
+    console.log(valueSelect)
     return (
         <Modal
             closeOnOverlayClick={false}
@@ -157,14 +158,13 @@ export const SignInModal = () => {
                                         <Text>I declare that I am a resident of </Text>
                                     </Checkbox>
                                     <Box ml={8} w="20rem">
-                                        {dataCheck.check3 && (
-                                            <Select
-                                                searchable
-                                                value={valueSelect}
-                                                selection={dataCountry}
-                                                onSelect={newValue => setValueSelect(newValue)}
-                                            />
-                                        )}
+                                        <Select
+                                            isDisabled={!dataCheck.check3}
+                                            searchable
+                                            value={valueSelect}
+                                            selection={dataCountry}
+                                            onSelect={newValue => setValueSelect(newValue)}
+                                        />
                                     </Box>
                                 </Flex>
                             </Stack>
@@ -173,12 +173,12 @@ export const SignInModal = () => {
                     <Flex mt={4} px={4} justify="center" w="full">
                         <ActionButton
                             rounded="full"
-                            bgColor="border.gray"
                             bgGradient="linear(to-b, #393939, #393939 84.37%)"
                             text="NEVERMIND"
                             onClick={() => router.push("/")}
                             w="12rem"
-                            size="small"
+                            px={4}
+                            py={2}
                         />
                         <ActionButton
                             isLoading={isLoading}
@@ -188,7 +188,9 @@ export const SignInModal = () => {
                             text="CONFIRM"
                             onClick={() => handleSign()}
                             w="12rem"
-                            disabled={!dataCheck.check1 || !dataCheck.check2 || !dataCheck.check3}
+                            disabled={
+                                !dataCheck.check1 || !dataCheck.check2 || !dataCheck.check3 || valueSelect === undefined
+                            }
                             px={4}
                             py={2}
                         />

@@ -70,12 +70,13 @@ const Select: FC<SelectProps> = ({
                 align="center"
                 px={2}
                 h="full"
-                pointerEvents={readOnly ? "none" : "all"}
-                bg={isDisabled ? "gray.100" : "transparent"}
+                pointerEvents={readOnly || isDisabled ? "none" : "all"}
+                bg={isDisabled ? "border.gray" : "transparent"}
+                opacity={isDisabled ? 0.6 : 1}
                 rounded="md"
                 border={"1px"}
                 cursor="pointer"
-                borderColor="gray.50"
+                borderColor={isDisabled ? "border.gray" : "gray.50"}
                 height="2rem"
             >
                 <Box flex={1} userSelect="none">
