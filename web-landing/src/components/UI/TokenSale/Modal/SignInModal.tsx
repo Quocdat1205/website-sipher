@@ -89,7 +89,6 @@ export const SignInModal = () => {
         if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
     }, [wallet, isCheckMobile, onOpen])
 
-    console.log(valueSelect)
     return (
         <Modal
             closeOnOverlayClick={false}
