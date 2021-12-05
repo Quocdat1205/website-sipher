@@ -28,12 +28,7 @@ const TransactionToast = ({ status, onClose }: TransactionToastProps) => {
                 ],
             ]
         if (status === "successClaim")
-            return [
-                "$SIPHER TOKENS SUCCESSFULLY CLAIMED",
-                "green.500",
-                BsCheck,
-                ["You $SIPHER Tokens will be available after the Sale ends."],
-            ]
+            return ["TRANSACTION SUCCESSFUL", "green.500", BsCheck, ["$SIPHER tokens successfully claimed."]]
         return [
             "TRANSACTION SUCCESSFUL",
             "green.500",
