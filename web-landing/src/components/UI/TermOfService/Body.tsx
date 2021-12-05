@@ -19,7 +19,7 @@ const HomeBody = ({}: HomeBodyProps) => {
             <VStack align="center" py={24} px={4} spacing={24}>
                 <TextContainer headline={`Term of Service`}>
                     {introduction.map(paragraph => (
-                        <Text size="medium" key={paragraph} mb={8}>
+                        <Text key={paragraph} mb={8} textAlign="justify">
                             {paragraph}
                         </Text>
                     ))}

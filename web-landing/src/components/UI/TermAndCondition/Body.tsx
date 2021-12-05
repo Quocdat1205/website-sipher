@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
-import { VStack, chakra } from "@chakra-ui/react"
-import { TextContainer, Li, BackgroundContainer, Typo } from "@components/shared"
+import { VStack, chakra, Text } from "@chakra-ui/react"
+import { TextContainer, Li, BackgroundContainer } from "@components/shared"
 import {
     introduction,
     noticeAndDisclaimer,
@@ -19,9 +19,9 @@ const HomeBody = ({}: HomeBodyProps) => {
             <VStack align="center" py={24} px={4} spacing={24}>
                 <TextContainer headline={`Term & Condition`}>
                     {introduction.map(paragraph => (
-                        <Typo.Text key={paragraph} mb={8}>
+                        <Text key={paragraph} mb={8} textAlign="justify">
                             {paragraph}
-                        </Typo.Text>
+                        </Text>
                     ))}
                     <chakra.ol>
                         {termAndCondition.map(term => (
@@ -34,9 +34,9 @@ const HomeBody = ({}: HomeBodyProps) => {
                                 bottomSpace={8}
                             >
                                 {term.text && (
-                                    <Typo.Text mb={2} textAlign="justify">
+                                    <Text mb={2} textAlign="justify">
                                         {term.text}
-                                    </Typo.Text>
+                                    </Text>
                                 )}
                                 <chakra.ol>
                                     {term.chapters.map(chapter => (
@@ -48,9 +48,9 @@ const HomeBody = ({}: HomeBodyProps) => {
                                             listKey={chapter.key}
                                         >
                                             {chapter.text && (
-                                                <Typo.Text mb={2} textAlign="justify">
+                                                <Text mb={2} textAlign="justify">
                                                     {chapter.text}
-                                                </Typo.Text>
+                                                </Text>
                                             )}
                                         </Li>
                                     ))}
@@ -84,9 +84,9 @@ const HomeBody = ({}: HomeBodyProps) => {
                             >
                                 {paragraph.text &&
                                     paragraph.text.map(p => (
-                                        <Typo.Text key={p} mb={2} textAlign="justify">
+                                        <Text key={p} mb={2} textAlign="justify">
                                             {p}
-                                        </Typo.Text>
+                                        </Text>
                                     ))}
                             </Li>
                         ))}
