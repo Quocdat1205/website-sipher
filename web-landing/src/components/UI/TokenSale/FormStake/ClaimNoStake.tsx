@@ -27,33 +27,22 @@ const ClaimNoStake = () => {
         ["estimate-received-token", account],
         () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
         {
-            enabled: !!scCaller && !!account,
+            enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )
 
     return (
-        <Flex
-            flex={1}
-            w="full"
-            h="full"
-            direction="column"
-            justify="center"
-            align="center"
-            bg="rgba(0,0,0,0.9)"
-            rounded="xl"
+        <ActionButton
+            text="CLAIM $SIPHER"
             py={4}
-        >
-            <ActionButton
-                text="CLAIM $SIPHER"
-                py={4}
-                w="full"
-                onClick={() => claim()}
-                fontSize="sm"
-                isLoading={isLoading}
-                disabled={receivedToken! <= 0}
-            />
-        </Flex>
+            w="full"
+            onClick={() => claim()}
+            fontSize="sm"
+            isLoading={isLoading}
+            disabled={receivedToken! <= 0}
+            my={4}
+        />
     )
 }
 

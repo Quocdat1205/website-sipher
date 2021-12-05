@@ -28,7 +28,7 @@ const Stake = () => {
         ["estimate-received-token", account],
         () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
         {
-            enabled: !!scCaller && !!account,
+            enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )

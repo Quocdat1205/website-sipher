@@ -37,6 +37,8 @@ const TokenSale = () => {
             bgRepeat="no-repeat"
             bgSize="100%"
             bgColor="#090909"
+            h="100vh"
+            maxH="1080px"
         >
             <Flex
                 pt={!isCheckMobile ? 24 : 0}
@@ -44,8 +46,6 @@ const TokenSale = () => {
                 direction="column"
                 align="center"
                 w="full"
-                h="100vh"
-                maxH="1080px"
                 display={isCheckMobile ? "none" : "flex"}
             >
                 <Header />
