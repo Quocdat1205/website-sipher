@@ -17,6 +17,7 @@ import { authenticateUser, getUsersByAddress, trackingIP } from "@hooks/api/user
 import { useChakraToast } from "@sipher/web-components"
 import { clearAccessToken, clearSignIn, setAccessToken, setSignIn, getAccessToken } from "@source/utils"
 import { ContractCaller } from "@source/contract"
+import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
 
 declare global {
     interface Window {
@@ -174,7 +175,7 @@ const useWallet = () => {
             if (!web3.current) throw Error("Provider not found")
 
             let accessToken = await getAccessToken()
-            const isTracking = await trackingIP(account, accessToken!, action)
+            const isTracking = await trackingIP(account, accessToken!, action, SipherTokenAddress, SipherIBCOAddress)
             return isTracking
         },
         [web3React]

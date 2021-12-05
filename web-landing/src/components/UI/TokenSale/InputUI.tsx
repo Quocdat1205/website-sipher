@@ -122,7 +122,7 @@ const InputUI = ({ mode }: Props) => {
 
     const handleAction = async () => {
         try {
-            const isTracking = await getTracking(mode)
+            const isTracking = await getTracking(mode )
             if (isTracking) {
                 transactionToast({ status: "processing" })
                 mode === "Deposit" ? deposit() : withdraw()

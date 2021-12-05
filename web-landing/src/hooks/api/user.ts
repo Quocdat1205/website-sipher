@@ -37,14 +37,16 @@ export const authenticateUser = async (
 export const trackingIP = async (
     address: string,
     accessToken: string,
-    action: string
+    action: string,
+    SipherTokenAddress: string,
+    SipherIBCOAddress: string
 ): Promise<{ success: boolean }> => {
     const type = action.toLowerCase()
     const {
         data: { success },
     } = await fetcher.post(
         "/tracking",
-        { address, type },
+        { address, type, sipherTokenAddress: SipherTokenAddress, ibcoAddress: SipherIBCOAddress },
         {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
