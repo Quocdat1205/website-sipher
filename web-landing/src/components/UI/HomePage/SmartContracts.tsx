@@ -63,7 +63,7 @@ const SmartContracts = () => {
                             <Link
                                 _focus={{ boxShadow: "none" }}
                                 textDecor="underline"
-                                href="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/audit/Verichains_Public_Audit_Report_Sipher_Tokens_and_IBCO_v1_1.pdf"
+                                href="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/audit/Verichains_Public_Audit_Report_Sipher_Tokens_and_IBCO_v1_2.pdf"
                                 target="_blank"
                             >
                                 Token Generation Audit Report & IBCO Audit Report
