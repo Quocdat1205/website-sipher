@@ -42,6 +42,8 @@ const RightBarInfo = () => {
     return (
         <VStack spacing={4} h="full">
             <Flex
+                w="full"
+                align="center"
                 direction="column"
                 p={4}
                 h="full"
@@ -61,6 +63,8 @@ const RightBarInfo = () => {
                 <CoinCard size="large" text="Est. Current Token Price" iconSrc="/images/icons/eth.png" value={price!} />
             </Flex>
             <Flex
+                w="full"
+                align="center"
                 direction="column"
                 p={4}
                 h="full"
