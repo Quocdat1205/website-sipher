@@ -23,7 +23,6 @@ import { getSignIn } from "@source/utils"
 import axios from "axios"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
-import { isMobile, isTablet } from "react-device-detect"
 import { useQuery } from "react-query"
 import dataCountry from "./dataCountry"
 
@@ -56,8 +55,6 @@ export const SignInModal = () => {
 
     const wallet = useWalletContext()
 
-    const isCheckMobile = isMobile || isTablet
-
     const toast = useChakraToast()
 
     const handleSign = async () => {
@@ -86,8 +83,8 @@ export const SignInModal = () => {
     useEffect(() => {
         let signIn = getSignIn()
 
-        if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
-    }, [wallet, isCheckMobile, onOpen])
+        if (!signIn || signIn !== "true") onOpen()
+    }, [wallet, onOpen])
 
     return (
         <Modal
