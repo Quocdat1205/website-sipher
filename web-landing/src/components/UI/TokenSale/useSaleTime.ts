@@ -5,20 +5,20 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 export type Status = "LOADING" | "NOT_STARTED" | "ONGOING" | "ENDED" | "NOT_CONNECTED"
 
 const useSaleTime = () => {
-    const { scCaller, account } = useWalletContext()
+    const { scCaller, account, ethereum } = useWalletContext()
     const { data: startTime, isLoading: isLoadingStartTime } = useQuery(
-        "start-time",
+        ["start-time", ethereum],
         () => scCaller.current!.SipherIBCO.getStartTime(),
         {
-            enabled: !!scCaller.current,
+            enabled: !!scCaller.current || ethereum,
         }
     )
 
     const { data: endTime, isLoading: isLoadingEndTime } = useQuery(
-        "end-time",
+        ["end-time", ethereum],
         () => scCaller.current!.SipherIBCO.getEndTime(),
         {
-            enabled: !!scCaller.current,
+            enabled: !!scCaller.current || ethereum,
         }
     )
 
