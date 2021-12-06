@@ -22,7 +22,7 @@ const TokenSale = () => {
 
     const { status } = useSaleTime()
 
-    if (isCheckMobile) return <NotAvailable />
+    // if (isCheckMobile) return <NotAvailable />
 
     if (status === "NOT_CONNECTED") return <NotConnected />
 
@@ -41,12 +41,12 @@ const TokenSale = () => {
             maxH="1080px"
         >
             <Flex
-                pt={!isCheckMobile ? 24 : 0}
-                pb={!isCheckMobile ? 16 : 0}
+                pt={24}
+                pb={16}
                 direction="column"
                 align="center"
                 w="full"
-                display={isCheckMobile ? "none" : "flex"}
+                // display={isCheckMobile ? "none" : "flex"}
             >
                 <Header />
                 <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"64rem"}>
@@ -71,12 +71,12 @@ const TokenSale = () => {
                         border="1px"
                         borderColor="#383838"
                     >
-                        <Flex h="full">
+                        <Flex h="full" flexDir={!isCheckMobile ? "row" : "column"}>
                             <SaleTimer status={status} />
                             <SaleForm />
                         </Flex>
                     </GridItem>
-                    <GridItem>
+                    <GridItem colSpan={isCheckMobile ? 2 : 1}>
                         <RightBarInfo />
                     </GridItem>
                 </Grid>
