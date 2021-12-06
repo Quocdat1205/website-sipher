@@ -3,7 +3,7 @@ import { IconType } from "react-icons"
 import { BsCheck, BsThreeDots, BsX } from "react-icons/bs"
 
 interface TransactionToastProps {
-    status: "failed" | "success" | "processing" | "successClaim"
+    status: "failed" | "success" | "processing" | "successClaim" | "successDeposit"
     onClose: () => void
     isPublic?: boolean
 }
@@ -29,6 +29,16 @@ const TransactionToast = ({ status, onClose }: TransactionToastProps) => {
             ]
         if (status === "successClaim")
             return ["TRANSACTION SUCCESSFUL", "green.500", BsCheck, ["$SIPHER tokens successfully claimed."]]
+        if (status === "successDeposit")
+            return [
+                "TRANSACTION SUCCESSFUL",
+                "green.500",
+                BsCheck,
+                [
+                    "Your $SIPHER tokens will be available after the Sale ends.",
+                    "Please come back on 09/12/2021 - 1:00AM UTC to claim your tokens",
+                ],
+            ]
         return [
             "TRANSACTION SUCCESSFUL",
             "green.500",

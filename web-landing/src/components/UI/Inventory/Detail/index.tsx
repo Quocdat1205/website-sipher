@@ -91,7 +91,7 @@ const Detail = ({ race }: PopupProps) => {
                                 />
                                 <ModalCloseButton
                                     zIndex={1}
-                                    color="main.darkRed"
+                                    color="#9B9E9D"
                                     size="lg"
                                     _hover={{ color: "red" }}
                                     _focus={{ shadow: "none" }}

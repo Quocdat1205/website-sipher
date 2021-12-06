@@ -14,6 +14,7 @@ import { floorPrecised } from "@source/utils/index"
 import useTransactionToast from "@hooks/useTransactionToast"
 import { ActionButton } from "@components/shared"
 import { useETHPrice } from "@hooks/api"
+import { WithdrawModal } from "./Modal"
 
 interface Props {
     mode: DropdownOption
@@ -21,6 +22,7 @@ interface Props {
 
 const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("")
+    const [withDrawModal, setWithdrawModal] = useState(false)
     const setValueCb = useCallback((value: string) => setValue(value), [])
     const ethPrice = useETHPrice()
 
@@ -98,7 +100,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                transactionToast({ status: "success" })
+                transactionToast({ status: "successDeposit" })
                 setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("locked-amount")
@@ -121,16 +123,20 @@ const InputUI = ({ mode }: Props) => {
     )
 
     const handleAction = async () => {
-        try {
-            const isTracking = await getTracking(mode)
-            if (isTracking) {
-                transactionToast({ status: "processing" })
-                mode === "Deposit" ? deposit() : withdraw()
-            } else {
-                toast({ title: "Error!", message: "Your IP address is in restricted territory" })
+        if (mode === "Deposit") {
+            try {
+                const isTracking = await getTracking(mode)
+                if (isTracking) {
+                    transactionToast({ status: "processing" })
+                    deposit()
+                } else {
+                    toast({ title: "Error!", message: "Your IP address is in restricted territory" })
+                }
+            } catch (error) {
+                toast({ title: "Error!", message: "Please try again later" })
             }
-        } catch (error) {
-            toast({ title: "Error!", message: "Please try again later" })
+        } else {
+            setWithdrawModal(true)
         }
     }
 
@@ -241,10 +247,17 @@ const InputUI = ({ mode }: Props) => {
                 disabled={
                     status !== "ONGOING" ||
                     value === "" ||
+                    value === "0" ||
                     (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
                 }
                 onClick={handleAction}
                 py={4}
+            />
+            <WithdrawModal
+                modal={withDrawModal}
+                setModal={setWithdrawModal}
+                withdraw={withdraw}
+                getTracking={getTracking}
             />
         </Flex>
     )
