@@ -22,7 +22,7 @@ const TokenSale = () => {
 
     const { status } = useSaleTime()
 
-    if (isCheckMobile) return <NotAvailable />
+    // if (isCheckMobile) return <NotAvailable />
 
     if (status === "NOT_CONNECTED") return <NotConnected />
 
