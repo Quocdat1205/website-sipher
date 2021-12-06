@@ -24,17 +24,16 @@ const EndedClaim = () => {
             bgRepeat="no-repeat"
             bgSize="cover"
             bgPosition="center"
-            h="100vh"
-            maxH="1080px"
         >
             <Flex pt={24} pb={16} flexDir="column" h="100vh" maxH="1080px" justify="center" align="center">
                 <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
                 <Flex
                     direction="column"
                     align="center"
+                    w="full"
                     maxW="52rem"
                     py={8}
-                    px={32}
+                    px={[4, 8, 32]}
                     rounded="xl"
                     overflow="hidden"
                     bg="rgba(0,0,0,0.9)"

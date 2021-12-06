@@ -6,9 +6,9 @@ interface Props {}
 
 export const LearnAboutModal = ({}: Props) => {
     return (
-        <Flex py={10} px={20} flexDir="column" align="center" justify="center">
-            <Text textAlign="left" size="large" fontWeight="semibold" letterSpacing="3px">
-                $SIPHER TOKEN PUBLIC SALE
+        <Flex py={10} px={[4, 4, 20]} flexDir="column" align="center" justify="center">
+            <Text textAlign="center" fontSize="lg" fontWeight="semibold" letterSpacing="3px">
+                $SIPHER INITIAL PUBLIC SALE
             </Text>
             <Text textAlign="center" py={6}>
                 {`The public sale of a token is one of the most important milestone of our project as it involves having a part of the circulating supply distributed to the open market, to the hands of as many supporters, believers and fans as possible. When we were deliberating about the $SIPHER token public sale, we had a few of goals in mind: fair access to all, the ability to have price adapted to overall demand, minimize the manipulations of bots and whales and complying as much as logistically possible with many legal frameworks across many countries.`}

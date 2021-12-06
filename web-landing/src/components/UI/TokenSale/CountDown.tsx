@@ -9,6 +9,7 @@ import { Status } from "./useSaleTime"
 
 interface CountdownProps {
     status: Status
+    noLoader?: boolean
 }
 
 const createBorder = () => {
@@ -44,7 +45,7 @@ const createBorder = () => {
     )
 }
 
-const Countdown = ({ status }: CountdownProps) => {
+const Countdown = ({ status, noLoader }: CountdownProps) => {
     const [now, setNow] = useState(0)
     const { scCaller } = useWalletContext()
 
@@ -72,9 +73,9 @@ const Countdown = ({ status }: CountdownProps) => {
     }, [])
 
     return (
-        <Flex direction="column" align="center" pos="relative" pt={10}>
-            <Box boxSize="18rem" position="relative">
-                <Flex pos="absolute" w="full" h="full" align="center" justify="center">
+        <Flex direction="column" align="center" pos="relative" pt={[0, 0, 10]} mb={[4, 4, 0]}>
+            <Box boxSize={["auto", "auto", "18rem"]} position="relative">
+                <Flex pos={["static", "static", "absolute"]} w="full" h="full" align="center" justify="center">
                     <PrivateCountdown
                         time1={{
                             value: !isEndSale ? (status === "NOT_STARTED" ? timerStart.days : timerEnd.days) : 0,
@@ -90,8 +91,8 @@ const Countdown = ({ status }: CountdownProps) => {
                         }}
                     />
                 </Flex>
-                {isSale && <Loader percent={((endTime! - now) * 100) / (endTime! - startTime!)} />}
-                {!isEndSale && (
+                {isSale && !noLoader && <Loader percent={((endTime! - now) * 100) / (endTime! - startTime!)} />}
+                {!isEndSale && !noLoader && (
                     <Box
                         zIndex={1}
                         pos="absolute"
@@ -106,7 +107,7 @@ const Countdown = ({ status }: CountdownProps) => {
                         />
                     </Box>
                 )}
-                {!isEndSale && (
+                {!isEndSale && !noLoader && (
                     <Box
                         overflow="hidden"
                         pos="absolute"

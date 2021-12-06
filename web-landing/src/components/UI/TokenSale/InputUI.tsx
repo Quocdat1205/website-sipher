@@ -175,7 +175,7 @@ const InputUI = ({ mode }: Props) => {
                     </Text>
                 </Flex>
             </Flex>
-            <Flex justify="space-between">
+            <Flex justify="space-between" mb={4}>
                 <Flex align="center">
                     <Image src="/images/icons/usd.png" alt="icon" h="1rem" />
                     <Text ml={1} textAlign="left" color="#979797" fontSize="sm">
@@ -194,7 +194,7 @@ const InputUI = ({ mode }: Props) => {
                     ETH
                 </Text>
             </Flex>
-            <Flex flexDir="column" mb={8}>
+            <Flex flexDir="column" mb={4}>
                 <Flex mb={2} align="center">
                     <Text mr={2}>Locked amount</Text>
                     <Tooltip

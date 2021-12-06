@@ -9,6 +9,7 @@ import {
     ModalHeader,
     Text,
     Flex,
+    Stack,
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
 
@@ -55,7 +56,7 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                 <ModalHeader>{"Connect Wallet"}</ModalHeader>
                 <ModalCloseButton _focus={{ shadow: "none" }} />
                 <ModalBody p={0}>
-                    <HStack p={4} spacing={4}>
+                    <Stack p={4} spacing={4} direction={["column", "row"]}>
                         <WalletCard
                             src="/images/icons/wallet/metamask.svg"
                             text="MetaMask"
@@ -66,7 +67,7 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             text="WalletConnect"
                             onClick={() => wallet.connect("walletConnect")}
                         />
-                    </HStack>
+                    </Stack>
                 </ModalBody>
             </ModalContent>
         </Modal>
