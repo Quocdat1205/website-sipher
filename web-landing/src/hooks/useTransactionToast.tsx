@@ -12,7 +12,7 @@ type ChakraToastOptions = {
     duration?: number
 }
 
-export const useTransactionToast = ({ defaultDuration }: UseChakraToastOptions = { defaultDuration: 6500 }) => {
+export const useTransactionToast = ({ defaultDuration }: UseChakraToastOptions = { defaultDuration: 15000 }) => {
     const toast = useToast()
 
     return useCallback((options: ChakraToastOptions) => {
