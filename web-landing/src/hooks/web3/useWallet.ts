@@ -174,11 +174,11 @@ const useWallet = () => {
             if (!account) throw Error("Account not found")
             if (!web3.current) throw Error("Provider not found")
 
-            let accessToken = await getAccessToken()
+            let accessToken = getAccessToken()
             const isTracking = await trackingIP(account, accessToken!, action, SipherTokenAddress, SipherIBCOAddress)
             return isTracking
         },
-        [web3React]
+        [web3React, account]
     )
 
     // auto connect on refresh
