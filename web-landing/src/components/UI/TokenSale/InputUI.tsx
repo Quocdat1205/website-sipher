@@ -12,9 +12,10 @@ import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
 import { floorPrecised } from "@source/utils/index"
 import useTransactionToast from "@hooks/useTransactionToast"
-import { ActionButton } from "@components/shared"
+import { ActionButton, PopoverCustom } from "@components/shared"
 import { useETHPrice } from "@hooks/api"
 import { WithdrawModal } from "./Modal"
+import { isMobile } from "react-device-detect"
 
 interface Props {
     mode: DropdownOption
@@ -114,7 +115,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                transactionToast({ status: "success" })
+                transactionToast({ status: "successDeposit" })
                 setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("withdrawable-amount")
@@ -203,21 +204,29 @@ const InputUI = ({ mode }: Props) => {
             <Flex flexDir="column" mb={4}>
                 <Flex mb={2} align="center">
                     <Text mr={2}>Locked amount</Text>
-                    <Tooltip
-                        hasArrow
-                        label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation."
-                        placement="bottom-end"
-                        fontSize="sm"
-                        bg="#383838DD"
-                        fontWeight={400}
-                        rounded="lg"
-                        p={2}
-                        w="240px"
-                    >
-                        <Box>
-                            <BsQuestionCircle size="1rem" />
-                        </Box>
-                    </Tooltip>
+                    {!isMobile ? (
+                        <Tooltip
+                            hasArrow
+                            label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation."
+                            placement="bottom-end"
+                            fontSize="sm"
+                            bg="#383838DD"
+                            fontWeight={400}
+                            rounded="lg"
+                            p={2}
+                            w="240px"
+                        >
+                            <Box>
+                                <BsQuestionCircle size="1rem" />
+                            </Box>
+                        </Tooltip>
+                    ) : (
+                        <PopoverCustom label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation.">
+                            <Box>
+                                <BsQuestionCircle size="1rem" />
+                            </Box>
+                        </PopoverCustom>
+                    )}
                 </Flex>
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box

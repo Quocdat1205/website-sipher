@@ -3,7 +3,7 @@
 import { Flex, Box, Stack, Text, Tooltip } from "@chakra-ui/react"
 import React from "react"
 import SaleTimer from "./SaleTimer"
-import { BackgroundContainer } from "@components/shared"
+import { BackgroundContainer, PopoverCustom } from "@components/shared"
 import SaleForm from "./SaleForm"
 import Header from "./Header"
 import { SignInModal } from "./Modal"
@@ -15,6 +15,9 @@ import Loading from "./SubUI/Loading"
 import EndedClaim from "./SubUI/EndedClaim"
 import CountDown from "./CountDown"
 import { BsQuestionCircle } from "react-icons/bs"
+import { isMobile } from "react-device-detect"
+import NotfoundPage from "@pages/404"
+
 const TokenSale = () => {
     const { status } = useSaleTime()
 
@@ -23,6 +26,8 @@ const TokenSale = () => {
     if (status === "LOADING") return <Loading />
 
     if (status === "ENDED") return <EndedClaim />
+
+    if (status === "ERROR") return <NotfoundPage />
 
     return (
         <BackgroundContainer
@@ -85,24 +90,32 @@ const TokenSale = () => {
                             mb={16}
                         >
                             <Flex align="center" mb={2} pos="relative">
-                                <Text fontWeight="semibold" fontSize="sm" letterSpacing="3px">
+                                <Text mr={2} fontWeight="semibold" fontSize="sm" letterSpacing="3px">
                                     {status === "NOT_STARTED" ? "COUNTDOWN TO BEGIN" : "SALE PERIOD ENDS"}
                                 </Text>
-                                <Tooltip
-                                    hasArrow
-                                    label="The $SIPHER Initial Public Sale will span 72 hours from 01:00AM (UTC) 06/12/2021 to 01:00AM (UTC) 09/12/2021."
-                                    placement="bottom-end"
-                                    fontSize="sm"
-                                    bg="#383838DD"
-                                    fontWeight={400}
-                                    rounded="lg"
-                                    p={2}
-                                    w="240px"
-                                >
-                                    <Box ml={2} cursor="pointer" color="white">
-                                        <BsQuestionCircle size="1rem" />
-                                    </Box>
-                                </Tooltip>
+                                {!isMobile ? (
+                                    <Tooltip
+                                        hasArrow
+                                        label="The $SIPHER Initial Public Sale will span 72 hours from 01:00AM (UTC) 06/12/2021 to 01:00AM (UTC) 09/12/2021."
+                                        placement="bottom-end"
+                                        fontSize="sm"
+                                        bg="#383838DD"
+                                        fontWeight={400}
+                                        rounded="lg"
+                                        p={2}
+                                        w="240px"
+                                    >
+                                        <Box cursor="pointer" color="white">
+                                            <BsQuestionCircle size="1rem" />
+                                        </Box>
+                                    </Tooltip>
+                                ) : (
+                                    <PopoverCustom label="The $SIPHER Initial Public Sale will span 72 hours from 01:00AM (UTC) 06/12/2021 to 01:00AM (UTC) 09/12/2021.">
+                                        <Box>
+                                            <BsQuestionCircle size="1rem" />
+                                        </Box>
+                                    </PopoverCustom>
+                                )}
                             </Flex>
                             <CountDown status={status} noLoader />
                             <Text fontWeight="semibold" fontSize="sm" letterSpacing="3px" w="full" textAlign="center">
