@@ -34,9 +34,9 @@ export const WithdrawModal = ({ modal, setModal, withdraw, getTracking }: Props)
     }
 
     return (
-        <Modal motionPreset="slideInBottom" isCentered isOpen={true} onClose={() => setModal(false)} size={"2xl"}>
+        <Modal motionPreset="slideInBottom" isCentered isOpen={modal} onClose={() => setModal(false)} size={"2xl"}>
             <ModalOverlay bg="blackAlpha.800" />
-            <ModalContent p={0} overflow="hidden">
+            <ModalContent p={0} overflow="hidden" bg="transparent">
                 <Flex
                     bg="black"
                     flexDir="column"
@@ -49,9 +49,10 @@ export const WithdrawModal = ({ modal, setModal, withdraw, getTracking }: Props)
                     borderColor="border.gray"
                 >
                     <ModalCloseButton _focus={{ boxShadow: "none" }} color="#9B9E9D" fontSize="xl" zIndex={1} />
-                    <Typo.Heading color="white" fontWeight="semibold">
+
+                    <Text textAlign="center" fontSize="lg" fontWeight="semibold" letterSpacing="3px" mb={4}>
                         WITHDRAWAL WARNING
-                    </Typo.Heading>
+                    </Text>
                     <Text mb={4} textAlign="center">
                         Please note: Withdrawing does not mean you are getting your tokens, it means you are taking your
                         funds out of the pool allocation, meaning you are purchasing fewer tokens.
@@ -64,6 +65,7 @@ export const WithdrawModal = ({ modal, setModal, withdraw, getTracking }: Props)
                         rounded="full"
                         text="CONFIRM WITHDRAWAL OF FUNDS"
                         onClick={() => handleWithDraw()}
+                        fontSize="sm"
                         py={4}
                     />
                 </Flex>

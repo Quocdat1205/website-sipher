@@ -60,7 +60,7 @@ const Header = (props: Props) => {
                         borderColor="border.gray"
                         bg="black"
                     >
-                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="red" fontSize="xl" zIndex={1} />
+                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="#9B9E9D" fontSize="xl" zIndex={1} />
                         {modal === "1" ? <VideoModal /> : <LearnAboutModal />}
                     </Box>
                 </ModalContent>
