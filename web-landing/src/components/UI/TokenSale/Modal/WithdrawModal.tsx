@@ -19,11 +19,11 @@ export const WithdrawModal = ({ modal, setModal, withdraw, getTracking }: Props)
     const transactionToast = useTransactionToast()
 
     const handleWithDraw = async () => {
-        setModal(false)
         try {
             const isTracking = await getTracking("Withdraw")
             if (isTracking) {
                 transactionToast({ status: "processing" })
+                setModal(false)
                 withdraw()
             } else {
                 toast({ title: "Error!", message: "Your IP address is in restricted territory" })
