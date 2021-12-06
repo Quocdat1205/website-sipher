@@ -25,6 +25,7 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import dataCountry from "./dataCountry"
+import { isMobile } from "react-device-detect"
 
 export const SignInModal = () => {
     const router = useRouter()
@@ -90,7 +91,7 @@ export const SignInModal = () => {
         <Modal
             closeOnOverlayClick={false}
             motionPreset="slideInBottom"
-            // isCentered
+            isCentered={!isMobile}
             isOpen={isOpen}
             onClose={onClose}
             size={"5xl"}
