@@ -46,7 +46,7 @@ const TokenSale = () => {
                 direction="column"
                 align="center"
                 w="full"
-                display={isCheckMobile ? "none" : "flex"}
+                // display={isCheckMobile ? "none" : "flex"}
             >
                 <Header />
                 <Grid templateRows="auto 1fr" templateColumns="1fr auto" gap={4} w="full" maxH="full" maxW={"64rem"}>
