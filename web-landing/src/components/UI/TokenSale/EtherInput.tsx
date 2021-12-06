@@ -1,4 +1,5 @@
 import { NumberInput, NumberInputField } from "@chakra-ui/react"
+import { KeyboardEvent } from "react"
 import { Status } from "./useSaleTime"
 
 interface EtherInputProps {
@@ -13,8 +14,25 @@ const EtherInput = ({ value, setValue, maxValue, status }: EtherInputProps) => {
     //     return value === "" ? "" : value
     // }
 
+    const format = (value: string) => {
+        console.log(value)
+        setValue(value)
+    }
+
+    const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === ",") {
+            setValue(value + ".")
+        }
+    }
+
     return (
-        <NumberInput onChange={newValue => setValue(newValue)} value={value} max={maxValue} flex={1}>
+        <NumberInput
+            onChange={newValue => format(newValue)}
+            value={value}
+            max={maxValue}
+            flex={1}
+            onKeyDown={handleKeyDown}
+        >
             <NumberInputField
                 bg="#131313"
                 border="1px"
