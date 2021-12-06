@@ -17,7 +17,7 @@ export const NotAvailable = () => {
             h="100vh"
         >
             <Flex align="center" justify="center" w="full" h="full">
-                <Typo.Heading>NOT AVAILABLE</Typo.Heading>
+                <Typo.Heading textTransform="uppercase">Not Available for Mobile. Please use Desktop</Typo.Heading>
             </Flex>
         </BackgroundContainer>
     )
