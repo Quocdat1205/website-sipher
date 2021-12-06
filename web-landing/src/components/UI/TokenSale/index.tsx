@@ -41,8 +41,8 @@ const TokenSale = () => {
             maxH="1080px"
         >
             <Flex
-                pt={!isCheckMobile ? 24 : 0}
-                pb={!isCheckMobile ? 16 : 0}
+                pt={24}
+                pb={16}
                 direction="column"
                 align="center"
                 w="full"
@@ -71,12 +71,12 @@ const TokenSale = () => {
                         border="1px"
                         borderColor="#383838"
                     >
-                        <Flex h="full">
+                        <Flex h="full" flexDir={!isCheckMobile ? "row" : "column"}>
                             <SaleTimer status={status} />
                             <SaleForm />
                         </Flex>
                     </GridItem>
-                    <GridItem>
+                    <GridItem colSpan={isCheckMobile ? 2 : 1}>
                         <RightBarInfo />
                     </GridItem>
                 </Grid>
