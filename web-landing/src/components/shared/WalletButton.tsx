@@ -41,11 +41,11 @@ export const WalletButton = ({}: WalletButtonProps) => {
         <Box
             pos="relative"
             ref={boxRef}
-            sx={{
-                "@media (max-width: 768px)": {
-                    display: "none",
-                },
-            }}
+            // sx={{
+            //     "@media (max-width: 768px)": {
+            //         display: "none",
+            //     },
+            // }}
         >
             <Box zIndex={2} pos="relative">
                 {!wallet.isActive ? (
