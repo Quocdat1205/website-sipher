@@ -71,7 +71,7 @@ const TokenSale = () => {
                         border="1px"
                         borderColor="#383838"
                     >
-                        <Flex h="full" flexDir={!isCheckMobile ? "row" : "column"}>
+                        <Flex w="full" h="full" flexDir={!isCheckMobile ? "row" : "column"}>
                             <SaleTimer status={status} />
                             <SaleForm />
                         </Flex>
