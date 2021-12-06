@@ -23,9 +23,9 @@ import { getSignIn } from "@source/utils"
 import axios from "axios"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
-import { isMobile, isTablet } from "react-device-detect"
 import { useQuery } from "react-query"
 import dataCountry from "./dataCountry"
+import { isMobile } from "react-device-detect"
 
 export const SignInModal = () => {
     const router = useRouter()
@@ -56,8 +56,6 @@ export const SignInModal = () => {
 
     const wallet = useWalletContext()
 
-    const isCheckMobile = isMobile || isTablet
-
     const toast = useChakraToast()
 
     const handleSign = async () => {
@@ -86,26 +84,26 @@ export const SignInModal = () => {
     useEffect(() => {
         let signIn = getSignIn()
 
-        if ((!signIn || signIn !== "true") && !isCheckMobile) onOpen()
-    }, [wallet, isCheckMobile, onOpen])
+        if (!signIn || signIn !== "true") onOpen()
+    }, [wallet, onOpen])
 
     return (
         <Modal
             closeOnOverlayClick={false}
             motionPreset="slideInBottom"
-            isCentered
+            isCentered={!isMobile}
             isOpen={isOpen}
             onClose={onClose}
-            size="5xl"
+            size={"5xl"}
         >
             <ModalOverlay bg="rgba(19, 19, 19, 0.8)" />
             <ModalContent bg="black" p={0} rounded="md">
                 <ModalCloseButton _focus={{ shadow: "none" }} color="#9B9E9D" onClick={() => router.push("/")} />
-                <Flex rounded="lg" py={10} px={20} flexDir="column" align="center" justify="center">
+                <Flex rounded="lg" py={10} px={[4, 4, 20]} flexDir="column" align="center" justify="center">
                     <Text mb={4} textAlign="left" size="large" fontWeight="semibold" letterSpacing="3px">
                         JUST A SEC!
                     </Text>
-                    <Box>
+                    <Box p={4} w="full">
                         {signContent.map(item => (
                             <Box mb={4} key={item.title}>
                                 <Text mb={1}>{item.title}</Text>
@@ -169,7 +167,7 @@ export const SignInModal = () => {
                             </Stack>
                         </CheckboxGroup>
                     </Box>
-                    <Flex mt={4} px={4} justify="center" w="full">
+                    <Flex mt={4} justify="center" w="full">
                         <ActionButton
                             rounded="full"
                             bgGradient="linear(to-b, #393939, #393939 84.37%)"
@@ -177,15 +175,17 @@ export const SignInModal = () => {
                             onClick={() => router.push("/")}
                             w="12rem"
                             px={4}
+                            fontSize="sm"
                             py={2}
                         />
                         <ActionButton
                             isLoading={isLoading}
                             loadingText="CONFIRMING"
-                            ml={8}
+                            ml={[4, 4, 8]}
                             rounded="full"
                             text="CONFIRM"
                             onClick={() => handleSign()}
+                            fontSize="sm"
                             w="12rem"
                             disabled={
                                 !dataCheck.check1 || !dataCheck.check2 || !dataCheck.check3 || valueSelect === undefined

@@ -12,7 +12,7 @@ export const ChakraModal = ({ children, ...rest }: ChakraModalProps) => {
         <Modal isCentered {...rest}>
             <ModalOverlay />
             <ModalContent bg="red.300" rounded="0" bgGradient="linear(to-b,bgGradient.orange)" p={1}>
-                <ModalCloseButton color="main.darkRed" _focus={{ border: "0px" }} />
+                <ModalCloseButton color="#9B9E9D" _focus={{ border: "0px" }} />
                 <ModalBody bg="black" p={4} overflow="auto">
                     {children}
                 </ModalBody>

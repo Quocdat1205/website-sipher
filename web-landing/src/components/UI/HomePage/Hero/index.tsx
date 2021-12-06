@@ -23,13 +23,14 @@ import useSaleTime from "./CountDown/useSaleTime"
 import { BsPlayFill } from "react-icons/bs"
 import { LearnAboutModal, VideoModal } from "@components/UI/TokenSale/Modal"
 import { useState } from "react"
+import { useRouter } from "next/router"
 
 interface FirstScreenProps {}
 
 const FirstScreen = ({}: FirstScreenProps) => {
     const { status } = useSaleTime()
     const [modal, setModal] = useState("")
-
+    const router = useRouter()
     const openModal = (modal: string) => {
         setModal(modal)
     }
@@ -87,9 +88,23 @@ const FirstScreen = ({}: FirstScreenProps) => {
                                 px={12}
                             />
                         ) : status === "ONGOING" ? (
-                            <LinkButton w="full" text="JOIN THE TOKEN SALE" size="large" href="/token-sale" px={12} />
+                            <LinkButton
+                                cursor="pointer"
+                                w="full"
+                                text="JOIN THE TOKEN SALE"
+                                size="large"
+                                onClick={() => router.push("/token-sale")}
+                                px={12}
+                            />
                         ) : (
-                            <LinkButton w="full" text="JOIN THE TOKEN SALE" size="large" href="/token-sale" px={12} />
+                            <LinkButton
+                                cursor="pointer"
+                                w="full"
+                                text="JOIN THE TOKEN SALE"
+                                size="large"
+                                onClick={() => router.push("/token-sale")}
+                                px={12}
+                            />
                         )}
                         <Button
                             _focus={{ boxShadow: "none" }}
@@ -143,7 +158,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 <ModalOverlay bg="blackAlpha.800" />
                 <ModalContent bg="black" p={4} overflow="hidden">
                     <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
-                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="red" fontSize="xl" zIndex={1} />
+                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="#9B9E9D" fontSize="xl" zIndex={1} />
                         {modal === "1" ? <VideoModal /> : <LearnAboutModal />}
                     </Box>
                 </ModalContent>

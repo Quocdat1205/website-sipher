@@ -38,15 +38,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
     }, [wallet.isActive, router])
 
     return (
-        <Box
-            pos="relative"
-            ref={boxRef}
-            sx={{
-                "@media (max-width: 768px)": {
-                    display: "none",
-                },
-            }}
-        >
+        <Box pos="relative" ref={boxRef}>
             <Box zIndex={2} pos="relative">
                 {!wallet.isActive ? (
                     <GradientButton
@@ -61,10 +53,10 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         rounded="xl"
                         onClick={handleClick}
                         border="1px"
-                        px={[0, 4]}
+                        px={[2, 4]}
                         borderColor="transparent"
                         h="2.5rem"
-                        w={["10rem", "12.5rem"]}
+                        w={["12rem", "12.5rem"]}
                     />
                 ) : (
                     <Flex
@@ -74,17 +66,17 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         borderTopRadius="lg"
                         borderBottomRadius={menu ? "none" : "lg"}
                         align="center"
-                        px={[0, 4]}
+                        px={[2, 2, 4]}
                         py={2}
                         cursor="pointer"
                         onClick={() => setMenu(!menu)}
                         h="2.5rem"
-                        w={["10rem", "12.5rem"]}
+                        // w={["10rem", "12.5rem"]}
                     >
                         <Box color="main.orange" mr={2}>
                             <FaWallet />
                         </Box>
-                        <Text fontWeight="semibold" fontSize={["xs", "sm"]}>
+                        <Text fontWeight="semibold" fontSize="sm" mr={2}>
                             {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
                                 wallet.account.length - 4,
                                 wallet.account.length
@@ -109,6 +101,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             bg="#383838"
                             shadow="base"
                             onClick={() => router.push("/inventory/inu")}
+                            display={["none", "none", "flex"]}
                         >
                             <Box color="main.orange" mr={2}>
                                 <BsInboxFill size="1.2rem" />
@@ -125,6 +118,7 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             }}
                             text="Disconnect"
                             w="full"
+                            px={2}
                         />
                     </Box>
                 </Collapse>

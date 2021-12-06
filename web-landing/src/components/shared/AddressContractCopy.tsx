@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Text, Stack } from "@chakra-ui/react"
 import React from "react"
 import { AiFillCopy } from "react-icons/ai"
 import { SipherTokenAddress } from "@source/contract/code"
@@ -15,11 +15,9 @@ export const AddressContractCopy = (props: Props) => {
     }
 
     return (
-        <Flex align="center">
-            <Text mr={2} fontSize={["sm", "md"]}>
-                {SipherTokenAddress}
-            </Text>
+        <Stack spacing={2} align="center" direction={["column", "row"]}>
+            <Text fontSize="sm">{SipherTokenAddress}</Text>
             <AiFillCopy cursor="pointer" onClick={handleCopy} size="1.2rem" />
-        </Flex>
+        </Stack>
     )
 }

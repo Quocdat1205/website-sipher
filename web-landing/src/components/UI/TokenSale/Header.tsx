@@ -51,9 +51,16 @@ const Header = (props: Props) => {
                 size={"4xl"}
             >
                 <ModalOverlay bg="blackAlpha.800" />
-                <ModalContent bg="black" p={4} overflow="hidden">
-                    <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
-                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="red" fontSize="xl" zIndex={1} />
+                <ModalContent p={0} bg="transparent" overflow="hidden">
+                    <Box
+                        overflow="hidden"
+                        pos="relative"
+                        rounded="lg"
+                        border="1px"
+                        borderColor="border.gray"
+                        bg="black"
+                    >
+                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="#9B9E9D" fontSize="xl" zIndex={1} />
                         {modal === "1" ? <VideoModal /> : <LearnAboutModal />}
                     </Box>
                 </ModalContent>

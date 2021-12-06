@@ -24,7 +24,7 @@ const LayoutTwitter = ({ details }: Props) => {
             <ModalCloseButton
                 top={["10%", "0", "0", "0", "0"]}
                 zIndex={10}
-                color="red"
+                color="#9B9E9D"
                 size="lg"
                 _hover={{ color: "red" }}
                 _focus={{ shadow: "none" }}

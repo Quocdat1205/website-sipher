@@ -10,7 +10,7 @@ interface SaleTimerProps {
 
 const SaleTimer = ({ status }: SaleTimerProps) => {
     return (
-        <Flex direction="column" align="center" flex={2} pos="relative">
+        <Flex w="full" direction="column" align="center" flex={2} pos="relative" display={["none", "none", "flex"]}>
             <Flex align="center" mb={4}>
                 <Text fontWeight="semibold" size="small" letterSpacing="3px">
                     {status === "NOT_STARTED" ? "COUNTDOWN TO BEGIN" : "SALE PERIOD ENDS"}

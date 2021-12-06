@@ -12,8 +12,10 @@ import useSaleTime from "./useSaleTime"
 import { BsQuestionCircle } from "react-icons/bs"
 import { floorPrecised } from "@source/utils/index"
 import useTransactionToast from "@hooks/useTransactionToast"
-import { ActionButton } from "@components/shared"
+import { ActionButton, PopoverCustom } from "@components/shared"
 import { useETHPrice } from "@hooks/api"
+import { WithdrawModal } from "./Modal"
+import { isMobile } from "react-device-detect"
 
 interface Props {
     mode: DropdownOption
@@ -21,6 +23,7 @@ interface Props {
 
 const InputUI = ({ mode }: Props) => {
     const [value, setValue] = useState("")
+    const [withDrawModal, setWithdrawModal] = useState(false)
     const setValueCb = useCallback((value: string) => setValue(value), [])
     const ethPrice = useETHPrice()
 
@@ -98,7 +101,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                transactionToast({ status: "success" })
+                transactionToast({ status: "successDeposit" })
                 setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("locked-amount")
@@ -112,7 +115,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                transactionToast({ status: "success" })
+                transactionToast({ status: "successDeposit" })
                 setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("withdrawable-amount")
@@ -121,16 +124,20 @@ const InputUI = ({ mode }: Props) => {
     )
 
     const handleAction = async () => {
-        try {
-            const isTracking = await getTracking(mode )
-            if (isTracking) {
-                transactionToast({ status: "processing" })
-                mode === "Deposit" ? deposit() : withdraw()
-            } else {
-                toast({ title: "Error!", message: "Your IP address is in restricted territory" })
+        if (mode === "Deposit") {
+            try {
+                const isTracking = await getTracking(mode)
+                if (isTracking) {
+                    transactionToast({ status: "processing" })
+                    deposit()
+                } else {
+                    toast({ title: "Error!", message: "Your IP address is in restricted territory" })
+                }
+            } catch (error) {
+                toast({ title: "Error!", message: "Please try again later" })
             }
-        } catch (error) {
-            toast({ title: "Error!", message: "Please try again later" })
+        } else {
+            setWithdrawModal(true)
         }
     }
 
@@ -175,7 +182,7 @@ const InputUI = ({ mode }: Props) => {
                     </Text>
                 </Flex>
             </Flex>
-            <Flex justify="space-between">
+            <Flex justify="space-between" mb={4}>
                 <Flex align="center">
                     <Image src="/images/icons/usd.png" alt="icon" h="1rem" />
                     <Text ml={1} textAlign="left" color="#979797" fontSize="sm">
@@ -194,25 +201,32 @@ const InputUI = ({ mode }: Props) => {
                     ETH
                 </Text>
             </Flex>
-
-            <Flex flexDir="column" mb={8}>
+            <Flex flexDir="column" mb={4}>
                 <Flex mb={2} align="center">
                     <Text mr={2}>Locked amount</Text>
-                    <Tooltip
-                        hasArrow
-                        label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation."
-                        placement="bottom-end"
-                        fontSize="sm"
-                        bg="#383838DD"
-                        fontWeight={400}
-                        rounded="lg"
-                        p={2}
-                        w="240px"
-                    >
-                        <Box>
-                            <BsQuestionCircle size="1rem" />
-                        </Box>
-                    </Tooltip>
+                    {!isMobile ? (
+                        <Tooltip
+                            hasArrow
+                            label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation."
+                            placement="bottom-end"
+                            fontSize="sm"
+                            bg="#383838DD"
+                            fontWeight={400}
+                            rounded="lg"
+                            p={2}
+                            w="240px"
+                        >
+                            <Box>
+                                <BsQuestionCircle size="1rem" />
+                            </Box>
+                        </Tooltip>
+                    ) : (
+                        <PopoverCustom label="A portion of your total cumulative contribution deposit that cannot be withdrawn in order to deter price manipulation.">
+                            <Box>
+                                <BsQuestionCircle size="1rem" />
+                            </Box>
+                        </PopoverCustom>
+                    )}
                 </Flex>
                 <Box rounded="full" overflow="hidden" border="1px" borderColor="#383838" bg="#131313" h="12px">
                     <Box
@@ -242,10 +256,17 @@ const InputUI = ({ mode }: Props) => {
                 disabled={
                     status !== "ONGOING" ||
                     value === "" ||
+                    value === "0" ||
                     (mode === "Withdraw" ? parseFloat(value) > withdrawableAmount! : parseFloat(value) > walletBalance)
                 }
                 onClick={handleAction}
                 py={4}
+            />
+            <WithdrawModal
+                modal={withDrawModal}
+                setModal={setWithdrawModal}
+                withdraw={withdraw}
+                getTracking={getTracking}
             />
         </Flex>
     )

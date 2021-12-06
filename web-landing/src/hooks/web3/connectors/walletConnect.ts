@@ -7,7 +7,7 @@ const initWalletConnect = (): Connector => {
     const web3ReactConnector = () => {
         return new WalletConnectConnector({
             qrcode: true,
-            infuraId: "52e62e876fe64ea2b200aea33d8e22f1",
+            infuraId: "8e3937db21b341ceac1607d35ae551dd",
             supportedChainIds: [CHAIN_ID],
         })
     }
