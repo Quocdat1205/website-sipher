@@ -60,7 +60,12 @@ const NotConnected = ({}: NotConnectedProps) => {
                         <ModalOverlay bg="blackAlpha.800" />
                         <ModalContent bg="black" p={4} overflow="hidden">
                             <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
-                                <ModalCloseButton _focus={{ boxShadow: "none" }} color="red" fontSize="xl" zIndex={1} />
+                                <ModalCloseButton
+                                    _focus={{ boxShadow: "none" }}
+                                    color="#9B9E9D"
+                                    fontSize="xl"
+                                    zIndex={1}
+                                />
                                 <LearnAboutModal />
                             </Box>
                         </ModalContent>
