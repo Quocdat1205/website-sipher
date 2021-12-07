@@ -23,12 +23,17 @@ const Header = () => {
     console.log(totalStaked, sipherPrice)
 
     return (
-        <Flex align="flex-start" justify="space-between" w="full">
-            <Box>
-                <Typo.Heading mb={2} textAlign="left">
+        <Flex
+            flexDir={["column", "row"]}
+            align={["center", "flex-start"]}
+            justify={["center", "space-between"]}
+            w="full"
+        >
+            <Flex flexDir="column" align={["center", "flex-start"]}>
+                <Typo.Heading mb={2} textAlign={["center", "left"]}>
                     STAKE
                 </Typo.Heading>
-                <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
+                <Text textAlign={["center", "left"]} letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
                     WHY AM I NOT FINALIZED ALREADY ???
                 </Text>
                 <Link
@@ -41,9 +46,9 @@ const Header = () => {
                 >
                     Watch the how to stake video (30s)
                 </Link>
-            </Box>
-            <Box maxW="320px">
-                <Flex justify="space-between" w="full" align="center" mb={1}>
+            </Flex>
+            <Box w={["full", "auto"]} maxW={["100%", "320px"]} mt={[4, 0]}>
+                <Flex justify="space-between" w="full" align="center" mb={2}>
                     <Flex align="center">
                         <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                         <Text size="small">
@@ -52,20 +57,26 @@ const Header = () => {
                     </Flex>
                 </Flex>
                 <Flex
-                    flexDir="column"
-                    bg="rgba(29, 29, 29,0.9)"
-                    py={8}
-                    px={12}
-                    justify="center"
+                    bg="#292929"
+                    flexDir={["row", "column"]}
+                    py={[6, 8]}
+                    px={[6, 12]}
+                    justify={["space-between", "center"]}
                     align="center"
-                    rounded="lg"
+                    rounded="xl"
                 >
-                    <Text size="small">Total Amount Staked:</Text>
-                    <Text fontWeight="semibold">${currency(totalStaked! * sipherPrice)}</Text>
-                    <Text size="small" mt={4}>
-                        Total Amount Claimed:
-                    </Text>
-                    <Text fontWeight="semibold">${currency(totalClaimed! * sipherPrice)}</Text>
+                    <Box>
+                        <Text size="small">Total Amount Staked:</Text>
+                        <Text textAlign="center" fontWeight="semibold">
+                            ${currency(totalStaked! * sipherPrice)}
+                        </Text>
+                    </Box>
+                    <Box mt={[0, 4]}>
+                        <Text size="small">Total Amount Claimed:</Text>
+                        <Text textAlign="center" fontWeight="semibold">
+                            ${currency(totalClaimed! * sipherPrice)}
+                        </Text>
+                    </Box>
                 </Flex>
             </Box>
         </Flex>

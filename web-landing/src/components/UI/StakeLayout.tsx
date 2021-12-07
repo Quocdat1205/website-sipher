@@ -20,6 +20,7 @@ const StakeLayout = ({ children }: StakeLayoutProps) => {
             <NavBar isChildMenu menus="stakeMenus" />
             <Flex flex={1} overflow="overlay" direction="column" id="body">
                 <BackgroundContainer
+                    bg="black"
                     pos="relative"
                     image="/images/pc/stake/bg-stake.png"
                     bgRepeat="no-repeat"

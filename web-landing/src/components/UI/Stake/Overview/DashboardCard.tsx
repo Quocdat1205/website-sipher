@@ -26,8 +26,9 @@ const DashboardCard = ({
     isLoading,
 }: Props) => {
     return (
-        <Box flex={1} overflow="hidden">
+        <Box flex={1} overflow={["visible", "hidden"]}>
             <Flex
+                w={["18rem", "auto"]}
                 p={8}
                 rounded="xl"
                 border="1px"

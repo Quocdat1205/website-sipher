@@ -26,7 +26,13 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
             <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                 YOUR DASHBOARD
             </Text>
-            <HStack spacing={4} align="stretch">
+            <HStack
+                overflowX="scroll"
+                sx={{ "::-webkit-scrollbar": { h: "3px" } }}
+                w="100%"
+                spacing={4}
+                align="stretch"
+            >
                 <DashboardCard
                     img="/images/pc/stake/moneystake.png"
                     title="Total Staked"
