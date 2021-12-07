@@ -1,5 +1,5 @@
 import {
-    HStack,
+    Link,
     Img,
     Modal,
     ModalOverlay,
@@ -9,9 +9,11 @@ import {
     ModalHeader,
     Text,
     Flex,
+    Box,
     Stack,
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
+import { useRouter } from "next/router"
 
 interface WalletCard {
     src: string
@@ -49,6 +51,7 @@ interface WalletModalProps {
 
 export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
     const wallet = useWalletContext()
+    const router = useRouter()
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
             <ModalOverlay />
@@ -68,6 +71,11 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             onClick={() => wallet.connect("walletConnect")}
                         />
                     </Stack>
+                    <Box textAlign="center" w="full" p={4}>
+                        <Link color="main.orange" onClick={() => router.push("#")}>
+                            Using Legacy Format for Trezor User
+                        </Link>
+                    </Box>
                 </ModalBody>
             </ModalContent>
         </Modal>
