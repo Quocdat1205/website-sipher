@@ -46,7 +46,7 @@ const StakingDepositsMobile = ({ deposits, stakingDeposit }: StakingDepositsProp
 
     return (
         <Box>
-            <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
+            <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                 STAKING DEPOSITS
             </Text>
             <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
