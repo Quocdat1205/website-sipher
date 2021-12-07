@@ -76,7 +76,6 @@ export const SignInModal = () => {
             }
         } catch (error: any) {
             setIsLoading(false)
-            console.log(error)
             toast({ status: "error", title: "Error", message: error.message || "" })
         }
     }

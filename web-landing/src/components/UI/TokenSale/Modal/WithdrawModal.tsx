@@ -49,13 +49,13 @@ export const WithdrawModal = ({ modal, setModal, withdraw, getTracking }: Props)
                     borderColor="border.gray"
                 >
                     <ModalCloseButton _focus={{ boxShadow: "none" }} color="#9B9E9D" fontSize="xl" zIndex={1} />
-
                     <Text textAlign="center" fontSize="lg" fontWeight="semibold" letterSpacing="3px" mb={4}>
                         WITHDRAWAL WARNING
                     </Text>
                     <Text mb={4} textAlign="center">
                         Please note: Withdrawing does not mean you are getting your tokens, it means you are taking your
-                        funds out of the pool allocation, meaning you are purchasing fewer tokens.
+                        deposited funds out of the purchasing pool, lowering your overall contribution and meaning that
+                        you will be purchasing fewer tokens once the sale period is over
                     </Text>
                     <Text mb={8} textAlign="center">
                         If you wanted to claim the tokens, please wait until the end of the sale on 09/12/2021 - 1:00AM
