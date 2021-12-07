@@ -90,7 +90,6 @@ const StakeForm = () => {
             // stake automatically after approved
             onSuccess: () => {
                 setApprovalModal(false)
-                stake()
             },
             onError: () => {
                 toast({ status: "error", title: "Approved failed!", message: "Please try again later!" })
@@ -184,7 +183,7 @@ const StakeForm = () => {
 
                     <ApproveModal
                         isOpen={approvalModal}
-                        onClose={() => setApprovalModal(false)}
+                        onClose={() => !isApproving && setApprovalModal(false)}
                         approve={approve}
                         isApproving={isApproving}
                     />

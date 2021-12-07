@@ -25,7 +25,7 @@ const ApproveModal = ({ isOpen, onClose, approve, isApproving }: ApproveModalPro
                 <ModalCloseButton
                     _focus={{ shadow: "none" }}
                     color="#9B9E9D"
-                    onClick={() => router.push("/")}
+                    onClick={onClose}
                     isDisabled={isApproving}
                 />
                 <Text mb={4} textAlign="center" size="large" fontWeight="semibold" letterSpacing="3px" w="full">
