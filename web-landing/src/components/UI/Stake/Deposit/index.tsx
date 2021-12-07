@@ -8,6 +8,8 @@ import { numberWithCommas } from "@source/utils"
 import useTransactionToast from "@hooks/useTransactionToast"
 import { ActionButton } from "@components/shared"
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
+import ApproveModal from "./ApproveModal"
+import { useChakraToast } from "@sipher/web-components"
 
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
@@ -15,17 +17,18 @@ export type TabOptionProps = typeof tabOptions[number]
 const StakeForm = () => {
     const qc = useQueryClient()
 
-    const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
+    const toast = useChakraToast()
 
+    const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
     const [sliderValue, setSliderValue] = useState(0)
+    const [sipherValue, setSipherValue] = useState("")
+    const [approvalModal, setApprovalModal] = useState(false)
 
     const setSliderValueCb = useCallback((value: number) => setSliderValue(value), [])
 
     const weight = 1 + (sliderValue * 7) / 365
 
     const { scCaller, account } = useWalletContext()
-
-    const [sipherValue, setSipherValue] = useState("")
 
     const { data: sipherBalance } = useQuery(
         ["sipher-balance", account],
@@ -58,6 +61,10 @@ const StakeForm = () => {
                 qc.invalidateQueries("stake-total-supply")
                 qc.invalidateQueries("sipher-balance")
                 qc.invalidateQueries("fetch")
+                toast({ status: "success", title: "Staked successfully!" })
+            },
+            onError: () => {
+                toast({ status: "error", title: "Staked failed!", message: "Please try again later!" })
             },
         }
     )
@@ -67,6 +74,37 @@ const StakeForm = () => {
             setSliderValueCb(0)
         }
     }, [mode, setSliderValueCb])
+
+    const { data: isApproved } = useQuery(
+        ["approved", account],
+        () => scCaller.current!.SipherToken.isApproved(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: false,
+        }
+    )
+
+    const { mutate: approve, isLoading: isApproving } = useMutation(
+        () => scCaller.current!.SipherToken.approve(account!),
+        {
+            // stake automatically after approved
+            onSuccess: () => {
+                setApprovalModal(false)
+                stake()
+            },
+            onError: () => {
+                toast({ status: "error", title: "Approved failed!", message: "Please try again later!" })
+            },
+        }
+    )
+
+    const handleStake = () => {
+        if (isApproved) {
+            stake()
+        } else {
+            setApprovalModal(true)
+        }
+    }
 
     return (
         <Flex direction="column" align="center" pt={8}>
@@ -124,23 +162,31 @@ const StakeForm = () => {
                             </Text>
                         </Flex>
                     </Box>
-                    <Text textAlign="center" fontSize="sm" mb={4}>
-                        Be aware that there are always risks associated with staking contracts. You assume all
+                    <Text fontSize="sm" mb={4} textAlign="justify">
+                        Warning: be aware that there are always risks associated with staking contracts. You assume all
                         responsibility. Staking rewards enter a 12 month vesting period after claiming.{" "}
                         <chakra.span color="main.orange" cursor="pointer">
                             Read more
                         </chakra.span>
                         .
                     </Text>
+
                     <ActionButton
                         w="full"
                         text="Stake"
                         onClick={() => {
-                            stake()
+                            handleStake()
                         }}
                         isLoading={isStaking}
-                        disabled={receivedSipher <= 0 || sipherValue === ""}
+                        disabled={receivedSipher <= 0 || sipherValue === "" || parseFloat(sipherValue) <= 0}
                         py={4}
+                    />
+
+                    <ApproveModal
+                        isOpen={approvalModal}
+                        onClose={() => setApprovalModal(false)}
+                        approve={approve}
+                        isApproving={isApproving}
                     />
                 </Box>
             </Box>
