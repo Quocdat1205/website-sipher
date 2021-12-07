@@ -1,5 +1,4 @@
 import {
-    Box,
     Img,
     Modal,
     ModalOverlay,
@@ -37,7 +36,7 @@ const WalletCard = ({ src, text, onClick }: WalletCard) => {
                 onClick()
             }}
         >
-            <Img src={src} alt={text} boxSize="3rem" mr={4} />
+            <Img src={src} alt={text} boxSize="3rem" mr={8} />
             <Text fontWeight="semibold">{text}</Text>
         </Flex>
     )
@@ -59,7 +58,7 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                 <ModalHeader>{"Connect Wallet"}</ModalHeader>
                 <ModalCloseButton _focus={{ shadow: "none" }} />
                 <ModalBody p={0}>
-                    <Stack p={4} spacing={4} direction={["column", "row"]}>
+                    <Stack p={4} spacing={4}>
                         <WalletCard
                             src="/images/icons/wallet/metamask.svg"
                             text="MetaMask"
@@ -70,26 +69,12 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             text="WalletConnect"
                             onClick={() => wallet.connect("walletConnect")}
                         />
+                        <WalletCard
+                            src="/images/icons/wallet/trezor.png"
+                            text="For Trezor Wallet User Only"
+                            onClick={() => router.push("https://trezorwallet.sipher.xyz/token-sale")}
+                        />
                     </Stack>
-                    <Box textAlign="center" w="full" p={4} mb={4} pt={0}>
-                        <Flex
-                            align="center"
-                            justify="center"
-                            flex={1}
-                            p={4}
-                            rounded="lg"
-                            bg="blackAlpha.800"
-                            cursor="pointer"
-                            userSelect="none"
-                            _hover={{ bg: "blackAlpha.700" }}
-                            _active={{ bg: "blackAlpha.900" }}
-                            onClick={() => router.push("https://hardwallet.sipher.xyz/token-sale")}
-                        >
-                            <Text textAlign="center" fontWeight="semibold">
-                                Using Legacy for Trezor User
-                            </Text>
-                        </Flex>
-                    </Box>
                 </ModalBody>
             </ModalContent>
         </Modal>
