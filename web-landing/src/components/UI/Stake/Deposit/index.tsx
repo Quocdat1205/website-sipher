@@ -10,6 +10,7 @@ import { ActionButton } from "@components/shared"
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
 import ApproveModal from "./ApproveModal"
 import { useChakraToast } from "@sipher/web-components"
+import { currency } from "@source/utils"
 
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
@@ -157,7 +158,7 @@ const StakeForm = () => {
                                 Est. APR: <chakra.span fontWeight="semibold">{(estAPR * 100).toFixed(2)}%</chakra.span>
                             </Text>
                             <Text fontSize="sm" color="#9B9E9D">
-                                $SIPHER Balance: {numberWithCommas(receivedSipher)}
+                                $SIPHER Balance: {currency(sipherBalance!)}
                             </Text>
                         </Flex>
                     </Box>
