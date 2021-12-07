@@ -1,10 +1,8 @@
 // * DESCRIPTION:
 
-import { Flex } from "@chakra-ui/react"
-import { NavBar, Footer, BackgroundContainer } from "@components/shared"
+import { Flex, Grid } from "@chakra-ui/react"
+import { NavBar, Footer, BackgroundContainer, WalletButton } from "@components/shared"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { useRouter } from "next/router"
-import NotConnected from "./Stake/SubUI/NotConnected"
 
 interface StakeLayoutProps {
     children: React.ReactNode
@@ -13,14 +11,11 @@ interface StakeLayoutProps {
 const StakeLayout = ({ children }: StakeLayoutProps) => {
     const { account } = useWalletContext()
 
-    const router = useRouter()
-
     return (
-        <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900">
+        <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" bg="#191919">
             <NavBar isChildMenu menus="stakeMenus" />
             <Flex flex={1} overflow="overlay" direction="column" id="body">
                 <BackgroundContainer
-                    bg="black"
                     pos="relative"
                     image="/images/pc/stake/bg-stake.png"
                     bgRepeat="no-repeat"
@@ -30,7 +25,13 @@ const StakeLayout = ({ children }: StakeLayoutProps) => {
                     pb={16}
                     flex={1}
                 >
-                    {account ? children : <NotConnected />}
+                    {account ? (
+                        children
+                    ) : (
+                        <Grid h="full" placeItems="center" minH="480px">
+                            <WalletButton />
+                        </Grid>
+                    )}
                 </BackgroundContainer>
                 <Footer />
             </Flex>
