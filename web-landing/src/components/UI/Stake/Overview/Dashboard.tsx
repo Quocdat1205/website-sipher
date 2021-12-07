@@ -23,7 +23,14 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
 
     return (
         <Box>
-            <Text textAlign={["center", "left"]} letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
+            <Text
+                textAlign={["center", "left"]}
+                letterSpacing="3px"
+                size="large"
+                fontWeight="semibold"
+                mb={4}
+                mt={[4, 0]}
+            >
                 YOUR DASHBOARD
             </Text>
             <HStack
