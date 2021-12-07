@@ -41,7 +41,7 @@ const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => 
     )
 
     const calWeight = (start: number, end: number) => {
-        return 1 + (end - start) / (365 * 24 * 60 * 60)
+        return 1 + (end - start) / 1000 / (365 * 24 * 60 * 60)
     }
 
     return (
