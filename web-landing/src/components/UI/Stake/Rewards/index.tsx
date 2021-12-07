@@ -7,6 +7,9 @@ import React from "react"
 import { useQuery } from "react-query"
 import LockedRewards from "./LockedRewards"
 import StakingPools from "./StakingPools"
+import { isMobile } from "react-device-detect"
+import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
+import LockedRewardsMobile from "./MobileUI/LockedRewardsMobile"
 
 const Rewards = () => {
     const { scCaller, account } = useWalletContext()
@@ -17,21 +20,32 @@ const Rewards = () => {
 
     return (
         <Flex direction="column" align="center" w="full">
-            <Box w="full" maxW="60rem">
+            <Box w="full" maxW="60rem" px={4}>
                 <Box mb={16}>
-                    <Typo.Heading mb={2} textAlign="left">
+                    <Typo.Heading mb={2} textAlign={["center", "left"]}>
                         Rewards
                     </Typo.Heading>
-                    <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
+                    <Text textAlign={["center", "left"]} letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
                         WHY AM I NOT FINALIZED ALREADY ???
                     </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
-                    <StakingPools
-                        amountStaked={data?.pool.accountTotalDeposit}
-                        claimableRewards={data?.pool.accountPendingRewards}
-                    />
-                    <LockedRewards deposits={data?.escrowPool.deposits || []} />
+                    {!isMobile ? (
+                        <StakingPools
+                            amountStaked={data?.pool.accountTotalDeposit}
+                            claimableRewards={data?.pool.accountPendingRewards}
+                        />
+                    ) : (
+                        <StakingPoolsMobile
+                            amountStaked={data?.pool.accountTotalDeposit}
+                            claimableRewards={data?.pool.accountPendingRewards}
+                        />
+                    )}
+                    {!isMobile ? (
+                        <LockedRewards deposits={data?.escrowPool.deposits || []} />
+                    ) : (
+                        <LockedRewardsMobile deposits={data?.escrowPool.deposits || []} />
+                    )}
                 </VStack>
             </Box>
         </Flex>

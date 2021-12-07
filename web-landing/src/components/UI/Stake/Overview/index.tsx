@@ -10,6 +10,9 @@ import Dashboard from "./Dashboard"
 import Header from "./Header"
 import StakingDeposits from "./StakingDeposits"
 import StakingPools from "./StakingPools"
+import { isMobile } from "react-device-detect"
+import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
+import StakingDepositsMobile from "./MobileUI/StakingDepositsMobile"
 
 const StakeOverview = () => {
     const { scCaller, account } = useWalletContext()
@@ -33,7 +36,7 @@ const StakeOverview = () => {
     )
     return (
         <Flex direction="column" align="center" w="full">
-            <Box w="full" maxW="60rem">
+            <Box w="full" maxW="60rem" px={4}>
                 <Header />
                 <VStack spacing={8} align="stretch">
                     <Dashboard
@@ -41,13 +44,29 @@ const StakeOverview = () => {
                         unclaimedRewards={data?.pendingRewards}
                         totalEarned={data?.pool.accountClaimedRewards}
                     />
-                    <StakingPools
-                        totalValueLocked={totalValueLocked! * (data?.pool.weight || 0)}
-                        APR={(TOTAL_REWARDS_FOR_POOL / Math.max(stakeTotalSupply!, 1)) * 2}
-                        pendingRewards={data?.pendingRewards}
-                        myLiquidity={data?.pool.accountTotalDeposit}
-                    />
-                    <StakingDeposits deposits={data?.pool.deposits || []} stakingDeposit={stakeTotalSupply!} />
+                    {!isMobile ? (
+                        <StakingPools
+                            totalValueLocked={totalValueLocked! * (data?.pool.weight || 0)}
+                            APR={(TOTAL_REWARDS_FOR_POOL / Math.max(stakeTotalSupply!, 1)) * 2}
+                            pendingRewards={data?.pendingRewards}
+                            myLiquidity={data?.pool.accountTotalDeposit}
+                        />
+                    ) : (
+                        <StakingPoolsMobile
+                            totalValueLocked={totalValueLocked! * (data?.pool.weight || 0)}
+                            APR={(TOTAL_REWARDS_FOR_POOL / Math.max(stakeTotalSupply!, 1)) * 2}
+                            pendingRewards={data?.pendingRewards}
+                            myLiquidity={data?.pool.accountTotalDeposit}
+                        />
+                    )}
+                    {!isMobile ? (
+                        <StakingDeposits deposits={data?.pool.deposits || []} stakingDeposit={stakeTotalSupply!} />
+                    ) : (
+                        <StakingDepositsMobile
+                            deposits={data?.pool.deposits || []}
+                            stakingDeposit={stakeTotalSupply!}
+                        />
+                    )}
                 </VStack>
             </Box>
         </Flex>
