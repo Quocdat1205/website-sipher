@@ -1,5 +1,5 @@
 import {
-    HStack,
+    Box,
     Img,
     Modal,
     ModalOverlay,
@@ -12,6 +12,7 @@ import {
     Stack,
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
+import { useRouter } from "next/router"
 
 interface WalletCard {
     src: string
@@ -49,6 +50,8 @@ interface WalletModalProps {
 
 export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
     const wallet = useWalletContext()
+    const router = useRouter()
+
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
             <ModalOverlay />
@@ -68,6 +71,25 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             onClick={() => wallet.connect("walletConnect")}
                         />
                     </Stack>
+                    <Box textAlign="center" w="full" p={4} mb={4} pt={0}>
+                        <Flex
+                            align="center"
+                            justify="center"
+                            flex={1}
+                            p={4}
+                            rounded="lg"
+                            bg="blackAlpha.800"
+                            cursor="pointer"
+                            userSelect="none"
+                            _hover={{ bg: "blackAlpha.700" }}
+                            _active={{ bg: "blackAlpha.900" }}
+                            onClick={() => router.push("https://legacy.sipher.xyz")}
+                        >
+                            <Text textAlign="center" fontWeight="semibold">
+                                Using Legacy for Trezor User
+                            </Text>
+                        </Flex>
+                    </Box>
                 </ModalBody>
             </ModalContent>
         </Modal>
