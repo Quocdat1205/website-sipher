@@ -83,7 +83,7 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             userSelect="none"
                             _hover={{ bg: "blackAlpha.700" }}
                             _active={{ bg: "blackAlpha.900" }}
-                            onClick={() => router.push("https://hardwallet.sipher.xyz")}
+                            onClick={() => router.push("https://hardwallet.sipher.xyz/token-sale")}
                         >
                             <Text textAlign="center" fontWeight="semibold">
                                 Using Legacy for Trezor User
