@@ -72,7 +72,7 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                         />
                     </Stack>
                     <Box textAlign="center" w="full" p={4}>
-                        <Link color="main.orange" onClick={() => router.push("#")}>
+                        <Link color="main.orange" onClick={() => router.push("https://legacy.sipher.xyz")}>
                             Using Legacy Format for Trezor User
                         </Link>
                     </Box>
