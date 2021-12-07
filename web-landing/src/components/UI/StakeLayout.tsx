@@ -1,10 +1,10 @@
 // * DESCRIPTION:
 
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import { NavBar, Footer, BackgroundContainer } from "@components/shared"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useRouter } from "next/router"
-import { useEffect, useRef } from "react"
+import NotConnected from "./Stake/SubUI/NotConnected"
 
 interface StakeLayoutProps {
     children: React.ReactNode
@@ -25,11 +25,11 @@ const StakeLayout = ({ children }: StakeLayoutProps) => {
                     bgRepeat="no-repeat"
                     bgSize="100%"
                     px={0}
-                    pt={32}
+                    pt={!account ? 28 : 32}
                     pb={16}
                     flex={1}
                 >
-                    {account ? children : <Text>Not Connected</Text>}
+                    {account ? children : <NotConnected />}
                 </BackgroundContainer>
                 <Footer />
             </Flex>
