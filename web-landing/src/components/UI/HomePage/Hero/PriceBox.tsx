@@ -14,6 +14,7 @@ const PriceBox = ({}: PriceBoxProps) => {
             totalProvided: 0,
             txCount: 0,
         },
+        refetchInterval: 15000,
     })
 
     return (
