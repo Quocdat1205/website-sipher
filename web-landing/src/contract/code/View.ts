@@ -1,4 +1,4 @@
-export const ViewAddress = "0x843895DCa8af5F12A547E8Ff488672fb01c8d98d"
+export const ViewAddress = "0x44fDF534d4710716385E11fb049BbB662874f33B"
 
 export const ViewAbi: any = [
     {

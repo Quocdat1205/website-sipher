@@ -2,13 +2,13 @@ import { Img } from "@chakra-ui/image"
 import { Box, Flex, Text } from "@chakra-ui/layout"
 import { Collapse } from "@chakra-ui/transition"
 import { ActionButton } from "@components/shared"
+import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
 
 interface Props {
-    sipherPrice?: number
     totalValueLocked?: number
     APR?: number
     pendingRewards?: number
@@ -24,13 +24,14 @@ const TablePool = ({
     weight = 0,
     TVL = 0,
     totalValueLocked = 0,
-    sipherPrice = 0,
     APR = 0,
     pendingRewards = 0,
     myLiquidity = 0,
     isUniswap = false,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false)
+
+    const sipherPrice = useSipherPrice()
 
     const router = useRouter()
 

@@ -1,18 +1,14 @@
 import { Stack, Flex, Box, Text } from "@chakra-ui/react"
 import { useSipherPrice } from "@hooks/api"
 import React from "react"
+import { ReactNode } from "react-markdown/lib/react-markdown"
 import TablePool from "./TablePool"
 
 interface StakingPoolsProps {
-    totalValueLocked?: number
-    APR?: number
-    pendingRewards?: number
-    myLiquidity?: number
+    children: ReactNode
 }
 
-const StakingPools = ({ totalValueLocked, APR, pendingRewards, myLiquidity }: StakingPoolsProps) => {
-    const sipherPrice = useSipherPrice()
-
+const StakingPools = ({ children }: StakingPoolsProps) => {
     return (
         <Box display={["none", "none", "block"]}>
             <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
@@ -31,25 +27,7 @@ const StakingPools = ({ totalValueLocked, APR, pendingRewards, myLiquidity }: St
                             APR
                         </Text>
                     </Flex>
-                    <Stack>
-                        <TablePool
-                            poolName="SIPHER"
-                            sipherPrice={sipherPrice}
-                            totalValueLocked={totalValueLocked}
-                            APR={APR}
-                            pendingRewards={pendingRewards}
-                            myLiquidity={myLiquidity}
-                        />
-                        <TablePool
-                            poolName="SIPHER / ETH LP"
-                            isUniswap
-                            sipherPrice={sipherPrice}
-                            totalValueLocked={totalValueLocked}
-                            APR={APR}
-                            pendingRewards={pendingRewards}
-                            myLiquidity={myLiquidity}
-                        />
-                    </Stack>
+                    <Stack>{children}</Stack>
                 </Box>
             </Box>
         </Box>
