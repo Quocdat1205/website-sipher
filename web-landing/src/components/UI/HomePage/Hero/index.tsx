@@ -65,9 +65,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
             >
                 <Title text="$SIPHER INITIAL" />
                 <Title text="PUBLIC SALE" custom={1} />
-                <Flex w="full" maxW="52rem">
-                    <PriceBox />
-                </Flex>
+
                 <MotionFlex
                     direction="column"
                     align="center"
@@ -79,6 +77,9 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         delay: 1.5,
                     }}
                 >
+                    <Flex w="full" maxW="52rem">
+                        <PriceBox />
+                    </Flex>
                     <Text fontWeight="500" fontSize="1.8rem" letterSpacing="3px">
                         {status === "ONGOING" ? "SALES ENDS IN" : "SALES HAS ENDED"}
                     </Text>
