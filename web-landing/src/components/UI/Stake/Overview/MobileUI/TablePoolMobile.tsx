@@ -35,45 +35,54 @@ const TablePoolMobile = ({
     const router = useRouter()
     return (
         <Box
-            bg={isOpen ? "#1D1D1D" : "transparent"}
-            border={isOpen ? "1px" : "0px"}
-            rounded={isOpen ? "xl" : "none"}
+            bg={isOpen ? "#383838" : "#1D1D1D"}
+            border="1px"
+            rounded="xl"
             borderColor="#383838"
             transition="background 0.25s ease-in-out"
+            p={4}
         >
-            <Box py={3} px={3}>
-                <Flex w="full" align="center" pb={3}>
-                    <Flex align="center" w="35%">
-                        <Box pos="relative">
-                            <Img src="/images/icons/sipher.png" boxSize="1.2rem" />
-                            {isUniswap && (
-                                <Img
-                                    pos="absolute"
-                                    top="0"
-                                    left="0"
-                                    transform="translateX(50%)"
-                                    src="/images/icons/eth.png"
-                                    boxSize="1.2rem"
-                                />
-                            )}
-                        </Box>
-                        <Text ml={3}>${poolName}</Text>
+            <Box>
+                <Flex flexDir="column" w="full" pb={2}>
+                    <Flex w="full" justify="space-between">
+                        <Text fontWeight="semibold">Pool</Text>
+                        <Flex align="center">
+                            <Box pos="relative">
+                                <Img src="/images/icons/sipher.png" boxSize="1.6rem" />
+                                {isUniswap && (
+                                    <Img
+                                        pos="absolute"
+                                        top="0"
+                                        left="0"
+                                        transform="translateX(50%)"
+                                        src="/images/icons/eth.png"
+                                        boxSize="1.6rem"
+                                    />
+                                )}
+                            </Box>
+                            <Text textAlign="right" ml={isUniswap ? 6 : 3}>
+                                ${poolName}
+                            </Text>
+                        </Flex>
                     </Flex>
-                    <Text w="40%" textAlign="center">
-                        {currency(totalValueLocked * sipherPrice, "$")}
-                    </Text>
-                    <Text w="25%" textAlign="center">
-                        {(APR * 100).toFixed(2)}%
-                    </Text>
+                    <Flex justify="space-between">
+                        <Text fontWeight="semibold">Total Value Locked</Text>
+                        <Text textAlign="right">{currency(totalValueLocked * sipherPrice, "$")}</Text>
+                    </Flex>
+                    <Flex justify="space-between">
+                        <Text fontWeight="semibold">APR</Text>
+                        <Text textAlign="right">{(APR * 100).toFixed(2)}%</Text>
+                    </Flex>
                 </Flex>
                 <Flex
                     borderBottom="1px"
                     borderTop="1px"
-                    borderColor={isOpen ? "#383838" : "transparent"}
+                    borderColor={isOpen ? "whiteAlpha.300" : "transparent"}
+                    py={2}
+                    mb={2}
                     w="full"
                     align="center"
                     justify="space-between"
-                    p={2}
                 >
                     <Flex align="center" cursor="pointer" onClick={() => setIsOpen(!isOpen)}>
                         <Text size="small" fontWeight="semibold">
@@ -87,7 +96,7 @@ const TablePoolMobile = ({
                 </Flex>
             </Box>
             <Collapse in={isOpen}>
-                <Box px={3} pt={3}>
+                <Box>
                     <ActionButton
                         disabled={!isUniswap}
                         onClick={() => window.open("https://app.uniswap.org/", "_blank")}
@@ -99,7 +108,7 @@ const TablePoolMobile = ({
                         letterSpacing="0px"
                     />
                 </Box>
-                <Stack p={3} spacing={3}>
+                <Stack pt={2} spacing={3}>
                     <Flex w="full" justify="space-between">
                         <Text size="small">Weight</Text>
                         <Text fontWeight="semibold" size="small">

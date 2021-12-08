@@ -78,13 +78,17 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     }}
                 >
                     <Flex w="full" maxW="52rem">
-                        <PriceBox />
+                        <PriceBox status={status} />
                     </Flex>
                     <Text fontWeight="500" fontSize="1.8rem" letterSpacing="3px">
                         {status === "ONGOING" ? "SALES ENDS IN" : "SALES HAS ENDED"}
                     </Text>
-                    {status !== "NOT_STARTED" && <CountDown startTime={startTime} endTime={endTime} />}
-
+                    {status === "ENDED" && (
+                        <Text textTransform="uppercase" fontSize="1.2rem" letterSpacing="3px">
+                            Thank You For Attending
+                        </Text>
+                    )}
+                    {status !== "ENDED" && <CountDown startTime={startTime} endTime={endTime} />}
                     <Stack mt={4} spacing={4} align="center">
                         {status === "NOT_STARTED" ? (
                             <LinkButton
@@ -106,31 +110,33 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             <LinkButton
                                 cursor="pointer"
                                 w="full"
-                                text="JOIN THE TOKEN SALE"
+                                text="CLAIM TOKEN"
                                 size="large"
                                 onClick={() => router.push("/token-sale")}
                                 px={12}
                             />
                         )}
-                        <Button
-                            _focus={{ boxShadow: "none" }}
-                            w="full"
-                            onClick={() => openModal("1")}
-                            rounded="full"
-                            border="1px"
-                            borderColor="white"
-                            color="white"
-                            bg="transparent"
-                            fontSize="sm"
-                            _hover={{ bg: "transparent" }}
-                            _active={{ bg: "transparent" }}
-                            fontWeight="semibold"
-                            px={12}
-                            leftIcon={<BsPlayFill size="1.2rem" />}
-                            mb={4}
-                        >
-                            WATCH VIDEO
-                        </Button>
+                        {status !== "ENDED" && (
+                            <Button
+                                _focus={{ boxShadow: "none" }}
+                                w="full"
+                                onClick={() => openModal("1")}
+                                rounded="full"
+                                border="1px"
+                                borderColor="white"
+                                color="white"
+                                bg="transparent"
+                                fontSize="sm"
+                                _hover={{ bg: "transparent" }}
+                                _active={{ bg: "transparent" }}
+                                fontWeight="semibold"
+                                px={12}
+                                leftIcon={<BsPlayFill size="1.2rem" />}
+                                mb={4}
+                            >
+                                WATCH VIDEO
+                            </Button>
+                        )}
                         {status === "ONGOING" && (
                             <Link
                                 onClick={() => openModal("2")}

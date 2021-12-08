@@ -20,42 +20,29 @@ const StakingPoolsMobile = ({
 
     return (
         <Box display={["block", "block", "none"]}>
-            <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={3}>
+            <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
                 STAKING POOLS
             </Text>
-            <Box rounded="xl" border="1px" borderColor="#383838" pt={3} px={2} bg="rgba(0, 0, 0, 0.9)">
-                <Box w="full">
-                    <Flex align="center" w="full" pb={2} px={4}>
-                        <Text textAlign="center" fontWeight="semibold" w="37%">
-                            Pool
-                        </Text>
-                        <Text textAlign="center" fontWeight="semibold" w="38%">
-                            Total Value Locked
-                        </Text>
-                        <Text textAlign="center" fontWeight="semibold" w="25%">
-                            APR
-                        </Text>
-                    </Flex>
-                    <Stack>
-                        <TablePoolMobile
-                            poolName="SIPHER"
-                            sipherPrice={sipherPrice}
-                            totalValueLocked={totalValueLocked}
-                            APR={APR}
-                            pendingRewards={pendingRewards}
-                            myLiquidity={myLiquidity}
-                        />
-                        <TablePoolMobile
-                            poolName="SP / ETH LP"
-                            isUniswap
-                            sipherPrice={sipherPrice}
-                            totalValueLocked={totalValueLocked}
-                            APR={APR}
-                            pendingRewards={pendingRewards}
-                            myLiquidity={myLiquidity}
-                        />
-                    </Stack>
-                </Box>
+            <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
+                <Stack spacing={2}>
+                    <TablePoolMobile
+                        poolName="SIPHER"
+                        sipherPrice={sipherPrice}
+                        totalValueLocked={totalValueLocked}
+                        APR={APR}
+                        pendingRewards={pendingRewards}
+                        myLiquidity={myLiquidity}
+                    />
+                    <TablePoolMobile
+                        poolName="SIPHER/ETH LP"
+                        isUniswap
+                        sipherPrice={sipherPrice}
+                        totalValueLocked={totalValueLocked}
+                        APR={APR}
+                        pendingRewards={pendingRewards}
+                        myLiquidity={myLiquidity}
+                    />
+                </Stack>
             </Box>
         </Box>
     )
