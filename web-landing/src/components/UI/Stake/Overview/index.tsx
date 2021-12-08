@@ -14,9 +14,12 @@ import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
 import StakingDepositsMobile from "./MobileUI/StakingDepositsMobile"
 import TablePool from "./TablePool"
 import TablePoolMobile from "./MobileUI/TablePoolMobile"
+import { useRouter } from "next/router"
 
 const StakeOverview = () => {
     const { scCaller, account } = useWalletContext()
+
+    const router = useRouter()
 
     const { data } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
         enabled: !!scCaller.current && !!account,
@@ -59,58 +62,66 @@ const StakeOverview = () => {
                             data?.sipherPool.accountClaimedRewards || 0 + (data?.lpPool.accountClaimedRewards || 0)
                         }
                     />
-                    <StakingPools>
-                        <TablePool
-                            poolName="SIPHER"
-                            totalValueLocked={stakeData?.stakePoolTVL}
-                            APR={
-                                ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
-                                    TOTAL_REWARDS_FOR_POOL) /
-                                    stakePoolTotalSupply!) *
-                                2
-                            }
-                            pendingRewards={data?.sipherPool.accountPendingRewards}
-                            myLiquidity={data?.sipherPool.accountTotalDeposit}
-                        />
-                        <TablePool
-                            poolName="SIPHER / ETH LP"
-                            isUniswap
-                            totalValueLocked={stakeData?.lpPoolTVL}
-                            APR={
-                                ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) * TOTAL_REWARDS_FOR_POOL) /
-                                    lpPoolTotalSupply!) *
-                                2
-                            }
-                            pendingRewards={data?.lpPool.accountPendingRewards}
-                            myLiquidity={data?.lpPool.accountTotalDeposit}
-                        />
-                    </StakingPools>
-                    <StakingPoolsMobile>
-                        <TablePoolMobile
-                            poolName="$SIPHER"
-                            totalValueLocked={stakeData?.stakePoolTVL}
-                            APR={
-                                ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
-                                    TOTAL_REWARDS_FOR_POOL) /
-                                    stakePoolTotalSupply!) *
-                                2
-                            }
-                            pendingRewards={data?.sipherPool.accountPendingRewards}
-                            myLiquidity={data?.sipherPool.accountTotalDeposit}
-                        />
-                        <TablePoolMobile
-                            poolName="SIPHER/ETH Uniswap LP"
-                            totalValueLocked={stakeData?.lpPoolTVL}
-                            isUniswap
-                            APR={
-                                ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) * TOTAL_REWARDS_FOR_POOL) /
-                                    lpPoolTotalSupply!) *
-                                2
-                            }
-                            pendingRewards={data?.lpPool.accountPendingRewards}
-                            myLiquidity={data?.lpPool.accountTotalDeposit}
-                        />
-                    </StakingPoolsMobile>
+                    <Box id="staking-pools">
+                        <StakingPools>
+                            <TablePool
+                                poolName="SIPHER"
+                                totalValueLocked={stakeData?.stakePoolTVL}
+                                APR={
+                                    ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
+                                        TOTAL_REWARDS_FOR_POOL) /
+                                        stakePoolTotalSupply!) *
+                                    2
+                                }
+                                pendingRewards={data?.sipherPool.accountPendingRewards}
+                                myLiquidity={data?.sipherPool.accountTotalDeposit}
+                                onStake={() => router.push(`/stake/deposit/sipher`)}
+                            />
+                            <TablePool
+                                poolName="SIPHER / ETH LP"
+                                isUniswap
+                                totalValueLocked={stakeData?.lpPoolTVL}
+                                APR={
+                                    ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) *
+                                        TOTAL_REWARDS_FOR_POOL) /
+                                        lpPoolTotalSupply!) *
+                                    2
+                                }
+                                pendingRewards={data?.lpPool.accountPendingRewards}
+                                myLiquidity={data?.lpPool.accountTotalDeposit}
+                                onStake={() => router.push(`/stake/deposit/sipher-eth-lp`)}
+                            />
+                        </StakingPools>
+                        <StakingPoolsMobile>
+                            <TablePoolMobile
+                                poolName="$SIPHER"
+                                totalValueLocked={stakeData?.stakePoolTVL}
+                                APR={
+                                    ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
+                                        TOTAL_REWARDS_FOR_POOL) /
+                                        stakePoolTotalSupply!) *
+                                    2
+                                }
+                                pendingRewards={data?.sipherPool.accountPendingRewards}
+                                myLiquidity={data?.sipherPool.accountTotalDeposit}
+                                onStake={() => router.push(`/stake/deposit/sipher`)}
+                            />
+                            <TablePoolMobile
+                                poolName="SIPHER/ETH Uniswap LP"
+                                totalValueLocked={stakeData?.lpPoolTVL}
+                                isUniswap
+                                APR={
+                                    ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) *
+                                        TOTAL_REWARDS_FOR_POOL) /
+                                        lpPoolTotalSupply!) *
+                                    2
+                                }
+                                pendingRewards={data?.lpPool.accountPendingRewards}
+                                myLiquidity={data?.lpPool.accountTotalDeposit}
+                                onStake={() => router.push(`/stake/deposit/sipher-eth-lp`)}
+                            />
+                        </StakingPoolsMobile>
+                    </Box>
                     <StakingDeposits
                         lpPoolDeposits={data?.lpPool.deposits || []}
                         stakePoolDeposits={data?.sipherPool.deposits || []}

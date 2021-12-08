@@ -16,7 +16,7 @@ export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
 
 interface StakeProps {
-    pool: "SIPHER" | "SIPHER/ETH LP"
+    pool: "$SIPHER" | "SIPHER/ETH LP"
 }
 
 const StakeForm = ({ pool }: StakeProps) => {
@@ -127,7 +127,7 @@ const StakeForm = ({ pool }: StakeProps) => {
                 <Flex align="center" w="full" justify="center" mb={4}>
                     <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" mr={2} />
                     <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px">
-                        ${pool}
+                        {pool}
                     </Text>
                 </Flex>
                 <TabButton selected={mode} tabOptions={tabOptions} onChange={setMode} />

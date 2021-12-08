@@ -1,7 +1,7 @@
 import { Box, Text, Stack } from "@chakra-ui/react"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { useRouter } from "next/router"
+import router, { useRouter } from "next/router"
 import React from "react"
 import { useMutation } from "react-query"
 import DashboardCard from "./DashboardCard"
@@ -16,9 +16,12 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
     const sipherPrice = useSipherPrice()
 
     const { scCaller, account } = useWalletContext()
+
     const { mutate: claimRewards, isLoading: isClaiming } = useMutation(() =>
         scCaller.current!.StakingPools.claimRewards(account!)
     )
+
+    const router = useRouter()
 
     return (
         <Box>
@@ -39,7 +42,10 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
                     dollarValue={totalStaked * sipherPrice}
                     sipherValue={totalStaked}
                     buttonText="STAKE"
-                    onClick={() => console.log("scroll")}
+                    onClick={() => {
+                        const anchor = document.getElementById("staking-pools")
+                        anchor && anchor.scrollIntoView({ behavior: "smooth" })
+                    }}
                 />
                 <DashboardCard
                     img="/images/pc/stake/unclaim_rewards.png"

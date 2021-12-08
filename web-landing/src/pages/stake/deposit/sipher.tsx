@@ -8,7 +8,7 @@ const DepositPage: NextPageWithLayout = () => {
     return (
         <>
             <Metadata title="Deposit | Sipher" description="Sipher token staking" />
-            <Deposit pool="SIPHER" />
+            <Deposit pool="$SIPHER" />
         </>
     )
 }
