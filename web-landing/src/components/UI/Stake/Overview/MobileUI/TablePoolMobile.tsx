@@ -17,6 +17,7 @@ interface Props {
     TVL?: number
     poolName?: string
     isUniswap?: boolean
+    href?: string
 }
 
 const TablePoolMobile = ({
@@ -29,6 +30,7 @@ const TablePoolMobile = ({
     pendingRewards = 0,
     myLiquidity = 0,
     isUniswap = false,
+    href = "#",
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false)
 
@@ -92,7 +94,7 @@ const TablePoolMobile = ({
                             <BiChevronUp size="1.2rem" />
                         </Box>
                     </Flex>
-                    <ActionButton text="STAKE" onClick={() => router.push("/stake/deposit")} size="small" w="6rem" />
+                    <ActionButton text="STAKE" onClick={() => router.push(href)} size="small" w="6rem" />
                 </Flex>
             </Box>
             <Collapse in={isOpen}>

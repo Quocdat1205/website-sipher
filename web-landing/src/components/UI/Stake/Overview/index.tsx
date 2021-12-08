@@ -33,6 +33,7 @@ const StakeOverview = () => {
             initialData: 1,
         }
     )
+
     return (
         <Flex direction="column" align="center" w="full">
             <Box w="full" maxW="60rem" px={4}>

@@ -27,6 +27,7 @@ const StakingPoolsMobile = ({
                 <Stack spacing={2}>
                     <TablePoolMobile
                         poolName="SIPHER"
+                        href="/stake/deposit/sipher"
                         sipherPrice={sipherPrice}
                         totalValueLocked={totalValueLocked}
                         APR={APR}
@@ -35,6 +36,7 @@ const StakingPoolsMobile = ({
                     />
                     <TablePoolMobile
                         poolName="SIPHER/ETH LP"
+                        href="/stake/deposit/sipher-eth-lp"
                         isUniswap
                         sipherPrice={sipherPrice}
                         totalValueLocked={totalValueLocked}
