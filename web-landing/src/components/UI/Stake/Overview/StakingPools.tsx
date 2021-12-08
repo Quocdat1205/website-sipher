@@ -21,7 +21,7 @@ const StakingPools = ({ totalValueLocked = 0, APR = 0, pendingRewards = 0, myLiq
     const sipherPrice = useSipherPrice()
 
     return (
-        <Box>
+        <Box display={["none", "none", "block"]}>
             <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                 STAKING POOLS
             </Text>

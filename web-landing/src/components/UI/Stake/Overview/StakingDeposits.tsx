@@ -45,7 +45,7 @@ const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => 
     }
 
     return (
-        <Box>
+        <Box display={["none", "none", "block"]}>
             <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                 STAKING DEPOSITS
             </Text>

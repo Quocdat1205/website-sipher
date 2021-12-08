@@ -1,4 +1,4 @@
-import { Grid, GridItem, Box, Text, HStack } from "@chakra-ui/react"
+import { Box, Text, HStack } from "@chakra-ui/react"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useRouter } from "next/router"
@@ -24,7 +24,7 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
     return (
         <Box>
             <Text
-                textAlign={["center", "left"]}
+                textAlign={["center", "center", "left"]}
                 letterSpacing="3px"
                 size="large"
                 fontWeight="semibold"

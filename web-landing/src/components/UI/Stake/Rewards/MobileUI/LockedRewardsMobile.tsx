@@ -31,7 +31,7 @@ const LockedRewardsMobile = ({ deposits }: LockedRewardsProps) => {
     )
 
     return (
-        <Box>
+        <Box display={["block", "block", "none"]}>
             <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                 LOCKED REWARDS
             </Text>
