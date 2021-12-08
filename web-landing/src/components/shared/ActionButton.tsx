@@ -12,6 +12,7 @@ interface ActionButtonProps extends BoxProps {
 }
 
 export const ActionButton = ({
+    letterSpacing = "2px",
     fontWeight = "bold",
     text,
     isLoading,
@@ -46,7 +47,7 @@ export const ActionButton = ({
                         </Text>
                     </Flex>
                 ) : (
-                    <Text letterSpacing="2px" fontWeight={fontWeight} color="inherit" size={size}>
+                    <Text letterSpacing={letterSpacing} fontWeight={fontWeight} color="inherit" size={size}>
                         {text}
                     </Text>
                 )}
