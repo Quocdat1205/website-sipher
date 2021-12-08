@@ -38,16 +38,13 @@ const LockedRewards = ({ deposits }: LockedRewardsProps) => {
             <Box rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
                 <Box w="full">
                     <Flex w="full" pb={4} px={4}>
-                        <Text fontWeight="semibold" w="25%">
-                            Token
-                        </Text>
-                        <Text fontWeight="semibold" w="13%">
+                        <Text fontWeight="semibold" w="15%">
                             Amount
                         </Text>
-                        <Text fontWeight="semibold" w="13%">
+                        <Text fontWeight="semibold" w="15%">
                             Dollar value
                         </Text>
-                        <Text fontWeight="semibold" w="13%">
+                        <Text fontWeight="semibold" w="15%">
                             Status
                         </Text>
                         <Text fontWeight="semibold" w="15%">
@@ -64,17 +61,13 @@ const LockedRewards = ({ deposits }: LockedRewardsProps) => {
                                 borderColor="#383838"
                                 p={4}
                             >
-                                <Flex align="center" w="25%">
-                                    <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
-                                    <Text ml={4}>$SIPHER</Text>
-                                </Flex>
-                                <Text w="13%" textAlign="left">
+                                <Text w="15%" textAlign="left">
                                     {currency(deposit.amount)}
                                 </Text>
-                                <Text w="13%" textAlign="left">
+                                <Text w="15%" textAlign="left">
                                     {currency(deposit.amount * sipherPrice)}
                                 </Text>
-                                <Text w="13%" textAlign="left">
+                                <Text w="15%" textAlign="left">
                                     {new Date().getTime() > deposit.end ? "Available" : "Locked"}
                                 </Text>
                                 <Text w="15%" textAlign="left">

@@ -42,7 +42,7 @@ const TablePoolMobile = ({
                                 />
                             )}
                         </Box>
-                        <Text ml={isUniswap ? 4 : 2}>${poolName}</Text>
+                        <Text ml={isUniswap ? 4 : 2}>{poolName}</Text>
                     </Flex>
                 </Flex>
                 <Flex justify="space-between">

@@ -72,18 +72,18 @@ const Header = ({ totalStaked }: HeaderProps) => {
                     rounded="xl"
                     spacing={4}
                 >
-                    <Box flex={1} overflow="hidden">
-                        <Text size="small">Total Amount Staked:</Text>
+                    <Flex direction="column" align="center" flex={1} overflow="hidden">
+                        <Text fontSize="sm">Total Amount Staked</Text>
                         <Text textAlign="center" fontWeight="semibold" w="full" isTruncated>
                             ${currency(totalStaked! * sipherPrice)}
                         </Text>
-                    </Box>
-                    <Box flex={1} overflow="hidden">
-                        <Text size="small">Total Amount Claimed:</Text>
+                    </Flex>
+                    <Flex direction="column" align="center" flex={1} overflow="hidden">
+                        <Text fontSize="sm">Total Amount Claimed</Text>
                         <Text textAlign="center" fontWeight="semibold" w="full" isTruncated>
                             ${currency(totalClaimed! * sipherPrice)}
                         </Text>
-                    </Box>
+                    </Flex>
                 </Stack>
             </Box>
         </Flex>

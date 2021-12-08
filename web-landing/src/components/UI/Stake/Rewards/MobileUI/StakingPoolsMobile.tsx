@@ -6,17 +6,28 @@ import { useMutation } from "react-query"
 import TablePoolMobile from "./TablePoolMobile"
 
 interface StakingPoolsInterface {
-    amountStaked?: number
-    claimableRewards?: number
+    amountStakedStakePool: number
+    amountStakedLpPool: number
+    claimableRewardsStakePool: number
+    claimableRewardsLpPool: number
 }
 
-const StakingPoolsMobile = ({ amountStaked, claimableRewards }: StakingPoolsInterface) => {
+const StakingPoolsMobile = ({
+    amountStakedLpPool,
+    amountStakedStakePool,
+    claimableRewardsLpPool,
+    claimableRewardsStakePool,
+}: StakingPoolsInterface) => {
     const sipherPrice = useSipherPrice()
 
     const { scCaller, account } = useWalletContext()
 
-    const { mutate: claim, isLoading: isClaiming } = useMutation(() =>
+    const { mutate: claimStakePool, isLoading: isClaimingStakePool } = useMutation(() =>
         scCaller.current!.StakingPools.claimRewards(account!)
+    )
+
+    const { mutate: claimLpPool, isLoading: isClaimingLpPool } = useMutation(() =>
+        scCaller.current!.LpPools.claimRewards(account!)
     )
 
     return (
@@ -24,27 +35,33 @@ const StakingPoolsMobile = ({ amountStaked, claimableRewards }: StakingPoolsInte
             <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                 STAKING POOLS
             </Text>
-            <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
-                <Stack>
-                    <TablePoolMobile
-                        poolName="SIPHER"
-                        sipherPrice={sipherPrice}
-                        amountStaked={amountStaked}
-                        claimableRewards={claimableRewards}
-                        onClick={() => claim()}
-                        isLoading={isClaiming}
-                    />
-                    <TablePoolMobile
-                        poolName="SIPHER/ETH LP"
-                        isUniswap
-                        sipherPrice={sipherPrice}
-                        amountStaked={amountStaked}
-                        claimableRewards={claimableRewards}
-                        onClick={() => claim()}
-                        isLoading={isClaiming}
-                    />
-                </Stack>
-            </Box>
+            <Stack
+                rounded="xl"
+                border="1px"
+                borderColor="#383838"
+                p={4}
+                bg="rgba(0, 0, 0, 0.9)"
+                spacing={4}
+                direction="column"
+            >
+                <TablePoolMobile
+                    poolName="$SIPHER"
+                    sipherPrice={sipherPrice}
+                    amountStaked={amountStakedStakePool}
+                    claimableRewards={claimableRewardsStakePool}
+                    onClick={() => claimStakePool()}
+                    isLoading={isClaimingStakePool}
+                />
+                <TablePoolMobile
+                    poolName="SIPHER/ETH LP"
+                    isUniswap
+                    sipherPrice={sipherPrice}
+                    amountStaked={amountStakedLpPool}
+                    claimableRewards={claimableRewardsLpPool}
+                    onClick={() => claimLpPool()}
+                    isLoading={isClaimingLpPool}
+                />
+            </Stack>
         </Box>
     )
 }
