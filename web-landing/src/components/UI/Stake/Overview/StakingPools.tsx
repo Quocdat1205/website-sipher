@@ -33,6 +33,7 @@ const StakingPools = ({ totalValueLocked, APR, pendingRewards, myLiquidity }: St
                     </Flex>
                     <Stack>
                         <TablePool
+                            href="/stake/deposit/sipher"
                             poolName="SIPHER"
                             sipherPrice={sipherPrice}
                             totalValueLocked={totalValueLocked}
@@ -41,6 +42,7 @@ const StakingPools = ({ totalValueLocked, APR, pendingRewards, myLiquidity }: St
                             myLiquidity={myLiquidity}
                         />
                         <TablePool
+                            href="/stake/deposit/sipher-eth-lp"
                             poolName="SIPHER / ETH LP"
                             isUniswap
                             sipherPrice={sipherPrice}
