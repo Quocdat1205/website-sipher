@@ -59,10 +59,10 @@ const TablePoolMobile = ({
                         </Box>
                         <Text ml={3}>${poolName}</Text>
                     </Flex>
-                    <Text w="40%" textAlign="left">
+                    <Text w="40%" textAlign="center">
                         {currency(totalValueLocked * sipherPrice, "$")}
                     </Text>
-                    <Text w="25%" textAlign="left">
+                    <Text w="25%" textAlign="center">
                         {(APR * 100).toFixed(2)}%
                     </Text>
                 </Flex>

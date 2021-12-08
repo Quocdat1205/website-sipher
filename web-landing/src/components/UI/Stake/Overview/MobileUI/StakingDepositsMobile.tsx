@@ -52,13 +52,13 @@ const StakingDepositsMobile = ({ deposits, stakingDeposit }: StakingDepositsProp
             <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
                 <Box w="full">
                     <Flex align="center" w="full" pb={4} px={4}>
-                        <Text fontWeight="semibold" w="45%">
+                        <Text textAlign="center" fontWeight="semibold" w="38%">
                             Pool
                         </Text>
-                        <Text fontWeight="semibold" w="30%">
+                        <Text textAlign="center" fontWeight="semibold" w="37%">
                             Staked
                         </Text>
-                        <Text fontWeight="semibold" w="25%">
+                        <Text textAlign="center" fontWeight="semibold" w="25%">
                             Est. Daily Rewards
                         </Text>
                     </Flex>
@@ -73,14 +73,14 @@ const StakingDepositsMobile = ({ deposits, stakingDeposit }: StakingDepositsProp
                                 key={deposit.start}
                             >
                                 <Flex align="center">
-                                    <Flex align="center" w="45%">
+                                    <Flex align="center" justify="center" w="38%">
                                         <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
                                         <Text ml={4}>$SIPHER</Text>
                                     </Flex>
-                                    <Text w="30%" textAlign="left">
+                                    <Text w="37%" textAlign="center">
                                         ${currency(deposit.amount * sipherPrice)}
                                     </Text>
-                                    <Text w="25%" textAlign="left">
+                                    <Text w="25%" textAlign="center">
                                         $
                                         {currency(
                                             (TOTAL_REWARDS_FOR_POOL / stakingDeposit / 365) *
