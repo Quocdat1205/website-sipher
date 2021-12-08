@@ -1,6 +1,6 @@
 import { Stack, Text, Flex, Img } from "@chakra-ui/react"
 import { getIbcoInfo, useETHPrice } from "@hooks/api"
-import { currency } from "@source/utils"
+import { currency, floorPrecised } from "@source/utils"
 import { useQuery } from "react-query"
 
 interface PriceBoxProps {}
@@ -18,8 +18,9 @@ const PriceBox = ({}: PriceBoxProps) => {
     })
 
     return (
-        <Stack direction={["column", "column", "row"]} spacing={4} my={2} justify="space-between" w="full">
+        <Flex direction={["column", "row", "row"]} my={2} justify="space-between" w="full">
             <Flex
+                maxH="640px"
                 align="center"
                 direction="column"
                 bg="rgba(0, 0, 0, 0.9)"
@@ -39,7 +40,7 @@ const PriceBox = ({}: PriceBoxProps) => {
                         isTruncated
                         title={data!.totalProvided.toString()}
                     >
-                        {data!.totalProvided}
+                        {floorPrecised(data!.totalProvided, 5)}
                     </Text>
                 </Flex>
                 <Text color="#828282" fontSize="sm" h="1rem">
@@ -51,6 +52,8 @@ const PriceBox = ({}: PriceBoxProps) => {
                 </Text>
             </Flex>
             <Flex
+                mt={[4, 0, 0]}
+                ml={[0, 4, 4]}
                 align="center"
                 direction="column"
                 bg="rgba(0, 0, 0, 0.9)"
@@ -70,7 +73,7 @@ const PriceBox = ({}: PriceBoxProps) => {
                         isTruncated
                         title={data!.estTokenPrice.toString()}
                     >
-                        {data!.estTokenPrice}
+                        {floorPrecised(data!.estTokenPrice, 5)}
                     </Text>
                 </Flex>
                 <Text color="#828282" fontSize="sm" h="1rem">
@@ -82,6 +85,8 @@ const PriceBox = ({}: PriceBoxProps) => {
                 </Text>
             </Flex>
             <Flex
+                mt={[4, 0, 0]}
+                ml={[0, 4, 4]}
                 align="center"
                 direction="column"
                 bg="rgba(0, 0, 0, 0.9)"
@@ -99,7 +104,7 @@ const PriceBox = ({}: PriceBoxProps) => {
                 </Flex>
                 <Text color="#828282" h={"1rem"}></Text>
             </Flex>
-        </Stack>
+        </Flex>
     )
 }
 

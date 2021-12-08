@@ -23,7 +23,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
             initial="hidden"
             variants={letterVariants}
             animate={control}
-            fontSize={["2rem", "2.5rem", "4.5rem"]}
+            fontSize={["2rem", "2.5rem", "5rem"]}
             fontFamily="Brandon"
             fontWeight={900}
             mb={0}

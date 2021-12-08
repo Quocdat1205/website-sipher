@@ -12,11 +12,11 @@ import RightBarInfo from "./RightBarInfo"
 import useSaleTime from "./useSaleTime"
 import NotConnected from "./SubUI/NotConnected"
 import Loading from "./SubUI/Loading"
-import Ended from "./SubUI/Ended"
 import CountDown from "./CountDown"
 import { BsQuestionCircle } from "react-icons/bs"
 import { isMobile } from "react-device-detect"
 import NotfoundPage from "@pages/404"
+import Ended from "./SubUI/Ended"
 
 const TokenSale = () => {
     const { status } = useSaleTime()
