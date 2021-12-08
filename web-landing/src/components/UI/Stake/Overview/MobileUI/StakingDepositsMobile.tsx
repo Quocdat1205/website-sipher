@@ -1,4 +1,4 @@
-import { Img, Flex, Box, Text } from "@chakra-ui/react"
+import { Img, Flex, Box, Text, Stack } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import React, { useState } from "react"
 import { format } from "date-fns"
@@ -46,75 +46,67 @@ const StakingDepositsMobile = ({ deposits, stakingDeposit }: StakingDepositsProp
 
     return (
         <Box display={["block", "block", "none"]}>
-            <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
+            <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
                 STAKING DEPOSITS
             </Text>
-            <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
-                <Box w="full">
-                    <Flex align="center" w="full" pb={4} px={4}>
-                        <Text textAlign="center" fontWeight="semibold" w="38%">
-                            Pool
-                        </Text>
-                        <Text textAlign="center" fontWeight="semibold" w="37%">
-                            Staked
-                        </Text>
-                        <Text textAlign="center" fontWeight="semibold" w="25%">
-                            Est. Daily Rewards
-                        </Text>
-                    </Flex>
-                    <Box borderTop="1px" borderColor="#383838">
-                        {deposits.map((deposit, idx) => (
-                            <Flex
-                                w="full"
-                                flexDir="column"
-                                borderBottom="1px"
-                                borderColor="#383838"
-                                p={4}
-                                key={deposit.start}
-                            >
-                                <Flex align="center">
-                                    <Flex align="center" justify="center" w="38%">
-                                        <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
-                                        <Text ml={4}>$SIPHER</Text>
-                                    </Flex>
-                                    <Text w="37%" textAlign="center">
-                                        ${currency(deposit.amount * sipherPrice)}
-                                    </Text>
-                                    <Text w="25%" textAlign="center">
-                                        $
-                                        {currency(
-                                            (TOTAL_REWARDS_FOR_POOL / stakingDeposit / 365) *
-                                                deposit.amount *
-                                                calWeight(deposit.start, deposit.end) *
-                                                sipherPrice
-                                        )}
-                                    </Text>
-                                </Flex>
-                                <Flex bg="#292929" align="center" p={4} mt={4} rounded="xl">
-                                    <Box w="35%">
-                                        <Text fontWeight="semibold">Lock Date</Text>
-                                        <Text textAlign="left">{format(new Date(deposit.start), "MMM dd Y")}</Text>
-                                    </Box>
-                                    <Box w="35%">
-                                        <Text fontWeight="semibold">Unlock Date</Text>
-                                        <Text textAlign="left">{format(new Date(deposit.end), "MMM dd Y")}</Text>
-                                    </Box>
-                                    <ActionButton
-                                        text="UNLOCK"
-                                        px={2}
-                                        ml="auto"
-                                        onClick={() => unlock(idx)}
-                                        disabled={new Date().getTime() <= deposit.end}
-                                        isLoading={unlockingId === idx}
-                                        size="small"
-                                        w="auto"
-                                    />
+            <Stack spacing={2} rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
+                {deposits.map((deposit, idx) => (
+                    <Flex
+                        bg="#292929"
+                        w="full"
+                        rounded="xl"
+                        flexDir="column"
+                        border="1px"
+                        borderColor="#383838"
+                        p={4}
+                        key={deposit.start}
+                    >
+                        <Stack>
+                            <Flex justify="space-between">
+                                <Text fontWeight="semibold">Pool</Text>
+                                <Flex align="center" justify="center">
+                                    <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                    <Text ml={4}>$SIPHER</Text>
                                 </Flex>
                             </Flex>
-                        ))}
-                    </Box>
-                </Box>
-            </Box>
+                            <Flex justify="space-between">
+                                <Text fontWeight="semibold">Staked</Text>
+                                <Text textAlign="right">${currency(deposit.amount * sipherPrice)}</Text>
+                            </Flex>
+                            <Flex justify="space-between">
+                                <Text fontWeight="semibold">Est. Daily Rewards</Text>
+                                <Text textAlign="right">
+                                    $
+                                    {currency(
+                                        (TOTAL_REWARDS_FOR_POOL / stakingDeposit / 365) *
+                                            deposit.amount *
+                                            calWeight(deposit.start, deposit.end) *
+                                            sipherPrice
+                                    )}
+                                </Text>
+                            </Flex>
+                            <Flex justify="space-between">
+                                <Text fontWeight="semibold">Lock Date</Text>
+                                <Text textAlign="right">{format(new Date(deposit.start), "MMM dd Y")}</Text>
+                            </Flex>
+                            <Flex justify="space-between">
+                                <Text fontWeight="semibold">Unlock Date</Text>
+                                <Text textAlign="right">{format(new Date(deposit.end), "MMM dd Y")}</Text>
+                            </Flex>
+                            <ActionButton
+                                text="UNLOCK"
+                                px={2}
+                                ml="auto"
+                                onClick={() => unlock(idx)}
+                                disabled={new Date().getTime() <= deposit.end}
+                                isLoading={unlockingId === idx}
+                                size="small"
+                                w="auto"
+                            />
+                        </Stack>
+                    </Flex>
+                ))}
+            </Stack>
         </Box>
     )
 }

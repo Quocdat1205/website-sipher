@@ -15,7 +15,11 @@ import { currency } from "@source/utils"
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
 
-const StakeForm = () => {
+interface StakeProps {
+    pool: "SIPHER" | "SIPHER/ETH LP"
+}
+
+const StakeForm = ({ pool }: StakeProps) => {
     const qc = useQueryClient()
 
     const toast = useChakraToast()
@@ -123,7 +127,7 @@ const StakeForm = () => {
                 <Flex align="center" w="full" justify="center" mb={4}>
                     <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" mr={2} />
                     <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px">
-                        $SIPHER
+                        ${pool}
                     </Text>
                 </Flex>
                 <TabButton selected={mode} tabOptions={tabOptions} onChange={setMode} />
