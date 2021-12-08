@@ -14,7 +14,6 @@ interface DashboardProps {
 
 const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: DashboardProps) => {
     const sipherPrice = useSipherPrice()
-    const router = useRouter()
 
     const { scCaller, account } = useWalletContext()
     const { mutate: claimRewards, isLoading: isClaiming } = useMutation(() =>
@@ -40,7 +39,7 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
                     dollarValue={totalStaked * sipherPrice}
                     sipherValue={totalStaked}
                     buttonText="STAKE"
-                    onClick={() => router.push("/stake/deposit")}
+                    onClick={() => console.log("scroll")}
                 />
                 <DashboardCard
                     img="/images/pc/stake/unclaim_rewards.png"
