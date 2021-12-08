@@ -59,7 +59,7 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                 <ModalHeader>{"Connect Wallet"}</ModalHeader>
                 <ModalCloseButton _focus={{ shadow: "none" }} />
                 <ModalBody p={0}>
-                    <Stack p={4} spacing={4} direction={["column", "row"]}>
+                    <Stack p={4} spacing={4}>
                         <WalletCard
                             src="/images/icons/wallet/metamask.svg"
                             text="MetaMask"
@@ -69,6 +69,11 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             src="/images/icons/wallet/walletconnect.svg"
                             text="WalletConnect"
                             onClick={() => wallet.connect("walletConnect")}
+                        />
+                        <WalletCard
+                            src="/images/icons/wallet/trezor.png"
+                            text="For Trezor Wallet User Only"
+                            onClick={() => router.push("https://trezorwallet.sipher.xyz/token-sale")}
                         />
                     </Stack>
                     <Box textAlign="center" w="full" p={4}>

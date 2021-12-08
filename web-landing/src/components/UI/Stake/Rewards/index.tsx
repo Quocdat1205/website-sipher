@@ -7,7 +7,6 @@ import React from "react"
 import { useQuery } from "react-query"
 import LockedRewards from "./LockedRewards"
 import StakingPools from "./StakingPools"
-import { isMobile } from "react-device-detect"
 import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
 import LockedRewardsMobile from "./MobileUI/LockedRewardsMobile"
 
@@ -30,22 +29,16 @@ const Rewards = () => {
                     </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
-                    {!isMobile ? (
-                        <StakingPools
-                            amountStaked={data?.pool.accountTotalDeposit}
-                            claimableRewards={data?.pool.accountPendingRewards}
-                        />
-                    ) : (
-                        <StakingPoolsMobile
-                            amountStaked={data?.pool.accountTotalDeposit}
-                            claimableRewards={data?.pool.accountPendingRewards}
-                        />
-                    )}
-                    {!isMobile ? (
-                        <LockedRewards deposits={data?.escrowPool.deposits || []} />
-                    ) : (
-                        <LockedRewardsMobile deposits={data?.escrowPool.deposits || []} />
-                    )}
+                    <StakingPools
+                        amountStaked={data?.pool.accountTotalDeposit}
+                        claimableRewards={data?.pool.accountPendingRewards}
+                    />
+                    <StakingPoolsMobile
+                        amountStaked={data?.pool.accountTotalDeposit}
+                        claimableRewards={data?.pool.accountPendingRewards}
+                    />
+                    <LockedRewards deposits={data?.escrowPool.deposits || []} />
+                    <LockedRewardsMobile deposits={data?.escrowPool.deposits || []} />
                 </VStack>
             </Box>
         </Flex>

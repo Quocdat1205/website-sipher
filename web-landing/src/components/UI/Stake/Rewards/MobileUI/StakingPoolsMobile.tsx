@@ -21,7 +21,7 @@ const StakingPoolsMobile = ({ amountStaked = 0, claimableRewards = 0 }: StakingP
     )
 
     return (
-        <Box>
+        <Box display={["block", "block", "none"]}>
             <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                 STAKING POOLS
             </Text>
