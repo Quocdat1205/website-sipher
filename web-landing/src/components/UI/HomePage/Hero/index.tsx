@@ -66,7 +66,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 {status !== "ENDED" ? (
                     <>
                         <Title text="$SIPHER INITIAL" />
-                        <Title text="PUBLIC SALE" custom={1} />{" "}
+                        <Title text="PUBLIC SALE" custom={1} />
                     </>
                 ) : (
                     <Title text="THANK YOU!" />
@@ -104,15 +104,17 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             </Text>
                         </Box>
                     )}
-                    <Flex w="full" maxW="52rem">
-                        <PriceBox />
-                    </Flex>
+                    {status !== "ENDED" && (
+                        <Flex w="full" maxW="52rem">
+                            <PriceBox />
+                        </Flex>
+                    )}
                     {status === "ONGOING" && (
                         <Text mb={2} fontWeight="500" fontSize="2rem" letterSpacing="3px">
                             SALES ENDS IN
                         </Text>
                     )}
-                    {status === "ENDED" && (
+                    {/* {status === "ENDED" && (
                         <Flex pt={[2, 12]} flexDir="column" justify="center">
                             <Text
                                 textAlign="center"
@@ -127,7 +129,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                                 $SIPHER Staking begins: 11th of Decem ber@ 7:00 AM UTC
                             </Text>
                         </Flex>
-                    )}
+                    )} */}
                     {status !== "ENDED" && <CountDown startTime={startTime} endTime={endTime} />}
                     <Stack mt={4} spacing={4} align="center">
                         {status === "NOT_STARTED" ? (
@@ -147,14 +149,15 @@ const FirstScreen = ({}: FirstScreenProps) => {
                                 px={12}
                             />
                         ) : (
-                            <LinkButton
-                                cursor="pointer"
-                                w="full"
-                                text="LEARN MORE ON STAKING REWARDS"
-                                size="large"
-                                href="#"
-                                px={12}
-                            />
+                            // <LinkButton
+                            //     cursor="pointer"
+                            //     w="full"
+                            //     text="LEARN MORE ON STAKING REWARDS"
+                            //     size="large"
+                            //     href="#"
+                            //     px={12}
+                            // />
+                            ""
                         )}
                         {status !== "ENDED" && (
                             <Button
