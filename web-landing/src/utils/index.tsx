@@ -20,7 +20,10 @@ export const floorPrecised = (number, precision) => {
 export const currency = (
     amount: number,
     prefix = "",
-    options: { maximumFractionDigits: number } = { maximumFractionDigits: 2 }
+    options: { maximumFractionDigits: number; minimumFractionDigits: number } = {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+    }
 ) => {
     return prefix + amount.toLocaleString(undefined, { ...options })
 }

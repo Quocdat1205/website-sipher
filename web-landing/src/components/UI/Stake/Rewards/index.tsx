@@ -25,8 +25,8 @@ const Rewards = () => {
                     <Typo.Heading mb={2} textAlign={["center", "left"]}>
                         Rewards
                     </Typo.Heading>
-                    <Text textAlign={["center", "left"]} letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
-                        WHY AM I NOT FINALIZED ALREADY ???
+                    <Text textAlign={["center", "left"]} letterSpacing="3px" fontSize="lg" fontWeight="semibold" mb={2}>
+                        CLAIM YOUR SIPHER REWARDS
                     </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">

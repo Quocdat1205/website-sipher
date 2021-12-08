@@ -23,7 +23,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
             initial="hidden"
             variants={letterVariants}
             animate={control}
-            fontSize={["3rem", "3.5rem", "4.5rem", "5rem", "6rem"]}
+            fontSize={["2rem", "2.5rem", "4.5rem"]}
             fontFamily="Brandon"
             fontWeight={900}
             mb={0}
@@ -52,13 +52,13 @@ const Title = ({ text, custom = 0, ...rest }: TitleProps) => {
     const word2 = text.split(" ")[1]
 
     return (
-        <Stack mb={4} align="center" direction={["column", "column", "row"]} spacing={[4, 4, 12]}>
-            <HStack align="baseline" spacing={2} overflow="hidden" userSelect="none" {...rest}>
+        <Stack mb={[2, 4]} align="center" direction={"row"} spacing={[4, 8]}>
+            <HStack align="baseline" spacing={[1, 2]} overflow="hidden" userSelect="none" {...rest}>
                 {word1.split("").map((char, idx) => (
                     <Letter key={idx} char={char} control={controls} custom={custom} />
                 ))}
             </HStack>
-            <HStack align="baseline" spacing={2} overflow="hidden" userSelect="none" {...rest}>
+            <HStack align="baseline" spacing={[1, 2]} overflow="hidden" userSelect="none" {...rest}>
                 {word2.split("").map((char, idx) => (
                     <Letter key={idx} char={char} control={controls} custom={custom} />
                 ))}

@@ -28,8 +28,8 @@ const ApproveModal = ({ isOpen, onClose, approve, isApproving }: ApproveModalPro
                     onClick={onClose}
                     isDisabled={isApproving}
                 />
-                <Text mb={4} textAlign="center" size="large" fontWeight="semibold" letterSpacing="3px" w="full">
-                    APPROVE BEFORE STAKING
+                <Text mb={4} textAlign="center" fontSize="lg" fontWeight="semibold" letterSpacing="3px" w="full">
+                    WARNING
                 </Text>
                 <Text mb={8} textAlign="justify">
                     To be able to stake, you have to do a one-time transaction to grant permission for this contract to

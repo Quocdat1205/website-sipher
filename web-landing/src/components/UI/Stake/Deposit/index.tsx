@@ -64,8 +64,9 @@ const StakeForm = () => {
                 qc.invalidateQueries("fetch")
                 toast({ status: "success", title: "Staked successfully!" })
             },
-            onError: () => {
-                toast({ status: "error", title: "Staked failed!", message: "Please try again later!" })
+            onError: (e: any) => {
+                console.log(e)
+                toast({ status: "error", title: "Stake error!", message: e.message })
             },
         }
     )
@@ -91,9 +92,10 @@ const StakeForm = () => {
             // stake automatically after approved
             onSuccess: () => {
                 setApprovalModal(false)
+                toast({ status: "success", title: "Approved successfully!" })
             },
-            onError: () => {
-                toast({ status: "error", title: "Approved failed!", message: "Please try again later!" })
+            onError: (e: any) => {
+                toast({ status: "error", title: "Approve error!", message: e.message || "Please try again later!" })
             },
         }
     )
@@ -107,20 +109,20 @@ const StakeForm = () => {
     }
 
     return (
-        <Flex direction="column" align="center" pt={8}>
+        <Flex direction="column" align="center" p={4} pt={8}>
             <Box
                 border="1px"
                 borderColor="#383838"
                 bg="rgba(0,0,0,0.9)"
                 rounded="xl"
                 py={8}
-                px={16}
+                px={[4, 8, 16]}
                 mb={8}
                 maxW="32rem"
             >
                 <Flex align="center" w="full" justify="center" mb={4}>
                     <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" mr={2} />
-                    <Text size="large" fontWeight="semibold" letterSpacing="3px">
+                    <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px">
                         $SIPHER
                     </Text>
                 </Flex>

@@ -1,9 +1,10 @@
-import { Box, Flex, Link, Img, Text, chakra } from "@chakra-ui/react"
+import { Box, Flex, Link, Img, Text, chakra, HStack } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { currency, numberWithCommas } from "@source/utils"
 import React from "react"
+import { AiFillPlayCircle } from "react-icons/ai"
 import { useQuery } from "react-query"
 
 const Header = () => {
@@ -33,28 +34,34 @@ const Header = () => {
                 <Typo.Heading mb={2} textAlign={["center", "left"]}>
                     STAKE
                 </Typo.Heading>
-                <Text textAlign={["center", "left"]} letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
-                    WHY AM I NOT FINALIZED ALREADY ???
+                <Text textAlign={["center", "left"]} letterSpacing="3px" fontSize="lg" fontWeight="semibold" mb={2}>
+                    EARN STAKING REWARDS WITH SIPHER
                 </Text>
-                <Link
-                    href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
-                    textDecoration="underline"
-                    letterSpacing="1px"
-                    color="main.yellow"
-                    fontWeight="semibold"
-                    fontSize="sm"
-                >
-                    Watch the how to stake video (30s)
-                </Link>
+                <HStack align="center" spacing={1}>
+                    <Link
+                        href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
+                        textDecoration="underline"
+                        letterSpacing="1px"
+                        color="#ff9800"
+                        fontWeight="semibold"
+                        fontSize="sm"
+                    >
+                        Watch the how to stake video (30s)
+                    </Link>
+                    <AiFillPlayCircle />
+                </HStack>
             </Flex>
             <Box w={["full", "auto"]} maxW={["100%", "320px"]} mt={[4, 0]}>
                 <Flex justify="space-between" w="full" align="center" mb={2}>
                     <Flex align="center">
                         <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
-                        <Text size="small">
+                        <Text fontSize="sm">
                             $SIPHER PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
                         </Text>
                     </Flex>
+                    <Text fontSize="sm" fontWeight="semibold" color="#25B700">
+                        +0.0%
+                    </Text>
                 </Flex>
                 <Flex
                     bg="#292929"

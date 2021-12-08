@@ -1,3 +1,4 @@
+import { weiToEther } from "@source/contract"
 import Web3 from "web3"
 import fetcher from "./fetcher"
 
@@ -17,4 +18,9 @@ export const checkGas = async () => {
         maxFeePerGas,
         maxPriorityFeePerGas,
     }
+}
+
+export const getIbcoInfo = async (): Promise<Record<"totalProvided" | "txCount" | "estTokenPrice", number>> => {
+    const { data } = await fetcher.get("/smartcontract/check-ibco")
+    return data.message
 }
