@@ -1,19 +1,15 @@
-import { Img, Flex, Box, Text } from "@chakra-ui/react"
-import { ActionButton } from "@components/shared"
-import { useSipherPrice } from "@hooks/api"
+import { Flex, Box, Text } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { currency } from "@source/utils"
 import React from "react"
 import { useMutation } from "react-query"
+import TablePool from "./TablePool"
 
 interface StakingPoolsInterface {
     amountStaked?: number
     claimableRewards?: number
 }
 
-const StakingPools = ({ amountStaked = 0, claimableRewards = 0 }: StakingPoolsInterface) => {
-    const sipherPrice = useSipherPrice()
-
+const StakingPools = ({ amountStaked, claimableRewards }: StakingPoolsInterface) => {
     const { scCaller, account } = useWalletContext()
 
     const { mutate: claim, isLoading: isClaiming } = useMutation(() =>
@@ -38,30 +34,21 @@ const StakingPools = ({ amountStaked = 0, claimableRewards = 0 }: StakingPoolsIn
                             Claimable Rewards
                         </Text>
                     </Flex>
-                    <Box borderBottom="1px" borderColor="#383838" p={4}>
-                        <Flex w="full" align="center">
-                            <Flex align="center" w="25%">
-                                <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
-                                <Text ml={4}>$SIPHER</Text>
-                            </Flex>
-                            <Text w="25%" textAlign="left">
-                                ${currency(amountStaked * sipherPrice)}
-                            </Text>
-                            <Text w="25%" textAlign="left">
-                                {currency(claimableRewards)} SIPHER
-                            </Text>
-
-                            <ActionButton
-                                text="CLAIM"
-                                ml="auto"
-                                onClick={() => claim()}
-                                isLoading={isClaiming}
-                                disabled={claimableRewards <= 0}
-                                size="small"
-                                w="10rem"
-                            />
-                        </Flex>
-                    </Box>
+                    <TablePool
+                        poolName="SIPHER"
+                        isLoading={isClaiming}
+                        amountStaked={amountStaked}
+                        claimableRewards={claimableRewards}
+                        onClick={() => claim()}
+                    />
+                    <TablePool
+                        poolName="SIPHER/ETH LP"
+                        isUniswap
+                        isLoading={isClaiming}
+                        amountStaked={amountStaked}
+                        claimableRewards={claimableRewards}
+                        onClick={() => claim()}
+                    />
                 </Box>
             </Box>
         </Box>

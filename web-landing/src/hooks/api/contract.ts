@@ -1,4 +1,5 @@
 import { weiToEther } from "@source/contract"
+import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
 import Web3 from "web3"
 import fetcher from "./fetcher"
 
@@ -22,5 +23,12 @@ export const checkGas = async () => {
 
 export const getIbcoInfo = async (): Promise<Record<"totalProvided" | "txCount" | "estTokenPrice", number>> => {
     const { data } = await fetcher.get("/smartcontract/check-ibco")
+    return data.message
+}
+
+export const checkSmartContract = async (): Promise<boolean> => {
+    const { data } = await fetcher(
+        `/smartcontract/check-contract?sipherTokenAddress=${SipherTokenAddress}&ibcoAddress=${SipherIBCOAddress}`
+    )
     return data.message
 }

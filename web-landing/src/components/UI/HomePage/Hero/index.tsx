@@ -76,14 +76,20 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         delay: 1.5,
                     }}
                 >
-                    <Flex w="full" maxW="52rem">
-                        <PriceBox />
-                    </Flex>
+                    {status !== "ENDED" && (
+                        <Flex w="full" maxW="52rem">
+                            <PriceBox />
+                        </Flex>
+                    )}
                     <Text fontWeight="500" fontSize="1.8rem" letterSpacing="3px">
                         {status === "ONGOING" ? "SALES ENDS IN" : "SALES HAS ENDED"}
                     </Text>
-                    {status !== "NOT_STARTED" && <CountDown startTime={startTime} endTime={endTime} />}
-
+                    {status === "ENDED" && (
+                        <Text fontWeight="semibold" textTransform="uppercase" fontSize="1.2rem" letterSpacing="3px">
+                            Thank you for your supporting
+                        </Text>
+                    )}
+                    {status !== "ENDED" && <CountDown startTime={startTime} endTime={endTime} />}
                     <Stack mt={4} spacing={4} align="center">
                         {status === "NOT_STARTED" ? (
                             <LinkButton
@@ -105,32 +111,34 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             <LinkButton
                                 cursor="pointer"
                                 w="full"
-                                text="JOIN THE TOKEN SALE"
+                                text="CLAIM TOKEN"
                                 size="large"
                                 onClick={() => router.push("/token-sale")}
                                 px={12}
                             />
                         )}
-                        <Button
-                            _focus={{ boxShadow: "none" }}
-                            w="full"
-                            onClick={() => openModal("1")}
-                            rounded="full"
-                            border="1px"
-                            borderColor="white"
-                            color="white"
-                            bg="transparent"
-                            fontSize="sm"
-                            _hover={{ bg: "transparent" }}
-                            _active={{ bg: "transparent" }}
-                            fontWeight="semibold"
-                            px={12}
-                            leftIcon={<BsPlayFill size="1.2rem" />}
-                            mb={4}
-                        >
-                            WATCH VIDEO
-                        </Button>
-                        {status === "ONGOING" && (
+                        {status !== "ENDED" && (
+                            <Button
+                                _focus={{ boxShadow: "none" }}
+                                w="full"
+                                onClick={() => openModal("1")}
+                                rounded="full"
+                                border="1px"
+                                borderColor="white"
+                                color="white"
+                                bg="transparent"
+                                fontSize="sm"
+                                _hover={{ bg: "transparent" }}
+                                _active={{ bg: "transparent" }}
+                                fontWeight="semibold"
+                                px={12}
+                                leftIcon={<BsPlayFill size="1.2rem" />}
+                                mb={4}
+                            >
+                                WATCH VIDEO
+                            </Button>
+                        )}
+                        {status !== "ENDED" && (
                             <Link
                                 onClick={() => openModal("2")}
                                 textDecoration="underline"

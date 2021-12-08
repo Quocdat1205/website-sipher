@@ -54,7 +54,6 @@ const EndedClaim = () => {
                         </Text>
                     </Flex>
                     <ClaimNoStake />
-
                     <Box>
                         <Text py={1} textAlign="center" color="#828282">
                             $SIPHER Contract Address:
