@@ -60,7 +60,7 @@ const TablePoolMobile = ({
                                     />
                                 )}
                             </Box>
-                            <Text textAlign="right" ml={isUniswap ? 6 : 3}>
+                            <Text textAlign="right" ml={isUniswap ? 4 : 2}>
                                 ${poolName}
                             </Text>
                         </Flex>

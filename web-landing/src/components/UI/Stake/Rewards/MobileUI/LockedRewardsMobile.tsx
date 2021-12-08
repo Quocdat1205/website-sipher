@@ -36,7 +36,7 @@ const LockedRewardsMobile = ({ deposits }: LockedRewardsProps) => {
                 LOCKED REWARDS
             </Text>
             <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
-                <Box w="full">
+                <Stack>
                     {deposits.map((deposit, idx) => (
                         <Flex
                             key={deposit.start}
@@ -87,7 +87,7 @@ const LockedRewardsMobile = ({ deposits }: LockedRewardsProps) => {
                             </Stack>
                         </Flex>
                     ))}
-                </Box>
+                </Stack>
             </Box>
         </Box>
     )
