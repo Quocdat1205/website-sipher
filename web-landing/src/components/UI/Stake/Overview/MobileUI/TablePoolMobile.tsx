@@ -48,7 +48,7 @@ const TablePoolMobile = ({
                         <Text fontWeight="semibold">Pool</Text>
                         <Flex align="center">
                             <Box pos="relative">
-                                <Img src="/images/icons/sipher.png" boxSize="1.6rem" />
+                                <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
                                 {isUniswap && (
                                     <Img
                                         pos="absolute"
@@ -56,7 +56,7 @@ const TablePoolMobile = ({
                                         left="0"
                                         transform="translateX(50%)"
                                         src="/images/icons/eth.png"
-                                        boxSize="1.6rem"
+                                        boxSize="1.5rem"
                                     />
                                 )}
                             </Box>

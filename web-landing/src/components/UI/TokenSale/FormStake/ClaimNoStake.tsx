@@ -37,6 +37,7 @@ const ClaimNoStake = () => {
             text="CLAIM $SIPHER"
             py={4}
             w="full"
+            maxW="28rem"
             onClick={() => claim()}
             fontSize="sm"
             isLoading={isLoading}

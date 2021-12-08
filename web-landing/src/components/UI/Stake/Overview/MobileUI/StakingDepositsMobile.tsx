@@ -65,7 +65,7 @@ const StakingDepositsMobile = ({ deposits, stakingDeposit }: StakingDepositsProp
                             <Flex justify="space-between">
                                 <Text fontWeight="semibold">Pool</Text>
                                 <Flex align="center" justify="center">
-                                    <Img src="/images/icons/sipher.png" boxSize="1.6rem" />
+                                    <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
                                     <Text ml={4}>$SIPHER</Text>
                                 </Flex>
                             </Flex>

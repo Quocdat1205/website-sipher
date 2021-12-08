@@ -65,7 +65,6 @@ const FirstScreen = ({}: FirstScreenProps) => {
             >
                 <Title text="$SIPHER INITIAL" />
                 <Title text="PUBLIC SALE" custom={1} />
-
                 <MotionFlex
                     direction="column"
                     align="center"
@@ -77,15 +76,17 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         delay: 1.5,
                     }}
                 >
-                    <Flex w="full" maxW="52rem">
-                        <PriceBox status={status} />
-                    </Flex>
+                    {status !== "ENDED" && (
+                        <Flex w="full" maxW="52rem">
+                            <PriceBox />
+                        </Flex>
+                    )}
                     <Text fontWeight="500" fontSize="1.8rem" letterSpacing="3px">
                         {status === "ONGOING" ? "SALES ENDS IN" : "SALES HAS ENDED"}
                     </Text>
                     {status === "ENDED" && (
-                        <Text textTransform="uppercase" fontSize="1.2rem" letterSpacing="3px">
-                            Thank You For Attending
+                        <Text fontWeight="semibold" textTransform="uppercase" fontSize="1.2rem" letterSpacing="3px">
+                            Thank you for your supporting
                         </Text>
                     )}
                     {status !== "ENDED" && <CountDown startTime={startTime} endTime={endTime} />}
@@ -137,7 +138,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                                 WATCH VIDEO
                             </Button>
                         )}
-                        {status === "ONGOING" && (
+                        {status !== "ENDED" && (
                             <Link
                                 onClick={() => openModal("2")}
                                 textDecoration="underline"

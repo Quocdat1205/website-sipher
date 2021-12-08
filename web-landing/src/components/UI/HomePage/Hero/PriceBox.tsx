@@ -3,11 +3,9 @@ import { getIbcoInfo, useETHPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import { useQuery } from "react-query"
 
-interface PriceBoxProps {
-    status: "NOT_STARTED" | "ONGOING" | "ENDED"
-}
+interface PriceBoxProps {}
 
-const PriceBox = ({ status }: PriceBoxProps) => {
+const PriceBox = ({}: PriceBoxProps) => {
     const ethPrice = useETHPrice()
 
     const { data } = useQuery("ibco-info", () => getIbcoInfo(), {
@@ -16,7 +14,7 @@ const PriceBox = ({ status }: PriceBoxProps) => {
             totalProvided: 0,
             txCount: 0,
         },
-        refetchInterval: status !== "ENDED" ? 15000 : false,
+        refetchInterval: 15000,
     })
 
     return (
