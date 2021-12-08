@@ -1,4 +1,4 @@
-import { Box, Stack, Text, Flex, Img } from "@chakra-ui/react"
+import { Stack, Text, Flex, Img } from "@chakra-ui/react"
 import { getIbcoInfo, useETHPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import { useQuery } from "react-query"
