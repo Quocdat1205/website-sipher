@@ -10,7 +10,6 @@ import { checkSmartContract } from "@hooks/api"
 
 const Ended = () => {
     const { scCaller, account } = useWalletContext()
-
     const { data: ReceivedToken } = useQuery(
         ["estimate-received-token", account],
         () => scCaller.current?.SipherIBCO.getEstReceivedToken(account!),
@@ -29,6 +28,7 @@ const Ended = () => {
     const qc = useQueryClient()
 
     const { data: isSameSC } = useQuery("check-smartcontract", checkSmartContract, {
+        enabled: !compared,
         initialData: false,
         onSettled: () => setCompared(true),
     })

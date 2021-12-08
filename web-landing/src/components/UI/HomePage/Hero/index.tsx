@@ -44,7 +44,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
             align="center"
             zIndex={2}
             justify="center"
-            h="100vh"
+            minH="100vh"
             w="full"
             flexShrink={0}
             bgImage="/images/pc/home/background.png"
@@ -63,8 +63,14 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 pt={[8, 16, 16, 24]}
                 overflow="hidden"
             >
-                <Title text="$SIPHER INITIAL" />
-                <Title text="PUBLIC SALE" custom={1} />
+                {status !== "ENDED" ? (
+                    <>
+                        <Title text="$SIPHER INITIAL" />
+                        <Title text="PUBLIC SALE" custom={1} />
+                    </>
+                ) : (
+                    <Title text="THANK YOU!" />
+                )}
                 <MotionFlex
                     direction="column"
                     align="center"
@@ -76,19 +82,54 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         delay: 1.5,
                     }}
                 >
+                    {status === "ENDED" && (
+                        <Box py={[0, 12]}>
+                            <Text
+                                textAlign="center"
+                                mb={2}
+                                fontWeight="500"
+                                fontSize={["1.6rem", "2.2rem"]}
+                                letterSpacing="3px"
+                            >
+                                THE $SIPHER INITIAL PUBLIC SALE IS OVER
+                            </Text>
+                            <Text
+                                textAlign="center"
+                                fontWeight="semibold"
+                                textTransform="uppercase"
+                                fontSize="0.9rem"
+                                letterSpacing="3px"
+                            >
+                                Thank you so much to our community, partners, backers and contributors
+                            </Text>
+                        </Box>
+                    )}
                     {status !== "ENDED" && (
                         <Flex w="full" maxW="52rem">
                             <PriceBox />
                         </Flex>
                     )}
-                    <Text fontWeight="500" fontSize="1.8rem" letterSpacing="3px">
-                        {status === "ONGOING" ? "SALES ENDS IN" : "SALES HAS ENDED"}
-                    </Text>
-                    {status === "ENDED" && (
-                        <Text fontWeight="semibold" textTransform="uppercase" fontSize="1.2rem" letterSpacing="3px">
-                            Thank you for your supporting
+                    {status === "ONGOING" && (
+                        <Text mb={2} fontWeight="500" fontSize="2rem" letterSpacing="3px">
+                            SALES ENDS IN
                         </Text>
                     )}
+                    {/* {status === "ENDED" && (
+                        <Flex pt={[2, 12]} flexDir="column" justify="center">
+                            <Text
+                                textAlign="center"
+                                fontWeight="semibold"
+                                textTransform="uppercase"
+                                fontSize="1rem"
+                                letterSpacing="3px"
+                            >
+                                EARN STAKING REWARDS WITH SIPHER
+                            </Text>
+                            <Text textAlign="center" fontWeight="thin" textTransform="unset" fontSize="0.9rem">
+                                $SIPHER Staking begins: 11th of Decem ber@ 7:00 AM UTC
+                            </Text>
+                        </Flex>
+                    )} */}
                     {status !== "ENDED" && <CountDown startTime={startTime} endTime={endTime} />}
                     <Stack mt={4} spacing={4} align="center">
                         {status === "NOT_STARTED" ? (
@@ -108,14 +149,15 @@ const FirstScreen = ({}: FirstScreenProps) => {
                                 px={12}
                             />
                         ) : (
-                            <LinkButton
-                                cursor="pointer"
-                                w="full"
-                                text="CLAIM TOKEN"
-                                size="large"
-                                onClick={() => router.push("/token-sale")}
-                                px={12}
-                            />
+                            // <LinkButton
+                            //     cursor="pointer"
+                            //     w="full"
+                            //     text="LEARN MORE ON STAKING REWARDS"
+                            //     size="large"
+                            //     href="#"
+                            //     px={12}
+                            // />
+                            ""
                         )}
                         {status !== "ENDED" && (
                             <Button
