@@ -8,6 +8,9 @@ import { numberWithCommas } from "@source/utils"
 import useTransactionToast from "@hooks/useTransactionToast"
 import { ActionButton } from "@components/shared"
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
+import ApproveModal from "./ApproveModal"
+import { useChakraToast } from "@sipher/web-components"
+import { currency } from "@source/utils"
 
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
@@ -15,17 +18,18 @@ export type TabOptionProps = typeof tabOptions[number]
 const StakeForm = () => {
     const qc = useQueryClient()
 
-    const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
+    const toast = useChakraToast()
 
+    const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
     const [sliderValue, setSliderValue] = useState(0)
+    const [sipherValue, setSipherValue] = useState("")
+    const [approvalModal, setApprovalModal] = useState(false)
 
     const setSliderValueCb = useCallback((value: number) => setSliderValue(value), [])
 
     const weight = 1 + (sliderValue * 7) / 365
 
     const { scCaller, account } = useWalletContext()
-
-    const [sipherValue, setSipherValue] = useState("")
 
     const { data: sipherBalance } = useQuery(
         ["sipher-balance", account],
@@ -58,6 +62,11 @@ const StakeForm = () => {
                 qc.invalidateQueries("stake-total-supply")
                 qc.invalidateQueries("sipher-balance")
                 qc.invalidateQueries("fetch")
+                toast({ status: "success", title: "Staked successfully!" })
+            },
+            onError: (e: any) => {
+                console.log(e)
+                toast({ status: "error", title: "Stake error!", message: e.message })
             },
         }
     )
@@ -68,21 +77,52 @@ const StakeForm = () => {
         }
     }, [mode, setSliderValueCb])
 
+    const { data: isApproved } = useQuery(
+        ["approved", account],
+        () => scCaller.current!.SipherToken.isApproved(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: false,
+        }
+    )
+
+    const { mutate: approve, isLoading: isApproving } = useMutation(
+        () => scCaller.current!.SipherToken.approve(account!),
+        {
+            // stake automatically after approved
+            onSuccess: () => {
+                setApprovalModal(false)
+                toast({ status: "success", title: "Approved successfully!" })
+            },
+            onError: (e: any) => {
+                toast({ status: "error", title: "Approve error!", message: e.message || "Please try again later!" })
+            },
+        }
+    )
+
+    const handleStake = () => {
+        if (isApproved) {
+            stake()
+        } else {
+            setApprovalModal(true)
+        }
+    }
+
     return (
-        <Flex direction="column" align="center" pt={8}>
+        <Flex direction="column" align="center" p={4} pt={8}>
             <Box
                 border="1px"
                 borderColor="#383838"
                 bg="rgba(0,0,0,0.9)"
                 rounded="xl"
                 py={8}
-                px={16}
+                px={[4, 8, 16]}
                 mb={8}
                 maxW="32rem"
             >
                 <Flex align="center" w="full" justify="center" mb={4}>
                     <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" mr={2} />
-                    <Text size="large" fontWeight="semibold" letterSpacing="3px">
+                    <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px">
                         $SIPHER
                     </Text>
                 </Flex>
@@ -120,27 +160,35 @@ const StakeForm = () => {
                                 Est. APR: <chakra.span fontWeight="semibold">{(estAPR * 100).toFixed(2)}%</chakra.span>
                             </Text>
                             <Text fontSize="sm" color="#9B9E9D">
-                                $SIPHER Balance: {numberWithCommas(receivedSipher)}
+                                $SIPHER Balance: {currency(sipherBalance!)}
                             </Text>
                         </Flex>
                     </Box>
-                    <Text textAlign="center" fontSize="sm" mb={4}>
-                        Be aware that there are always risks associated with staking contracts. You assume all
+                    <Text fontSize="sm" mb={4} textAlign="justify">
+                        Warning: be aware that there are always risks associated with staking contracts. You assume all
                         responsibility. Staking rewards enter a 12 month vesting period after claiming.{" "}
                         <chakra.span color="main.orange" cursor="pointer">
                             Read more
                         </chakra.span>
                         .
                     </Text>
+
                     <ActionButton
                         w="full"
                         text="Stake"
                         onClick={() => {
-                            stake()
+                            handleStake()
                         }}
                         isLoading={isStaking}
-                        disabled={receivedSipher <= 0 || sipherValue === ""}
+                        disabled={receivedSipher <= 0 || sipherValue === "" || parseFloat(sipherValue) <= 0}
                         py={4}
+                    />
+
+                    <ApproveModal
+                        isOpen={approvalModal}
+                        onClose={() => !isApproving && setApprovalModal(false)}
+                        approve={approve}
+                        isApproving={isApproving}
                     />
                 </Box>
             </Box>

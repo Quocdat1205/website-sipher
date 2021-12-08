@@ -8,6 +8,7 @@ import {
     ModalHeader,
     Text,
     Flex,
+    Box,
     Stack,
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
@@ -50,7 +51,6 @@ interface WalletModalProps {
 export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
     const wallet = useWalletContext()
     const router = useRouter()
-
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
             <ModalOverlay />

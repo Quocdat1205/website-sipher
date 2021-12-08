@@ -1,9 +1,10 @@
-import { Box, Flex, Link, Img, Text, chakra } from "@chakra-ui/react"
+import { Box, Flex, Link, Img, Text, chakra, HStack } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { currency, numberWithCommas } from "@source/utils"
 import React from "react"
+import { AiFillPlayCircle } from "react-icons/ai"
 import { useQuery } from "react-query"
 
 const Header = () => {
@@ -23,49 +24,66 @@ const Header = () => {
     console.log(totalStaked, sipherPrice)
 
     return (
-        <Flex align="flex-start" justify="space-between" w="full">
-            <Box>
-                <Typo.Heading mb={2} textAlign="left">
+        <Flex
+            flexDir={["column", "row"]}
+            align={["center", "flex-start"]}
+            justify={["center", "space-between"]}
+            w="full"
+        >
+            <Flex flexDir="column" align={["center", "flex-start"]}>
+                <Typo.Heading mb={2} textAlign={["center", "left"]}>
                     STAKE
                 </Typo.Heading>
-                <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>
-                    WHY AM I NOT FINALIZED ALREADY ???
+                <Text textAlign={["center", "left"]} letterSpacing="3px" fontSize="lg" fontWeight="semibold" mb={2}>
+                    EARN STAKING REWARDS WITH SIPHER
                 </Text>
-                <Link
-                    href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
-                    textDecoration="underline"
-                    letterSpacing="1px"
-                    color="main.yellow"
-                    fontWeight="semibold"
-                    fontSize="sm"
-                >
-                    Watch the how to stake video (30s)
-                </Link>
-            </Box>
-            <Box maxW="320px">
-                <Flex justify="space-between" w="full" align="center" mb={1}>
+                <HStack align="center" spacing={1}>
+                    <Link
+                        href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
+                        textDecoration="underline"
+                        letterSpacing="1px"
+                        color="#ff9800"
+                        fontWeight="semibold"
+                        fontSize="sm"
+                    >
+                        Watch the how to stake video (30s)
+                    </Link>
+                    <AiFillPlayCircle />
+                </HStack>
+            </Flex>
+            <Box w={["full", "auto"]} maxW={["100%", "320px"]} mt={[4, 0]}>
+                <Flex justify="space-between" w="full" align="center" mb={2}>
                     <Flex align="center">
                         <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
-                        <Text size="small">
+                        <Text fontSize="sm">
                             $SIPHER PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
                         </Text>
                     </Flex>
+                    <Text fontSize="sm" fontWeight="semibold" color="#25B700">
+                        +0.0%
+                    </Text>
                 </Flex>
                 <Flex
-                    flexDir="column"
-                    bg="rgba(29, 29, 29,0.9)"
-                    py={8}
-                    px={12}
-                    justify="center"
+                    bg="#292929"
+                    flexDir={["row", "column"]}
+                    py={[6, 8]}
+                    px={[6, 12]}
+                    justify={["space-between", "center"]}
                     align="center"
-                    rounded="lg"
+                    rounded="xl"
                 >
-                    <Text size="small">Total Amount Staked:</Text>
-                    <Text fontWeight="semibold">${currency(totalStaked! * sipherPrice)}</Text>
-                    <Text size="small" mt={4}>
-                        Total Amount Claimed:
-                    </Text>
-                    <Text fontWeight="semibold">${currency(totalClaimed! * sipherPrice)}</Text>
+                    <Box>
+                        <Text size="small">Total Amount Staked:</Text>
+                        <Text textAlign="center" fontWeight="semibold">
+                            ${currency(totalStaked! * sipherPrice)}
+                        </Text>
+                    </Box>
+                    <Box mt={[0, 4]}>
+                        <Text size="small">Total Amount Claimed:</Text>
+                        <Text textAlign="center" fontWeight="semibold">
+                            ${currency(totalClaimed! * sipherPrice)}
+                        </Text>
+                    </Box>
                 </Flex>
             </Box>
         </Flex>

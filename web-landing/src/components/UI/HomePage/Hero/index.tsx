@@ -24,6 +24,7 @@ import { BsPlayFill } from "react-icons/bs"
 import { LearnAboutModal, VideoModal } from "@components/UI/TokenSale/Modal"
 import { useState } from "react"
 import { useRouter } from "next/router"
+import PriceBox from "./PriceBox"
 
 interface FirstScreenProps {}
 
@@ -34,6 +35,8 @@ const FirstScreen = ({}: FirstScreenProps) => {
     const openModal = (modal: string) => {
         setModal(modal)
     }
+
+    const totalContributed = 3500
 
     return (
         <Flex
@@ -51,35 +54,37 @@ const FirstScreen = ({}: FirstScreenProps) => {
             p={4}
             pt={[16, 16, 4]}
         >
-            <Flex direction="column" align="center" justify="center" w="full" maxW="64rem" pt={[8, 16, 20, 32]}>
+            <Flex
+                direction="column"
+                align="center"
+                justify="center"
+                w="full"
+                maxW="64rem"
+                pt={[8, 16, 16, 24]}
+                overflow="hidden"
+            >
                 <Title text="$SIPHER INITIAL" />
                 <Title text="PUBLIC SALE" custom={1} />
+                <Flex w="full" maxW="52rem">
+                    <PriceBox />
+                </Flex>
                 <MotionFlex
                     direction="column"
                     align="center"
-                    mt={4}
+                    mt={2}
+                    w="full"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{
                         delay: 1.5,
                     }}
                 >
-                    <Typo.Heading fontSize={status === "ONGOING" ? "5xl" : "3xl"} textAlign="center" mb={[2, 2, 2, 4]}>
-                        {status === "NOT_STARTED"
-                            ? "BE PART OF THE SIPHER UNIVERSE"
-                            : status === "ONGOING"
-                            ? "IS NOW LIVE !"
-                            : "ENDED"}
-                    </Typo.Heading>
-                    <Text mb={[2, 2, 2, 4]} textAlign="center" size="sm" fontWeight="semibold" letterSpacing="3px">
-                        {status === "NOT_STARTED"
-                            ? "OFFICIAL LAUNCH 06/12/2021 - 01:00AM UTC"
-                            : status === "ONGOING"
-                            ? "ENDS ON 09/12/2021 - 01:00AM UTC"
-                            : ""}
+                    <Text fontWeight="500" fontSize="1.8rem" letterSpacing="3px">
+                        {status === "ONGOING" ? "SALES ENDS IN" : "SALES HAS ENDED"}
                     </Text>
-                    {status === "NOT_STARTED" && <CountDown startTime={startTime} endTime={endTime} />}
-                    <Stack mt={6} spacing={6} align="center">
+                    {status !== "NOT_STARTED" && <CountDown startTime={startTime} endTime={endTime} />}
+
+                    <Stack mt={4} spacing={4} align="center">
                         {status === "NOT_STARTED" ? (
                             <LinkButton
                                 text="LEARN MORE ON MEDIUM"
@@ -137,15 +142,6 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             </Link>
                         )}
                     </Stack>
-                    {/* <BrowserView>
-                            <Flex direction="column" align="center" mt={[4, 4, 4, 8]}>
-                                <CgMouse size="2rem" />
-                                <Box mt={-1}>
-                                    <BiChevronDown size="1.5rem" />
-                                </Box>
-                                <Text fontSize="xs">Scroll down to discover</Text>
-                            </Flex>
-                        </BrowserView> */}
                 </MotionFlex>
             </Flex>
             <Modal

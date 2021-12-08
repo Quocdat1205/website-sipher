@@ -16,10 +16,10 @@ export const getUsersByAddress = async (address: string): Promise<IUser> => {
 }
 
 /** Sign up user by wallet address */
-export const signupUser = async (address: string): Promise<IUser> => {
-    const { data } = await fetcher.post(`/login`, { publicAddress: address })
-    return data
-}
+// export const signupUser = async (address: string): Promise<IUser> => {
+//     const { data } = await fetcher.post(`/login`, { publicAddress: address })
+//     return data
+// }
 
 /** Authenticate user by address and signature */
 export const authenticateUser = async (

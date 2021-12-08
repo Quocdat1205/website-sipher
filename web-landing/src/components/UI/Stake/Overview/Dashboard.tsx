@@ -1,4 +1,4 @@
-import { Grid, GridItem, Box, Text, HStack } from "@chakra-ui/react"
+import { Box, Text, HStack } from "@chakra-ui/react"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useRouter } from "next/router"
@@ -23,10 +23,23 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
 
     return (
         <Box>
-            <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
+            <Text
+                textAlign={["center", "center", "left"]}
+                letterSpacing="3px"
+                size="large"
+                fontWeight="semibold"
+                mb={4}
+                mt={[4, 0]}
+            >
                 YOUR DASHBOARD
             </Text>
-            <HStack spacing={4} align="stretch">
+            <HStack
+                overflowX="scroll"
+                sx={{ "::-webkit-scrollbar": { h: "3px" } }}
+                w="100%"
+                spacing={4}
+                align="stretch"
+            >
                 <DashboardCard
                     img="/images/pc/stake/moneystake.png"
                     title="Total Staked"

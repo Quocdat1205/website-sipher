@@ -52,7 +52,7 @@ export const CountDown = ({ startTime, endTime }: CountDownProps) => {
     })
 
     return (
-        <HStack mt="2" justifyContent="center" width="100%" align="center" spacing={0}>
+        <HStack justifyContent="center" width="100%" align="center" spacing={0}>
             <TimeCell value={countdown.days} unit="days" />
             <Colon />
             <TimeCell value={countdown.hours} unit="hours" />
