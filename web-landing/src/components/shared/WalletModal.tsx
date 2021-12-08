@@ -76,11 +76,6 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             onClick={() => router.push("https://trezorwallet.sipher.xyz/token-sale")}
                         />
                     </Stack>
-                    <Box textAlign="center" w="full" p={4}>
-                        <Link color="main.orange" onClick={() => router.push("https://legacy.sipher.xyz")}>
-                            Using Legacy Format for Trezor User
-                        </Link>
-                    </Box>
                 </ModalBody>
             </ModalContent>
         </Modal>

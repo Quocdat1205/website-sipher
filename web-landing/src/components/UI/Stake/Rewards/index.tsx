@@ -29,14 +29,14 @@ const Rewards = () => {
                     </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
-                    <StakingPools
+                    {/* <StakingPools
                         amountStaked={data?.pool.accountTotalDeposit}
                         claimableRewards={data?.pool.accountPendingRewards}
                     />
                     <StakingPoolsMobile
                         amountStaked={data?.pool.accountTotalDeposit}
                         claimableRewards={data?.pool.accountPendingRewards}
-                    />
+                    /> */}
                     <LockedRewards deposits={data?.escrowPool.deposits || []} />
                     <LockedRewardsMobile deposits={data?.escrowPool.deposits || []} />
                 </VStack>

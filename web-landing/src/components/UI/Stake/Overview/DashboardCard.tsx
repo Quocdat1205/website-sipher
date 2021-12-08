@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Img } from "@chakra-ui/react"
+import { Flex, Box, Text, Img, Stack } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import { currency } from "@source/utils"
 import React from "react"
@@ -26,57 +26,57 @@ const DashboardCard = ({
     isLoading,
 }: Props) => {
     return (
-        <Box flex={1} overflow={["visible", "hidden"]}>
-            <Flex
-                w={["18rem", "auto"]}
-                p={8}
-                rounded="xl"
-                border="1px"
-                borderColor="#383838"
-                align="center"
-                justify="center"
-                flexDir="column"
-                h="full"
-                bg={background}
-                overflow="hidden"
-            >
-                <Img mb={4} src={img} alt={title} h="5rem" />
-                <Text lineHeight="1" color="#9B9E9D" fontWeight="semibold">
-                    {title}
-                </Text>
-                <Text
-                    py={3}
-                    lineHeight="1"
-                    fontSize={["2rem", "2.5rem", "2.5rem", "2.5rem", "3rem"]}
-                    fontWeight="900"
-                    fontFamily="Brandon"
-                    isTruncated
-                    w="full"
-                    textAlign="center"
-                >
-                    ${currency(dollarValue)}
-                </Text>
-                <Flex align="center">
-                    <Img mr={1} src="/images/icons/sipher.png" alt="sipher-token-icon" h="1rem" />
-                    <Text size="small" isTruncated>
-                        $SIPHER {currency(sipherValue)}
+        <Flex
+            flex={1}
+            p={8}
+            rounded="xl"
+            border="1px"
+            borderColor="#383838"
+            flexDir="column"
+            align="center"
+            justify="center"
+            // h="full"
+            bg={background}
+            overflow="hidden"
+        >
+            <Stack direction={["row", "row", "column"]} align="center" spacing={4} w="full">
+                <Img src={img} alt={title} h="5rem" />
+                <Flex direction="column" align="center" flex={1} overflow="hidden">
+                    <Text lineHeight="1" color="#9B9E9D" fontWeight="semibold">
+                        {title}
                     </Text>
+                    <Text
+                        fontSize={["2rem", "2.5rem"]}
+                        fontWeight="900"
+                        fontFamily="Brandon"
+                        isTruncated
+                        w="full"
+                        textAlign="center"
+                    >
+                        ${currency(dollarValue)}
+                    </Text>
+                    <Flex align="center" overflow="hidden" w="full" justify="center">
+                        <Img mr={1} src="/images/icons/sipher.png" alt="sipher-token-icon" h="1rem" />
+                        <Text fontSize="sm" isTruncated>
+                            $SIPHER {currency(sipherValue)}
+                        </Text>
+                    </Flex>
                 </Flex>
-                {buttonText !== "" && (
-                    <Box w="full" pt={8} borderTop="1px" borderColor="rgba(155,158,157, 0.5)" mt={4}>
-                        <ActionButton
-                            px={6}
-                            py={4}
-                            onClick={onClick}
-                            text={buttonText}
-                            w="full"
-                            disabled={disabled}
-                            isLoading={isLoading}
-                        />
-                    </Box>
-                )}
-            </Flex>
-        </Box>
+            </Stack>
+            {buttonText !== "" && (
+                <Box w="full" pt={4} borderTop="1px" borderColor="rgba(155,158,157, 0.5)" mt={4}>
+                    <ActionButton
+                        px={6}
+                        py={4}
+                        onClick={onClick}
+                        text={buttonText}
+                        w="full"
+                        disabled={disabled}
+                        isLoading={isLoading}
+                    />
+                </Box>
+            )}
+        </Flex>
     )
 }
 

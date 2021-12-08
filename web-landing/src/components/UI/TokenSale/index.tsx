@@ -12,7 +12,7 @@ import RightBarInfo from "./RightBarInfo"
 import useSaleTime from "./useSaleTime"
 import NotConnected from "./SubUI/NotConnected"
 import Loading from "./SubUI/Loading"
-import EndedClaim from "./SubUI/EndedClaim"
+import Ended from "./SubUI/Ended"
 import CountDown from "./CountDown"
 import { BsQuestionCircle } from "react-icons/bs"
 import { isMobile } from "react-device-detect"
@@ -25,7 +25,7 @@ const TokenSale = () => {
 
     if (status === "LOADING") return <Loading />
 
-    if (status === "ENDED") return <EndedClaim />
+    if (status === "ENDED") return <Ended />
 
     if (status === "ERROR") return <NotfoundPage />
 
