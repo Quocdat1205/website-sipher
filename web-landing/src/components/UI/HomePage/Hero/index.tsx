@@ -12,7 +12,7 @@ import {
     Link,
     ModalCloseButton,
 } from "@chakra-ui/react"
-import { LinkButton, MotionFlex, Typo } from "@components/shared"
+import { ActionButton, LinkButton, MotionFlex, Typo } from "@components/shared"
 import Title from "./Title"
 // import { CgMouse } from "react-icons/cg"
 // import { BiChevronDown } from "react-icons/bi"
@@ -63,14 +63,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                 pt={[8, 16, 16, 24]}
                 overflow="hidden"
             >
-                {status !== "ENDED" ? (
-                    <>
-                        <Title text="$SIPHER INITIAL" />
-                        <Title text="PUBLIC SALE" custom={1} />
-                    </>
-                ) : (
-                    <Title text="THANK YOU!" />
-                )}
+                <Title text="THANK YOU!" />
                 <MotionFlex
                     direction="column"
                     align="center"
@@ -82,116 +75,53 @@ const FirstScreen = ({}: FirstScreenProps) => {
                         delay: 1.5,
                     }}
                 >
-                    {status === "ENDED" && (
-                        <Box py={[0, 12]}>
-                            <Text
-                                textAlign="center"
-                                mb={2}
-                                fontWeight="500"
-                                fontSize={["1.6rem", "2.2rem"]}
-                                letterSpacing="3px"
-                            >
-                                THE $SIPHER INITIAL PUBLIC SALE IS OVER
-                            </Text>
-                            <Text
-                                textAlign="center"
-                                fontWeight="semibold"
-                                textTransform="uppercase"
-                                fontSize="0.9rem"
-                                letterSpacing="3px"
-                            >
-                                Thank you so much to our community, partners, backers and contributors
-                            </Text>
-                        </Box>
-                    )}
-                    {status !== "ENDED" && (
-                        <Flex w="full" maxW="52rem">
-                            <PriceBox />
-                        </Flex>
-                    )}
-                    {status === "ONGOING" && (
-                        <Text mb={2} fontWeight="500" fontSize="2rem" letterSpacing="3px">
-                            SALES ENDS IN
+                    <Box py={[0, 8]}>
+                        <Text
+                            textAlign="center"
+                            mb={2}
+                            fontWeight="500"
+                            fontSize={["1.6rem", "2.2rem"]}
+                            letterSpacing="3px"
+                        >
+                            THE $SIPHER INITIAL PUBLIC SALE IS OVER
                         </Text>
-                    )}
-                    {/* {status === "ENDED" && (
-                        <Flex pt={[2, 12]} flexDir="column" justify="center">
-                            <Text
-                                textAlign="center"
-                                fontWeight="semibold"
-                                textTransform="uppercase"
-                                fontSize="1rem"
-                                letterSpacing="3px"
-                            >
-                                EARN STAKING REWARDS WITH SIPHER
-                            </Text>
-                            <Text textAlign="center" fontWeight="thin" textTransform="unset" fontSize="0.9rem">
-                                $SIPHER Staking begins: 11th of Decem ber@ 7:00 AM UTC
-                            </Text>
-                        </Flex>
-                    )} */}
-                    {status !== "ENDED" && <CountDown startTime={startTime} endTime={endTime} />}
-                    <Stack mt={4} spacing={4} align="center">
-                        {status === "NOT_STARTED" ? (
-                            <LinkButton
-                                text="LEARN MORE ON MEDIUM"
-                                size="large"
-                                href="https://medium.com/sipherxyz/sipher-initial-public-sale-mechanic-8ff988e9ede1"
-                                px={12}
-                            />
-                        ) : status === "ONGOING" ? (
-                            <LinkButton
-                                cursor="pointer"
-                                w="full"
-                                text="JOIN THE TOKEN SALE"
-                                size="large"
-                                onClick={() => router.push("/token-sale")}
-                                px={12}
-                            />
-                        ) : (
-                            // <LinkButton
-                            //     cursor="pointer"
-                            //     w="full"
-                            //     text="LEARN MORE ON STAKING REWARDS"
-                            //     size="large"
-                            //     href="#"
-                            //     px={12}
-                            // />
-                            ""
-                        )}
-                        {status !== "ENDED" && (
-                            <Button
-                                _focus={{ boxShadow: "none" }}
-                                w="full"
-                                onClick={() => openModal("1")}
-                                rounded="full"
-                                border="1px"
-                                borderColor="white"
-                                color="white"
-                                bg="transparent"
-                                fontSize="sm"
-                                _hover={{ bg: "transparent" }}
-                                _active={{ bg: "transparent" }}
-                                fontWeight="semibold"
-                                px={12}
-                                leftIcon={<BsPlayFill size="1.2rem" />}
-                                mb={4}
-                            >
-                                WATCH VIDEO
-                            </Button>
-                        )}
-                        {status !== "ENDED" && (
-                            <Link
-                                onClick={() => openModal("2")}
-                                textDecoration="underline"
-                                textAlign="center"
-                                fontWeight="semibold"
-                                letterSpacing="1px"
-                            >
-                                Learn About $SIPHER Initial Public Sale
-                            </Link>
-                        )}
-                    </Stack>
+                        <Text
+                            textAlign="center"
+                            fontWeight="semibold"
+                            textTransform="uppercase"
+                            fontSize="0.9rem"
+                            letterSpacing="3px"
+                        >
+                            Thanks so much to our community, partners, backers and contributors.
+                        </Text>
+                    </Box>
+                    <Flex w="full" maxW="52rem">
+                        <PriceBox />
+                    </Flex>
+                    <Flex pt={[2, 12]} flexDir="column" justify="center">
+                        <Text
+                            textAlign="center"
+                            fontWeight="semibold"
+                            textTransform="uppercase"
+                            fontSize="1rem"
+                            letterSpacing="3px"
+                        >
+                            EARN STAKING REWARDS WITH SIPHER
+                        </Text>
+                        <Text textAlign="center" fontWeight="thin" textTransform="unset" fontSize="0.9rem">
+                            $SIPHER Staking begins: 11th of December @ 7:00 AM UTC
+                        </Text>
+                    </Flex>
+                    <Box mt={4}>
+                        <ActionButton
+                            onClick={() => window.open("https://atlas.sipher.xyz/sipher-staking-instructions", "_blank")}
+                            cursor="pointer"
+                            w="full"
+                            text="LEARN MORE ON STAKING REWARDS"
+                            px={6}
+                            rounded="full"
+                        />
+                    </Box>
                 </MotionFlex>
             </Flex>
             <Modal
