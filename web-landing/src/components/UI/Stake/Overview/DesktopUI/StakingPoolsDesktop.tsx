@@ -2,13 +2,13 @@ import { Stack, Flex, Box, Text } from "@chakra-ui/react"
 import { useSipherPrice } from "@hooks/api"
 import React from "react"
 import { ReactNode } from "react-markdown/lib/react-markdown"
-import TablePool from "./TablePool"
+import StakingPoolTableDesktop from "./StakingPoolTableDesktop"
 
 interface StakingPoolsProps {
     children: ReactNode
 }
 
-const StakingPools = ({ children }: StakingPoolsProps) => {
+const StakingPoolsDesktop = ({ children }: StakingPoolsProps) => {
     return (
         <Box display={["none", "none", "block"]}>
             <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
@@ -34,4 +34,4 @@ const StakingPools = ({ children }: StakingPoolsProps) => {
     )
 }
 
-export default StakingPools
+export default StakingPoolsDesktop

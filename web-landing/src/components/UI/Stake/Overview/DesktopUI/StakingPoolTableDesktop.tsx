@@ -20,7 +20,7 @@ interface Props {
     onStake?: () => void
 }
 
-const TablePool = ({
+const StakingPoolTableDesktop = ({
     poolName = "",
     weight = 0,
     TVL = 0,
@@ -125,4 +125,4 @@ const TablePool = ({
         </Box>
     )
 }
-export default TablePool
+export default StakingPoolTableDesktop

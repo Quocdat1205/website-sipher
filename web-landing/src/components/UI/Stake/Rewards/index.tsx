@@ -5,10 +5,10 @@ import { Typo } from "@components/shared"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import React from "react"
 import { useQuery } from "react-query"
-import LockedRewards from "./LockedRewards"
-import StakingPools from "./StakingPools"
 import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
 import LockedRewardsMobile from "./MobileUI/LockedRewardsMobile"
+import StakingPoolsDesktop from "./DesktopUI/StakingPoolsDesktop"
+import LockedRewardsDesktop from "./DesktopUI/LockedRewardsDesktop"
 
 const Rewards = () => {
     const { scCaller, account } = useWalletContext()
@@ -29,7 +29,7 @@ const Rewards = () => {
                     </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
-                    <StakingPools
+                    <StakingPoolsDesktop
                         amountStakedStakePool={data?.sipherPool.accountTotalDeposit || 0}
                         amountStakedLpPool={data?.lpPool.accountTotalDeposit || 0}
                         claimableRewardsLpPool={data?.lpPool.accountPendingRewards || 0}
@@ -41,7 +41,7 @@ const Rewards = () => {
                         claimableRewardsLpPool={data?.lpPool.accountPendingRewards || 0}
                         claimableRewardsStakePool={data?.sipherPool.accountPendingRewards || 0}
                     />
-                    <LockedRewards deposits={data?.escrowPool.deposits || []} />
+                    <LockedRewardsDesktop deposits={data?.escrowPool.deposits || []} />
                     <LockedRewardsMobile deposits={data?.escrowPool.deposits || []} />
                 </VStack>
             </Box>

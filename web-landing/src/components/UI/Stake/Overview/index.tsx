@@ -8,13 +8,13 @@ import React from "react"
 import { useQuery } from "react-query"
 import Dashboard from "./Dashboard"
 import Header from "./Header"
-import StakingDeposits from "./StakingDeposits"
-import StakingPools from "./StakingPools"
+import StakingDepositsDesktop from "./DesktopUI/StakingDepositsDesktop"
+import StakingPoolsDesktop from "./DesktopUI/StakingPoolsDesktop"
 import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
 import StakingDepositsMobile from "./MobileUI/StakingDepositsMobile"
-import TablePool from "./TablePool"
 import TablePoolMobile from "./MobileUI/TablePoolMobile"
 import { useRouter } from "next/router"
+import StakingPoolTableDesktop from "./DesktopUI/StakingPoolTableDesktop"
 
 const StakeOverview = () => {
     const { scCaller, account } = useWalletContext()
@@ -63,8 +63,8 @@ const StakeOverview = () => {
                         }
                     />
                     <Box id="staking-pools">
-                        <StakingPools>
-                            <TablePool
+                        <StakingPoolsDesktop>
+                            <StakingPoolTableDesktop
                                 poolName="SIPHER"
                                 totalValueLocked={stakeData?.stakePoolTVL}
                                 APR={
@@ -77,7 +77,7 @@ const StakeOverview = () => {
                                 myLiquidity={data?.sipherPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sipher`)}
                             />
-                            <TablePool
+                            <StakingPoolTableDesktop
                                 poolName="SIPHER / ETH LP"
                                 isUniswap
                                 totalValueLocked={stakeData?.lpPoolTVL}
@@ -89,9 +89,9 @@ const StakeOverview = () => {
                                 }
                                 pendingRewards={data?.lpPool.accountPendingRewards}
                                 myLiquidity={data?.lpPool.accountTotalDeposit}
-                                onStake={() => router.push(`/stake/deposit/sipher-eth-lp`)}
+                                onStake={() => router.push(`/stake/deposit/sp-eth-lp`)}
                             />
-                        </StakingPools>
+                        </StakingPoolsDesktop>
                         <StakingPoolsMobile>
                             <TablePoolMobile
                                 poolName="$SIPHER"
@@ -122,7 +122,7 @@ const StakeOverview = () => {
                             />
                         </StakingPoolsMobile>
                     </Box>
-                    <StakingDeposits
+                    <StakingDepositsDesktop
                         lpPoolDeposits={data?.lpPool.deposits || []}
                         stakePoolDeposits={data?.sipherPool.deposits || []}
                         lpPoolTotalSupply={lpPoolTotalSupply!}

@@ -22,7 +22,7 @@ interface StakingDepositsProps {
     lpPoolTotalSupply: number
 }
 
-const StakingDeposits = ({
+const StakingDepositsDesktop = ({
     stakePoolDeposits,
     lpPoolDeposits,
     stakePoolTotalSupply,
@@ -189,4 +189,4 @@ const StakingDeposits = ({
     )
 }
 
-export default StakingDeposits
+export default StakingDepositsDesktop

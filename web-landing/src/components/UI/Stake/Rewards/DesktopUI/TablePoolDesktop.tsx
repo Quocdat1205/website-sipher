@@ -14,7 +14,7 @@ interface Props {
     isUniswap?: boolean
 }
 
-const TablePool = ({
+const TablePoolDesktop = ({
     poolName = "",
     amountStaked = 0,
     claimableRewards = 0,
@@ -62,4 +62,4 @@ const TablePool = ({
         </Box>
     )
 }
-export default TablePool
+export default TablePoolDesktop

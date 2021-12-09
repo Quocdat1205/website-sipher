@@ -2,7 +2,7 @@ import { Flex, Text, Box } from "@chakra-ui/react"
 import { AddressContractCopy, BackgroundContainer, IconSipher, Typo } from "@components/shared"
 import { useQuery } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { currency, numberWithCommas } from "@source/utils"
+import { currency } from "@source/utils"
 import ClaimNoStake from "../FormStake/ClaimNoStake"
 
 const EndedClaim = () => {

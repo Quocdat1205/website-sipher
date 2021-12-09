@@ -9,6 +9,7 @@ import { BaseNavigationBar, WalletButton } from "."
 import ChildMenu from "./ChildMenu"
 import { IoMdClose } from "react-icons/io"
 import { useScrollDirection } from "@hooks/useScrollDirection"
+import useWalletContext from "@hooks/web3/useWalletContext"
 
 export const navMenus = [
     { id: "Home", path: "/" },
@@ -50,6 +51,8 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
     const sidebarOn = useStoreState(s => s.sidebarOn)
 
     const setSideBarOn = useStoreActions(action => action.setSidebarOn)
+
+    const { isActive } = useWalletContext()
 
     return (
         <Flex
@@ -99,7 +102,9 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                     <MenuDrawer />
                 </Flex>
             </BaseNavigationBar>
-            {isChildMenu && <ChildMenu menus={childMenus[menus]} />}
+            {isChildMenu && (menus === "aboutMenus" || (menus === "stakeMenus" && isActive)) && (
+                <ChildMenu menus={childMenus[menus]} />
+            )}
         </Flex>
     )
 }

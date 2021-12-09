@@ -15,7 +15,7 @@ interface LockedRewardsProps {
     }[]
 }
 
-const LockedRewards = ({ deposits }: LockedRewardsProps) => {
+const LockedRewardsDesktop = ({ deposits }: LockedRewardsProps) => {
     const sipherPrice = useSipherPrice()
 
     const { scCaller, account } = useWalletContext()
@@ -91,4 +91,4 @@ const LockedRewards = ({ deposits }: LockedRewardsProps) => {
     )
 }
 
-export default LockedRewards
+export default LockedRewardsDesktop
