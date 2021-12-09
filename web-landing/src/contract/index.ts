@@ -56,11 +56,16 @@ export class ContractCaller {
         return await this.SipherToken.getBalance(EscrowPoolAddress)
     }
 
-    async getLpPrice() {
+    async getLpTVL() {
         const balance = await this.Weth.balanceOf(UniswapAddress)
-        const uniswapTotalSupply = await this.Uniswap.totalSupply()
         const ethPrice = await getETHPrice()
         const lpPoolTVL = balance * ethPrice
+        return lpPoolTVL
+    }
+
+    async getLpPrice() {
+        const lpPoolTVL = await this.getLpTVL()
+        const uniswapTotalSupply = await this.Uniswap.totalSupply()
         return lpPoolTVL / uniswapTotalSupply
     }
 }

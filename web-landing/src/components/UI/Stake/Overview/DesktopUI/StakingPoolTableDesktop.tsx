@@ -86,13 +86,13 @@ const StakingPoolTableDesktop = ({
                         <Flex w="full" justify="space-between" mb={4}>
                             <Text size="small">Weight</Text>
                             <Text fontWeight="semibold" size="small">
-                                ${currency(weight)}
+                                {weight}%
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
                             <Text size="small">TVL</Text>
                             <Text fontWeight="semibold" size="small">
-                                {currency(TVL)}%
+                                ${currency(TVL)}
                             </Text>
                         </Flex>
                     </Box>
