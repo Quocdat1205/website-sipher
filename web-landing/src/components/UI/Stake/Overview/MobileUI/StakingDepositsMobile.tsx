@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import { format } from "date-fns"
 import { useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { useMutation, useQueryClient } from "react-query"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
 import { currency } from "@source/utils"
 interface StakingDepositsProps {
@@ -65,6 +65,8 @@ const StakingDepositsMobile = ({
             },
         }
     )
+
+    const { data: lpPrice } = useQuery("lp-price", () => scCaller.current!.getLpPrice(), { initialData: 0 })
 
     const calWeight = (start: number, end: number) => {
         return 1 + (end - start) / 1000 / (365 * 24 * 60 * 60)
@@ -158,7 +160,7 @@ const StakingDepositsMobile = ({
                         </Flex>
                         <Flex justify="space-between">
                             <Text fontWeight="semibold">Staked</Text>
-                            <Text textAlign="right">${currency(deposit.amount * sipherPrice)}</Text>
+                            <Text textAlign="right">${currency(deposit.amount * lpPrice!)}</Text>
                         </Flex>
                         <Flex justify="space-between">
                             <Text fontWeight="semibold">Est. Daily Rewards</Text>
