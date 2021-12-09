@@ -4,7 +4,6 @@ import { Collapse } from "@chakra-ui/transition"
 import { ActionButton } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
-import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
 
@@ -33,8 +32,6 @@ const StakingPoolTableDesktop = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false)
 
-    const sipherPrice = useSipherPrice()
-
     return (
         <Box
             bg={isOpen ? "#1D1D1D" : "transparent"}
@@ -55,7 +52,7 @@ const StakingPoolTableDesktop = ({
                         <Text ml={6}>{poolName}</Text>
                     </Flex>
                     <Text w="23%" textAlign="left">
-                        {currency(totalValueLocked * sipherPrice, "$")}
+                        {currency(totalValueLocked, "$")}
                     </Text>
                     <Text w="10%" textAlign="left">
                         {(APR * 100).toFixed(2)}%
@@ -109,7 +106,7 @@ const StakingPoolTableDesktop = ({
                         <Flex w="full" justify="space-between">
                             <Text size="small">My liquidity</Text>
                             <Text fontWeight="semibold" size="small">
-                                {currency(myLiquidity)} SIPHER
+                                {currency(myLiquidity)} {poolName}
                             </Text>
                         </Flex>
                     </Box>

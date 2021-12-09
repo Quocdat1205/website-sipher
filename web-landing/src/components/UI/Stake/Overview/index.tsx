@@ -27,8 +27,8 @@ const StakeOverview = () => {
 
     const { data: stakeData } = useQuery("total-staked", () => scCaller.current!.getTotalStaked(), {
         initialData: {
-            lpPoolTVL: 0,
-            stakePoolTVL: 0,
+            lpPoolTotalStakedByUSD: 0,
+            stakePoolTotalStakedByUSD: 0,
             totalStaked: 0,
         },
     })
@@ -66,7 +66,7 @@ const StakeOverview = () => {
                         <StakingPoolsDesktop>
                             <StakingPoolTableDesktop
                                 poolName="SIPHER"
-                                totalValueLocked={stakeData?.stakePoolTVL}
+                                totalValueLocked={stakeData?.stakePoolTotalStakedByUSD}
                                 APR={
                                     ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
                                         TOTAL_REWARDS_FOR_POOL) /
@@ -80,7 +80,7 @@ const StakeOverview = () => {
                             <StakingPoolTableDesktop
                                 poolName="SIPHER / ETH LP"
                                 isUniswap
-                                totalValueLocked={stakeData?.lpPoolTVL}
+                                totalValueLocked={stakeData?.lpPoolTotalStakedByUSD}
                                 APR={
                                     ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) *
                                         TOTAL_REWARDS_FOR_POOL) /
@@ -95,7 +95,7 @@ const StakeOverview = () => {
                         <StakingPoolsMobile>
                             <TablePoolMobile
                                 poolName="$SIPHER"
-                                totalValueLocked={stakeData?.stakePoolTVL}
+                                totalValueLocked={stakeData?.stakePoolTotalStakedByUSD}
                                 APR={
                                     ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
                                         TOTAL_REWARDS_FOR_POOL) /
@@ -108,7 +108,7 @@ const StakeOverview = () => {
                             />
                             <TablePoolMobile
                                 poolName="SIPHER/ETH Uniswap LP"
-                                totalValueLocked={stakeData?.lpPoolTVL}
+                                totalValueLocked={stakeData?.lpPoolTotalStakedByUSD}
                                 isUniswap
                                 APR={
                                     ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) *

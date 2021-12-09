@@ -58,7 +58,7 @@ const TablePoolMobile = ({
                     </Flex>
                     <Flex justify="space-between">
                         <Text fontWeight="semibold">Total Value Locked</Text>
-                        <Text textAlign="right">{currency(totalValueLocked * sipherPrice, "$")}</Text>
+                        <Text textAlign="right">{currency(totalValueLocked, "$")}</Text>
                     </Flex>
                     <Flex justify="space-between">
                         <Text fontWeight="semibold">APR</Text>

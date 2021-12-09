@@ -39,26 +39,28 @@ export class ContractCaller {
         const sipherStaked = await this.SipherToken.getBalance(StakingPoolAddress)
         const lpStaked = await this.Uniswap.getBalance(LpPoolAddress)
 
-        const balance = await this.Weth.balanceOf(UniswapAddress)
-        const uniswapTotalSupply = await this.Uniswap.totalSupply()
-
-        const ethPrice = await getETHPrice()
         const sipherPrice = await getSipherPrice()
+        const lpPrice = await this.getLpPrice()
 
-        const lpPoolTVL = balance * ethPrice // $
-        const stakePoolTVL = sipherStaked * sipherPrice
-
-        const lpPoolTotalStakedByUSD = (lpStaked * lpPoolTVL) / uniswapTotalSupply
-        const stakePoolTotalStakedByUSD = stakePoolTVL
+        const lpPoolTotalStakedByUSD = lpStaked * lpPrice
+        const stakePoolTotalStakedByUSD = sipherStaked * sipherPrice
 
         return {
-            lpPoolTVL,
-            stakePoolTVL,
+            lpPoolTotalStakedByUSD,
+            stakePoolTotalStakedByUSD,
             totalStaked: lpPoolTotalStakedByUSD + stakePoolTotalStakedByUSD,
         }
     }
 
     async getTotalClaimed() {
         return await this.SipherToken.getBalance(EscrowPoolAddress)
+    }
+
+    async getLpPrice() {
+        const balance = await this.Weth.balanceOf(UniswapAddress)
+        const uniswapTotalSupply = await this.Uniswap.totalSupply()
+        const ethPrice = await getETHPrice()
+        const lpPoolTVL = balance * ethPrice
+        return lpPoolTVL / uniswapTotalSupply
     }
 }
