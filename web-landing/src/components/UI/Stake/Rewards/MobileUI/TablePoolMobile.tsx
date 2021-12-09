@@ -2,11 +2,13 @@ import { Img } from "@chakra-ui/image"
 import { Box, Flex, Stack, Text } from "@chakra-ui/layout"
 import { ActionButton } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
+import useWalletContext from "@hooks/web3/useWalletContext"
 import { currency } from "@source/utils"
 import React from "react"
+import { useQuery } from "react-query"
 
 interface Props {
-    poolName: string
+    poolName: "$SIPHER" | "SIPHER/ETH LP"
     amountStaked?: number
     claimableRewards?: number
     isLoading?: boolean
@@ -21,9 +23,15 @@ const TablePoolMobile = ({
     isLoading = false,
     onClick,
     isUniswap = false,
-    poolName = "",
+    poolName,
 }: Props) => {
     const sipherPrice = useSipherPrice()
+    const { scCaller } = useWalletContext()
+
+    const { data: lpPrice } = useQuery("lp-price", () => scCaller.current!.getLpPrice(), {
+        enabled: !!scCaller.current,
+        initialData: 0,
+    })
 
     return (
         <Box bg="#292929" rounded="xl" border="1px" borderColor="#383838" p={4}>
@@ -42,7 +50,7 @@ const TablePoolMobile = ({
                 </Flex>
                 <Flex justify="space-between">
                     <Text fontWeight="semibold">Amount Staked</Text>
-                    <Text>${currency(amountStaked * sipherPrice)}</Text>
+                    <Text>${currency(amountStaked * (poolName === "$SIPHER" ? sipherPrice : lpPrice!))}</Text>
                 </Flex>
                 <Flex justify="space-between">
                     <Text fontWeight="semibold">Claimable Rewards</Text>
