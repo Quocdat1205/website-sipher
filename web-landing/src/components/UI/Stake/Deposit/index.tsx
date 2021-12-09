@@ -129,15 +129,15 @@ const StakeForm = ({ pool }: StakeProps) => {
                 maxW="32rem"
             >
                 <Flex align="center" w="full" justify="center" mb={4} pos="relative">
-                    <Flex align="center" w="2rem">
-                        <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" mr={2} />
+                    <Flex align="center" w="2.5rem" justify="center">
+                        <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" />
                         {pool === "SIPHER/ETH LP" && (
                             <Img
                                 src="/images/icons/eth.png"
                                 alt="ether-token-icon"
                                 boxSize="1.5rem"
                                 pos="relative"
-                                left="-1rem"
+                                left="-0.75rem"
                             />
                         )}
                     </Flex>
