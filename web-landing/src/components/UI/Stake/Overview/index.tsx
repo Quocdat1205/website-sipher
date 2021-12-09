@@ -46,8 +46,15 @@ const StakeOverview = () => {
         () => scCaller.current!.LpPools.totalSupply(),
         {
             initialData: 1,
+            enabled: !!scCaller.current,
         }
     )
+
+    const { data: lpTVL } = useQuery("lp-tvl", () => scCaller.current!.getLpTVL(), {
+        initialData: 0,
+        enabled: !!scCaller.current,
+    })
+
     return (
         <Flex direction="column" align="center" w="full">
             <Box w="full" maxW="60rem" px={4}>
@@ -76,6 +83,8 @@ const StakeOverview = () => {
                                 pendingRewards={data?.sipherPool.accountPendingRewards}
                                 myLiquidity={data?.sipherPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sipher`)}
+                                weight={(Math.round(data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                TVL={0}
                             />
                             <StakingPoolTableDesktop
                                 poolName="SIPHER / ETH LP"
@@ -90,6 +99,8 @@ const StakeOverview = () => {
                                 pendingRewards={data?.lpPool.accountPendingRewards}
                                 myLiquidity={data?.lpPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sp-eth-lp`)}
+                                weight={(Math.round(data?.lpPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                TVL={lpTVL}
                             />
                         </StakingPoolsDesktop>
                         <StakingPoolsMobile>
@@ -105,6 +116,8 @@ const StakeOverview = () => {
                                 pendingRewards={data?.sipherPool.accountPendingRewards}
                                 myLiquidity={data?.sipherPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sipher`)}
+                                weight={(Math.round(data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                TVL={0}
                             />
                             <TablePoolMobile
                                 poolName="SIPHER/ETH Uniswap LP"
@@ -119,6 +132,8 @@ const StakeOverview = () => {
                                 pendingRewards={data?.lpPool.accountPendingRewards}
                                 myLiquidity={data?.lpPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sipher-eth-lp`)}
+                                weight={(Math.round(data?.lpPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                TVL={lpTVL}
                             />
                         </StakingPoolsMobile>
                     </Box>

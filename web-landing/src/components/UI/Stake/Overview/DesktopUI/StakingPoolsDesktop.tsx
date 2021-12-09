@@ -1,9 +1,6 @@
-import { Stack, Flex, Box, Text } from "@chakra-ui/react"
-import { useSipherPrice } from "@hooks/api"
+import { Flex, Box, Text, VStack } from "@chakra-ui/react"
 import React from "react"
 import { ReactNode } from "react-markdown/lib/react-markdown"
-import StakingPoolTableDesktop from "./StakingPoolTableDesktop"
-
 interface StakingPoolsProps {
     children: ReactNode
 }
@@ -27,7 +24,9 @@ const StakingPoolsDesktop = ({ children }: StakingPoolsProps) => {
                             APR
                         </Text>
                     </Flex>
-                    <Stack>{children}</Stack>
+                    <VStack spacing={4} align="stretch">
+                        {children}
+                    </VStack>
                 </Box>
             </Box>
         </Box>
