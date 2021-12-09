@@ -5,15 +5,26 @@ import { useMutation } from "react-query"
 import TablePool from "./TablePool"
 
 interface StakingPoolsInterface {
-    amountStaked?: number
-    claimableRewards?: number
+    amountStakedStakePool: number
+    amountStakedLpPool: number
+    claimableRewardsStakePool: number
+    claimableRewardsLpPool: number
 }
 
-const StakingPools = ({ amountStaked, claimableRewards }: StakingPoolsInterface) => {
+const StakingPools = ({
+    amountStakedLpPool,
+    amountStakedStakePool,
+    claimableRewardsLpPool,
+    claimableRewardsStakePool,
+}: StakingPoolsInterface) => {
     const { scCaller, account } = useWalletContext()
 
-    const { mutate: claim, isLoading: isClaiming } = useMutation(() =>
+    const { mutate: claimStakePool, isLoading: isClaimingStakePool } = useMutation(() =>
         scCaller.current!.StakingPools.claimRewards(account!)
+    )
+
+    const { mutate: claimLpPool, isLoading: isClaimingLpPool } = useMutation(() =>
+        scCaller.current!.LpPools.claimRewards(account!)
     )
 
     return (
@@ -35,19 +46,19 @@ const StakingPools = ({ amountStaked, claimableRewards }: StakingPoolsInterface)
                         </Text>
                     </Flex>
                     <TablePool
-                        poolName="SIPHER"
-                        isLoading={isClaiming}
-                        amountStaked={amountStaked}
-                        claimableRewards={claimableRewards}
-                        onClick={() => claim()}
+                        poolName="$SIPHER"
+                        isLoading={isClaimingStakePool}
+                        amountStaked={amountStakedStakePool}
+                        claimableRewards={claimableRewardsStakePool}
+                        onClick={() => claimStakePool()}
                     />
                     <TablePool
                         poolName="SIPHER/ETH LP"
                         isUniswap
-                        isLoading={isClaiming}
-                        amountStaked={amountStaked}
-                        claimableRewards={claimableRewards}
-                        onClick={() => claim()}
+                        isLoading={isClaimingLpPool}
+                        amountStaked={amountStakedLpPool}
+                        claimableRewards={claimableRewardsLpPool}
+                        onClick={() => claimLpPool()}
                     />
                 </Box>
             </Box>

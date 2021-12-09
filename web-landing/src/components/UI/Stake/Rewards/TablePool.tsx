@@ -41,7 +41,7 @@ const TablePool = ({
                             />
                         )}
                     </Box>
-                    <Text ml={4}>${poolName}</Text>
+                    <Text ml={4}>{poolName}</Text>
                 </Flex>
                 <Text w="25%" textAlign="left">
                     ${currency(amountStaked * sipherPrice)}

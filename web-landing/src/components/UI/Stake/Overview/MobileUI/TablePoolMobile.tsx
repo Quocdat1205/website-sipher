@@ -1,14 +1,12 @@
-import { Img } from "@chakra-ui/image"
-import { Box, Flex, Text, Stack } from "@chakra-ui/layout"
-import { Collapse } from "@chakra-ui/transition"
+import { Box, Flex, Text, Stack, Img, Collapse, VStack } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
+import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
 
 interface Props {
-    sipherPrice?: number
     totalValueLocked?: number
     APR?: number
     pendingRewards?: number
@@ -17,7 +15,7 @@ interface Props {
     TVL?: number
     poolName?: string
     isUniswap?: boolean
-    href?: string
+    onStake?: () => void
 }
 
 const TablePoolMobile = ({
@@ -25,16 +23,16 @@ const TablePoolMobile = ({
     weight = 0,
     TVL = 0,
     totalValueLocked = 0,
-    sipherPrice = 0,
     APR = 0,
     pendingRewards = 0,
     myLiquidity = 0,
     isUniswap = false,
-    href = "#",
+    onStake,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false)
 
-    const router = useRouter()
+    const sipherPrice = useSipherPrice()
+
     return (
         <Box
             bg={isOpen ? "#383838" : "#1D1D1D"}
@@ -45,7 +43,7 @@ const TablePoolMobile = ({
             p={4}
         >
             <Box>
-                <Flex flexDir="column" w="full" pb={2}>
+                <VStack w="full" align="stretch">
                     <Flex w="full" justify="space-between">
                         <Text fontWeight="semibold">Pool</Text>
                         <Flex align="center">
@@ -63,7 +61,7 @@ const TablePoolMobile = ({
                                 )}
                             </Box>
                             <Text textAlign="right" ml={isUniswap ? 4 : 2}>
-                                ${poolName}
+                                {poolName}
                             </Text>
                         </Flex>
                     </Flex>
@@ -75,7 +73,7 @@ const TablePoolMobile = ({
                         <Text fontWeight="semibold">APR</Text>
                         <Text textAlign="right">{(APR * 100).toFixed(2)}%</Text>
                     </Flex>
-                </Flex>
+                </VStack>
                 <Flex
                     borderBottom="1px"
                     borderTop="1px"
@@ -94,11 +92,11 @@ const TablePoolMobile = ({
                             <BiChevronUp size="1.2rem" />
                         </Box>
                     </Flex>
-                    <ActionButton text="STAKE" onClick={() => router.push(href)} size="small" w="6rem" />
+                    <ActionButton text="STAKE" onClick={onStake} size="small" w="6rem" />
                 </Flex>
             </Box>
             <Collapse in={isOpen}>
-                <Box>
+                <Box mb={4}>
                     <ActionButton
                         disabled={!isUniswap}
                         onClick={() => window.open("https://app.uniswap.org/", "_blank")}
@@ -110,7 +108,7 @@ const TablePoolMobile = ({
                         letterSpacing="0px"
                     />
                 </Box>
-                <Stack pt={2} spacing={3}>
+                <VStack>
                     <Flex w="full" justify="space-between">
                         <Text size="small">Weight</Text>
                         <Text fontWeight="semibold" size="small">
@@ -135,7 +133,7 @@ const TablePoolMobile = ({
                             {currency(myLiquidity)} SIPHER
                         </Text>
                     </Flex>
-                </Stack>
+                </VStack>
             </Collapse>
         </Box>
     )

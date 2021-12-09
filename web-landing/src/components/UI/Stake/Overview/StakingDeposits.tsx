@@ -8,15 +8,26 @@ import { useMutation, useQueryClient } from "react-query"
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
 import { currency } from "@source/utils"
 interface StakingDepositsProps {
-    deposits: {
+    stakePoolDeposits: {
         amount: number
         start: number
         end: number
     }[]
-    stakingDeposit: number
+    lpPoolDeposits: {
+        amount: number
+        start: number
+        end: number
+    }[]
+    stakePoolTotalSupply: number
+    lpPoolTotalSupply: number
 }
 
-const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => {
+const StakingDeposits = ({
+    stakePoolDeposits,
+    lpPoolDeposits,
+    stakePoolTotalSupply,
+    lpPoolTotalSupply,
+}: StakingDepositsProps) => {
     const sipherPrice = useSipherPrice()
 
     const qc = useQueryClient()
@@ -25,8 +36,23 @@ const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => 
 
     const [unlockingId, setUnlockingId] = useState<number | null>(null)
 
-    const { mutate: unlock, isLoading: isUnlocking } = useMutation<unknown, unknown, number>(
+    const { mutate: unlockStakePool, isLoading: isUnlockingStakePool } = useMutation<unknown, unknown, number>(
         depositId => scCaller.current!.StakingPools.withdraw(depositId, account!),
+        {
+            onMutate: depositId => {
+                setUnlockingId(depositId)
+            },
+            onSuccess: () => {
+                qc.invalidateQueries("fetch")
+            },
+            onSettled: () => {
+                setUnlockingId(null)
+            },
+        }
+    )
+
+    const { mutate: unlockLpPool, isLoading: isUnlockingLpPool } = useMutation<unknown, unknown, number>(
+        depositId => scCaller.current!.LpPools.withdraw(depositId, account!),
         {
             onMutate: depositId => {
                 setUnlockingId(depositId)
@@ -46,7 +72,7 @@ const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => 
 
     return (
         <Box display={["none", "none", "block"]}>
-            <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
+            <Text letterSpacing="3px" fontSize="lg" fontWeight="semibold" mb={4}>
                 STAKING DEPOSITS
             </Text>
             <Box rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
@@ -70,7 +96,7 @@ const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => 
                         </Text>
                     </Flex>
                     <Box borderTop="1px" borderColor="#383838">
-                        {deposits.map((deposit, idx) => (
+                        {stakePoolDeposits.map((deposit, idx) => (
                             <Flex
                                 w="full"
                                 align="center"
@@ -89,7 +115,7 @@ const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => 
                                 <Text w="20%" textAlign="left">
                                     $
                                     {currency(
-                                        (TOTAL_REWARDS_FOR_POOL / stakingDeposit / 365) *
+                                        (((9 / 29) * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply / 365) *
                                             deposit.amount *
                                             calWeight(deposit.start, deposit.end) *
                                             sipherPrice
@@ -105,9 +131,52 @@ const StakingDeposits = ({ deposits, stakingDeposit }: StakingDepositsProps) => 
                                 <ActionButton
                                     text="UNLOCK"
                                     ml="auto"
-                                    onClick={() => unlock(idx)}
+                                    onClick={() => unlockStakePool(idx)}
                                     disabled={new Date().getTime() <= deposit.end}
-                                    isLoading={unlockingId === idx}
+                                    isLoading={unlockingId === idx && isUnlockingStakePool}
+                                    size="small"
+                                    w="10rem"
+                                />
+                            </Flex>
+                        ))}
+                        {lpPoolDeposits.map((deposit, idx) => (
+                            <Flex
+                                w="full"
+                                align="center"
+                                borderBottom="1px"
+                                borderColor="#383838"
+                                p={4}
+                                key={deposit.start}
+                            >
+                                <Flex align="center" w="17%">
+                                    <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                    <Text ml={4}>SIPHER/ETH Uniswap LP</Text>
+                                </Flex>
+                                <Text w="15%" textAlign="left">
+                                    ${currency(deposit.amount * sipherPrice)}
+                                </Text>
+                                <Text w="20%" textAlign="left">
+                                    $
+                                    {currency(
+                                        (((20 / 29) * TOTAL_REWARDS_FOR_POOL) / lpPoolTotalSupply / 365) *
+                                            deposit.amount *
+                                            calWeight(deposit.start, deposit.end) *
+                                            sipherPrice
+                                    )}
+                                </Text>
+
+                                <Text w="15%" textAlign="left">
+                                    {format(new Date(deposit.start), "MMM dd Y")}
+                                </Text>
+                                <Text w="15%" textAlign="left">
+                                    {format(new Date(deposit.end), "MMM dd Y")}
+                                </Text>
+                                <ActionButton
+                                    text="UNLOCK"
+                                    ml="auto"
+                                    onClick={() => unlockLpPool(idx)}
+                                    disabled={new Date().getTime() <= deposit.end}
+                                    isLoading={unlockingId === idx && isUnlockingLpPool}
                                     size="small"
                                     w="10rem"
                                 />
