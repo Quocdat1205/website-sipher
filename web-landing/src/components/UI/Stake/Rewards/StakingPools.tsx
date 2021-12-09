@@ -1,13 +1,17 @@
-import useWalletContext from "@hooks/web3/useWalletContext"
-import { useMutation } from "react-query"
 import StakingPoolsDesktop from "./DesktopUI/StakingPoolsDesktop"
 import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
 
-interface StakingPoolsProps {
+export interface StakingPoolsProps {
     amountStakedStakePool: number
     amountStakedLpPool: number
     claimableRewardsStakePool: number
     claimableRewardsLpPool: number
+    claimLpPool: () => void
+    claimStakePool: () => void
+    isClaimingLpPool: boolean
+    isClaimingStakePool: boolean
+    sipherPrice: number
+    lpPrice: number
 }
 
 const StakingPools = ({
@@ -15,20 +19,18 @@ const StakingPools = ({
     amountStakedStakePool,
     claimableRewardsLpPool,
     claimableRewardsStakePool,
+    claimLpPool,
+    claimStakePool,
+    isClaimingLpPool,
+    isClaimingStakePool,
+    sipherPrice,
+    lpPrice,
 }: StakingPoolsProps) => {
-    const { scCaller, account } = useWalletContext()
-
-    const { mutate: claimStakePool, isLoading: isClaimingStakePool } = useMutation(() =>
-        scCaller.current!.StakingPools.claimRewards(account!)
-    )
-
-    const { mutate: claimLpPool, isLoading: isClaimingLpPool } = useMutation(() =>
-        scCaller.current!.LpPools.claimRewards(account!)
-    )
-
     return (
         <>
             <StakingPoolsDesktop
+                lpPrice={lpPrice}
+                sipherPrice={sipherPrice}
                 amountStakedStakePool={amountStakedStakePool}
                 amountStakedLpPool={amountStakedLpPool}
                 claimableRewardsLpPool={claimableRewardsLpPool}
@@ -39,6 +41,8 @@ const StakingPools = ({
                 isClaimingStakePool={isClaimingStakePool}
             />
             <StakingPoolsMobile
+                lpPrice={lpPrice}
+                sipherPrice={sipherPrice}
                 amountStakedStakePool={amountStakedStakePool}
                 amountStakedLpPool={amountStakedLpPool}
                 claimableRewardsLpPool={claimableRewardsLpPool}

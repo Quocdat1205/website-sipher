@@ -2,71 +2,48 @@
 
 import { Flex, Box, VStack } from "@chakra-ui/react"
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
-import useWalletContext from "@hooks/web3/useWalletContext"
-import { StakingPoolAddress } from "@source/contract/code"
 import React from "react"
-import { useQuery } from "react-query"
 import Dashboard from "./Dashboard"
 import Header from "./Header"
-import StakingDepositsDesktop from "./DesktopUI/StakingDepositsDesktop"
+import StakingDeposits from "./StakingDeposits"
 import StakingPoolsDesktop from "./DesktopUI/StakingPoolsDesktop"
 import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
-import StakingDepositsMobile from "./MobileUI/StakingDepositsMobile"
 import TablePoolMobile from "./MobileUI/TablePoolMobile"
 import { useRouter } from "next/router"
+import useOverview from "./useOverview"
 import StakingPoolTableDesktop from "./DesktopUI/StakingPoolTableDesktop"
 
 const StakeOverview = () => {
-    const { scCaller, account } = useWalletContext()
-
     const router = useRouter()
-
-    const { data } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
-        enabled: !!scCaller.current && !!account,
-    })
-
-    const { data: stakeData } = useQuery("total-staked", () => scCaller.current!.getTotalStaked(), {
-        initialData: {
-            lpPoolTotalStakedByUSD: 0,
-            stakePoolTotalStakedByUSD: 0,
-            totalStaked: 0,
-        },
-    })
-
-    const { data: stakePoolTotalSupply } = useQuery(
-        "stake-pool-total-supply",
-        () => scCaller.current!.StakingPools.totalSupply(),
-        {
-            initialData: 1,
-        }
-    )
-
-    const { data: lpPoolTotalSupply } = useQuery(
-        "lp-pool-total-supply",
-        () => scCaller.current!.LpPools.totalSupply(),
-        {
-            initialData: 1,
-            enabled: !!scCaller.current,
-        }
-    )
-
-    const { data: lpTVL } = useQuery("lp-tvl", () => scCaller.current!.getLpTVL(), {
-        initialData: 0,
-        enabled: !!scCaller.current,
-    })
+    const {
+        dataFetch,
+        stakeData,
+        stakePoolTotalSupply,
+        lpPoolTotalSupply,
+        lpTVL,
+        totalClaimed,
+        sipherPrice,
+        claimRewards,
+        isClaiming,
+    } = useOverview()
 
     return (
         <Flex direction="column" align="center" w="full">
             <Box w="full" maxW="60rem" px={4}>
-                <Header totalStaked={stakeData!.totalStaked} />
+                <Header totalClaimed={totalClaimed!} sipherPrice={sipherPrice} totalStaked={stakeData!.totalStaked} />
                 <VStack spacing={8} align="stretch">
                     <Dashboard
+                        claimRewards={claimRewards}
+                        isClaiming={isClaiming}
+                        sipherPrice={sipherPrice}
                         totalStaked={
-                            data?.sipherPool.accountTotalDeposit || 0 + (data?.lpPool.accountTotalDeposit || 0)
+                            dataFetch?.sipherPool.accountTotalDeposit ||
+                            0 + (dataFetch?.lpPool.accountTotalDeposit || 0)
                         }
-                        unclaimedRewards={data?.pendingRewards}
+                        unclaimedRewards={dataFetch?.pendingRewards || 0}
                         totalEarned={
-                            data?.sipherPool.accountClaimedRewards || 0 + (data?.lpPool.accountClaimedRewards || 0)
+                            dataFetch?.sipherPool.accountClaimedRewards ||
+                            0 + (dataFetch?.lpPool.accountClaimedRewards || 0)
                         }
                     />
                     <Box id="staking-pools">
@@ -75,15 +52,18 @@ const StakeOverview = () => {
                                 poolName="SIPHER"
                                 totalValueLocked={stakeData?.stakePoolTotalStakedByUSD}
                                 APR={
-                                    ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
+                                    ((((dataFetch?.sipherPool.weight || 0) / (dataFetch?.totalWeight || 1)) *
                                         TOTAL_REWARDS_FOR_POOL) /
                                         stakePoolTotalSupply!) *
                                     2
                                 }
-                                pendingRewards={data?.sipherPool.accountPendingRewards}
-                                myLiquidity={data?.sipherPool.accountTotalDeposit}
+                                pendingRewards={dataFetch?.sipherPool.accountPendingRewards}
+                                myLiquidity={dataFetch?.sipherPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sipher`)}
-                                weight={(Math.round(data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                weight={
+                                    (Math.round(dataFetch?.sipherPool.weight || 0) / (dataFetch?.totalWeight || 1)) *
+                                    100
+                                }
                                 TVL={0}
                             />
                             <StakingPoolTableDesktop
@@ -91,15 +71,17 @@ const StakeOverview = () => {
                                 isUniswap
                                 totalValueLocked={stakeData?.lpPoolTotalStakedByUSD}
                                 APR={
-                                    ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) *
+                                    ((((dataFetch?.lpPool.weight || 0) / (dataFetch?.totalWeight || 1)) *
                                         TOTAL_REWARDS_FOR_POOL) /
                                         lpPoolTotalSupply!) *
                                     2
                                 }
-                                pendingRewards={data?.lpPool.accountPendingRewards}
-                                myLiquidity={data?.lpPool.accountTotalDeposit}
+                                pendingRewards={dataFetch?.lpPool.accountPendingRewards}
+                                myLiquidity={dataFetch?.lpPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sp-eth-lp`)}
-                                weight={(Math.round(data?.lpPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                weight={
+                                    (Math.round(dataFetch?.lpPool.weight || 0) / (dataFetch?.totalWeight || 1)) * 100
+                                }
                                 TVL={lpTVL}
                             />
                         </StakingPoolsDesktop>
@@ -108,15 +90,18 @@ const StakeOverview = () => {
                                 poolName="$SIPHER"
                                 totalValueLocked={stakeData?.stakePoolTotalStakedByUSD}
                                 APR={
-                                    ((((data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) *
+                                    ((((dataFetch?.sipherPool.weight || 0) / (dataFetch?.totalWeight || 1)) *
                                         TOTAL_REWARDS_FOR_POOL) /
                                         stakePoolTotalSupply!) *
                                     2
                                 }
-                                pendingRewards={data?.sipherPool.accountPendingRewards}
-                                myLiquidity={data?.sipherPool.accountTotalDeposit}
+                                pendingRewards={dataFetch?.sipherPool.accountPendingRewards}
+                                myLiquidity={dataFetch?.sipherPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sipher`)}
-                                weight={(Math.round(data?.sipherPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                weight={
+                                    (Math.round(dataFetch?.sipherPool.weight || 0) / (dataFetch?.totalWeight || 1)) *
+                                    100
+                                }
                                 TVL={0}
                             />
                             <TablePoolMobile
@@ -124,28 +109,24 @@ const StakeOverview = () => {
                                 totalValueLocked={stakeData?.lpPoolTotalStakedByUSD}
                                 isUniswap
                                 APR={
-                                    ((((data?.lpPool.weight || 0) / (data?.totalWeight || 1)) *
+                                    ((((dataFetch?.lpPool.weight || 0) / (dataFetch?.totalWeight || 1)) *
                                         TOTAL_REWARDS_FOR_POOL) /
                                         lpPoolTotalSupply!) *
                                     2
                                 }
-                                pendingRewards={data?.lpPool.accountPendingRewards}
-                                myLiquidity={data?.lpPool.accountTotalDeposit}
+                                pendingRewards={dataFetch?.lpPool.accountPendingRewards}
+                                myLiquidity={dataFetch?.lpPool.accountTotalDeposit}
                                 onStake={() => router.push(`/stake/deposit/sipher-eth-lp`)}
-                                weight={(Math.round(data?.lpPool.weight || 0) / (data?.totalWeight || 1)) * 100}
+                                weight={
+                                    (Math.round(dataFetch?.lpPool.weight || 0) / (dataFetch?.totalWeight || 1)) * 100
+                                }
                                 TVL={lpTVL}
                             />
                         </StakingPoolsMobile>
                     </Box>
-                    <StakingDepositsDesktop
-                        lpPoolDeposits={data?.lpPool.deposits || []}
-                        stakePoolDeposits={data?.sipherPool.deposits || []}
-                        lpPoolTotalSupply={lpPoolTotalSupply!}
-                        stakePoolTotalSupply={stakePoolTotalSupply!}
-                    />
-                    <StakingDepositsMobile
-                        lpPoolDeposits={data?.lpPool.deposits || []}
-                        stakePoolDeposits={data?.sipherPool.deposits || []}
+                    <StakingDeposits
+                        lpPoolDeposits={dataFetch?.lpPool.deposits || []}
+                        stakePoolDeposits={dataFetch?.sipherPool.deposits || []}
                         lpPoolTotalSupply={lpPoolTotalSupply!}
                         stakePoolTotalSupply={stakePoolTotalSupply!}
                     />

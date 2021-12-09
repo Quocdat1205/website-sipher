@@ -1,20 +1,7 @@
 import { Box, Text, Stack } from "@chakra-ui/react"
-import { useSipherPrice } from "@hooks/api"
-import useWalletContext from "@hooks/web3/useWalletContext"
 import React from "react"
-import { useMutation } from "react-query"
+import { StakingPoolsProps } from "../StakingPools"
 import TablePoolMobile from "./TablePoolMobile"
-
-interface StakingPoolsInterface {
-    amountStakedStakePool: number
-    amountStakedLpPool: number
-    claimableRewardsStakePool: number
-    claimableRewardsLpPool: number
-    claimStakePool: () => void
-    isClaimingStakePool: boolean
-    claimLpPool: () => void
-    isClaimingLpPool: boolean
-}
 
 const StakingPoolsMobile = ({
     amountStakedLpPool,
@@ -25,7 +12,9 @@ const StakingPoolsMobile = ({
     claimStakePool,
     isClaimingLpPool,
     isClaimingStakePool,
-}: StakingPoolsInterface) => {
+    sipherPrice,
+    lpPrice,
+}: StakingPoolsProps) => {
     return (
         <Box display={["block", "block", "none"]}>
             <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
@@ -41,6 +30,8 @@ const StakingPoolsMobile = ({
                 direction="column"
             >
                 <TablePoolMobile
+                    lpPrice={lpPrice}
+                    sipherPrice={sipherPrice}
                     poolName="$SIPHER"
                     amountStaked={amountStakedStakePool}
                     claimableRewards={claimableRewardsStakePool}
@@ -48,6 +39,8 @@ const StakingPoolsMobile = ({
                     isLoading={isClaimingStakePool}
                 />
                 <TablePoolMobile
+                    lpPrice={lpPrice}
+                    sipherPrice={sipherPrice}
                     poolName="SIPHER/ETH LP"
                     isUniswap
                     amountStaked={amountStakedLpPool}

@@ -1,26 +1,17 @@
 import { Box, Flex, Link, Img, Text, chakra, HStack, Stack } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
-import { useSipherPrice } from "@hooks/api"
-import useWalletContext from "@hooks/web3/useWalletContext"
-import { currency, numberWithCommas } from "@source/utils"
+import { currency } from "@source/utils"
 import React from "react"
 import { AiFillPlayCircle } from "react-icons/ai"
-import { useQuery } from "react-query"
+import useOverview from "./useOverview"
 
 interface HeaderProps {
     totalStaked: number
+    totalClaimed: number
+    sipherPrice: number
 }
 
-const Header = ({ totalStaked }: HeaderProps) => {
-    const { scCaller } = useWalletContext()
-
-    const sipherPrice = useSipherPrice()
-
-    const { data: totalClaimed } = useQuery("total-claimed", () => scCaller.current!.getTotalClaimed(), {
-        enabled: !!scCaller.current,
-        initialData: 0,
-    })
-
+const Header = ({ totalStaked, totalClaimed, sipherPrice }: HeaderProps) => {
     return (
         <Flex
             flexDir={["column", "row"]}

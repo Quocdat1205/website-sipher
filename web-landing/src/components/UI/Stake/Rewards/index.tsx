@@ -2,19 +2,24 @@
 
 import { Flex, Box, VStack, Text } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
-import useWalletContext from "@hooks/web3/useWalletContext"
 import React from "react"
-import { useQuery } from "react-query"
 import LockedRewardsMobile from "./MobileUI/LockedRewardsMobile"
 import LockedRewardsDesktop from "./DesktopUI/LockedRewardsDesktop"
 import StakingPools from "./StakingPools"
+import useRewards from "./useRewards"
 
 const Rewards = () => {
-    const { scCaller, account } = useWalletContext()
-
-    const { data } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
-        enabled: !!scCaller.current && !!account,
-    })
+    const {
+        dataFetch,
+        claimLpPool,
+        isClaimingLpPool,
+        claimStakePool,
+        isClaimingStakePool,
+        sipherPrice,
+        unlock,
+        unlockingId,
+        lpPrice,
+    } = useRewards()
 
     return (
         <Flex direction="column" align="center" w="full">
@@ -30,13 +35,29 @@ const Rewards = () => {
                 </Box>
                 <VStack spacing={8} align="stretch">
                     <StakingPools
-                        amountStakedStakePool={data?.sipherPool.accountTotalDeposit || 0}
-                        amountStakedLpPool={data?.lpPool.accountTotalDeposit || 0}
-                        claimableRewardsLpPool={data?.lpPool.accountPendingRewards || 0}
-                        claimableRewardsStakePool={data?.sipherPool.accountPendingRewards || 0}
+                        lpPrice={lpPrice!}
+                        sipherPrice={sipherPrice}
+                        claimLpPool={claimLpPool}
+                        isClaimingLpPool={isClaimingLpPool}
+                        claimStakePool={claimStakePool}
+                        isClaimingStakePool={isClaimingStakePool}
+                        amountStakedStakePool={dataFetch?.sipherPool.accountTotalDeposit || 0}
+                        amountStakedLpPool={dataFetch?.lpPool.accountTotalDeposit || 0}
+                        claimableRewardsLpPool={dataFetch?.lpPool.accountPendingRewards || 0}
+                        claimableRewardsStakePool={dataFetch?.sipherPool.accountPendingRewards || 0}
                     />
-                    <LockedRewardsDesktop deposits={data?.escrowPool.deposits || []} />
-                    <LockedRewardsMobile deposits={data?.escrowPool.deposits || []} />
+                    <LockedRewardsDesktop
+                        sipherPrice={sipherPrice}
+                        unlock={unlock}
+                        unlockingId={unlockingId}
+                        deposits={dataFetch?.escrowPool.deposits || []}
+                    />
+                    <LockedRewardsMobile
+                        sipherPrice={sipherPrice}
+                        unlock={unlock}
+                        unlockingId={unlockingId}
+                        deposits={dataFetch?.escrowPool.deposits || []}
+                    />
                 </VStack>
             </Box>
         </Flex>

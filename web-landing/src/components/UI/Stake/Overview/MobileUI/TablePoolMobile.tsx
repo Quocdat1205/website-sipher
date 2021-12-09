@@ -31,8 +31,6 @@ const TablePoolMobile = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false)
 
-    const sipherPrice = useSipherPrice()
-
     return (
         <Box
             bg={isOpen ? "#383838" : "#1D1D1D"}

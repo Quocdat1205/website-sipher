@@ -7,22 +7,22 @@ import { useMutation } from "react-query"
 import DashboardCard from "./DashboardCard"
 
 interface DashboardProps {
-    totalStaked?: number
-    unclaimedRewards?: number
-    totalEarned?: number
+    totalStaked: number
+    unclaimedRewards: number
+    totalEarned: number
+    claimRewards: () => void
+    isClaiming: boolean
+    sipherPrice: number
 }
 
-const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: DashboardProps) => {
-    const sipherPrice = useSipherPrice()
-
-    const { scCaller, account } = useWalletContext()
-
-    const { mutate: claimRewards, isLoading: isClaiming } = useMutation(() =>
-        scCaller.current!.StakingPools.claimRewards(account!)
-    )
-
-    const router = useRouter()
-
+const Dashboard = ({
+    totalStaked = 0,
+    unclaimedRewards = 0,
+    totalEarned = 0,
+    sipherPrice,
+    claimRewards,
+    isClaiming,
+}: DashboardProps) => {
     return (
         <Box>
             <Text

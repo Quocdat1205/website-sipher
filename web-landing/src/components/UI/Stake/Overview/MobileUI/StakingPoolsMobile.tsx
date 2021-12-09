@@ -1,7 +1,6 @@
-import { Flex, Box, Text, Stack } from "@chakra-ui/react"
+import { Box, Text, Stack } from "@chakra-ui/react"
 import { useSipherPrice } from "@hooks/api"
 import React, { ReactNode } from "react"
-import TablePoolMobile from "./TablePoolMobile"
 
 interface StakingPoolsProps {
     children: ReactNode

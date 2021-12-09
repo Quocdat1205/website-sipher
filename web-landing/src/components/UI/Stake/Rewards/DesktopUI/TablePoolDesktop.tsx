@@ -2,18 +2,17 @@ import { Img } from "@chakra-ui/image"
 import { Box, Flex, Text } from "@chakra-ui/layout"
 import { ActionButton } from "@components/shared"
 import { currency } from "@source/utils"
-import { useSipherPrice } from "@hooks/api"
 import React from "react"
-import { useQueries, useQuery } from "react-query"
-import useWalletContext from "@hooks/web3/useWalletContext"
 
-interface Props {
+export interface TablePoolsProps {
     poolName: "$SIPHER" | "SIPHER/ETH LP"
     amountStaked?: number
     isLoading?: boolean
     claimableRewards?: number
     onClick?: () => void
     isUniswap?: boolean
+    lpPrice: number
+    sipherPrice: number
 }
 
 const TablePoolDesktop = ({
@@ -23,16 +22,9 @@ const TablePoolDesktop = ({
     onClick,
     isUniswap = false,
     poolName,
-}: Props) => {
-    const sipherPrice = useSipherPrice()
-
-    const { scCaller } = useWalletContext()
-
-    const { data: lpPrice } = useQuery("lp-price", () => scCaller.current!.getLpPrice(), {
-        enabled: !!scCaller.current,
-        initialData: 0,
-    })
-
+    lpPrice,
+    sipherPrice,
+}: TablePoolsProps) => {
     return (
         <Box borderBottom="1px" borderColor="#383838" p={4}>
             <Flex w="full" align="center">

@@ -4948,11 +4948,6 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-jsbi@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-4.1.0.tgz#f0c25ed8881bc09891334b03a3952efaa7add337"
-  integrity sha512-384Z4keIsJtYpnVggsxaB255MZctILbxv+ihtwoWPF7KNOlYHn1LFpRnUw5qsAspUAA2+I7qzjVJxVYtHVjxNw==
-
 jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.npmjs.org/jsbn/-/jsbn-0.1.1.tgz"
@@ -6765,11 +6760,6 @@ react-infinite-scroll-component@^6.1.0:
   dependencies:
     throttle-debounce "^2.1.0"
 
-react-intersection-observer@^8.32.1:
-  version "8.32.1"
-  resolved "https://registry.npmjs.org/react-intersection-observer/-/react-intersection-observer-8.32.1.tgz"
-  integrity sha512-FOmMkMw7MeJ8FkuADpU8TRcvGuTvPB+DRkaikS1QXcWArYLCWC3mjRorq2XeRGBuqmaueOBd27PUazTu9AgInw==
-
 react-is@17.0.2, react-is@^17.0.0:
   version "17.0.2"
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
@@ -6865,11 +6855,6 @@ react-timer-hook@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/react-timer-hook/-/react-timer-hook-3.0.5.tgz#a8d930f99b180cd88da245965a26a17df3e7457b"
   integrity sha512-n+98SdmYvui2ne3KyWb3Ldu4k0NYQa3g/VzW6VEIfZJ8GAk/jJsIY700M8Nd2vNSTj05c7wKyQfJBqZ0x7zfiA==
-
-react-unity-webgl@^8.5.1:
-  version "8.5.1"
-  resolved "https://registry.yarnpkg.com/react-unity-webgl/-/react-unity-webgl-8.5.1.tgz#5010df140288002d3566f4ecbf5169fdaf19de19"
-  integrity sha512-1CX/2dgDYDPBYBc8UAM2rmlnPC6PzH3J+EF2CwwtMsaRVF3MNw0t+7LGrI3pWX+Saup/E/52Yme+l9e4LW8JNQ==
 
 react@17.0.2, react@^17.0.2:
   version "17.0.2"

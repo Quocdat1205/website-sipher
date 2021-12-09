@@ -1,35 +1,21 @@
-import { Img, Flex, Box, Text } from "@chakra-ui/react"
+import { Flex, Box, Text } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
-import { useSipherPrice } from "@hooks/api"
-import React, { useState } from "react"
+import React from "react"
 import { format } from "date-fns"
-import { useMutation } from "react-query"
-import useWalletContext from "@hooks/web3/useWalletContext"
 import { currency } from "@source/utils"
 
-interface LockedRewardsProps {
+export interface LockedRewardsProps {
     deposits: {
         amount: number
         start: number
         end: number
     }[]
+    unlock: (id: number) => void
+    unlockingId: number | null
+    sipherPrice: number
 }
 
-const LockedRewardsDesktop = ({ deposits }: LockedRewardsProps) => {
-    const sipherPrice = useSipherPrice()
-
-    const { scCaller, account } = useWalletContext()
-
-    const [unlockingId, setUnlockingId] = useState<number | null>(null)
-
-    const { mutate: unlock } = useMutation<unknown, unknown, number>(
-        depositId => scCaller.current!.EscrowPools.withdraw(depositId, account!),
-        {
-            onMutate: depositId => setUnlockingId(depositId),
-            onSettled: () => setUnlockingId(null),
-        }
-    )
-
+const LockedRewardsDesktop = ({ deposits, unlock, unlockingId, sipherPrice }: LockedRewardsProps) => {
     return (
         <Box display={["none", "none", "block"]}>
             <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
