@@ -31,22 +31,19 @@ const StakeForm = ({ pool }: StakeProps) => {
 
     const setSliderValueCb = useCallback((value: number) => setSliderValue(value), [])
 
+    useEffect(() => {
+        if (mode === "Flexible") {
+            setSliderValueCb(0)
+        }
+    }, [mode, setSliderValueCb])
+
     const weight = 1 + (sliderValue * 7) / 365
 
     const { scCaller, account } = useWalletContext()
 
-    const { data: sipherBalance } = useQuery(
-        ["sipher-balance", account],
-        () => scCaller.current!.SipherToken.getBalance(account!),
-        {
-            enabled: !!scCaller.current && !!account,
-            initialData: 0,
-        }
-    )
-
-    const { data: lpBalance } = useQuery(
-        ["lp-balance", account],
-        () => scCaller.current!.Uniswap.getBalance(account!),
+    const { data: balance } = useQuery(
+        ["balance", pool, account],
+        () => scCaller.current![pool === "$SIPHER" ? "SipherToken" : "Uniswap"].getBalance(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
@@ -61,8 +58,6 @@ const StakeForm = ({ pool }: StakeProps) => {
             initialData: 1,
         }
     )
-
-    const receivedSipher = Math.floor(sipherBalance!)
 
     const estAPR = (TOTAL_REWARDS_FOR_POOL / stakeTotalSupply!) * weight
 
@@ -89,14 +84,8 @@ const StakeForm = ({ pool }: StakeProps) => {
         }
     )
 
-    useEffect(() => {
-        if (mode === "Flexible") {
-            setSliderValueCb(0)
-        }
-    }, [mode, setSliderValueCb])
-
     const { data: isApproved } = useQuery(
-        ["approved", account],
+        ["approved", pool, account],
         () => scCaller.current![pool === "$SIPHER" ? "SipherToken" : "Uniswap"].isApproved(account!),
         {
             enabled: !!scCaller.current && !!account,
@@ -110,6 +99,7 @@ const StakeForm = ({ pool }: StakeProps) => {
             // stake automatically after approved
             onSuccess: () => {
                 setApprovalModal(false)
+                qc.invalidateQueries("approved")
                 toast({ status: "success", title: "Approved successfully!" })
             },
             onError: (e: any) => {
@@ -179,13 +169,13 @@ const StakeForm = ({ pool }: StakeProps) => {
                     )}
                     <Box mb={4}>
                         <Text mb={2}>I want to stake</Text>
-                        <SipherInput value={sipherValue} setValue={setSipherValue} maxValue={receivedSipher!} />
+                        <SipherInput value={sipherValue} setValue={setSipherValue} maxValue={Math.floor(balance!)} />
                         <Flex w="full" align="center" justify="space-between">
                             <Text>
                                 Est. APR: <chakra.span fontWeight="semibold">{(estAPR * 100).toFixed(2)}%</chakra.span>
                             </Text>
                             <Text fontSize="sm" color="#9B9E9D">
-                                Balance: {currency(pool === "$SIPHER" ? sipherBalance! : lpBalance!)}
+                                Balance: {currency(balance!)}
                             </Text>
                         </Flex>
                     </Box>
@@ -205,7 +195,7 @@ const StakeForm = ({ pool }: StakeProps) => {
                             handleStake()
                         }}
                         isLoading={isStaking}
-                        disabled={receivedSipher <= 0 || sipherValue === "" || parseFloat(sipherValue) <= 0}
+                        disabled={balance! <= 0 || sipherValue === "" || parseFloat(sipherValue) <= 0}
                         py={4}
                     />
 
