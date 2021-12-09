@@ -9,6 +9,10 @@ interface StakingPoolsInterface {
     amountStakedLpPool: number
     claimableRewardsStakePool: number
     claimableRewardsLpPool: number
+    claimStakePool: () => void
+    isClaimingStakePool: boolean
+    claimLpPool: () => void
+    isClaimingLpPool: boolean
 }
 
 const StakingPoolsDesktop = ({
@@ -16,17 +20,11 @@ const StakingPoolsDesktop = ({
     amountStakedStakePool,
     claimableRewardsLpPool,
     claimableRewardsStakePool,
+    claimLpPool,
+    claimStakePool,
+    isClaimingLpPool,
+    isClaimingStakePool,
 }: StakingPoolsInterface) => {
-    const { scCaller, account } = useWalletContext()
-
-    const { mutate: claimStakePool, isLoading: isClaimingStakePool } = useMutation(() =>
-        scCaller.current!.StakingPools.claimRewards(account!)
-    )
-
-    const { mutate: claimLpPool, isLoading: isClaimingLpPool } = useMutation(() =>
-        scCaller.current!.LpPools.claimRewards(account!)
-    )
-
     return (
         <Box display={["none", "none", "block"]}>
             <Text letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>

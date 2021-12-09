@@ -10,6 +10,10 @@ interface StakingPoolsInterface {
     amountStakedLpPool: number
     claimableRewardsStakePool: number
     claimableRewardsLpPool: number
+    claimStakePool: () => void
+    isClaimingStakePool: boolean
+    claimLpPool: () => void
+    isClaimingLpPool: boolean
 }
 
 const StakingPoolsMobile = ({
@@ -17,19 +21,11 @@ const StakingPoolsMobile = ({
     amountStakedStakePool,
     claimableRewardsLpPool,
     claimableRewardsStakePool,
+    claimLpPool,
+    claimStakePool,
+    isClaimingLpPool,
+    isClaimingStakePool,
 }: StakingPoolsInterface) => {
-    const sipherPrice = useSipherPrice()
-
-    const { scCaller, account } = useWalletContext()
-
-    const { mutate: claimStakePool, isLoading: isClaimingStakePool } = useMutation(() =>
-        scCaller.current!.StakingPools.claimRewards(account!)
-    )
-
-    const { mutate: claimLpPool, isLoading: isClaimingLpPool } = useMutation(() =>
-        scCaller.current!.LpPools.claimRewards(account!)
-    )
-
     return (
         <Box display={["block", "block", "none"]}>
             <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
@@ -46,7 +42,6 @@ const StakingPoolsMobile = ({
             >
                 <TablePoolMobile
                     poolName="$SIPHER"
-                    sipherPrice={sipherPrice}
                     amountStaked={amountStakedStakePool}
                     claimableRewards={claimableRewardsStakePool}
                     onClick={() => claimStakePool()}
@@ -55,7 +50,6 @@ const StakingPoolsMobile = ({
                 <TablePoolMobile
                     poolName="SIPHER/ETH LP"
                     isUniswap
-                    sipherPrice={sipherPrice}
                     amountStaked={amountStakedLpPool}
                     claimableRewards={claimableRewardsLpPool}
                     onClick={() => claimLpPool()}

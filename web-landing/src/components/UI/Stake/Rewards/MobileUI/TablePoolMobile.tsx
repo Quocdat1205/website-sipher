@@ -1,6 +1,7 @@
 import { Img } from "@chakra-ui/image"
 import { Box, Flex, Stack, Text } from "@chakra-ui/layout"
 import { ActionButton } from "@components/shared"
+import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import React from "react"
 
@@ -18,11 +19,12 @@ const TablePoolMobile = ({
     amountStaked = 0,
     claimableRewards = 0,
     isLoading = false,
-    sipherPrice = 0,
     onClick,
     isUniswap = false,
     poolName = "",
 }: Props) => {
+    const sipherPrice = useSipherPrice()
+
     return (
         <Box bg="#292929" rounded="xl" border="1px" borderColor="#383838" p={4}>
             <Stack>

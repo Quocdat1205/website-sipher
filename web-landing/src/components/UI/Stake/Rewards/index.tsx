@@ -9,6 +9,7 @@ import StakingPoolsMobile from "./MobileUI/StakingPoolsMobile"
 import LockedRewardsMobile from "./MobileUI/LockedRewardsMobile"
 import StakingPoolsDesktop from "./DesktopUI/StakingPoolsDesktop"
 import LockedRewardsDesktop from "./DesktopUI/LockedRewardsDesktop"
+import StakingPools from "./StakingPools"
 
 const Rewards = () => {
     const { scCaller, account } = useWalletContext()
@@ -27,15 +28,10 @@ const Rewards = () => {
                     <Text textAlign={["center", "left"]} letterSpacing="3px" fontSize="lg" fontWeight="semibold" mb={2}>
                         CLAIM YOUR SIPHER REWARDS
                     </Text>
+                    <Text fontSize="sm">Staking rewards enter a 12 month vesting period after claiming.</Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
-                    <StakingPoolsDesktop
-                        amountStakedStakePool={data?.sipherPool.accountTotalDeposit || 0}
-                        amountStakedLpPool={data?.lpPool.accountTotalDeposit || 0}
-                        claimableRewardsLpPool={data?.lpPool.accountPendingRewards || 0}
-                        claimableRewardsStakePool={data?.sipherPool.accountPendingRewards || 0}
-                    />
-                    <StakingPoolsMobile
+                    <StakingPools
                         amountStakedStakePool={data?.sipherPool.accountTotalDeposit || 0}
                         amountStakedLpPool={data?.lpPool.accountTotalDeposit || 0}
                         claimableRewardsLpPool={data?.lpPool.accountPendingRewards || 0}
