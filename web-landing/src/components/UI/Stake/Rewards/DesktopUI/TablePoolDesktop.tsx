@@ -28,19 +28,12 @@ const TablePoolDesktop = ({
         <Box borderBottom="1px" borderColor="#383838" p={4}>
             <Flex w="full" align="center">
                 <Flex align="center" w="25%">
-                    <Box pos="relative">
+                    <Flex align="center" w="2rem" pos="relative">
                         <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
                         {isUniswap && (
-                            <Img
-                                pos="absolute"
-                                top="0"
-                                left="0"
-                                transform="translateX(50%)"
-                                src="/images/icons/eth.png"
-                                boxSize="1.5rem"
-                            />
+                            <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
                         )}
-                    </Box>
+                    </Flex>
                     <Text ml={4}>{poolName}</Text>
                 </Flex>
                 <Text w="25%" textAlign="left">

@@ -46,19 +46,12 @@ const StakingPoolTableDesktop = ({
             <Box borderBottom={isOpen ? "1px" : "0px"} borderColor="#383838" p={4}>
                 <Flex w="full" align="center">
                     <Flex align="center" w="27%">
-                        <Box pos="relative">
+                        <Flex align="center" pos="relative" w="2rem">
                             <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
                             {isUniswap && (
-                                <Img
-                                    pos="absolute"
-                                    top="0"
-                                    left="0"
-                                    transform="translateX(50%)"
-                                    src="/images/icons/eth.png"
-                                    boxSize="1.5rem"
-                                />
+                                <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
                             )}
-                        </Box>
+                        </Flex>
                         <Text ml={6}>{poolName}</Text>
                     </Flex>
                     <Text w="23%" textAlign="left">

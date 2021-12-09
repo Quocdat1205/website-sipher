@@ -138,8 +138,15 @@ const StakeForm = ({ pool }: StakeProps) => {
                 mb={8}
                 maxW="32rem"
             >
-                <Flex align="center" w="full" justify="center" mb={4}>
+                <Flex align="center" w="full" justify="center" mb={4} pos="relative">
                     <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" mr={2} />
+                    <Img
+                        src="/images/icons/eth.png"
+                        alt="ether-token-icon"
+                        boxSize="1.5rem"
+                        pos="relative"
+                        left="-1rem"
+                    />
                     <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px">
                         {pool}
                     </Text>
