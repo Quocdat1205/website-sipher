@@ -3,35 +3,27 @@ import { ActionButton, AddressContractCopy, BackgroundContainer, Typo } from "@c
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { currency } from "@source/utils"
-import { useState } from "react"
 import useTransactionToast from "@hooks/useTransactionToast"
 import { useChakraToast } from "@sipher/web-components"
 import { checkSmartContract } from "@hooks/api"
 
 const Ended = () => {
     const { scCaller, account } = useWalletContext()
-    const { data: ReceivedToken } = useQuery(
+
+    const { data: receivedToken } = useQuery(
         ["estimate-received-token", account],
-        () => scCaller.current?.SipherIBCO.getEstReceivedToken(account!),
+        () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )
 
-    const [compared, setCompared] = useState(false)
-
     const transactionToast = useTransactionToast()
 
     const toast = useChakraToast()
 
     const qc = useQueryClient()
-
-    const { data: isSameSC } = useQuery("check-smartcontract", checkSmartContract, {
-        enabled: !compared,
-        initialData: false,
-        onSettled: () => setCompared(true),
-    })
 
     const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.SipherIBCO.claim(account!), {
         onMutate: () => {
@@ -47,21 +39,8 @@ const Ended = () => {
     })
 
     const handleClaim = async () => {
-        if (isSameSC) {
-            claim()
-        } else {
-            toast({ title: "Something went wrong with the smart contract!", message: "Please try again later" })
-        }
+        claim()
     }
-
-    const { data: receivedToken } = useQuery(
-        ["estimate-received-token", account],
-        () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
-        {
-            enabled: !!scCaller.current && !!account,
-            initialData: 0,
-        }
-    )
 
     return (
         <BackgroundContainer
@@ -96,7 +75,7 @@ const Ended = () => {
                     <Flex align="center" mb={3}>
                         <Img src="/images/icons/sipher.png" alt="sipher-token" boxSize="1.5rem" mr={4} />
                         <Text letterSpacing="3px" fontSize="xl" fontWeight="semibold">
-                            {currency(ReceivedToken!)} $SIPHER
+                            {currency(receivedToken!)} $SIPHER
                         </Text>
                     </Flex>
                     <ActionButton
@@ -106,7 +85,7 @@ const Ended = () => {
                         maxW="25rem"
                         onClick={handleClaim}
                         isLoading={isLoading}
-                        disabled={receivedToken! <= 0 || !compared}
+                        disabled={receivedToken! <= 0}
                         my={4}
                     />
 
