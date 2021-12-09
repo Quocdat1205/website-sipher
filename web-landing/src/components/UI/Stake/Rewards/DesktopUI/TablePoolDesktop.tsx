@@ -4,9 +4,11 @@ import { ActionButton } from "@components/shared"
 import { currency } from "@source/utils"
 import { useSipherPrice } from "@hooks/api"
 import React from "react"
+import { useQueries, useQuery } from "react-query"
+import useWalletContext from "@hooks/web3/useWalletContext"
 
 interface Props {
-    poolName: string
+    poolName: "$SIPHER" | "SIPHER/ETH LP"
     amountStaked?: number
     isLoading?: boolean
     claimableRewards?: number
@@ -15,14 +17,21 @@ interface Props {
 }
 
 const TablePoolDesktop = ({
-    poolName = "",
     amountStaked = 0,
     claimableRewards = 0,
     isLoading = false,
     onClick,
     isUniswap = false,
+    poolName,
 }: Props) => {
     const sipherPrice = useSipherPrice()
+
+    const { scCaller } = useWalletContext()
+
+    const { data: lpPrice } = useQuery("lp-price", () => scCaller.current!.getLpPrice(), {
+        enabled: !!scCaller.current,
+        initialData: 0,
+    })
 
     return (
         <Box borderBottom="1px" borderColor="#383838" p={4}>
@@ -37,7 +46,7 @@ const TablePoolDesktop = ({
                     <Text ml={4}>{poolName}</Text>
                 </Flex>
                 <Text w="25%" textAlign="left">
-                    ${currency(amountStaked * sipherPrice)}
+                    ${currency(amountStaked * (poolName === "$SIPHER" ? sipherPrice : lpPrice!))}
                 </Text>
                 <Text w="25%" textAlign="left">
                     {currency(claimableRewards)} SIPHER
