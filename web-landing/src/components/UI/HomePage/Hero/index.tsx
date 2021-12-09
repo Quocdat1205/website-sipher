@@ -114,7 +114,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     </Flex>
                     <Box mt={4}>
                         <ActionButton
-                            disabled
+                            onClick={() => window.open("https://atlas.sipher.xyz/sipher-staking-instructions", "_blank")}
                             cursor="pointer"
                             w="full"
                             text="LEARN MORE ON STAKING REWARDS"
