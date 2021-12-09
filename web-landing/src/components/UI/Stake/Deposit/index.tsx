@@ -44,6 +44,15 @@ const StakeForm = ({ pool }: StakeProps) => {
         }
     )
 
+    const { data: lpBalance } = useQuery(
+        ["lp-balance", account],
+        () => scCaller.current!.Uniswap.getBalance(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    )
+
     const { data: stakeTotalSupply } = useQuery(
         "stake-total-supply",
         () => scCaller.current?.StakingPools.totalSupply(),
@@ -58,7 +67,12 @@ const StakeForm = ({ pool }: StakeProps) => {
     const estAPR = (TOTAL_REWARDS_FOR_POOL / stakeTotalSupply!) * weight
 
     const { mutate: stake, isLoading: isStaking } = useMutation(
-        () => scCaller.current!.StakingPools.deposit(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
+        () =>
+            scCaller.current![pool === "$SIPHER" ? "StakingPools" : "LpPools"].deposit(
+                account!,
+                sipherValue === "" ? "0" : sipherValue,
+                sliderValue
+            ),
         {
             onSuccess: () => {
                 setSliderValue(0)
@@ -83,7 +97,7 @@ const StakeForm = ({ pool }: StakeProps) => {
 
     const { data: isApproved } = useQuery(
         ["approved", account],
-        () => scCaller.current!.SipherToken.isApproved(account!),
+        () => scCaller.current![pool === "$SIPHER" ? "SipherToken" : "Uniswap"].isApproved(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: false,
@@ -91,7 +105,7 @@ const StakeForm = ({ pool }: StakeProps) => {
     )
 
     const { mutate: approve, isLoading: isApproving } = useMutation(
-        () => scCaller.current!.SipherToken.approve(account!),
+        () => scCaller.current![pool === "$SIPHER" ? "SipherToken" : "Uniswap"].approve(account!),
         {
             // stake automatically after approved
             onSuccess: () => {
@@ -124,8 +138,15 @@ const StakeForm = ({ pool }: StakeProps) => {
                 mb={8}
                 maxW="32rem"
             >
-                <Flex align="center" w="full" justify="center" mb={4}>
+                <Flex align="center" w="full" justify="center" mb={4} pos="relative">
                     <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" mr={2} />
+                    <Img
+                        src="/images/icons/eth.png"
+                        alt="ether-token-icon"
+                        boxSize="1.5rem"
+                        pos="relative"
+                        left="-1rem"
+                    />
                     <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px">
                         {pool}
                     </Text>
@@ -164,7 +185,7 @@ const StakeForm = ({ pool }: StakeProps) => {
                                 Est. APR: <chakra.span fontWeight="semibold">{(estAPR * 100).toFixed(2)}%</chakra.span>
                             </Text>
                             <Text fontSize="sm" color="#9B9E9D">
-                                $SIPHER Balance: {currency(sipherBalance!)}
+                                Balance: {currency(pool === "$SIPHER" ? sipherBalance! : lpBalance!)}
                             </Text>
                         </Flex>
                     </Box>
@@ -179,7 +200,7 @@ const StakeForm = ({ pool }: StakeProps) => {
 
                     <ActionButton
                         w="full"
-                        text="Stake"
+                        text={isApproved ? "Stake" : "Approve for staking"}
                         onClick={() => {
                             handleStake()
                         }}

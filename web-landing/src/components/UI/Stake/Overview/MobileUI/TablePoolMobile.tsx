@@ -47,19 +47,10 @@ const TablePoolMobile = ({
                     <Flex w="full" justify="space-between">
                         <Text fontWeight="semibold">Pool</Text>
                         <Flex align="center">
-                            <Box pos="relative">
+                            <Flex align="center" w="2rem">
                                 <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
-                                {isUniswap && (
-                                    <Img
-                                        pos="absolute"
-                                        top="0"
-                                        left="0"
-                                        transform="translateX(50%)"
-                                        src="/images/icons/eth.png"
-                                        boxSize="1.5rem"
-                                    />
-                                )}
-                            </Box>
+                                {isUniswap && <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" />}
+                            </Flex>
                             <Text textAlign="right" ml={isUniswap ? 4 : 2}>
                                 {poolName}
                             </Text>

@@ -95,6 +95,16 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             Thanks so much to our community, partners, backers and contributors.
                         </Text>
                     </Box>
+                    <Box pt={4} pb={[4, 8]}>
+                        <ActionButton
+                            size="large"
+                            onClick={() => router.push("/token-sale")}
+                            cursor="pointer"
+                            text="CLAIM $SIPHER TOKEN"
+                            px={12}
+                            rounded="full"
+                        />
+                    </Box>
                     <Flex w="full" maxW="52rem">
                         <PriceBox />
                     </Flex>
@@ -114,7 +124,10 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     </Flex>
                     <Box mt={4}>
                         <ActionButton
-                            onClick={() => window.open("https://atlas.sipher.xyz/sipher-staking-instructions", "_blank")}
+                            size="small"
+                            onClick={() =>
+                                window.open("https://atlas.sipher.xyz/sipher-staking-instructions", "_blank")
+                            }
                             cursor="pointer"
                             w="full"
                             text="LEARN MORE ON STAKING REWARDS"

@@ -22,7 +22,7 @@ interface StakingDepositsProps {
     lpPoolTotalSupply: number
 }
 
-const StakingDeposits = ({
+const StakingDepositsDesktop = ({
     stakePoolDeposits,
     lpPoolDeposits,
     stakePoolTotalSupply,
@@ -106,7 +106,9 @@ const StakingDeposits = ({
                                 key={deposit.start}
                             >
                                 <Flex align="center" w="17%">
-                                    <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                    <Flex align="center" w="2rem">
+                                        <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                    </Flex>
                                     <Text ml={4}>$SIPHER</Text>
                                 </Flex>
                                 <Text w="15%" textAlign="left">
@@ -149,7 +151,15 @@ const StakingDeposits = ({
                                 key={deposit.start}
                             >
                                 <Flex align="center" w="17%">
-                                    <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                    <Flex align="center" w="2rem">
+                                        <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                        <Img
+                                            src="/images/icons/eth.png"
+                                            boxSize="1.5rem"
+                                            pos="relative"
+                                            left="-0.75rem"
+                                        />
+                                    </Flex>
                                     <Text ml={4}>SIPHER/ETH Uniswap LP</Text>
                                 </Flex>
                                 <Text w="15%" textAlign="left">
@@ -189,4 +199,4 @@ const StakingDeposits = ({
     )
 }
 
-export default StakingDeposits
+export default StakingDepositsDesktop

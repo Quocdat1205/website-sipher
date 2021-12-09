@@ -2,7 +2,7 @@ import { Flex, Box, Text } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import React from "react"
 import { useMutation } from "react-query"
-import TablePool from "./TablePool"
+import TablePoolDesktop from "./TablePoolDesktop"
 
 interface StakingPoolsInterface {
     amountStakedStakePool: number
@@ -11,7 +11,7 @@ interface StakingPoolsInterface {
     claimableRewardsLpPool: number
 }
 
-const StakingPools = ({
+const StakingPoolsDesktop = ({
     amountStakedLpPool,
     amountStakedStakePool,
     claimableRewardsLpPool,
@@ -45,14 +45,14 @@ const StakingPools = ({
                             Claimable Rewards
                         </Text>
                     </Flex>
-                    <TablePool
+                    <TablePoolDesktop
                         poolName="$SIPHER"
                         isLoading={isClaimingStakePool}
                         amountStaked={amountStakedStakePool}
                         claimableRewards={claimableRewardsStakePool}
                         onClick={() => claimStakePool()}
                     />
-                    <TablePool
+                    <TablePoolDesktop
                         poolName="SIPHER/ETH LP"
                         isUniswap
                         isLoading={isClaimingLpPool}
@@ -66,4 +66,4 @@ const StakingPools = ({
     )
 }
 
-export default StakingPools
+export default StakingPoolsDesktop
