@@ -4,6 +4,7 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery } from "react-query"
 import { currency } from "@source/utils"
 import { Pool } from "@@types"
+import useTransactionToast from "@hooks/useTransactionToast"
 
 export interface StakingPoolData {
     poolName: string
@@ -18,7 +19,7 @@ export interface StakingPoolData {
 const useRewards = () => {
     const [unlockingId, setUnlockingId] = useState<number | null>(null)
     const { scCaller, account } = useWalletContext()
-
+    const toastTransaction = useTransactionToast()
     const sipherPrice = useSipherPrice()
     const lpUniswapPrice = useLpUniswapPrice()
     const lpKyberPrice = useLpKyberPrice()
@@ -30,8 +31,13 @@ const useRewards = () => {
     const { mutate: unlock } = useMutation<unknown, unknown, number>(
         depositId => scCaller.current!.EscrowPools.withdraw(depositId, account!),
         {
-            onMutate: depositId => setUnlockingId(depositId),
+            onMutate: depositId => {
+                setUnlockingId(depositId)
+                toastTransaction({ status: "processing" })
+            },
             onSettled: () => setUnlockingId(null),
+            onSuccess: () =>
+                toastTransaction({ status: "success", message: ["You have successfully withdrawn your fund."] }),
         }
     )
 
@@ -39,8 +45,12 @@ const useRewards = () => {
     const { mutate: claim, isLoading: isClaiming } = useMutation<unknown, unknown, Pool>(
         pool => scCaller.current![pool].claimRewards(account!),
         {
-            onMutate: pool => setClaimingPool(pool),
+            onMutate: pool => {
+                setClaimingPool(pool)
+                toastTransaction({ status: "processing" })
+            },
             onSettled: () => setClaimingPool(null),
+            onSuccess: () => toastTransaction({ status: "successClaim" }),
         }
     )
 

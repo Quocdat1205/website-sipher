@@ -1,5 +1,6 @@
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
 import { useSipherPrice } from "@hooks/api"
+import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { SipherTokenAddress } from "@source/contract/code"
 import { LPSipherWethKyberAddress } from "@source/contract/code/LPSipherWethKyber"
@@ -16,6 +17,7 @@ const useOverview = () => {
     const sipherPrice = useSipherPrice()
     const router = useRouter()
     const qc = useQueryClient()
+    const toastTransaction = useTransactionToast()
 
     const { data: lpUniswapPrice } = useQuery(["lp-price", "uniswap"], () => scCaller.current?.getLpUniswapPrice(), {
         initialData: 0,
@@ -85,13 +87,18 @@ const useOverview = () => {
             onMutate: ({ pool, depositId }) => {
                 setUnlockingId(depositId)
                 setUnlockingPool(pool)
+                toastTransaction({ status: "processing" })
             },
             onSuccess: () => {
                 qc.invalidateQueries("fetch")
+                toastTransaction({ status: "success", message: ["You have successfully withdrawn your fund."] })
             },
             onSettled: () => {
                 setUnlockingId(null)
                 setUnlockingPool(null)
+            },
+            onError: () => {
+                toastTransaction({ status: "failed" })
             },
         }
     )

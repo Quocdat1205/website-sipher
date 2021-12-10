@@ -1,4 +1,5 @@
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
+import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { useState, useCallback, useEffect } from "react"
@@ -10,7 +11,7 @@ import { PoolURL, TabOptionProps, tabOptions } from "."
 const useDeposit = (pool: PoolURL) => {
     const qc = useQueryClient()
     const toast = useChakraToast()
-
+    const toastTransaction = useTransactionToast()
     const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
     const [sliderValue, setSliderValue] = useState(0)
     const [sipherValue, setSipherValue] = useState("")
@@ -78,17 +79,20 @@ const useDeposit = (pool: PoolURL) => {
     const { mutate: stake, isLoading: isStaking } = useMutation(
         () => scCaller.current![info.pool].deposit(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
         {
+            onMutate: () => {
+                toastTransaction({ status: "processing" })
+            },
             onSuccess: () => {
                 setSliderValue(0)
                 setSipherValue("0")
                 qc.invalidateQueries("stake-total-supply")
                 qc.invalidateQueries("sipher-balance")
                 qc.invalidateQueries("fetch")
-                toast({ status: "success", title: "Staked successfully!" })
+                toastTransaction({ status: "success" })
             },
             onError: (e: any) => {
                 console.log(e)
-                toast({ status: "error", title: "Stake error!", message: e.message })
+                toastTransaction({ status: "failed" })
             },
         }
     )
@@ -106,13 +110,16 @@ const useDeposit = (pool: PoolURL) => {
         () => scCaller.current![info.token].approve(account!),
         {
             // stake automatically after approved
+            onMutate: () => {
+                toastTransaction({ status: "processing" })
+            },
             onSuccess: () => {
                 setApprovalModal(false)
                 qc.invalidateQueries("approved")
-                toast({ status: "success", title: "Approved successfully!" })
+                toastTransaction({ status: "success", message: ["You have successfully approved your $SIPHER."] })
             },
             onError: (e: any) => {
-                toast({ status: "error", title: "Approve error!", message: e.message || "Please try again later!" })
+                toastTransaction({ status: "failed" })
             },
         }
     )
