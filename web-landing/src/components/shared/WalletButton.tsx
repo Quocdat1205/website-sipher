@@ -7,8 +7,10 @@ import { useEffect, useRef, useState } from "react"
 import { FaWallet } from "react-icons/fa"
 import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
-import { WalletModal } from "."
+import { IconSipher, WalletModal } from "."
 import { useRouter } from "next/router"
+import { useQuery } from "react-query"
+import { currency } from "@source/utils"
 
 interface WalletButtonProps {}
 
@@ -36,6 +38,16 @@ export const WalletButton = ({}: WalletButtonProps) => {
             }
         }
     }, [wallet.isActive, router])
+
+    const { data: balance } = useQuery(
+        ["balance", wallet.account],
+        () => wallet.scCaller.current?.SipherToken.getBalance(wallet.account!),
+        {
+            enabled: !!wallet.scCaller.current && !!wallet.account,
+            initialData: 0,
+            refetchInterval: 2000,
+        }
+    )
 
     return (
         <Box pos="relative" ref={boxRef}>
@@ -76,12 +88,20 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         <Box color="main.orange" mr={2}>
                             <FaWallet />
                         </Box>
-                        <Text fontWeight="semibold" fontSize="sm" mr={2}>
-                            {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
-                                wallet.account.length - 4,
-                                wallet.account.length
-                            )}`}
-                        </Text>
+                        <Flex flexDir="column" align="flex-end" mr={2}>
+                            <Text fontWeight="semibold" fontSize="xs">
+                                {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
+                                    wallet.account.length - 4,
+                                    wallet.account.length
+                                )}`}
+                            </Text>
+                            <Flex align="center">
+                                <Text color="#9B9E9D" fontWeight="semibold" fontSize="x-small" mr={1}>
+                                    {currency(balance!)}
+                                </Text>
+                                <IconSipher boxSize="0.9rem" />
+                            </Flex>
+                        </Flex>
                         <Box ml={"auto"}>
                             <FiChevronDown size="1.2rem" />
                         </Box>
