@@ -91,8 +91,8 @@ const useOverview = () => {
                 toastTransaction({ status: "processing" })
             },
             onSuccess: () => {
-                qc.invalidateQueries("fetch")
                 toastTransaction({ status: "success", message: ["You have successfully withdrawn your fund."] })
+                qc.invalidateQueries("fetch")
             },
             onSettled: () => {
                 setUnlockingId(null)

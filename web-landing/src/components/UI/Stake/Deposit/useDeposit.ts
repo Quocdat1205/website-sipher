@@ -23,6 +23,7 @@ const useDeposit = (pool: PoolURL) => {
     const [sliderValue, setSliderValue] = useState(0)
     const [sipherValue, setSipherValue] = useState("")
     const [approvalModal, setApprovalModal] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const setSliderValueCb = useCallback((value: number) => setSliderValue(value), [])
 
@@ -89,22 +90,25 @@ const useDeposit = (pool: PoolURL) => {
         )
     }
 
-    const { mutate: stake, isLoading: isStaking } = useMutation(
+    const { mutate: stake } = useMutation(
         () => scCaller.current![info.pool].deposit(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
         {
             onMutate: () => {
+                setIsLoading(true)
                 toastTransaction({ status: "processing" })
             },
             onSuccess: () => {
                 setSliderValue(0)
                 setSipherValue("0")
+                toastTransaction({ status: "success" })
                 qc.invalidateQueries("stake-total-supply")
                 qc.invalidateQueries("sipher-balance")
                 qc.invalidateQueries("fetch")
-                toastTransaction({ status: "success" })
+                setIsLoading(false)
             },
             onError: (e: any) => {
                 console.log(e)
+                setIsLoading(false)
                 toastTransaction({ status: "failed" })
             },
         }
@@ -156,7 +160,7 @@ const useDeposit = (pool: PoolURL) => {
         balance,
         estAPR: dataFetch ? getAPR() : 0,
         isApproved,
-        isStaking,
+        isStaking: isLoading,
         approvalModal,
         setApprovalModal,
         isApproving,
