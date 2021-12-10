@@ -13,7 +13,7 @@ const StakingPoolsDesktop = ({ children }: StakingPoolsProps) => {
             </Text>
             <Box rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
                 <Box w="full">
-                    <Flex w="full" pb={2} px={4} mb={2}>
+                    <Flex w="full" pb={2} px={4} mb={2} borderBottom="1px" borderColor="#383838">
                         <Text fontWeight="semibold" w="22%" fontSize={"sm"}>
                             Pool
                         </Text>
