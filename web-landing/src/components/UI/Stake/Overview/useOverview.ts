@@ -50,6 +50,7 @@ const useOverview = () => {
         () => scCaller.current!.StakingPools.totalSupply(),
         {
             initialData: 1,
+            onSuccess: data => console.log("STAKE SUPPLY", data),
         }
     )
 
@@ -59,6 +60,7 @@ const useOverview = () => {
         {
             initialData: 1,
             enabled: !!scCaller.current,
+            onSuccess: data => console.log("UNISWAP SUPPLY", data),
         }
     )
 
@@ -68,6 +70,7 @@ const useOverview = () => {
         {
             initialData: 1,
             enabled: !!scCaller.current,
+            onSuccess: data => console.log("KYBER SUPPLY", data),
         }
     )
 
@@ -76,7 +79,7 @@ const useOverview = () => {
         enabled: !!scCaller.current,
     })
 
-    const { data: lpKyberTVL } = useQuery(["lp-tvl", "kyber"], () => scCaller.current!.getLpUniswapTVL(), {
+    const { data: lpKyberTVL } = useQuery(["lp-tvl", "kyber"], () => scCaller.current!.getLpKyberTVL(), {
         initialData: 0,
         enabled: !!scCaller.current,
     })
@@ -131,11 +134,11 @@ const useOverview = () => {
             detailButtons: [
                 {
                     text: "Buy $SIPHER on Uniswap",
-                    link: `https://app.uniswap.org/#/swap?outputCurrency=${SipherTokenAddress}`,
+                    link: `https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=${SipherTokenAddress}`,
                 },
                 {
                     text: "Buy $SIPHER on Kyberswap",
-                    link: `https://kyberswap.com/#/swap?inputCurrency=${SipherTokenAddress}&outputCurrency=ETH`,
+                    link: `https://kyberswap.com/#/swap?inputCurrency=ETH&outputCurrency=${SipherTokenAddress}`,
                 },
             ],
         },
@@ -187,13 +190,15 @@ const useOverview = () => {
         },
     ]
 
+    console.log("POOL INFO", stakingPoolInfos)
+
     const stakingPoolDeposits = [
         ...(dataFetch?.StakingPools.deposits || []).map((deposit, idx) => ({
             key: deposit.start,
             poolName: "$SIPHER",
             staked: currency(deposit.amount * sipherPrice, "$"),
             estimatedDailyRewards: currency(
-                ((stakingPoolInfos[0].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
+                (((stakingPoolInfos[0].weight / 100) * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
                     deposit.amount *
                     calWeight(deposit.start, deposit.end) *
                     sipherPrice,
@@ -211,7 +216,7 @@ const useOverview = () => {
             poolName: "Uniswap LP $SIPHER-ETH",
             staked: currency(deposit.amount * lpUniswapPrice!, "$"),
             estimatedDailyRewards: currency(
-                ((stakingPoolInfos[1].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
+                (((stakingPoolInfos[1].weight / 100) * TOTAL_REWARDS_FOR_POOL) / lpUniswapPoolTotalSupply! / 365) *
                     deposit.amount *
                     calWeight(deposit.start, deposit.end) *
                     sipherPrice,
@@ -229,7 +234,7 @@ const useOverview = () => {
             poolName: "Kyber LP $SIPHER-ETH",
             staked: currency(deposit.amount * lpKyberPrice!, "$"),
             estimatedDailyRewards: currency(
-                ((stakingPoolInfos[2].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
+                (((stakingPoolInfos[2].weight / 100) * TOTAL_REWARDS_FOR_POOL) / lpKyberPoolTotalSupply! / 365) *
                     deposit.amount *
                     calWeight(deposit.start, deposit.end) *
                     sipherPrice,

@@ -44,7 +44,7 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                     key={deposit.key}
                                 >
                                     <Flex align="center" w="17%">
-                                        <Flex align="center" w="2rem">
+                                        <Flex align="center" w="2.5rem">
                                             <Img
                                                 src="/images/icons/sipher.png"
                                                 boxSize="1.5rem"
@@ -60,19 +60,21 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                                 />
                                             )}
                                         </Flex>
-                                        <Text ml={4}>{deposit.poolName}</Text>
+                                        <Text ml={2} fontSize="sm">
+                                            {deposit.poolName}
+                                        </Text>
                                     </Flex>
-                                    <Text w="15%" textAlign="left">
+                                    <Text w="15%" textAlign="left" fontSize="sm">
                                         {deposit.staked}
                                     </Text>
-                                    <Text w="20%" textAlign="left">
+                                    <Text w="20%" textAlign="left" fontSize="sm">
                                         {deposit.estimatedDailyRewards}
                                     </Text>
 
-                                    <Text w="15%" textAlign="left">
+                                    <Text w="15%" textAlign="left" fontSize="sm">
                                         {deposit.lockDate}
                                     </Text>
-                                    <Text w="15%" textAlign="left">
+                                    <Text w="15%" textAlign="left" fontSize="sm">
                                         {deposit.unlockDate}
                                     </Text>
                                     <ActionButton

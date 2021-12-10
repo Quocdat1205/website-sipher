@@ -54,7 +54,7 @@ const StakingPoolTableDesktop = ({
                             {poolName}
                         </Text>
                     </Flex>
-                    <Text w="23%" textAlign="left">
+                    <Text w="23%" textAlign="right" pr={8}>
                         {currency(totalValueLocked, "$")}
                     </Text>
                     <Text w="15%" textAlign="left">
