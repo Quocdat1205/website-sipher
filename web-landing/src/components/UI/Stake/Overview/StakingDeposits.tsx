@@ -1,4 +1,4 @@
-import { Img, Flex, Box, Text, VStack } from "@chakra-ui/react"
+import { Img, Flex, Box, Text, VStack, chakra } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import React from "react"
 import useOverview from "./useOverview"
@@ -14,28 +14,31 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                 <Text letterSpacing="3px" fontSize="lg" fontWeight="semibold" mb={4}>
                     STAKING DEPOSITS
                 </Text>
-                <Box rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
-                    <Box w="full">
-                        <Flex w="full" pb={4}>
-                            <Text fontWeight="semibold" w="17%">
-                                Pool
-                            </Text>
-                            <Text fontWeight="semibold" w="15%">
-                                Staked
-                            </Text>
-                            <Text fontWeight="semibold" w="20%">
-                                Est. Daily Rewards
-                            </Text>
-                            <Text fontWeight="semibold" w="15%">
-                                Lock Date
-                            </Text>
-                            <Text fontWeight="semibold" w="15%">
-                                Unlock Date
-                            </Text>
-                        </Flex>
-                        <Box borderTop="1px" borderColor="#383838">
+                <Box w="full" rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
+                    <chakra.table w="full">
+                        <chakra.thead>
+                            <chakra.tr borderBottom="1px" borderColor="#383838">
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2} textAlign="left" w="20%">
+                                    Pool
+                                </chakra.th>
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2}>
+                                    Staked
+                                </chakra.th>
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2}>
+                                    Est. Daily Rewards
+                                </chakra.th>
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2}>
+                                    Lock Date
+                                </chakra.th>
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2}>
+                                    Unlock Date
+                                </chakra.th>
+                                <chakra.th p={2}></chakra.th>
+                            </chakra.tr>
+                        </chakra.thead>
+                        <chakra.tbody>
                             {deposits.map(deposit => (
-                                <Flex
+                                <chakra.tr
                                     w="full"
                                     align="center"
                                     borderBottom="1px"
@@ -43,53 +46,55 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                     py={4}
                                     key={deposit.key}
                                 >
-                                    <Flex align="center" w="17%">
-                                        <Flex align="center" w="2.5rem">
-                                            <Img
-                                                src="/images/icons/sipher.png"
-                                                boxSize="1.5rem"
-                                                zIndex={2}
-                                                pos="relative"
-                                            />
-                                            {deposit.poolName !== "$SIPHER" && (
+                                    <chakra.td p={2}>
+                                        <Flex align="center">
+                                            <Flex align="center" w="3rem" flexShrink={0}>
                                                 <Img
-                                                    src="/images/icons/eth.png"
+                                                    src="/images/icons/sipher.png"
                                                     boxSize="1.5rem"
+                                                    zIndex={2}
                                                     pos="relative"
-                                                    left="-0.75rem"
                                                 />
-                                            )}
+                                                {deposit.poolName !== "$SIPHER" && (
+                                                    <Img
+                                                        src="/images/icons/eth.png"
+                                                        boxSize="1.5rem"
+                                                        pos="relative"
+                                                        left="-0.75rem"
+                                                    />
+                                                )}
+                                            </Flex>
+                                            <Text fontSize="sm">{deposit.poolName}</Text>
                                         </Flex>
-                                        <Text ml={2} fontSize="sm">
-                                            {deposit.poolName}
-                                        </Text>
-                                    </Flex>
-                                    <Text w="15%" textAlign="left" fontSize="sm">
+                                    </chakra.td>
+                                    <chakra.td fontSize="sm" p={2}>
                                         {deposit.staked}
-                                    </Text>
-                                    <Text w="20%" textAlign="left" fontSize="sm">
+                                    </chakra.td>
+                                    <chakra.td fontSize="sm" p={2}>
                                         {deposit.estimatedDailyRewards}
-                                    </Text>
+                                    </chakra.td>
 
-                                    <Text w="15%" textAlign="left" fontSize="sm">
+                                    <chakra.td fontSize="sm" p={2}>
                                         {deposit.lockDate}
-                                    </Text>
-                                    <Text w="15%" textAlign="left" fontSize="sm">
+                                    </chakra.td>
+                                    <chakra.td fontSize="sm" p={2}>
                                         {deposit.unlockDate}
-                                    </Text>
-                                    <ActionButton
-                                        text="UNLOCK"
-                                        ml="auto"
-                                        onClick={deposit.onUnlock}
-                                        disabled={!deposit.isUnlockable}
-                                        isLoading={deposit.isUnlocking}
-                                        size="small"
-                                        w="10rem"
-                                    />
-                                </Flex>
+                                    </chakra.td>
+                                    <chakra.td p={2}>
+                                        <ActionButton
+                                            text="UNLOCK"
+                                            ml="auto"
+                                            onClick={deposit.onUnlock}
+                                            disabled={!deposit.isUnlockable}
+                                            isLoading={deposit.isUnlocking}
+                                            size="small"
+                                            w="10rem"
+                                        />
+                                    </chakra.td>
+                                </chakra.tr>
                             ))}
-                        </Box>
-                    </Box>
+                        </chakra.tbody>
+                    </chakra.table>
                 </Box>
             </Box>
             {/* Deposit mobile */}

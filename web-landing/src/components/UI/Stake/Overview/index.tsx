@@ -22,7 +22,7 @@ const StakeOverview = () => {
 
     return (
         <Flex direction="column" align="center" w="full">
-            <Box w="full" maxW="60rem" px={4}>
+            <Box w="full" maxW="64rem" px={4}>
                 <Header totalClaimed={totalClaimedInUSD!} totalStaked={stakeData!.totalStaked} />
                 <VStack spacing={8} align="stretch">
                     <Dashboard

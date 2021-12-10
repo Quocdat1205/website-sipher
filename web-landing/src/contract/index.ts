@@ -108,6 +108,7 @@ export class ContractCaller {
 
     async getLpUniswapPrice() {
         const lpPoolTVL = await this.getLpUniswapTVL()
+
         const totalSupply = await this.LPSipherWethUniswap.totalSupply()
         return lpPoolTVL / totalSupply
     }
