@@ -1,22 +1,11 @@
-import { Box, Flex, Text, Stack, Img, Collapse, VStack } from "@chakra-ui/react"
+import { Box, Flex, Text, Stack, Img, Collapse, VStack, Wrap, WrapItem } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
-
-interface Props {
-    totalValueLocked?: number
-    APR?: number
-    pendingRewards?: number
-    myLiquidity?: number
-    weight?: number
-    TVL?: number
-    poolName?: string
-    isUniswap?: boolean
-    onStake?: () => void
-}
+import { StakingPoolTable } from "./StakingPoolTableDesktop"
 
 const TablePoolMobile = ({
     poolName = "",
@@ -28,7 +17,8 @@ const TablePoolMobile = ({
     myLiquidity = 0,
     isUniswap = false,
     onStake,
-}: Props) => {
+    detailButtons,
+}: StakingPoolTable) => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
@@ -47,7 +37,9 @@ const TablePoolMobile = ({
                         <Flex align="center">
                             <Flex align="center" w="2rem">
                                 <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
-                                {isUniswap && <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" />}
+                                {isUniswap && (
+                                    <Img pos="relative" boxSize="1.5rem" left="-0.75rem" src="/images/icons/eth.png" />
+                                )}
                             </Flex>
                             <Text textAlign="right" ml={isUniswap ? 4 : 2}>
                                 {poolName}
@@ -85,18 +77,21 @@ const TablePoolMobile = ({
                 </Flex>
             </Box>
             <Collapse in={isOpen}>
-                <Box mb={4}>
-                    <ActionButton
-                        disabled={!isUniswap}
-                        onClick={() => window.open("https://app.uniswap.org/", "_blank")}
-                        textTransform="unset"
-                        text="Buy SP/ETH Uniswap LP"
-                        px={2}
-                        py={2}
-                        fontWeight="normal"
-                        letterSpacing="0px"
-                    />
-                </Box>
+                <Stack spacing={4} direction="column" align="stretch" py={2}>
+                    {detailButtons.map(btn => (
+                        <ActionButton
+                            key={btn.text}
+                            onClick={() => window.open(btn.link, "_blank")}
+                            textTransform="unset"
+                            text={btn.text}
+                            px={2}
+                            py={2}
+                            fontWeight="normal"
+                            letterSpacing="0px"
+                        />
+                    ))}
+                </Stack>
+
                 <VStack>
                     <Flex w="full" justify="space-between">
                         <Text size="small">Weight</Text>

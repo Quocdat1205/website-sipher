@@ -1,26 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React from "react"
 import { Box, Flex, Text, Slider, SliderFilledTrack, SliderTrack, SliderThumb, chakra, Img } from "@chakra-ui/react"
 import SipherInput from "./SipherInput"
-import useWalletContext from "@hooks/web3/useWalletContext"
-import { useMutation, useQuery, useQueryClient } from "react-query"
 import TabButton from "./TabButton"
-import { numberWithCommas } from "@source/utils"
-import useTransactionToast from "@hooks/useTransactionToast"
 import { ActionButton } from "@components/shared"
-import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
 import ApproveModal from "./ApproveModal"
-import { useChakraToast } from "@sipher/web-components"
 import { currency } from "@source/utils"
 import useDeposit from "./useDeposit"
+import { useRouter } from "next/router"
 
 export const tabOptions = ["Flexible", "Locked"]
 export type TabOptionProps = typeof tabOptions[number]
 
-export interface StakeProps {
-    pool: "$SIPHER" | "SIPHER/ETH LP"
-}
+// pool: "$sipher" | "uniswap-lp-$sipher-eth" | "kyber-lp-$sipher-eth"
 
-const StakeForm = ({ pool }: StakeProps) => {
+export type PoolURL = "$sipher" | "uniswap-lp-$sipher-eth" | "kyber-lp-$sipher-eth"
+
+const StakeForm = () => {
+    const router = useRouter()
+    const { pool } = router.query
+
     const {
         mode,
         setMode,
@@ -38,7 +36,8 @@ const StakeForm = ({ pool }: StakeProps) => {
         isApproving,
         approve,
         handleStake,
-    } = useDeposit(pool)
+        info,
+    } = useDeposit(pool as PoolURL)
 
     return (
         <Flex direction="column" align="center" p={4} pt={8}>
@@ -54,8 +53,14 @@ const StakeForm = ({ pool }: StakeProps) => {
             >
                 <Flex align="center" w="full" justify="center" mb={4} pos="relative">
                     <Flex align="center" w="2.5rem" justify="center">
-                        <Img src="/images/icons/sipher.png" alt="sipher-token-icon" boxSize="1.5rem" />
-                        {pool === "SIPHER/ETH LP" && (
+                        <Img
+                            src="/images/icons/sipher.png"
+                            alt="sipher-token-icon"
+                            boxSize="1.5rem"
+                            pos="relative"
+                            zIndex={2}
+                        />
+                        {pool !== "$sipher" && (
                             <Img
                                 src="/images/icons/eth.png"
                                 alt="ether-token-icon"
@@ -65,8 +70,8 @@ const StakeForm = ({ pool }: StakeProps) => {
                             />
                         )}
                     </Flex>
-                    <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px">
-                        {pool}
+                    <Text fontSize="lg" fontWeight="semibold" letterSpacing="3px" textTransform="uppercase">
+                        {info.name}
                     </Text>
                 </Flex>
                 <TabButton selected={mode} tabOptions={tabOptions} onChange={setMode} />
@@ -109,11 +114,7 @@ const StakeForm = ({ pool }: StakeProps) => {
                     </Box>
                     <Text fontSize="sm" mb={4} textAlign="justify">
                         Warning: be aware that there are always risks associated with staking contracts. You assume all
-                        responsibility. Staking rewards enter a 12 month vesting period after claiming.{" "}
-                        <chakra.span color="main.orange" cursor="pointer">
-                            Read more
-                        </chakra.span>
-                        .
+                        responsibility. Staking rewards enter a 12 month vesting period after claiming. .
                     </Text>
 
                     <ActionButton

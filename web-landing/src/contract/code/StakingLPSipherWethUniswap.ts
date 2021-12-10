@@ -1,6 +1,6 @@
-export const LpPoolAddress = "0xBAC3300E2Bd7F459b8A569574D8110e440fC03d7"
+export const StakingLPSipherWethUniswapAddress = "0xBAC3300E2Bd7F459b8A569574D8110e440fC03d7"
 
-export const LpPoolAbi: any = [
+export const StakingLPSipherWethUniswapAbi: any = [
     {
         inputs: [
             { internalType: "string", name: "_name", type: "string" },

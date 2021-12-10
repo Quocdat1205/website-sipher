@@ -1,5 +1,6 @@
 import { Box, Flex, Link, Img, Text, chakra, HStack, Stack } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
+import { useSipherChangePercent, useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import React from "react"
 import { AiFillPlayCircle } from "react-icons/ai"
@@ -8,10 +9,11 @@ import useOverview from "./useOverview"
 interface HeaderProps {
     totalStaked: number
     totalClaimed: number
-    sipherPrice: number
 }
 
-const Header = ({ totalStaked, totalClaimed, sipherPrice }: HeaderProps) => {
+const Header = ({ totalStaked, totalClaimed }: HeaderProps) => {
+    const sipherPriceChange = useSipherChangePercent()
+    const sipherPrice = useSipherPrice()
     return (
         <Flex
             flexDir={["column", "row"]}
@@ -46,11 +48,15 @@ const Header = ({ totalStaked, totalClaimed, sipherPrice }: HeaderProps) => {
                     <Flex align="center">
                         <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                         <Text fontSize="sm">
-                            $SIPHER PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
+                            PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
                         </Text>
                     </Flex>
-                    <Text fontSize="sm" fontWeight="semibold" color="#25B700">
-                        +0.0%
+                    <Text
+                        fontSize="sm"
+                        fontWeight="semibold"
+                        color={sipherPriceChange > 0 ? "#25B700" : "main.darkRed"}
+                    >
+                        {sipherPriceChange > 0 ? "+" : "-"} {Math.abs(sipherPriceChange * 100).toFixed(2)} %
                     </Text>
                 </Flex>
                 <Stack
@@ -66,13 +72,13 @@ const Header = ({ totalStaked, totalClaimed, sipherPrice }: HeaderProps) => {
                     <Flex direction="column" align="center" flex={1} overflow="hidden">
                         <Text fontSize="sm">Total Amount Staked</Text>
                         <Text textAlign="center" fontWeight="semibold" w="full" isTruncated>
-                            ${currency(totalStaked! * sipherPrice)}
+                            ${currency(totalStaked!)}
                         </Text>
                     </Flex>
                     <Flex direction="column" align="center" flex={1} overflow="hidden">
                         <Text fontSize="sm">Total Amount Claimed</Text>
                         <Text textAlign="center" fontWeight="semibold" w="full" isTruncated>
-                            ${currency(totalClaimed! * sipherPrice)}
+                            ${currency(totalClaimed!)}
                         </Text>
                     </Flex>
                 </Stack>

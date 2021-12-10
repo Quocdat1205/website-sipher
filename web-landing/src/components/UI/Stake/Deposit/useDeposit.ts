@@ -3,11 +3,12 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { useState, useCallback, useEffect } from "react"
 import { useQueryClient, useQuery, useMutation } from "react-query"
-import { StakeProps, TabOptionProps, tabOptions } from "."
+import { PoolURL, TabOptionProps, tabOptions } from "."
 
-const useDeposit = (pool: StakeProps["pool"]) => {
+// pool: "$sipher" | "$sipher-eth-uniswap-lp"
+
+const useDeposit = (pool: PoolURL) => {
     const qc = useQueryClient()
-
     const toast = useChakraToast()
 
     const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
@@ -27,33 +28,55 @@ const useDeposit = (pool: StakeProps["pool"]) => {
 
     const { scCaller, account } = useWalletContext()
 
+    const getInfo = () => {
+        if (pool === "$sipher")
+            return {
+                token: "SipherToken",
+                pool: "StakingPools",
+                name: "$SIPHER",
+            }
+        if (pool === "uniswap-lp-$sipher-eth")
+            return {
+                token: "LPSipherWethUniswap",
+                pool: "StakingLPSipherWethUniswap",
+                name: "Uniswap LP $SIPHER-ETH",
+            }
+        return {
+            token: "LPSipherWethKyber",
+            pool: "StakingLPSipherWethKyber",
+            name: "Kyber LP $SIPHER-ETH",
+        }
+    }
+
+    const info = getInfo()
+
     const { data: balance } = useQuery(
         ["balance", pool, account],
-        () => scCaller.current![pool === "$SIPHER" ? "SipherToken" : "Uniswap"].getBalance(account!),
+        () => scCaller.current![info.token].getBalance(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: 0,
         }
     )
 
-    const { data: stakeTotalSupply } = useQuery(
-        "stake-total-supply",
-        () => scCaller.current?.StakingPools.totalSupply(),
-        {
-            enabled: !!scCaller.current,
-            initialData: 1,
-        }
-    )
+    const { data: totalSupply } = useQuery(["total-supply", pool], () => scCaller.current![info.pool].totalSupply(), {
+        initialData: 1,
+    })
 
-    const estAPR = (TOTAL_REWARDS_FOR_POOL / stakeTotalSupply!) * weight
+    const { data: dataFetch } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
+        enabled: !!scCaller.current && !!account,
+    })
+
+    const getAPR = () => {
+        return (
+            ((((dataFetch![info.pool].weight || 0) / (dataFetch?.totalWeight || 1)) * TOTAL_REWARDS_FOR_POOL) /
+                totalSupply!) *
+            weight
+        )
+    }
 
     const { mutate: stake, isLoading: isStaking } = useMutation(
-        () =>
-            scCaller.current![pool === "$SIPHER" ? "StakingPools" : "LpPools"].deposit(
-                account!,
-                sipherValue === "" ? "0" : sipherValue,
-                sliderValue
-            ),
+        () => scCaller.current![info.pool].deposit(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
         {
             onSuccess: () => {
                 setSliderValue(0)
@@ -72,7 +95,7 @@ const useDeposit = (pool: StakeProps["pool"]) => {
 
     const { data: isApproved } = useQuery(
         ["approved", pool, account],
-        () => scCaller.current![pool === "$SIPHER" ? "SipherToken" : "Uniswap"].isApproved(account!),
+        () => scCaller.current![info.token].isApproved(account!),
         {
             enabled: !!scCaller.current && !!account,
             initialData: false,
@@ -80,7 +103,7 @@ const useDeposit = (pool: StakeProps["pool"]) => {
     )
 
     const { mutate: approve, isLoading: isApproving } = useMutation(
-        () => scCaller.current![pool === "$SIPHER" ? "SipherToken" : "Uniswap"].approve(account!),
+        () => scCaller.current![info.token].approve(account!),
         {
             // stake automatically after approved
             onSuccess: () => {
@@ -111,7 +134,7 @@ const useDeposit = (pool: StakeProps["pool"]) => {
         sipherValue,
         setSipherValue,
         balance,
-        estAPR,
+        estAPR: getAPR(),
         isApproved,
         isStaking,
         approvalModal,
@@ -119,6 +142,7 @@ const useDeposit = (pool: StakeProps["pool"]) => {
         isApproving,
         approve,
         handleStake,
+        info,
     }
 }
 
