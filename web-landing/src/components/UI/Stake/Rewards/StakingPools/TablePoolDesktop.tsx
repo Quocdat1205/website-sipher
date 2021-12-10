@@ -1,5 +1,6 @@
 import { Img } from "@chakra-ui/image"
 import { Box, Flex, Text } from "@chakra-ui/layout"
+import { chakra } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import { currency } from "@source/utils"
 import React from "react"
@@ -11,25 +12,25 @@ export interface TablePoolsProps {
 
 const TablePoolDesktop = ({ poolData }: TablePoolsProps) => {
     return (
-        <Box borderBottom="1px" borderColor="#383838" p={4}>
-            <Flex w="full" align="center">
-                <Flex align="center" w="25%">
-                    <Flex align="center" w="2rem" pos="relative">
-                        <Img src="/images/icons/sipher.png" boxSize="1.5rem" pos="relative" zIndex={2} />
+        <chakra.tr w="full" align="center" borderBottom="1px" borderColor="#383838" py={4}>
+            <chakra.td p={2}>
+                <Flex align="center">
+                    <Flex align="center" w="3rem" flexShrink={0}>
+                        <Img src="/images/icons/sipher.png" boxSize="1.5rem" zIndex={2} pos="relative" />
                         {poolData.isUniswap && (
                             <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
                         )}
                     </Flex>
-                    <Text ml={4} pr={4}>
-                        {poolData.poolName}
-                    </Text>
+                    <Text fontSize="sm">{poolData.poolName}</Text>
                 </Flex>
-                <Text w="25%" textAlign="left">
-                    {poolData.amountStaked}
-                </Text>
-                <Text w="25%" textAlign="left">
-                    {poolData.claimableRewards}
-                </Text>
+            </chakra.td>
+            <chakra.td textAlign="right" p={2}>
+                {poolData.amountStaked}
+            </chakra.td>
+            <chakra.td textAlign="right" p={2}>
+                {poolData.claimableRewards}
+            </chakra.td>
+            <chakra.td textAlign="right" p={2}>
                 <ActionButton
                     text="CLAIM"
                     ml="auto"
@@ -39,8 +40,8 @@ const TablePoolDesktop = ({ poolData }: TablePoolsProps) => {
                     size="small"
                     w="10rem"
                 />
-            </Flex>
-        </Box>
+            </chakra.td>
+        </chakra.tr>
     )
 }
 export default TablePoolDesktop
