@@ -1,5 +1,5 @@
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
-import { useSipherPrice } from "@hooks/api"
+import { useLpKyberPrice, useLpUniswapPrice, useSipherPrice } from "@hooks/api"
 import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { SipherTokenAddress } from "@source/contract/code"
@@ -14,20 +14,13 @@ type Pool = "StakingPools" | "StakingLPSipherWethUniswap" | "StakingLPSipherWeth
 
 const useOverview = () => {
     const { scCaller, account } = useWalletContext()
-    const sipherPrice = useSipherPrice()
     const router = useRouter()
     const qc = useQueryClient()
     const toastTransaction = useTransactionToast()
 
-    const { data: lpUniswapPrice } = useQuery(["lp-price", "uniswap"], () => scCaller.current?.getLpUniswapPrice(), {
-        initialData: 0,
-        enabled: !!scCaller.current,
-    })
-
-    const { data: lpKyberPrice } = useQuery(["lp-price", "kyber"], () => scCaller.current?.getLpKyberPrice(), {
-        initialData: 0,
-        enabled: !!scCaller.current,
-    })
+    const sipherPrice = useSipherPrice()
+    const lpUniswapPrice = useLpUniswapPrice()
+    const lpKyberPrice = useLpKyberPrice()
 
     const { data: totalClaimed } = useQuery("total-claimed", () => scCaller.current!.getTotalClaimed(), {
         enabled: !!scCaller.current,
@@ -52,6 +45,7 @@ const useOverview = () => {
         () => scCaller.current!.StakingPools.totalSupply(),
         {
             initialData: 1,
+            onSuccess: data => console.log("STAKE SUPPLY", data),
         }
     )
 
@@ -61,6 +55,7 @@ const useOverview = () => {
         {
             initialData: 1,
             enabled: !!scCaller.current,
+            onSuccess: data => console.log("UNISWAP SUPPLY", data),
         }
     )
 
@@ -70,10 +65,16 @@ const useOverview = () => {
         {
             initialData: 1,
             enabled: !!scCaller.current,
+            onSuccess: data => console.log("KYBER SUPPLY", data),
         }
     )
 
-    const { data: lpTVL } = useQuery("lp-tvl", () => scCaller.current!.getLpUniswapTVL(), {
+    const { data: lpUniswapTVL } = useQuery(["lp-tvl", "uniswap"], () => scCaller.current!.getLpUniswapTVL(), {
+        initialData: 0,
+        enabled: !!scCaller.current,
+    })
+
+    const { data: lpKyberTVL } = useQuery(["lp-tvl", "kyber"], () => scCaller.current!.getLpKyberTVL(), {
         initialData: 0,
         enabled: !!scCaller.current,
     })
@@ -123,20 +124,21 @@ const useOverview = () => {
                 ((((dataFetch?.StakingPools.weight || 0) / (dataFetch?.totalWeight || 1)) * TOTAL_REWARDS_FOR_POOL) /
                     stakePoolTotalSupply!) *
                 2,
-            totalValueLocked: stakeData?.stakePoolTotalStakedByUSD,
-            pendingRewards: dataFetch?.StakingPools.accountPendingRewards,
+            totalValueLocked: stakeData?.stakePoolTotalStakedByUSD || 0,
+            pendingRewards: dataFetch?.StakingPools.accountPendingRewards || 0,
             weight: Math.round(((dataFetch?.StakingPools.weight || 0) / (dataFetch?.totalWeight || 1)) * 100),
             TVL: 0,
             onStake: () => router.push(`/stake/deposit/$sipher`),
             isUniswap: false,
+            myLiquidity: dataFetch?.StakingPools.accountTotalDeposit || 0,
             detailButtons: [
                 {
                     text: "Buy $SIPHER on Uniswap",
-                    link: `https://app.uniswap.org/#/swap?outputCurrency=${SipherTokenAddress}`,
+                    link: `https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=${SipherTokenAddress}`,
                 },
                 {
                     text: "Buy $SIPHER on Kyberswap",
-                    link: `https://kyberswap.com/#/swap?inputCurrency=${SipherTokenAddress}&outputCurrency=ETH`,
+                    link: `https://kyberswap.com/#/swap?inputCurrency=ETH&outputCurrency=${SipherTokenAddress}`,
                 },
             ],
         },
@@ -144,17 +146,19 @@ const useOverview = () => {
             poolName: "Uniswap LP $SIPHER-ETH",
             APR:
                 ((((dataFetch?.StakingLPSipherWethUniswap.weight || 0) / (dataFetch?.totalWeight || 1)) *
-                    TOTAL_REWARDS_FOR_POOL) /
-                    lpUniswapPoolTotalSupply!) *
+                    TOTAL_REWARDS_FOR_POOL *
+                    sipherPrice) /
+                    (lpUniswapPoolTotalSupply! * lpUniswapPrice)) *
                 2,
-            totalValueLocked: stakeData?.lpUniswapPoolTotalStakedByUSD,
-            pendingRewards: dataFetch?.StakingLPSipherWethUniswap.accountPendingRewards,
+            totalValueLocked: stakeData?.lpUniswapPoolTotalStakedByUSD || 0,
+            pendingRewards: dataFetch?.StakingLPSipherWethUniswap.accountPendingRewards || 0,
             weight: Math.round(
                 ((dataFetch?.StakingLPSipherWethUniswap.weight || 0) / (dataFetch?.totalWeight || 1)) * 100
             ),
-            TVL: lpTVL,
+            TVL: lpUniswapTVL || 0,
             onStake: () => router.push(`/stake/deposit/uniswap-lp-$sipher-eth`),
             isUniswap: true,
+            myLiquidity: dataFetch?.StakingLPSipherWethUniswap.accountTotalDeposit || 0,
             detailButtons: [
                 {
                     text: "Buy Uniswap LP $SIPHER-ETH",
@@ -166,17 +170,19 @@ const useOverview = () => {
             poolName: "Kyber LP $SIPHER-ETH",
             APR:
                 ((((dataFetch?.StakingLPSipherWethKyber.weight || 0) / (dataFetch?.totalWeight || 1)) *
-                    TOTAL_REWARDS_FOR_POOL) /
-                    lpKyberPoolTotalSupply!) *
+                    TOTAL_REWARDS_FOR_POOL *
+                    sipherPrice) /
+                    (lpKyberPoolTotalSupply! * lpKyberPrice)) *
                 2,
-            totalValueLocked: stakeData?.lpKyberPoolTotalStakedByUSD,
-            pendingRewards: dataFetch?.StakingLPSipherWethKyber.accountPendingRewards,
+            totalValueLocked: stakeData?.lpKyberPoolTotalStakedByUSD || 0,
+            pendingRewards: dataFetch?.StakingLPSipherWethKyber.accountPendingRewards || 0,
             weight: Math.round(
                 ((dataFetch?.StakingLPSipherWethKyber.weight || 0) / (dataFetch?.totalWeight || 1)) * 100
             ),
-            TVL: lpTVL,
+            TVL: lpKyberTVL || 0,
             onStake: () => router.push(`/stake/deposit/kyber-lp-$sipher-eth`),
             isUniswap: true,
+            myLiquidity: dataFetch?.StakingLPSipherWethKyber.accountTotalDeposit || 0,
             detailButtons: [
                 {
                     text: "Buy Kyber LP $SIPHER-ETH",
@@ -192,7 +198,7 @@ const useOverview = () => {
             poolName: "$SIPHER",
             staked: currency(deposit.amount * sipherPrice, "$"),
             estimatedDailyRewards: currency(
-                ((stakingPoolInfos[0].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
+                (((stakingPoolInfos[0].weight / 100) * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
                     deposit.amount *
                     calWeight(deposit.start, deposit.end) *
                     sipherPrice,
@@ -210,7 +216,7 @@ const useOverview = () => {
             poolName: "Uniswap LP $SIPHER-ETH",
             staked: currency(deposit.amount * lpUniswapPrice!, "$"),
             estimatedDailyRewards: currency(
-                ((stakingPoolInfos[1].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
+                (((stakingPoolInfos[1].weight / 100) * TOTAL_REWARDS_FOR_POOL) / lpUniswapPoolTotalSupply! / 365) *
                     deposit.amount *
                     calWeight(deposit.start, deposit.end) *
                     sipherPrice,
@@ -228,7 +234,7 @@ const useOverview = () => {
             poolName: "Kyber LP $SIPHER-ETH",
             staked: currency(deposit.amount * lpKyberPrice!, "$"),
             estimatedDailyRewards: currency(
-                ((stakingPoolInfos[1].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
+                (((stakingPoolInfos[2].weight / 100) * TOTAL_REWARDS_FOR_POOL) / lpKyberPoolTotalSupply! / 365) *
                     deposit.amount *
                     calWeight(deposit.start, deposit.end) *
                     sipherPrice,
@@ -236,19 +242,15 @@ const useOverview = () => {
             ),
             lockDate: format(new Date(deposit.start), "MMM dd Y"),
             unlockDate: format(new Date(deposit.end), "MMM dd Y"),
-            onUnlock: () => unlock({ pool: "StakingLPSipherWethUniswap", depositId: idx }),
+            onUnlock: () => unlock({ pool: "StakingLPSipherWethKyber", depositId: idx }),
             isUnlockable: new Date().getTime() > deposit.end,
-            isUnlocking: unlockingId === idx && unlockingPool === "StakingLPSipherWethUniswap",
+            isUnlocking: unlockingId === idx && unlockingPool === "StakingLPSipherWethKyber",
             isUniswap: true,
         })),
     ]
 
     return {
-        dataFetch,
         stakeData,
-        stakePoolTotalSupply,
-        lpPoolTotalSupply: lpUniswapPoolTotalSupply,
-        lpTVL,
         /** Total claimed (USD) */
         totalClaimedInUSD: totalClaimed! * sipherPrice,
         sipherPrice,

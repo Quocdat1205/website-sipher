@@ -7,15 +7,15 @@ import React, { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
 
 export interface StakingPoolTable {
-    totalValueLocked?: number
-    APR?: number
-    pendingRewards?: number
-    myLiquidity?: number
-    weight?: number
-    TVL?: number
+    totalValueLocked: number
+    APR: number
+    pendingRewards: number
+    myLiquidity: number
+    weight: number
+    TVL: number
     poolName?: string
-    isUniswap?: boolean
-    onStake?: () => void
+    isUniswap: boolean
+    onStake: () => void
     detailButtons: Record<"text" | "link", string>[]
 }
 
@@ -43,8 +43,8 @@ const StakingPoolTableDesktop = ({
         >
             <Box borderBottom={isOpen ? "1px" : "0px"} borderColor="#383838" p={4}>
                 <Flex w="full" align="center">
-                    <Flex align="center" w="25%">
-                        <Flex align="center" pos="relative" w="2rem">
+                    <Flex align="center" w="22%">
+                        <Flex align="center" pos="relative" w="2rem" flexShrink={0}>
                             <Img src="/images/icons/sipher.png" boxSize="1.5rem" pos="relative" zIndex={2} />
                             {isUniswap && (
                                 <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
@@ -54,10 +54,10 @@ const StakingPoolTableDesktop = ({
                             {poolName}
                         </Text>
                     </Flex>
-                    <Text w="23%" textAlign="left">
+                    <Text w="23%" textAlign="right" pr={8}>
                         {currency(totalValueLocked, "$")}
                     </Text>
-                    <Text w="15%" textAlign="left">
+                    <Text w="20%" pl={8} textAlign="left">
                         {(APR * 100).toFixed(2)}%
                     </Text>
                     <Flex align="center" cursor="pointer" onClick={() => setIsOpen(!isOpen)} ml="auto">
@@ -89,7 +89,7 @@ const StakingPoolTableDesktop = ({
                     ))}
                 </Stack>
                 <Flex p={4}>
-                    <Box w="48%" pr={8}>
+                    <Box w="45%" pr={8}>
                         <Flex w="full" justify="space-between" mb={4}>
                             <Text size="small">Weight</Text>
                             <Text fontWeight="semibold" size="small">
@@ -103,7 +103,7 @@ const StakingPoolTableDesktop = ({
                             </Text>
                         </Flex>
                     </Box>
-                    <Box flex={1}>
+                    <Box flex={1} pl={8}>
                         <Flex w="full" justify="space-between" mb={4}>
                             <Text size="small">Pending rewards</Text>
                             <Text fontWeight="semibold" size="small">
