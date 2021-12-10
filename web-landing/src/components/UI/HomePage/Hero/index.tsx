@@ -119,7 +119,7 @@ const FirstScreen = ({}: FirstScreenProps) => {
                             EARN STAKING REWARDS WITH SIPHER
                         </Text>
                         <Text textAlign="center" fontWeight="thin" textTransform="unset" fontSize="0.9rem">
-                            $SIPHER Staking begins: 11th of December @ 7:00 AM UTC
+                            $SIPHER Staking begins: 13th of December @ 7:00 AM UTC
                         </Text>
                     </Flex>
                     <Box mt={4}>

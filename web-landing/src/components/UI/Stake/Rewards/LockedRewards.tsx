@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Img, Stack } from "@chakra-ui/react"
+import { Flex, Box, Text, Img, Stack, chakra } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import React from "react"
 import { format } from "date-fns"
@@ -24,63 +24,72 @@ const LockedRewards = ({ deposits, unlock, unlockingId, sipherPrice }: LockedRew
                     LOCKED REWARDS
                 </Text>
                 <Box rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
-                    <Box w="full">
-                        <Flex w="full" pb={4} px={4}>
-                            <Text fontWeight="semibold" w="15%">
-                                Token
-                            </Text>
-                            <Text fontWeight="semibold" w="15%">
-                                Amount
-                            </Text>
-                            <Text fontWeight="semibold" w="15%">
-                                Dollar value
-                            </Text>
-                            <Text fontWeight="semibold" w="15%">
-                                Status
-                            </Text>
-                            <Text fontWeight="semibold" w="15%">
-                                Time remaining
-                            </Text>
-                        </Flex>
-                        <Box borderTop="1px" borderColor="#383838">
+                    <chakra.table w="full">
+                        <chakra.thead>
+                            <chakra.tr borderBottom="1px" borderColor="#383838">
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2} textAlign="left" w="20%">
+                                    Token
+                                </chakra.th>
+                                <chakra.th textAlign="right" fontWeight="semibold" fontSize="sm" p={2}>
+                                    Amount
+                                </chakra.th>
+                                <chakra.th textAlign="right" fontWeight="semibold" fontSize="sm" p={2}>
+                                    Dollar value
+                                </chakra.th>
+                                <chakra.th textAlign="right" fontWeight="semibold" fontSize="sm" p={2}>
+                                    Status
+                                </chakra.th>
+                                <chakra.th textAlign="right" fontWeight="semibold" fontSize="sm" p={2}>
+                                    Time remaining
+                                </chakra.th>
+                                <chakra.th p={2}></chakra.th>
+                            </chakra.tr>
+                        </chakra.thead>
+                        <chakra.tbody>
                             {deposits.map((deposit, idx) => (
-                                <Flex
-                                    key={deposit.start}
+                                <chakra.tr
                                     w="full"
                                     align="center"
                                     borderBottom="1px"
                                     borderColor="#383838"
-                                    p={4}
+                                    py={4}
+                                    key={idx}
                                 >
-                                    <Flex align="center" w="15%">
-                                        <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
-                                        <Text ml={2}>$SIPHER</Text>
-                                    </Flex>
-                                    <Text w="15%" textAlign="left">
+                                    <chakra.td p={2}>
+                                        <Flex align="center">
+                                            <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                            <Text ml={2} fontSize={"sm"}>
+                                                $SIPHER
+                                            </Text>
+                                        </Flex>
+                                    </chakra.td>
+                                    <chakra.td textAlign="right" p={2} fontSize={"sm"}>
                                         {currency(deposit.amount)}
-                                    </Text>
-                                    <Text w="15%" textAlign="left">
+                                    </chakra.td>
+                                    <chakra.td textAlign="right" p={2} fontSize={"sm"}>
                                         {currency(deposit.amount * sipherPrice)}
-                                    </Text>
-                                    <Text w="15%" textAlign="left">
+                                    </chakra.td>
+                                    <chakra.td textAlign="right" p={2} fontSize={"sm"}>
                                         {new Date().getTime() > deposit.end ? "Available" : "Locked"}
-                                    </Text>
-                                    <Text w="15%" textAlign="left">
+                                    </chakra.td>
+                                    <chakra.td textAlign="right" p={2} fontSize={"sm"}>
                                         {format(new Date(deposit.end), "MMM dd Y")}
-                                    </Text>
-                                    <ActionButton
-                                        text="UNLOCK"
-                                        ml="auto"
-                                        w="10rem"
-                                        disabled={new Date().getTime() <= deposit.end}
-                                        size="small"
-                                        onClick={() => unlock(idx)}
-                                        isLoading={unlockingId === idx}
-                                    />
-                                </Flex>
+                                    </chakra.td>
+                                    <chakra.td textAlign="right" p={2}>
+                                        <ActionButton
+                                            text="UNLOCK"
+                                            ml="auto"
+                                            w="10rem"
+                                            disabled={new Date().getTime() <= deposit.end}
+                                            size="small"
+                                            onClick={() => unlock(idx)}
+                                            isLoading={unlockingId === idx}
+                                        />
+                                    </chakra.td>
+                                </chakra.tr>
                             ))}
-                        </Box>
-                    </Box>
+                        </chakra.tbody>
+                    </chakra.table>
                 </Box>
             </Box>
             {/* MOBILE */}
