@@ -7,15 +7,15 @@ import React, { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
 
 export interface StakingPoolTable {
-    totalValueLocked?: number
-    APR?: number
-    pendingRewards?: number
-    myLiquidity?: number
-    weight?: number
-    TVL?: number
+    totalValueLocked: number
+    APR: number
+    pendingRewards: number
+    myLiquidity: number
+    weight: number
+    TVL: number
     poolName?: string
-    isUniswap?: boolean
-    onStake?: () => void
+    isUniswap: boolean
+    onStake: () => void
     detailButtons: Record<"text" | "link", string>[]
 }
 

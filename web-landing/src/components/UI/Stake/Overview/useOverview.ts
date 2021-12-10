@@ -71,7 +71,12 @@ const useOverview = () => {
         }
     )
 
-    const { data: lpTVL } = useQuery("lp-tvl", () => scCaller.current!.getLpUniswapTVL(), {
+    const { data: lpUniswapTVL } = useQuery(["lp-tvl", "uniswap"], () => scCaller.current!.getLpUniswapTVL(), {
+        initialData: 0,
+        enabled: !!scCaller.current,
+    })
+
+    const { data: lpKyberTVL } = useQuery(["lp-tvl", "kyber"], () => scCaller.current!.getLpUniswapTVL(), {
         initialData: 0,
         enabled: !!scCaller.current,
     })
@@ -116,12 +121,13 @@ const useOverview = () => {
                 ((((dataFetch?.StakingPools.weight || 0) / (dataFetch?.totalWeight || 1)) * TOTAL_REWARDS_FOR_POOL) /
                     stakePoolTotalSupply!) *
                 2,
-            totalValueLocked: stakeData?.stakePoolTotalStakedByUSD,
-            pendingRewards: dataFetch?.StakingPools.accountPendingRewards,
+            totalValueLocked: stakeData?.stakePoolTotalStakedByUSD || 0,
+            pendingRewards: dataFetch?.StakingPools.accountPendingRewards || 0,
             weight: Math.round(((dataFetch?.StakingPools.weight || 0) / (dataFetch?.totalWeight || 1)) * 100),
             TVL: 0,
             onStake: () => router.push(`/stake/deposit/$sipher`),
             isUniswap: false,
+            myLiquidity: dataFetch?.StakingPools.accountTotalDeposit || 0,
             detailButtons: [
                 {
                     text: "Buy $SIPHER on Uniswap",
@@ -140,14 +146,15 @@ const useOverview = () => {
                     TOTAL_REWARDS_FOR_POOL) /
                     lpUniswapPoolTotalSupply!) *
                 2,
-            totalValueLocked: stakeData?.lpUniswapPoolTotalStakedByUSD,
-            pendingRewards: dataFetch?.StakingLPSipherWethUniswap.accountPendingRewards,
+            totalValueLocked: stakeData?.lpUniswapPoolTotalStakedByUSD || 0,
+            pendingRewards: dataFetch?.StakingLPSipherWethUniswap.accountPendingRewards || 0,
             weight: Math.round(
                 ((dataFetch?.StakingLPSipherWethUniswap.weight || 0) / (dataFetch?.totalWeight || 1)) * 100
             ),
-            TVL: lpTVL,
+            TVL: lpUniswapTVL || 0,
             onStake: () => router.push(`/stake/deposit/uniswap-lp-$sipher-eth`),
             isUniswap: true,
+            myLiquidity: dataFetch?.StakingLPSipherWethUniswap.accountTotalDeposit || 0,
             detailButtons: [
                 {
                     text: "Buy Uniswap LP $SIPHER-ETH",
@@ -162,14 +169,15 @@ const useOverview = () => {
                     TOTAL_REWARDS_FOR_POOL) /
                     lpKyberPoolTotalSupply!) *
                 2,
-            totalValueLocked: stakeData?.lpKyberPoolTotalStakedByUSD,
-            pendingRewards: dataFetch?.StakingLPSipherWethKyber.accountPendingRewards,
+            totalValueLocked: stakeData?.lpKyberPoolTotalStakedByUSD || 0,
+            pendingRewards: dataFetch?.StakingLPSipherWethKyber.accountPendingRewards || 0,
             weight: Math.round(
                 ((dataFetch?.StakingLPSipherWethKyber.weight || 0) / (dataFetch?.totalWeight || 1)) * 100
             ),
-            TVL: lpTVL,
+            TVL: lpKyberTVL || 0,
             onStake: () => router.push(`/stake/deposit/kyber-lp-$sipher-eth`),
             isUniswap: true,
+            myLiquidity: dataFetch?.StakingLPSipherWethKyber.accountTotalDeposit || 0,
             detailButtons: [
                 {
                     text: "Buy Kyber LP $SIPHER-ETH",
@@ -221,7 +229,7 @@ const useOverview = () => {
             poolName: "Kyber LP $SIPHER-ETH",
             staked: currency(deposit.amount * lpKyberPrice!, "$"),
             estimatedDailyRewards: currency(
-                ((stakingPoolInfos[1].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
+                ((stakingPoolInfos[2].weight * TOTAL_REWARDS_FOR_POOL) / stakePoolTotalSupply! / 365) *
                     deposit.amount *
                     calWeight(deposit.start, deposit.end) *
                     sipherPrice,
@@ -237,11 +245,7 @@ const useOverview = () => {
     ]
 
     return {
-        dataFetch,
         stakeData,
-        stakePoolTotalSupply,
-        lpPoolTotalSupply: lpUniswapPoolTotalSupply,
-        lpTVL,
         /** Total claimed (USD) */
         totalClaimedInUSD: totalClaimed! * sipherPrice,
         sipherPrice,
