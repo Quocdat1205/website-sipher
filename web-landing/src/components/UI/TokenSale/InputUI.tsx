@@ -101,7 +101,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                transactionToast({ status: "successDeposit" })
+                transactionToast({ status: "success" })
                 setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("locked-amount")
@@ -115,7 +115,7 @@ const InputUI = ({ mode }: Props) => {
         {
             onError: (err: any) => transactionToast({ status: "failed" }),
             onSuccess: () => {
-                transactionToast({ status: "successDeposit" })
+                transactionToast({ status: "success" })
                 setValue("")
                 qc.invalidateQueries("user-deposited")
                 qc.invalidateQueries("withdrawable-amount")
