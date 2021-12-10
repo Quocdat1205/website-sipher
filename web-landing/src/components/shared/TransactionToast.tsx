@@ -12,7 +12,7 @@ const TransactionToast = ({ status, onClose }: TransactionToastProps) => {
     const genContext = (): [string, string, IconType, string[]] => {
         if (status === "failed")
             return [
-                "TRANSACTION FAILED",
+                "TRANSACTION UNSUCCESSFUL",
                 "red.500",
                 BsX,
                 ["Unfortunately your transaction has been rejected. Please try again."],
@@ -43,7 +43,7 @@ const TransactionToast = ({ status, onClose }: TransactionToastProps) => {
             "TRANSACTION SUCCESSFUL",
             "green.500",
             BsCheck,
-            ["You $SIPHER Tokens will be available after the Sale ends."],
+            ["You have successfully staked your $SIPHER.", "Please return to Overview or Stake again."],
         ]
     }
     const [title, color, Icon, content] = genContext()
