@@ -1,4 +1,5 @@
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
+import { useLpKyberPrice, useLpUniswapPrice, useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useChakraToast } from "@sipher/web-components"
 import { useState, useCallback, useEffect } from "react"
@@ -8,8 +9,13 @@ import { PoolURL, TabOptionProps, tabOptions } from "."
 // pool: "$sipher" | "$sipher-eth-uniswap-lp"
 
 const useDeposit = (pool: PoolURL) => {
+    console.log(pool)
     const qc = useQueryClient()
     const toast = useChakraToast()
+
+    const sipherPrice = useSipherPrice()
+    const lpUniswapPrice = useLpUniswapPrice()
+    const lpKyberPrice = useLpKyberPrice()
 
     const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
     const [sliderValue, setSliderValue] = useState(0)
@@ -34,17 +40,20 @@ const useDeposit = (pool: PoolURL) => {
                 token: "SipherToken",
                 pool: "StakingPools",
                 name: "$SIPHER",
+                price: sipherPrice,
             }
         if (pool === "uniswap-lp-$sipher-eth")
             return {
                 token: "LPSipherWethUniswap",
                 pool: "StakingLPSipherWethUniswap",
                 name: "Uniswap LP $SIPHER-ETH",
+                price: lpUniswapPrice,
             }
         return {
             token: "LPSipherWethKyber",
             pool: "StakingLPSipherWethKyber",
             name: "Kyber LP $SIPHER-ETH",
+            price: lpKyberPrice,
         }
     }
 
@@ -61,6 +70,7 @@ const useDeposit = (pool: PoolURL) => {
 
     const { data: totalSupply } = useQuery(["total-supply", pool], () => scCaller.current![info.pool].totalSupply(), {
         initialData: 1,
+        enabled: !!scCaller.current,
     })
 
     const { data: dataFetch } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
@@ -69,8 +79,10 @@ const useDeposit = (pool: PoolURL) => {
 
     const getAPR = () => {
         return (
-            ((((dataFetch![info.pool].weight || 0) / (dataFetch?.totalWeight || 1)) * TOTAL_REWARDS_FOR_POOL) /
-                totalSupply!) *
+            ((((dataFetch![info.pool].weight || 0) / (dataFetch?.totalWeight || 1)) *
+                TOTAL_REWARDS_FOR_POOL *
+                sipherPrice) /
+                (totalSupply! * info.price)) *
             weight
         )
     }
@@ -134,7 +146,7 @@ const useDeposit = (pool: PoolURL) => {
         sipherValue,
         setSipherValue,
         balance,
-        estAPR: getAPR(),
+        estAPR: dataFetch ? getAPR() : 0,
         isApproved,
         isStaking,
         approvalModal,

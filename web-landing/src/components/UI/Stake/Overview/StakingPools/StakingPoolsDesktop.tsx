@@ -13,14 +13,14 @@ const StakingPoolsDesktop = ({ children }: StakingPoolsProps) => {
             </Text>
             <Box rounded="xl" border="1px" borderColor="#383838" p={8} bg="rgba(0, 0, 0, 0.9)">
                 <Box w="full">
-                    <Flex w="full" pb={4} px={4} mb={2}>
-                        <Text fontWeight="semibold" w="22%">
+                    <Flex w="full" pb={2} px={4} mb={2}>
+                        <Text fontWeight="semibold" w="22%" fontSize={"sm"}>
                             Pool
                         </Text>
-                        <Text fontWeight="semibold" w="23%" textAlign="right" pr={8}>
+                        <Text fontWeight="semibold" w="23%" textAlign="right" pr={8} fontSize={"sm"}>
                             Total Value Locked
                         </Text>
-                        <Text fontWeight="semibold" w="20%" pl={8}>
+                        <Text fontWeight="semibold" w="20%" pl={8} fontSize={"sm"}>
                             APR
                         </Text>
                     </Flex>

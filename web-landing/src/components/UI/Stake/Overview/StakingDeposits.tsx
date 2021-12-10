@@ -21,10 +21,10 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                 <chakra.th fontWeight="semibold" fontSize="sm" p={2} textAlign="left" w="20%">
                                     Pool
                                 </chakra.th>
-                                <chakra.th fontWeight="semibold" fontSize="sm" p={2}>
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2} textAlign="right">
                                     Staked
                                 </chakra.th>
-                                <chakra.th fontWeight="semibold" fontSize="sm" p={2}>
+                                <chakra.th fontWeight="semibold" fontSize="sm" p={2} textAlign={"right"}>
                                     Est. Daily Rewards
                                 </chakra.th>
                                 <chakra.th fontWeight="semibold" fontSize="sm" p={2}>
@@ -64,13 +64,15 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                                     />
                                                 )}
                                             </Flex>
-                                            <Text fontSize="sm">{deposit.poolName}</Text>
+                                            <Text fontSize="sm" textAlign={"left"}>
+                                                {deposit.poolName}
+                                            </Text>
                                         </Flex>
                                     </chakra.td>
-                                    <chakra.td fontSize="sm" p={2}>
+                                    <chakra.td fontSize="sm" p={2} textAlign={"right"}>
                                         {deposit.staked}
                                     </chakra.td>
-                                    <chakra.td fontSize="sm" p={2}>
+                                    <chakra.td fontSize="sm" p={2} textAlign={"right"}>
                                         {deposit.estimatedDailyRewards}
                                     </chakra.td>
 

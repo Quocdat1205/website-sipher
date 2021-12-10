@@ -50,18 +50,18 @@ const StakingPoolTableDesktop = ({
                                 <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
                             )}
                         </Flex>
-                        <Text ml={6} mr={4}>
+                        <Text ml={6} mr={4} fontSize={"sm"}>
                             {poolName}
                         </Text>
                     </Flex>
-                    <Text w="23%" textAlign="right" pr={8}>
+                    <Text w="23%" textAlign="right" pr={8} fontSize={"sm"}>
                         {currency(totalValueLocked, "$")}
                     </Text>
-                    <Text w="20%" pl={8} textAlign="left">
+                    <Text w="20%" pl={8} textAlign="left" fontSize={"sm"}>
                         {(APR * 100).toFixed(2)}%
                     </Text>
                     <Flex align="center" cursor="pointer" onClick={() => setIsOpen(!isOpen)} ml="auto">
-                        <Text size="small" fontWeight="semibold">
+                        <Text size="small" fontWeight="semibold" fontSize={"sm"}>
                             DETAIL
                         </Text>
                         <Box transform={isOpen ? "rotate(0deg)" : "rotate(180deg)"} ml={1}>
