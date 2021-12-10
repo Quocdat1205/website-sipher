@@ -41,7 +41,7 @@ const StakingPoolTableDesktop = ({
             borderColor="#383838"
             transition="background 0.25s ease-in-out"
         >
-            <Box borderBottom={isOpen ? "1px" : "0px"} borderColor="#383838" p={4}>
+            <Box borderBottom={"1px"} borderColor="#383838" p={4}>
                 <Flex w="full" align="center">
                     <Flex align="center" w="22%">
                         <Flex align="center" pos="relative" w="2rem" flexShrink={0}>
