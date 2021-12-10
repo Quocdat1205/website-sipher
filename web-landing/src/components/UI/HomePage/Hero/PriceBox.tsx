@@ -23,9 +23,6 @@ const PriceBox = ({}: PriceBoxProps) => {
                         9950.1314
                     </Text>
                 </Flex>
-                <Text color="#828282" fontSize="sm" h="1rem">
-                    $43,856,896
-                </Text>
             </Flex>
             <Flex
                 mt={[4, 0, 0]}
@@ -46,9 +43,6 @@ const PriceBox = ({}: PriceBoxProps) => {
                         0.00024
                     </Text>
                 </Flex>
-                <Text color="#828282" fontSize="sm" h="1rem">
-                    $1.1
-                </Text>
             </Flex>
             <Flex
                 mt={[4, 0, 0]}
