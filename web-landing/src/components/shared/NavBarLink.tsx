@@ -1,7 +1,7 @@
 import React from "react"
 import { Flex, FlexProps, Text } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
-import { MyTextProps } from "@sipher/web-components"
+
 interface NavBarLinkProps extends FlexProps {
     onClick?: () => void
     active?: boolean
@@ -10,7 +10,7 @@ interface NavBarLinkProps extends FlexProps {
     isChild?: boolean
     lastChild?: boolean
 }
-// hehe
+
 export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, href, ...rest }: NavBarLinkProps) => {
     const router = useRouter()
     return (

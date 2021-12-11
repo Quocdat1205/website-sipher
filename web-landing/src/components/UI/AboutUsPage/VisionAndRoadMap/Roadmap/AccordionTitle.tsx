@@ -17,7 +17,9 @@ const AccordionTitle = ({ name, date, completed, isExpanded }: AccordionTitlePro
             <Flex align="center" w="full" justify="space-between">
                 <Flex direction="column" pl={[4, 8, 12]} overflow="hidden">
                     <Flex align="center">
-                        <BoldText isGradient={isExpanded}>{name}</BoldText>
+                        <BoldText textAlign="left" isGradient={isExpanded}>
+                            {name}
+                        </BoldText>
                         {completed && <CompleteTag />}
                     </Flex>
                     <Text fontSize={"sm"} color="text.secondary" textAlign="left">

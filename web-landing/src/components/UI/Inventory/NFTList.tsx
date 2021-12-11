@@ -3,11 +3,11 @@ import React, { Fragment } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
 import { useInfiniteQuery, useQuery } from "react-query"
 import Card from "./Card"
-import { ViewCollectionButton } from "@sipher/web-components"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { NFTRace } from "@source/types"
 import { getNFTQuantity, getNFTs } from "@hooks/api"
 import Detail from "./Detail"
+import ViewCollectionButton from "@components/shared/ViewCollectionButton"
 interface Props {
     race: NFTRace
 }

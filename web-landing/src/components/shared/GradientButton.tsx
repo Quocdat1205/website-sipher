@@ -1,8 +1,7 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Box, BoxProps, Spinner, Flex, TextProps } from "@chakra-ui/react"
-import { MyText } from "."
+import { Box, BoxProps, Spinner, Flex, TextProps, Text } from "@chakra-ui/react"
 
 interface GradientButtonProps extends BoxProps {
     text: React.ReactNode
@@ -53,14 +52,14 @@ export const GradientButton = ({
             {isLoading ? (
                 <Flex align="center" justify="center">
                     <Spinner size="sm" thickness="3px" />
-                    <MyText fontSize={fontSize} ml={4} fontWeight="bold">
+                    <Text fontSize={fontSize} ml={4} fontWeight="bold">
                         {loadingText}
-                    </MyText>
+                    </Text>
                 </Flex>
             ) : (
-                <MyText fontSize={fontSize} letterSpacing="2px" fontWeight="bold">
+                <Text fontSize={fontSize} letterSpacing="2px" fontWeight="bold">
                     {text}
-                </MyText>
+                </Text>
             )}
         </Box>
     )

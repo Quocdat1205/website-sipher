@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
-import { GradientButton } from "@sipher/web-components"
 import { ComponentProps } from "react"
+import { GradientButton } from "."
 
 interface LinkButtonProps extends ComponentProps<typeof GradientButton> {
     text: string

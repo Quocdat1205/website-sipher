@@ -13,7 +13,7 @@ export const BoldText = ({ isGradient, ...props }: BoldTextProps) => {
             textTransform={"uppercase"}
             bgGradient={isGradient ? "linear(to-b, gradient.orange)" : "none"}
             bgClip={isGradient ? "text" : "initial"}
-            isTruncated
+            isTruncated={false}
             {...props}
         />
     )
