@@ -15,8 +15,8 @@ export const AddressContractCopy = (props: Props) => {
     }
 
     return (
-        <Stack overflow="hidden" spacing={2} align="center" direction={["column", "row"]}>
-            <Text w="full" isTruncated fontSize={["xs", "sm"]}>
+        <Stack overflow="hidden" spacing={2} align="center" direction={"row"}>
+            <Text w={["auto"]} isTruncated fontSize={"sm"}>
                 {SipherTokenAddress}
             </Text>
             <AiFillCopy cursor="pointer" onClick={handleCopy} size="1.2rem" />
