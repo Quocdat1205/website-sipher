@@ -91,8 +91,8 @@ const LockedRewards = ({ lockedRewardsData }: LockedRewardsProps) => {
                 <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={4}>
                     LOCKED REWARDS
                 </Text>
-                <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
-                    <Stack>
+                <Box rounded="xl" border="1px" borderColor="#383838" p={4} bg="rgba(0, 0, 0, 0.9)">
+                    <Stack direction="column" spacing={4}>
                         {lockedRewardsData.map(deposit => (
                             <Flex
                                 key={deposit.key}

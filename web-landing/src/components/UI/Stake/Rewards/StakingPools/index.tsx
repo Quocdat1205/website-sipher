@@ -61,19 +61,9 @@ const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
                         STAKING POOLS
                     </Text>
                     <Flex align="center">
-                        <Flex align="center">
-                            <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
-                            <Text fontSize="sm">
-                                PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
-                            </Text>
-                        </Flex>
-                        <Text
-                            ml={2}
-                            fontSize="sm"
-                            fontWeight="semibold"
-                            color={sipherPriceChange > 0 ? "#25B700" : "main.darkRed"}
-                        >
-                            {sipherPriceChange > 0 ? "+" : "-"} {Math.abs(sipherPriceChange * 100).toFixed(2)} %
+                        <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
+                        <Text fontSize="sm">
+                            PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
                         </Text>
                     </Flex>
                 </Flex>

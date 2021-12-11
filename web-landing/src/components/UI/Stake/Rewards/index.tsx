@@ -13,14 +13,16 @@ const Rewards = () => {
     return (
         <Flex direction="column" align="center" w="full">
             <Box w="full" maxW="60rem" px={4}>
-                <Box mb={16}>
+                <Box mb={[8, 16]}>
                     <Typo.Heading mb={2} textAlign={["center", "left"]}>
                         Rewards
                     </Typo.Heading>
                     <Text textAlign={["center", "left"]} letterSpacing="3px" fontSize="lg" fontWeight="semibold" mb={2}>
                         CLAIM YOUR SIPHER REWARDS
                     </Text>
-                    <Text fontSize="sm">Staking rewards enter a 12 month vesting period after claiming.</Text>
+                    <Text fontSize="sm" textAlign={["center", "left"]}>
+                        Staking rewards enter a 12 month vesting period after claiming.
+                    </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
                     <StakingPools stakingPoolsData={stakingPoolsData} />

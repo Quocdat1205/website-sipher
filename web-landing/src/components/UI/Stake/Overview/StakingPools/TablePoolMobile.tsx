@@ -60,7 +60,6 @@ const TablePoolMobile = ({
                     borderTop="1px"
                     borderColor={isOpen ? "whiteAlpha.300" : "transparent"}
                     py={2}
-                    mb={2}
                     w="full"
                     align="center"
                     justify="space-between"

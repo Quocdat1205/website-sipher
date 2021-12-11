@@ -127,8 +127,25 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                             <Flex justify="space-between">
                                 <Text fontWeight="semibold">Pool</Text>
                                 <Flex align="center">
-                                    <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
-                                    <Text ml={4}>$SIPHER</Text>
+                                    <Flex align="center" w="2rem" flexShrink={0}>
+                                        <Img
+                                            src="/images/icons/sipher.png"
+                                            boxSize="1.5rem"
+                                            zIndex={2}
+                                            pos="relative"
+                                        />
+                                        {deposit.poolName !== "$SIPHER" && (
+                                            <Img
+                                                src="/images/icons/eth.png"
+                                                boxSize="1.5rem"
+                                                pos="relative"
+                                                left="-0.75rem"
+                                            />
+                                        )}
+                                    </Flex>
+                                    <Text fontSize="sm" textAlign={"left"} pl={deposit.poolName !== "$SIPHER" ? 4 : 2}>
+                                        {deposit.poolName}
+                                    </Text>
                                 </Flex>
                             </Flex>
                             <Flex justify="space-between">
