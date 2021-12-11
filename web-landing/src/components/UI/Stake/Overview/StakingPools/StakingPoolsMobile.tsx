@@ -1,5 +1,4 @@
 import { Box, Text, Stack } from "@chakra-ui/react"
-import { useSipherPrice } from "@hooks/api"
 import React, { ReactNode } from "react"
 
 interface StakingPoolsProps {
@@ -7,8 +6,6 @@ interface StakingPoolsProps {
 }
 
 const StakingPoolsMobile = ({ children }: StakingPoolsProps) => {
-    const sipherPrice = useSipherPrice()
-
     return (
         <Box display={["block", "block", "none"]}>
             <Text textAlign="center" letterSpacing="3px" size="large" fontWeight="semibold" mb={2}>

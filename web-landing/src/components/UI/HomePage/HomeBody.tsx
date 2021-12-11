@@ -1,7 +1,6 @@
-import { Center, Flex, VStack } from "@chakra-ui/react"
+import { Flex, VStack } from "@chakra-ui/react"
 import { BackgroundContainer, LinkButton } from "@components/shared"
 import JoinTheCommunity from "./JoinTheCommunity"
-import NekoTeaser from "./NekoTeaser"
 import Hero from "./Hero"
 import BehindTheScenes from "./BehindTheScenes"
 import OwnerBenefits from "./OwnerBenefits"

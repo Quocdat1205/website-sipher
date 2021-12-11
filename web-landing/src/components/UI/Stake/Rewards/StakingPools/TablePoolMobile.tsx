@@ -1,9 +1,6 @@
 import { Img } from "@chakra-ui/image"
 import { Box, Flex, Stack, Text } from "@chakra-ui/layout"
 import { ActionButton } from "@components/shared"
-
-import { currency } from "@source/utils"
-import React from "react"
 import { TablePoolsProps } from "./TablePoolDesktop"
 
 const TablePoolMobile = ({ poolData }: TablePoolsProps) => {

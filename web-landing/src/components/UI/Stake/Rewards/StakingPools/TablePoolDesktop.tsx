@@ -1,10 +1,9 @@
 import { Img } from "@chakra-ui/image"
-import { Box, Flex, Text } from "@chakra-ui/layout"
+import { Flex, Text } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
-import { currency } from "@source/utils"
 import React from "react"
-import useRewards, { StakingPoolData } from "../useRewards"
+import { StakingPoolData } from "../useRewards"
 
 export interface TablePoolsProps {
     poolData: StakingPoolData

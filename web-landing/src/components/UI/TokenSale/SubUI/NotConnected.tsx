@@ -13,9 +13,7 @@ import { BackgroundContainer, WalletButton, Typo } from "@components/shared"
 import { LearnAboutModal } from "../Modal/"
 import ReactPlayer from "react-player"
 
-interface NotConnectedProps {}
-
-const NotConnected = ({}: NotConnectedProps) => {
+const NotConnected = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (

@@ -74,6 +74,7 @@ export const SignInModal = () => {
                         "Thank you for your interest in taking part in our Token Sale. However, due to restrictions and our ongoing compliance efforts, we will be unable to provide this offering to you.",
                 })
             }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             setIsLoading(false)
             toast({ status: "error", title: "Error", message: error.message || "" })
@@ -81,7 +82,7 @@ export const SignInModal = () => {
     }
 
     useEffect(() => {
-        let signIn = getSignIn()
+        const signIn = getSignIn()
 
         if (!signIn || signIn !== "true") onOpen()
     }, [wallet, onOpen])

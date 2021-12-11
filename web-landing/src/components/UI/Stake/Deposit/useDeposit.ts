@@ -105,7 +105,7 @@ const useDeposit = (pool: PoolURL) => {
                 qc.invalidateQueries("fetch")
                 setIsLoading(false)
             },
-            onError: (e: any) => {
+            onError: () => {
                 setIsLoading(false)
                 toastTransaction({ status: "failed" })
             },
@@ -133,7 +133,7 @@ const useDeposit = (pool: PoolURL) => {
                 qc.invalidateQueries("approved")
                 toastTransaction({ status: "success", message: ["You have successfully approved your $SIPHER."] })
             },
-            onError: (e: any) => {
+            onError: () => {
                 toastTransaction({ status: "failed" })
             },
         }

@@ -1,10 +1,7 @@
-// * DESCRIPTION:
-
-import { Flex, UnorderedList, ListItem } from "@chakra-ui/react"
-import { BackgroundContainer, LinkButton, TextContainer, Typo } from "@components/shared"
+import { Flex, UnorderedList, ListItem, Text } from "@chakra-ui/react"
+import { BackgroundContainer, LinkButton, TextContainer } from "@components/shared"
 import FlagImage from "./FlagImage"
 
-interface CareesProps {}
 const intro =
     "Sipher was born from the pure passion for games and the desire to embrace blockchain technology to bring about disruptive innovation in the Gaming & Entertainment Space. We will serve our users through three main pillars:"
 const items = [
@@ -15,43 +12,39 @@ const items = [
 const sub =
     "Our founding team is based in Ho Chi Minh, Vietnam yet we are an international bunch with fully remote roles, with background from "
 
-const Careers = ({}: CareesProps) => {
+const countries = [
+    { src: "/images/flags/us.png", alt: "United States" },
+    { src: "/images/flags/vn.png", alt: "Vietnam" },
+    { src: "/images/flags/euro.png", alt: "Europe" },
+    { src: "/images/flags/indo.png", alt: "Indonesia" },
+    { src: "/images/flags/sing.png", alt: "Singapore" },
+    { src: "/images/flags/rico.png", alt: "Puerto Rico" },
+    { src: "/images/flags/philip.png", alt: "Philippines" },
+    { src: "/images/flags/germany.png", alt: "Germany" },
+    { src: "/images/flags/canada.png", alt: "Canada" },
+]
+
+const Careers = () => {
     return (
         <BackgroundContainer>
-            <Flex direction="column" align="center" px={4} py={24} w="full">
+            <Flex direction="column" align="center" py={24} w="full">
                 <TextContainer headline="CAREERS">
-                    <Typo.Text>{intro}</Typo.Text>
+                    <Text>{intro}</Text>
                     <UnorderedList>
                         {items.map(item => (
                             <ListItem key={item}>
-                                <Typo.Text>{item}</Typo.Text>
+                                <Text>{item}</Text>
                             </ListItem>
                         ))}
                     </UnorderedList>
-                    <Typo.Text>
+                    <Text>
                         {sub}
-                        <FlagImage srcImg="/images/flags/us.png" />
-                        <FlagImage srcImg="/images/flags/vn.png" />
-                        <FlagImage srcImg="/images/flags/euro.png" />
-                        <FlagImage srcImg="/images/flags/indo.png" />
-                        <FlagImage srcImg="/images/flags/sing.png" />
-                        <FlagImage srcImg="/images/flags/rico.png" />
-                        <FlagImage srcImg="/images/flags/philip.png" />
-                        <FlagImage srcImg="/images/flags/germany.png" />
-                        <FlagImage srcImg="/images/flags/canada.png" />
-                    </Typo.Text>
+                        {countries.map(country => (
+                            <FlagImage key={country.alt} {...country} />
+                        ))}
+                    </Text>
                 </TextContainer>
-                <LinkButton
-                    mt={4}
-                    text="Join us at sipher"
-                    href="https://careers.sipher.xyz/"
-                    // sx={{
-                    //     "@media (max-width: 480px)": {
-                    //         display: "none",
-                    //     },
-                    // }}
-                    size="medium"
-                />
+                <LinkButton mt={4} text="Join us at sipher" href="https://careers.sipher.xyz/" size="medium" />
             </Flex>
         </BackgroundContainer>
     )

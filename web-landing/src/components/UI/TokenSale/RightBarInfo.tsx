@@ -1,4 +1,4 @@
-import { Flex, Box, VStack, Stack, Text } from "@chakra-ui/layout"
+import { Box, VStack, Stack, Text } from "@chakra-ui/layout"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useQuery } from "react-query"
 import CoinCard from "./CoinCard"

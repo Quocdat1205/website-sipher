@@ -8,7 +8,7 @@ const useSaleTime = () => {
     const { scCaller, account } = useWalletContext()
     const { data: startTime, isLoading: isLoadingStartTime } = useQuery(
         ["start-time", account],
-        () => scCaller.current!.SipherIBCO.getStartTime(),
+        () => scCaller.current?.SipherIBCO.getStartTime(),
         {
             enabled: !!scCaller.current,
         }
@@ -16,7 +16,7 @@ const useSaleTime = () => {
 
     const { data: endTime, isLoading: isLoadingEndTime } = useQuery(
         ["end-time", account],
-        () => scCaller.current!.SipherIBCO.getEndTime(),
+        () => scCaller.current?.SipherIBCO.getEndTime(),
         {
             enabled: !!scCaller.current,
         }

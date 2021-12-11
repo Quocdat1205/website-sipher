@@ -1,4 +1,4 @@
-import { Flex, HStack, Image, Box, Text, chakra, Tooltip } from "@chakra-ui/react"
+import { Flex, HStack, Image, Box, Text, Tooltip } from "@chakra-ui/react"
 import RadioCard from "./RadioCard"
 import React, { useCallback, useEffect, useState } from "react"
 import { DropdownOption } from "./SaleForm"
@@ -31,7 +31,7 @@ const InputUI = ({ mode }: Props) => {
 
     const { scCaller, account, getTracking, ethereum } = useWalletContext()
 
-    const formatPrecision = (value: number, precision: number = 11) => value.toString().slice(0, precision)
+    const formatPrecision = (value: number, precision = 11) => value.toString().slice(0, precision)
 
     const { status } = useSaleTime()
 
@@ -99,7 +99,7 @@ const InputUI = ({ mode }: Props) => {
     const { mutate: deposit, isLoading: isDepositing } = useMutation(
         () => scCaller.current!.SipherIBCO.deposit(account!, value),
         {
-            onError: (err: any) => transactionToast({ status: "failed" }),
+            onError: () => transactionToast({ status: "failed" }),
             onSuccess: () => {
                 transactionToast({ status: "success" })
                 setValue("")
@@ -113,7 +113,7 @@ const InputUI = ({ mode }: Props) => {
     const { mutate: withdraw, isLoading: isWithdrawing } = useMutation(
         () => scCaller.current!.SipherIBCO.withdraw(account!, value),
         {
-            onError: (err: any) => transactionToast({ status: "failed" }),
+            onError: () => transactionToast({ status: "failed" }),
             onSuccess: () => {
                 transactionToast({ status: "success" })
                 setValue("")

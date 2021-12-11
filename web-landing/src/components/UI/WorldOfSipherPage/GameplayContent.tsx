@@ -3,9 +3,7 @@ import { Typo } from "@components/shared"
 import { gameplayContent } from "@constant/content/why"
 import React from "react"
 
-interface GameplayContentProps {}
-
-const GameplayContent = ({}: GameplayContentProps) => {
+const GameplayContent = () => {
     return (
         <VStack spacing={8}>
             <Box>

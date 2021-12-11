@@ -1,10 +1,9 @@
 import { Flex, Modal, ModalCloseButton, ModalContent, ModalOverlay } from "@chakra-ui/react"
-import React, { SetStateAction } from "react"
 import ReactPlayer from "react-player"
 
 interface Props {
     isOpen: boolean
-    setIsOpen: SetStateAction<any>
+    setIsOpen: (isOpen: boolean) => void
 }
 
 const VideoModal = ({ isOpen, setIsOpen }: Props) => {

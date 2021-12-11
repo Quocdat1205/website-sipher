@@ -1,7 +1,4 @@
-// * DESCRIPTION:
-
 import { Box, BoxProps, Spinner, Text, Flex } from "@chakra-ui/react"
-import { Typo } from "@components/shared/Typography"
 
 interface GradientOutlineButtonProps extends BoxProps {
     text: React.ReactNode

@@ -2,9 +2,7 @@ import { Flex } from "@chakra-ui/react"
 import React from "react"
 import ReactPlayer from "react-player"
 
-interface Props {}
-
-export const VideoModal = ({}: Props) => {
+export const VideoModal = () => {
     return (
         <Flex
             w="full"
@@ -13,14 +11,6 @@ export const VideoModal = ({}: Props) => {
             align="center"
             justify="center"
         >
-            {/* <video
-                src={"/video/ibco.mp4"}
-                playsInline={true}
-                controls
-                data-reactid=".0.1.0.0"
-                datatype="video/mp4"
-                poster="/video/whatissipher_poster.jpg"
-            ></video> */}
             <ReactPlayer
                 className="video-player"
                 controls

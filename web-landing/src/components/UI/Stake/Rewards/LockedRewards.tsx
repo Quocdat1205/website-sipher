@@ -1,8 +1,6 @@
 import { Flex, Box, Text, Img, Stack, chakra } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import React from "react"
-import { format } from "date-fns"
-import { currency } from "@source/utils"
 import useRewards from "./useRewards"
 
 export interface LockedRewardsProps {

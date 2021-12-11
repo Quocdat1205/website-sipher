@@ -1,10 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react"
 import { LinkButton } from "@components/shared"
-import React from "react"
 
-interface Props {}
-
-export const LearnAboutModal = ({}: Props) => {
+export const LearnAboutModal = () => {
     return (
         <Flex py={10} px={[4, 4, 20]} flexDir="column" align="center" justify="center">
             <Text textAlign="center" fontSize="lg" fontWeight="semibold" letterSpacing="3px">

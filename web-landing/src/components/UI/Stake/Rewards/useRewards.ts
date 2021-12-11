@@ -46,7 +46,7 @@ const useRewards = () => {
     )
 
     const [claimingPool, setClaimingPool] = useState<Pool | null>(null)
-    const { mutate: claim, isLoading: isClaiming } = useMutation<unknown, unknown, Pool>(
+    const { mutate: claim } = useMutation<unknown, unknown, Pool>(
         pool => scCaller.current![pool].claimRewards(account!),
         {
             onMutate: pool => {

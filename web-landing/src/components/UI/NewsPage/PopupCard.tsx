@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Flex } from "@chakra-ui/react"
+import { Modal, ModalOverlay, ModalContent, ModalBody, Flex } from "@chakra-ui/react"
 import React from "react"
 import { useRouter } from "next/router"
 import { useQuery } from "react-query"

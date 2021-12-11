@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from "@chakra-ui/react"
+import { Flex, Box } from "@chakra-ui/react"
 import Loader from "@components/shared/Loader"
 import { useTimer } from "react-timer-hook"
 import PrivateCountdown from "@components/shared/PrivateCountdown"

@@ -1,5 +1,3 @@
-// * DESCRIPTION:
-
 import React from "react"
 import { Flex, FlexProps, Text } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
@@ -9,21 +7,11 @@ interface NavBarLinkProps extends FlexProps {
     active?: boolean
     text: string
     href?: string
-    size?: MyTextProps["size"]
     isChild?: boolean
     lastChild?: boolean
 }
 // hehe
-export const NavBarLink = ({
-    onClick,
-    lastChild = false,
-    isChild,
-    size,
-    text,
-    active,
-    href,
-    ...rest
-}: NavBarLinkProps) => {
+export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, href, ...rest }: NavBarLinkProps) => {
     const router = useRouter()
     return (
         <Flex

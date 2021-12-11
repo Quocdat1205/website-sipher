@@ -1,8 +1,6 @@
 import { Text, Flex, Img } from "@chakra-ui/react"
 
-interface PriceBoxProps {}
-
-const PriceBox = ({}: PriceBoxProps) => {
+const PriceBox = () => {
     return (
         <Flex direction={["column", "row", "row"]} my={2} justify="space-between" w="full">
             <Flex

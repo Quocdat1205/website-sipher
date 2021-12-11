@@ -1,5 +1,5 @@
 import { Box, Flex, AccordionButton } from "@chakra-ui/react"
-import { BsCheck, BsChevronRight } from "react-icons/bs"
+import { BsChevronRight } from "react-icons/bs"
 import React from "react"
 import { Typo } from "@components/shared/"
 

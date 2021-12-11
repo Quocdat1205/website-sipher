@@ -9,7 +9,6 @@ import PopupCard from "./PopupCard"
 import dynamic from "next/dynamic"
 import Loading from "./Loading"
 
-interface Props {}
 const breakPoints = [
     {
         minScreenWidth: 0,
@@ -39,7 +38,7 @@ const breakPoints = [
 
 const PinterestGrid = dynamic<any>(() => import("rc-pinterest-grid" as any) as Promise<any>, { ssr: false })
 
-const NewsBody = (props: Props) => {
+const NewsBody = () => {
     const step = useRef(9)
     const queryClient = useQueryClient()
     const [loadmore, setLoadMore] = useState(false)

@@ -5,9 +5,7 @@ import { Typo } from "@components/shared"
 import { VideoModal } from "./Modal"
 import LearnAboutModal from "./Modal/LearnAboutModal"
 
-interface Props {}
-
-const Header = (props: Props) => {
+const Header = () => {
     const [modal, setModal] = useState("")
 
     const openModal = (modal: string) => {

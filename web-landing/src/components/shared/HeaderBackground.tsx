@@ -1,10 +1,9 @@
-import { Box, Flex, Heading } from "@chakra-ui/react"
-import { MyHeading } from "@sipher/web-components"
-import { Typo } from "."
+import { Box, Flex } from "@chakra-ui/react"
+import { BoldText, Typo } from "."
 
-interface Props {
-    title?: string
-    description?: string
+interface HeaderBackgroundProps {
+    title: string
+    description: string
     srcImg?: string
     isCoatedBg?: boolean
 }
@@ -14,7 +13,7 @@ export const HeaderBackground = ({
     srcImg = "/images/pc/bg-title.png",
     title,
     description,
-}: Props) => {
+}: HeaderBackgroundProps) => {
     return (
         <Flex
             align="center"
@@ -34,9 +33,9 @@ export const HeaderBackground = ({
             <Typo.Heading zIndex={1} mb={2}>
                 {title}
             </Typo.Heading>
-            <Typo.BoldText textTransform="uppercase" zIndex={1} align="center">
+            <BoldText zIndex={1} textAlign="center">
                 {description}
-            </Typo.BoldText>
+            </BoldText>
         </Flex>
     )
 }

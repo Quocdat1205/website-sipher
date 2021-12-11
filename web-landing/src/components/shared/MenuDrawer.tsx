@@ -1,14 +1,10 @@
-// * DESCRIPTION:
-
 import { Drawer, DrawerOverlay, DrawerContent, DrawerBody, VStack, Flex } from "@chakra-ui/react"
 import { useStoreActions, useStoreState } from "@store"
-import React from "react"
 import { navMenus } from "."
 import { NavBarLink } from "@sipher/web-components"
 import { useRouter } from "next/dist/client/router"
-interface MenuDrawerProps {}
 
-const MenuDrawer = ({}: MenuDrawerProps) => {
+const MenuDrawer = () => {
     const isSideBarOn = useStoreState(state => state.sidebarOn)
     const setIsSideBarOn = useStoreActions(action => action.setSidebarOn)
     const router = useRouter()

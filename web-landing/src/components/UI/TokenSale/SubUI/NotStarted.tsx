@@ -1,9 +1,7 @@
 import { Grid } from "@chakra-ui/layout"
 import { BackgroundContainer } from "@components/shared"
 
-interface NotStartedProps {}
-
-const NotStarted = ({}: NotStartedProps) => {
+const NotStarted = () => {
     return (
         <BackgroundContainer
             pos="relative"

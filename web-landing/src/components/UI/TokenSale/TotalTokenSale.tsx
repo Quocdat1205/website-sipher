@@ -1,4 +1,4 @@
-import { Flex, Text, Img } from "@chakra-ui/react"
+import { Flex, Text } from "@chakra-ui/react"
 import { useQuery } from "react-query"
 import { numberWithCommas } from "@source/utils"
 import useWalletContext from "@hooks/web3/useWalletContext"

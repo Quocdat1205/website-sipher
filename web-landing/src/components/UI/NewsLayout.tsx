@@ -1,10 +1,9 @@
-// * DESCRIPTION:
-
 import { Flex } from "@chakra-ui/react"
 import { NavBar, Footer } from "@components/shared"
+import { ReactNode } from "react"
 
 interface NewsLayoutProps {
-    children: React.ReactNode
+    children: ReactNode
 }
 
 const NewsLayout = ({ children }: NewsLayoutProps) => {

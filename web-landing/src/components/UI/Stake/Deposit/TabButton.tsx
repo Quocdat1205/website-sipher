@@ -8,7 +8,6 @@ interface Props {
     tabOptions: string[]
     onChange: (option: TabOptionProps) => void
 }
-;["Flexible", "Locked"]
 const TabButton = ({ selected, tabOptions, onChange }: Props) => {
     return (
         <Flex

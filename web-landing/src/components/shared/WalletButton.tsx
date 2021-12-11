@@ -12,9 +12,7 @@ import { useRouter } from "next/router"
 import { useQuery } from "react-query"
 import { currency } from "@source/utils"
 
-interface WalletButtonProps {}
-
-export const WalletButton = ({}: WalletButtonProps) => {
+export const WalletButton = () => {
     const wallet = useWalletContext()
     const [isOpen, setIsOpen] = useState(false)
     const [menu, setMenu] = useState(false)

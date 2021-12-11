@@ -3,8 +3,6 @@
 import { Stack, Img, Wrap, WrapItem, Box } from "@chakra-ui/react"
 import { TextContainer } from "@components/shared"
 
-interface BackersProps {}
-
 const smallBackers = [
     { path: "/images/icons/backers/defiance_capital.png", alt: "DeFiance Capital" },
     { path: "/images/icons/backers/signum_capital.png", alt: "Signum Capital" },
@@ -23,7 +21,7 @@ const smallBackers = [
     { path: "/images/icons/backers/yield_guild.png", alt: "Yield Guild" },
 ]
 
-const Backers = ({}: BackersProps) => {
+const Backers = () => {
     return (
         <TextContainer headline="Backers" px={4} maxW={["48rem", "48rem", "56rem"]}>
             <Stack

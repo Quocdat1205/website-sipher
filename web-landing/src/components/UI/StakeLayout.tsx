@@ -3,9 +3,10 @@
 import { Flex, Grid } from "@chakra-ui/react"
 import { NavBar, Footer, BackgroundContainer, WalletButton } from "@components/shared"
 import useWalletContext from "@hooks/web3/useWalletContext"
+import { ReactNode } from "react"
 
 interface StakeLayoutProps {
-    children: React.ReactNode
+    children: ReactNode
 }
 
 const StakeLayout = ({ children }: StakeLayoutProps) => {

@@ -1,8 +1,7 @@
-import { Box, chakra, HStack, Flex } from "@chakra-ui/react"
+import { HStack } from "@chakra-ui/react"
 import React, { useEffect, useRef, useState } from "react"
 import { differenceInSeconds } from "date-fns"
 import { useQueryClient } from "react-query"
-import { GradientText, MyText } from "@sipher/web-components"
 import TimeCell from "./TimeCell"
 import Colon from "./Colon"
 

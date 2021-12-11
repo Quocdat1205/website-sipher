@@ -1,5 +1,5 @@
 import { Box, Flex, Stack, Text, chakra, Img } from "@chakra-ui/react"
-import { useSipherChangePercent, useSipherPrice } from "@hooks/api"
+import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import useRewards from "../useRewards"
 import TablePoolDesktop from "./TablePoolDesktop"
@@ -10,7 +10,6 @@ export interface StakingPoolsProps {
 }
 
 const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
-    const sipherPriceChange = useSipherChangePercent()
     const sipherPrice = useSipherPrice()
 
     return (

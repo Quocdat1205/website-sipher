@@ -9,11 +9,8 @@
     "private": true,
     "workspaces": [
         "web-landing",
-        "web-gallery",
         "web-components",
-        "web-minting",
-        "web-staking",
-        "web-ido"
+        "web-minting"
     ],
     "scripts": {
         "build-components": "cd web-components && yarn && yarn build",

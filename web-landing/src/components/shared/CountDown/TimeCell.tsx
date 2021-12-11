@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex, HStack } from "@chakra-ui/react"
-import { GradientText, MyText } from "@sipher/web-components"
+import { MyText } from "@sipher/web-components"
 
 interface TimeCellProps {
     value: number

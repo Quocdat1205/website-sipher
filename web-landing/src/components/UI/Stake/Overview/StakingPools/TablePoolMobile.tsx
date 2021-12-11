@@ -1,9 +1,7 @@
-import { Box, Flex, Text, Stack, Img, Collapse, VStack, Wrap, WrapItem } from "@chakra-ui/react"
+import { Box, Flex, Text, Stack, Img, Collapse, VStack } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
-import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
-import { useRouter } from "next/router"
-import React, { useState } from "react"
+import { useState } from "react"
 import { BiChevronUp } from "react-icons/bi"
 import { StakingPoolTable } from "./StakingPoolTableDesktop"
 

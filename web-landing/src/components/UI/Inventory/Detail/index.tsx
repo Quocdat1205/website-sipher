@@ -19,7 +19,6 @@ import { NFTRace } from "@@types"
 import Head from "next/head"
 import EmotionChanger from "./EmotionChanger"
 import { MotionBox, MotionFlex } from "@components/shared/Motion"
-import { FiArrowLeft } from "react-icons/fi"
 import { AnimatePresence } from "framer-motion"
 import ProofsTable from "./ProofsTable"
 import useInventoryDetail from "./useInventoryDetail"
@@ -36,7 +35,7 @@ const Detail = ({ race }: PopupProps) => {
         useInventoryDetail({ id, race })
     return (
         <>
-            {!!id ? (
+            {id ? (
                 data && merkle ? (
                     <Modal
                         isOpen={!!id}

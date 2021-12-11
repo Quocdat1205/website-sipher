@@ -1,4 +1,3 @@
-import { Flex } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
@@ -18,7 +17,7 @@ const ClaimNoStake = () => {
             transactionToast({ status: "successClaim" })
             qc.invalidateQueries("estimate-received-token")
         },
-        onError: (error: any) => {
+        onError: () => {
             transactionToast({ status: "failed" })
         },
     })

@@ -1,5 +1,5 @@
 import { HStack } from "@chakra-ui/react"
-import React, { SetStateAction, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { differenceInSeconds } from "date-fns"
 import TimeCell from "./TimeCell"
 import Colon from "./Colon"

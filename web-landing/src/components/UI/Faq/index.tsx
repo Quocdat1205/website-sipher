@@ -4,9 +4,7 @@ import { overviewContent, blockchainContent, gameplayContent } from "@constant/c
 import React from "react"
 import MyAccordionItem from "./MyAccordionItem"
 
-interface FagUIProps {}
-
-const FagUI = ({}: FagUIProps) => {
+const FagUI = () => {
     return (
         <BackgroundContainer>
             <VStack align="center" py={24} px={4} spacing={24}>

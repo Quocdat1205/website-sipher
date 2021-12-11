@@ -1,5 +1,4 @@
 import {
-    Link,
     Img,
     Modal,
     ModalOverlay,
@@ -9,7 +8,6 @@ import {
     ModalHeader,
     Text,
     Flex,
-    Box,
     Stack,
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"

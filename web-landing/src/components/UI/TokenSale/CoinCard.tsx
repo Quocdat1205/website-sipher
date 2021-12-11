@@ -1,6 +1,5 @@
-import { Flex, Image, chakra, FlexProps, Text, Box } from "@chakra-ui/react"
+import { Flex, Image, FlexProps, Text, Box } from "@chakra-ui/react"
 import { useETHPrice } from "@hooks/api"
-import { floorPrecised } from "@source/utils"
 import React from "react"
 
 interface Props extends FlexProps {
@@ -8,18 +7,15 @@ interface Props extends FlexProps {
     iconSrc?: string
     value?: number | string
     icon?: React.ReactNode
-    isBorderTop?: boolean
     size?: string
     disableDollar?: boolean
 }
 
 const CoinCard = ({
-    justify = "flex-start",
     size = "medium",
     icon,
     text,
     iconSrc = "",
-    isBorderTop = false,
     value = "N/A",
     disableDollar = false,
     ...rest

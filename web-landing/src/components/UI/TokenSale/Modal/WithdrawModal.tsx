@@ -1,13 +1,13 @@
 import { Flex, Text } from "@chakra-ui/layout"
 import { Modal, ModalCloseButton, ModalContent, ModalOverlay } from "@chakra-ui/modal"
-import { ActionButton, Typo } from "@components/shared"
+import { ActionButton } from "@components/shared"
 import useTransactionToast from "@hooks/useTransactionToast"
 import { useChakraToast } from "@sipher/web-components"
-import React, { SetStateAction } from "react"
+import React from "react"
 
 interface Props {
     modal: boolean
-    setModal: SetStateAction<any>
+    setModal: (modal: boolean) => void
     withdraw: () => void
     getTracking: (mode: string) => Promise<{
         success: boolean

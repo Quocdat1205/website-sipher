@@ -1,8 +1,5 @@
-import { ImageProps, Img } from "@chakra-ui/image"
-import React from "react"
+import { Img, ImgProps } from "@chakra-ui/image"
 
-interface Props extends ImageProps {}
-
-export const IconSipher = ({ ...rest }: Props) => {
+export const IconSipher = (rest: ImgProps) => {
     return <Img boxSize="1.5rem" src="/images/icons/sipher.svg" alt="sipher-icon" {...rest} />
 }

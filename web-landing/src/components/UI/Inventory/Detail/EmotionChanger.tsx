@@ -5,7 +5,7 @@ import { getAccessToken } from "@source/utils"
 interface EmotionChangerProps {
     availableEmotions: string[]
     currentEmotion: string
-    onChangeEmotion: (newEmotion: string) => void
+    onChangeEmotion: (a: string) => void
 }
 
 const EmotionChanger = ({ availableEmotions, currentEmotion, onChangeEmotion }: EmotionChangerProps) => {

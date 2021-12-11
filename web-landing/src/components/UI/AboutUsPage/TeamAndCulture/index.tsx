@@ -1,19 +1,15 @@
-// * DESCRIPTION:
-
-import { Flex } from "@chakra-ui/layout"
+import { VStack } from "@chakra-ui/layout"
 import { BackgroundContainer } from "@components/shared"
 import OurCulture from "./OurCulture"
 import TeamContent from "./TeamContent"
 
-interface TeamAndCultureProps {}
-
-const TeamAndCulture = ({}: TeamAndCultureProps) => {
+const TeamAndCulture = () => {
     return (
         <BackgroundContainer>
-            <Flex direction="column" align="center" px={4} py={24} w="full">
+            <VStack align="center" py={24} spacing={24} w="full">
                 <OurCulture />
                 <TeamContent />
-            </Flex>
+            </VStack>
         </BackgroundContainer>
     )
 }

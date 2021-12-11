@@ -1,9 +1,7 @@
 import { Grid } from "@chakra-ui/layout"
 import { BackgroundContainer } from "@components/shared"
 
-interface LoadingProps {}
-
-const Loading = ({}: LoadingProps) => {
+const Loading = () => {
     return (
         <BackgroundContainer
             pos="relative"

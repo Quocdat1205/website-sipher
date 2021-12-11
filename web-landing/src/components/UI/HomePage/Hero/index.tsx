@@ -1,42 +1,11 @@
-// * DESCRIPTION:
-
-import {
-    Flex,
-    Box,
-    Text,
-    Button,
-    Stack,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    Link,
-    ModalCloseButton,
-} from "@chakra-ui/react"
-import { ActionButton, LinkButton, MotionFlex, Typo } from "@components/shared"
+import { Flex, Box, Text } from "@chakra-ui/react"
+import { ActionButton, MotionFlex } from "@components/shared"
 import Title from "./Title"
-// import { CgMouse } from "react-icons/cg"
-// import { BiChevronDown } from "react-icons/bi"
-import CountDown from "./CountDown"
-import { startTime, endTime } from "@constant/index"
-// import { BrowserView } from "react-device-detect"
-import useSaleTime from "./CountDown/useSaleTime"
-import { BsPlayFill } from "react-icons/bs"
-import { LearnAboutModal, VideoModal } from "@components/UI/TokenSale/Modal"
-import { useState } from "react"
 import { useRouter } from "next/router"
 import PriceBox from "./PriceBox"
 
-interface FirstScreenProps {}
-
-const FirstScreen = ({}: FirstScreenProps) => {
-    const { status } = useSaleTime()
-    const [modal, setModal] = useState("")
+const FirstScreen = () => {
     const router = useRouter()
-    const openModal = (modal: string) => {
-        setModal(modal)
-    }
-
-    const totalContributed = 3500
 
     return (
         <Flex
@@ -137,21 +106,6 @@ const FirstScreen = ({}: FirstScreenProps) => {
                     </Box>
                 </MotionFlex>
             </Flex>
-            <Modal
-                motionPreset="slideInBottom"
-                isCentered
-                isOpen={modal !== ""}
-                onClose={() => setModal("")}
-                size="4xl"
-            >
-                <ModalOverlay bg="blackAlpha.800" />
-                <ModalContent bg="black" p={4} overflow="hidden">
-                    <Box overflow="hidden" pos="relative" rounded="lg" border="1px" borderColor="border.gray">
-                        <ModalCloseButton _focus={{ boxShadow: "none" }} color="#9B9E9D" fontSize="xl" zIndex={1} />
-                        {modal === "1" ? <VideoModal /> : <LearnAboutModal />}
-                    </Box>
-                </ModalContent>
-            </Modal>
         </Flex>
     )
 }
