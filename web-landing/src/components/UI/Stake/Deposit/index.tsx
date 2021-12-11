@@ -128,7 +128,7 @@ const StakeForm = () => {
                             handleStake()
                         }}
                         isLoading={isStaking}
-                        disabled={isStakable}
+                        disabled={!isStakable}
                         py={4}
                     />
 

@@ -139,15 +139,15 @@ const useDeposit = (pool: PoolURL) => {
         }
     )
 
+    const isStakable = !(sipherValue === "" || parseFloat(sipherValue) <= 0 || parseFloat(sipherValue) > balance)
+
     const handleStake = () => {
-        if (isApproved) {
+        if (isApproved && isStakable) {
             stake()
         } else {
             setApprovalModal(true)
         }
     }
-
-    const isStakable = sipherValue === "" || parseFloat(sipherValue) <= 0 || parseFloat(sipherValue) > balance
 
     return {
         mode,
