@@ -2,12 +2,11 @@ import { useOutsideClick } from "@chakra-ui/hooks"
 import { Flex, Text, Box } from "@chakra-ui/layout"
 import { Collapse } from "@chakra-ui/transition"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { GradientButton } from "@sipher/web-components"
 import { useEffect, useRef, useState } from "react"
 import { FaWallet } from "react-icons/fa"
 import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
-import { IconSipher, WalletModal } from "."
+import { GradientButton, IconSipher, WalletModal } from "."
 import { useRouter } from "next/router"
 import { useQuery } from "react-query"
 import { currency } from "@source/utils"
@@ -136,7 +135,7 @@ export const WalletButton = () => {
                             }}
                             text="Disconnect"
                             w="full"
-                            px={2}
+                            px={[0, 2]}
                         />
                     </Box>
                 </Collapse>

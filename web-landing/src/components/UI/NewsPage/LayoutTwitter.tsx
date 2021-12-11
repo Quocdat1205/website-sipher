@@ -1,7 +1,6 @@
 import React from "react"
 import ReactHtmlParser from "react-html-parser"
-import { MyHeading } from "@sipher/web-components"
-import { Box, Flex, Image, ModalCloseButton } from "@chakra-ui/react"
+import { Heading, Box, Flex, Image, ModalCloseButton } from "@chakra-ui/react"
 import { DetailsNewsProps } from "./PopupCard"
 import FooterPopupCard from "./FooterPopupCard"
 import ReactPlayer from "react-player"
@@ -75,9 +74,9 @@ const LayoutTwitter = ({ details }: Props) => {
             </Flex>
             <Flex flexGrow={[1, 0]} flexDir="column" maxW={["100%", "320px"]} h={[`50vh`, "65vh"]} overflow="hidden">
                 <Box flex={1} overflow="auto" py={[4, 12]} px={8}>
-                    <MyHeading color="white" size="large">
+                    <Heading color="white" fontSize="2xl">
                         {details.title}
-                    </MyHeading>
+                    </Heading>
                     <Box mt={[4, 6]} sx={{ img: { m: "0 auto" } }} color="about.textGray">
                         {ReactHtmlParser(details.content && details.content)}
                     </Box>

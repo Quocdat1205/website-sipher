@@ -1,14 +1,16 @@
 import Metadata from "@components/shared/Metadata"
 import NewsLayout from "@components/UI/NewsLayout"
-import PrivacyPolicyUI from "@components/UI/PrivacyPolicy"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "./_app"
+import dynamic from "next/dynamic"
+
+const DynamicPrivacyPolicyUI = dynamic(() => import("@components/UI/PrivacyPolicy"))
 
 const NFTPage: NextPageWithLayout = () => {
     return (
         <>
             <Metadata title="Privacy Policy | Sipher" description="Read about Sipher's privacy policy" />
-            <PrivacyPolicyUI />
+            <DynamicPrivacyPolicyUI />
         </>
     )
 }

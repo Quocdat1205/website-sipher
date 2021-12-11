@@ -16,6 +16,7 @@ export const HeaderBackground = ({
 }: HeaderBackgroundProps) => {
     return (
         <Flex
+            w="full"
             align="center"
             justify="center"
             bg={`url(${srcImg})`}
@@ -23,7 +24,7 @@ export const HeaderBackground = ({
             bgSize="cover"
             pt="11rem"
             pb="7rem"
-            px="2rem"
+            px={["1rem", "2rem"]}
             direction="column"
             pos="relative"
         >

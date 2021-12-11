@@ -14,10 +14,10 @@ import {
 } from "./utils"
 import Web3 from "web3"
 import { authenticateUser, getUsersByAddress, trackingIP } from "@hooks/api/user"
-import { useChakraToast } from "@sipher/web-components"
 import { clearAccessToken, clearSignIn, setAccessToken, setSignIn, getAccessToken } from "@source/utils"
 import { ContractCaller } from "@source/contract"
 import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
+import useChakraToast from "@hooks/useChakraToast"
 
 declare global {
     interface Window {

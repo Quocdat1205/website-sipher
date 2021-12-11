@@ -1,14 +1,16 @@
 import Metadata from "@components/shared/Metadata"
 import NewsLayout from "@components/UI/NewsLayout"
-import TermOfServiceUI from "@components/UI/TermOfService"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "./_app"
+import dynamic from "next/dynamic"
+
+const DynamicTermOfServiceUI = dynamic(() => import("@components/UI/TermOfService"))
 
 const NFTPage: NextPageWithLayout = () => {
     return (
         <>
             <Metadata title="Terms of Service | Sipher" description="Read about Sipher's terms of service" />
-            <TermOfServiceUI />
+            <DynamicTermOfServiceUI />
         </>
     )
 }

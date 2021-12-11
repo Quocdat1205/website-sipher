@@ -1,6 +1,6 @@
 import { Flex, Box, Text } from "@chakra-ui/react"
 import { ActionButton, MotionFlex } from "@components/shared"
-import Title from "./Title"
+import Title from "../../shared/Title"
 import { useRouter } from "next/router"
 import PriceBox from "./PriceBox"
 

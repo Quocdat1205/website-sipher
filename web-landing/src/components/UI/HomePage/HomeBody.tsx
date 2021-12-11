@@ -1,7 +1,7 @@
 import { Flex, VStack } from "@chakra-ui/react"
 import { BackgroundContainer, LinkButton } from "@components/shared"
 import JoinTheCommunity from "./JoinTheCommunity"
-import Hero from "./Hero"
+import FirstScreen from "./FirstScreen"
 import BehindTheScenes from "./BehindTheScenes"
 import OwnerBenefits from "./OwnerBenefits"
 import DigitalCharacters from "./DigitalCharacters"
@@ -16,7 +16,7 @@ interface HomeBodyProps {
 const HomeBody = ({ uaString }: HomeBodyProps) => {
     return (
         <BackgroundContainer p={0} overflow="overlay">
-            <Hero />
+            <FirstScreen />
             <Flex
                 direction="column"
                 align="center"

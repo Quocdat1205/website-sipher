@@ -1,22 +1,20 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { Flex, FlexProps } from "@chakra-ui/react"
+import { Flex, FlexProps, Text } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
-import { MyText, MyTextProps } from "."
 interface NavBarLinkProps extends FlexProps {
     onClick?: () => void
     active?: boolean
     text: string
     href: string
-    size?: MyTextProps["size"]
 }
 // hehe
-export const NavBarLink = ({ onClick, size, text, active, href, ...rest }: NavBarLinkProps) => {
+export const NavBarLinkDrawer = ({ onClick, text, active, href, ...rest }: NavBarLinkProps) => {
     const router = useRouter()
     return (
         <Flex onClick={onClick} color="white" pos="relative" cursor="pointer" px={2} justify="center" {...rest}>
-            <MyText
+            <Text
                 fontWeight="bold"
                 size="small"
                 textAlign="center"
@@ -25,7 +23,6 @@ export const NavBarLink = ({ onClick, size, text, active, href, ...rest }: NavBa
                 textTransform="uppercase"
                 letterSpacing="3px"
                 color={active ? "#FF710B" : "white"}
-                // size={size}
                 px={2}
                 py={1}
                 bgGradient={active ? "linear(to-t, whiteAlpha.100, transparent)" : ""}
@@ -33,7 +30,7 @@ export const NavBarLink = ({ onClick, size, text, active, href, ...rest }: NavBa
                 borderColor={active ? "main.orange" : "transparent"}
             >
                 {text}
-            </MyText>
+            </Text>
         </Flex>
     )
 }

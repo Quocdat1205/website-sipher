@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, useOutsideClick, Collapse, Text, VStack } from "@chakra-ui/react"
-import { GradientButton } from "."
 import { useRef, useState } from "react"
+import { GradientButton } from "."
 
 interface SubLinkProps {
     text: string

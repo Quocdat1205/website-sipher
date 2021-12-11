@@ -13,16 +13,7 @@
         "web-minting"
     ],
     "scripts": {
-        "build-components": "cd web-components && yarn && yarn build",
         "install-landing-page": "yarn build-components && cd web-landing && yarn",
-        "build-landing-page": "cd web-landing && yarn build",
-        "install-minting-page": "yarn build-components && cd web-minting && yarn",
-        "build-minting-page": "cd web-minting && yarn build",
-        "install-gallery-page": "yarn build-components && cd web-gallery && yarn",
-        "build-gallery-page": "cd web-gallery && yarn build",
-        "install-stacking-page": "yarn build-components && cd web-staking && yarn",
-        "build-stacking-page": "cd web-staking && yarn build",
-        "install-ido-page": "yarn build-components && cd web-ido && yarn",
-        "build-ido-page": "cd web-ido && yarn build"
+        "build-landing-page": "cd web-landing && yarn build"
     }
 }

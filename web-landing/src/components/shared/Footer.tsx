@@ -1,13 +1,13 @@
 import { Flex, Stack, Text } from "@chakra-ui/react"
 import React, { useRef } from "react"
-import { GradientOutlineButton } from "."
-import { useChakraToast, GradientText } from "@sipher/web-components"
+import { GradientOutlineButton, GradientText } from "."
 import { isEmail } from "src/utils"
 import TextFormControl from "./TextFormControl"
 import CommunityIcons from "./CommunityIcons"
 import { useRouter } from "next/router"
 import { useMutation } from "react-query"
 import axios from "axios"
+import useChakraToast from "@hooks/useChakraToast"
 interface ISubscribeInput {
     email: string
     full_name: string
