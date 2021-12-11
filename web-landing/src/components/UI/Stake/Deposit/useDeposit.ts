@@ -33,9 +33,9 @@ const useDeposit = (pool: PoolURL) => {
         }
     }, [mode, setSliderValueCb])
 
-    // set input to 0 on account change
+    // set input to "" on account change
     useEffect(() => {
-        setSipherValueCb("0")
+        setSipherValueCb("")
     }, [account, setSipherValueCb])
 
     const weight = 1 + (sliderValue * 7) / 365
@@ -98,7 +98,7 @@ const useDeposit = (pool: PoolURL) => {
             },
             onSuccess: () => {
                 setSliderValue(0)
-                setSipherValue("0")
+                setSipherValue("")
                 toastTransaction({ status: "success" })
                 qc.invalidateQueries("total-supply")
                 qc.invalidateQueries("balance")
