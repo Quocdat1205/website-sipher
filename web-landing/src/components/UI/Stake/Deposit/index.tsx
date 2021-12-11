@@ -81,7 +81,10 @@ const StakeForm = () => {
                         <Box mb={4}>
                             <Flex mb={1} align="center" justify="space-between" w="full">
                                 <Text>
-                                    Lock for: <chakra.span fontWeight="semibold">{sliderValue} weeks</chakra.span>
+                                    Lock for:{" "}
+                                    <chakra.span fontWeight="semibold">
+                                        {sliderValue} {sliderValue > 1 ? "weeks" : "week"}
+                                    </chakra.span>
                                 </Text>
                                 <Text>
                                     Weight: <chakra.span fontWeight="semibold">{weight.toFixed(2)}</chakra.span>
@@ -115,7 +118,7 @@ const StakeForm = () => {
                     </Box>
                     <Text fontSize="sm" mb={4} textAlign="justify">
                         Warning: be aware that there are always risks associated with staking contracts. You assume all
-                        responsibility. Staking rewards enter a 12 month vesting period after claiming. .
+                        responsibility. Staking rewards enter a 12 month vesting period after claiming.
                     </Text>
 
                     <ActionButton
