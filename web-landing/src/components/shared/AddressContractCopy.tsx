@@ -4,9 +4,7 @@ import { AiFillCopy } from "react-icons/ai"
 import { SipherTokenAddress } from "@source/contract/code"
 import { useChakraToast } from "@sipher/web-components"
 
-interface Props {}
-
-export const AddressContractCopy = (props: Props) => {
+export const AddressContractCopy = () => {
     const toast = useChakraToast()
 
     const handleCopy = async () => {
