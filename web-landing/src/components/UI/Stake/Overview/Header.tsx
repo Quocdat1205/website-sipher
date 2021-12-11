@@ -2,9 +2,9 @@ import { Box, Flex, Link, Img, Text, chakra, HStack, Stack } from "@chakra-ui/re
 import { Typo } from "@components/shared"
 import { useSipherChangePercent, useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
-import React from "react"
+import React, { useState } from "react"
 import { AiFillPlayCircle } from "react-icons/ai"
-import useOverview from "./useOverview"
+import VideoModal from "../Modal/VideoModal"
 
 interface HeaderProps {
     totalStaked: number
@@ -14,6 +14,8 @@ interface HeaderProps {
 const Header = ({ totalStaked, totalClaimed }: HeaderProps) => {
     const sipherPriceChange = useSipherChangePercent()
     const sipherPrice = useSipherPrice()
+    const [isOpen, setIsOpen] = useState(false)
+
     return (
         <Flex
             flexDir={["column", "row"]}
@@ -31,7 +33,7 @@ const Header = ({ totalStaked, totalClaimed }: HeaderProps) => {
                 </Text>
                 <HStack align="center" spacing={1}>
                     <Link
-                        href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
+                        onClick={() => setIsOpen(true)}
                         textDecoration="underline"
                         letterSpacing="1px"
                         color="#ff9800"
@@ -41,6 +43,7 @@ const Header = ({ totalStaked, totalClaimed }: HeaderProps) => {
                         Watch the how to stake video (30s)
                     </Link>
                     <AiFillPlayCircle />
+                    <VideoModal isOpen={isOpen} setIsOpen={setIsOpen} />
                 </HStack>
             </Flex>
             <Box w={["full", "auto"]} maxW={["100%", "320px"]} mt={[4, 0]}>

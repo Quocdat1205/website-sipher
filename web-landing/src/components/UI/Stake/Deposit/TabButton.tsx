@@ -82,7 +82,7 @@ const TabButton = ({ selected, tabOptions, onChange }: Props) => {
                                         onClick={e => e.stopPropagation()}
                                         pos="absolute"
                                         top="50%"
-                                        right="2.5rem"
+                                        right="1.5rem"
                                         transform="translateY(-50%)"
                                     >
                                         <BsQuestionCircle size="1rem" />
