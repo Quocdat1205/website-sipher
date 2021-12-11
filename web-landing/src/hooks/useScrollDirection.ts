@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useCallback } from "react"
 
 const isBrowser = typeof window !== `undefined`
 
@@ -12,20 +12,21 @@ export function useScrollDirection() {
 
     const position = useRef(getScrollPosition())
 
-    let throttleTimeout: NodeJS.Timeout | null
-
-    const callback = () => {
+    const callback = useCallback(() => {
         const currPos = getScrollPosition()
+        if (currPos < 120) {
+            setIsUp(true)
+            return
+        }
         setIsUp(currPos < position.current)
         position.current = currPos
-        throttleTimeout = null
-    }
+    }, [])
 
     useEffect(() => {
         window.addEventListener("scroll", callback)
 
         return () => window.removeEventListener("scroll", callback)
-    }, [isUp])
+    }, [isUp, callback])
 
     return isUp
 }
