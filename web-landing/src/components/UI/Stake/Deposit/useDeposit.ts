@@ -2,7 +2,6 @@ import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
 import { useLpKyberPrice, useLpUniswapPrice, useSipherPrice } from "@hooks/api"
 import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { useChakraToast } from "@sipher/web-components"
 import { useState, useCallback, useEffect } from "react"
 import { useQueryClient, useQuery, useMutation } from "react-query"
 import { PoolURL, TabOptionProps, tabOptions } from "."
@@ -10,9 +9,8 @@ import { PoolURL, TabOptionProps, tabOptions } from "."
 // pool: "$sipher" | "$sipher-eth-uniswap-lp"
 
 const useDeposit = (pool: PoolURL) => {
-    console.log(pool)
+    const { scCaller, account } = useWalletContext()
     const qc = useQueryClient()
-    const toast = useChakraToast()
 
     const sipherPrice = useSipherPrice()
     const lpUniswapPrice = useLpUniswapPrice()
@@ -21,11 +19,13 @@ const useDeposit = (pool: PoolURL) => {
     const toastTransaction = useTransactionToast()
     const [mode, setMode] = useState<TabOptionProps>(tabOptions[0])
     const [sliderValue, setSliderValue] = useState(0)
+    const setSliderValueCb = useCallback((value: number) => setSliderValue(value), [])
+
     const [sipherValue, setSipherValue] = useState("")
+    const setSipherValueCb = useCallback((value: string) => setSipherValue(value), [])
+
     const [approvalModal, setApprovalModal] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
-
-    const setSliderValueCb = useCallback((value: number) => setSliderValue(value), [])
 
     useEffect(() => {
         if (mode === "Flexible") {
@@ -33,9 +33,12 @@ const useDeposit = (pool: PoolURL) => {
         }
     }, [mode, setSliderValueCb])
 
-    const weight = 1 + (sliderValue * 7) / 365
+    // set input to 0 on account change
+    useEffect(() => {
+        setSipherValueCb("0")
+    }, [account, setSipherValueCb])
 
-    const { scCaller, account } = useWalletContext()
+    const weight = 1 + (sliderValue * 7) / 365
 
     const getInfo = () => {
         if (pool === "$sipher")
@@ -80,15 +83,11 @@ const useDeposit = (pool: PoolURL) => {
         enabled: !!scCaller.current && !!account,
     })
 
-    const getAPR = () => {
-        return (
-            ((((dataFetch![info.pool].weight || 0) / (dataFetch?.totalWeight || 1)) *
-                TOTAL_REWARDS_FOR_POOL *
-                sipherPrice) /
-                (totalSupply! * info.price)) *
-            weight
-        )
-    }
+    const estAPR = !dataFetch
+        ? 0
+        : (((dataFetch![info.pool].weight / dataFetch.totalWeight) * TOTAL_REWARDS_FOR_POOL * sipherPrice) /
+              (totalSupply! * info.price)) *
+          weight
 
     const { mutate: stake } = useMutation(
         () => scCaller.current![info.pool].deposit(account!, sipherValue === "" ? "0" : sipherValue, sliderValue),
@@ -101,13 +100,12 @@ const useDeposit = (pool: PoolURL) => {
                 setSliderValue(0)
                 setSipherValue("0")
                 toastTransaction({ status: "success" })
-                qc.invalidateQueries("stake-total-supply")
-                qc.invalidateQueries("sipher-balance")
+                qc.invalidateQueries("total-supply")
+                qc.invalidateQueries("balance")
                 qc.invalidateQueries("fetch")
                 setIsLoading(false)
             },
             onError: (e: any) => {
-                console.log(e)
                 setIsLoading(false)
                 toastTransaction({ status: "failed" })
             },
@@ -149,6 +147,8 @@ const useDeposit = (pool: PoolURL) => {
         }
     }
 
+    const isStakable = sipherValue === "" || parseFloat(sipherValue) <= 0 || parseFloat(sipherValue) > balance
+
     return {
         mode,
         setMode,
@@ -158,7 +158,7 @@ const useDeposit = (pool: PoolURL) => {
         sipherValue,
         setSipherValue,
         balance,
-        estAPR: dataFetch ? getAPR() : 0,
+        estAPR,
         isApproved,
         isStaking: isLoading,
         approvalModal,
@@ -167,6 +167,7 @@ const useDeposit = (pool: PoolURL) => {
         approve,
         handleStake,
         info,
+        isStakable,
     }
 }
 

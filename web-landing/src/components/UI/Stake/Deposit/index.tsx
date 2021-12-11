@@ -37,6 +37,7 @@ const StakeForm = () => {
         approve,
         handleStake,
         info,
+        isStakable,
     } = useDeposit(pool as PoolURL)
 
     return (
@@ -124,7 +125,7 @@ const StakeForm = () => {
                             handleStake()
                         }}
                         isLoading={isStaking}
-                        disabled={balance! <= 0 || sipherValue === "" || parseFloat(sipherValue) <= 0}
+                        disabled={isStakable}
                         py={4}
                     />
 

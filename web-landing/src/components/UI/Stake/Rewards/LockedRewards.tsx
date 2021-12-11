@@ -3,19 +3,13 @@ import { ActionButton } from "@components/shared"
 import React from "react"
 import { format } from "date-fns"
 import { currency } from "@source/utils"
+import useRewards from "./useRewards"
 
 export interface LockedRewardsProps {
-    deposits: {
-        amount: number
-        start: number
-        end: number
-    }[]
-    unlock: (id: number) => void
-    unlockingId: number | null
-    sipherPrice: number
+    lockedRewardsData: ReturnType<typeof useRewards>["lockedRewardsData"]
 }
 
-const LockedRewards = ({ deposits, unlock, unlockingId, sipherPrice }: LockedRewardsProps) => {
+const LockedRewards = ({ lockedRewardsData }: LockedRewardsProps) => {
     return (
         <Box>
             {/* DESKTOP */}
@@ -46,14 +40,14 @@ const LockedRewards = ({ deposits, unlock, unlockingId, sipherPrice }: LockedRew
                             </chakra.tr>
                         </chakra.thead>
                         <chakra.tbody>
-                            {deposits.map((deposit, idx) => (
+                            {lockedRewardsData.map(deposit => (
                                 <chakra.tr
                                     w="full"
                                     align="center"
                                     borderBottom="1px"
                                     borderColor="#383838"
                                     py={4}
-                                    key={idx}
+                                    key={deposit.key}
                                 >
                                     <chakra.td p={2}>
                                         <Flex align="center">
@@ -64,26 +58,26 @@ const LockedRewards = ({ deposits, unlock, unlockingId, sipherPrice }: LockedRew
                                         </Flex>
                                     </chakra.td>
                                     <chakra.td textAlign="right" p={2} fontSize={"sm"}>
-                                        {currency(deposit.amount)}
+                                        {deposit.amount}
                                     </chakra.td>
                                     <chakra.td textAlign="right" p={2} fontSize={"sm"}>
-                                        {currency(deposit.amount * sipherPrice)}
+                                        {deposit.dollarValue}
                                     </chakra.td>
                                     <chakra.td textAlign="right" p={2} fontSize={"sm"}>
-                                        {new Date().getTime() > deposit.end ? "Available" : "Locked"}
+                                        {deposit.status}
                                     </chakra.td>
                                     <chakra.td textAlign="right" p={2} fontSize={"sm"}>
-                                        {format(new Date(deposit.end), "MMM dd Y")}
+                                        {deposit.timeRemaining}
                                     </chakra.td>
                                     <chakra.td textAlign="right" p={2}>
                                         <ActionButton
                                             text="UNLOCK"
                                             ml="auto"
                                             w="10rem"
-                                            disabled={new Date().getTime() <= deposit.end}
+                                            disabled={!deposit.isUnlockable}
                                             size="small"
-                                            onClick={() => unlock(idx)}
-                                            isLoading={unlockingId === idx}
+                                            onClick={deposit.onUnlock}
+                                            isLoading={deposit.isUnlocking}
                                         />
                                     </chakra.td>
                                 </chakra.tr>
@@ -99,9 +93,9 @@ const LockedRewards = ({ deposits, unlock, unlockingId, sipherPrice }: LockedRew
                 </Text>
                 <Box rounded="xl" border="1px" borderColor="#383838" py={4} px={2} bg="rgba(0, 0, 0, 0.9)">
                     <Stack>
-                        {deposits.map((deposit, idx) => (
+                        {lockedRewardsData.map(deposit => (
                             <Flex
-                                key={deposit.start}
+                                key={deposit.key}
                                 w="full"
                                 flexDir="column"
                                 bg="#292929"
@@ -120,31 +114,29 @@ const LockedRewards = ({ deposits, unlock, unlockingId, sipherPrice }: LockedRew
                                     </Flex>
                                     <Flex justify="space-between">
                                         <Text fontWeight="semibold">Amount</Text>
-                                        <Text>{currency(deposit.amount)}</Text>
+                                        <Text>{deposit.amount}</Text>
                                     </Flex>
                                     <Flex justify="space-between">
                                         <Text fontWeight="semibold">Dollar value</Text>
-                                        <Text>{currency(deposit.amount * sipherPrice)}</Text>
+                                        <Text>{deposit.dollarValue}</Text>
                                     </Flex>
                                     <Flex justify="space-between">
                                         <Text fontWeight="semibold">Status</Text>
-                                        <Text textAlign="left">
-                                            {new Date().getTime() > deposit.end ? "Available" : "Locked"}
-                                        </Text>
+                                        <Text textAlign="left">{deposit.status}</Text>
                                     </Flex>
                                     <Flex justify="space-between">
                                         <Text fontWeight="semibold">Time remaining</Text>
-                                        <Text textAlign="left">{format(new Date(deposit.end), "MMM dd Y")}</Text>
+                                        <Text textAlign="left">{deposit.timeRemaining}</Text>
                                     </Flex>
                                     <ActionButton
                                         text="UNLOCK"
                                         ml="auto"
                                         px={2}
                                         w="auto"
-                                        disabled={new Date().getTime() <= deposit.end}
+                                        disabled={!deposit.isUnlockable}
                                         size="small"
-                                        onClick={() => unlock(idx)}
-                                        isLoading={unlockingId === idx}
+                                        onClick={deposit.onUnlock}
+                                        isLoading={deposit.isUnlocking}
                                     />
                                 </Stack>
                             </Flex>

@@ -8,7 +8,7 @@ import StakingPools from "./StakingPools"
 import useRewards from "./useRewards"
 
 const Rewards = () => {
-    const { dataFetch, sipherPrice, unlock, unlockingId, stakingPoolsData } = useRewards()
+    const { stakingPoolsData, lockedRewardsData } = useRewards()
 
     return (
         <Flex direction="column" align="center" w="full">
@@ -23,13 +23,8 @@ const Rewards = () => {
                     <Text fontSize="sm">Staking rewards enter a 12 month vesting period after claiming.</Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
-                    <StakingPools pools={stakingPoolsData} />
-                    <LockedRewards
-                        sipherPrice={sipherPrice}
-                        unlock={unlock}
-                        unlockingId={unlockingId}
-                        deposits={dataFetch?.escrowPool.deposits || []}
-                    />
+                    <StakingPools stakingPoolsData={stakingPoolsData} />
+                    <LockedRewards lockedRewardsData={lockedRewardsData} />
                 </VStack>
             </Box>
         </Flex>

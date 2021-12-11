@@ -6,10 +6,10 @@ import TablePoolDesktop from "./TablePoolDesktop"
 import TablePoolMobile from "./TablePoolMobile"
 
 export interface StakingPoolsProps {
-    pools: ReturnType<typeof useRewards>["stakingPoolsData"]
+    stakingPoolsData: ReturnType<typeof useRewards>["stakingPoolsData"]
 }
 
-const StakingPools = ({ pools }: StakingPoolsProps) => {
+const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
     const sipherPriceChange = useSipherChangePercent()
     const sipherPrice = useSipherPrice()
 
@@ -47,7 +47,7 @@ const StakingPools = ({ pools }: StakingPoolsProps) => {
                             </chakra.tr>
                         </chakra.thead>
                         <chakra.tbody>
-                            {pools.map(pool => (
+                            {stakingPoolsData.map(pool => (
                                 <TablePoolDesktop key={pool.poolName} poolData={pool} />
                             ))}
                         </chakra.tbody>
@@ -86,7 +86,7 @@ const StakingPools = ({ pools }: StakingPoolsProps) => {
                     spacing={4}
                     direction="column"
                 >
-                    {pools.map(pool => (
+                    {stakingPoolsData.map(pool => (
                         <TablePoolMobile key={pool.poolName} poolData={pool} />
                     ))}
                 </Stack>

@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { useLpKyberPrice, useLpUniswapPrice, useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { useMutation, useQuery } from "react-query"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 import { currency } from "@source/utils"
 import { Pool } from "@@types"
 import useTransactionToast from "@hooks/useTransactionToast"
+import { format } from "date-fns"
 
 export interface StakingPoolData {
     poolName: string
@@ -23,6 +24,7 @@ const useRewards = () => {
     const sipherPrice = useSipherPrice()
     const lpUniswapPrice = useLpUniswapPrice()
     const lpKyberPrice = useLpKyberPrice()
+    const qc = useQueryClient()
 
     const { data: dataFetch } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
         enabled: !!scCaller.current && !!account,
@@ -36,8 +38,10 @@ const useRewards = () => {
                 toastTransaction({ status: "processing" })
             },
             onSettled: () => setUnlockingId(null),
-            onSuccess: () =>
+            onSuccess: () => {
                 toastTransaction({ status: "success", message: ["You have successfully withdrawn your fund."] }),
+                    qc.invalidateQueries("fetch")
+            },
         }
     )
 
@@ -50,7 +54,10 @@ const useRewards = () => {
                 toastTransaction({ status: "processing" })
             },
             onSettled: () => setClaimingPool(null),
-            onSuccess: () => toastTransaction({ status: "successClaim" }),
+            onSuccess: () => {
+                toastTransaction({ status: "successClaim" })
+                qc.invalidateQueries("fetch")
+            },
         }
     )
 
@@ -87,15 +94,20 @@ const useRewards = () => {
         },
     ]
 
-    return {
-        dataFetch,
-        unlock,
-        sipherPrice,
-        unlockingId,
-        claimStakePool: claim,
-        isClaimingStakePool: isClaiming,
-        stakingPoolsData,
-    }
+    const lockedRewardsData = !dataFetch
+        ? []
+        : dataFetch.escrowPool.deposits.map((deposit, idx) => ({
+              key: deposit.start,
+              amount: currency(deposit.amount),
+              dollarValue: currency(deposit.amount * sipherPrice),
+              status: new Date().getTime() > deposit.end ? "Available" : "Locked",
+              timeRemaining: format(new Date(deposit.end), "MMM dd Y"),
+              onUnlock: () => unlock(idx),
+              isUnlocking: unlockingId === idx,
+              isUnlockable: new Date().getTime() > deposit.end,
+          }))
+
+    return { stakingPoolsData, lockedRewardsData }
 }
 
 export default useRewards
