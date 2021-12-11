@@ -20,7 +20,7 @@ const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
                     <Text letterSpacing="3px" size="large" fontWeight="semibold">
                         STAKING POOLS
                     </Text>
-                    <Flex align="center">
+                    <Flex align="center" mr={8}>
                         <Flex align="center">
                             <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                             <Text fontSize="sm">
