@@ -1,7 +1,6 @@
 // * DESCRIPTION:
 
 import React from "react"
-import { BackgroundContainer } from "@components/shared"
 import useSaleTime from "./useSaleTime"
 import NotConnected from "./SubUI/NotConnected"
 import Loading from "./SubUI/Loading"
