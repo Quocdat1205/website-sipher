@@ -21,7 +21,7 @@ const useOverview = () => {
     const sipherPrice = useSipherPrice()
     const lpUniswapPrice = useLpUniswapPrice()
     const lpKyberPrice = useLpKyberPrice()
-
+    console.log("Kyper price", lpKyberPrice)
     const { data: totalClaimed } = useQuery(["total-claimed", account], () => scCaller.current!.getTotalClaimed(), {
         enabled: !!scCaller.current,
         initialData: 0,
@@ -64,6 +64,7 @@ const useOverview = () => {
         {
             initialData: 1,
             enabled: !!scCaller.current,
+            onSuccess: data => console.log("SUPPLY", data),
         }
     )
 
@@ -72,7 +73,7 @@ const useOverview = () => {
         enabled: !!scCaller.current,
     })
 
-    const { data: lpKyberTVL } = useQuery(["lp-tvl", "kyber"], () => scCaller.current!.getLpKyberTVL(), {
+    const { data: lpKyberTVL } = useQuery(["lp-tvl", "kyber"], () => scCaller.current!.getKyberswapStakeLPTVL(), {
         initialData: 0,
         enabled: !!scCaller.current,
     })
@@ -172,7 +173,7 @@ const useOverview = () => {
             ],
         },
         {
-            poolName: "Kyber LP $SIPHER-ETH",
+            poolName: "Kyber SLP $SIPHER-ETH",
 
             APR: !dataFetch
                 ? 0
@@ -187,12 +188,12 @@ const useOverview = () => {
                 ? 0
                 : Math.round((dataFetch.StakingLPSipherWethKyber.weight / dataFetch.totalWeight) * 100),
             TVL: lpKyberTVL || 0,
-            onStake: () => router.push(`/stake/deposit/kyber-lp-$sipher-eth`),
+            onStake: () => router.push(`/stake/deposit/kyber-slp-$sipher-eth`),
             isUniswap: true,
             myLiquidity: dataFetch?.StakingLPSipherWethKyber.accountTotalDeposit || 0,
             detailButtons: [
                 {
-                    text: "Buy Kyber LP $SIPHER-ETH",
+                    text: "Buy Kyber SLP $SIPHER-ETH",
                     link: `https://kyberswap.com/#/add/${SipherTokenAddress}/ETH/${LPSipherWethKyberAddress}`,
                 },
             ],
@@ -238,7 +239,7 @@ const useOverview = () => {
         })),
         ...(dataFetch?.StakingLPSipherWethKyber.deposits || []).map((deposit, idx) => ({
             key: deposit.start,
-            poolName: "Kyber LP $SIPHER-ETH",
+            poolName: "Kyber SLP $SIPHER-ETH",
             staked: currency(deposit.amount * lpKyberPrice!, "$"),
             estimatedDailyRewards: currency(
                 (((stakingPoolInfos[2].weight / 100) * TOTAL_REWARDS_FOR_POOL) / lpKyberPoolTotalSupply! / 365) *

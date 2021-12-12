@@ -1,4 +1,4 @@
-export const StakingLPSipherWethKyberAddress = "0xc3deBD1d8371E8C3b82DbeAFa325EcDe35b6C2b9"
+export const StakingLPSipherWethKyberAddress = "0x58b2A3406eE142B110775a40f6C5992d51245461"
 
 export const StakingLPSipherWethKyberAbi: any = [
     {

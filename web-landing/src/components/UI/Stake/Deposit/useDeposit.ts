@@ -56,9 +56,9 @@ const useDeposit = (pool: PoolURL) => {
                 price: lpUniswapPrice,
             }
         return {
-            token: "LPSipherWethKyber",
+            token: "KyberswapStakeLPSipherWeth",
             pool: "StakingLPSipherWethKyber",
-            name: "Kyber LP $SIPHER-ETH",
+            name: "Kyber SLP $SIPHER-ETH",
             price: lpKyberPrice,
         }
     }
@@ -120,7 +120,7 @@ const useDeposit = (pool: PoolURL) => {
             initialData: false,
         }
     )
-
+    console.log(isApproved)
     const { mutate: approve, isLoading: isApproving } = useMutation(
         () => scCaller.current![info.token].approve(account!),
         {

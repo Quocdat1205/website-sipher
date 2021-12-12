@@ -30,7 +30,7 @@ export const aboutMenus = [
 export const stakeMenus = [
     { id: "Overview", path: "/stake/overview" },
     // { id: "Deposit", path: "/stake/deposit" },
-    { id: "Reward", path: "/stake/rewards" },
+    { id: "Rewards", path: "/stake/rewards" },
 ]
 
 export const childMenus = {

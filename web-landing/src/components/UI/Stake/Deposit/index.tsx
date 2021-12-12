@@ -13,7 +13,7 @@ export type TabOptionProps = typeof tabOptions[number]
 
 // pool: "$sipher" | "uniswap-lp-$sipher-eth" | "kyber-lp-$sipher-eth"
 
-export type PoolURL = "$sipher" | "uniswap-lp-$sipher-eth" | "kyber-lp-$sipher-eth"
+export type PoolURL = "$sipher" | "uniswap-lp-$sipher-eth" | "kyber-slp-$sipher-eth"
 
 const StakeForm = () => {
     const router = useRouter()

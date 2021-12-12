@@ -61,7 +61,7 @@ const StakingPoolTableDesktop = ({
                         {(APR * 100).toFixed(2)}%
                     </Text>
                     <Flex align="center" cursor="pointer" onClick={() => setIsOpen(!isOpen)} ml="auto">
-                        <Text size="small" fontWeight="semibold" fontSize={"sm"}>
+                        <Text fontWeight="semibold" fontSize={"sm"}>
                             DETAIL
                         </Text>
                         <Box transform={isOpen ? "rotate(0deg)" : "rotate(180deg)"} ml={1}>
@@ -91,28 +91,28 @@ const StakingPoolTableDesktop = ({
                 <Flex p={4}>
                     <Box w="45%" pr={8}>
                         <Flex w="full" justify="space-between" mb={4}>
-                            <Text size="small">Weight</Text>
-                            <Text fontWeight="semibold" size="small">
+                            <Text fontSize="sm">Weight</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 {weight}%
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
-                            <Text size="small">TVL</Text>
-                            <Text fontWeight="semibold" size="small">
+                            <Text fontSize="sm">TVL</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 ${currency(TVL)}
                             </Text>
                         </Flex>
                     </Box>
                     <Box flex={1} pl={8}>
                         <Flex w="full" justify="space-between" mb={4}>
-                            <Text size="small">Pending rewards</Text>
-                            <Text fontWeight="semibold" size="small">
+                            <Text fontSize="sm">Pending rewards</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 {currency(pendingRewards)} $SIPHER
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
-                            <Text size="small">My liquidity</Text>
-                            <Text fontWeight="semibold" size="small">
+                            <Text fontSize="sm">My liquidity</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 {currency(myLiquidity)} {poolName}
                             </Text>
                         </Flex>

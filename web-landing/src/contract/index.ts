@@ -9,6 +9,7 @@ import {
     LPSipherWethUniswap,
     StakingLPSipherWethUniswap,
     Weth,
+    KyberswapStakeLPSipherWeth,
 } from "./class"
 import { LPSipherWethKyber } from "./class/LPSipherWethKyber"
 import { StakingLPSipherWethKyber } from "./class/StakingLPSipherWethKyber"
@@ -36,6 +37,7 @@ export class ContractCaller {
     StakingLPSipherWethUniswap: StakingLPSipherWethUniswap
     LPSipherWethKyber: LPSipherWethKyber
     StakingLPSipherWethKyber: StakingLPSipherWethKyber
+    KyberswapStakeLPSipherWeth: KyberswapStakeLPSipherWeth
     Weth: Weth
 
     constructor(provider: any) {
@@ -49,6 +51,7 @@ export class ContractCaller {
         this.StakingLPSipherWethUniswap = new StakingLPSipherWethUniswap(this.web3)
         this.LPSipherWethKyber = new LPSipherWethKyber(this.web3)
         this.StakingLPSipherWethKyber = new StakingLPSipherWethKyber(this.web3)
+        this.KyberswapStakeLPSipherWeth = new KyberswapStakeLPSipherWeth(this.web3)
         this.Weth = new Weth(this.web3)
     }
 
@@ -60,7 +63,7 @@ export class ContractCaller {
     async getTotalStaked() {
         const sipherStaked = await this.SipherToken.getBalance(StakingPoolAddress)
         const LPUniswapStaked = await this.LPSipherWethUniswap.getBalance(StakingLPSipherWethUniswapAddress)
-        const LPKyberStaked = await this.LPSipherWethKyber.getBalance(StakingLPSipherWethKyberAddress)
+        const LPKyberStaked = await this.KyberswapStakeLPSipherWeth.getBalance(StakingLPSipherWethKyberAddress)
 
         const sipherPrice = await getSipherPrice()
         const lpUniswapPrice = await this.getLpUniswapPrice()
@@ -104,6 +107,12 @@ export class ContractCaller {
         const StakedLPPoolSipher = sipherBalance * sipherPrice
 
         return StakedLPPoolETH + StakedLPPoolSipher
+    }
+
+    async getKyberswapStakeLPTVL() {
+        const totalSupply = await this.KyberswapStakeLPSipherWeth.totalSupply()
+        const lpKyberPrice = await this.getLpKyberPrice()
+        return totalSupply * lpKyberPrice
     }
 
     async getLpUniswapPrice() {

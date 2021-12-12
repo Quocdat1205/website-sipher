@@ -84,7 +84,7 @@ const useRewards = () => {
             isUniswap: true,
         },
         {
-            poolName: "Kyber LP $SIPHER-ETH",
+            poolName: "Kyber SLP $SIPHER-ETH",
             amountStaked: currency((dataFetch?.StakingLPSipherWethKyber.accountTotalDeposit || 0) * lpKyberPrice, "$"),
             claimableRewards: currency(dataFetch?.StakingLPSipherWethKyber.accountPendingRewards || 0) + " $SIPHER",
             onClaim: () => claim("StakingLPSipherWethKyber"),
