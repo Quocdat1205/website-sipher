@@ -41,14 +41,14 @@ const useDeposit = (pool: PoolURL) => {
     const weight = 1 + (sliderValue * 7) / 365
 
     const getInfo = () => {
-        if (pool === "$sipher")
+        if (pool === "sipher")
             return {
                 token: "SipherToken",
                 pool: "StakingPools",
                 name: "$SIPHER",
                 price: sipherPrice,
             }
-        if (pool === "uniswap-lp-$sipher-eth")
+        if (pool === "uniswap-lp-sipher-eth")
             return {
                 token: "LPSipherWethUniswap",
                 pool: "StakingLPSipherWethUniswap",
@@ -120,7 +120,6 @@ const useDeposit = (pool: PoolURL) => {
             initialData: false,
         }
     )
-    console.log(isApproved)
     const { mutate: approve, isLoading: isApproving } = useMutation(
         () => scCaller.current![info.token].approve(account!),
         {

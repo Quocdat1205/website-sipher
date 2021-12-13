@@ -31,7 +31,6 @@ const Ended = () => {
         },
         onError: e => {
             transactionToast({ status: "failed" })
-            console.log(e)
         },
     })
 

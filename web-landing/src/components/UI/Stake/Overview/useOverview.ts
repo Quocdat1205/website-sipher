@@ -21,7 +21,6 @@ const useOverview = () => {
     const sipherPrice = useSipherPrice()
     const lpUniswapPrice = useLpUniswapPrice()
     const lpKyberPrice = useLpKyberPrice()
-    console.log("Kyper price", lpKyberPrice)
     const { data: totalClaimed } = useQuery(["total-claimed", account], () => scCaller.current!.getTotalClaimed(), {
         enabled: !!scCaller.current,
         initialData: 0,
@@ -29,7 +28,6 @@ const useOverview = () => {
 
     const { data: dataFetch } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
         enabled: !!scCaller.current && !!account,
-        onSuccess: data => console.log(data),
     })
 
     const { data: stakeData } = useQuery(["total-staked", account], () => scCaller.current!.getTotalStaked(), {
@@ -64,7 +62,6 @@ const useOverview = () => {
         {
             initialData: 1,
             enabled: !!scCaller.current,
-            onSuccess: data => console.log("SUPPLY", data),
         }
     )
 
@@ -133,7 +130,7 @@ const useOverview = () => {
             pendingRewards: dataFetch?.StakingPools.accountPendingRewards || 0,
             weight: !dataFetch ? 0 : Math.round((dataFetch.StakingPools.weight / dataFetch.totalWeight) * 100),
             TVL: 0,
-            onStake: () => router.push(`/stake/deposit/$sipher`),
+            onStake: () => router.push(`/stake/deposit/sipher`),
             isUniswap: false,
             myLiquidity: dataFetch?.StakingPools.accountTotalDeposit || 0,
             detailButtons: [
@@ -162,7 +159,7 @@ const useOverview = () => {
                 ? 0
                 : Math.round((dataFetch.StakingLPSipherWethUniswap.weight / dataFetch.totalWeight) * 100),
             TVL: lpUniswapTVL || 0,
-            onStake: () => router.push(`/stake/deposit/uniswap-lp-$sipher-eth`),
+            onStake: () => router.push(`/stake/deposit/uniswap-lp-sipher-eth`),
             isUniswap: true,
             myLiquidity: dataFetch?.StakingLPSipherWethUniswap.accountTotalDeposit || 0,
             detailButtons: [
@@ -188,13 +185,13 @@ const useOverview = () => {
                 ? 0
                 : Math.round((dataFetch.StakingLPSipherWethKyber.weight / dataFetch.totalWeight) * 100),
             TVL: lpKyberTVL || 0,
-            onStake: () => router.push(`/stake/deposit/kyber-slp-$sipher-eth`),
+            onStake: () => router.push(`/stake/deposit/kyber-slp-sipher-eth`),
             isUniswap: true,
             myLiquidity: dataFetch?.StakingLPSipherWethKyber.accountTotalDeposit || 0,
             detailButtons: [
                 {
                     text: "Buy Kyber SLP $SIPHER-ETH",
-                    link: `https://kyberswap.com/#/add/${SipherTokenAddress}/ETH/${LPSipherWethKyberAddress}`,
+                    link: `https://kyberswap.com/#/farms`,
                 },
             ],
         },

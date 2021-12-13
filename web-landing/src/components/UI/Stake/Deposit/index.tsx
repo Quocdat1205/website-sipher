@@ -13,7 +13,7 @@ export type TabOptionProps = typeof tabOptions[number]
 
 // pool: "$sipher" | "uniswap-lp-$sipher-eth" | "kyber-lp-$sipher-eth"
 
-export type PoolURL = "$sipher" | "uniswap-lp-$sipher-eth" | "kyber-slp-$sipher-eth"
+export type PoolURL = "sipher" | "uniswap-lp-sipher-eth" | "kyber-slp-sipher-eth"
 
 const StakeForm = () => {
     const router = useRouter()
@@ -61,7 +61,7 @@ const StakeForm = () => {
                             pos="relative"
                             zIndex={2}
                         />
-                        {pool !== "$sipher" && (
+                        {pool !== "sipher" && (
                             <Img
                                 src="/images/icons/eth.png"
                                 alt="ether-token-icon"
