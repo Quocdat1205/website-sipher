@@ -1,25 +1,20 @@
 import { Box, Flex, Link, Img, Text, chakra, HStack, Stack } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
-import { useSipherPrice } from "@hooks/api"
-import useWalletContext from "@hooks/web3/useWalletContext"
-import { currency, numberWithCommas } from "@source/utils"
-import React from "react"
+import { useSipherChangePercent, useSipherPrice } from "@hooks/api"
+import { currency } from "@source/utils"
+import React, { useState } from "react"
 import { AiFillPlayCircle } from "react-icons/ai"
-import { useQuery } from "react-query"
+import VideoModal from "../Modal/VideoModal"
 
 interface HeaderProps {
     totalStaked: number
+    totalClaimed: number
 }
 
-const Header = ({ totalStaked }: HeaderProps) => {
-    const { scCaller } = useWalletContext()
-
+const Header = ({ totalStaked, totalClaimed }: HeaderProps) => {
+    const sipherPriceChange = useSipherChangePercent()
     const sipherPrice = useSipherPrice()
-
-    const { data: totalClaimed } = useQuery("total-claimed", () => scCaller.current!.getTotalClaimed(), {
-        enabled: !!scCaller.current,
-        initialData: 0,
-    })
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <Flex
@@ -38,7 +33,7 @@ const Header = ({ totalStaked }: HeaderProps) => {
                 </Text>
                 <HStack align="center" spacing={1}>
                     <Link
-                        href="https://medium.com/sipherxyz/announcement-of-sipher-token-public-sale-8340a14d0fa1"
+                        onClick={() => setIsOpen(true)}
                         textDecoration="underline"
                         letterSpacing="1px"
                         color="#ff9800"
@@ -48,6 +43,7 @@ const Header = ({ totalStaked }: HeaderProps) => {
                         Watch the how to stake video (30s)
                     </Link>
                     <AiFillPlayCircle />
+                    <VideoModal isOpen={isOpen} setIsOpen={setIsOpen} />
                 </HStack>
             </Flex>
             <Box w={["full", "auto"]} maxW={["100%", "320px"]} mt={[4, 0]}>
@@ -55,11 +51,15 @@ const Header = ({ totalStaked }: HeaderProps) => {
                     <Flex align="center">
                         <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                         <Text fontSize="sm">
-                            $SIPHER PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
+                            PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
                         </Text>
                     </Flex>
-                    <Text fontSize="sm" fontWeight="semibold" color="#25B700">
-                        +0.0%
+                    <Text
+                        fontSize="sm"
+                        fontWeight="semibold"
+                        color={sipherPriceChange > 0 ? "#25B700" : "main.darkRed"}
+                    >
+                        {sipherPriceChange > 0 ? "+" : "-"} {Math.abs(sipherPriceChange * 100).toFixed(2)} %
                     </Text>
                 </Flex>
                 <Stack
@@ -75,13 +75,13 @@ const Header = ({ totalStaked }: HeaderProps) => {
                     <Flex direction="column" align="center" flex={1} overflow="hidden">
                         <Text fontSize="sm">Total Amount Staked</Text>
                         <Text textAlign="center" fontWeight="semibold" w="full" isTruncated>
-                            ${currency(totalStaked! * sipherPrice)}
+                            ${currency(totalStaked!)}
                         </Text>
                     </Flex>
                     <Flex direction="column" align="center" flex={1} overflow="hidden">
                         <Text fontSize="sm">Total Amount Claimed</Text>
                         <Text textAlign="center" fontWeight="semibold" w="full" isTruncated>
-                            ${currency(totalClaimed! * sipherPrice)}
+                            ${currency(totalClaimed!)}
                         </Text>
                     </Flex>
                 </Stack>

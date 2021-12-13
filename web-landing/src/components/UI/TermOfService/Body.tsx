@@ -1,11 +1,8 @@
-// * DESCRIPTION:
-
 import { VStack, chakra, Text } from "@chakra-ui/react"
-import { TextContainer, Li, BackgroundContainer, Typo } from "@components/shared"
+import { TextContainer, Li, BackgroundContainer } from "@components/shared"
 import { introduction, schedule1, termService, schedule2, schedule2Introduction } from "@constant/content/termOfService"
-interface HomeBodyProps {}
 
-const HomeBody = ({}: HomeBodyProps) => {
+const HomeBody = () => {
     const levelToListType = (level: number) => {
         return level === 1 ? "decimal" : level === 2 ? "1" : level === 3 ? "lower-alpha" : "upper-roman"
     }
@@ -43,7 +40,7 @@ const HomeBody = ({}: HomeBodyProps) => {
                                             listKey={chapter.key}
                                         >
                                             {chapter.text && (
-                                                <Text size="medium" mb={2} textAlign="justify">
+                                                <Text mb={2} textAlign="justify">
                                                     {chapter.text}
                                                 </Text>
                                             )}
@@ -74,7 +71,6 @@ const HomeBody = ({}: HomeBodyProps) => {
                                                 mb={2}
                                             >
                                                 <Text
-                                                    size="medium"
                                                     _before={{
                                                         content: `counter(${
                                                             chapter.key || levelStyleSchedule(chapter.level)
@@ -131,7 +127,7 @@ const HomeBody = ({}: HomeBodyProps) => {
                     </TextContainer>
                     <TextContainer headline={`Schedule 2 - Rick Disclosures`}>
                         {schedule2Introduction.map(paragraph => (
-                            <Text size="medium" key={paragraph} mb={8}>
+                            <Text key={paragraph} mb={8}>
                                 {paragraph}
                             </Text>
                         ))}
@@ -155,7 +151,6 @@ const HomeBody = ({}: HomeBodyProps) => {
                                                 mb={2}
                                             >
                                                 <Text
-                                                    size="medium"
                                                     _before={{
                                                         content: `counter(${
                                                             chapter.key || levelStyleSchedule(chapter.level)

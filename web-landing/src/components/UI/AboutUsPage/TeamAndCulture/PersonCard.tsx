@@ -1,8 +1,7 @@
-import React, { useRef } from "react"
-import { Flex, Box, Image, IconButton, Stack } from "@chakra-ui/react"
-import { MotionFlex, Typo } from "@components/shared"
+import React, { useState } from "react"
+import { Flex, Box, Image, IconButton, Stack, Text } from "@chakra-ui/react"
+import { BoldText, MotionFlex } from "@components/shared"
 import { AnimatePresence } from "framer-motion"
-import useHover from "@hooks/useHover"
 import { FaTwitter, FaLinkedin } from "react-icons/fa"
 
 export interface PersonCardProps {
@@ -15,20 +14,29 @@ export interface PersonCardProps {
 }
 
 const PersonCard = ({ isEmployee, name, job, srcImg, linkedin, twitter }: PersonCardProps) => {
-    const hoverRef = useRef(null)
-    const isHover = useHover(hoverRef)
+    const [isHovered, setIsHovered] = useState(false)
 
     return (
-        <Flex pos="relative" ref={hoverRef} direction="column" p={6} rounded="2xl" bg="#131313" align="center">
+        <Flex
+            pos="relative"
+            direction="column"
+            p={6}
+            rounded="2xl"
+            bg="#131313"
+            align="center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            overflow={"hidden"}
+        >
             <Box overflow="hidden" bg="about.textGray" rounded="full" boxSize={isEmployee ? "6rem" : "9rem"} mb={4}>
                 <Image display="block" w="full" h="full" src={srcImg} alt="" />
             </Box>
-            <Typo.BoldText size="medium" textTransform="uppercase" textAlign="center">
+            <BoldText textAlign="center" isTruncated={false}>
                 {name}
-            </Typo.BoldText>
-            <Typo.Text textAlign="center">{job}</Typo.Text>
+            </BoldText>
+            <Text textAlign="center">{job}</Text>
             <AnimatePresence>
-                {isHover && (
+                {isHovered && (
                     <MotionFlex
                         pos="absolute"
                         top={0}

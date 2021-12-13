@@ -1,23 +1,24 @@
-import { Center, Flex, VStack } from "@chakra-ui/react"
+import { Flex, VStack } from "@chakra-ui/react"
 import { BackgroundContainer, LinkButton } from "@components/shared"
-import JoinTheCommunity from "./JoinTheCommunity"
-import NekoTeaser from "./NekoTeaser"
-import Hero from "./Hero"
-import BehindTheScenes from "./BehindTheScenes"
-import OwnerBenefits from "./OwnerBenefits"
-import DigitalCharacters from "./DigitalCharacters"
-import WhatIsSipher from "./WhatIsSipher"
-import Backers from "./Backers"
+import FirstScreen from "./FirstScreen"
 import SmartContracts from "./SmartContracts"
+import dynamic from "next/dynamic"
 
 interface HomeBodyProps {
     uaString: string
 }
 
+const DigitalCharacters = dynamic(() => import("./DigitalCharacters"))
+const WhatIsSipher = dynamic(() => import("./WhatIsSipher"))
+const OwnerBenefits = dynamic(() => import("./OwnerBenefits"))
+const Backers = dynamic(() => import("./Backers"))
+const BehindTheScenes = dynamic(() => import("./BehindTheScenes"))
+const JoinTheCommunity = dynamic(() => import("./JoinTheCommunity"))
+
 const HomeBody = ({ uaString }: HomeBodyProps) => {
     return (
         <BackgroundContainer p={0} overflow="overlay">
-            <Hero />
+            <FirstScreen />
             <Flex
                 direction="column"
                 align="center"
@@ -38,7 +39,6 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <BehindTheScenes />
                     <JoinTheCommunity />
                 </VStack>
-
                 <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" mt={8} />
             </Flex>
         </BackgroundContainer>

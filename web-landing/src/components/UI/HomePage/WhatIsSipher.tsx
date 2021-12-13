@@ -1,4 +1,3 @@
-import { Img } from "@chakra-ui/image"
 import { Box, Flex, SimpleGrid } from "@chakra-ui/layout"
 import { GradientOutlineButton, MotionFlex, TextContainer, Typo } from "@components/shared"
 import { content, definition } from "@constant/content/whatIsSipher"
@@ -15,8 +14,9 @@ const WhatIsSipher = ({ uaString }: WhatIsSipherProps) => {
     const [isPlaying, setIsPlaying] = useState(false)
     const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent)
     const isIOS = isIos || isIpad || isIphone || isSafari
+
     useEffect(() => {
-        let timeout = setInterval(() => {
+        const timeout = setInterval(() => {
             if (videoRef.current && isPlaying && videoRef.current.volume < 1) {
                 videoRef.current.volume = Math.min(1, videoRef.current.volume + 0.1)
             }
@@ -34,6 +34,7 @@ const WhatIsSipher = ({ uaString }: WhatIsSipherProps) => {
             }
         }
     }, [isPlaying])
+
     return (
         <TextContainer headline="What Is Sipher">
             <Typo.BoldText textAlign="center" textTransform="uppercase" px={4}>

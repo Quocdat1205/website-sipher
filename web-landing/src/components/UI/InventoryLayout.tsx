@@ -1,11 +1,12 @@
 // * DESCRIPTION:
 
-import { Flex, Box, Button, Text } from "@chakra-ui/react"
+import { Flex, Button, Text } from "@chakra-ui/react"
 import { NavBar, Footer } from "@components/shared"
 import { useRouter } from "next/router"
+import { ReactNode } from "react"
 
 interface NewsLayoutProps {
-    children: React.ReactNode
+    children: ReactNode
 }
 const menuRace = [
     { id: "INU", path: "/inventory/inu" },

@@ -83,8 +83,6 @@ export class SipherIBCO {
     }
 
     async calculateLocked(amount: string): Promise<number> {
-        // console.log(amount)
-        // const lockedAmount = Web3.utils.toHex(Web3.utils.toWei(amount, "ether"))
         return weiToEther(await this.SipherIBCO.methods.getLockedInvestment(Web3.utils.toWei(amount, "ether")).call())
     }
 

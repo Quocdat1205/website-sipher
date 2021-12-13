@@ -28,6 +28,10 @@ export const currency = (
     return prefix + amount.toLocaleString(undefined, { ...options })
 }
 
+export const calWeight = (start: number, end: number) => {
+    return 1 + (end - start) / 1000 / (365 * 24 * 60 * 60)
+}
+
 export const setSignIn = (signIn: string) => {
     localStorage?.setItem(SIGNIN_KEY, signIn)
 }

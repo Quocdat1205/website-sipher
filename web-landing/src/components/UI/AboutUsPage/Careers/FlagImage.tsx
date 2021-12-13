@@ -1,12 +1,13 @@
-import { Image } from "@chakra-ui/image"
+import { Img } from "@chakra-ui/image"
 import React from "react"
 
-interface Props {
-    srcImg?: string
+interface FlagImageProps {
+    src: string
+    alt: string
 }
 
-const FlagImage = ({ srcImg }: Props) => {
-    return <Image px={[1]} src={srcImg} alt="" h={["1rem", "1.4rem"]} display="inline" />
+const FlagImage = (props: FlagImageProps) => {
+    return <Img {...props} h={"1.4rem"} display="inline" mx={1} />
 }
 
 export default FlagImage

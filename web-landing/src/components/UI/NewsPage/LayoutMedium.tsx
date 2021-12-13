@@ -1,8 +1,7 @@
 import React from "react"
 import ReactHtmlParser from "react-html-parser"
-import { Box, Flex, ModalCloseButton } from "@chakra-ui/react"
+import { Heading, Box, Flex, ModalCloseButton } from "@chakra-ui/react"
 import { DetailsNewsProps } from "./PopupCard"
-import { MyHeading } from "@sipher/web-components"
 import FooterPopupCard from "./FooterPopupCard"
 
 interface Props {
@@ -23,9 +22,9 @@ const LayoutMedium = ({ details }: Props) => {
             <Box flex={1} overflow={"auto"} maxW="64rem" pos="relative" h="full" className="body">
                 <Flex flexDir="column" p={[4, 8]} h="full">
                     <Box flex={1} h="full">
-                        <MyHeading color="white" textAlign="center" size="large">
+                        <Heading color="white" textAlign="center" fontSize="2xl">
                             {details.title}
-                        </MyHeading>
+                        </Heading>
                         <Box
                             sx={{
                                 ul: { listStylePos: "inside" },

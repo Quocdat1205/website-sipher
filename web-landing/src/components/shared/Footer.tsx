@@ -1,19 +1,19 @@
 import { Flex, Stack, Text } from "@chakra-ui/react"
 import React, { useRef } from "react"
-import { GradientOutlineButton } from "."
-import { useChakraToast, MyText, GradientText } from "@sipher/web-components"
+import { GradientOutlineButton, GradientText } from "."
 import { isEmail } from "src/utils"
 import TextFormControl from "./TextFormControl"
 import CommunityIcons from "./CommunityIcons"
 import { useRouter } from "next/router"
 import { useMutation } from "react-query"
 import axios from "axios"
+import useChakraToast from "@hooks/useChakraToast"
 interface ISubscribeInput {
     email: string
     full_name: string
 }
 const postSubscribe = async (input: ISubscribeInput) => {
-    let { data } = await axios.post("https://be.sipher.xyz/api/sipher/v1.0/subscribe", input, {
+    const { data } = await axios.post("https://be.sipher.xyz/api/sipher/v1.0/subscribe", input, {
         validateStatus: status => {
             if (status === 400 || status === 200) return true
             return false
@@ -33,7 +33,7 @@ export const Footer = () => {
     const { mutate, isLoading } = useMutation(
         () => postSubscribe({ email: emailInputRef.current!.value, full_name: nameInputRef.current?.value || "" }),
         {
-            onError: (error: any) => {
+            onError: () => {
                 toast({ status: "error", title: "Something went wrong!", message: "Try again later." })
             },
             onSuccess: data => {
@@ -80,7 +80,7 @@ export const Footer = () => {
             zIndex="overlay"
         >
             <Flex direction="column" maxW="48rem" align="center" px="4">
-                <Text size="large" fontWeight="bold" textTransform="uppercase" letterSpacing="3px">
+                <Text fontSize="lg" fontWeight="bold" textTransform="uppercase" letterSpacing="3px">
                     Stay in touch with us
                 </Text>
                 <Stack mt={4} align="center" direction={["column", "row"]} spacing={4} px={[0, 4, 8]} py={2} w="full">
@@ -110,7 +110,7 @@ export const Footer = () => {
                     spacing={[0, 0, 1, 2, 4]}
                     align={["center", "center", "center", "center", "center"]}
                 >
-                    <Text size="small">Copyright © 2021 Sipher. All rights reserved</Text>
+                    <Text fontSize="sm">Copyright © 2021 Sipher. All rights reserved</Text>
                     <Text
                         sx={{
                             "@media (max-width: 960px)": {

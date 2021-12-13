@@ -5,10 +5,10 @@ import { NavBar, Footer } from "@components/shared"
 import HeaderBackground from "@components/shared/HeaderBackground"
 import Metadata from "@components/shared/Metadata"
 import { useRouter } from "next/router"
-import { useEffect, useRef } from "react"
+import { ReactNode, useEffect, useRef } from "react"
 
 interface AboutUsLayoutProps {
-    children: React.ReactNode
+    children: ReactNode
 }
 
 const AboutUsLayout = ({ children }: AboutUsLayoutProps) => {

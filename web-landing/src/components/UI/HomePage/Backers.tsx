@@ -3,8 +3,6 @@
 import { Stack, Img, Wrap, WrapItem, Box } from "@chakra-ui/react"
 import { TextContainer } from "@components/shared"
 
-interface BackersProps {}
-
 const smallBackers = [
     { path: "/images/icons/backers/defiance_capital.png", alt: "DeFiance Capital" },
     { path: "/images/icons/backers/signum_capital.png", alt: "Signum Capital" },
@@ -23,7 +21,7 @@ const smallBackers = [
     { path: "/images/icons/backers/yield_guild.png", alt: "Yield Guild" },
 ]
 
-const Backers = ({}: BackersProps) => {
+const Backers = () => {
     return (
         <TextContainer headline="Backers" px={4} maxW={["48rem", "48rem", "56rem"]}>
             <Stack
@@ -35,19 +33,23 @@ const Backers = ({}: BackersProps) => {
                 direction={["column", "row", "row"]}
             >
                 <Box>
-                    <Img src="/images/icons/backers/new_arrington_capital.png" alt="Arrington XP Capital" />
+                    <Img
+                        loading="lazy"
+                        src="/images/icons/backers/new_arrington_capital.png"
+                        alt="Arrington XP Capital"
+                    />
                 </Box>
                 <Box>
-                    <Img src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
+                    <Img loading="lazy" src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
                 </Box>
                 <Box>
-                    <Img src="/images/icons/backers/hashed.png" alt="Hashed" />
+                    <Img loading="lazy" src="/images/icons/backers/hashed.png" alt="Hashed" />
                 </Box>
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={14} my={8}>
                 {smallBackers.map(backer => (
                     <WrapItem key={backer.alt} overflow="hidden" flexBasis={["30%", "auto"]} justifyContent="center">
-                        <Img src={backer.path} alt={backer.alt} />
+                        <Img loading="lazy" src={backer.path} alt={backer.alt} />
                     </WrapItem>
                 ))}
             </Wrap>

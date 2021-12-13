@@ -6,7 +6,7 @@ import content from "@constant/content/vision"
 
 const Vision = () => {
     return (
-        <TextContainer headline="VISION" mb={24}>
+        <TextContainer headline="VISION">
             <SimpleGrid columns={[1, 3]} gap={4}>
                 {content.map(item => (
                     <VisionCard

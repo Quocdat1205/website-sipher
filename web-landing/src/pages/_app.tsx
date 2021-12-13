@@ -20,11 +20,6 @@ type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
 
-declare global {
-    interface Window {
-        dataLayer: any
-    }
-}
 const isProduction = process.env.NODE_ENV === "production"
 const queryClient = new QueryClient({
     defaultOptions: {

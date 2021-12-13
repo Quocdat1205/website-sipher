@@ -3,9 +3,7 @@
 import { Flex } from "@chakra-ui/layout"
 import Body from "./Body"
 
-interface HomeUIProps {}
-
-const TermAndConditionsUI = ({}: HomeUIProps) => {
+const TermAndConditionsUI = () => {
     return (
         <Flex bg="black" direction="column">
             <Body />

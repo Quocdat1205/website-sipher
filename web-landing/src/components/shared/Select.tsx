@@ -5,6 +5,7 @@ import { BsChevronDown, BsChevronUp } from "react-icons/bs"
 
 interface Option {
     code?: string | number
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any
 }
 interface SelectProps {
@@ -20,8 +21,8 @@ interface SelectProps {
 }
 const Select: FC<SelectProps> = ({
     selection,
-    value = null,
-    onSelect = () => {},
+    value,
+    onSelect = option => option,
     displayField = "name",
     keyField = "code",
     removable = false,
@@ -119,7 +120,7 @@ const Select: FC<SelectProps> = ({
                             />
                         )}
                         <Box flex={1} overflow="overlay" maxH="10rem">
-                            {selection.filter(selectionFilterer).map((option, idx) => (
+                            {selection.filter(selectionFilterer).map(option => (
                                 <Box
                                     key={option[keyField]}
                                     cursor="pointer"

@@ -1,4 +1,6 @@
-export const EscrowPoolAddress = "0xf11E18605861Ebcf79e462B80706AB0aEf157121"
+// * CHANGED TO MAINNET
+
+export const EscrowPoolAddress = "0xB2d1464Ae4cc86856474a34d112b4A2efa326ed9"
 
 export const EscrowPoolAbi: any = [
     {

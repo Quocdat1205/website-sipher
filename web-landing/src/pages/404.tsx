@@ -3,9 +3,8 @@ import { Typo } from "@components/shared"
 import LinkButton from "@components/shared/LinkButton"
 import Metadata from "@components/shared/Metadata"
 import { useRouter } from "next/router"
-interface NotfoundPageProps {}
 
-const NotfoundPage = ({}: NotfoundPageProps) => {
+const NotfoundPage = () => {
     const router = useRouter()
     return (
         <>

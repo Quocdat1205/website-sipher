@@ -1,8 +1,4 @@
-// * DESCRIPTION:
-
-interface SvgGradientProps {}
-
-const SvgGradient = ({}: SvgGradientProps) => {
+const SvgGradient = () => {
     return (
         <defs>
             <linearGradient id="MyGradient" x1="0" x2="0" y1="0" y2="1">

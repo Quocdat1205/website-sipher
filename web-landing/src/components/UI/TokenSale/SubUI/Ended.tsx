@@ -4,8 +4,6 @@ import { useMutation, useQuery, useQueryClient } from "react-query"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { currency } from "@source/utils"
 import useTransactionToast from "@hooks/useTransactionToast"
-import { useChakraToast } from "@sipher/web-components"
-import { checkSmartContract } from "@hooks/api"
 
 const Ended = () => {
     const { scCaller, account } = useWalletContext()
@@ -21,8 +19,6 @@ const Ended = () => {
 
     const transactionToast = useTransactionToast()
 
-    const toast = useChakraToast()
-
     const qc = useQueryClient()
 
     const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.SipherIBCO.claim(account!), {
@@ -33,7 +29,7 @@ const Ended = () => {
             transactionToast({ status: "successClaim" })
             qc.invalidateQueries("estimate-received-token")
         },
-        onError: () => {
+        onError: e => {
             transactionToast({ status: "failed" })
         },
     })

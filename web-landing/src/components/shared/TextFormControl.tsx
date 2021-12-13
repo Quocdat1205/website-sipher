@@ -1,19 +1,13 @@
-// * DESCRIPTION:
-
-import { FormLabel, Input, FormControl, FormControlProps, InputProps } from "@chakra-ui/react"
-import React from "react"
-
+import { Input, FormControl, FormControlProps } from "@chakra-ui/react"
 interface TextFormControlProps extends Omit<FormControlProps, "onChange"> {
     label: string
-    value?: string
-    onChange?: InputProps["onChange"]
     error?: string
     type?: string
     isRequired?: boolean
     inputRef?: React.RefObject<HTMLInputElement>
 }
 
-export const TextFormControl = ({ label, value, onChange, error, type, inputRef, ...rest }: TextFormControlProps) => {
+export const TextFormControl = ({ label, type, inputRef, ...rest }: TextFormControlProps) => {
     return (
         <FormControl {...rest}>
             <Input

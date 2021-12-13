@@ -1,9 +1,5 @@
-// * DESCRIPTION:
-
 import React from "react"
-import { Box, Image, Stack } from "@chakra-ui/react"
-import { useRouter } from "next/dist/client/router"
-import { Typo } from "@components/shared"
+import { Box, Image, Stack, Text } from "@chakra-ui/react"
 interface CardMenuWorldProps {
     onClick?: () => void
     active?: boolean
@@ -16,7 +12,7 @@ export const CardMenuWorld = ({ text, active, icon, onClick }: CardMenuWorldProp
         <Stack
             p={2}
             flex={1}
-            bgGradient={active ? "linear(to-b, bgGradient.orange)" : "linear(to-r, #171717, #171717)"}
+            bgGradient={active ? "linear(to-b, gradient.orange)" : "linear(to-r, #171717, #171717)"}
             border="1px"
             borderColor="border.gray"
             onClick={onClick}
@@ -29,9 +25,9 @@ export const CardMenuWorld = ({ text, active, icon, onClick }: CardMenuWorldProp
             <Box h="2rem">
                 <Image h="full" src={icon} alt={text} />
             </Box>
-            <Typo.Text textAlign="center" size="small" isTruncated color={active ? "white" : "#9c8e83"}>
+            <Text textAlign="center" fontSize={"sm"} isTruncated color={active ? "white" : "#9c8e83"}>
                 {text}
-            </Typo.Text>
+            </Text>
         </Stack>
     )
 }

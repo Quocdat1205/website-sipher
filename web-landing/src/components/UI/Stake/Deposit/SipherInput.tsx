@@ -1,4 +1,5 @@
-import { NumberInput, NumberInputField, Flex, Text } from "@chakra-ui/react"
+import { NumberInput, NumberInputField, Text } from "@chakra-ui/react"
+import { KeyboardEvent } from "react"
 
 interface EtherInputProps {
     value: string
@@ -7,14 +8,17 @@ interface EtherInputProps {
 }
 
 const SipherInput = ({ value, setValue, maxValue }: EtherInputProps) => {
-    // const format = (value: string) => {
-    //     return value === "" ? "0" : value
-    // }
+    const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === ",") {
+            setValue(value + ".")
+        }
+    }
 
     return (
         <NumberInput
             flex={1}
             onChange={newValue => setValue(newValue)}
+            onKeyDown={handleKeyDown}
             value={value}
             max={maxValue}
             min={0}

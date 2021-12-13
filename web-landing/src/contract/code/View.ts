@@ -1,9 +1,11 @@
-export const ViewAddress = "0x44fDF534d4710716385E11fb049BbB662874f33B"
+// * CHANGED TO MAINNET
+
+export const ViewAddress = "0xA8317c540bC1268F98E042a20fE19057E85d6277"
 
 export const ViewAbi: any = [
     {
         inputs: [
-            { internalType: "address", name: "_liquidityMiningManager", type: "address" },
+            { internalType: "address", name: "_stakingManager", type: "address" },
             { internalType: "address", name: "_escrowPool", type: "address" },
         ],
         stateMutability: "nonpayable",
@@ -87,8 +89,8 @@ export const ViewAbi: any = [
     },
     {
         inputs: [],
-        name: "liquidityMiningManager",
-        outputs: [{ internalType: "contract LiquidityMiningManager", name: "", type: "address" }],
+        name: "stakingManager",
+        outputs: [{ internalType: "contract StakingManager", name: "", type: "address" }],
         stateMutability: "view",
         type: "function",
     },

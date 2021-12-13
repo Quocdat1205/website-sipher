@@ -1,6 +1,5 @@
 import { Modal, ModalCloseButton, ModalContent, ModalOverlay, Text } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
-import router from "next/router"
 import React from "react"
 
 interface ApproveModalProps {

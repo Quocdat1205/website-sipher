@@ -18,6 +18,18 @@ export const theme = extendTheme({
             darkRed: "#B70F28",
             orange: "#FF710B",
         },
+        // ======== NEW THEME COLOR
+        text: {
+            primary: "#FFFFFF",
+            secondary: "#9B9E9D",
+        },
+        fill: {
+            green: "#59D9A6",
+        },
+        gradient: {
+            orange: "#FF6795 0%, #FF710B 84.37%",
+        },
+        // ========
         bgGradient: {
             orange: "#FF6795 0%, #FF710B 84.37%",
             white: "#FFFFFF 0%, #FFFFFF 84.37%",
@@ -41,25 +53,13 @@ export const theme = extendTheme({
         Text: {
             baseStyle: {
                 fontFamily: "Mark Pro",
-                color: "whiteAlpha.900",
-                fontWeight: 400,
-            },
-            sizes: {
-                small: {
-                    fontSize: "sm",
-                },
-                medium: {
-                    fontSize: "md",
-                },
-                large: {
-                    fontSize: "xl",
-                },
+                color: "text.primary",
             },
         },
         Input: {
             baseStyle: {
                 fontFamily: "Mark Pro",
-                color: "whiteAlpha.900",
+                color: "text.primary",
                 fontWeight: 500,
             },
         },

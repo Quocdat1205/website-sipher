@@ -3,47 +3,41 @@ import { IconType } from "react-icons"
 import { BsCheck, BsThreeDots, BsX } from "react-icons/bs"
 
 interface TransactionToastProps {
-    status: "failed" | "success" | "processing" | "successClaim" | "successDeposit"
+    status: "failed" | "success" | "processing" | "successClaim"
     onClose: () => void
     isPublic?: boolean
+    message?: string[]
 }
 
-const TransactionToast = ({ status, onClose }: TransactionToastProps) => {
+const TransactionToast = ({ message, status, onClose }: TransactionToastProps) => {
     const genContext = (): [string, string, IconType, string[]] => {
         if (status === "failed")
             return [
-                "TRANSACTION FAILED",
+                "TRANSACTION ERROR",
                 "red.500",
                 BsX,
-                ["Unfortunately your transaction has been rejected. Please try again."],
+                message || [
+                    "Unfortunately, your transaction has been reverted or it's taking longer than expected.",
+                    "Please review your wallet notifications.",
+                ],
             ]
         if (status === "processing")
             return [
                 "TRANSACTION PROCESSING",
                 "yellow.500",
                 BsThreeDots,
-                [
+                message || [
                     "Do not refresh or you may lose track of your pending transaction.",
                     "Please review your wallet notifications.",
                 ],
             ]
         if (status === "successClaim")
-            return ["TRANSACTION SUCCESSFUL", "green.500", BsCheck, ["$SIPHER tokens successfully claimed."]]
-        if (status === "successDeposit")
-            return [
-                "TRANSACTION SUCCESSFUL",
-                "green.500",
-                BsCheck,
-                [
-                    "Your $SIPHER tokens will be available after the Sale ends.",
-                    "Please come back on 09/12/2021 - 1:00AM UTC to claim your tokens",
-                ],
-            ]
+            return ["TRANSACTION SUCCESSFUL", "green.500", BsCheck, message || ["$SIPHER tokens successfully claimed."]]
         return [
             "TRANSACTION SUCCESSFUL",
             "green.500",
             BsCheck,
-            ["You $SIPHER Tokens will be available after the Sale ends."],
+            message || ["You have Successfully Staked your $SIPHER.", "Please return to Overview or Stake again."],
         ]
     }
     const [title, color, Icon, content] = genContext()
@@ -65,7 +59,7 @@ const TransactionToast = ({ status, onClose }: TransactionToastProps) => {
                 </Flex>
                 <Box py={4} px={10}>
                     {content.map(p => (
-                        <Text key={p} fontSize="sm">
+                        <Text textAlign="center" key={p} fontSize="sm">
                             {p}
                         </Text>
                     ))}

@@ -1,10 +1,7 @@
 // * DESCRIPTION:
 
-import { Img, Flex, SimpleGrid, HStack, StackProps, Box } from "@chakra-ui/react"
-import { MotionBox, MotionFlex, TextContainer } from "@components/shared"
-import { motion } from "framer-motion"
-
-interface BehindTheScenesProps {}
+import { Img, Flex, SimpleGrid } from "@chakra-ui/react"
+import { MotionFlex, TextContainer } from "@components/shared"
 
 const images = [
     { path: "/images/pc/behind_the_scenes/1.png", alt: "Behind The Scenes 1" },
@@ -15,7 +12,7 @@ const images = [
     { path: "/images/pc/behind_the_scenes/6.png", alt: "Behind The Scenes 6" },
 ]
 
-const BehindTheScenes = ({}: BehindTheScenesProps) => {
+const BehindTheScenes = () => {
     return (
         <TextContainer headline="Behind The Scenes" overflowX="hidden" px={4}>
             <Flex justify="center" w="full">
@@ -40,7 +37,7 @@ const BehindTheScenes = ({}: BehindTheScenesProps) => {
                                     ease: "easeInOut",
                                 }}
                             >
-                                <Img src={image.path} alt={image.alt} h="full" w="auto" />
+                                <Img loading="lazy" src={image.path} alt={image.alt} h="full" w="auto" />
                             </MotionFlex>
                         </Flex>
                     ))}

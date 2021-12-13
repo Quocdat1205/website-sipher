@@ -33,7 +33,7 @@ const DigitalCharacters = () => {
                 <SimpleGrid justifyContent="center" columns={[2, 4]} spacing="2rem" mt={8} w="full">
                     {(tab ? charactersNeko : charactersInu).map(character => (
                         <Flex key={character.name} direction="column" align="center">
-                            <Img src={character.path} alt={character.name} />
+                            <Img loading="lazy" src={character.path} alt={character.name} />
                             <Text
                                 w="full"
                                 textAlign="center"

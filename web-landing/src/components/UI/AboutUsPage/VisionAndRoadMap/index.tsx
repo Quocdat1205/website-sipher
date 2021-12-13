@@ -1,19 +1,15 @@
-// * DESCRIPTION:
-
-import { Flex } from "@chakra-ui/layout"
+import { VStack } from "@chakra-ui/react"
 import { BackgroundContainer } from "@components/shared"
 import RoadMap from "./Roadmap"
 import Vision from "./Vision"
 
-interface VisionAndRoadMapProps {}
-
-const VisionAndRoadMap = ({}: VisionAndRoadMapProps) => {
+const VisionAndRoadMap = () => {
     return (
         <BackgroundContainer>
-            <Flex direction="column" align="center" px={4} py={24} w="full">
+            <VStack spacing={24} align="center" py={24} w="full">
                 <Vision />
                 <RoadMap />
-            </Flex>
+            </VStack>
         </BackgroundContainer>
     )
 }

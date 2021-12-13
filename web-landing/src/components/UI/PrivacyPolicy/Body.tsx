@@ -1,11 +1,8 @@
-// * DESCRIPTION:
-
 import { VStack, chakra, Text } from "@chakra-ui/react"
 import { TextContainer, Li, BackgroundContainer } from "@components/shared"
 import { introduction, privacyPolicies } from "@constant/content/privacyPolicy"
-interface HomeBodyProps {}
 
-const HomeBody = ({}: HomeBodyProps) => {
+const HomeBody = () => {
     const levelToListType = (level: number) => {
         return level === 1 ? "decimal" : level === 2 ? "1" : level === 3 ? "lower-alpha" : "upper-roman"
     }

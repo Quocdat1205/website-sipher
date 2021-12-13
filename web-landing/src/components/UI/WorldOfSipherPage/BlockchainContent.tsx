@@ -1,13 +1,9 @@
-// * DESCRIPTION:
-
 import { VStack, Box } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
 import { blockchainContent } from "@constant/content/why"
 import React from "react"
 
-interface BlockchainContentProps {}
-
-const BlockchainContent = ({}: BlockchainContentProps) => {
+const BlockchainContent = () => {
     return (
         <VStack spacing={8}>
             {blockchainContent.content.map(item => (

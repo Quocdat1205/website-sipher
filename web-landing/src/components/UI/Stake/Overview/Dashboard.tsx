@@ -1,26 +1,16 @@
 import { Box, Text, Stack } from "@chakra-ui/react"
-import { useSipherPrice } from "@hooks/api"
-import useWalletContext from "@hooks/web3/useWalletContext"
-import router, { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import React from "react"
-import { useMutation } from "react-query"
 import DashboardCard from "./DashboardCard"
 
 interface DashboardProps {
-    totalStaked?: number
-    unclaimedRewards?: number
-    totalEarned?: number
+    totalStaked: number
+    unclaimedRewards: number
+    totalEarned: number
+    sipherPrice: number
 }
 
-const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: DashboardProps) => {
-    const sipherPrice = useSipherPrice()
-
-    const { scCaller, account } = useWalletContext()
-
-    const { mutate: claimRewards, isLoading: isClaiming } = useMutation(() =>
-        scCaller.current!.StakingPools.claimRewards(account!)
-    )
-
+const Dashboard = ({ totalStaked, unclaimedRewards, totalEarned, sipherPrice }: DashboardProps) => {
     const router = useRouter()
 
     return (
@@ -39,13 +29,9 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
                 <DashboardCard
                     img="/images/pc/stake/total_staked.png"
                     title="Total Staked"
-                    dollarValue={totalStaked * sipherPrice}
-                    sipherValue={totalStaked}
+                    dollarValue={totalStaked}
                     buttonText="STAKE"
-                    onClick={() => {
-                        const anchor = document.getElementById("staking-pools")
-                        anchor && anchor.scrollIntoView({ behavior: "smooth" })
-                    }}
+                    onClick={() => document.getElementById("staking-pools")?.scrollIntoView({ behavior: "smooth" })}
                 />
                 <DashboardCard
                     img="/images/pc/stake/unclaim_rewards.png"
@@ -54,8 +40,7 @@ const Dashboard = ({ totalStaked = 0, unclaimedRewards = 0, totalEarned = 0 }: D
                     sipherValue={unclaimedRewards}
                     buttonText="CLAIM"
                     disabled={unclaimedRewards <= 0}
-                    onClick={claimRewards}
-                    isLoading={isClaiming}
+                    onClick={() => router.push("/stake/rewards")}
                 />
                 <DashboardCard
                     img="/images/pc/stake/total_earned.png"

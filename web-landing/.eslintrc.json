@@ -1,6 +1,9 @@
 {
-    "extends": "next/core-web-vitals",
+    "extends": ["eslint:recommended", "next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
     "rules": {
-        "@next/next/no-document-import-in-page": "off"
+        "@next/next/no-document-import-in-page": "off",
+        "@typescript-eslint/no-non-null-assertion": "off"
     }
 }

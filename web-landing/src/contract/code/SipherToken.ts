@@ -1,3 +1,5 @@
+// * CHANGED TO MAINNET
+
 export const SipherTokenAddress = "0x9F52c8ecbEe10e00D9faaAc5Ee9Ba0fF6550F511"
 
 export const SipherTokenAbi: any = [

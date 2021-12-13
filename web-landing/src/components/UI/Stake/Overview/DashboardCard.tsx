@@ -7,7 +7,7 @@ interface Props {
     img: string
     title: string
     dollarValue: number
-    sipherValue: number
+    sipherValue?: number
     buttonText?: string
     onClick?: () => void
     background?: string
@@ -55,11 +55,15 @@ const DashboardCard = ({
                     >
                         ${currency(dollarValue)}
                     </Text>
-                    <Flex align="center" overflow="hidden" w="full" justify="center">
-                        <Img mr={1} src="/images/icons/sipher.png" alt="sipher-token-icon" h="1rem" />
-                        <Text fontSize="sm" isTruncated>
-                            $SIPHER {currency(sipherValue)}
-                        </Text>
+                    <Flex align="center" overflow="hidden" w="full" justify="center" h="1rem">
+                        {sipherValue !== undefined && (
+                            <>
+                                <Img mr={1} src="/images/icons/sipher.png" alt="sipher-token-icon" h="1rem" />
+                                <Text fontSize="sm" isTruncated>
+                                    {currency(sipherValue)}
+                                </Text>
+                            </>
+                        )}
                     </Flex>
                 </Flex>
             </Stack>
@@ -67,7 +71,7 @@ const DashboardCard = ({
                 <Box w="full" pt={4} borderTop="1px" borderColor="rgba(155,158,157, 0.5)" mt={4}>
                     <ActionButton
                         px={6}
-                        py={4}
+                        py={3}
                         onClick={onClick}
                         text={buttonText}
                         w="full"

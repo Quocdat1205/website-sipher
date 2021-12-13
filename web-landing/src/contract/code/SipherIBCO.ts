@@ -1,3 +1,5 @@
+// * CHANGED TO MAINNET
+
 export const SipherIBCOAddress = "0xF05e0a149e4ab0253aA5e1575302E721d02369C0"
 
 export const SipherIBCOAbi: any = [

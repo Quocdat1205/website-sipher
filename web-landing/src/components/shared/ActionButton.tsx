@@ -6,7 +6,10 @@ import { Box, BoxProps, Spinner, Flex, Text } from "@chakra-ui/react"
 interface ActionButtonProps extends BoxProps {
     text: React.ReactNode
     isLoading?: boolean
+    as?: BoxProps["as"]
     loadingText?: string
+    rel?: string
+    href?: string
     disabled?: boolean
     size?: "small" | "medium" | "large"
 }
@@ -14,18 +17,23 @@ interface ActionButtonProps extends BoxProps {
 export const ActionButton = ({
     letterSpacing = "2px",
     fontWeight = "bold",
+    as = "button",
     text,
     isLoading,
+    rel,
     loadingText = "Loading",
     disabled,
     px = 4,
     py = 2,
-    size,
+    fontSize = "sm",
+    href,
     ...rest
 }: ActionButtonProps) => {
     return (
         <Box
-            as="button"
+            rel={rel}
+            as={as}
+            href={href}
             textTransform="uppercase"
             rounded="md"
             bgGradient={disabled ? "linear(to-b, #131313 0%, #232323 84.37%)" : "linear(to-b, #FF6795, #FF710B 84.37%)"}
@@ -42,12 +50,12 @@ export const ActionButton = ({
                 {isLoading ? (
                     <Flex align="center" justify="center">
                         <Spinner size="sm" thickness="3px" />
-                        <Text ml={4} fontWeight={fontWeight} color="inherit" size={size}>
+                        <Text ml={4} fontWeight={fontWeight} color="inherit" fontSize={fontSize}>
                             {loadingText}
                         </Text>
                     </Flex>
                 ) : (
-                    <Text letterSpacing={letterSpacing} fontWeight={fontWeight} color="inherit" size={size}>
+                    <Text letterSpacing={letterSpacing} fontWeight={fontWeight} color="inherit" fontSize={fontSize}>
                         {text}
                     </Text>
                 )}

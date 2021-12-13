@@ -2,17 +2,16 @@ import { useOutsideClick } from "@chakra-ui/hooks"
 import { Flex, Text, Box } from "@chakra-ui/layout"
 import { Collapse } from "@chakra-ui/transition"
 import useWalletContext from "@hooks/web3/useWalletContext"
-import { GradientButton } from "@sipher/web-components"
 import { useEffect, useRef, useState } from "react"
 import { FaWallet } from "react-icons/fa"
 import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
-import { WalletModal } from "."
+import { ActionButton, IconSipher, WalletModal } from "."
 import { useRouter } from "next/router"
+import { useQuery } from "react-query"
+import { currency } from "@source/utils"
 
-interface WalletButtonProps {}
-
-export const WalletButton = ({}: WalletButtonProps) => {
+export const WalletButton = () => {
     const wallet = useWalletContext()
     const [isOpen, setIsOpen] = useState(false)
     const [menu, setMenu] = useState(false)
@@ -37,11 +36,21 @@ export const WalletButton = ({}: WalletButtonProps) => {
         }
     }, [wallet.isActive, router])
 
+    const { data: balance } = useQuery(
+        ["balance", wallet.account],
+        () => wallet.scCaller.current?.SipherToken.getBalance(wallet.account!),
+        {
+            enabled: !!wallet.scCaller.current && !!wallet.account,
+            initialData: 0,
+            refetchInterval: 2000,
+        }
+    )
+
     return (
-        <Box pos="relative" ref={boxRef}>
+        <Box ml={[1, 0]} pos="relative" ref={boxRef}>
             <Box zIndex={2} pos="relative">
                 {!wallet.isActive ? (
-                    <GradientButton
+                    <ActionButton
                         text={
                             wallet.isActive
                                 ? `${wallet.account?.slice(0, 5)}...${wallet.account?.slice(
@@ -55,8 +64,8 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         border="1px"
                         px={[2, 4]}
                         borderColor="transparent"
-                        h="2.5rem"
-                        w={["12rem", "12.5rem"]}
+                        h={"auto"}
+                        fontSize={["xx-small", "xs"]}
                     />
                 ) : (
                     <Flex
@@ -70,18 +79,25 @@ export const WalletButton = ({}: WalletButtonProps) => {
                         py={2}
                         cursor="pointer"
                         onClick={() => setMenu(!menu)}
-                        h="2.5rem"
-                        // w={["10rem", "12.5rem"]}
+                        h={["2.5rem"]}
                     >
                         <Box color="main.orange" mr={2}>
                             <FaWallet />
                         </Box>
-                        <Text fontWeight="semibold" fontSize="sm" mr={2}>
-                            {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
-                                wallet.account.length - 4,
-                                wallet.account.length
-                            )}`}
-                        </Text>
+                        <Flex flexDir="column" align="flex-end" mr={2}>
+                            <Text fontWeight="semibold" fontSize="xs">
+                                {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
+                                    wallet.account.length - 4,
+                                    wallet.account.length
+                                )}`}
+                            </Text>
+                            <Flex align="center">
+                                <Text color="#9B9E9D" fontWeight="semibold" fontSize="x-small" mr={1}>
+                                    {currency(balance!)}
+                                </Text>
+                                <IconSipher boxSize="0.9rem" />
+                            </Flex>
+                        </Flex>
                         <Box ml={"auto"}>
                             <FiChevronDown size="1.2rem" />
                         </Box>
@@ -101,16 +117,16 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             bg="#383838"
                             shadow="base"
                             onClick={() => router.push("/inventory/inu")}
-                            display={["none", "none", "flex"]}
+                            // display={["none", "none", "flex"]}
                         >
                             <Box color="main.orange" mr={2}>
                                 <BsInboxFill size="1.2rem" />
                             </Box>
-                            <Text fontWeight="semibold" fontSize={["sm"]}>
+                            <Text fontWeight="semibold" fontSize={["xx-small", "xs"]}>
                                 INVENTORY
                             </Text>
                         </Flex>
-                        <GradientButton
+                        <ActionButton
                             onClick={() => {
                                 setMenu(false)
                                 wallet.resetToken()
@@ -118,7 +134,8 @@ export const WalletButton = ({}: WalletButtonProps) => {
                             }}
                             text="Disconnect"
                             w="full"
-                            px={2}
+                            px={[0, 2]}
+                            fontSize={["xx-small", "xs"]}
                         />
                     </Box>
                 </Collapse>

@@ -29,8 +29,7 @@ export const aboutMenus = [
 
 export const stakeMenus = [
     { id: "Overview", path: "/stake/overview" },
-    // { id: "Deposit", path: "/stake/deposit" },
-    { id: "Reward", path: "/stake/rewards" },
+    { id: "Rewards", path: "/stake/rewards" },
 ]
 
 export const childMenus = {
@@ -74,17 +73,8 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
             <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
                 <Flex>
                     <WalletButton />
-                    {/* <Flex
-                        sx={{
-                            "@media (max-width: 640px)": {
-                                display: "none",
-                            },
-                        }}
-                    >
-                        <LinkButton text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" />
-                    </Flex> */}
                     <Grid
-                        ml={4}
+                        ml={[1, 4]}
                         rounded="full"
                         color="white"
                         px={0}
