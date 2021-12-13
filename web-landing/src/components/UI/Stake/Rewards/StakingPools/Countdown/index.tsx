@@ -47,12 +47,15 @@ export const CountDown = ({ startTime }: CountDownProps) => {
                 <>
                     <chakra.span fontWeight="semibold">Next rewards: </chakra.span>
                     <chakra.span>
-                        <TimeCell value={countdown.hours} unit="hours" />
+                        apx. <TimeCell value={countdown.hours} unit="hours" />
                         <TimeCell value={countdown.minutes} unit="minutes" />
                     </chakra.span>
                 </>
             ) : (
-                "Next rewards: available from 05:00AM Dec 15 2021 UTC"
+                <>
+                    <chakra.span fontWeight="semibold">First rewards: </chakra.span>
+                    available from 15th of December @ 05:00 AM UTC
+                </>
             )}
         </Text>
     )
