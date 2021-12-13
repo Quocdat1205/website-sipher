@@ -106,7 +106,7 @@ const StakeForm = () => {
                     )}
                     <Box mb={4}>
                         <Text mb={2}>I want to stake</Text>
-                        <SipherInput value={sipherValue} setValue={setSipherValue} maxValue={Math.floor(balance!)} />
+                        <SipherInput value={sipherValue} setValue={setSipherValue} maxValue={balance!} />
                         <Flex w="full" align="center" justify="space-between">
                             <Text>
                                 Est. APR: <chakra.span fontWeight="semibold">{(estAPR * 100).toFixed(2)}%</chakra.span>
