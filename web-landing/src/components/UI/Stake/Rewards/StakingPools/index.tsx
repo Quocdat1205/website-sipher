@@ -1,4 +1,5 @@
 import { Box, Flex, Stack, Text, chakra, Img } from "@chakra-ui/react"
+import { startTime } from "@constant/index"
 import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import useRewards from "../useRewards"
@@ -22,7 +23,7 @@ const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
                         STAKING POOLS
                     </Text>
                     <Flex align="center" flexDir="row" mr={8}>
-                        <CountDown startTime={1639544400000} />
+                        <CountDown startTime={startTime} />
                         <Flex align="center">
                             <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                             <Text fontSize="sm">
@@ -61,7 +62,7 @@ const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
                     <Text letterSpacing="3px" size="large" fontWeight="semibold">
                         STAKING POOLS
                     </Text>
-                    <CountDown startTime={1639544400000} />
+                    <CountDown startTime={startTime} />
                     <Flex align="center">
                         <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                         <Text fontSize="sm">
