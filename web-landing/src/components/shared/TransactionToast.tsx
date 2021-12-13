@@ -37,7 +37,7 @@ const TransactionToast = ({ message, status, onClose }: TransactionToastProps) =
             "TRANSACTION SUCCESSFUL",
             "green.500",
             BsCheck,
-            message || ["You have successfully staked your $SIPHER.", "Please return to Overview or Stake again."],
+            message || ["You have Successfully Staked your $SIPHER.", "Please return to Overview or Stake again."],
         ]
     }
     const [title, color, Icon, content] = genContext()
