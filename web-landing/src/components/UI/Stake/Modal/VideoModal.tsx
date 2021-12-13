@@ -22,8 +22,8 @@ const VideoModal = ({ isOpen, setIsOpen }: Props) => {
                     <ReactPlayer
                         className="video-player"
                         controls
-                        config={{ file: { attributes: { poster: "/video/whatissipher_poster.png" } } }}
-                        url={"/video/neko_teaser.mp4"}
+                        config={{ file: { attributes: { poster: "/video/whatissipher_poster.jpg" } } }}
+                        url={"/video/stake.mp4"}
                     />
                 </Flex>
             </ModalContent>
