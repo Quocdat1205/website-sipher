@@ -32,7 +32,7 @@ export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, 
         >
             <Text
                 fontWeight={isChild ? "normal" : "bold"}
-                fontSize={["sm", "md"]}
+                fontSize={["sm"]}
                 textAlign="center"
                 isTruncated
                 onClick={() => href && router.push(href)}
