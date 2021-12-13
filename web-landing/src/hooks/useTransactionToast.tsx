@@ -14,7 +14,7 @@ type ChakraToastOptions = {
     message?: string[]
 }
 
-export const useTransactionToast = ({ defaultDuration }: UseChakraToastOptions = { defaultDuration: 30000 }) => {
+export const useTransactionToast = ({ defaultDuration }: UseChakraToastOptions = { defaultDuration: 100000 }) => {
     const toast = useToast()
 
     return useCallback((options: ChakraToastOptions) => {

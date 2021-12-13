@@ -13,10 +13,13 @@ const TransactionToast = ({ message, status, onClose }: TransactionToastProps) =
     const genContext = (): [string, string, IconType, string[]] => {
         if (status === "failed")
             return [
-                "TRANSACTION UNSUCCESSFUL",
+                "TRANSACTION ERROR",
                 "red.500",
                 BsX,
-                message || ["Unfortunately your transaction has been rejected. Please try again."],
+                message || [
+                    "Unfortunately, your transaction has been reverted or it's taking longer than expected.",
+                    "Please review your wallet notifications.",
+                ],
             ]
         if (status === "processing")
             return [
