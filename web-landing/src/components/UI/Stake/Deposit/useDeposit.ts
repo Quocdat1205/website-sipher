@@ -30,6 +30,8 @@ const useDeposit = (pool: PoolURL) => {
     useEffect(() => {
         if (mode === "Flexible") {
             setSliderValueCb(0)
+        } else {
+            setSliderValueCb(52)
         }
     }, [mode, setSliderValueCb])
 
