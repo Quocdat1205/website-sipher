@@ -13,8 +13,8 @@ import {
     getLastActiveAccount,
 } from "./utils"
 import Web3 from "web3"
-import { authenticateUser, getUsersByAddress, trackingIP } from "@hooks/api/user"
-import { clearAccessToken, clearSignIn, setAccessToken, setSignIn, getAccessToken } from "@source/utils"
+import { authenticateUser, getUsersByAddress } from "@hooks/api/user"
+import { clearAccessToken, clearSignIn, setAccessToken, getAccessToken } from "@source/utils"
 import { ContractCaller } from "@source/contract"
 import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
 import useChakraToast from "@hooks/useChakraToast"
@@ -145,7 +145,7 @@ const useWallet = () => {
     )
 
     //** Get accessToken when change emotion */
-    const getAccessTokenAPI = async (country?: string) => {
+    const getAccessTokenAPI = async () => {
         if (!account) throw Error("Account not found")
         if (!web3.current) throw Error("Provider not found")
 
@@ -156,27 +156,11 @@ const useWallet = () => {
             account as string,
             ""
         )
-        const { accessToken, tracking } = await authenticateUser(account, signature, country)
+        const accessToken = await authenticateUser(account, signature)
 
-        if (tracking) {
-            setAccessToken(accessToken)
-            setSignIn("true")
-        }
-        return { accessToken, tracking }
+        setAccessToken(accessToken ? accessToken : "")
+        return accessToken
     }
-
-    //** Tracking user wallet address */
-    const getTracking = useCallback(
-        async action => {
-            if (!account) throw Error("Account not found")
-            if (!web3.current) throw Error("Provider not found")
-
-            let accessToken = getAccessToken()
-            const isTracking = await trackingIP(account, accessToken!, action, SipherTokenAddress, SipherIBCOAddress)
-            return isTracking
-        },
-        [web3React, account]
-    )
 
     // auto connect on refresh
     useEffect(() => {
@@ -200,7 +184,6 @@ const useWallet = () => {
         isActive: web3React.active,
         ethereum,
         getAccessToken: getAccessTokenAPI,
-        getTracking,
         scCaller,
         resetToken,
     }

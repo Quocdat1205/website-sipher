@@ -15,43 +15,10 @@ export const getUsersByAddress = async (address: string): Promise<IUser> => {
     }
 }
 
-/** Sign up user by wallet address */
-// export const signupUser = async (address: string): Promise<IUser> => {
-//     const { data } = await fetcher.post(`/login`, { publicAddress: address })
-//     return data
-// }
-
 /** Authenticate user by address and signature */
-export const authenticateUser = async (
-    address: string,
-    signature: string,
-    country?: string
-): Promise<{ accessToken: string; tracking: boolean }> => {
+export const authenticateUser = async (address: string, signature: string): Promise<string> => {
     const {
-        data: { accessToken, tracking },
-    } = await fetcher.post("/login/authentication", { publicAddress: address, signature, national: country })
-    return { accessToken, tracking }
-}
-
-/** TrackIP user address */
-export const trackingIP = async (
-    address: string,
-    accessToken: string,
-    action: string,
-    SipherTokenAddress: string,
-    SipherIBCOAddress: string
-): Promise<{ success: boolean }> => {
-    const type = action.toLowerCase()
-    const {
-        data: { success },
-    } = await fetcher.post(
-        "/tracking",
-        { address, type, sipherTokenAddress: SipherTokenAddress, ibcoAddress: SipherIBCOAddress },
-        {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        }
-    )
-    return success
+        data: { accessToken },
+    } = await fetcher.post("/login/authentication", { publicAddress: address, signature })
+    return accessToken
 }
