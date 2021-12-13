@@ -15,7 +15,13 @@ const TablePoolDesktop = ({ poolData }: TablePoolsProps) => {
             <chakra.td p={2}>
                 <Flex align="center">
                     <Flex align="center" w="3rem" flexShrink={0}>
-                        <Img src="/images/icons/sipher.png" boxSize="1.5rem" zIndex={2} pos="relative" />
+                        <Img
+                            alt="sipher-token"
+                            src="/images/icons/sipher.png"
+                            boxSize="1.5rem"
+                            zIndex={2}
+                            pos="relative"
+                        />
                         {poolData.isUniswap && (
                             <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
                         )}
