@@ -45,7 +45,7 @@ const TablePoolMobile = ({
                         </Flex>
                     </Flex>
                     <Flex justify="space-between">
-                        <Text fontWeight="semibold">Total Value Locked</Text>
+                        <Text fontWeight="semibold">Stake TVL</Text>
                         <Text textAlign="right">{currency(totalValueLocked, "$")}</Text>
                     </Flex>
                     <Flex justify="space-between">
@@ -97,7 +97,7 @@ const TablePoolMobile = ({
                         </Text>
                     </Flex>
                     <Flex w="full" justify="space-between">
-                        <Text size="small">TVL</Text>
+                        <Text size="small">Pool TVL</Text>
                         <Text fontWeight="semibold" size="small">
                             ${currency(TVL)}
                         </Text>
