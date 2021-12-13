@@ -140,7 +140,13 @@ const useDeposit = (pool: PoolURL) => {
             onSuccess: () => {
                 setApprovalModal(false)
                 qc.invalidateQueries("approved")
-                toastTransaction({ status: "success", message: ["You have successfully approved your $SIPHER."] })
+                toastTransaction({
+                    status: "success",
+                    message: [
+                        "You have Successfully Approved for Staking.",
+                        `Please Click "Stake" above to Finalize your Transaction.`,
+                    ],
+                })
             },
             onError: () => {
                 toastTransaction({ status: "failed" })
