@@ -97,7 +97,7 @@ const TablePoolMobile = ({
                         </Text>
                     </Flex>
                     <Flex w="full" justify="space-between">
-                        <Text size="small">TVL</Text>
+                        <Text size="small">Pool TVL</Text>
                         <Text fontWeight="semibold" size="small">
                             ${currency(TVL)}
                         </Text>
