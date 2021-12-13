@@ -1,5 +1,6 @@
 import { TOTAL_REWARDS_FOR_POOL } from "@constant/index"
 import { useLpKyberPrice, useLpUniswapPrice, useSipherPrice } from "@hooks/api"
+import useChakraToast from "@hooks/useChakraToast"
 import useTransactionToast from "@hooks/useTransactionToast"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useState, useCallback, useEffect } from "react"
@@ -11,6 +12,7 @@ import { PoolURL, TabOptionProps, tabOptions } from "."
 const useDeposit = (pool: PoolURL) => {
     const { scCaller, account } = useWalletContext()
     const qc = useQueryClient()
+    const toast = useChakraToast()
 
     const sipherPrice = useSipherPrice()
     const lpUniswapPrice = useLpUniswapPrice()
@@ -26,6 +28,8 @@ const useDeposit = (pool: PoolURL) => {
 
     const [approvalModal, setApprovalModal] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+
+    const [approveError, setApproveError] = useState(false)
 
     useEffect(() => {
         if (mode === "Flexible") {
@@ -120,6 +124,10 @@ const useDeposit = (pool: PoolURL) => {
         {
             enabled: !!scCaller.current && !!account,
             initialData: false,
+            onError: () => {
+                toast({ title: "Cannot get approve status", status: "error", message: "Please try again later!" })
+                setApproveError(true)
+            },
         }
     )
     const { mutate: approve, isLoading: isApproving } = useMutation(
@@ -140,9 +148,11 @@ const useDeposit = (pool: PoolURL) => {
         }
     )
 
-    const isStakable = !isApproved
-        ? true
-        : !(sipherValue === "" || parseFloat(sipherValue) <= 0 || parseFloat(sipherValue) > balance)
+    const isStakable =
+        !approveError &&
+        (!isApproved
+            ? true
+            : !(sipherValue === "" || parseFloat(sipherValue) <= 0 || parseFloat(sipherValue) > balance))
 
     const handleStake = () => {
         if (isApproved && isStakable) {
