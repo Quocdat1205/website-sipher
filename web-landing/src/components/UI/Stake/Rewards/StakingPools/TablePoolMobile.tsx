@@ -11,9 +11,15 @@ const TablePoolMobile = ({ poolData }: TablePoolsProps) => {
                     <Text fontWeight="semibold">Pool</Text>
                     <Flex align="center">
                         <Flex align="center" w="2rem">
-                            <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                            <Img src="/images/icons/sipher.png" boxSize="1.5rem" alt="sipher-token" />
                             {poolData.isUniswap && (
-                                <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
+                                <Img
+                                    pos="relative"
+                                    left="-0.75rem"
+                                    src="/images/icons/eth.png"
+                                    boxSize="1.5rem"
+                                    alt="eth"
+                                />
                             )}
                         </Flex>
                         <Text ml={poolData.isUniswap ? 4 : 2}>{poolData.poolName}</Text>

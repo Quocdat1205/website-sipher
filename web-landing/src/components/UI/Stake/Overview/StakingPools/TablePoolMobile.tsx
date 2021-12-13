@@ -34,7 +34,7 @@ const TablePoolMobile = ({
                         <Text fontWeight="semibold">Pool</Text>
                         <Flex align="center">
                             <Flex align="center" w="2rem">
-                                <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                <Img alt="sipher-token" src="/images/icons/sipher.png" boxSize="1.5rem" />
                                 {isUniswap && (
                                     <Img pos="relative" boxSize="1.5rem" left="-0.75rem" src="/images/icons/eth.png" />
                                 )}

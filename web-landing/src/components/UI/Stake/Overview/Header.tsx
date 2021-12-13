@@ -40,7 +40,7 @@ const Header = ({ totalStaked, totalClaimed }: HeaderProps) => {
                         fontWeight="semibold"
                         fontSize="sm"
                     >
-                        Watch the how to stake video (30s)
+                        Watch the how to stake video
                     </Link>
                     <AiFillPlayCircle />
                     <VideoModal isOpen={isOpen} setIsOpen={setIsOpen} />

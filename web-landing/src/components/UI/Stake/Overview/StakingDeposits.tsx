@@ -50,6 +50,7 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                         <Flex align="center">
                                             <Flex align="center" w="3rem" flexShrink={0}>
                                                 <Img
+                                                    alt="sipher-token"
                                                     src="/images/icons/sipher.png"
                                                     boxSize="1.5rem"
                                                     zIndex={2}
@@ -128,6 +129,7 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                 <Flex align="center">
                                     <Flex align="center" w="2rem" flexShrink={0}>
                                         <Img
+                                            alt="sipher-token"
                                             src="/images/icons/sipher.png"
                                             boxSize="1.5rem"
                                             zIndex={2}
