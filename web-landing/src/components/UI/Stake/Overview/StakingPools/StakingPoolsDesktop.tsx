@@ -18,7 +18,7 @@ const StakingPoolsDesktop = ({ children }: StakingPoolsProps) => {
                             Pool
                         </Text>
                         <Text fontWeight="semibold" w="23%" textAlign="right" pr={8} fontSize={"sm"}>
-                            Stake TVL
+                            Staked TVL
                         </Text>
                         <Text fontWeight="semibold" w="20%" pl={8} fontSize={"sm"}>
                             APR
