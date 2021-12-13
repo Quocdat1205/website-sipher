@@ -98,7 +98,7 @@ const StakingPoolTableDesktop = ({
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
-                            <Text fontSize="md">TVL</Text>
+                            <Text fontSize="md">Pool TVL</Text>
                             <Text fontWeight="semibold" fontSize="md">
                                 ${currency(TVL)}
                             </Text>
