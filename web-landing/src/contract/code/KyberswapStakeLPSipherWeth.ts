@@ -1,10 +1,12 @@
-export const KyberswapStakeLPSipherWethAddress = "0x68010d6329CFa68C25a3A07199C296B330a9E9b5"
+// * CHANGED TO MAINNET
+
+export const KyberswapStakeLPSipherWethAddress = "0x7AD1AA614094bBD85DD2a03e7c791c348f81793b"
 
 export const KyberswapStakeLPSipherWethAbi: any = [
     {
         inputs: [
-            { internalType: "string", name: "_name", type: "string" },
-            { internalType: "string", name: "_symbol", type: "string" },
+            { internalType: "string", name: "name_", type: "string" },
+            { internalType: "string", name: "symbol_", type: "string" },
         ],
         stateMutability: "nonpayable",
         type: "constructor",
@@ -58,8 +60,8 @@ export const KyberswapStakeLPSipherWethAbi: any = [
     },
     {
         inputs: [
-            { internalType: "address", name: "_from", type: "address" },
-            { internalType: "uint256", name: "_amount", type: "uint256" },
+            { internalType: "address", name: "account", type: "address" },
+            { internalType: "uint256", name: "amount", type: "uint256" },
         ],
         name: "burn",
         outputs: [],
@@ -84,13 +86,6 @@ export const KyberswapStakeLPSipherWethAbi: any = [
         type: "function",
     },
     {
-        inputs: [{ internalType: "uint256", name: "_amount", type: "uint256" }],
-        name: "deposite",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
         inputs: [
             { internalType: "address", name: "spender", type: "address" },
             { internalType: "uint256", name: "addedValue", type: "uint256" },
@@ -101,16 +96,9 @@ export const KyberswapStakeLPSipherWethAbi: any = [
         type: "function",
     },
     {
-        inputs: [],
-        name: "lpKyper",
-        outputs: [{ internalType: "contract IERC20", name: "", type: "address" }],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
         inputs: [
-            { internalType: "address", name: "_receiver", type: "address" },
-            { internalType: "uint256", name: "_amount", type: "uint256" },
+            { internalType: "address", name: "account", type: "address" },
+            { internalType: "uint256", name: "amount", type: "uint256" },
         ],
         name: "mint",
         outputs: [],
