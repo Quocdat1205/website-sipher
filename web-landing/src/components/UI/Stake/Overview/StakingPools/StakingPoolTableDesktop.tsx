@@ -92,28 +92,28 @@ const StakingPoolTableDesktop = ({
                 <Flex p={4}>
                     <Box w="45%" pr={8}>
                         <Flex w="full" justify="space-between" mb={4}>
-                            <Text fontSize="md">Weight</Text>
-                            <Text fontWeight="semibold" fontSize="md">
+                            <Text fontSize="sm">Weight</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 {weight}%
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
-                            <Text fontSize="md">Pool TVL</Text>
-                            <Text fontWeight="semibold" fontSize="md">
+                            <Text fontSize="sm">Pool TVL</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 ${currency(TVL)}
                             </Text>
                         </Flex>
                     </Box>
                     <Box flex={1} pl={8}>
                         <Flex w="full" justify="space-between" mb={4}>
-                            <Text fontSize="md">Pending rewards</Text>
-                            <Text fontWeight="semibold" fontSize="md">
+                            <Text fontSize="sm">Pending rewards</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 {currency(pendingRewards)} $SIPHER
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
-                            <Text fontSize="md">My liquidity</Text>
-                            <Text fontWeight="semibold" fontSize="md">
+                            <Text fontSize="sm">My liquidity</Text>
+                            <Text fontWeight="semibold" fontSize="sm">
                                 {currency(myLiquidity)} {poolName}
                             </Text>
                         </Flex>
