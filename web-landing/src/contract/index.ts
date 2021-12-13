@@ -23,7 +23,8 @@ import { LPSipherWethKyberAddress } from "./code/LPSipherWethKyber"
 import { StakingLPSipherWethKyberAddress } from "./code/StakingLPSipherWethKyber"
 
 export const weiToEther = (balance: string) => {
-    return parseFloat(Web3.utils.fromWei(balance))
+    const actualValue = parseFloat(Web3.utils.fromWei(balance))
+    return actualValue - (actualValue % 0.00000001)
 }
 
 export class ContractCaller {
