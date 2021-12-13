@@ -68,7 +68,7 @@ const StakingPoolTableDesktop = ({
                             <BiChevronUp size="1.2rem" />
                         </Box>
                     </Flex>
-                    <ActionButton text="STAKE" ml={4} onClick={onStake} size="small" w="10rem" />
+                    <ActionButton text="STAKE" ml={4} onClick={onStake} fontSize="sm" w="10rem" />
                 </Flex>
             </Box>
 
@@ -85,34 +85,35 @@ const StakingPoolTableDesktop = ({
                             py={2}
                             fontWeight="normal"
                             letterSpacing="0px"
+                            fontSize="md"
                         />
                     ))}
                 </Stack>
                 <Flex p={4}>
                     <Box w="45%" pr={8}>
                         <Flex w="full" justify="space-between" mb={4}>
-                            <Text fontSize="sm">Weight</Text>
-                            <Text fontWeight="semibold" fontSize="sm">
+                            <Text fontSize="md">Weight</Text>
+                            <Text fontWeight="semibold" fontSize="md">
                                 {weight}%
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
-                            <Text fontSize="sm">TVL</Text>
-                            <Text fontWeight="semibold" fontSize="sm">
+                            <Text fontSize="md">TVL</Text>
+                            <Text fontWeight="semibold" fontSize="md">
                                 ${currency(TVL)}
                             </Text>
                         </Flex>
                     </Box>
                     <Box flex={1} pl={8}>
                         <Flex w="full" justify="space-between" mb={4}>
-                            <Text fontSize="sm">Pending rewards</Text>
-                            <Text fontWeight="semibold" fontSize="sm">
+                            <Text fontSize="md">Pending rewards</Text>
+                            <Text fontWeight="semibold" fontSize="md">
                                 {currency(pendingRewards)} $SIPHER
                             </Text>
                         </Flex>
                         <Flex w="full" justify="space-between">
-                            <Text fontSize="sm">My liquidity</Text>
-                            <Text fontWeight="semibold" fontSize="sm">
+                            <Text fontSize="md">My liquidity</Text>
+                            <Text fontWeight="semibold" fontSize="md">
                                 {currency(myLiquidity)} {poolName}
                             </Text>
                         </Flex>

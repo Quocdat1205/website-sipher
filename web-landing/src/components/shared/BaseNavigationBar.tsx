@@ -40,7 +40,6 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
                     />
                 ))}
             </HStack>
-
             {children}
         </Flex>
     )

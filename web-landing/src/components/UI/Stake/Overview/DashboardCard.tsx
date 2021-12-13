@@ -71,7 +71,7 @@ const DashboardCard = ({
                 <Box w="full" pt={4} borderTop="1px" borderColor="rgba(155,158,157, 0.5)" mt={4}>
                     <ActionButton
                         px={6}
-                        py={4}
+                        py={3}
                         onClick={onClick}
                         text={buttonText}
                         w="full"

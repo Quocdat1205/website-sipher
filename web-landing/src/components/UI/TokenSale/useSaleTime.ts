@@ -2,7 +2,7 @@ import { useQuery } from "react-query"
 import { useEffect, useState } from "react"
 import useWalletContext from "@hooks/web3/useWalletContext"
 
-export type Status = "LOADING" | "NOT_STARTED" | "ONGOING" | "ENDED" | "NOT_CONNECTED" | "ERROR"
+export type Status = "LOADING" | "ENDED" | "NOT_CONNECTED" | "ERROR"
 
 const useSaleTime = () => {
     const { scCaller, account } = useWalletContext()
@@ -35,10 +35,6 @@ const useSaleTime = () => {
         ? "NOT_CONNECTED"
         : isLoadingStartTime || isLoadingEndTime
         ? "LOADING"
-        : now < startTime!
-        ? "NOT_STARTED"
-        : now < endTime!
-        ? "ONGOING"
         : now >= endTime!
         ? "ENDED"
         : "ERROR"

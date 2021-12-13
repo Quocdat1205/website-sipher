@@ -1,6 +1,7 @@
 import React, { useCallback } from "react"
 import { useToast, ToastOptions } from "@chakra-ui/react"
 import { Toast } from "@components/shared"
+import { isMobile } from "react-device-detect"
 
 type UseChakraToastOptions = {
     defaultDuration: number
@@ -21,6 +22,7 @@ export const useChakraToast = ({ defaultDuration }: UseChakraToastOptions = { de
         setTimeout(
             () =>
                 toast({
+                    position: isMobile ? "top" : "bottom",
                     duration,
                     render: () => <Toast status={status} title={title} message={message} />,
                 }),

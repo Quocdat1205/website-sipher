@@ -10,7 +10,6 @@ const PriceBox = () => {
                 bg="rgba(0, 0, 0, 0.9)"
                 rounded="xl"
                 p={4}
-                px={8}
                 flex={1}
                 overflow="hidden"
             >

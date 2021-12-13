@@ -89,7 +89,6 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                             onClick={deposit.onUnlock}
                                             disabled={!deposit.isUnlockable}
                                             isLoading={deposit.isUnlocking}
-                                            size="small"
                                             w="10rem"
                                         />
                                     </chakra.td>
@@ -171,7 +170,6 @@ const StakingDeposits = ({ deposits }: StakingDepositsProps) => {
                                 onClick={deposit.onUnlock}
                                 disabled={!deposit.isUnlockable}
                                 isLoading={deposit.isUnlocking}
-                                size="small"
                                 w="auto"
                             />
                         </VStack>

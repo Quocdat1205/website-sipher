@@ -44,7 +44,7 @@ const FirstScreen = () => {
                         delay: 1.5,
                     }}
                 >
-                    <Box py={[0, 8]}>
+                    <Box py={[0, 4]}>
                         <Text
                             textAlign="center"
                             mb={2}
@@ -64,7 +64,7 @@ const FirstScreen = () => {
                             Thanks so much to our community, partners, backers and contributors.
                         </Text>
                     </Box>
-                    <Box pt={4} pb={[4, 8]}>
+                    <Box pt={4} pb={[4]}>
                         <ActionButton
                             size="large"
                             onClick={() => router.push("/token-sale")}
@@ -77,7 +77,7 @@ const FirstScreen = () => {
                     <Flex w="full" maxW="52rem">
                         <PriceBox />
                     </Flex>
-                    <Flex pt={[2, 12]} flexDir="column" justify="center">
+                    <Flex pt={[2, 8]} flexDir="column" justify="center">
                         <Text
                             textAlign="center"
                             fontWeight="semibold"
@@ -88,7 +88,7 @@ const FirstScreen = () => {
                             EARN STAKING REWARDS WITH SIPHER
                         </Text>
                         <Text textAlign="center" fontWeight="thin" textTransform="unset" fontSize="0.9rem">
-                            $SIPHER Staking begins: 13th of December @ 7:00 AM UTC
+                            $SIPHER Staking begins: 13th of December @ 12:00 PM UTC
                         </Text>
                     </Flex>
                     <Box mt={4}>

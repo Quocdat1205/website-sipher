@@ -33,19 +33,23 @@ const Backers = () => {
                 direction={["column", "row", "row"]}
             >
                 <Box>
-                    <Img src="/images/icons/backers/new_arrington_capital.png" alt="Arrington XP Capital" />
+                    <Img
+                        loading="lazy"
+                        src="/images/icons/backers/new_arrington_capital.png"
+                        alt="Arrington XP Capital"
+                    />
                 </Box>
                 <Box>
-                    <Img src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
+                    <Img loading="lazy" src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
                 </Box>
                 <Box>
-                    <Img src="/images/icons/backers/hashed.png" alt="Hashed" />
+                    <Img loading="lazy" src="/images/icons/backers/hashed.png" alt="Hashed" />
                 </Box>
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={14} my={8}>
                 {smallBackers.map(backer => (
                     <WrapItem key={backer.alt} overflow="hidden" flexBasis={["30%", "auto"]} justifyContent="center">
-                        <Img src={backer.path} alt={backer.alt} />
+                        <Img loading="lazy" src={backer.path} alt={backer.alt} />
                     </WrapItem>
                 ))}
             </Wrap>

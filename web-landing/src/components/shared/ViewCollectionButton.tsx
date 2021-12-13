@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, useOutsideClick, Collapse, Text, VStack } from "@chakra-ui/react"
 import { useRef, useState } from "react"
-import { GradientButton } from "."
+import { ActionButton } from "."
 
 interface SubLinkProps {
     text: string
@@ -40,7 +40,7 @@ export const ViewCollectionButton = ({
     })
     return (
         <Box pos="relative" ref={ref}>
-            <GradientButton
+            <ActionButton
                 text={text}
                 rounded="full"
                 onClick={() => setIsExpanded(!isExpanded)}

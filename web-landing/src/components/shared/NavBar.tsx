@@ -30,7 +30,7 @@ export const aboutMenus = [
 export const stakeMenus = [
     { id: "Overview", path: "/stake/overview" },
     // { id: "Deposit", path: "/stake/deposit" },
-    { id: "Rewards", path: "/stake/rewards" },
+    { id: "Reward", path: "/stake/rewards" },
 ]
 
 export const childMenus = {
@@ -75,7 +75,7 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                 <Flex>
                     <WalletButton />
                     <Grid
-                        ml={4}
+                        ml={[1, 4]}
                         rounded="full"
                         color="white"
                         px={0}

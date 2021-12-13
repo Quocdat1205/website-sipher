@@ -1,6 +1,7 @@
 import { ComponentProps, useCallback } from "react"
 import { useToast } from "@chakra-ui/react"
 import TransactionToast from "@components/shared/TransactionToast"
+import { isMobile } from "react-device-detect"
 
 type UseChakraToastOptions = {
     defaultDuration: number
@@ -22,6 +23,7 @@ export const useTransactionToast = ({ defaultDuration }: UseChakraToastOptions =
         setTimeout(
             () =>
                 toast({
+                    position: isMobile ? "top" : "bottom",
                     duration: duration || defaultDuration,
                     render: () => (
                         <TransactionToast status={status} message={message} onClose={() => toast.closeAll()} />

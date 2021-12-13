@@ -1,16 +1,16 @@
 // * DESCRIPTION:
 
 import { ComponentProps } from "react"
-import { GradientButton } from "."
+import { ActionButton } from "."
 
-interface LinkButtonProps extends ComponentProps<typeof GradientButton> {
+interface LinkButtonProps extends ComponentProps<typeof ActionButton> {
     text: string
     href?: string
-    size?: "large" | "medium"
+    fontSize?: string
 }
 
-export const LinkButton = ({ size = "medium", ...rest }: LinkButtonProps) => {
-    return <GradientButton size={size} rounded="full" as="a" rel="noreferrer" w="fit-content" {...rest} />
+export const LinkButton = ({ fontSize = "medium", ...rest }: LinkButtonProps) => {
+    return <ActionButton fontSize={fontSize} rounded="full" as="a" rel="noreferrer" w="fit-content" {...rest} />
 }
 
 export default LinkButton

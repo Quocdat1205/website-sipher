@@ -14,6 +14,7 @@ const SmartContracts = () => {
             <Stack direction={["column", "column", "row"]} align="center" spacing={8} maxW="72rem" w="full">
                 <Flex align="center" justify="center">
                     <Image
+                        loading="lazy"
                         src="/images/pc/home/bg-sipher.png"
                         alt="sipher-token"
                         w={["full", "full", "50rem", "90rem"]}
