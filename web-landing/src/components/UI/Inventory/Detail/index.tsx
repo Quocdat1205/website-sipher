@@ -1,20 +1,5 @@
 import React from "react"
-import {
-    Box,
-    Flex,
-    Tbody,
-    Tr,
-    Td,
-    Table,
-    Spinner,
-    Text,
-    Image,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalBody,
-    ModalCloseButton,
-} from "@chakra-ui/react"
+import { Box, Flex, Spinner, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 import { NFTRace } from "@@types"
 import Head from "next/head"
 import useInventoryDetail from "./useInventoryDetail"

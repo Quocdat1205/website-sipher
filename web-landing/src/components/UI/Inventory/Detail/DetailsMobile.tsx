@@ -1,6 +1,5 @@
 import { Box, Flex, Image, ModalCloseButton, Table, Tbody, Td, Text, Tr } from "@chakra-ui/react"
-import { MotionBox, MotionFlex } from "@components/shared"
-import { AnimatePresence } from "framer-motion"
+import { MotionFlex } from "@components/shared"
 import React from "react"
 import { DetailsProps } from "./DetailsPC"
 import EmotionChanger from "./EmotionChanger"
