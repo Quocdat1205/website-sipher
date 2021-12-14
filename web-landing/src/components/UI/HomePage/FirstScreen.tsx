@@ -21,7 +21,14 @@ const FirstScreen = () => {
             p={4}
             pt={[16, 16, 4]}
         >
-            <Image alt="banner" src="/images/pc/home/background.png" layout="fill" objectFit="cover" quality={100} />
+            <Image
+                priority
+                alt="banner"
+                src="/images/pc/home/background.png"
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+            />
             <Flex
                 zIndex={1}
                 direction="column"
