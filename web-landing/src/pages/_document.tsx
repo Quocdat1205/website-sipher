@@ -20,7 +20,7 @@ class MyDocument extends Document {
                     <link rel="preload" href="/fonts/MarkPro/MARKPRO-BOLD.OTF" as="font" crossOrigin="" />
                     <link rel="preload" href="/fonts/MarkPro/MARKPRO-MEDIUM.OTF" as="font" crossOrigin="" />
                     <link rel="preload" href="/fonts/MarkPro/MARKPRO-REGULAR.OTF" as="font" crossOrigin="" />
-                    <link rel="preload" href="/fonts/MarkPro/MARKPRO-BOOK.OTF" as="font" crossOrigin="" />
+                    {/* <link rel="preload" href="/fonts/MarkPro/MARKPRO-BOOK.OTF" as="font" crossOrigin="" /> */}
                     {isProduction && (
                         <>
                             <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />

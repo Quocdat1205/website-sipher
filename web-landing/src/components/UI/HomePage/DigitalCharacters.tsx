@@ -1,7 +1,8 @@
-import { Flex, SimpleGrid, chakra, Img, HStack, Text } from "@chakra-ui/react"
+import { Flex, SimpleGrid, chakra, HStack, Text } from "@chakra-ui/react"
 import { GradientOutlineButton, TextContainer, Typo } from "@components/shared"
 import React, { useState } from "react"
 import { charactersNeko, charactersInu, textInu, textNeko } from "@constant/content/characters"
+import Image from "next/image"
 
 const DigitalCharacters = () => {
     const [tab, setTab] = useState(false)
@@ -30,10 +31,10 @@ const DigitalCharacters = () => {
                         onClick={() => setTab(true)}
                     />
                 </HStack>
-                <SimpleGrid justifyContent="center" columns={[2, 4]} spacing="2rem" mt={8} w="full">
+                <SimpleGrid justifyContent="center" columns={[2, 2, 4]} spacing="2rem" mt={8} w="full">
                     {(tab ? charactersNeko : charactersInu).map(character => (
                         <Flex key={character.name} direction="column" align="center">
-                            <Img loading="lazy" src={character.path} alt={character.name} />
+                            <Image width={260} height={300} loading="lazy" src={character.path} alt={character.name} />
                             <Text
                                 w="full"
                                 textAlign="center"

@@ -71,34 +71,9 @@ export const personEmployee: PersonCardProps[] = [
     },
 
     {
-        name: "Quan Van",
-        job: "Frontend Developer",
-        srcImg: "/images/avatars/12.png",
-    },
-    {
-        name: "Vu Le",
-        job: "Full Stack Engineer",
-        srcImg: "/images/avatars/13.png",
-    },
-    {
         name: "Tan Nguyen",
         job: "Full Stack Engineer",
         srcImg: "/images/avatars/14.png",
-    },
-    {
-        name: "Anh La",
-        job: "Full Stack Engineer",
-        srcImg: "/images/avatars/15.png",
-    },
-    {
-        name: "Dat Nguyen",
-        job: "Backend Developer",
-        srcImg: "/images/avatars/16.png",
-    },
-    {
-        name: "Son Huynh",
-        job: "Game Designer",
-        srcImg: "/images/avatars/17.png",
     },
     {
         name: "Thang Nguyen",
@@ -111,24 +86,9 @@ export const personEmployee: PersonCardProps[] = [
         srcImg: "/images/avatars/19.png",
     },
     {
-        name: "Doan Do",
-        job: "Senior Game Engineer",
-        srcImg: "/images/avatars/20.png",
-    },
-    {
-        name: "Duy Tran",
-        job: "Game Engineer",
-        srcImg: "/images/avatars/21.png",
-    },
-    {
         name: "Joel Colon",
         job: "Strategist",
         srcImg: "/images/avatars/7.png",
-    },
-    {
-        name: "Vi Truong",
-        job: "Marketing Support",
-        srcImg: "/images/avatars/23.png",
     },
     {
         name: "Khai Huynh",
@@ -149,71 +109,6 @@ export const personEmployee: PersonCardProps[] = [
         name: "Ashraf Ahmad",
         job: "Deputy Community Manager",
         srcImg: "/images/avatars/26.png",
-    },
-    {
-        name: "Tram Bui",
-        job: "UI & UX Designer",
-        srcImg: "/images/avatars/27.png",
-    },
-    {
-        name: "Ai Nguyen",
-        job: "Technical Artist",
-        srcImg: "/images/avatars/28.png",
-    },
-    {
-        name: "Lam Phung",
-        job: "3D Artist Lead",
-        srcImg: "/images/avatars/29.png",
-    },
-    {
-        name: "Anh Tran",
-        job: "Senior 3D Artist",
-        srcImg: "/images/avatars/31.png",
-    },
-    {
-        name: "Tu Ha",
-        job: "Senior 2D Artist",
-        srcImg: "/images/avatars/32.png",
-    },
-    {
-        name: "Nhat Hoang",
-        job: "Senior 2D Concept Artist",
-        srcImg: "/images/avatars/33.png",
-    },
-    {
-        name: "Duong Nguyen",
-        job: "3D Animator",
-        srcImg: "/images/avatars/34.png",
-    },
-    {
-        name: "Vu Nguyen",
-        job: "Senior Artist",
-        srcImg: "/images/avatars/35.png",
-    },
-    {
-        name: "Khuong Nguyen",
-        job: "Junior 3D Artist",
-        srcImg: "/images/avatars/36.png",
-    },
-    {
-        name: "Manh Nghiem",
-        job: "3D Artist",
-        srcImg: "/images/avatars/37.png",
-    },
-    {
-        name: "Khue Le",
-        job: "Character Concept Artist",
-        srcImg: "/images/avatars/38.png",
-    },
-    {
-        name: "Khoa Bui",
-        job: "Senior 2D Concept Artist",
-        srcImg: "/images/avatars/39.png",
-    },
-    {
-        name: "Hung Nguyen",
-        job: "3D Artist",
-        srcImg: "/images/avatars/40.png",
     },
 ]
 // comment

@@ -1,9 +1,9 @@
-import Detail from "@components/UI/Inventory/Detail"
+import Detail from "@components/UI/Dashboard/Inventory/Detail"
 import InventoryLayout from "@components/UI/InventoryLayout"
 import { ReactElement } from "react"
 
 const InuInventoryDetail = () => {
-    return <Detail race="INU" />
+    return <Detail race="NEKO" />
 }
 
 InuInventoryDetail.getLayout = (page: ReactElement) => {

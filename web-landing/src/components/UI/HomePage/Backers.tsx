@@ -1,7 +1,8 @@
 // * DESCRIPTION:
 
-import { Stack, Img, Wrap, WrapItem, Box } from "@chakra-ui/react"
+import { Stack, Wrap, WrapItem, Box, Img } from "@chakra-ui/react"
 import { TextContainer } from "@components/shared"
+import Image from "next/image"
 
 const smallBackers = [
     { path: "/images/icons/backers/defiance_capital.png", alt: "DeFiance Capital" },
@@ -33,22 +34,36 @@ const Backers = () => {
                 direction={["column", "row", "row"]}
             >
                 <Box>
-                    <Img
+                    <Image
                         loading="lazy"
+                        width={198}
+                        height={79}
                         src="/images/icons/backers/new_arrington_capital.png"
                         alt="Arrington XP Capital"
                     />
                 </Box>
                 <Box>
-                    <Img loading="lazy" src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
+                    <Image
+                        loading="lazy"
+                        width={244}
+                        height={40}
+                        src="/images/icons/backers/new_konvoy.png"
+                        alt="Konvoy Ventures"
+                    />
                 </Box>
                 <Box>
-                    <Img loading="lazy" src="/images/icons/backers/hashed.png" alt="Hashed" />
+                    <Image loading="lazy" width={165} height={42} src="/images/icons/backers/hashed.png" alt="Hashed" />
                 </Box>
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={14} my={8}>
                 {smallBackers.map(backer => (
-                    <WrapItem key={backer.alt} overflow="hidden" flexBasis={["30%", "auto"]} justifyContent="center">
+                    <WrapItem
+                        pos="relative"
+                        key={backer.alt}
+                        overflow="hidden"
+                        flexBasis={["30%", "auto"]}
+                        justifyContent="center"
+                    >
                         <Img loading="lazy" src={backer.path} alt={backer.alt} />
                     </WrapItem>
                 ))}

@@ -1,8 +1,10 @@
 import Metadata from "@components/shared/Metadata"
 import NewsLayout from "@components/UI/NewsLayout"
-import WorldOfSipherUI from "@components/UI/WorldOfSipherPage"
+import dynamic from "next/dynamic"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "./_app"
+
+const DynamicWorldOfSipherUI = dynamic(() => import("@components/UI/WorldOfSipherPage"))
 
 const WordSipherPage: NextPageWithLayout = () => {
     return (
@@ -11,7 +13,7 @@ const WordSipherPage: NextPageWithLayout = () => {
                 title="World Of Sipher | Sipher"
                 description="Learn why we're the next awesome blockchain game you'll play!"
             />
-            <WorldOfSipherUI />
+            <DynamicWorldOfSipherUI />
         </>
     )
 }

@@ -2,6 +2,7 @@
 
 import { Img, Flex, SimpleGrid } from "@chakra-ui/react"
 import { MotionFlex, TextContainer } from "@components/shared"
+import Image from "next/image"
 
 const images = [
     { path: "/images/pc/behind_the_scenes/1.png", alt: "Behind The Scenes 1" },
@@ -37,7 +38,7 @@ const BehindTheScenes = () => {
                                     ease: "easeInOut",
                                 }}
                             >
-                                <Img loading="lazy" src={image.path} alt={image.alt} h="full" w="auto" />
+                                <Image width={318} height={265} loading="lazy" src={image.path} alt={image.alt} />
                             </MotionFlex>
                         </Flex>
                     ))}
