@@ -29,7 +29,7 @@ const Ended = () => {
             transactionToast({ status: "successClaim" })
             qc.invalidateQueries("estimate-received-token")
         },
-        onError: e => {
+        onError: () => {
             transactionToast({ status: "failed" })
         },
     })

@@ -1,10 +1,8 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Flex, Text } from "@chakra-ui/react"
 import { ActionButton, HeaderBackground } from "@components/shared"
 import React from "react"
 
-interface Props {}
-
-const Airdrops = (props: Props) => {
+const Airdrops = () => {
     return (
         <>
             <HeaderBackground title="AIRDROPS" description="Check if your eligible" />

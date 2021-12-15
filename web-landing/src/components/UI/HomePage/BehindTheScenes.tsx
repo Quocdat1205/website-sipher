@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Img, Flex, SimpleGrid } from "@chakra-ui/react"
+import { Flex, SimpleGrid } from "@chakra-ui/react"
 import { MotionFlex, TextContainer } from "@components/shared"
 import Image from "next/image"
 

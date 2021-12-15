@@ -1,4 +1,4 @@
-import { chakra, Flex, HStack, Text } from "@chakra-ui/react"
+import { chakra } from "@chakra-ui/react"
 
 interface TimeCellProps {
     value: number
