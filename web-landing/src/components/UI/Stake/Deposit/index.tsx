@@ -118,7 +118,7 @@ const StakeForm = () => {
                     </Box>
                     <Text fontSize="sm" mb={4} textAlign="justify">
                         Warning: be aware that there are always risks associated with staking contracts. You assume all
-                        responsibility. Staking rewards enter a 12 month vesting period after claiming.
+                        responsibility. Staking rewards enter a 12 month lock-up period after claiming.
                     </Text>
 
                     <ActionButton
