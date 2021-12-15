@@ -1,8 +1,8 @@
 import Metadata from "@components/shared/Metadata"
-import StakeLayout from "@components/UI/StakeLayout"
 import LeaderBoard from "@components/UI/LeaderBoard"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "./_app"
+import LeaderLayout from "@components/UI/LeaderLayout"
 
 const LeaderBoardPage: NextPageWithLayout = () => {
     return (
@@ -13,6 +13,6 @@ const LeaderBoardPage: NextPageWithLayout = () => {
     )
 }
 LeaderBoardPage.getLayout = (page: ReactElement) => {
-    return <StakeLayout>{page}</StakeLayout>
+    return <LeaderLayout>{page}</LeaderLayout>
 }
 export default LeaderBoardPage
