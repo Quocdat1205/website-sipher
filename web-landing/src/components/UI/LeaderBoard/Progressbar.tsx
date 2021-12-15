@@ -1,6 +1,7 @@
 import { Box, chakra, Text } from "@chakra-ui/react"
 import React from "react"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 interface Props {
     value?: number
@@ -13,13 +14,29 @@ const Progressbar = ({ value = 60 }: Props) => {
                 <Box bgGradient="linear(180deg, #FF6795 0%, #FF710B 84.37%)" w={`${value}%`} h="full" rounded="full" />
             </Box>
             <Box pos="absolute" top="17%" left="0" zIndex={2}>
-                <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/money.png" />
+                <motion.div
+                    animate={{
+                        scale: [1, 1.5, 1],
+                    }}
+                >
+                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/money.png" />
+                </motion.div>
                 <Text color="sipher.orange" fontWeight="semibold" fontSize="xs">
                     Holding <chakra.span color="white">$SIPHER</chakra.span>
                 </Text>
             </Box>
             <Box pos="absolute" top="17%" left="calc(50% - 2rem)" zIndex={2}>
-                <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                {value >= 50 ? (
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.5, 1],
+                        }}
+                    >
+                        <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                    </motion.div>
+                ) : (
+                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                )}
                 <Text transform="translateX(-25%)" color="sipher.orange" fontWeight="semibold" fontSize="xs">
                     Top 200:{" "}
                     <chakra.span color="white" fontWeight="normal">
@@ -28,10 +45,30 @@ const Progressbar = ({ value = 60 }: Props) => {
                 </Text>
             </Box>
             <Box pos="absolute" top="17%" left="calc(100% - 4rem)" zIndex={3}>
-                <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                {value === 100 ? (
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.5, 1],
+                        }}
+                    >
+                        <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                    </motion.div>
+                ) : (
+                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                )}
             </Box>
             <Box pos="absolute" top="17%" left="calc(100% - 3rem)" zIndex={2}>
-                <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                {value === 100 ? (
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.5, 1],
+                        }}
+                    >
+                        <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                    </motion.div>
+                ) : (
+                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                )}
                 <Text
                     transform="translateX(-60%)"
                     isTruncated

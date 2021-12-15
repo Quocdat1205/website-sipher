@@ -17,7 +17,7 @@ export const navMenus = [
     { id: "World Of Sipher", path: "/world-of-sipher" },
     { id: "News", path: "/news" },
     { id: "Token Sale", path: "/token-sale" },
-    { id: "LeaderBoard", path: "/leaderboard" },
+    // { id: "LeaderBoard", path: "/leaderboard" },
     { id: "Stake", path: "/stake/overview" },
 ]
 
