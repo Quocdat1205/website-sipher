@@ -19,16 +19,19 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center">
-                        <Text textAlign="center" fontWeight={500} fontSize="2xl">
+                        {/* <Text textAlign="center" fontWeight={500} fontSize="2xl">
                             You are eligible for X $SIPHER Token Airdrop(s)
                         </Text>
                         <Text textAlign="center" mb={8} fontWeight={500} fontSize="2xl">
                             Date of Airdrop: March 01 2022
                         </Text>
-                        <ActionButton w="10rem" text="CLAIM" rounded="full" />
+                        <ActionButton w="10rem" text="CLAIM" rounded="full" /> */}
                         {/* <Text textAlign="center" fontWeight={500} fontSize="2xl">
                             You are not eligible for any Airdrops at this time.
                         </Text> */}
+                        <Text textAlign="center" fontWeight={500} fontSize="2xl">
+                            Coming soon
+                        </Text>
                     </Flex>
                 </Flex>
             </Flex>

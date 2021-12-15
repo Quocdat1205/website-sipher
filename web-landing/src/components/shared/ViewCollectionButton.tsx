@@ -45,7 +45,7 @@ export const ViewCollectionButton = ({
                 rounded="full"
                 onClick={() => setIsExpanded(!isExpanded)}
                 zIndex={2}
-                size={size}
+                fontSize={size}
             />
             <Box pos="absolute" top={"50%"} left={0} w="full">
                 <Collapse in={isExpanded}>
