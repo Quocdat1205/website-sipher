@@ -73,18 +73,76 @@ const NFTList = ({ race }: Props) => {
     }
     if (data && data.pages[0].total == 0) {
         return (
-            <Flex w="full" flex={1} align="center" justify="center">
-                <Flex direction="column" align="center">
-                    <Text textAlign="center" mb={4} fontWeight={500} fontSize="2xl">
-                        You currently have{" "}
-                        <chakra.span fontWeight={500} color="main.yellow">
-                            {"0"}
-                        </chakra.span>{" "}
-                        {race} NFT
-                    </Text>
-                    <ViewCollectionButton />
+            <>
+                <HeaderBackground title="INVENTORY" description="Your NFT Collection" />
+                <Flex
+                    mt={4}
+                    pos="relative"
+                    _before={{
+                        zIndex: 1,
+                        content: `""`,
+                        pos: "absolute",
+                        bottom: "-1px",
+                        left: 0,
+                        w: "full",
+                        h: "4px",
+                        bg: "linear-gradient(270deg, rgba(255, 218, 0, 0) 0%, #FFDA00 55.21%, rgba(252, 209, 31, 0) 100%)",
+                    }}
+                    align="center"
+                    justify="center"
+                    flexDir="column"
+                    w="full"
+                    overflow="hidden"
+                    maxW="64rem"
+                >
+                    <Flex flexDir="row">
+                        {menuRace.map(item => (
+                            <Button
+                                key={item.id}
+                                rounded="none"
+                                pos="relative"
+                                w="8rem"
+                                _focus={{ boxShadow: "none" }}
+                                _hover={{
+                                    bg:
+                                        router.pathname.split("/")[3] === item.path.split("/")[3]
+                                            ? "main.yellow"
+                                            : "black",
+                                }}
+                                _active={{
+                                    bg:
+                                        router.pathname.split("/")[3] === item.path.split("/")[3]
+                                            ? "main.yellow"
+                                            : "black",
+                                }}
+                                bg={router.pathname.split("/")[3] === item.path.split("/")[3] ? "main.yellow" : "black"}
+                                color={
+                                    router.pathname.split("/")[3] === item.path.split("/")[3]
+                                        ? "blackAlpha.800"
+                                        : "rgba(255,255,255,0.6)"
+                                }
+                                onClick={() => router.push(item.path)}
+                            >
+                                <Text fontWeight="semibold" letterSpacing="3px" color="inherit">
+                                    {item.id}
+                                </Text>
+                            </Button>
+                        ))}
+                    </Flex>
                 </Flex>
-            </Flex>
+                <Flex w="full" flex={1} align="center" justify="center">
+                    <Flex direction="column" align="center">
+                        <Text textAlign="center" mb={4} fontWeight={500} fontSize="2xl">
+                            You currently have{" "}
+                            <chakra.span fontWeight={500} color="main.yellow">
+                                {"0"}
+                            </chakra.span>{" "}
+                            {race} NFT
+                        </Text>
+                        <ViewCollectionButton />
+                    </Flex>
+                </Flex>
+            </>
         )
     }
 
@@ -111,14 +169,6 @@ const NFTList = ({ race }: Props) => {
                 overflow="hidden"
                 maxW="64rem"
             >
-                {/* <Flex align="center" justify="center" flexDir="column" w="full" p={4} bg="rgba(0, 0, 0, 0.9)" mb={4}>
-                    <Text mb={2} fontSize="3xl" fontWeight={500} letterSpacing="3px">
-                        INVENTORY
-                    </Text>
-                    <Text textTransform="uppercase" fontSize="md" fontWeight={500} letterSpacing="3px">
-                        Your NFT Collection
-                    </Text>
-                </Flex> */}
                 <Flex flexDir="row">
                     {menuRace.map(item => (
                         <Button
