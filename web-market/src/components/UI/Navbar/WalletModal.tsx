@@ -1,5 +1,4 @@
 import {
-    Img,
     Modal,
     ModalOverlay,
     ModalContent,
@@ -12,6 +11,7 @@ import {
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useRouter } from "next/router"
+import Image from "next/image"
 
 interface WalletCard {
     src: string
@@ -36,8 +36,10 @@ const WalletCard = ({ src, text, onClick }: WalletCard) => {
                 onClick()
             }}
         >
-            <Img src={src} alt={text} boxSize="3rem" mr={4} />
-            <Text fontWeight="semibold">{text}</Text>
+            <Image src={src} alt={text} width={45} height={45} />
+            <Text ml={4} fontWeight="semibold">
+                {text}
+            </Text>
         </Flex>
     )
 }

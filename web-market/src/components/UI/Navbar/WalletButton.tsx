@@ -1,12 +1,15 @@
 import { useOutsideClick } from "@chakra-ui/hooks"
-import { Flex, Text, Box } from "@chakra-ui/layout"
+import { Flex, Text, Box, HStack } from "@chakra-ui/layout"
 import { Collapse } from "@chakra-ui/transition"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useEffect, useRef, useState } from "react"
 import { FaWallet } from "react-icons/fa"
 import { FiChevronDown } from "react-icons/fi"
-import { ActionButton, WalletModal } from "."
 import { useRouter } from "next/router"
+import { ActionButton } from "@components/shared"
+import WalletModal from "./WalletModal"
+import Image from "next/image"
+import { IoWallet } from "react-icons/io5"
 
 export const WalletButton = () => {
     const wallet = useWalletContext()
@@ -32,28 +35,42 @@ export const WalletButton = () => {
             }
         }
     }, [wallet.isActive, router])
-
     return (
         <Box ml={[1, 0]} pos="relative" ref={boxRef}>
             <Box zIndex={2} pos="relative">
                 {!wallet.isActive ? (
                     <ActionButton
-                        text={
-                            wallet.isActive
-                                ? `${wallet.account?.slice(0, 5)}...${wallet.account?.slice(
-                                      wallet.account.length - 5,
-                                      wallet.account.length
-                                  )}`
-                                : "Connect Wallet"
-                        }
-                        rounded="xl"
+                        bg="#F1C44A"
+                        transform="skew(-15deg)"
+                        rounded="unset"
                         onClick={handleClick}
-                        border="1px"
+                        border="3px solid"
                         px={[2, 4]}
-                        borderColor="transparent"
+                        py={1}
+                        borderColor="#E39802"
                         h={"auto"}
                         fontSize={["xx-small", "xs"]}
-                    />
+                    >
+                        {!wallet.isActive && (
+                            <HStack
+                                spacing={2}
+                                transform="skew(15deg)"
+                                justify="center"
+                                align="center"
+                                w="full"
+                                h="full"
+                            >
+                                <Image
+                                    quality={100}
+                                    height={24}
+                                    width={144}
+                                    src="/images/linkWalletText.png"
+                                    alt="link-wallet"
+                                />
+                                <IoWallet color="#433329" size="2rem" />
+                            </HStack>
+                        )}
+                    </ActionButton>
                 ) : (
                     <Flex
                         bg="#131313"

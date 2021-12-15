@@ -4,7 +4,8 @@ import React from "react"
 import { Box, BoxProps, Spinner, Flex, Text } from "@chakra-ui/react"
 
 interface ActionButtonProps extends BoxProps {
-    text: React.ReactNode
+    text?: React.ReactNode
+    children?: React.ReactNode
     isLoading?: boolean
     as?: BoxProps["as"]
     loadingText?: string
@@ -15,6 +16,7 @@ interface ActionButtonProps extends BoxProps {
 }
 
 export const ActionButton = ({
+    children,
     letterSpacing = "2px",
     fontWeight = "bold",
     as = "button",
@@ -55,9 +57,19 @@ export const ActionButton = ({
                         </Text>
                     </Flex>
                 ) : (
-                    <Text letterSpacing={letterSpacing} fontWeight={fontWeight} color="inherit" fontSize={fontSize}>
-                        {text}
-                    </Text>
+                    <>
+                        {text && (
+                            <Text
+                                letterSpacing={letterSpacing}
+                                fontWeight={fontWeight}
+                                color="inherit"
+                                fontSize={fontSize}
+                            >
+                                {text}
+                            </Text>
+                        )}
+                        {children}
+                    </>
                 )}
             </Box>
         </Box>
