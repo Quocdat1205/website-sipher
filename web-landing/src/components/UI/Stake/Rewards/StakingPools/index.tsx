@@ -27,7 +27,7 @@ const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
                         <Flex align="center">
                             <Img alt="sipher-token-icon" mr={1} h="1rem" src="/images/icons/sipher.png" />
                             <Text fontSize="sm">
-                                PRICE <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
+                                <chakra.span fontWeight="semibold">${currency(sipherPrice)}</chakra.span>
                             </Text>
                         </Flex>
                     </Flex>

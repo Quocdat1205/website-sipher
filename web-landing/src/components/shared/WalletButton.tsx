@@ -4,7 +4,6 @@ import { Collapse } from "@chakra-ui/transition"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useEffect, useRef, useState } from "react"
 import { FaWallet } from "react-icons/fa"
-import { BsInboxFill } from "react-icons/bs"
 import { FiChevronDown } from "react-icons/fi"
 import { ActionButton, IconSipher, WalletModal } from "."
 import { useRouter } from "next/router"
@@ -111,19 +110,24 @@ export const WalletButton = () => {
                             align="center"
                             mb={4}
                             cursor="pointer"
-                            px={4}
                             py={2}
                             rounded="lg"
                             bg="#383838"
                             shadow="base"
-                            onClick={() => router.push("/inventory/inu")}
+                            onClick={() => router.push("/dashboard/inventory/inu")}
                             // display={["none", "none", "flex"]}
                         >
-                            <Box color="main.orange" mr={2}>
+                            {/* <Box color="main.orange" mr={2}>
                                 <BsInboxFill size="1.2rem" />
-                            </Box>
-                            <Text fontWeight="semibold" fontSize={["xx-small", "xs"]}>
-                                INVENTORY
+                            </Box> */}
+                            <Text
+                                letterSpacing="2px"
+                                w="full"
+                                textAlign="center"
+                                fontWeight="semibold"
+                                fontSize={["xx-small", "xs"]}
+                            >
+                                DASH BOARD
                             </Text>
                         </Flex>
                         <ActionButton

@@ -49,7 +49,7 @@ const LockedRewards = ({ lockedRewardsData }: LockedRewardsProps) => {
                                 >
                                     <chakra.td p={2}>
                                         <Flex align="center">
-                                            <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                            <Img alt="sipher-token" src="/images/icons/sipher.png" boxSize="1.5rem" />
                                             <Text ml={2} fontSize={"sm"}>
                                                 $SIPHER
                                             </Text>
@@ -106,7 +106,7 @@ const LockedRewards = ({ lockedRewardsData }: LockedRewardsProps) => {
                                     <Flex justify="space-between">
                                         <Text fontWeight="semibold">Token</Text>
                                         <Flex align="center">
-                                            <Img src="/images/icons/sipher.png" boxSize="1.5rem" />
+                                            <Img alt="sipher-token" src="/images/icons/sipher.png" boxSize="1.5rem" />
                                             <Text ml={2}>$SIPHER</Text>
                                         </Flex>
                                     </Flex>

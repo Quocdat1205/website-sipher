@@ -21,7 +21,7 @@ const Rewards = () => {
                         CLAIM YOUR SIPHER REWARDS
                     </Text>
                     <Text fontSize="sm" textAlign={["center", "left"]}>
-                        Staking rewards enter a 12 month vesting period after claiming.
+                        Staking rewards enter a 12 month lock-up period after claiming.
                     </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">

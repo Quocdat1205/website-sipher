@@ -16,7 +16,7 @@ const content = [
         text: "Early access to the game",
     },
     {
-        icon: "./images/icons/genesis_5.png",
+        icon: "/images/icons/genesis_5.png",
         text: "Guildmaster program",
         link: {
             text: "View Guildmaster Program",
@@ -24,7 +24,7 @@ const content = [
         },
     },
     {
-        icon: "./images/icons/genesis_6.png",
+        icon: "/images/icons/genesis_6.png",
         text: "Whitelist fast-track",
         link: {
             text: "Check out other Benefits",

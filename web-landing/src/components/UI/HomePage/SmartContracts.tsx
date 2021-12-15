@@ -1,6 +1,7 @@
-import { Box, Flex, Link, Text, Stack, Image } from "@chakra-ui/react"
+import { Box, Flex, Link, Text, Stack } from "@chakra-ui/react"
 import { AddressContractCopy, Typo } from "@components/shared"
 import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
+import Image from "next/image"
 import React from "react"
 
 const contractData = [
@@ -15,9 +16,10 @@ const SmartContracts = () => {
                 <Flex align="center" justify="center">
                     <Image
                         loading="lazy"
+                        width={750}
+                        height={750}
                         src="/images/pc/home/bg-sipher.png"
                         alt="sipher-token"
-                        w={["full", "full", "50rem", "90rem"]}
                     />
                 </Flex>
                 <Box w="full" p={4}>
@@ -52,7 +54,14 @@ const SmartContracts = () => {
                     </Box>
                     <Box mb={8}>
                         <Flex align="center" fontWeight="semibold" fontSize="lg" mb={2}>
-                            Audit Report by <Image ml={2} h="1.5rem" src="/images/icons/verichains.png" alt="icon" />
+                            <Text mr={2}>Audit Report by</Text>
+                            <Image
+                                loading="lazy"
+                                width={68}
+                                height={24}
+                                src="/images/icons/verichains.png"
+                                alt="icon"
+                            />
                         </Flex>
                         <Text mb={1}>We are determined to achieve maximum security for all that we do at Sipher.</Text>
                         <Text mb={1}>This means that we aim to be transparent in our actions.</Text>

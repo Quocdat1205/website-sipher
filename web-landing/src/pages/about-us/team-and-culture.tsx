@@ -3,6 +3,7 @@ import { ReactElement } from "react"
 import TeamAndCulture from "@components/UI/AboutUsPage/TeamAndCulture"
 import AboutUsLayout from "@components/UI/AboutUsLayout"
 import Metadata from "@components/shared/Metadata"
+
 const AboutUsPage: NextPageWithLayout = () => {
     return (
         <>

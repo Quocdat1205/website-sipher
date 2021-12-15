@@ -32,9 +32,15 @@ export const stakeMenus = [
     { id: "Rewards", path: "/stake/rewards" },
 ]
 
+export const dashboardMenus = [
+    { id: "Inventory", path: "/dashboard/inventory/inu" },
+    { id: "Airdrops", path: "/dashboard/airdrops" },
+]
+
 export const childMenus = {
     aboutMenus,
     stakeMenus,
+    dashboardMenus,
 }
 
 interface NavBarProps {
@@ -92,9 +98,10 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                     <MenuDrawer />
                 </Flex>
             </BaseNavigationBar>
-            {isChildMenu && (menus === "aboutMenus" || (menus === "stakeMenus" && isActive)) && (
-                <ChildMenu menus={childMenus[menus]} />
-            )}
+            {isChildMenu &&
+                (menus === "aboutMenus" || menus === "dashboardMenus" || (menus === "stakeMenus" && isActive)) && (
+                    <ChildMenu menus={childMenus[menus]} />
+                )}
         </Flex>
     )
 }

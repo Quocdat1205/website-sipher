@@ -45,9 +45,21 @@ const StakingPoolTableDesktop = ({
                 <Flex w="full" align="center">
                     <Flex align="center" w="22%">
                         <Flex align="center" pos="relative" w="2rem" flexShrink={0}>
-                            <Img src="/images/icons/sipher.png" boxSize="1.5rem" pos="relative" zIndex={2} />
+                            <Img
+                                alt="sipher-token"
+                                src="/images/icons/sipher.png"
+                                boxSize="1.5rem"
+                                pos="relative"
+                                zIndex={2}
+                            />
                             {isUniswap && (
-                                <Img pos="relative" left="-0.75rem" src="/images/icons/eth.png" boxSize="1.5rem" />
+                                <Img
+                                    alt="eth"
+                                    pos="relative"
+                                    left="-0.75rem"
+                                    src="/images/icons/eth.png"
+                                    boxSize="1.5rem"
+                                />
                             )}
                         </Flex>
                         <Text ml={6} mr={4} fontSize={"sm"}>
