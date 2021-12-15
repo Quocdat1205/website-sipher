@@ -9,6 +9,7 @@ interface Props {
 const TabButton = ({ selected, tabOptions, onChange }: Props) => {
     return (
         <Flex
+            maxW="40rem"
             w="full"
             bg="#131313"
             border="1px"
