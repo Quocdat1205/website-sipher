@@ -41,6 +41,7 @@ export const ActionButton = ({
             shadow="base"
             letterSpacing="1px"
             textAlign="center"
+            pos="relative"
             pointerEvents={disabled ? "none" : "all"}
             overflow="hidden"
             userSelect="none"
