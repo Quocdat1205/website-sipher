@@ -1,6 +1,7 @@
 import { Flex, Box, Text, Img, Stack } from "@chakra-ui/react"
 import { ActionButton } from "@components/shared"
 import { currency } from "@source/utils"
+import Image from "next/image"
 import React from "react"
 
 interface Props {
@@ -40,7 +41,7 @@ const DashboardCard = ({
             overflow="hidden"
         >
             <Stack direction={["row", "row", "column"]} align="center" spacing={4} w="full">
-                <Img src={img} alt={title} h="5rem" />
+                <Image src={img} alt={title} width={80} height={80} />
                 <Flex direction="column" align="center" flex={1} overflow="hidden">
                     <Text lineHeight="1" color="#9B9E9D" fontWeight="semibold">
                         {title}
