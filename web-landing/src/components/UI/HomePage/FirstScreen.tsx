@@ -1,5 +1,5 @@
 import { Flex, Box, Text } from "@chakra-ui/react"
-import { ActionButton, MotionFlex } from "@components/shared"
+import { ActionButton, BoldText, MotionFlex, Typo } from "@components/shared"
 import Title from "@components/shared/Title"
 import { useRouter } from "next/router"
 import PriceBox from "./PriceBox"
@@ -36,62 +36,42 @@ const FirstScreen = () => {
                 <MotionFlex
                     direction="column"
                     align="center"
-                    mt={2}
                     w="full"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{
-                        delay: 1.5,
+                        delay: 1,
+                        duration: 0.25,
                     }}
                 >
-                    <Box py={[0, 4]}>
-                        <Text
-                            textAlign="center"
-                            mb={2}
-                            fontWeight="500"
-                            fontSize={["1.6rem", "2.2rem"]}
-                            letterSpacing="3px"
-                        >
+                    <Box mb={6}>
+                        <Typo.Heading textAlign="center" mb={2} fontSize={["3xl", "4xl", "4xl"]} letterSpacing="3px">
                             THE $SIPHER INITIAL PUBLIC SALE IS OVER
-                        </Text>
-                        <Text
-                            textAlign="center"
-                            fontWeight="semibold"
-                            textTransform="uppercase"
-                            fontSize="0.9rem"
-                            letterSpacing="3px"
-                        >
+                        </Typo.Heading>
+                        <BoldText textAlign="center">
                             Thanks so much to our community, partners, backers and contributors.
-                        </Text>
+                        </BoldText>
                     </Box>
-                    <Box pt={4} pb={[4]}>
+                    <Box mb={6}>
                         <ActionButton
                             size="large"
                             onClick={() => router.push("/token-sale")}
                             cursor="pointer"
                             text="CLAIM $SIPHER TOKEN"
-                            px={12}
+                            px={6}
                             rounded="full"
                         />
                     </Box>
-                    <Flex w="full" maxW="52rem">
+                    <Flex w="full" maxW="52rem" mb={6}>
                         <PriceBox />
                     </Flex>
-                    <Flex pt={[2, 8]} flexDir="column" justify="center">
-                        <Text
-                            textAlign="center"
-                            fontWeight="semibold"
-                            textTransform="uppercase"
-                            fontSize="1rem"
-                            letterSpacing="3px"
-                        >
-                            EARN STAKING REWARDS WITH SIPHER
-                        </Text>
-                        <Text textAlign="center" fontWeight="thin" textTransform="unset" fontSize="0.9rem">
+                    <Flex mb={6} flexDir="column" justify="center">
+                        <BoldText textAlign="center">EARN STAKING REWARDS WITH SIPHER</BoldText>
+                        <Text textAlign="center" fontSize={"sm"}>
                             $SIPHER Staking begins: 13th of December @ 12:00 PM UTC
                         </Text>
                     </Flex>
-                    <Box mt={4}>
+                    <Box>
                         <ActionButton
                             size="small"
                             onClick={() =>

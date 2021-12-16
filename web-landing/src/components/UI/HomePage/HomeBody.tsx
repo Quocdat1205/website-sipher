@@ -1,5 +1,5 @@
 import { Flex, VStack } from "@chakra-ui/react"
-import { BackgroundContainer, LinkButton } from "@components/shared"
+import { ActionButton, BackgroundContainer, LinkButton } from "@components/shared"
 import FirstScreen from "./FirstScreen"
 import SmartContracts from "./SmartContracts"
 import dynamic from "next/dynamic"
@@ -39,7 +39,15 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                     <BehindTheScenes />
                     <JoinTheCommunity />
                 </VStack>
-                <LinkButton size="large" text="Join Our Discord Community" href="https://discord.gg/SIPHERxyz" mt={8} />
+                <ActionButton
+                    size="small"
+                    onClick={() => window.open("https://discord.gg/SIPHERxyz", "_blank")}
+                    cursor="pointer"
+                    text="Join Our Discord Community"
+                    px={6}
+                    rounded="full"
+                    mt={6}
+                />
             </Flex>
         </BackgroundContainer>
     )

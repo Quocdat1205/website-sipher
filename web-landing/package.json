@@ -32,7 +32,6 @@
         "react-markdown": "^7.0.1",
         "react-player": "^2.9.0",
         "react-query": "^3.23.2",
-        "react-timer-hook": "^3.0.5",
         "web3": "^1.6.1"
     },
     "devDependencies": {

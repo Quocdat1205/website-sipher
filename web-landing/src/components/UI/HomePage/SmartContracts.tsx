@@ -48,14 +48,9 @@ const SmartContracts = () => {
                     </Box>
                     <Box mb={8}>
                         <Flex align="center" fontWeight="semibold" fontSize="lg" mb={2}>
-                            <Text mr={2}>Audit Report by</Text>
-                            <Image
-                                loading="lazy"
-                                width={68}
-                                height={24}
-                                src="/images/icons/verichains.png"
-                                alt="icon"
-                            />
+                            <Text mr={2}>
+                                Audit Report by <Link href="https://www.verichains.io/">VeriChains</Link>
+                            </Text>
                         </Flex>
                         <Text mb={1}>We are determined to achieve maximum security for all that we do at Sipher.</Text>
                         <Text mb={1}>This means that we aim to be transparent in our actions.</Text>

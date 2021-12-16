@@ -67,8 +67,6 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
             w="full"
             zIndex="popover"
             transition="transform 0.25s ease-out"
-            top={0}
-            // top={isUp ? "0" : "-7.2rem"}
             transform={`translateY(${isUp ? "0" : "-100%"})`}
             sx={{
                 ".childmenu::-webkit-scrollbar": {

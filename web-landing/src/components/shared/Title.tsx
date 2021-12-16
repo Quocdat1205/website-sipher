@@ -23,7 +23,7 @@ const Letter = ({ char, control, custom }: LetterProps) => {
             initial="hidden"
             variants={letterVariants}
             animate={control}
-            fontSize={["2rem", "3rem", "5rem"]}
+            fontSize={["3rem", "4rem", "5rem"]}
             fontFamily="Brandon"
             fontWeight={900}
             mb={0}
@@ -45,7 +45,7 @@ const Title = ({ text, custom = 0, ...rest }: TitleProps) => {
     useEffect(() => {
         controls.start(i => ({
             ...letterVariants.visible,
-            transition: { delay: i * 0.25 + 0.5, duration: 0.35, ease: "easeOut" },
+            transition: { delay: i * 0.25 + 0.5, duration: 0.25, ease: "easeOut" },
         }))
     }, [controls])
     const word1 = text.split(" ")[0]
