@@ -19,6 +19,10 @@ import { ContractCaller } from "@source/contract"
 import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
 import useChakraToast from "@hooks/useChakraToast"
 
+//test gnosis
+import { useSafeAppConnection, SafeAppConnector } from "@gnosis.pm/safe-apps-web3-react"
+const safeMultisigConnector = typeof window !== "undefined" ? new SafeAppConnector() : undefined
+
 declare global {
     interface Window {
         ethereum: any
@@ -37,6 +41,20 @@ const useWallet = () => {
     const chain = useMemo(() => (chainId ? getChain(chainId) : null), [chainId])
 
     const scCaller = useRef<ContractCaller | null>(null)
+
+    //test gnosis
+    const triedToConnectToSafe = useSafeAppConnection(safeMultisigConnector)
+
+    const getProviderGnosis = async () => {
+        console.log(await safeMultisigConnector!.getAccount())
+    }
+
+    useEffect(() => {
+        if (triedToConnectToSafe) {
+            console.log(triedToConnectToSafe) // true
+        }
+        getProviderGnosis()
+    }, [triedToConnectToSafe])
 
     const reset = useCallback(() => {
         ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
