@@ -3,9 +3,7 @@ import useWalletContext from "@hooks/web3/useWalletContext"
 import React from "react"
 import Progressbar from "./Progressbar"
 
-interface Props {}
-
-const UserRank = (props: Props) => {
+const UserRank = () => {
     const { account } = useWalletContext()
 
     return (

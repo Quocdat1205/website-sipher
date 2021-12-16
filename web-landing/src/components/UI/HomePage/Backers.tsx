@@ -35,7 +35,6 @@ const Backers = () => {
             >
                 <Box>
                     <Image
-                        loading="lazy"
                         width={198}
                         height={79}
                         src="/images/icons/backers/new_arrington_capital.png"
@@ -43,16 +42,10 @@ const Backers = () => {
                     />
                 </Box>
                 <Box>
-                    <Image
-                        loading="lazy"
-                        width={244}
-                        height={40}
-                        src="/images/icons/backers/new_konvoy.png"
-                        alt="Konvoy Ventures"
-                    />
+                    <Image width={244} height={40} src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
                 </Box>
                 <Box>
-                    <Image loading="lazy" width={165} height={42} src="/images/icons/backers/hashed.png" alt="Hashed" />
+                    <Image width={165} height={42} src="/images/icons/backers/hashed.png" alt="Hashed" />
                 </Box>
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={14} my={8}>
@@ -64,7 +57,7 @@ const Backers = () => {
                         flexBasis={["30%", "auto"]}
                         justifyContent="center"
                     >
-                        <Img loading="lazy" src={backer.path} alt={backer.alt} />
+                        <Img src={backer.path} alt={backer.alt} />
                     </WrapItem>
                 ))}
             </Wrap>

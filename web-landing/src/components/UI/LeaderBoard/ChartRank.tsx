@@ -3,12 +3,10 @@ import React, { useState } from "react"
 import { BsSearch } from "react-icons/bs"
 import TabButton from "./TabButton"
 
-interface Props {}
-
 export const tabOptions = ["Top 10", "Top 50", "Top 200"]
 export type TabOptionProps = typeof tabOptions[number]
 
-const ChartRank = (props: Props) => {
+const ChartRank = () => {
     const [selected, setSelected] = useState<TabOptionProps>("Top 10")
 
     return (
@@ -17,7 +15,9 @@ const ChartRank = (props: Props) => {
                 <TabButton selected={selected} tabOptions={tabOptions} onChange={setSelected} />
             </Flex>
             <InputGroup mb={6}>
-                <InputLeftElement py={6} pointerEvents="none" children={<BsSearch size="1.2rem" color="#383838" />} />
+                <InputLeftElement py={6} pointerEvents="none">
+                    <BsSearch size="1.2rem" color="#383838" />
+                </InputLeftElement>
                 <Input
                     _placeholder={{ color: "gray.300" }}
                     py={6}

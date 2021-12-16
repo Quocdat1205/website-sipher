@@ -19,7 +19,7 @@ const Progressbar = ({ value = 60 }: Props) => {
                         scale: [1, 1.5, 1],
                     }}
                 >
-                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/money.png" />
+                    <Image quality={100} width={50} height={50} alt="icon" src="/images/pc/leaderboard/money.png" />
                 </motion.div>
                 <Text color="sipher.orange" fontWeight="semibold" fontSize="xs">
                     Holding <chakra.span color="white">$SIPHER</chakra.span>
@@ -32,10 +32,10 @@ const Progressbar = ({ value = 60 }: Props) => {
                             scale: [1, 1.5, 1],
                         }}
                     >
-                        <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                        <Image quality={100} width={50} height={50} alt="icon" src="/images/pc/leaderboard/nft.png" />
                     </motion.div>
                 ) : (
-                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                    <Image quality={100} width={50} height={50} alt="icon" src="/images/pc/leaderboard/nft.png" />
                 )}
                 <Text transform="translateX(-25%)" color="sipher.orange" fontWeight="semibold" fontSize="xs">
                     Top 200:{" "}
@@ -51,10 +51,10 @@ const Progressbar = ({ value = 60 }: Props) => {
                             scale: [1, 1.5, 1],
                         }}
                     >
-                        <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                        <Image quality={100} width={50} height={50} alt="icon" src="/images/pc/leaderboard/nft.png" />
                     </motion.div>
                 ) : (
-                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                    <Image quality={100} width={50} height={50} alt="icon" src="/images/pc/leaderboard/nft.png" />
                 )}
             </Box>
             <Box pos="absolute" top="17%" left="calc(100% - 3rem)" zIndex={2}>
@@ -64,10 +64,10 @@ const Progressbar = ({ value = 60 }: Props) => {
                             scale: [1, 1.5, 1],
                         }}
                     >
-                        <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                        <Image quality={100} width={50} height={50} alt="icon" src="/images/pc/leaderboard/nft.png" />
                     </motion.div>
                 ) : (
-                    <Image quality={100} width={50} height={50} src="/images/pc/leaderboard/nft.png" />
+                    <Image quality={100} width={50} height={50} alt="icon" src="/images/pc/leaderboard/nft.png" />
                 )}
                 <Text
                     transform="translateX(-60%)"

@@ -36,7 +36,7 @@ const WalletCard = ({ src, text, onClick }: WalletCard) => {
                 onClick()
             }}
         >
-            <Img src={src} alt={text} boxSize="3rem" mr={4} />
+            <Img src={src} alt={text} boxSize="3rem" mr={8} />
             <Text fontWeight="semibold">{text}</Text>
         </Flex>
     )
@@ -71,7 +71,7 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                         <WalletCard
                             src="/images/icons/wallet/trezor.png"
                             text="For Trezor Wallet User Only"
-                            onClick={() => router.push("https://trezorwallet.sipher.xyz/token-sale")}
+                            onClick={() => router.push("https://trezorwallet.sipher.xyz/stake/overview")}
                         />
                     </Stack>
                 </ModalBody>

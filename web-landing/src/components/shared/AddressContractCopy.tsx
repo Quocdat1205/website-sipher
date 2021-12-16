@@ -12,7 +12,7 @@ export const AddressContractCopy = () => {
     }
 
     return (
-        <Stack overflow="hidden" spacing={2} align="center" direction={["row"]}>
+        <Stack overflow="hidden" spacing={2} align="center" direction="row">
             <Text w="auto" isTruncated fontSize="sm">
                 {SipherTokenAddress}
             </Text>

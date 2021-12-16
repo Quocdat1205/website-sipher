@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, chakra, HStack, Text } from "@chakra-ui/react"
-import { GradientOutlineButton, TextContainer, Typo } from "@components/shared"
+import { BoldText, GradientOutlineButton, TextContainer, Typo } from "@components/shared"
 import React, { useState } from "react"
 import { charactersNeko, charactersInu, textInu, textNeko } from "@constant/content/characters"
 import Image from "next/image"
@@ -34,31 +34,16 @@ const DigitalCharacters = () => {
                 <SimpleGrid justifyContent="center" columns={[2, 2, 4]} spacing="2rem" mt={8} w="full">
                     {(tab ? charactersNeko : charactersInu).map(character => (
                         <Flex key={character.name} direction="column" align="center">
-                            <Image priority width={260} height={300} src={character.path} alt={character.name} />
-                            <Text
-                                w="full"
-                                textAlign="center"
-                                textTransform="uppercase"
-                                mt={4}
-                                fontWeight="semibold"
-                                fontSize="lg"
-                                letterSpacing="3px"
-                            >
+                            <Image width={260} height={300} src={character.path} alt={character.name} />
+                            <BoldText w="full" textAlign="center" mt={4}>
                                 {character.name}
-                            </Text>
+                            </BoldText>
                         </Flex>
                     ))}
                 </SimpleGrid>
-                <Typo.BoldText
-                    textAlign="center"
-                    mt={8}
-                    fontWeight="semibold"
-                    fontSize="lg"
-                    letterSpacing="3px"
-                    textTransform="uppercase"
-                >
+                <BoldText textAlign="center" mt={8}>
                     {tab ? textNeko : textInu}
-                </Typo.BoldText>
+                </BoldText>
             </TextContainer>
         </Flex>
     )

@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { Flex, FlexProps, Text } from "@chakra-ui/layout"
-import { Typo } from "@components/shared"
-import React from "react"
+import { BoldText } from "@components/shared"
 
 interface BenefitTagProps extends FlexProps {
     icon: string
@@ -15,10 +14,10 @@ interface BenefitTagProps extends FlexProps {
 const BenefitTag = ({ icon, text, link, ...rest }: BenefitTagProps) => {
     return (
         <Flex flex="1 1 10rem" px="4" flexDir="column" align="center" {...rest}>
-            <Image priority width={56} height={56} src={icon} alt={text} />
-            <Typo.BoldText textAlign="center" mt="4" textTransform="uppercase">
+            <Image width={56} height={56} src={icon} alt={text} />
+            <BoldText textAlign="center" mt="4">
                 {text}
-            </Typo.BoldText>
+            </BoldText>
             {link && (
                 <Text
                     letterSpacing="1px"

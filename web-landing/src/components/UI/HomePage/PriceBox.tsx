@@ -1,10 +1,9 @@
-import { Text, Flex, Img } from "@chakra-ui/react"
+import { Text, Flex, Img, Stack } from "@chakra-ui/react"
 
 const PriceBox = () => {
     return (
-        <Flex direction={["column", "row", "row"]} my={2} justify="space-between" w="full">
+        <Stack direction={["column", "row"]} spacing={4} w="full">
             <Flex
-                maxH="640px"
                 align="center"
                 direction="column"
                 bg="rgba(0, 0, 0, 0.9)"
@@ -22,14 +21,11 @@ const PriceBox = () => {
                 </Flex>
             </Flex>
             <Flex
-                mt={[4, 0, 0]}
-                ml={[0, 4, 4]}
                 align="center"
                 direction="column"
                 bg="rgba(0, 0, 0, 0.9)"
                 rounded="xl"
                 p={4}
-                px={8}
                 flex={1}
                 overflow="hidden"
             >
@@ -42,14 +38,11 @@ const PriceBox = () => {
                 </Flex>
             </Flex>
             <Flex
-                mt={[4, 0, 0]}
-                ml={[0, 4, 4]}
                 align="center"
                 direction="column"
                 bg="rgba(0, 0, 0, 0.9)"
                 rounded="xl"
                 p={4}
-                px={8}
                 flex={[1]}
                 overflow="hidden"
             >
@@ -59,9 +52,8 @@ const PriceBox = () => {
                         13,159
                     </Text>
                 </Flex>
-                <Text color="#828282" h={"1rem"}></Text>
             </Flex>
-        </Flex>
+        </Stack>
     )
 }
 

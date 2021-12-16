@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start -p 1112",
+        "start": "next start -p 9998",
         "lint": "next lint"
     },
     "dependencies": {
@@ -32,7 +32,6 @@
         "react-markdown": "^7.0.1",
         "react-player": "^2.9.0",
         "react-query": "^3.23.2",
-        "react-timer-hook": "^3.0.5",
         "web3": "^1.6.1"
     },
     "devDependencies": {

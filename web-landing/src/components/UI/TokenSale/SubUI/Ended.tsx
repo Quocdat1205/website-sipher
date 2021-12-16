@@ -46,7 +46,7 @@ const Ended = () => {
             bgSize="cover"
             bgPosition="center"
         >
-            <Flex pt={24} pb={16} flexDir="column" h="100vh" maxH="1080px" justify="center" align="center">
+            <Flex pt={24} pb={16} flexDir="column" minH="100vh" maxH="1080px" justify="center" align="center">
                 <Typo.Heading>$SIPHER INITIAL PUBLIC SALE</Typo.Heading>
                 <Flex
                     direction="column"
