@@ -43,6 +43,9 @@ export const theme = extendTheme({
         border: {
             gray: "#383838",
         },
+        sipher: {
+            orange: "#FF9800",
+        },
     },
     components: {
         Heading: {

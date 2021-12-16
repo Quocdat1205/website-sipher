@@ -5,7 +5,7 @@ import { ReactElement } from "react"
 type HomePageProps = {}
 
 const HomePage = ({}: HomePageProps) => {
-    return <Home />
+    return <Home mode="Characters" />
 }
 
 HomePage.getLayout = (page: ReactElement) => {

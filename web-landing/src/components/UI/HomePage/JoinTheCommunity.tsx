@@ -8,7 +8,7 @@ import Image from "next/image"
 const JoinTheCommunity = () => {
     return (
         <Center pos="relative" w="full" pt={"12rem"} px={4}>
-            <Image alt="banner" src="/images/pc/home/bannerhome.png" layout="fill" objectFit="cover" />
+            <Image priority alt="banner" src="/images/pc/home/bannerhome.png" layout="fill" objectFit="cover" />
             <TextContainer zIndex={1} headline="Join The Community" maxW="64rem">
                 <Typo.BoldText textTransform="uppercase" textAlign="center">
                     Become a part of our community for a drooling perks and exclusive games!

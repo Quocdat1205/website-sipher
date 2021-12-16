@@ -1,26 +1,26 @@
 import React from "react"
-import { Flex, FlexProps, Text } from "@chakra-ui/react"
+import { Box, Flex, FlexProps, Text } from "@chakra-ui/react"
 import { useRouter } from "next/dist/client/router"
+import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md"
 
 interface NavBarLinkProps extends FlexProps {
     onClick?: () => void
     active?: boolean
     text: string
     href?: string
-    isChild?: boolean
     lastChild?: boolean
 }
 
-export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, href, ...rest }: NavBarLinkProps) => {
+export const NavBarLink = ({ onClick, lastChild = false, text, active, href, ...rest }: NavBarLinkProps) => {
     const router = useRouter()
     return (
         <Flex
             onClick={onClick}
-            borderRight={isChild ? (lastChild ? "none" : ["none", "1px"]) : "none"}
-            pr={isChild && !lastChild ? 4 : 0}
-            color="white"
+            // borderRight={lastChild ? "none" : ["none", "1px"]}
+            pr={!lastChild ? 4 : 0}
             pos="relative"
             cursor="pointer"
+            align="center"
             justify="center"
             sx={{
                 "@media (max-width: 480px)": {
@@ -31,19 +31,20 @@ export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, 
             {...rest}
         >
             <Text
-                fontWeight={isChild ? "normal" : "bold"}
+                fontWeight={"bold"}
                 fontSize={["sm"]}
                 textAlign="center"
                 isTruncated
                 onClick={() => href && router.push(href)}
-                textTransform={isChild ? "capitalize" : "uppercase"}
-                letterSpacing={isChild ? "0px" : "3px"}
-                color={active ? "#FF710B" : "white"}
+                textTransform={"uppercase"}
+                letterSpacing={"3px"}
+                color={active ? "white" : "rgba(233, 233, 233, 0.5)"}
                 px={1}
-                py={isChild ? 0 : 1}
+                py={1}
             >
                 {text}
             </Text>
+            <Box>{active ? <MdArrowDropUp size="1.8rem" /> : <MdArrowDropDown size="1.8rem" />}</Box>
         </Flex>
     )
 }

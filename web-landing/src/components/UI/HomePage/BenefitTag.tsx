@@ -15,7 +15,7 @@ interface BenefitTagProps extends FlexProps {
 const BenefitTag = ({ icon, text, link, ...rest }: BenefitTagProps) => {
     return (
         <Flex flex="1 1 10rem" px="4" flexDir="column" align="center" {...rest}>
-            <Image loading="lazy" width={56} height={56} src={icon} alt={text} />
+            <Image priority width={56} height={56} src={icon} alt={text} />
             <Typo.BoldText textAlign="center" mt="4" textTransform="uppercase">
                 {text}
             </Typo.BoldText>
