@@ -5,8 +5,17 @@ import WalletButton from "./WalletButton"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { BsSearch } from "react-icons/bs"
+import { NavBarLink } from "./NavBarLink"
 
 interface NavBarProps {}
+
+const navMenu = [
+    { id: "Characters", path: "/" },
+    { id: "Weapons", path: "/weapons" },
+    { id: "Accessories", path: "/accessories" },
+    { id: "Armor", path: "/armor" },
+    { id: "Other", path: "/other" },
+]
 
 export const NavBar = ({}: NavBarProps) => {
     const router = useRouter()
@@ -14,20 +23,14 @@ export const NavBar = ({}: NavBarProps) => {
     return (
         <Flex
             id="navbar"
-            flexDir="row"
+            flexDir="column"
             position="fixed"
-            align="center"
             pr={8}
             w="full"
-            bgGradient="linear(270deg, #131318 76.69%, rgba(18, 21, 36, 0) 100%)"
+            bgGradient="linear(to bottom, #121524 72.64%, rgba(18, 21, 36, 0) 103.28%)"
             zIndex="popover"
             transition="transform 0.25s ease-out"
             top={0}
-            sx={{
-                ".childmenu::-webkit-scrollbar": {
-                    display: "none",
-                },
-            }}
         >
             <HStack w="full" align="center" justify="space-between" spacing={8}>
                 <Flex mr={4} flexShrink={0} align="center" onClick={() => router.push("/")} cursor="pointer">
@@ -62,6 +65,11 @@ export const NavBar = ({}: NavBarProps) => {
                     />
                 </Flex>
                 <WalletButton />
+            </HStack>
+            <HStack px={8} py={2}>
+                {navMenu.map(item => (
+                    <NavBarLink key={item.id} text={item.id} active={router.pathname[1] === item.path[1]} />
+                ))}
             </HStack>
         </Flex>
     )

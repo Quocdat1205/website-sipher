@@ -13,7 +13,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             <NavBar />
             <Flex pos="relative" flex={1} overflow="overlay" direction="column" id="body">
                 <Image alt="bg-body" src="/images/bg.png" layout="fill" objectFit="cover" />
-                <Flex direction="column" flex={1}>
+                <Flex zIndex={1} justify="center" align="center" direction="column" flex={1}>
                     {children}
                 </Flex>
             </Flex>
