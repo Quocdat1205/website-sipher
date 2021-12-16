@@ -38,7 +38,7 @@ const BehindTheScenes = () => {
                                     ease: "easeInOut",
                                 }}
                             >
-                                <Image width={318} height={265} loading="lazy" src={image.path} alt={image.alt} />
+                                <Image priority width={318} height={265} src={image.path} alt={image.alt} />
                             </MotionFlex>
                         </Flex>
                     ))}

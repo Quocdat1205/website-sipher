@@ -26,7 +26,7 @@ export const HeaderBackground = ({
             direction="column"
             pos="relative"
         >
-            <Image quality={80} alt="bg-header" src={srcImg} layout="fill" objectFit="cover" />
+            <Image priority quality={80} alt="bg-header" src={srcImg} layout="fill" objectFit="cover" />
             {isCoatedBg && (
                 <Box pos="absolute" zIndex="1" content="''" top="0" left="0" w="100%" h="100%" bg="blackAlpha.700" />
             )}

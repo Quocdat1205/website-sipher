@@ -14,13 +14,7 @@ const SmartContracts = () => {
         <Flex justify="center" w="full" pt={16}>
             <Stack direction={["column", "column", "row"]} align="center" spacing={8} maxW="72rem" w="full">
                 <Flex align="center" justify="center">
-                    <Image
-                        loading="lazy"
-                        width={750}
-                        height={750}
-                        src="/images/pc/home/bg-sipher.png"
-                        alt="sipher-token"
-                    />
+                    <Image priority width={750} height={750} src="/images/pc/home/bg-sipher.png" alt="sipher-token" />
                 </Flex>
                 <Box w="full" p={4}>
                     <Typo.Heading isGradient textAlign={["center", "center", "left"]}>

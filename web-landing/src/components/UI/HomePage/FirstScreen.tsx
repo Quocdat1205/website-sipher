@@ -3,7 +3,6 @@ import { ActionButton, MotionFlex } from "@components/shared"
 import Title from "../../shared/Title"
 import { useRouter } from "next/router"
 import PriceBox from "./PriceBox"
-import Image from "next/image"
 
 const FirstScreen = () => {
     const router = useRouter()
@@ -18,17 +17,11 @@ const FirstScreen = () => {
             w="full"
             flexShrink={0}
             pos="relative"
+            bg="url(/images/pc/home/background.png)"
+            bgSize="cover"
             p={4}
             pt={[16, 16, 4]}
         >
-            <Image
-                priority
-                alt="banner"
-                src="/images/pc/home/background.png"
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-            />
             <Flex
                 zIndex={1}
                 direction="column"
