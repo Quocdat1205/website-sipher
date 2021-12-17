@@ -1,7 +1,7 @@
 // * CHANGED TO MAINNET
 
-// export const KyberswapStakeLPSipherWethAddress = "0x7AD1AA614094bBD85DD2a03e7c791c348f81793b" // main
-export const KyberswapStakeLPSipherWethAddress = "0x68010d6329CFa68C25a3A07199C296B330a9E9b5" // test
+export const KyberswapStakeLPSipherWethAddress = "0x7AD1AA614094bBD85DD2a03e7c791c348f81793b" // main
+// export const KyberswapStakeLPSipherWethAddress = "0x68010d6329CFa68C25a3A07199C296B330a9E9b5" // test
 
 export const KyberswapStakeLPSipherWethAbi: any = [
     {

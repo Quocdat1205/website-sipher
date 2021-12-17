@@ -1,7 +1,7 @@
 // * CHANGED TO MAINNET
 
-// export const StakingLPSipherWethKyberAddress = "0xEB3CadDe330a4AA3D627F666aEcdD6F65208B19F" //main
-export const StakingLPSipherWethKyberAddress = "0xc3deBD1d8371E8C3b82DbeAFa325EcDe35b6C2b9" //test
+export const StakingLPSipherWethKyberAddress = "0xEB3CadDe330a4AA3D627F666aEcdD6F65208B19F" //main
+// export const StakingLPSipherWethKyberAddress = "0xc3deBD1d8371E8C3b82DbeAFa325EcDe35b6C2b9" //test
 
 export const StakingLPSipherWethKyberAbi: any = [
     {
