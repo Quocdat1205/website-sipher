@@ -1,6 +1,7 @@
 // * CHANGED TO MAINNET
 
-export const SipherTokenAddress = "0x9F52c8ecbEe10e00D9faaAc5Ee9Ba0fF6550F511"
+// export const SipherTokenAddress = "0x9F52c8ecbEe10e00D9faaAc5Ee9Ba0fF6550F511" // main
+export const SipherTokenAddress = "0x3eD27d895A9069651066726579f90D705aC85963" // test
 
 export const SipherTokenAbi: any = [
     {

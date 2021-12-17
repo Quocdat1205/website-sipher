@@ -30,7 +30,7 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
             <Flex flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
                 <Img src={logoPath} h={["1.5rem", "2rem"]} alt="sipher-logo" />
             </Flex>
-            <HStack mx={6} spacing={[6, 6, 8, 8]} flex={1} justify="center" display={["none", "none", "flex"]}>
+            <HStack mx={6} spacing={[4, 4, 6, 8]} flex={1} justify="center" display={["none", "none", "flex"]}>
                 {menus.map(menu => (
                     <NavBarLink
                         key={menu.id}

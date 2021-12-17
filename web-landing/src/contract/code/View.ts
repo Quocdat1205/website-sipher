@@ -1,6 +1,7 @@
 // * CHANGED TO MAINNET
 
-export const ViewAddress = "0xA8317c540bC1268F98E042a20fE19057E85d6277"
+// export const ViewAddress = "0xA8317c540bC1268F98E042a20fE19057E85d6277" // main
+export const ViewAddress = "0x44fDF534d4710716385E11fb049BbB662874f33B" // test
 
 export const ViewAbi: any = [
     {

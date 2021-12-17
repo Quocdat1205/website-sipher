@@ -12,9 +12,9 @@
         "web-market"
     ],
     "scripts": {
-        "install-landing-page": "yarn build-components && cd web-landing && yarn",
+        "install-landing-page": "cd web-landing && yarn",
         "build-landing-page": "cd web-landing && yarn build",
-        "install-market-page": "yarn build-components && cd web-market && yarn",
+        "install-market-page": "cd web-market && yarn",
         "build-market-page": "cd web-market && yarn build"
     }
 }

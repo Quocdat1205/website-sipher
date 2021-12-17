@@ -1,6 +1,7 @@
 // * CHANGED TO MAINNET
 
-export const StakingLPSipherWethUniswapAddress = "0x5b2D34C26B5eb7388F54a3E8D4bE3Ac24E7616f9"
+// export const StakingLPSipherWethUniswapAddress = "0x5b2D34C26B5eb7388F54a3E8D4bE3Ac24E7616f9" // main
+export const StakingLPSipherWethUniswapAddress = "0xBAC3300E2Bd7F459b8A569574D8110e440fC03d7" // test
 
 export const StakingLPSipherWethUniswapAbi: any = [
     {

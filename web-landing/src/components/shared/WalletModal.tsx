@@ -50,6 +50,7 @@ interface WalletModalProps {
 export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
     const wallet = useWalletContext()
     const router = useRouter()
+
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
             <ModalOverlay />
@@ -72,6 +73,11 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             src="/images/icons/wallet/trezor.png"
                             text="For Trezor Wallet User Only"
                             onClick={() => router.push("https://trezorwallet.sipher.xyz/stake/overview")}
+                        />
+                        <WalletCard
+                            src="/images/icons/wallet/gnosis.png"
+                            text="Gnosis Safe"
+                            onClick={() => wallet.connect("gnosis")}
                         />
                     </Stack>
                 </ModalBody>

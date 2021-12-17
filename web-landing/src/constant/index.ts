@@ -1,4 +1,4 @@
-export const CHAIN_ID = 1
+export const CHAIN_ID = 4
 
 //main
 export const baseURL = "https://be.sipher.xyz/api/sipher/v1.1"

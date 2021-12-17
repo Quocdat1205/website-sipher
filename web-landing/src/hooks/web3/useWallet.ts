@@ -14,15 +14,13 @@ import {
 } from "./utils"
 import Web3 from "web3"
 import { authenticateUser, getUsersByAddress } from "@hooks/api/user"
-import { clearAccessToken, clearSignIn, setAccessToken, getAccessToken } from "@source/utils"
+import { clearAccessToken, clearSignIn, setAccessToken } from "@source/utils"
 import { ContractCaller } from "@source/contract"
-import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
 import useChakraToast from "@hooks/useChakraToast"
+import { SafeAppConnector } from "@gnosis.pm/safe-apps-web3-react"
+import { useSafeAppConnection } from "./useSafeAppConnection"
 
-//test gnosis
-import { useSafeAppConnection, SafeAppConnector } from "@gnosis.pm/safe-apps-web3-react"
 const safeMultisigConnector = typeof window !== "undefined" ? new SafeAppConnector() : undefined
-
 declare global {
     interface Window {
         ethereum: any
@@ -42,22 +40,16 @@ const useWallet = () => {
 
     const scCaller = useRef<ContractCaller | null>(null)
 
-    //test gnosis
-    const triedToConnectToSafe = useSafeAppConnection(safeMultisigConnector)
+    useSafeAppConnection(safeMultisigConnector)
 
-    const getProviderGnosis = async () => {
-        console.log(await safeMultisigConnector!.getAccount())
-    }
-
-    useEffect(() => {
-        if (triedToConnectToSafe) {
-            console.log(triedToConnectToSafe) // true
-        }
-        getProviderGnosis()
-    }, [triedToConnectToSafe])
+    const resetToken = useCallback(() => {
+        clearAccessToken()
+        clearSignIn()
+    }, [])
 
     const reset = useCallback(() => {
-        ;(connectors["walletConnect"].web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
+        // eslint-disable-next-line @typescript-eslint/no-extra-semi
+        ;(connectors["walletConnect"]().web3ReactConnector as WalletConnectConnector).walletConnectProvider = undefined
         if (web3React.active) {
             resetToken()
             web3React.deactivate()
@@ -71,12 +63,7 @@ const useWallet = () => {
         setConnectorName(null)
         setError(null)
         setStatus("disconnected")
-    }, [web3React])
-
-    const resetToken = useCallback(() => {
-        clearAccessToken()
-        clearSignIn()
-    }, [web3React])
+    }, [web3React, resetToken])
 
     // if the user switched networks on the wallet itself
     // return unsupported error.
@@ -98,6 +85,14 @@ const useWallet = () => {
     // connect to wallet
     const connect = useCallback(
         async (connectorId: ConnectorId = "injected") => {
+            if (connectorId === "gnosis") {
+                const isSafe = !!(await safeMultisigConnector?.isSafeApp())
+                if (!isSafe) {
+                    window.open("https://gnosis-safe.io/app", "_blank")
+                    return
+                }
+            }
+
             const id = ++activationId.current
             reset()
 
@@ -105,17 +100,12 @@ const useWallet = () => {
                 return
             }
 
-            // start connecting if nothing went wrong
-            setStatus("connecting")
-
-            const connector = connectors[connectorId]
-
-            // get injected web3 connector
+            const connector = connectors[connectorId]()
             const web3ReactConnector = connector.web3ReactConnector
+            setStatus("connecting")
+            setConnectorName(connectorId)
+
             try {
-                // set connector name to injected
-                setConnectorName(connectorId)
-                // actual connect
                 await web3React.activate(web3ReactConnector, undefined, true)
 
                 // save last connector name to login after refresh
@@ -159,7 +149,7 @@ const useWallet = () => {
                 setError(err)
             }
         },
-        [reset, web3React]
+        [reset, resetToken, toast, web3React]
     )
 
     //** Get accessToken when change emotion */
@@ -188,7 +178,7 @@ const useWallet = () => {
         if (lastActiveAccount && lastConnector === "injected" && !account) {
             connect()
         }
-    }, [connect])
+    }, [connect, account])
 
     const wallet = {
         web3React,

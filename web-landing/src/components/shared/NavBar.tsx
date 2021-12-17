@@ -86,7 +86,7 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                         onClick={() => setSideBarOn(!sidebarOn)}
                         display={"none"}
                         sx={{
-                            "@media (max-width: 1200px)": {
+                            "@media (max-width: 960px)": {
                                 display: "grid",
                             },
                         }}

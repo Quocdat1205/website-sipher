@@ -1,6 +1,7 @@
 // * CHANGED TO MAINNET
 
-export const LPSipherWethKyberAddress = "0x9A56f30fF04884cB06da80cB3aEf09c6132f5E77"
+// export const LPSipherWethKyberAddress = "0x9A56f30fF04884cB06da80cB3aEf09c6132f5E77" // main
+export const LPSipherWethKyberAddress = "0xFbA13B2a525D2B11c6c138a3a31040A663921213" // test
 
 export const LPSipherWethKyberAbi: any = [
     { inputs: [], stateMutability: "nonpayable", type: "constructor" },

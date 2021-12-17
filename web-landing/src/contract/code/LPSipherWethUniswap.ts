@@ -1,6 +1,7 @@
 // * CHANGED TO MAINNET
 
-export const LPSipherWethUniswapAddress = "0xF3fDcfbfdB96315FC628854627BDd5e363b3aDE4"
+// export const LPSipherWethUniswapAddress = "0xF3fDcfbfdB96315FC628854627BDd5e363b3aDE4" // main
+export const LPSipherWethUniswapAddress = "0xDb6b9EcA8786ee46429d5D1c897370eecaE610D8" // test
 
 export const LPSipherWethUniswapAbi: any = [
     { inputs: [], payable: false, stateMutability: "nonpayable", type: "constructor" },

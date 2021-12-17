@@ -127,7 +127,7 @@ export const WalletButton = () => {
                                 fontWeight="semibold"
                                 fontSize={["xx-small", "xs"]}
                             >
-                                DASH BOARD
+                                DASHBOARD
                             </Text>
                         </Flex>
                         <ActionButton

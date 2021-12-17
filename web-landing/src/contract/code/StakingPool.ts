@@ -1,6 +1,7 @@
 // * CHANGED TO MAINNET
 
-export const StakingPoolAddress = "0x7EE4b5dbc4b97C30A08791CE8601E695735960dB"
+// export const StakingPoolAddress = "0x7EE4b5dbc4b97C30A08791CE8601E695735960dB" // main
+export const StakingPoolAddress = "0xdD5Fd97B868c02Bf8044fA441f8e71afa175f85f" // test
 
 export const StakingPoolAbi: any = [
     {
