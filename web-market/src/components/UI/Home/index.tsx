@@ -10,17 +10,19 @@ export interface ModeProps {
 interface HomeProps extends ModeProps {}
 
 const initFilter = {
-    collection: [],
-    type: [],
-    rarity: [],
+    COLLECTION: [],
+    "LISTING TYPE": [],
+    RARITY: [],
 }
 
 export const HomePage = ({ mode }: HomeProps) => {
     const [filter, setFilter] = useState(initFilter)
 
+    const clearFilter = () => setFilter(initFilter)
+
     return (
         <Flex flexDir="row" w="full" h="full" px={8} pb={4} pt={48}>
-            <Sidebar mode={mode} filter={filter} setFilter={setFilter} />
+            <Sidebar mode={mode} filter={filter} setFilter={setFilter} clearFilter={clearFilter} />
             <Mainbar mode={mode} />
         </Flex>
     )

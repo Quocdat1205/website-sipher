@@ -17,6 +17,7 @@ import CustomCheckbox from "./CustomCheckbox"
 interface Props extends ModeProps {
     filter: any
     setFilter: SetStateAction<any>
+    clearFilter: () => void
 }
 
 const dataCheckBox = [
@@ -61,37 +62,43 @@ const dataCheckBox = [
     },
 ]
 
-const Sidebar = ({ mode, filter, setFilter }: Props) => {
+const Sidebar = ({ mode, filter, setFilter, clearFilter }: Props) => {
     const filterSelect = (type, checked, item) => {
         switch (type) {
             case "COLLECTION":
-                const collection = checked ? [...filter.collection, item] : filter.collection.filter(e => e !== item)
-                setFilter({ ...filter, collection: collection })
+                const collection = checked ? [...filter.COLLECTION, item] : filter.COLLECTION.filter(e => e !== item)
+                setFilter({ ...filter, COLLECTION: collection })
                 break
             case "LISTING TYPE":
-                const type = checked ? [...filter.type, item] : filter.type.filter(e => e !== item)
-                setFilter({ ...filter, type: type })
+                const type = checked
+                    ? [...filter["LISTING TYPE"], item]
+                    : filter["LISTING TYPE"].filter(e => e !== item)
+                setFilter({ ...filter, "LISTING TYPE": type })
                 break
             case "RARITY":
-                const rarity = checked ? [...filter.rarity, item] : filter.rarity.filter(e => e !== item)
-                setFilter({ ...filter, rarity: rarity })
+                const rarity = checked ? [...filter.RARITY, item] : filter.RARITY.filter(e => e !== item)
+                setFilter({ ...filter, RARITY: rarity })
                 break
             default:
         }
     }
 
-    console.log(filter)
-
     return (
         <Flex flex={1} h="calc(100vh - 13rem)" flexDir="column" p={2}>
-            <Box rounded="xl" p={4} h="full" maxW="320px" bg="#292A40">
+            <Flex flex={1} flexDir="column" overflow="hidden" rounded="xl" p={4} h="full" maxW="320px" bg="#292A40">
                 <Flex p={4} justify="space-between" align="center">
                     <Text color="#7C7D91">FILTER</Text>
-                    <Button fontWeight="semibold" color="#3D84E6" _focus={{ boxShadow: "none" }} variant="unstyled">
+                    <Button
+                        onClick={clearFilter}
+                        fontWeight="semibold"
+                        color="#3D84E6"
+                        _focus={{ boxShadow: "none" }}
+                        variant="unstyled"
+                    >
                         CLEAR ALL
                     </Button>
                 </Flex>
-                <Box>
+                <Box flex={1} overflow="auto">
                     <Accordion defaultIndex={[0]} allowMultiple>
                         {dataCheckBox.map(item => (
                             <AccordionItem py={4} borderColor="#3E3F53" key={item.title}>
@@ -121,6 +128,7 @@ const Sidebar = ({ mode, filter, setFilter }: Props) => {
                                                         onChange={e =>
                                                             filterSelect(item.title, e.target.checked, checkbox.value)
                                                         }
+                                                        isChecked={filter[item.title].includes(checkbox.value)}
                                                         key={checkbox.id}
                                                         value={checkbox.value}
                                                     >
@@ -135,7 +143,7 @@ const Sidebar = ({ mode, filter, setFilter }: Props) => {
                         ))}
                     </Accordion>
                 </Box>
-            </Box>
+            </Flex>
         </Flex>
     )
 }

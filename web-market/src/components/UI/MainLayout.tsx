@@ -8,19 +8,19 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
     return (
-        <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
+        <Flex h="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
             <NavBar />
             <Flex
                 pos="relative"
                 flex={1}
-                overflow="overlay"
+                overflow="hidden"
                 direction="column"
                 id="body"
                 bg="url(/images/bg.png)"
                 bgSize="cover"
                 bgRepeat="no-repeat"
             >
-                <Flex zIndex={1} justify="center" align="center" direction="column" flex={1}>
+                <Flex overflow="hidden" zIndex={1} justify="center" align="center" direction="column" flex={1}>
                     {children}
                 </Flex>
             </Flex>
