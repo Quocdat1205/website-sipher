@@ -97,7 +97,7 @@ const Sidebar = ({ mode, filter, setFilter }: Props) => {
                             <AccordionItem py={4} borderColor="#3E3F53" key={item.title}>
                                 {({ isExpanded }) => (
                                     <Box>
-                                        <AccordionButton>
+                                        <AccordionButton _focus={{ boxShadow: "none" }}>
                                             <Text
                                                 fontWeight="semibold"
                                                 color={isExpanded ? "white" : "rgba(233, 233, 233, 0.5)"}
