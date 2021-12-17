@@ -74,7 +74,11 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                 },
             }}
         >
-            <BaseNavigationBar logoPath="/images/logonew.svg" menus={navMenus} onLogoClick={() => router.push("/")}>
+            <BaseNavigationBar
+                logoPath="/images/chrismas_logo.svg"
+                menus={navMenus}
+                onLogoClick={() => router.push("/")}
+            >
                 <Flex>
                     <WalletButton />
                     <Grid
