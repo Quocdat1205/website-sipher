@@ -40,35 +40,27 @@ export const WalletButton = () => {
             <Box zIndex={2} pos="relative">
                 {!wallet.isActive ? (
                     <ActionButton
-                        bg="#F1C44A"
-                        transform="skew(-15deg)"
+                        transform="skew(-10deg)"
                         rounded="unset"
                         onClick={handleClick}
-                        border="3px solid"
-                        px={[2, 4]}
-                        py={1}
-                        borderColor="#E39802"
-                        h={"auto"}
+                        w="13rem"
+                        px={[4]}
+                        py={2}
+                        bgGradient="linear(to-r, #FCD11F -4.75%, #DF6767 30.04%, #200B9F 101.81%)"
+                        h={"2.8rem"}
                         fontSize={["xx-small", "xs"]}
                     >
                         {!wallet.isActive && (
                             <HStack
                                 spacing={2}
-                                transform="skew(15deg)"
+                                transform="skew(10deg)"
                                 justify="center"
                                 align="center"
                                 w="full"
                                 h="full"
                             >
-                                <Image
-                                    priority
-                                    quality={100}
-                                    height={24}
-                                    width={144}
-                                    src="/images/linkWalletText.png"
-                                    alt="link-wallet"
-                                />
-                                <IoWallet color="#433329" size="2rem" />
+                                <Text fontWeight="semibold">LINK WALLET</Text>
+                                <IoWallet color="white" size="1.5rem" />
                             </HStack>
                         )}
                     </ActionButton>
