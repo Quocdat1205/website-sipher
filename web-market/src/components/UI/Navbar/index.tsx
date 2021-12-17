@@ -25,52 +25,65 @@ export const NavBar = ({}: NavBarProps) => {
             id="navbar"
             flexDir="column"
             position="fixed"
-            pr={8}
+            px={8}
+            pt={8}
             w="full"
-            bgGradient="linear(to bottom, #121524 72.64%, rgba(18, 21, 36, 0) 103.28%)"
+            bgGradient="linear(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(51, 52, 74, 0) 65%)"
             zIndex="popover"
-            transition="transform 0.25s ease-out"
             top={0}
+            left={0}
         >
-            <HStack w="full" align="center" justify="space-between" spacing={8}>
+            <HStack pb={4} w="full" align="center" justify="space-between" spacing={8}>
                 <Flex mr={4} flexShrink={0} align="center" onClick={() => router.push("/")} cursor="pointer">
-                    <Image priority width={240} height={80} quality={100} src="/images/logo.png" alt="sipher-logo" />
+                    <Image priority width={200} height={40} quality={100} src="/images/logo.svg" alt="sipher-logo" />
                 </Flex>
                 <Flex
+                    flex={1}
+                    py={1}
                     position="relative"
                     align="center"
-                    w="full"
                     border="1px"
                     borderColor="whiteAlpha.200"
-                    transform="skew(-15deg)"
+                    transform="skew(-10deg)"
+                    bg="rgba(0, 0, 0, 0.5)"
+                    overflow="hidden"
                 >
                     <Box
                         pos="absolute"
                         left="1rem"
-                        transform="skew(15deg)"
+                        transform="skew(10deg)"
                         py={6}
                         pointerEvents="none"
-                        children={<BsSearch size="1rem" color="rgba(78, 155, 234, 0.5)" />}
+                        children={<BsSearch size="1rem" color="#93959C" />}
                     />
                     <Input
                         _focus={{ boxShadow: "none" }}
                         pl={12}
                         pr={4}
                         py={4}
-                        transform="skew(15deg)"
+                        transform="skew(10deg)"
                         border="none"
-                        _placeholder={{ color: "rgba(78, 155, 234, 0.5)" }}
+                        _placeholder={{ color: "#93959C" }}
                         borderRadius="none"
                         placeholder="Search for Character"
                     />
                 </Flex>
                 <WalletButton />
             </HStack>
-            <HStack px={8} py={2}>
+            <HStack px={4}>
                 {navMenu.map(item => (
                     <NavBarLink key={item.id} text={item.id} active={router.pathname[1] === item.path[1]} />
                 ))}
             </HStack>
+            <Box
+                pos="absolute"
+                left={0}
+                bottom={0}
+                h="1px"
+                w="50%"
+                m={0}
+                bgGradient="linear(to-r, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 65%)"
+            />
         </Flex>
     )
 }
