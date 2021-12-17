@@ -139,7 +139,7 @@ const useOverview = () => {
                 },
                 {
                     text: "Buy $SIPHER on Kyberswap",
-                    link: `https://kyberswap.com/#/swap?inputCurrency=ETH&outputCurrency=${SipherTokenAddress}`,
+                    link: `https://kyberswap.com/?utm_source=Sipherwebsite&utm_medium=website&utm_campaign=SipherKyberSwap&utm_id=SipherKyberSwap&utm_content=website#/swap?outputCurrency=${SipherTokenAddress}&networkId=1`,
                 },
             ],
         },
@@ -190,7 +190,7 @@ const useOverview = () => {
             detailButtons: [
                 {
                     text: "Buy Kyber SLP $SIPHER-ETH",
-                    link: `https://kyberswap.com/#/farms`,
+                    link: `https://kyberswap.com/?utm_source=Sipherwebsite&utm_medium=website&utm_campaign=SipherKyberSwap&utm_id=SipherKyberSwap&utm_content=website#/swap?outputCurrency=${SipherTokenAddress}&networkId=1`,
                 },
             ],
         },

@@ -61,6 +61,7 @@ export const WalletButton = () => {
                                 h="full"
                             >
                                 <Image
+                                    priority
                                     quality={100}
                                     height={24}
                                     width={144}

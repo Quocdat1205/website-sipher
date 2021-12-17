@@ -34,7 +34,7 @@ export const NavBar = ({}: NavBarProps) => {
         >
             <HStack w="full" align="center" justify="space-between" spacing={8}>
                 <Flex mr={4} flexShrink={0} align="center" onClick={() => router.push("/")} cursor="pointer">
-                    <Image width={240} height={80} quality={100} src="/images/logo.png" alt="sipher-logo" />
+                    <Image priority width={240} height={80} quality={100} src="/images/logo.png" alt="sipher-logo" />
                 </Flex>
                 <Flex
                     position="relative"
