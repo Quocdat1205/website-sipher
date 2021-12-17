@@ -88,6 +88,7 @@ const useWallet = () => {
             if (connectorId === "gnosis") {
                 const isSafe = !!(await safeMultisigConnector?.isSafeApp())
                 if (!isSafe) {
+                    await navigator.clipboard.writeText(window.location.href)
                     window.open("https://gnosis-safe.io/app", "_blank")
                     return
                 }

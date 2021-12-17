@@ -2,10 +2,10 @@
     "short_name": "Sipher",
     "name": "Sipher",
     "description": "Welcome to Sipher",
-    "iconPath": "logo.svg",
+    "iconPath": "/images/general/main_icon.ico",
     "icons": [
         {
-            "src": "favicon.ico",
+            "src": "/images/general/main_icon.ico",
             "sizes": "64x64 32x32 24x24 16x16",
             "type": "image/x-icon"
         },
