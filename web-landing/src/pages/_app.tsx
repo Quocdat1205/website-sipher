@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                                 <link rel="icon" href="/images/general/main_icon.ico" />
                                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                                 <meta name="theme-color" content="#000000" />
-                                <link rel="manifest" href="/manifest.json" />
+                                <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials" />
                                 <meta
                                     name="description"
                                     content="Sipher is a blockchain PvP PvE MOBA game for all age group. All players assets and achievements are NFTs. Exclusive characters launch coming soon!"
