@@ -30,7 +30,7 @@ const Backers = () => {
                 justify="space-between"
                 align="center"
                 px={[8, 0]}
-                spacing={8}
+                spacing={[4, 8]}
                 direction={["column", "row", "row"]}
             >
                 <Box>
@@ -55,7 +55,7 @@ const Backers = () => {
                     <Image quality={90} width={165} height={42} src="/images/icons/backers/hashed.png" alt="Hashed" />
                 </Box>
             </Stack>
-            <Wrap mt={8} justify="space-around" align="center" spacing={14} my={8}>
+            <Wrap mt={8} justify="space-around" align="center" spacing={[7, 14]} my={8}>
                 {smallBackers.map(backer => (
                     <WrapItem
                         pos="relative"
