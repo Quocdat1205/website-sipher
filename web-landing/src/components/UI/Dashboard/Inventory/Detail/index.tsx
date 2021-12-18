@@ -26,7 +26,9 @@ const Detail = ({ race }: PopupProps) => {
                         isOpen={!!id}
                         isCentered={isMobile ? false : true}
                         size="4xl"
-                        onClose={() => router.push(`/inventory/${race.toLowerCase()}`, undefined, { scroll: false })}
+                        onClose={() =>
+                            router.push(`/dashboard/inventory/${race.toLowerCase()}`, undefined, { scroll: false })
+                        }
                     >
                         <ModalOverlay bg="blackAlpha.800" />
                         <ModalContent h={["100%", "auto"]} rounded="none" overflow="hidden" my={["0", "3.75rem"]}>
