@@ -18,9 +18,9 @@ const FirstScreen = () => {
             flexShrink={0}
             pos="relative"
             bg="url(/images/pc/home/background.png)"
-            bgSize={["100%", "cover"]}
+            bgSize={["cover"]}
             bgRepeat="no-repeat"
-            bgPos="100% 20%"
+            bgPos="80% 20%"
             p={4}
             pt={[16, 16, 4]}
         >
