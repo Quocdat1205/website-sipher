@@ -23,18 +23,27 @@ const DigitalCharacters = () => {
                         backgroundColor={tab ? "black" : "transparent"}
                         text="SIPHER INU"
                         onClick={() => setTab(false)}
+                        px={2}
                     />
                     <GradientOutlineButton
                         w="12rem"
                         backgroundColor={tab ? "transparent" : "black"}
                         text="SIPHER NEKO"
                         onClick={() => setTab(true)}
+                        px={2}
                     />
                 </HStack>
                 <SimpleGrid justifyContent="center" columns={[2, 2, 4]} spacing="2rem" mt={8} w="full">
                     {(tab ? charactersNeko : charactersInu).map(character => (
                         <Flex key={character.name} direction="column" align="center">
-                            <Image width={260} height={300} src={character.path} alt={character.name} />
+                            <Image
+                                loading="lazy"
+                                quality={90}
+                                width={260}
+                                height={300}
+                                src={character.path}
+                                alt={character.name}
+                            />
                             <BoldText w="full" textAlign="center" mt={4}>
                                 {character.name}
                             </BoldText>
