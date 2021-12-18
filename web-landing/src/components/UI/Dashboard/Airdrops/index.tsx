@@ -19,19 +19,14 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center">
-                        {/* <Text textAlign="center" fontWeight={500} fontSize="2xl">
-                            You are eligible for X $SIPHER Token Airdrop(s)
+                        <Text mb={4} textAlign="center" fontWeight={500} fontSize="2xl">
+                            You are eligible for X $SIPHER Token(s) Airdrop over a 6 month Vesting Period with each
+                            month getting X/6 starting on March 01 2022.
                         </Text>
-                        <Text textAlign="center" mb={8} fontWeight={500} fontSize="2xl">
-                            Date of Airdrop: March 01 2022
+                        <Text textAlign="center" mb={6} fontWeight={500} fontSize="lg">
+                            Please come back for your first Vested Airdrop of sipher.xyz on: March 01 2022
                         </Text>
-                        <ActionButton w="10rem" text="CLAIM" rounded="full" /> */}
-                        {/* <Text textAlign="center" fontWeight={500} fontSize="2xl">
-                            You are not eligible for any Airdrops at this time.
-                        </Text> */}
-                        <Text textAlign="center" fontWeight={500} fontSize="2xl">
-                            Coming soon
-                        </Text>
+                        <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
                     </Flex>
                 </Flex>
             </Flex>
