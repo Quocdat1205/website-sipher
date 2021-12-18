@@ -14,7 +14,7 @@ interface BenefitTagProps extends FlexProps {
 const BenefitTag = ({ icon, text, link, ...rest }: BenefitTagProps) => {
     return (
         <Flex flex="1 1 10rem" px="4" flexDir="column" align="center" {...rest}>
-            <Image width={56} height={56} src={icon} alt={text} />
+            <Image quality={85} width={56} height={56} src={icon} alt={text} />
             <BoldText textAlign="center" mt="4">
                 {text}
             </BoldText>

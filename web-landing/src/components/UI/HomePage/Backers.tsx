@@ -35,6 +35,7 @@ const Backers = () => {
             >
                 <Box>
                     <Image
+                        quality={90}
                         width={198}
                         height={79}
                         src="/images/icons/backers/new_arrington_capital.png"
@@ -42,10 +43,16 @@ const Backers = () => {
                     />
                 </Box>
                 <Box>
-                    <Image width={244} height={40} src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
+                    <Image
+                        quality={90}
+                        width={244}
+                        height={40}
+                        src="/images/icons/backers/new_konvoy.png"
+                        alt="Konvoy Ventures"
+                    />
                 </Box>
                 <Box>
-                    <Image width={165} height={42} src="/images/icons/backers/hashed.png" alt="Hashed" />
+                    <Image quality={90} width={165} height={42} src="/images/icons/backers/hashed.png" alt="Hashed" />
                 </Box>
             </Stack>
             <Wrap mt={8} justify="space-around" align="center" spacing={14} my={8}>
