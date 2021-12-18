@@ -45,7 +45,7 @@ const Title = ({ text, custom = 0, ...rest }: TitleProps) => {
     useEffect(() => {
         controls.start(i => ({
             ...letterVariants.visible,
-            transition: { delay: i * 0.25 + 0.5, duration: 0.25, ease: "easeOut" },
+            transition: { delay: i * 0.25, duration: 0.25, ease: "easeOut" },
         }))
     }, [controls])
     const word1 = text.split(" ")[0]
