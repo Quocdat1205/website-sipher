@@ -101,9 +101,9 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                 </Flex>
             </BaseNavigationBar>
             {isChildMenu &&
-                (menus === "aboutMenus" || menus === "dashboardMenus" || (menus === "stakeMenus" && isActive)) && (
-                    <ChildMenu menus={childMenus[menus]} />
-                )}
+                (menus === "aboutMenus" ||
+                    (menus === "dashboardMenus" && !router.query.id) ||
+                    (menus === "stakeMenus" && isActive)) && <ChildMenu menus={childMenus[menus]} />}
         </Flex>
     )
 }

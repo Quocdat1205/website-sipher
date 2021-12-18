@@ -1,22 +1,19 @@
 import { VStack } from "@chakra-ui/react"
 import { factionsContent } from "@constant/content/why"
 import FactionCard from "./FactionCard"
-import maximalistTemplars from "../../../../public/images/pc/why/maximalist_templars.png"
-import centurionScholars from "../../../../public/images/pc/why/centurion_scholars.png"
-import shadeBrotherhood from "../../../../public/images/pc/why/shade_brotherhood.png"
 const factionsContents = [
     {
-        image: maximalistTemplars,
+        image: "/images/pc/why/maximalist_templars.png",
         headline: "Maximalist Templars",
         content: factionsContent.maximalistTemplars[0],
     },
     {
-        image: centurionScholars,
+        image: "/images/pc/why/centurion_scholars.png",
         headline: "Centurion Scholars",
         content: factionsContent.centurionScholars[0],
     },
     {
-        image: shadeBrotherhood,
+        image: "/images/pc/why/shade_brotherhood.png",
         headline: "Shade Brotherhood",
         content: factionsContent.shadeBrotherhood[0],
     },

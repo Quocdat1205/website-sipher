@@ -8,7 +8,6 @@ import { FiChevronDown } from "react-icons/fi"
 import { useRouter } from "next/router"
 import { ActionButton } from "@components/shared"
 import WalletModal from "./WalletModal"
-import Image from "next/image"
 import { IoWallet } from "react-icons/io5"
 
 export const WalletButton = () => {

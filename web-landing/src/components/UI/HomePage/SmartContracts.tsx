@@ -1,7 +1,6 @@
-import { Box, Flex, Link, Text, Stack } from "@chakra-ui/react"
+import { Box, Flex, Link, Text, Stack, Image } from "@chakra-ui/react"
 import { AddressContractCopy, Typo } from "@components/shared"
 import { SipherIBCOAddress, SipherTokenAddress } from "@source/contract/code"
-import Image from "next/image"
 import React from "react"
 
 const contractData = [
@@ -14,7 +13,7 @@ const SmartContracts = () => {
         <Flex justify="center" w="full" pt={16}>
             <Stack direction={["column", "column", "row"]} align="center" spacing={8} maxW="72rem" w="full">
                 <Flex align="center" justify="center">
-                    <Image priority width={750} height={750} src="/images/pc/home/bg-sipher.png" alt="sipher-token" />
+                    <Image loading="lazy" w="46rem" src="/images/pc/home/bg-sipher.png" alt="sipher-token" />
                 </Flex>
                 <Box w="full" p={4}>
                     <Typo.Heading isGradient textAlign={["center", "center", "left"]}>

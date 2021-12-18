@@ -3,12 +3,10 @@ import React from "react"
 import StepButton from "./StepButton"
 import { TextContainer, Typo } from "@components/shared"
 import CommunityIcons from "@components/shared/CommunityIcons"
-import Image from "next/image"
 
 const JoinTheCommunity = () => {
     return (
-        <Center pos="relative" w="full" pt={"12rem"} px={4}>
-            <Image priority alt="banner" src="/images/pc/home/bannerhome.png" layout="fill" objectFit="cover" />
+        <Center pos="relative" w="full" pt={"12rem"} px={4} bg="url(/images/pc/home/bannerhome.png)" bgSize="cover">
             <TextContainer zIndex={1} headline="Join The Community" maxW="64rem">
                 <Typo.BoldText textTransform="uppercase" textAlign="center">
                     Become a part of our community for a drooling perks and exclusive games!

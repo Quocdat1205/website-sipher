@@ -8,10 +8,10 @@ import {
     Text,
     Flex,
     Stack,
+    Image,
 } from "@chakra-ui/react"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useRouter } from "next/router"
-import Image from "next/image"
 
 interface WalletCard {
     src: string
@@ -36,7 +36,7 @@ const WalletCard = ({ src, text, onClick }: WalletCard) => {
                 onClick()
             }}
         >
-            <Image src={src} alt={text} width={45} height={45} />
+            <Image loading="lazy" src={src} alt={text} h="2.8rem" />
             <Text ml={4} fontWeight="semibold">
                 {text}
             </Text>

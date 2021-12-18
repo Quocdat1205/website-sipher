@@ -22,3 +22,11 @@ export const authenticateUser = async (address: string, signature: string): Prom
     } = await fetcher.post("/login/authentication", { publicAddress: address, signature })
     return accessToken
 }
+
+//** Get token airdrop */
+export const getAirdrop = async (address: string): Promise<string> => {
+    const {
+        data: { message },
+    } = await fetcher.get(`/airdrop?publicAddress=${address}`)
+    return message.balance
+}

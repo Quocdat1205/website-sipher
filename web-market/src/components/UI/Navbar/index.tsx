@@ -1,8 +1,7 @@
 // * DESCRIPTION:
 
-import { Box, Flex, HStack, Input } from "@chakra-ui/react"
+import { Box, Flex, HStack, Image, Input } from "@chakra-ui/react"
 import WalletButton from "./WalletButton"
-import Image from "next/image"
 import { useRouter } from "next/router"
 import { BsSearch } from "react-icons/bs"
 import { NavBarLink } from "./NavBarLink"
@@ -35,7 +34,7 @@ export const NavBar = ({}: NavBarProps) => {
         >
             <HStack pb={4} w="full" align="center" justify="space-between" spacing={8}>
                 <Flex mr={4} flexShrink={0} align="center" onClick={() => router.push("/")} cursor="pointer">
-                    <Image priority width={200} height={40} quality={100} src="/images/logo.svg" alt="sipher-logo" />
+                    <Image loading="lazy" h="2.5rem" quality={100} src="/images/logo.svg" alt="sipher-logo" />
                 </Flex>
                 <Flex
                     flex={1}
