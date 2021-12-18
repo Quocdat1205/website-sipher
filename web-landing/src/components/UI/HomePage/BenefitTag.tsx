@@ -1,5 +1,5 @@
-import Image from "next/image"
 import { Flex, FlexProps, Text } from "@chakra-ui/layout"
+import { Image } from "@chakra-ui/react"
 import { BoldText } from "@components/shared"
 
 interface BenefitTagProps extends FlexProps {
@@ -14,7 +14,7 @@ interface BenefitTagProps extends FlexProps {
 const BenefitTag = ({ icon, text, link, ...rest }: BenefitTagProps) => {
     return (
         <Flex flex="1 1 10rem" px="4" flexDir="column" align="center" {...rest}>
-            <Image quality={85} width={56} height={56} src={icon} alt={text} />
+            <Image loading="lazy" h="3.5rem" src={icon} alt={text} />
             <BoldText textAlign="center" mt="4">
                 {text}
             </BoldText>

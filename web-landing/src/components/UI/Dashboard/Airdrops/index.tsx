@@ -1,8 +1,17 @@
 import { Flex, Text } from "@chakra-ui/react"
 import { ActionButton, HeaderBackground } from "@components/shared"
+import { getAirdrop } from "@hooks/api"
+import useWallet from "@hooks/web3/useWallet"
 import React from "react"
+import { useQuery } from "react-query"
 
 const Airdrops = () => {
+    const { account } = useWallet()
+
+    const { data } = useQuery(["token", account], () => getAirdrop(account!), {
+        enabled: !!account,
+    })
+
     return (
         <>
             <HeaderBackground title="AIRDROPS" description="Check if your eligible" />
@@ -24,7 +33,7 @@ const Airdrops = () => {
                             month getting X/6 starting on March 01 2022.
                         </Text>
                         <Text textAlign="center" mb={6} fontWeight={500} fontSize="lg">
-                            Please come back for your first Vested Airdrop of sipher.xyz on: March 01 2022
+                            Please come back for your first Vested Airdrop of {data} on: March 01 2022
                         </Text>
                         <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
                     </Flex>

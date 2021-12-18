@@ -1,8 +1,7 @@
 // * DESCRIPTION:
 
-import { Stack, Wrap, WrapItem, Box, Img } from "@chakra-ui/react"
+import { Stack, Wrap, WrapItem, Box, Image } from "@chakra-ui/react"
 import { TextContainer } from "@components/shared"
-import Image from "next/image"
 
 const smallBackers = [
     { path: "/images/icons/backers/defiance_capital.png", alt: "DeFiance Capital" },
@@ -35,21 +34,14 @@ const Backers = () => {
             >
                 <Box>
                     <Image
-                        quality={90}
-                        width={198}
-                        height={79}
+                        loading="lazy"
+                        h="5rem"
                         src="/images/icons/backers/new_arrington_capital.png"
                         alt="Arrington XP Capital"
                     />
                 </Box>
                 <Box>
-                    <Image
-                        quality={90}
-                        width={244}
-                        height={40}
-                        src="/images/icons/backers/new_konvoy.png"
-                        alt="Konvoy Ventures"
-                    />
+                    <Image loading="lazy" h="2.5rem" src="/images/icons/backers/new_konvoy.png" alt="Konvoy Ventures" />
                 </Box>
                 <Box>
                     <Image quality={90} width={165} height={42} src="/images/icons/backers/hashed.png" alt="Hashed" />
@@ -64,7 +56,7 @@ const Backers = () => {
                         flexBasis={["30%", "auto"]}
                         justifyContent="center"
                     >
-                        <Img src={backer.path} alt={backer.alt} />
+                        <Image src={backer.path} alt={backer.alt} />
                     </WrapItem>
                 ))}
             </Wrap>

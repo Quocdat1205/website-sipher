@@ -1,6 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react"
 import { BoldText, Typo } from "."
-import Image from "next/image"
 
 interface HeaderBackgroundProps {
     title: string
@@ -25,8 +24,9 @@ export const HeaderBackground = ({
             px={["1rem", "2rem"]}
             direction="column"
             pos="relative"
+            bg={`url(${srcImg})`}
+            bgSize="cover"
         >
-            <Image priority quality={80} alt="bg-header" src={srcImg} layout="fill" objectFit="cover" />
             {isCoatedBg && (
                 <Box pos="absolute" zIndex="1" content="''" top="0" left="0" w="100%" h="100%" bg="blackAlpha.700" />
             )}
