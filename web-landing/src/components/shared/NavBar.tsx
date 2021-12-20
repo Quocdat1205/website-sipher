@@ -18,7 +18,7 @@ export const navMenus = [
     { id: "News", path: "/news" },
     { id: "Token Sale", path: "/token-sale" },
     // { id: "LeaderBoard", path: "/leaderboard" },
-    { id: "Quest", path: "/quest" },
+    { id: "Quests", path: "/quests" },
     { id: "Stake", path: "/stake/overview" },
 ]
 
