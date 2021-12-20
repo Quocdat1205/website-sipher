@@ -10,6 +10,7 @@ const Airdrops = () => {
 
     const { data } = useQuery(["token", account], () => getAirdrop(account!), {
         enabled: !!account,
+        initialData: "0",
     })
 
     return (
@@ -28,14 +29,31 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center">
-                        <Text mb={4} textAlign="center" fontWeight={500} fontSize="2xl">
-                            You are eligible for X $SIPHER Token(s) Airdrop over a 6 month Vesting Period with each
-                            month getting X/6 starting on March 01 2022.
-                        </Text>
-                        <Text textAlign="center" mb={6} fontWeight={500} fontSize="lg">
-                            Please come back for your first Vested Airdrop of {data} on: March 01 2022
-                        </Text>
-                        <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
+                        {data ? (
+                            data !== "0" ? (
+                                <>
+                                    <Text mb={4} textAlign="center" fontWeight={500} fontSize="2xl">
+                                        You are eligible for X $SIPHER Token(s) Airdrop over a 6 month Vesting Period
+                                        with each month getting X/6 starting on March 01 2022.
+                                    </Text>
+                                    <Text textAlign="center" mb={6} fontWeight={500} fontSize="lg">
+                                        Please come back for your first Vested Airdrop of {data} $SIPHER on March 01
+                                        2022.
+                                    </Text>
+                                    <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
+                                </>
+                            ) : (
+                                <>
+                                    <Text textAlign="center" fontWeight={500} fontSize="2xl">
+                                        You are not eligible for any Airdrops at this time.
+                                    </Text>
+                                </>
+                            )
+                        ) : (
+                            <Text textAlign="center" fontWeight={500} fontSize="2xl">
+                                Something went wrong please try again! (x_x)
+                            </Text>
+                        )}
                     </Flex>
                 </Flex>
             </Flex>
