@@ -2,6 +2,7 @@ import { Flex, Text } from "@chakra-ui/react"
 import { ActionButton, HeaderBackground } from "@components/shared"
 import { getAirdrop } from "@hooks/api"
 import useWallet from "@hooks/web3/useWallet"
+import { currency, floorPrecised } from "@source/utils"
 import React from "react"
 import { useQuery } from "react-query"
 
@@ -33,12 +34,13 @@ const Airdrops = () => {
                             data !== "0" ? (
                                 <>
                                     <Text mb={4} textAlign="center" fontWeight={500} fontSize="2xl">
-                                        You are eligible for X $SIPHER Token(s) Airdrop over a 6 month Vesting Period
-                                        with each month getting X/6 starting on March 01 2022.
+                                        You are eligible for {currency(floorPrecised(data, 2))} $SIPHER Token(s) Airdrop
+                                        over a 6 month Vesting Period with each month getting{" "}
+                                        {currency(floorPrecised(parseFloat(data) / 6, 2))} starting on March 01 2022.
                                     </Text>
                                     <Text textAlign="center" mb={6} fontWeight={500} fontSize="lg">
-                                        Please come back for your first Vested Airdrop of {data} $SIPHER on March 01
-                                        2022.
+                                        Please come back for your first Vested Airdrop of{" "}
+                                        {currency(floorPrecised(parseFloat(data) / 6, 2))} $SIPHER on March 01 2022.
                                     </Text>
                                     <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
                                 </>
