@@ -2,9 +2,7 @@ import { Box, Img } from "@chakra-ui/react"
 import React from "react"
 import { ActionButton } from "."
 
-interface Props {}
-
-export const ContactUs = (props: Props) => {
+export const ContactUs = () => {
     const handleSendMail = () => {
         window.open("mailto:marketing@sipher.xyz")
     }
