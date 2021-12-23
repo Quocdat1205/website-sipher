@@ -16,7 +16,7 @@ const Airdrops = () => {
 
     return (
         <>
-            <HeaderBackground title="AIRDROPS" description="Check if your eligible" />
+            <HeaderBackground title="AIRDROPS" description={`Check if your're eligible`} />
             <Flex
                 mt={4}
                 pos="relative"

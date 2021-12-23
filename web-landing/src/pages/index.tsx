@@ -1,5 +1,5 @@
 import Home from "@components/UI/HomePage"
-import NewsLayout from "@components/UI/NewsLayout"
+import HomeLayout from "@components/UI/HomeLayout"
 import { ReactElement } from "react"
 
 import { NextPageWithLayout } from "./_app"
@@ -13,7 +13,7 @@ const HomePage = ({ uaString }: HomePageProps) => {
 }
 
 HomePage.getLayout = (page: ReactElement) => {
-    return <NewsLayout>{page}</NewsLayout>
+    return <HomeLayout>{page}</HomeLayout>
 }
 
 export default HomePage

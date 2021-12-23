@@ -13,8 +13,6 @@
     ],
     "scripts": {
         "install-landing-page": "cd web-landing && yarn",
-        "build-landing-page": "cd web-landing && yarn build",
-        "install-market-page": "cd web-market && yarn",
-        "build-market-page": "cd web-market && yarn build"
+        "build-landing-page": "cd web-landing && yarn build"
     }
 }
