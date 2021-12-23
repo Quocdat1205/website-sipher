@@ -1,5 +1,5 @@
 import { Flex, VStack } from "@chakra-ui/react"
-import { ActionButton, BackgroundContainer, LinkButton } from "@components/shared"
+import { ActionButton, BackgroundContainer } from "@components/shared"
 import FirstScreen from "./FirstScreen"
 import SmartContracts from "./SmartContracts"
 import dynamic from "next/dynamic"

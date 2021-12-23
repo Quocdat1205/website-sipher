@@ -39,6 +39,7 @@ export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, 
                 textTransform={isChild ? "capitalize" : "uppercase"}
                 letterSpacing={isChild ? "0px" : "3px"}
                 color={text === "Airdrops" ? "#616161" : active ? "#FF710B" : "white"}
+                // color={active ? "#FF710B" : "white"}
                 px={1}
                 py={isChild ? 0 : 1}
             >

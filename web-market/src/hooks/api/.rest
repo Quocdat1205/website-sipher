@@ -1,4 +1,0 @@
-
-###
-GET https://be.sipherion.com/api/sipher/v1.1/smartcontract/check-price
-content-type: "application/json"

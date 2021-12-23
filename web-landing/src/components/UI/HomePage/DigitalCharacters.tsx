@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, chakra, HStack, Image } from "@chakra-ui/react"
-import { BoldText, GradientOutlineButton, TextContainer, Typo } from "@components/shared"
+import { BoldText, GradientOutlineButton, TextContainer } from "@components/shared"
 import React, { useState } from "react"
 import { charactersNeko, charactersInu, textInu, textNeko } from "@constant/content/characters"
 

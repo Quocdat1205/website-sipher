@@ -11,7 +11,6 @@ interface FactionCardProps {
 }
 
 const FactionCard = ({ data: { image, headline, content } }: FactionCardProps) => {
-    console.log(image)
     return (
         <Stack bg="about.cardGray" direction={["column", "row"]} rounded="md" overflow="hidden" spacing={0}>
             <Box flex={1} pos="relative">
