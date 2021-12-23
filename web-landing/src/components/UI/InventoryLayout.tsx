@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/react"
-import { NavBar, Footer } from "@components/shared"
+import { NavBar, Footer, ContactUs } from "@components/shared"
 import { ReactNode } from "react"
 
 interface NewsLayoutProps {
@@ -12,6 +12,7 @@ const InventoryLayout = ({ children }: NewsLayoutProps) => {
     return (
         <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
             <NavBar isChildMenu menus="dashboardMenus" />
+            <ContactUs />
             <Flex
                 flex={1}
                 overflow="overlay"

@@ -8,7 +8,7 @@ export const ContactUs = () => {
     }
 
     return (
-        <Box zIndex="popover">
+        <Box display={["none", "block"]} zIndex="popover">
             <Box zIndex={2} pos="fixed" bottom={0} right={0}>
                 <Img h="6rem" src="/images/contactus.png" alt="contact" />
             </Box>

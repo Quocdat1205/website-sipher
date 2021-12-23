@@ -1,6 +1,6 @@
 // * DESCRIPTION:
 
-import { Flex, Box, Heading, Button, Img } from "@chakra-ui/react"
+import { Flex, Box, Heading, Button } from "@chakra-ui/react"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import React from "react"
 import axios from "axios"
@@ -32,8 +32,6 @@ const Quest = () => {
     const { mutate: logout } = useMutation(() => axios.delete("/api/discord").then(res => res.data), {
         onSuccess: () => qc.invalidateQueries("info"),
     })
-
-    console.log(data)
 
     return (
         <Flex direction="column" align="center" w="full">
