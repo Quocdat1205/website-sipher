@@ -1,7 +1,7 @@
 // * DESCRIPTION:
 
 import { Flex, Grid } from "@chakra-ui/react"
-import { NavBar, Footer, BackgroundContainer, WalletButton, ContactUs } from "@components/shared"
+import { NavBar, Footer, BackgroundContainer, WalletButton } from "@components/shared"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { ReactNode } from "react"
 
@@ -15,7 +15,6 @@ const StakeLayout = ({ children }: StakeLayoutProps) => {
     return (
         <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" bg="#191919">
             <NavBar isChildMenu menus="stakeMenus" />
-            <ContactUs />
             <Flex flex={1} overflow="overlay" direction="column" id="body">
                 <BackgroundContainer
                     pos="relative"
