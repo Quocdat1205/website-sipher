@@ -74,7 +74,7 @@ export const Footer = () => {
             justify="center"
             w="full"
             bg="main.lightGray"
-            pb={4}
+            pb={[4, 12]}
             pt={8}
             direction="column"
             zIndex="overlay"
