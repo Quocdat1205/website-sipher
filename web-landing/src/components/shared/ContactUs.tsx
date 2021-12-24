@@ -21,7 +21,7 @@ export const ContactUs = () => {
                 bottom="1rem"
                 right="3rem"
                 bg="linear-gradient(180deg, rgba(255, 255, 255, 0.2) 52.63%, rgba(255, 255, 255, 0) 52.64%), linear-gradient(276.29deg, #FCD11F -4.75%, #DF6767 30.04%, #200B9F 101.81%)"
-                text="Contract Us"
+                text="Contact Us"
                 pr={6}
             />
         </Box>
