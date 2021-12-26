@@ -30,7 +30,7 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center">
-                        {data === 0 ? (
+                        {data && data !== 0 ? (
                             <>
                                 <Text textAlign="center" fontWeight={500} fontSize="2xl">
                                     You are eligible for
