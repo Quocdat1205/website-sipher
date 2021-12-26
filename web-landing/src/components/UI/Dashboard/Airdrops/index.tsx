@@ -35,8 +35,8 @@ const Airdrops = () => {
                                 <Text textAlign="center" fontWeight={500} fontSize="2xl">
                                     You are eligible for
                                 </Text>
-                                <Box my={4} bg="#F4B533" py={2} px={6} transform="skew(-15deg)">
-                                    <Text fontSize="2xl" fontWeight={500} color="#282B3A" transform="skew(15deg)">
+                                <Box my={4} bg="#F4B533" py={2} px={6} transform="skew(-5deg)">
+                                    <Text fontSize="2xl" fontWeight={500} color="#282B3A" transform="skew(5deg)">
                                         <chakra.span fontWeight={700}>
                                             {currency(floorPrecised(data, 2))} $SIPHER
                                         </chakra.span>{" "}
