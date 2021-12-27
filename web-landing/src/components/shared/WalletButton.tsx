@@ -62,6 +62,7 @@ export const WalletButton = () => {
                         onClick={handleClick}
                         border="1px"
                         px={[2, 4]}
+                        py={[2, 3]}
                         borderColor="transparent"
                         h={"auto"}
                         fontSize={["xx-small", "xs"]}
@@ -75,21 +76,22 @@ export const WalletButton = () => {
                         borderBottomRadius={menu ? "none" : "lg"}
                         align="center"
                         px={[2, 2, 4]}
-                        py={2}
+                        py={[2, 3]}
                         cursor="pointer"
                         onClick={() => setMenu(!menu)}
-                        h={["2.5rem"]}
                     >
-                        <Box color="main.orange" mr={2}>
-                            <FaWallet />
-                        </Box>
                         <Flex flexDir="column" align="flex-end" mr={2}>
-                            <Text fontWeight="semibold" fontSize="xs">
-                                {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
-                                    wallet.account.length - 4,
-                                    wallet.account.length
-                                )}`}
-                            </Text>
+                            <Flex align="center">
+                                <Box color="main.orange" mr={2}>
+                                    <FaWallet />
+                                </Box>
+                                <Text fontWeight="semibold" fontSize="xs">
+                                    {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
+                                        wallet.account.length - 4,
+                                        wallet.account.length
+                                    )}`}
+                                </Text>
+                            </Flex>
                             <Flex align="center">
                                 <Text color="#9B9E9D" fontWeight="semibold" fontSize="x-small" mr={1}>
                                     {currency(balance!)}
@@ -105,7 +107,15 @@ export const WalletButton = () => {
             </Box>
             <Box pos="absolute" w="full" top="0">
                 <Collapse in={menu}>
-                    <Box bg="#131313" border="1px" borderColor="#383838" rounded="lg" px={4} py={4} pt={14}>
+                    <Box
+                        bg="#131313"
+                        border="1px"
+                        borderColor="#383838"
+                        rounded="lg"
+                        px={4}
+                        py={4}
+                        pt={["4.25rem", "4.5rem"]}
+                    >
                         <Flex
                             align="center"
                             mb={4}
