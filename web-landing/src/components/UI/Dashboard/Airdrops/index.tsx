@@ -52,11 +52,11 @@ const Airdrops = () => {
                                     over a 6 month Vesting Period with each month getting
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
-                                    {currency(floorPrecised(data / 6, 2))} $SIPHER starting on March 01 2022.
+                                    {currency(floorPrecised(data! / 6, 2))} $SIPHER starting on March 01 2022.
                                 </Text>
                                 <Text color="#7C7D91" textAlign="center" mb={6} fontWeight={500} fontSize="md">
                                     Please come back for your first Vested Airdrop of{" "}
-                                    {currency(floorPrecised(data / 6, 2))} $SIPHER on March 01 2022.
+                                    {currency(floorPrecised(data! / 6, 2))} $SIPHER on March 01 2022.
                                 </Text>
                                 <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
                             </>
