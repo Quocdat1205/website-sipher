@@ -28,5 +28,5 @@ export const getAirdrop = async (address: string): Promise<number> => {
     const {
         data: { message },
     } = await fetcher.get(`/airdrop?publicAddress=${address}`)
-    return parseFloat(message.balance)
+    return message.balance
 }
