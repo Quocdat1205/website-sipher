@@ -44,7 +44,7 @@ const Airdrops = () => {
                                     </Text>
                                 </Box>
                                 <Text textAlign="center" fontSize="2xl">
-                                    over a 6 month Vesting Period with each month getting{" "}
+                                    over a 6 month Vesting Period with each month getting
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
                                     {!isLoading ? currency(floorPrecised(data / 6, 2)) : "..."} $SIPHER starting on
