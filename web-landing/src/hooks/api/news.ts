@@ -1,13 +1,13 @@
-import fetcher from "./fetcher"
+import fetcher from "./fetcher";
 
 export const getListNews = async (min: number, max: number) => {
-    const { data } = await fetcher.get(`/communication/user?min=${min}&max=${max}`)
+  const { data } = await fetcher.get(`/community/user/posts?min=${min}&max=${max}`);
 
-    return data
-}
+  return data;
+};
 
-export const getDetailsNews = async published => {
-    const { data } = await fetcher.get(`/communication/user-details?published=${published}`)
+export const getDetailsNews = async (published) => {
+  const { data } = await fetcher.get(`/community/user/detail?published=${published}`);
 
-    return data
-}
+  return data;
+};
