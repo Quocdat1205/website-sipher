@@ -4,17 +4,17 @@ import fetcher from "./fetcher";
 
 export const getSipherPrice = async (): Promise<number> => {
   const { data } = await fetcher.get("/price/sipher");
-  return data.message.sipher.usd;
+  return data;
 };
 
 export const getETHPrice = async (): Promise<number> => {
   const { data } = await fetcher.get("price/ether");
-  return data.message.ethereum.usd;
+  return data;
 };
 
 export const getSipherPriceChange = async (): Promise<number> => {
   const { data } = await fetcher.get("/price/sipher/change");
-  return data.message.changingPrice;
+  return data;
 };
 
 export const useSipherPrice = () => {
