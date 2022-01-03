@@ -190,7 +190,7 @@ const useOverview = () => {
             detailButtons: [
                 {
                     text: "Buy Kyber SLP $SIPHER-ETH",
-                    link: `https://kyberswap.com/?utm_source=Sipherwebsite&utm_medium=website&utm_campaign=SipherKyberSwap&utm_id=SipherKyberSwap&utm_content=website#/swap?outputCurrency=${SipherTokenAddress}&networkId=1`,
+                    link: `https://kyberswap.com/?utm_source=Sipherwebsite&utm_medium=website&utm_campaign=SipherKyberSwap&utm_id=SipherKyberSwap&utm_content=website#/farms`,
                 },
             ],
         },
