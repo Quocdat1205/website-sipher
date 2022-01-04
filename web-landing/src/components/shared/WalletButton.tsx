@@ -50,22 +50,17 @@ export const WalletButton = () => {
             <Box zIndex={2} pos="relative">
                 {!wallet.isActive ? (
                     <ActionButton
-                        text={
-                            wallet.isActive
-                                ? `${wallet.account?.slice(0, 5)}...${wallet.account?.slice(
-                                      wallet.account.length - 5,
-                                      wallet.account.length
-                                  )}`
-                                : "Connect Wallet"
-                        }
+                        text={"Connect Wallet"}
                         rounded="xl"
                         onClick={handleClick}
+                        letterSpacing="1px"
                         border="1px"
                         px={[2, 4]}
-                        py={[2, 3]}
+                        py={[2, 4]}
+                        lineHeight={1}
                         borderColor="transparent"
-                        h={"auto"}
-                        fontSize={["xx-small", "xs"]}
+                        h={["auto", "3.2rem"]}
+                        fontSize={["xs", "sm"]}
                     />
                 ) : (
                     <Flex
@@ -76,7 +71,8 @@ export const WalletButton = () => {
                         borderBottomRadius={menu ? "none" : "lg"}
                         align="center"
                         px={[2, 2, 4]}
-                        py={[2, 3]}
+                        py={2}
+                        h={["auto", "3.2rem"]}
                         cursor="pointer"
                         onClick={() => setMenu(!menu)}
                     >
