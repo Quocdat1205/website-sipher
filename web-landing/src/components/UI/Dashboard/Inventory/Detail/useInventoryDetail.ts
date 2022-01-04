@@ -41,7 +41,7 @@ const useInventoryDetail = ({ id, race }: { id: any; race: NFTRace }) => {
     const handleDownJSON = () => {
         const a = document.createElement("a")
         a.href = URL.createObjectURL(new Blob([JSON.stringify(merkle)], { type: "text/json" }))
-        a.download = `Sipher${race.toUpperCase()}_#${id}`
+        a.download = `Sipher${race.toUpperCase()}_#${id}.json`
         a.click()
     }
     const getAvailableEmotions = () => {
