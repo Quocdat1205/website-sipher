@@ -60,8 +60,8 @@ const NewsBody = () => {
 
     const sortData = (a, b) => {
         return (
-            (b.type === "post" ? parseInt(b.published) * 1000 : parseInt(b.published)) -
-            (a.type === "post" ? parseInt(a.published) * 1000 : parseInt(a.published))
+            (b.type === "POST" ? parseInt(b.published) * 1000 : parseInt(b.published)) -
+            (a.type === "POST" ? parseInt(a.published) * 1000 : parseInt(a.published))
         )
     }
 

@@ -16,7 +16,7 @@ export interface DetailsNewsProps {
     description: string
     link: string
     type_thumbnail: "image" | "video"
-    type: "medium" | "twitter" | "fb" | "ins" | "post"
+    type: "TWITTER" | "MEDIUM" | "FACEBOOK" | "INSTAGRAM" | "POST"
 }
 const PopupCard = () => {
     const router = useRouter()
@@ -33,7 +33,7 @@ const PopupCard = () => {
         >
             <ModalOverlay bg="blackAlpha.900" />
             <ModalContent
-                my={["0", `${details && details.type === "medium" ? "0" : "3.75rem"}`]}
+                my={["0", `${details && details.type === "MEDIUM" ? "0" : "3.75rem"}`]}
                 maxW="64rem"
                 h={["100%", "auto"]}
                 overflow="hidden"
@@ -41,7 +41,7 @@ const PopupCard = () => {
                 <ModalBody pos="relative" overflow="hidden" h="100%" w="100%" p={0} bg="about.cardGray" zIndex={9}>
                     {!isLoading ? (
                         details ? (
-                            details.type === "medium" ? (
+                            details.type === "MEDIUM" ? (
                                 <LayoutMedium details={details} />
                             ) : (
                                 <LayoutTwitter details={details} />

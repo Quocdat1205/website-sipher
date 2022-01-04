@@ -5,7 +5,7 @@ import React from "react"
 
 interface ButtonLinkToProps extends ButtonProps {
     url: string
-    typeSocial: "medium" | "twitter" | "fb" | "ins" | "post"
+    typeSocial: "TWITTER" | "MEDIUM" | "FACEBOOK" | "INSTAGRAM" | "POST"
 }
 
 const ButtonLinkTo = ({ url, typeSocial, ...rest }: ButtonLinkToProps) => {
@@ -23,13 +23,13 @@ const ButtonLinkTo = ({ url, typeSocial, ...rest }: ButtonLinkToProps) => {
                 display="block"
                 m="0 auto"
                 src={`/images/icons/community/${
-                    typeSocial === "medium"
+                    typeSocial === "MEDIUM"
                         ? "medium"
-                        : typeSocial === "twitter"
+                        : typeSocial === "TWITTER"
                         ? "twitter"
-                        : typeSocial === "fb"
+                        : typeSocial === "FACEBOOK"
                         ? "fb"
-                        : typeSocial === "ins"
+                        : typeSocial === "INSTAGRAM"
                         ? "ins"
                         : "main"
                 }.png`}
