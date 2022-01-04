@@ -4,6 +4,7 @@ export const CHAIN_ID = 1;
 // export const baseURL = "https://be.sipher.xyz/api/sipher/v1.1"
 
 //test
+// export const baseURL = "http://localhost:5000/api/";
 export const baseURL = "https://be.sipherion.com/api/";
 
 export const startTime = 1639544400000;
