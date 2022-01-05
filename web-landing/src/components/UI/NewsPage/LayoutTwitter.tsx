@@ -88,7 +88,7 @@ const LayoutTwitter = ({ details }: Props) => {
                         }}
                         color="about.textGray"
                     >
-                        {details.type === "post" ? (
+                        {details.type === "POST" ? (
                             <ReactMarkdown>{details.description && details.description}</ReactMarkdown>
                         ) : (
                             ReactHtmlParser(details.description && details.description)

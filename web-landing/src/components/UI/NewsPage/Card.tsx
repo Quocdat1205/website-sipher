@@ -13,7 +13,7 @@ interface Props {
 const Card = ({ item, onClick }: Props) => {
     const { type, thumbnail, title, link, published, type_thumbnail } = item
 
-    const createDate = new Date(type === "post" ? parseInt(published) * 1000 : parseInt(published))
+    const createDate = new Date(type === "POST" ? parseInt(published) * 1000 : parseInt(published))
     return (
         <Flex
             m="2"
@@ -62,13 +62,13 @@ const Card = ({ item, onClick }: Props) => {
                         zIndex="2"
                         display="block"
                         src={`/images/icons/community/${
-                            type === "medium"
+                            type === "MEDIUM"
                                 ? "medium"
-                                : type === "twitter"
+                                : type === "TWITTER"
                                 ? "twitter"
-                                : type === "fb"
+                                : type === "FACEBOOK"
                                 ? "fb"
-                                : type === "ins"
+                                : type === "INSTAGRAM"
                                 ? "ins"
                                 : "main"
                         }.png`}
