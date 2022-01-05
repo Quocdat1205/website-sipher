@@ -22,7 +22,7 @@ const menuRace = [
 const NFTList = ({ race }: Props) => {
   const router = useRouter();
   const wallet = useWalletContext();
-  const { data: quantity } = useQuery(["quantity", race], () => getNFTQuantity(wallet.account!, race!), {
+  const { data: quantity } = useQuery(["quantity", race], () => getNFTQuantity(wallet.account as string, race), {
     enabled: !!wallet.account,
   });
   const getNFTWithRange = async ({ pageParam = 0 }) => {
@@ -38,36 +38,27 @@ const NFTList = ({ race }: Props) => {
     enabled: !!wallet.account,
   });
 
-  if (!data) {
-    if (isLoading)
-      return (
-        <Flex w="full" flex={1} align="center" justify="center">
-          <Flex align="center">
-            <Spinner size="sm" mr={2} />
-            <Text fontWeight={500}>Loading</Text>
-          </Flex>
+  if (!data && !isLoading) {
+    return (
+      <Flex w="full" flex={1} align="center" justify="center">
+        <Flex align="center" direction="column">
+          <Text fontSize="2xl" fontWeight={500}>
+            Failed to get data!
+          </Text>
+          <Text color="whiteAlpha.600" fontSize="lg" fontWeight={500}>
+            Try again later.
+          </Text>
         </Flex>
-      );
-    else
-      return (
-        <Flex w="full" flex={1} align="center" justify="center">
-          <Flex align="center" direction="column">
-            <Text fontSize="2xl" fontWeight={500}>
-              Failed to get data!
-            </Text>
-            <Text color="whiteAlpha.600" fontSize="lg" fontWeight={500}>
-              Try again later.
-            </Text>
-          </Flex>
-        </Flex>
-      );
+      </Flex>
+    );
   }
-  if (data && data.pages.length === 0) {
+
+  if (data && quantity === 0) {
     return (
       <>
         <HeaderBackground title="INVENTORY" description="Your NFT Collection" />
         <Flex
-          mt={4}
+          pt={4}
           pos="relative"
           _before={{
             zIndex: 1,
@@ -122,7 +113,7 @@ const NFTList = ({ race }: Props) => {
               </chakra.span>{" "}
               {race} NFT
             </Text>
-            <ViewCollectionButton />
+            <ViewCollectionButton size="small" />
           </Flex>
         </Flex>
       </>
@@ -133,7 +124,7 @@ const NFTList = ({ race }: Props) => {
     <>
       <HeaderBackground title="INVENTORY" description="Your NFT Collection" />
       <Flex
-        mt={4}
+        pt={4}
         pos="relative"
         _before={{
           zIndex: 1,
@@ -179,44 +170,55 @@ const NFTList = ({ race }: Props) => {
           ))}
         </Flex>
       </Flex>
-      <Flex flexDir="column" px={4} flex={1} w="full" overflow="hidden" maxW="64rem" bg="blackAlpha.800">
-        <Box>
-          <Text textAlign="center" my={4} fontWeight={500}>
-            You currently have{" "}
-            <chakra.span fontWeight={500} color="main.yellow">
-              {isFetching ? "..." : quantity}
-            </chakra.span>{" "}
-            {race} NFT{!isLoading && quantity > 1 && "s"}
-          </Text>
-          <Box flex={1}>
-            <InfiniteScroll
-              dataLength={data ? data.pages.map((page) => page).reduce((init, cur) => init.concat(cur), []).length : 0}
-              next={fetchNextPage}
-              hasMore={!!hasNextPage}
-              style={{ width: "100%", overflow: "hidden" }}
-              loader={
-                <Flex w="full" flex={1} align="center" justify="center" mt={4}>
-                  <Flex align="center" fontWeight={500}>
-                    <Spinner size="sm" mr={2} />
-                    <Text>Loading</Text>
+      {data && !isLoading ? (
+        <Flex flexDir="column" px={4} flex={1} w="full" overflow="hidden" maxW="64rem" bg="transparent">
+          <Box>
+            <Text textAlign="center" my={4} fontWeight={500}>
+              You currently have{" "}
+              <chakra.span fontWeight={500} color="main.yellow">
+                {isFetching ? "..." : quantity}
+              </chakra.span>{" "}
+              {race} NFT{!isLoading && quantity > 1 && "s"}
+            </Text>
+            <Box flex={1}>
+              <InfiniteScroll
+                dataLength={
+                  data ? data.pages.map((page) => page).reduce((init, cur) => init.concat(cur), []).length : 0
+                }
+                next={fetchNextPage}
+                hasMore={!!hasNextPage}
+                style={{ width: "100%", overflow: "hidden" }}
+                loader={
+                  <Flex w="full" flex={1} align="center" justify="center" mt={4}>
+                    <Flex align="center" fontWeight={500}>
+                      <Spinner size="sm" mr={2} />
+                      <Text>Loading</Text>
+                    </Flex>
                   </Flex>
-                </Flex>
-              }
-            >
-              <SimpleGrid p={4} columns={[2, 3, 4, 4]} spacing={4}>
-                {data.pages.map((page, i) => (
-                  <Fragment key={i}>
-                    {page.map((item, index) => (
-                      <Card key={item.id} item={item} order={(i + 1) * (index + 1)} />
-                    ))}
-                  </Fragment>
-                ))}
-              </SimpleGrid>
-            </InfiniteScroll>
-            <Detail race={race} />
+                }
+              >
+                <SimpleGrid p={4} columns={[2, 3, 4, 4]} spacing={4}>
+                  {data.pages.map((page, i) => (
+                    <Fragment key={i}>
+                      {page.map((item, index) => (
+                        <Card key={item.id} item={item} order={(i + 1) * (index + 1)} />
+                      ))}
+                    </Fragment>
+                  ))}
+                </SimpleGrid>
+              </InfiniteScroll>
+              <Detail race={race} />
+            </Box>
           </Box>
-        </Box>
-      </Flex>
+        </Flex>
+      ) : (
+        <Flex w="full" flex={1} align="center" justify="center">
+          <Flex align="center">
+            <Spinner size="sm" mr={2} />
+            <Text fontWeight={500}>Loading</Text>
+          </Flex>
+        </Flex>
+      )}
     </>
   );
 };

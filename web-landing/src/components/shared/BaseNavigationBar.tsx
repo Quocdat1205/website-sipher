@@ -27,8 +27,8 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
             zIndex="3"
             {...rest}
         >
-            <Flex flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer" mt={-3} ml={-2}>
-                <Img src={logoPath} h={["2.2rem", "3rem"]} alt="sipher-logo" />
+            <Flex flexShrink={0} align="center" onClick={onLogoClick} cursor="pointer">
+                <Img src={logoPath} h={["1.8rem", "2.2rem"]} alt="sipher-logo" />
             </Flex>
             <HStack mx={6} spacing={[4, 4, 6, 8]} flex={1} justify="center" display={["none", "none", "flex"]}>
                 {menus.map(menu => (

@@ -21,7 +21,6 @@ export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, 
             pos="relative"
             cursor="pointer"
             justify="center"
-            // pointerEvents={text === "Airdrops" ? "none" : "unset"}
             sx={{
                 "@media (max-width: 480px)": {
                     paddingRight: 0,
@@ -38,7 +37,6 @@ export const NavBarLink = ({ onClick, lastChild = false, isChild, text, active, 
                 onClick={() => href && router.push(href)}
                 textTransform={isChild ? "capitalize" : "uppercase"}
                 letterSpacing={isChild ? "0px" : "3px"}
-                // color={text === "Airdrops" ? "#616161" : active ? "#FF710B" : "white"}
                 color={active ? "#FF710B" : "white"}
                 px={1}
                 py={isChild ? 0 : 1}
