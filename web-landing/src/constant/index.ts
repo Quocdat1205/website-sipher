@@ -1,7 +1,7 @@
 export const CHAIN_ID = 1;
 
 //main
-export const baseURL = "https://be.sipher.xyz/api/sipher/v1.1"
+export const baseURL = "https://be.sipher.xyz/api/";
 
 //test
 // export const baseURL = "http://localhost:5000/api/";
