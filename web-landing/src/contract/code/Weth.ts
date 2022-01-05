@@ -1,6 +1,6 @@
 // * CHANGED TO MAINNET
 
-export const WethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"; // main
+export const WethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" // main
 // export const WethAddress = "0xc778417e063141139fce010982780140aa0cd5ab" // test
 
 export const WethAbi: any = [

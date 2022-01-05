@@ -17,18 +17,21 @@ type ChakraToastOptions = {
 export const useChakraToast = ({ defaultDuration }: UseChakraToastOptions = { defaultDuration: 2500 }) => {
     const toast = useToast()
 
-    return useCallback((options: ChakraToastOptions) => {
-        const { status = "default", title, message, duration = defaultDuration } = options
-        setTimeout(
-            () =>
-                toast({
-                    position: isMobile ? "top" : "bottom",
-                    duration,
-                    render: () => <Toast status={status} title={title} message={message} />,
-                }),
-            250
-        )
-    }, [])
+    return useCallback(
+        (options: ChakraToastOptions) => {
+            const { status = "default", title, message, duration = defaultDuration } = options
+            setTimeout(
+                () =>
+                    toast({
+                        position: isMobile ? "top" : "bottom",
+                        duration,
+                        render: () => <Toast status={status} title={title} message={message} />,
+                    }),
+                250
+            )
+        },
+        [toast, defaultDuration]
+    )
 }
 
 export default useChakraToast

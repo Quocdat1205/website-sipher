@@ -19,7 +19,7 @@ import useChakraToast from "@hooks/useChakraToast"
 import { SafeAppConnector } from "@gnosis.pm/safe-apps-web3-react"
 import { useSafeAppConnection } from "./useSafeAppConnection"
 
-const safeMultisigConnector = typeof window !== "undefined" ? new SafeAppConnector() : undefined
+const gnosisConnector = typeof window !== "undefined" ? new SafeAppConnector() : undefined
 declare global {
     interface Window {
         ethereum: any
@@ -39,7 +39,7 @@ const useWallet = () => {
 
     const scCaller = useRef<ContractCaller | null>(null)
 
-    useSafeAppConnection(safeMultisigConnector)
+    useSafeAppConnection(gnosisConnector)
 
     const resetToken = async () => {
         await logout()
@@ -84,7 +84,7 @@ const useWallet = () => {
     const connect = useCallback(
         async (connectorId: ConnectorId = "injected") => {
             if (connectorId === "gnosis") {
-                const isSafe = !!(await safeMultisigConnector?.isSafeApp())
+                const isSafe = !!(await gnosisConnector?.isSafeApp())
                 if (!isSafe) {
                     await navigator.clipboard.writeText(window.location.href)
                     window.open("https://gnosis-safe.io/app", "_blank")
@@ -130,7 +130,11 @@ const useWallet = () => {
                 setStatus("error")
                 if (err instanceof UnsupportedChainIdError) {
                     setError(new ChainUnsupportedError(err.message))
-                    toast({ title: "Unsupported chain", message: err.message })
+                    toast({
+                        status: "error",
+                        title: "Unsupported network chain",
+                        message: "Please switch to ethereum mainnet and try again!",
+                    })
                     return
                 }
 
