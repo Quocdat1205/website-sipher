@@ -31,7 +31,7 @@ export const Footer = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
 
   const { mutate, isLoading } = useMutation(
-    () => postSubscribe({ email: emailInputRef.current!.value, full_name: nameInputRef.current?.value || "" }),
+    () => postSubscribe({ email: emailInputRef.current!.value, name: nameInputRef.current?.value || "" }),
     {
       onError: () => {
         toast({ status: "error", title: "Something went wrong!", message: "Try again later." });
