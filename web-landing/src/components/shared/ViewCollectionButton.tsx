@@ -25,7 +25,7 @@ export const SubLink = ({ text, href }: SubLinkProps) => {
 }
 
 export interface ViewCollectionButtonProps {
-    size?: "large" | "medium"
+    size?: string
     text?: string
 }
 export const ViewCollectionButton = ({
@@ -45,6 +45,7 @@ export const ViewCollectionButton = ({
                 rounded="full"
                 onClick={() => setIsExpanded(!isExpanded)}
                 zIndex={2}
+                px={6}
                 fontSize={size}
             />
             <Box pos="absolute" top={"50%"} left={0} w="full">

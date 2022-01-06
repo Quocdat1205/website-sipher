@@ -22,6 +22,7 @@ const Metadata = ({ title, description }: MetadataProps) => {
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content="/images/pc/home/NEKO_3D.png"></meta>
+            <meta name="facebook-domain-verification" content="p6bpisy84wqatdt647ul2y18t99ead" />
         </Head>
     )
 }

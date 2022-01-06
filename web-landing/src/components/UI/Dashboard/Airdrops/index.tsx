@@ -16,9 +16,8 @@ const Airdrops = () => {
 
     return (
         <>
-            <HeaderBackground title="AIRDROPS" description={`Check if your're eligible`} />
+            <HeaderBackground title="AIRDROPS" description={`Check if you're eligible`} />
             <Flex
-                mt={4}
                 pos="relative"
                 flexDir="column"
                 px={4}
@@ -26,17 +25,23 @@ const Airdrops = () => {
                 w="full"
                 overflow="hidden"
                 maxW="64rem"
-                bg="blackAlpha.800"
+                bg="transparent"
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center">
-                        {data && data !== 0 ? (
+                        {data !== 0 ? (
                             <>
                                 <Text textAlign="center" fontWeight={500} fontSize="2xl">
                                     You are eligible for
                                 </Text>
                                 <Box my={4} bg="#F4B533" py={2} px={6} transform="skew(-5deg)">
-                                    <Text fontSize="2xl" fontWeight={500} color="#282B3A" transform="skew(5deg)">
+                                    <Text
+                                        textAlign="center"
+                                        fontSize="2xl"
+                                        fontWeight={500}
+                                        color="#282B3A"
+                                        transform="skew(5deg)"
+                                    >
                                         <chakra.span fontWeight={700}>
                                             {currency(floorPrecised(data, 2))} $SIPHER
                                         </chakra.span>{" "}
@@ -47,13 +52,11 @@ const Airdrops = () => {
                                     over a 6 month Vesting Period with each month getting
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
-                                    {!isLoading ? currency(floorPrecised(data / 6, 2)) : "..."} $SIPHER starting on
-                                    March 01 2022.
+                                    {currency(floorPrecised(data! / 6, 2))} $SIPHER starting on March 01 2022.
                                 </Text>
                                 <Text color="#7C7D91" textAlign="center" mb={6} fontWeight={500} fontSize="md">
                                     Please come back for your first Vested Airdrop of{" "}
-                                    {!isLoading ? currency(floorPrecised(data / 6, 2)) : "..."} $SIPHER on March 01
-                                    2022.
+                                    {currency(floorPrecised(data! / 6, 2))} $SIPHER on March 01 2022.
                                 </Text>
                                 <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
                             </>
