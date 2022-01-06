@@ -34,10 +34,6 @@ const Ended = () => {
     },
   });
 
-  //   const handleClaim = async () => {
-  //     claim();
-  //   };
-
   return (
     <BackgroundContainer
       pos="relative"
@@ -81,7 +77,7 @@ const Ended = () => {
             maxW="25rem"
             onClick={() => claim()}
             isLoading={isLoading}
-            // disabled={receivedToken! <= 0}
+            disabled={receivedToken! <= 0}
             my={4}
           />
 
