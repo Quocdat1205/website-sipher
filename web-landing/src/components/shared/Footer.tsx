@@ -10,7 +10,7 @@ import axios from "axios";
 import useChakraToast from "@hooks/useChakraToast";
 interface ISubscribeInput {
   email: string;
-  full_name: string;
+  name: string;
 }
 const postSubscribe = async (input: ISubscribeInput) => {
   const { data } = await axios.post("https://be.sipher.xyz/api/subscribe", input, {
