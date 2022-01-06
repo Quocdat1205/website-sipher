@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useLpKyberPrice, useLpUniswapPrice, useSipherPrice } from "@hooks/api"
+import { getNewEscrowedPool, useLpKyberPrice, useLpUniswapPrice, useSipherPrice } from "@hooks/api"
 import useWalletContext from "@hooks/web3/useWalletContext"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { currency } from "@source/utils"
@@ -28,6 +28,10 @@ const useRewards = () => {
 
     const { data: dataFetch } = useQuery(["fetch", account], () => scCaller.current!.View.fetchData(account!), {
         enabled: !!scCaller.current && !!account,
+    })
+
+    const { data: escrowedPool } = useQuery(["escrowed-pool", account], () => getNewEscrowedPool(account!), {
+        enabled: !!account,
     })
 
     const { mutate: unlock } = useMutation<unknown, unknown, number>(
@@ -107,7 +111,7 @@ const useRewards = () => {
               isUnlockable: new Date().getTime() > deposit.end,
           }))
 
-    return { stakingPoolsData, lockedRewardsData }
+    return { stakingPoolsData, lockedRewardsData, escrowedPool }
 }
 
 export default useRewards

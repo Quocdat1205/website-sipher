@@ -2,13 +2,16 @@
 
 import { Flex, Box, VStack, Text } from "@chakra-ui/react"
 import { Typo } from "@components/shared"
+import { useSipherPrice } from "@hooks/api"
 import React from "react"
 import LockedRewards from "./LockedRewards"
+import LockedRewardsEarly from "./LockedRewardsEarly"
 import StakingPools from "./StakingPools"
 import useRewards from "./useRewards"
 
 const Rewards = () => {
-    const { stakingPoolsData, lockedRewardsData } = useRewards()
+    const { stakingPoolsData, lockedRewardsData, escrowedPool } = useRewards()
+    const sipherPrice = useSipherPrice()
 
     return (
         <Flex direction="column" align="center" w="full">
@@ -25,8 +28,9 @@ const Rewards = () => {
                     </Text>
                 </Box>
                 <VStack spacing={8} align="stretch">
-                    <StakingPools stakingPoolsData={stakingPoolsData} />
+                    <StakingPools stakingPoolsData={stakingPoolsData} sipherPrice={sipherPrice} />
                     <LockedRewards lockedRewardsData={lockedRewardsData} />
+                    <LockedRewardsEarly escrowedPool={escrowedPool} />
                 </VStack>
             </Box>
         </Flex>

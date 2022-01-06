@@ -1,6 +1,5 @@
 import { Box, Flex, Stack, Text, chakra, Img } from "@chakra-ui/react"
 import { startTime } from "@constant/index"
-import { useSipherPrice } from "@hooks/api"
 import { currency } from "@source/utils"
 import useRewards from "../useRewards"
 import CountDown from "./Countdown"
@@ -9,11 +8,10 @@ import TablePoolMobile from "./TablePoolMobile"
 
 export interface StakingPoolsProps {
     stakingPoolsData: ReturnType<typeof useRewards>["stakingPoolsData"]
+    sipherPrice: number
 }
 
-const StakingPools = ({ stakingPoolsData }: StakingPoolsProps) => {
-    const sipherPrice = useSipherPrice()
-
+const StakingPools = ({ stakingPoolsData, sipherPrice }: StakingPoolsProps) => {
     return (
         <Box>
             {/* DESKTOP */}
