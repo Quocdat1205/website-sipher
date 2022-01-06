@@ -86,22 +86,18 @@ const LockedRewardsEarly = ({ escrowedPool = 0 }: LockedRewardsProps) => {
                                     </Flex>
                                 </Flex>
                                 <Flex justify="space-between">
-                                    <Text fontWeight="semibold">Amount</Text>
-                                    <Text></Text>
+                                    <Text fontWeight="semibold">Accumulated</Text>
+                                    <Text>{currency(escrowedPool)}</Text>
                                 </Flex>
                                 <Flex justify="space-between">
-                                    <Text fontWeight="semibold">Dollar value</Text>
-                                    <Text></Text>
+                                    <Text fontWeight="semibold">Withdrawn</Text>
+                                    <Text>{currency(0)}</Text>
                                 </Flex>
                                 <Flex justify="space-between">
-                                    <Text fontWeight="semibold">Status</Text>
-                                    <Text textAlign="left"></Text>
+                                    <Text fontWeight="semibold">Withdrawable</Text>
+                                    <Text textAlign="left">{currency(0)}</Text>
                                 </Flex>
-                                <Flex justify="space-between">
-                                    <Text fontWeight="semibold">Time remaining</Text>
-                                    <Text textAlign="left"></Text>
-                                </Flex>
-                                <ActionButton text="UNLOCK" ml="auto" px={2} w="auto" disabled size="small" />
+                                <ActionButton text="Withdraw" ml="auto" px={2} w="auto" disabled size="small" />
                             </Stack>
                         </Flex>
                     </Stack>
