@@ -13,12 +13,7 @@ interface ISubscribeInput {
   name: string;
 }
 const postSubscribe = async (input: ISubscribeInput) => {
-  const { data } = await axios.post("https://be.sipher.xyz/api/subscribe", input, {
-    validateStatus: (status) => {
-      if (status === 400 || status === 200) return true;
-      return false;
-    },
-  });
+  const { data } = await axios.post("https://be.sipher.xyz/api/subscribe", input);
   return data;
 };
 
@@ -37,7 +32,7 @@ export const Footer = () => {
         toast({ status: "error", title: "Something went wrong!", message: "Try again later." });
       },
       onSuccess: (data) => {
-        if (data?.error?.error === "email exists") {
+        if (data === "This email address is already subscribed!") {
           toast({
             status: "info",
             title: "Email is already subscribed!",
