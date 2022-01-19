@@ -56,7 +56,7 @@ export interface NFTDetail {
 /** Get NFT detail information */
 export const getNFT = async ({ address, race, id }: GetNFTInput): Promise<NFTDetail> => {
   const { data } = await fetcher.get(`/nft/${race}/${id}?address=${address}`);
-  console.log(data);
+  // console.log(data);
 
   return {
     id: data.id,
@@ -68,7 +68,7 @@ export const getNFT = async ({ address, race, id }: GetNFTInput): Promise<NFTDet
     emotions: data.emotions,
     attributes: data.attributes.map((attr) => ({
       total: attr.total,
-      traitType: attr.trait_type,
+      traitType: attr.traitType,
       value: attr.value,
     })),
   };

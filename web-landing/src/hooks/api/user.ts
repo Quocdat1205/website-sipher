@@ -8,7 +8,7 @@ export interface IUser {
 /** Get user from address */
 export const getUsersByAddress = async (address: string): Promise<IUser> => {
   const { data } = await fetcher.get(`/auth/get-nonce?publicAddress=${address}`);
-  console.log(data);
+  // console.log(data);
 
   return {
     nonce: data.nonce,
