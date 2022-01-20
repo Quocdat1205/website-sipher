@@ -43,11 +43,7 @@ export const DetailsPC = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, type: "tween", ease: "easeOut" }}
           >
-            <Box
-              w={["17.5rem", "17.5rem", "17.5rem", "20rem", "20rem"]}
-              h={["60vh", "60vh", "60vh", "60vh", "auto"]}
-              overflow="hidden"
-            >
+            <Box w={["17.5rem", "17.5rem", "17.5rem", "20rem", "20rem"]} h="35rem" overflow="hidden">
               <Box pos="relative" w="full" h={["21rem", "21rem", "21rem", "22.5rem", "22.5rem"]} mb={4}>
                 <AnimatePresence>
                   <MotionBox
@@ -75,7 +71,7 @@ export const DetailsPC = ({
                 onChangeEmotion={mutateChangeEmotion}
               />
             </Box>
-            <Flex h={["60vh", "60vh", "60vh", "60vh", "auto"]} overflow="auto" direction="column" flex={3} ml="4">
+            <Flex h="35rem" overflow="auto" direction="column" flex={3} ml="4">
               <Text
                 textTransform="uppercase"
                 fontSize="3xl"
