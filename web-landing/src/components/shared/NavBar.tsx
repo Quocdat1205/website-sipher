@@ -1,15 +1,15 @@
 // * DESCRIPTION:
 
-import { Grid, Flex } from "@chakra-ui/react"
-import { GiHamburgerMenu } from "react-icons/gi"
-import MenuDrawer from "./MenuDrawer"
-import { useStoreActions, useStoreState } from "@store"
-import { useRouter } from "next/router"
-import { BaseNavigationBar, WalletButton } from "."
-import ChildMenu from "./ChildMenu"
-import { IoMdClose } from "react-icons/io"
-import { useScrollDirection } from "@hooks/useScrollDirection"
-import useWalletContext from "@hooks/web3/useWalletContext"
+import { Grid, Flex } from "@chakra-ui/react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import MenuDrawer from "./MenuDrawer";
+import { useStoreActions, useStoreState } from "@store";
+import { useRouter } from "next/router";
+import { BaseNavigationBar, WalletButton } from ".";
+import ChildMenu from "./ChildMenu";
+import { IoMdClose } from "react-icons/io";
+import { useScrollDirection } from "@hooks/useScrollDirection";
+import useWalletContext from "@hooks/web3/useWalletContext";
 
 export const navMenus = [
     { id: "Home", path: "/" },
@@ -20,45 +20,46 @@ export const navMenus = [
     // { id: "LeaderBoard", path: "/leaderboard" },
     // { id: "Quests", path: "/quests" },
     { id: "Stake", path: "/stake/overview" },
-]
+];
 
 export const aboutMenus = [
     { id: "Vision & Roadmap", path: "/about-us/vision-and-roadmap" },
     { id: "Team & Culture", path: "/about-us/team-and-culture" },
     { id: "Careers", path: "/about-us/careers" },
-]
+];
 
 export const stakeMenus = [
     { id: "Overview", path: "/stake/overview" },
     { id: "Rewards", path: "/stake/rewards" },
-]
+];
 
 export const dashboardMenus = [
     { id: "Inventory", path: "/dashboard/inventory/inu" },
     { id: "Airdrops", path: "/dashboard/airdrops" },
-]
+    { id: "Investor", path: "/dashboard/investor" },
+];
 
 export const childMenus = {
     aboutMenus,
     stakeMenus,
     dashboardMenus,
-}
+};
 
 interface NavBarProps {
-    isChildMenu?: boolean
-    menus?: string
+    isChildMenu?: boolean;
+    menus?: string;
 }
 
 export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProps) => {
-    const router = useRouter()
+    const router = useRouter();
 
-    const isUp = useScrollDirection()
+    const isUp = useScrollDirection();
 
-    const sidebarOn = useStoreState(s => s.sidebarOn)
+    const sidebarOn = useStoreState(s => s.sidebarOn);
 
-    const setSideBarOn = useStoreActions(action => action.setSidebarOn)
+    const setSideBarOn = useStoreActions(action => action.setSidebarOn);
 
-    const { isActive } = useWalletContext()
+    const { isActive } = useWalletContext();
 
     return (
         <Flex
@@ -102,5 +103,5 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
                     (menus === "dashboardMenus" && !router.query.id) ||
                     (menus === "stakeMenus" && isActive)) && <ChildMenu menus={childMenus[menus]} />}
         </Flex>
-    )
-}
+    );
+};

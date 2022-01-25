@@ -2,20 +2,20 @@ import Head from "next/head";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "@pages/_app";
 import InventoryLayout from "@components/UI/InventoryLayout";
-import Airdrops from "@components/UI/Dashboard/Airdrops";
+import Investor from "@components/UI/Dashboard/Investor";
 
-const AirdropsPage: NextPageWithLayout = () => {
+const InvestorPage: NextPageWithLayout = () => {
     return (
         <>
             <Head>
-                <title>Airdrops</title>
+                <title>Investor</title>
             </Head>
-            <Airdrops />
+            <Investor />
         </>
     );
 };
 
-AirdropsPage.getLayout = (page: ReactElement) => {
+InvestorPage.getLayout = (page: ReactElement) => {
     return <InventoryLayout>{page}</InventoryLayout>;
 };
-export default AirdropsPage;
+export default InvestorPage;
