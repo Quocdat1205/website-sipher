@@ -67,7 +67,7 @@ export const NavBar = ({ isChildMenu = false, menus = "aboutMenus" }: NavBarProp
             flexDir="column"
             position="fixed"
             w="full"
-            zIndex="popover"
+            zIndex="modal"
             transition="transform 0.25s ease-out"
             transform={`translateY(${isUp ? "0" : "-100%"})`}
             sx={{
