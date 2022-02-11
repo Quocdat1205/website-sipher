@@ -17,10 +17,10 @@ const content = [
     },
     {
         icon: "/images/icons/genesis_5.png",
-        text: "Guildmaster program",
+        text: "Collectors program",
         link: {
-            text: "View Guildmaster Program",
-            path: "https://atlas.sipher.xyz/upcoming-programs/the-guildmaster-program",
+            text: "View Collectors Program",
+            path: "https://atlas.sipher.xyz/upcoming-programs/the-collector-program",
         },
     },
     {
@@ -31,6 +31,6 @@ const content = [
             path: "https://atlas.sipher.xyz/sipher-litepaper/benefits-of-owning-a-genesis-sipher",
         },
     },
-]
+];
 
-export default content
+export default content;
