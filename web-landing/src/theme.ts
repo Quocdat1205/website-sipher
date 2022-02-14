@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from "@chakra-ui/react";
 
 // ??? ???
 export const theme = extendTheme({
@@ -66,6 +66,11 @@ export const theme = extendTheme({
                 fontWeight: 500,
             },
         },
+        Button: {
+            baseStyle: {
+                _focus: { boxShadow: "none" },
+            },
+        },
     },
     styles: {
         global: {
@@ -96,5 +101,5 @@ export const theme = extendTheme({
         },
     },
     breakpoints: ["0px", "480px", "960px", "1440px", "1920px"],
-})
-export default theme
+});
+export default theme;

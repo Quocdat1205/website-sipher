@@ -15,9 +15,9 @@ interface VestingProps {
 }
 
 const header = [
-    { id: "pricePerItem", name: "STARTED AT" },
-    { id: "priceInUSD", name: "VESTING TIME" },
-    { id: "deadline", name: "ENDS AT" },
+    { id: "pricePerItem", name: "Start at" },
+    { id: "priceInUSD", name: "Vesting time" },
+    { id: "deadline", name: "Ends at" },
 ] as const;
 
 const VestingTable = ({ data = [] }: VestingProps) => {
@@ -32,7 +32,7 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                             {header.map(i => (
                                 <chakra.th key={i.id} p={2} fontWeight={500} textAlign={"left"}>
                                     <Flex align="center">
-                                        <Text textTransform="uppercase" mr={2} color="#7C7D91 ">
+                                        <Text mr={2} color="#7C7D91 ">
                                             {i.name}
                                         </Text>
                                         <Box
@@ -53,6 +53,7 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                                     </Flex>
                                 </chakra.th>
                             ))}
+                            <chakra.th p={2}></chakra.th>
                         </chakra.tr>
                     </chakra.thead>
                     <chakra.tbody>
@@ -77,6 +78,7 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                                         addSuffix: true,
                                     })}
                                 </chakra.td>
+                                <chakra.td p={2}></chakra.td>
                             </chakra.tr>
                         ))}
                     </chakra.tbody>

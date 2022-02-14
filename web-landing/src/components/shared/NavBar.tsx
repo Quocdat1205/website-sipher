@@ -36,7 +36,6 @@ export const stakeMenus = [
 export const dashboardMenus = [
     { id: "Inventory", path: "/dashboard/inventory/inu" },
     { id: "Airdrops", path: "/dashboard/airdrops" },
-    // { id: "Investor", path: "/dashboard/investor" },
 ];
 
 export const childMenus = {

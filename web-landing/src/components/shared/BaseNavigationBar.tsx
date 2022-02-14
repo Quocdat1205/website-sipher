@@ -1,19 +1,19 @@
 // * DESCRIPTION:
 
-import React from "react"
-import { Flex, HStack, Img, FlexProps } from "@chakra-ui/react"
-import { NavBarLink } from "."
-import { useRouter } from "next/router"
+import React from "react";
+import { Flex, HStack, Img, FlexProps } from "@chakra-ui/react";
+import { NavBarLink } from ".";
+import { useRouter } from "next/router";
 
 interface BaseNavigationBarProps extends FlexProps {
-    menus: Record<"id" | "path", string>[]
-    logoPath: string
-    onLogoClick?: () => void
-    children: React.ReactNode
+    menus: Record<"id" | "path", string>[];
+    logoPath: string;
+    onLogoClick?: () => void;
+    children: React.ReactNode;
 }
 // fixed
 export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...rest }: BaseNavigationBarProps) => {
-    const router = useRouter()
+    const router = useRouter();
     return (
         <Flex
             px={4}
@@ -42,5 +42,5 @@ export const BaseNavigationBar = ({ menus, logoPath, onLogoClick, children, ...r
             </HStack>
             {children}
         </Flex>
-    )
-}
+    );
+};

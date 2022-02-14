@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "@pages/_app";
-import InventoryLayout from "@components/UI/InventoryLayout";
+import InvestorLayout from "@components/UI/InvestorLayout";
 import Investor from "@components/UI/Dashboard/Investor";
 
 const InvestorPage: NextPageWithLayout = () => {
@@ -16,6 +16,6 @@ const InvestorPage: NextPageWithLayout = () => {
 };
 
 InvestorPage.getLayout = (page: ReactElement) => {
-    return <InventoryLayout>{page}</InventoryLayout>;
+    return <InvestorLayout>{page}</InvestorLayout>;
 };
 export default InvestorPage;

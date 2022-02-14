@@ -1,4 +1,5 @@
-import { Box, Flex, Stack, Img, Text } from "@chakra-ui/react";
+import { Box, Flex, Stack, Text } from "@chakra-ui/react";
+import { IconSipher } from "@components/shared";
 import { currency } from "@source/utils";
 import React from "react";
 
@@ -10,16 +11,16 @@ interface Props {
 
 const Card = ({ title, value = 0, icon }: Props) => {
     return (
-        <Stack p={4}>
-            <Flex align="center" justify="space-between">
+        <Stack p={8}>
+            <Flex align="center">
+                <Box mr={2}>{icon}</Box>
                 <Text fontSize="lg" color="#7C7D91">
                     {title}
                 </Text>
-                <Box>{icon}</Box>
             </Flex>
             <Flex align="center">
-                <Img h="1.5rem" src="/images/icons/sipher.png" alt="sipher" />
-                <Text fontWeight={600} fontSize="xl" ml={2}>
+                <IconSipher />
+                <Text fontWeight={600} fontSize="2xl" ml={2}>
                     {currency(value)}
                 </Text>
             </Flex>
