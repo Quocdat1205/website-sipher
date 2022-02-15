@@ -5,6 +5,27 @@ import React from "react";
 import Card from "./Card";
 import VestingTable from "./VestingTable";
 
+const dataTable = [
+    {
+        id: 1,
+        startAt: "Dec 12, 2021",
+        vestingTime: "0,026",
+        endsAt: "Jul 12, 2022"
+    },
+    {
+        id: 2,
+        startAt: "Dec 12, 2021",
+        vestingTime: "0,026",
+        endsAt: "Jul 12, 2022"
+    },
+    {
+        id: 3,
+        startAt: "Dec 12, 2021",
+        vestingTime: "0,026",
+        endsAt: "Jul 12, 2022"
+    },
+]
+
 const Investor = () => {
     const handleSendMail = () => {
         window.open("mailto:marketing@sipher.xyz");
@@ -34,7 +55,7 @@ const Investor = () => {
                         <Card title="Locked Balance" value={8849} icon={<Img src="/images/icons/bxs-lock.png" />} />
                     </GridItem>
                     <GridItem rounded="lg" rowSpan={2} colSpan={3} bg="#292A40">
-                        <VestingTable />
+                        <VestingTable data={dataTable} />
                     </GridItem>
                     <GridItem rounded="lg" rowSpan={2} colSpan={1} bg="#292A40">
                         <Flex h="full" flexDir="column" justify="space-between" align="center" p={8}>
@@ -74,7 +95,7 @@ const Investor = () => {
                         </chakra.span>{" "}
                         with anu question relate to vesting
                     </Text>
-                    <Button color="#1B1C27" bg="#F4B433" _hover={{ bg: "#ffc551" }}>
+                    <Button rounded="base" color="#1B1C27" bg="#F4B433" _hover={{ bg: "#ffc551" }}>
                         Claim Available Tokens
                     </Button>
                 </Flex>

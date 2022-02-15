@@ -9,11 +9,13 @@ import {
 import React from "react"
 
 interface Props {
+    bg? : string
+    color? : string
     children?: React.ReactNode
     label: string
 }
 
-export const PopoverCustom = ({ children, label = "" }: Props) => {
+export const PopoverCustom = ({color="white" ,bg= "383838DD",children, label = "" }: Props) => {
     return (
         <Popover>
             <PopoverTrigger>{children}</PopoverTrigger>
@@ -21,10 +23,10 @@ export const PopoverCustom = ({ children, label = "" }: Props) => {
                 _focus={{ boxShadow: "none", border: "none" }}
                 rounded="lg"
                 border="none"
-                bg="#383838DD"
-                color="white"
+                bg={bg}
+                color={color}
             >
-                <PopoverArrow bg="#383838DD" />
+                <PopoverArrow bg={bg}/>
                 <PopoverCloseButton bg="none" color="#9B9E9D" />
                 <PopoverBody>{label}</PopoverBody>
             </PopoverContent>

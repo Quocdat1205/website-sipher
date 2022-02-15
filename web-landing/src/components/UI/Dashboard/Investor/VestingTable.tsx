@@ -1,13 +1,13 @@
 import { BsFillTriangleFill } from "react-icons/bs";
-import { FaEthereum } from "react-icons/fa";
-import { formatDistanceToNow } from "date-fns";
+// import { formatDistanceToNow } from "date-fns";
 import { Box, chakra, Flex, Text } from "@chakra-ui/react";
 import useSortableData from "src/hooks/useSortableData";
+import { BiCalendar, BiCalendarCheck, BiTimeFive } from "react-icons/bi";
 
 interface VestingItem {
-    createdAt: string;
+    startAt: string;
     vestingTime: string;
-    deadline: string;
+    endsAt: string;
 }
 
 interface VestingProps {
@@ -15,17 +15,17 @@ interface VestingProps {
 }
 
 const header = [
-    { id: "pricePerItem", name: "Start at" },
-    { id: "priceInUSD", name: "Vesting time" },
-    { id: "deadline", name: "Ends at" },
+    { id: "startAt", name: "Start at" },
+    { id: "vestingTime", name: "Vesting time" },
+    { id: "endsAt", name: "Ends at" },
 ] as const;
 
 const VestingTable = ({ data = [] }: VestingProps) => {
     const { items, requestSort, sortConfig } = useSortableData(data);
 
     return (
-        <Box mb={6}>
-            <Box overflowX="auto" whiteSpace="nowrap" rounded="lg" bg="background.secondary" p={4}>
+        <Box overflow="hidden" h="full">
+            <Box h="full" maxH="30rem" overflow="auto" whiteSpace="nowrap" rounded="lg" bg="background.secondary" p={4}>
                 <chakra.table w="full">
                     <chakra.thead>
                         <chakra.tr>
@@ -58,25 +58,30 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                     </chakra.thead>
                     <chakra.tbody>
                         {items.map((item, index) => (
-                            <chakra.tr key={index} borderTop="1px" borderColor="border.gray2">
+                            <chakra.tr key={index} borderTop="1px" borderColor="#45465D">
                                 <chakra.td p={2}>
                                     <Flex align="center">
-                                        <Box mr={1}>
-                                            <FaEthereum />
+                                        <Box color="#5F6073" mr={1}>
+                                            <BiCalendar />
                                         </Box>
-                                        {item.createdAt}
+                                        {item.startAt}
                                     </Flex>
                                 </chakra.td>
-                                <chakra.td p={2}></chakra.td>
                                 <chakra.td p={2}>
-                                    {formatDistanceToNow(new Date(item.deadline), {
-                                        addSuffix: true,
-                                    })}
+                                <Flex align="center">
+                                        <Box color="#5F6073" mr={1}>
+                                            <BiTimeFive />
+                                        </Box>
+                                        {item.vestingTime}
+                                    </Flex>
                                 </chakra.td>
-                                <chakra.td p={2} color="fill.blue" title={item.vestingTime}>
-                                    {formatDistanceToNow(new Date(item.vestingTime), {
-                                        addSuffix: true,
-                                    })}
+                                <chakra.td p={2} >
+                                <Flex align="center">
+                                        <Box color="#5F6073" mr={1}>
+                                            <BiCalendarCheck />
+                                        </Box>
+                                        {item.endsAt}
+                                    </Flex>  
                                 </chakra.td>
                                 <chakra.td p={2}></chakra.td>
                             </chakra.tr>

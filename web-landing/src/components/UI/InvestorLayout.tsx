@@ -1,7 +1,8 @@
 // * DESCRIPTION:
 
 import { Flex } from "@chakra-ui/react";
-import { NavBarInvestor } from "@components/shared";
+import { NavBarInvestor, WalletButton } from "@components/shared";
+import useWalletContext from "@hooks/web3/useWalletContext";
 import { ReactNode } from "react";
 
 interface NewsLayoutProps {
@@ -9,6 +10,8 @@ interface NewsLayoutProps {
 }
 
 const InvestorLayout = ({ children }: NewsLayoutProps) => {
+    const { account } = useWalletContext()
+
     return (
         <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
             <NavBarInvestor />
@@ -22,9 +25,14 @@ const InvestorLayout = ({ children }: NewsLayoutProps) => {
                 bgRepeat="no-repeat"
             >
                 <Flex direction="column" flex={1}>
-                    <Flex flex={1} py={8} flexDir="column" w="full" align="center" bg="transparent">
+                    {account ? <Flex flex={1} py={8} flexDir="column" w="full" align="center" bg="transparent">
                         {children}
                     </Flex>
+                    :
+                    <Flex flex={1} py={8} flexDir="column" w="full" align="center" justify="center" bg="transparent">
+                       <WalletButton/>
+                    </Flex>}
+                    
                 </Flex>
             </Flex>
         </Flex>

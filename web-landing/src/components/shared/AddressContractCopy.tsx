@@ -13,7 +13,7 @@ export const AddressContractCopy = () => {
 
     return (
         <Stack overflow="hidden" spacing={2} align="center" direction="row">
-            <Text w="auto" isTruncated fontSize="sm">
+            <Text color="#9091A0" w="auto" isTruncated fontSize="sm">
                 {SipherTokenAddress}
             </Text>
             <AiFillCopy cursor="pointer" onClick={handleCopy} size="1.2rem" />

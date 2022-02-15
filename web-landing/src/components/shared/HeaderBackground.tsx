@@ -25,7 +25,8 @@ export const HeaderBackground = ({
             direction="column"
             pos="relative"
             bg={`url(${srcImg})`}
-            bgSize="cover"
+            bgSize="100%"
+            bgRepeat="no-repeat"
         >
             {isCoatedBg && (
                 <Box pos="absolute" zIndex="1" content="''" top="0" left="0" w="100%" h="100%" bg="blackAlpha.700" />
