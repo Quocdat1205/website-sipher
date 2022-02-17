@@ -1,5 +1,12 @@
 import { Flex, Text, Box, Img, Grid, GridItem, Button, Link, Stack } from "@chakra-ui/react";
-import { ActionButton, AddressContractCopy, BackgroundContainer, BoldText, PopoverCustom, Typo } from "@components/shared";
+import {
+    ActionButton,
+    AddressContractCopy,
+    BackgroundContainer,
+    BoldText,
+    PopoverCustom,
+    Typo,
+} from "@components/shared";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useWalletContext from "@hooks/web3/useWalletContext";
 import { currency } from "@source/utils";
@@ -8,33 +15,33 @@ import { AiFillInfoCircle } from "react-icons/ai";
 import { SipherTokenAddress } from "@source/contract/code";
 
 const Ended = () => {
-  const { scCaller, account } = useWalletContext();
+    const { scCaller, account } = useWalletContext();
 
-  const { data: receivedToken } = useQuery(
-    ["estimate-received-token", account],
-    () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
-    {
-      enabled: !!scCaller.current && !!account,
-      initialData: 0,
-    }
-  );
+    const { data: receivedToken } = useQuery(
+        ["estimate-received-token", account],
+        () => scCaller.current!.SipherIBCO.getEstReceivedToken(account!),
+        {
+            enabled: !!scCaller.current && !!account,
+            initialData: 0,
+        }
+    );
 
-  const transactionToast = useTransactionToast();
+    const transactionToast = useTransactionToast();
 
-  const qc = useQueryClient();
+    const qc = useQueryClient();
 
-  const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.SipherIBCO.claim(account!), {
-    onMutate: () => {
-      transactionToast({ status: "processing" });
-    },
-    onSuccess: () => {
-      transactionToast({ status: "successClaim" });
-      qc.invalidateQueries("estimate-received-token");
-    },
-    onError: () => {
-      transactionToast({ status: "failed" });
-    },
-  });
+    const { mutate: claim, isLoading } = useMutation(() => scCaller.current!.SipherIBCO.claim(account!), {
+        onMutate: () => {
+            transactionToast({ status: "processing" });
+        },
+        onSuccess: () => {
+            transactionToast({ status: "successClaim" });
+            qc.invalidateQueries("estimate-received-token");
+        },
+        onError: () => {
+            transactionToast({ status: "failed" });
+        },
+    });
 
   return (
     <BackgroundContainer
@@ -139,12 +146,12 @@ const Ended = () => {
                 disabled={receivedToken! <= 0}
               />
             </Flex>
-          </GridItem>
-        </Grid>
-        </Box>
-      </Flex>
-    </BackgroundContainer>
-  );
+            </GridItem>
+          </Grid>
+          </Box>
+          </Flex>
+        </BackgroundContainer>
+    );
 };
 
 export default Ended;
