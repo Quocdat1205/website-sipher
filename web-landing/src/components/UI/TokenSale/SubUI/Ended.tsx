@@ -59,7 +59,7 @@ const Ended = () => {
           </BoldText>
         </Box>
       </Box>
-        <Box w="full" maxW="58rem" px={2} >
+        <Box w="full" maxW="58rem" pt={8} px={2} >
         <Grid  h="full" w="full" templateRows={["repeat(3, 1fr)","repeat(2, 1fr)"]} templateColumns={["repeat(1, 1fr)","repeat(2, 1fr)"]} gap={6}>
           <GridItem 
               p={[4,8]}
