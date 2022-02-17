@@ -41,7 +41,7 @@ const Ended = () => {
       pos="relative"
       px={0}
     >
-      <Flex pt={20} pb={16} flexDir="column" minH="100vh"    align="center">
+      <Flex pt={20} pb={16} flexDir="column" minH="100vh" align="center">
       <Box pos="relative" h="15rem" bg="url(/images/banner-token.png)" bgRepeat="no-repeat" bgSize="100%" w="full">
         <Box pos="absolute" top="50%" left="50%" transform="translate(-50%,-50%)">
           <Typo.Heading zIndex={1} mb={2}>
@@ -52,17 +52,17 @@ const Ended = () => {
           </BoldText>
         </Box>
       </Box>
-        <Box w="full" maxW="58rem">
-        <Grid  h="full" w="full" templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={6}>
+        <Box w="full" maxW="58rem" px={2} >
+        <Grid  h="full" w="full" templateRows={["repeat(3, 1fr)","repeat(2, 1fr)"]} templateColumns={["repeat(1, 1fr)","repeat(2, 1fr)"]} gap={6}>
           <GridItem 
-              p={8}
+              p={[4,8]}
               pos="relative"
               rounded="xl"
               bg="rgba(0,0,0,0.9)"
               border="1px"
-              borderColor="#383838" colSpan={2} spacing={6}>
+              borderColor="#383838" colSpan={[1,2]} spacing={6}>
               <Stack  direction={["column", "row"]}>
-                <Flex justify="center" flex={1} >
+                <Flex display={["none", 'flex']} justify="center" flex={1} >
                   <Img pos="absolute" top="0"  transform="translateY(-30%)" h="40rem"  src="/images/coin.png" alt="coin"/>
                 </Flex>
                 <Box flex={1}>
@@ -86,7 +86,7 @@ const Ended = () => {
                 </Box>
               </Stack>
           </GridItem>
-          <GridItem zIndex={2}   p={8}
+          <GridItem zIndex={2}   p={[4,8]}
               rounded="xl"
               bg="rgba(0,0,0,0.9)"
               border="1px"
@@ -104,7 +104,7 @@ const Ended = () => {
                 </Box>
              </Stack>
           </GridItem>
-          <GridItem   p={8}
+          <GridItem   p={[4,8]}
               rounded="xl"
               bg="rgba(0,0,0,0.9)"
               border="1px"
@@ -123,7 +123,7 @@ const Ended = () => {
                   </Box>
                 </PopoverCustom>
               </Flex>
-              <Flex align="center" >
+              <Flex align="center" justify={["center","flex-start"]} >
                 <Img src="/images/icons/sipher.png" alt="sipher-token" boxSize="1.5rem" mr={4} />
                 <Text letterSpacing="3px" fontSize="xl" fontWeight="semibold">
                   {currency(receivedToken!)} $SIPHER
