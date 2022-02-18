@@ -55,14 +55,24 @@ const Ended = () => {
                     bgSize="100%"
                     w="full"
                 >
-                    <Box pos="absolute" top="50%" left="50%" transform="translate(-50%,-50%)">
+                    <Flex
+                        flexDir="column"
+                        align="center"
+                        w="full"
+                        px={2}
+                        pos="absolute"
+                        top="50%"
+                        left="50%"
+                        transform="translate(-50%,-50%)"
+                    >
                         <Typo.Heading zIndex={1} mb={2}>
                             GET $SIPHER
                         </Typo.Heading>
-                        <BoldText zIndex={1} textAlign="center">
-                            Get $SIPHER today
+                        <BoldText maxW="58rem" zIndex={1} textAlign="center">
+                            $SIPHER is the multifunctional governance token of Sipher Universe with applications both
+                            in-game and real-world
                         </BoldText>
-                    </Box>
+                    </Flex>
                 </Box>
                 <Box w="full" maxW="58rem" pt={8} px={2}>
                     <Grid
@@ -94,29 +104,8 @@ const Ended = () => {
                                     />
                                 </Flex>
                                 <Box flex={1}>
-                                    <Text mb={4}>BUY $SIPHER ON</Text>
+                                    <Text mb={4}>$SIPHER IS CURRENTLY AVAILABLE AT:</Text>
                                     <Stack spacing={4}>
-                                        <Flex
-                                            rounded="lg"
-                                            align="center"
-                                            justify="space-between"
-                                            p={4}
-                                            bg="rgba(255, 255, 255, 0.1)"
-                                        >
-                                            <Flex align="center">
-                                                <Img alt="uni" src="/images/icons/Uniswap.svg" />
-                                                <Text ml={4}>Uniswap</Text>
-                                            </Flex>
-                                            <ActionButton
-                                                onClick={() =>
-                                                    window.open(
-                                                        `https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=${SipherTokenAddress}`,
-                                                        "_blank"
-                                                    )
-                                                }
-                                                text="Buy now"
-                                            />
-                                        </Flex>
                                         <Flex
                                             rounded="lg"
                                             align="center"
@@ -132,6 +121,27 @@ const Ended = () => {
                                                 onClick={() =>
                                                     window.open(
                                                         `https://kyberswap.com/?utm_source=Sipherwebsite&utm_medium=website&utm_campaign=SipherKyberSwap&utm_id=SipherKyberSwap&utm_content=website#/swap?outputCurrency=${SipherTokenAddress}&networkId=1`,
+                                                        "_blank"
+                                                    )
+                                                }
+                                                text="Buy now"
+                                            />
+                                        </Flex>
+                                        <Flex
+                                            rounded="lg"
+                                            align="center"
+                                            justify="space-between"
+                                            p={4}
+                                            bg="rgba(255, 255, 255, 0.1)"
+                                        >
+                                            <Flex align="center">
+                                                <Img alt="uni" src="/images/icons/Uniswap.svg" />
+                                                <Text ml={4}>Uniswap</Text>
+                                            </Flex>
+                                            <ActionButton
+                                                onClick={() =>
+                                                    window.open(
+                                                        `https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=${SipherTokenAddress}`,
                                                         "_blank"
                                                     )
                                                 }
@@ -172,7 +182,6 @@ const Ended = () => {
                                 <Text>Audit Report by VeriChains</Text>
                                 <Box>
                                     <Text fontSize="sm">
-                                        {" "}
                                         <Link
                                             href="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/audit/Verichains_Public_Audit_Report_Sipher_Tokens_and_IBCO_v1_2.pdf"
                                             isExternal
@@ -182,7 +191,6 @@ const Ended = () => {
                                         </Link>
                                     </Text>
                                     <Text fontSize="sm">
-                                        {" "}
                                         <Link
                                             href="https://sipherstorage.s3.ap-southeast-1.amazonaws.com/audit/Verichains+Public+Audit+Report+-+Sipher+Staking+-+v1.1.pdf"
                                             isExternal

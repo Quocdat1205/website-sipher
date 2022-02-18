@@ -83,6 +83,7 @@ export const theme = extendTheme({
             },
             "*::-webkit-scrollbar": {
                 width: "0.3rem",
+                height: "0.3rem",
             },
             "*::-webkit-scrollbar-track": {
                 background: "black",

@@ -10,25 +10,25 @@ const dataTable = [
         id: 1,
         startAt: "Dec 12, 2021",
         vestingTime: "0,026",
-        endsAt: "Jul 12, 2022"
+        endsAt: "Jul 12, 2022",
     },
     {
         id: 2,
         startAt: "Dec 12, 2021",
         vestingTime: "0,026",
-        endsAt: "Jul 12, 2022"
+        endsAt: "Jul 12, 2022",
     },
     {
         id: 3,
         startAt: "Dec 12, 2021",
         vestingTime: "0,026",
-        endsAt: "Jul 12, 2022"
+        endsAt: "Jul 12, 2022",
     },
-]
+];
 
 const Investor = () => {
     const handleSendMail = () => {
-        window.open("mailto:marketing@sipher.xyz");
+        window.open("mailto:hello@sipher.xyz");
     };
 
     return (

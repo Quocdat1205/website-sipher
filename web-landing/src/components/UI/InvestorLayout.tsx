@@ -10,7 +10,7 @@ interface NewsLayoutProps {
 }
 
 const InvestorLayout = ({ children }: NewsLayoutProps) => {
-    const { account } = useWalletContext()
+    const { account } = useWalletContext();
 
     return (
         <Flex minH="100vh" w="full" direction="column" overflow="hidden" color="whiteAlpha.900" id="main-layout">
@@ -21,18 +21,27 @@ const InvestorLayout = ({ children }: NewsLayoutProps) => {
                 direction="column"
                 id="body"
                 bgImage="/images/pc/investor.png"
-                bgSize="100%"
+                bgSize="cover"
                 bgRepeat="no-repeat"
             >
                 <Flex direction="column" flex={1}>
-                    {account ? <Flex flex={1} py={8} flexDir="column" w="full" align="center" bg="transparent">
-                        {children}
-                    </Flex>
-                    :
-                    <Flex flex={1} py={8} flexDir="column" w="full" align="center" justify="center" bg="transparent">
-                       <WalletButton/>
-                    </Flex>}
-                    
+                    {account ? (
+                        <Flex flex={1} py={8} flexDir="column" w="full" align="center" bg="transparent">
+                            {children}
+                        </Flex>
+                    ) : (
+                        <Flex
+                            flex={1}
+                            py={8}
+                            flexDir="column"
+                            w="full"
+                            align="center"
+                            justify="center"
+                            bg="transparent"
+                        >
+                            <WalletButton />
+                        </Flex>
+                    )}
                 </Flex>
             </Flex>
         </Flex>
