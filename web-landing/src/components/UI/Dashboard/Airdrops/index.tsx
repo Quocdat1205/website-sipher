@@ -1,18 +1,37 @@
-import { Box, chakra, Flex, Text } from "@chakra-ui/react"
-import { ActionButton, HeaderBackground } from "@components/shared"
-import { getAirdrop } from "@hooks/api"
-import useWallet from "@hooks/web3/useWallet"
-import { currency, floorPrecised } from "@source/utils"
-import React from "react"
-import { useQuery } from "react-query"
+import { Box, chakra, Flex, Text } from "@chakra-ui/react";
+import { ActionButton, HeaderBackground } from "@components/shared";
+import { getAirdrop } from "@hooks/api";
+import useTransactionToast from "@hooks/useTransactionToast";
+import useWallet from "@hooks/web3/useWallet";
+import { weiToEther } from "@source/contract";
+import { currency, floorPrecised } from "@source/utils";
+import React from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const Airdrops = () => {
-    const { account } = useWallet()
+    const { account, scCaller } = useWallet();
+    const transactionToast = useTransactionToast();
+    const qc = useQueryClient();
 
-    const { data, isLoading } = useQuery(["token", account], () => getAirdrop(account!), {
+    const { data } = useQuery(["token-airdrops", account], () => getAirdrop(account!), {
         enabled: !!account,
-        initialData: 0,
-    })
+    });
+
+    const { mutate: claim, isLoading } = useMutation(
+        () => scCaller.current!.Airdrops.claim(account!, data!.totalAmount, data!.proof),
+        {
+            onMutate: () => {
+                transactionToast({ status: "processing" });
+            },
+            onSuccess: () => {
+                transactionToast({ status: "successClaim" });
+                qc.invalidateQueries("token-airdrops");
+            },
+            onError: () => {
+                transactionToast({ status: "failed" });
+            },
+        }
+    );
 
     return (
         <>
@@ -29,7 +48,7 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center">
-                        {data !== 0 ? (
+                        {data?.totalAmount ? (
                             <>
                                 <Text textAlign="center" fontWeight={500} fontSize="2xl">
                                     You are eligible for
@@ -43,7 +62,7 @@ const Airdrops = () => {
                                         transform="skew(5deg)"
                                     >
                                         <chakra.span fontWeight={700}>
-                                            {currency(floorPrecised(data, 2))} $SIPHER
+                                            {currency(floorPrecised(weiToEther(data.totalAmount), 2))} $SIPHER
                                         </chakra.span>{" "}
                                         Token(s) Airdrop
                                     </Text>
@@ -52,13 +71,22 @@ const Airdrops = () => {
                                     over a 6 month Vesting Period with each month getting
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
-                                    {currency(floorPrecised(data! / 6, 2))} $SIPHER starting on March 01 2022.
+                                    {currency(floorPrecised(weiToEther(data.totalAmount) / 6, 2))} $SIPHER starting on
+                                    March 01 2022.
                                 </Text>
                                 <Text color="#7C7D91" textAlign="center" mb={6} fontWeight={500} fontSize="md">
                                     Please come back for your first Vested Airdrop of{" "}
-                                    {currency(floorPrecised(data! / 6, 2))} $SIPHER on March 01 2022.
+                                    {currency(floorPrecised(weiToEther(data.totalAmount) / 6, 2))} $SIPHER on March 01
+                                    2022.
                                 </Text>
-                                <ActionButton disabled w="10rem" text="CLAIM" rounded="full" />
+                                <ActionButton
+                                    onClick={() => claim()}
+                                    disabled={!data}
+                                    isLoading={isLoading}
+                                    w="10rem"
+                                    text="CLAIM"
+                                    rounded="full"
+                                />
                             </>
                         ) : (
                             <>
@@ -71,7 +99,7 @@ const Airdrops = () => {
                 </Flex>
             </Flex>
         </>
-    )
-}
+    );
+};
 
-export default Airdrops
+export default Airdrops;
