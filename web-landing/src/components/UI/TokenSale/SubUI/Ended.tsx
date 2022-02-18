@@ -196,7 +196,7 @@ const Ended = () => {
                         </GridItem>
                         <GridItem p={[4, 8]} rounded="xl" bg="rgba(0,0,0,0.9)" border="1px" borderColor="#383838">
                             <Flex direction="column" w="full" h="full">
-                                <Flex align="center">
+                                <Flex mb={4} align="center">
                                     <Text mr={2}>$SIPHER tokens that you can claim:</Text>
                                     <PopoverCustom
                                         color="black"
@@ -211,7 +211,7 @@ const Ended = () => {
                                 <Flex flexDir="column" flex={1} align="center" justify="center">
                                     {account ? (
                                         <>
-                                            <Flex align="center" justify={["center", "flex-start"]}>
+                                            <Flex mb={8} align="center" justify={["center", "flex-start"]}>
                                                 <Img
                                                     src="/images/icons/sipher.png"
                                                     alt="sipher-token"
