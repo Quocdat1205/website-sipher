@@ -4,12 +4,13 @@ import { getAirdrop } from "@hooks/api";
 import useTransactionToast from "@hooks/useTransactionToast";
 import useWallet from "@hooks/web3/useWallet";
 import { weiToEther } from "@source/contract";
-import { currency, floorPrecised } from "@source/utils";
-import React from "react";
+import { currency } from "@source/utils";
+import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const Airdrops = () => {
     const { account, scCaller } = useWallet();
+    const [isLoading, setIsLoading] = useState(false);
     const transactionToast = useTransactionToast();
     const qc = useQueryClient();
 
@@ -17,25 +18,38 @@ const Airdrops = () => {
         enabled: !!account,
     });
 
-    const { data: tokenClaimed } = useQuery(
-        ["token-claimed", account],
-        () => scCaller.current!.Airdrops.claimed(account!),
+    const { data: claimableAmount } = useQuery(
+        ["token-claimable-amount", account],
+        () => scCaller.current!.Airdrops.getClaimableAmountAtTimestamp(account!, token!.totalAmount, token!.proof),
         {
             enabled: !!account,
         }
     );
 
-    const { mutate: claim, isLoading } = useMutation(
+    const { data: tokenClaimed } = useQuery(
+        ["token-claimed", account],
+        () => scCaller.current!.Airdrops.claimed(account!),
+        {
+            enabled: !!account,
+            initialData: 0,
+        }
+    );
+
+    const { mutate: claim } = useMutation(
         () => scCaller.current!.Airdrops.claim(account!, token!.totalAmount, token!.proof),
         {
             onMutate: () => {
+                setIsLoading(true);
                 transactionToast({ status: "processing" });
             },
             onSuccess: () => {
                 transactionToast({ status: "successClaim" });
+                setIsLoading(false);
                 qc.invalidateQueries("token-claimed");
+                qc.invalidateQueries("token-claimable-amount");
             },
             onError: () => {
+                setIsLoading(false);
                 transactionToast({ status: "failed" });
             },
         }
@@ -71,12 +85,7 @@ const Airdrops = () => {
                                     >
                                         <chakra.span fontWeight={700}>
                                             {currency(
-                                                floorPrecised(
-                                                    weiToEther(
-                                                        (parseInt(token.totalAmount) - tokenClaimed!).toString()
-                                                    ),
-                                                    2
-                                                )
+                                                weiToEther((parseInt(token.totalAmount) - tokenClaimed!).toString())
                                             )}{" "}
                                             $SIPHER
                                         </chakra.span>{" "}
@@ -87,17 +96,15 @@ const Airdrops = () => {
                                     over a 6 month Vesting Period with each month getting
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
-                                    {currency(floorPrecised(weiToEther(token.totalAmount) / 6, 2))} $SIPHER starting on
-                                    March 01 2022.
+                                    {currency(weiToEther(token.totalAmount) / 6)} $SIPHER starting on March 01 2022.
                                 </Text>
                                 <Text color="#7C7D91" textAlign="center" mb={6} fontWeight={500} fontSize="md">
                                     Please come back for your first Vested Airdrop of{" "}
-                                    {currency(floorPrecised(weiToEther(token.totalAmount) / 6, 2))} $SIPHER on March 01
-                                    2022.
+                                    {currency(weiToEther(token.totalAmount) / 6)} $SIPHER on March 01 2022.
                                 </Text>
                                 <ActionButton
                                     onClick={() => claim()}
-                                    disabled={!token.totalAmount}
+                                    disabled={claimableAmount === 0}
                                     isLoading={isLoading}
                                     w="10rem"
                                     text="CLAIM"
