@@ -1,11 +1,11 @@
-import { Flex, Box, Text } from "@chakra-ui/react"
-import { ActionButton, BoldText, MotionFlex, Typo } from "@components/shared"
-import Title from "@components/shared/Title"
-import { useRouter } from "next/router"
-import PriceBox from "./PriceBox"
+import { Flex, Box, Text } from "@chakra-ui/react";
+import { ActionButton, BoldText, MotionFlex, Typo } from "@components/shared";
+import Title from "@components/shared/Title";
+import { useRouter } from "next/router";
+import PriceBox from "./PriceBox";
 
 const FirstScreen = () => {
-    const router = useRouter()
+    const router = useRouter();
 
     return (
         <Flex
@@ -57,7 +57,7 @@ const FirstScreen = () => {
                     <Box mb={6}>
                         <ActionButton
                             size="large"
-                            onClick={() => router.push("/token-sale")}
+                            onClick={() => router.push("/get-sipher")}
                             cursor="pointer"
                             text="CLAIM $SIPHER TOKEN"
                             px={6}
@@ -89,7 +89,7 @@ const FirstScreen = () => {
                 </MotionFlex>
             </Flex>
         </Flex>
-    )
-}
+    );
+};
 
-export default FirstScreen
+export default FirstScreen;

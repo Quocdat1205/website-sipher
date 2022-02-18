@@ -1,24 +1,21 @@
 // * DESCRIPTION:
 
-import React from "react"
-import useSaleTime from "./useSaleTime"
-import NotConnected from "./SubUI/NotConnected"
-import Loading from "./SubUI/Loading"
-import NotfoundPage from "@pages/404"
-import Ended from "./SubUI/Ended"
+import React from "react";
+import useSaleTime from "./useSaleTime";
+import Loading from "./SubUI/Loading";
+import NotfoundPage from "@pages/404";
+import Ended from "./SubUI/Ended";
 
 const TokenSale = () => {
-    const { status } = useSaleTime()
+    const { status } = useSaleTime();
 
-    if (status === "NOT_CONNECTED") return <NotConnected />
+    if (status === "LOADING") return <Loading />;
 
-    if (status === "LOADING") return <Loading />
+    if (status === "ENDED") return <Ended />;
 
-    if (status === "ENDED") return <Ended />
+    if (status === "ERROR") return <NotfoundPage />;
 
-    if (status === "ERROR") return <NotfoundPage />
+    return <Ended />;
+};
 
-    return <Ended />
-}
-
-export default TokenSale
+export default TokenSale;

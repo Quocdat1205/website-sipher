@@ -4,18 +4,18 @@ export const introduction = [
     "Please note that certain commercial, technical, regulatory, financial, and market risks associated with the commercial transactions governed by these Terms are described in these Terms, including the Risk Disclosures attached as Schedule 2. It is important that you read these Terms carefully. If you do not understand, or if you have any doubt about any information contained in, these Terms, you should consult your legal, tax, financial, or other professional advisers. If you do not agree to these Terms, you must not accept these Terms or purchase any SIPHER Tokens. Your acceptance of these Terms does not guarantee that you will be able to purchase any SIPHER Tokens during the Token Sale Period.",
     "Sipher JSC reserves the right in its discretion to supplement or amend any part of these Terms at any time. Please monitor the Sipher JSC website at https://sipher.xyz/ for any changes to these Terms and any announcements relating to the sale of SIPHER Tokens that may supplement or vary these Terms.",
     "In these Terms, Sipher JSC and the contracting party identified in Clause II.1 below (“you”) agree as follows:",
-]
+];
 
 type TermAndConditionItem = {
-    title: string
-    text?: string
+    title: string;
+    text?: string;
     chapters: {
-        level: number
-        content: string
-        text?: string
-        key?: string
-    }[]
-}
+        level: number;
+        content: string;
+        text?: string;
+        key?: string;
+    }[];
+};
 
 export const termService: TermAndConditionItem[] = [
     {
@@ -190,12 +190,12 @@ export const termService: TermAndConditionItem[] = [
         chapters: [
             {
                 level: 1,
-                content: `Sipher JSC will conduct the Token Sale only through its website at https://sipher.xyz/token-sale (the “Token Sale Site”). Important information about the Token Sale is set out in Schedule 1 (Details of the Token Sale), including the dates of the Token Sale, pricing, payment instructions, the SIPHER Token distribution process, and Sipher JSC’s expected use of the Token Sale proceeds. If you fail to follow the instructions or observe the other information about the Token Sale in Schedule 1 (Details of the Token Sale) or on the Token Sale Site, you may be delayed or prevented from participating in the Token Sale and you may not be able to purchase SIPHER Tokens.`,
+                content: `Sipher JSC will conduct the Token Sale only through its website at https://sipher.xyz/get-sipher (the “Token Sale Site”). Important information about the Token Sale is set out in Schedule 1 (Details of the Token Sale), including the dates of the Token Sale, pricing, payment instructions, the SIPHER Token distribution process, and Sipher JSC’s expected use of the Token Sale proceeds. If you fail to follow the instructions or observe the other information about the Token Sale in Schedule 1 (Details of the Token Sale) or on the Token Sale Site, you may be delayed or prevented from participating in the Token Sale and you may not be able to purchase SIPHER Tokens.`,
             },
             {
                 level: 1,
                 content:
-                    "The Token Sale Site is the only site authorised by Sipher JSC to provide information about the Token Sale. Before submitting your payment, you must confirm that your web browser shows https://sipher.xyz/token-sale and that your https connection is secure. If you have submitted your payment to an address obtained from any other site you may lose the entire amount of your payment and/or may not receive the SIPHER Tokens you intend to purchase. Sipher JSC is not affiliated with and takes no responsibility for any such other sites.",
+                    "The Token Sale Site is the only site authorised by Sipher JSC to provide information about the Token Sale. Before submitting your payment, you must confirm that your web browser shows https://sipher.xyz/get-sipher and that your https connection is secure. If you have submitted your payment to an address obtained from any other site you may lose the entire amount of your payment and/or may not receive the SIPHER Tokens you intend to purchase. Sipher JSC is not affiliated with and takes no responsibility for any such other sites.",
             },
             {
                 level: 1,
@@ -638,22 +638,22 @@ export const termService: TermAndConditionItem[] = [
             },
         ],
     },
-]
+];
 
 type schedule1Propps = {
-    title: string
-    text?: string
+    title: string;
+    text?: string;
     chapters: {
-        level: number
-        content: string
+        level: number;
+        content: string;
         table?: {
-            th: any
-            td: any
-        }[]
-        text?: string
-        key?: string
-    }[]
-}
+            th: any;
+            td: any;
+        }[];
+        text?: string;
+        key?: string;
+    }[];
+};
 
 export const schedule1: schedule1Propps[] = [
     {
@@ -661,7 +661,7 @@ export const schedule1: schedule1Propps[] = [
         chapters: [
             {
                 level: 1,
-                content: "The landing page of the Token Sale Site is https://sipher.xyz/token-sale.",
+                content: "The landing page of the Token Sale Site is https://sipher.xyz/get-sipher.",
             },
         ],
     },
@@ -675,7 +675,7 @@ export const schedule1: schedule1Propps[] = [
             },
             {
                 level: 2,
-                content: "Navigate to https://sipher.xyz/token-sale",
+                content: "Navigate to https://sipher.xyz/get-sipher",
             },
             {
                 level: 2,
@@ -883,28 +883,28 @@ export const schedule1: schedule1Propps[] = [
             },
         ],
     },
-]
+];
 
 type schedulePropps = {
-    title: string
-    text?: string
+    title: string;
+    text?: string;
     chapters: {
-        level: number
-        content: string
+        level: number;
+        content: string;
         table?: {
-            th: any
-            td: any
-        }[]
-        text?: string
-        key?: string
-    }[]
-}
+            th: any;
+            td: any;
+        }[];
+        text?: string;
+        key?: string;
+    }[];
+};
 
 export const schedule2Introduction = [
     "It is important that you make an informed decision about the Token Sale. You must carefully read and evaluate the risks that Sipher JSC describes in this Schedule 2 (Risk Disclosures).",
     "The realisation of any one or more of the risks described in this Schedule 2 (Risk Disclosures), or other risks whether unforeseen or unforeseeable, could significantly reduce or eliminate the utility or value to you of the Service and any SIPHER Tokens you hold and you could lose your entire payment amount.",
     "If you do not fully understand or are not comfortable with any of the risks described in this Schedule 2 (Risk Disclosures), you should not participate in the Token Sale. Sipher JSC does not represent that this Schedule 2 (Risk Disclosures) discloses all risks and other significant aspects of the Token Sale, including risks which may be personal to you and thus unknown to Sipher JSC.",
-]
+];
 
 export const schedule2: schedulePropps[] = [
     {
@@ -1130,4 +1130,4 @@ export const schedule2: schedulePropps[] = [
             },
         ],
     },
-]
+];
