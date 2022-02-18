@@ -13,12 +13,20 @@ const Airdrops = () => {
     const transactionToast = useTransactionToast();
     const qc = useQueryClient();
 
-    const { data } = useQuery(["token-airdrops", account], () => getAirdrop(account!), {
+    const { data: token } = useQuery(["token-airdrops", account], () => getAirdrop(account!), {
         enabled: !!account,
     });
 
+    const { data: tokenClaimed } = useQuery(
+        ["token-claimed", account],
+        () => scCaller.current!.Airdrops.claimed(account!),
+        {
+            enabled: !!account,
+        }
+    );
+
     const { mutate: claim, isLoading } = useMutation(
-        () => scCaller.current!.Airdrops.claim(account!, data!.totalAmount, data!.proof),
+        () => scCaller.current!.Airdrops.claim(account!, token!.totalAmount, token!.proof),
         {
             onMutate: () => {
                 transactionToast({ status: "processing" });
@@ -48,7 +56,7 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center">
-                        {data?.totalAmount ? (
+                        {token?.totalAmount ? (
                             <>
                                 <Text textAlign="center" fontWeight={500} fontSize="2xl">
                                     You are eligible for
@@ -62,7 +70,15 @@ const Airdrops = () => {
                                         transform="skew(5deg)"
                                     >
                                         <chakra.span fontWeight={700}>
-                                            {currency(floorPrecised(weiToEther(data.totalAmount), 2))} $SIPHER
+                                            {currency(
+                                                floorPrecised(
+                                                    weiToEther(
+                                                        (parseInt(token.totalAmount) - tokenClaimed!).toString()
+                                                    ),
+                                                    2
+                                                )
+                                            )}{" "}
+                                            $SIPHER
                                         </chakra.span>{" "}
                                         Token(s) Airdrop
                                     </Text>
@@ -71,17 +87,17 @@ const Airdrops = () => {
                                     over a 6 month Vesting Period with each month getting
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
-                                    {currency(floorPrecised(weiToEther(data.totalAmount) / 6, 2))} $SIPHER starting on
+                                    {currency(floorPrecised(weiToEther(token.totalAmount) / 6, 2))} $SIPHER starting on
                                     March 01 2022.
                                 </Text>
                                 <Text color="#7C7D91" textAlign="center" mb={6} fontWeight={500} fontSize="md">
                                     Please come back for your first Vested Airdrop of{" "}
-                                    {currency(floorPrecised(weiToEther(data.totalAmount) / 6, 2))} $SIPHER on March 01
+                                    {currency(floorPrecised(weiToEther(token.totalAmount) / 6, 2))} $SIPHER on March 01
                                     2022.
                                 </Text>
                                 <ActionButton
                                     onClick={() => claim()}
-                                    disabled={!data}
+                                    disabled={!token.totalAmount}
                                     isLoading={isLoading}
                                     w="10rem"
                                     text="CLAIM"

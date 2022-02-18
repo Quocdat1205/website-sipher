@@ -12,4 +12,7 @@ export class Airdrops {
         console.log(totalAmount, proof);
         await this.Airdrops.methods.claim(totalAmount, proof).send({ from });
     }
+    async claimed(from: string) {
+        return parseInt(await this.Airdrops.methods.claimed("0", from).call());
+    }
 }
