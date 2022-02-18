@@ -33,7 +33,7 @@ const Airdrops = () => {
             },
             onSuccess: () => {
                 transactionToast({ status: "successClaim" });
-                qc.invalidateQueries("token-airdrops");
+                qc.invalidateQueries("token-claimed");
             },
             onError: () => {
                 transactionToast({ status: "failed" });
