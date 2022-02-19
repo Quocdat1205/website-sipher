@@ -44,6 +44,35 @@ export const getAirdrop = async (address: string): Promise<{ totalAmount: string
     };
 };
 
+export const getInvestor = async (
+    address: string
+): Promise<{
+    startTime: string;
+    vestingInterval: string;
+    totalAmount: string;
+    proof: string[];
+    numberOfVestingPoint: string;
+}> => {
+    const { data } = await fetcher.get(`/airdrop/${address}/investors_CP1`);
+
+    if (data) {
+        return {
+            startTime: data.startTime,
+            vestingInterval: data.vestingInterval,
+            totalAmount: data.totalAmount,
+            proof: data.proof,
+            numberOfVestingPoint: data.numberOfVestingPoint,
+        };
+    } else
+        return {
+            startTime: "0",
+            vestingInterval: "0",
+            totalAmount: "0",
+            proof: [],
+            numberOfVestingPoint: "0",
+        };
+};
+
 export const logout = async (): Promise<boolean> => {
     const { data } = await fetcher.post("/auth/logout", {
         withCredentials: true,

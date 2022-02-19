@@ -2,12 +2,18 @@ import { BsFillTriangleFill } from "react-icons/bs";
 // import { formatDistanceToNow } from "date-fns";
 import { Box, chakra, Flex, Text } from "@chakra-ui/react";
 import useSortableData from "src/hooks/useSortableData";
-import { BiCalendar, BiCalendarCheck, BiTimeFive } from "react-icons/bi";
+import { BiCalendar } from "react-icons/bi";
+import { currency, floorPrecised } from "@source/utils";
+import { IconSipher } from "@components/shared";
+import Pagination from "@components/shared/Pagination";
+import { useState, useMemo } from "react";
+import { format } from "date-fns";
+import { weiToEther } from "@source/contract";
 
 interface VestingItem {
-    startAt: string;
-    vestingTime: string;
-    endsAt: string;
+    id: number;
+    startAt: number;
+    totalAmount: number;
 }
 
 interface VestingProps {
@@ -16,17 +22,26 @@ interface VestingProps {
 
 const header = [
     { id: "startAt", name: "Start at" },
-    { id: "vestingTime", name: "Vesting time" },
-    { id: "endsAt", name: "Ends at" },
+    { id: "totalAmount", name: "Amount" },
 ] as const;
 
+const pageSize = 6;
+
 const VestingTable = ({ data = [] }: VestingProps) => {
-    const { items, requestSort, sortConfig } = useSortableData(data);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+        return data.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, data]);
+
+    const { items, requestSort, sortConfig } = useSortableData(currentTableData);
 
     return (
-        <Box overflow="hidden" h="full">
+        <Box overflow="hidden" h="full" p={[0, 4]}>
             <Box h="full" maxH="30rem" overflow="auto" whiteSpace="nowrap" rounded="lg" bg="background.secondary" p={4}>
-                <chakra.table w="full">
+                <chakra.table mb={4} w="full">
                     <chakra.thead>
                         <chakra.tr>
                             {header.map(i => (
@@ -64,30 +79,30 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                                         <Box color="#5F6073" mr={1}>
                                             <BiCalendar />
                                         </Box>
-                                        {item.startAt}
+                                        {format(new Date(item.startAt), "hh:mm a") +
+                                            " UTC " +
+                                            format(new Date(item.startAt), "dd MMM yyyy")}
                                     </Flex>
                                 </chakra.td>
                                 <chakra.td p={2}>
-                                <Flex align="center">
-                                        <Box color="#5F6073" mr={1}>
-                                            <BiTimeFive />
+                                    <Flex align="center">
+                                        <Box color="#5F6073" mr={2}>
+                                            <IconSipher h="1rem" />
                                         </Box>
-                                        {item.vestingTime}
+                                        {currency(floorPrecised(weiToEther(item.totalAmount.toString()), 2))}
                                     </Flex>
-                                </chakra.td>
-                                <chakra.td p={2} >
-                                <Flex align="center">
-                                        <Box color="#5F6073" mr={1}>
-                                            <BiCalendarCheck />
-                                        </Box>
-                                        {item.endsAt}
-                                    </Flex>  
                                 </chakra.td>
                                 <chakra.td p={2}></chakra.td>
                             </chakra.tr>
                         ))}
                     </chakra.tbody>
                 </chakra.table>
+                <Pagination
+                    currentPage={currentPage}
+                    totalCount={data.length}
+                    pageSize={pageSize}
+                    onPageChange={page => setCurrentPage(page)}
+                />
             </Box>
         </Box>
     );

@@ -10,6 +10,7 @@ import {
     StakingLPSipherWethUniswap,
     Weth,
     KyberswapStakeLPSipherWeth,
+    Investor,
 } from "./class";
 import { Airdrops } from "./class/Airdrops";
 import { LPSipherWethKyber } from "./class/LPSipherWethKyber";
@@ -41,6 +42,7 @@ export class ContractCaller {
     StakingLPSipherWethKyber: StakingLPSipherWethKyber;
     KyberswapStakeLPSipherWeth: KyberswapStakeLPSipherWeth;
     Airdrops: Airdrops;
+    Investor: Investor;
     Weth: Weth;
 
     constructor(provider: any) {
@@ -56,6 +58,7 @@ export class ContractCaller {
         this.StakingLPSipherWethKyber = new StakingLPSipherWethKyber(this.web3);
         this.KyberswapStakeLPSipherWeth = new KyberswapStakeLPSipherWeth(this.web3);
         this.Airdrops = new Airdrops(this.web3);
+        this.Investor = new Investor(this.web3);
         this.Weth = new Weth(this.web3);
     }
 

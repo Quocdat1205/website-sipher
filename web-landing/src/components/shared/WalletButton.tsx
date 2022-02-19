@@ -13,7 +13,7 @@ import { currency } from "@source/utils";
 const menuData = [
     { id: "home", path: "/" },
     { id: "dashboard", path: "/dashboard/inventory/inu" },
-    // { id: "investor", path: "/investor" },
+    { id: "investor", path: "/investor" },
 ];
 
 export const WalletButton = () => {

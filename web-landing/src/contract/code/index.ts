@@ -9,3 +9,4 @@ export * from "./StakingLPSipherWethUniswap";
 export * from "./KyberswapStakeLPSipherWeth";
 export * from "./StakingLPSipherWethKyber";
 export * from "./Airdrops";
+export * from "./Investor";
