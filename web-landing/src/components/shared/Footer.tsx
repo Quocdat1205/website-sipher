@@ -156,7 +156,7 @@ export const Footer = () => {
                     </GradientText>
                 </Stack>
                 <CommunityIcons display={["flex", "flex", "none"]} size="small" />
-                <Box display={["none", "none", "flex"]} pos="absolute" right={10}>
+                <Box display={["none", "none", "flex"]} pos="absolute" right={20} top={0}>
                     <CommunityIcons size="small" />
                 </Box>
             </Stack>
