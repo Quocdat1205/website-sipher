@@ -21,26 +21,32 @@ const Investor = () => {
         window.open("mailto:hello@sipher.xyz");
     };
 
-    const { data: token } = useQuery(["token-investor", account], () => getInvestor(account!), {
-        enabled: !!account,
-    });
-
-    const totalAmountPECIE = token ? parseInt(token.totalAmount) / parseInt(token.numberOfVestingPoint) : 0;
+    const { data: token, isLoading: isTokenLoading } = useQuery(
+        ["token-investor", account],
+        () => getInvestor(account!),
+        {
+            enabled: !!account,
+        }
+    );
 
     const dataTable = () => {
         const arr: { id: number; startAt: number; totalAmount: number }[] = [];
-        let i = 0;
 
-        while (i < parseInt(token!.numberOfVestingPoint)) {
-            arr.push({
-                id: i,
-                startAt: (parseInt(token!.startTime) + parseInt(token!.vestingInterval) * i) * 1000,
-                totalAmount: totalAmountPECIE,
-            });
-            i++;
+        if (token) {
+            let i = 0;
+            while (i < parseInt(token.numberOfVestingPoint)) {
+                arr.push({
+                    id: i,
+                    startAt: (parseInt(token.startTime) + parseInt(token.vestingInterval) * i) * 1000,
+                    totalAmount: parseInt(token.totalAmount) / parseInt(token.numberOfVestingPoint),
+                });
+                i++;
+            }
+
+            return arr;
+        } else {
+            return arr;
         }
-
-        return arr;
     };
 
     const { data: tokenClaimed } = useQuery(
@@ -86,6 +92,14 @@ const Investor = () => {
         }
     );
 
+    if (!token && isTokenLoading) {
+        <Text>Loading ...</Text>;
+    }
+
+    if (!token && !isTokenLoading) {
+        <Text>Error ...</Text>;
+    }
+
     return (
         <Flex
             pos="relative"
@@ -121,7 +135,7 @@ const Investor = () => {
                         <Card
                             sipherPrice={sipherPrice}
                             title="Locked Balance"
-                            value={parseInt(token!.totalAmount) - (tokenClaimed || 0)}
+                            value={parseInt(token?.totalAmount || "0") - (tokenClaimed || 0)}
                             icon={<Img src="/images/icons/bxs-lock.png" />}
                         />
                     </GridItem>
@@ -138,10 +152,10 @@ const Investor = () => {
                             <Stack spacing={4} align="center">
                                 <IconSipher boxSize="3rem" />
                                 <Text fontWeight={600} fontSize="2xl" ml={2}>
-                                    {currency(weiToEther(token!.totalAmount))}
+                                    {currency(weiToEther(token?.totalAmount || "0"))}
                                 </Text>
                                 <Text fontWeight={600} color="#7C7D91">
-                                    ${currency(weiToEther(token!.totalAmount) * sipherPrice!)}
+                                    ${currency(weiToEther(token?.totalAmount || "0") * sipherPrice!)}
                                 </Text>
                             </Stack>
                             <Box textAlign="center" bg="whiteAlpha.300" py={1} px={2} rounded="base">

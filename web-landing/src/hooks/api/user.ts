@@ -54,23 +54,13 @@ export const getInvestor = async (
     numberOfVestingPoint: string;
 }> => {
     const { data } = await fetcher.get(`/airdrop/${address}/investors_CP1`);
-
-    if (data) {
-        return {
-            startTime: data.startTime,
-            vestingInterval: data.vestingInterval,
-            totalAmount: data.totalAmount,
-            proof: data.proof,
-            numberOfVestingPoint: data.numberOfVestingPoint,
-        };
-    } else
-        return {
-            startTime: "0",
-            vestingInterval: "0",
-            totalAmount: "0",
-            proof: [],
-            numberOfVestingPoint: "0",
-        };
+    return {
+        startTime: data.startTime || "0",
+        vestingInterval: data.vestingInterval || "0",
+        totalAmount: data.totalAmount || "0",
+        proof: data.proof || [],
+        numberOfVestingPoint: data.numberOfVestingPoint || "0",
+    };
 };
 
 export const logout = async (): Promise<boolean> => {

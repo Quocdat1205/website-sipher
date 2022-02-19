@@ -6,7 +6,7 @@ import React from "react";
 
 interface Props {
     title: string;
-    value: number;
+    value?: number;
     icon?: React.ReactNode;
     sipherPrice?: number;
 }
