@@ -1,19 +1,18 @@
-import { Flex, VStack } from "@chakra-ui/react"
-import { ActionButton, BackgroundContainer } from "@components/shared"
-import FirstScreen from "./FirstScreen"
-import SmartContracts from "./SmartContracts"
-import dynamic from "next/dynamic"
+import { Flex, VStack } from "@chakra-ui/react";
+import { ActionButton, BackgroundContainer } from "@components/shared";
+import FirstScreen from "./FirstScreen";
+import dynamic from "next/dynamic";
 
 interface HomeBodyProps {
-    uaString: string
+    uaString: string;
 }
 
-const DigitalCharacters = dynamic(() => import("./DigitalCharacters"))
-const WhatIsSipher = dynamic(() => import("./WhatIsSipher"))
-const OwnerBenefits = dynamic(() => import("./OwnerBenefits"))
-const Backers = dynamic(() => import("./Backers"))
-const BehindTheScenes = dynamic(() => import("./BehindTheScenes"))
-const JoinTheCommunity = dynamic(() => import("./JoinTheCommunity"))
+const DigitalCharacters = dynamic(() => import("./DigitalCharacters"));
+const WhatIsSipher = dynamic(() => import("./WhatIsSipher"));
+const OwnerBenefits = dynamic(() => import("./OwnerBenefits"));
+const Backers = dynamic(() => import("./Backers"));
+const BehindTheScenes = dynamic(() => import("./BehindTheScenes"));
+const JoinTheCommunity = dynamic(() => import("./JoinTheCommunity"));
 
 const HomeBody = ({ uaString }: HomeBodyProps) => {
     return (
@@ -31,7 +30,6 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                 pb={24}
             >
                 <VStack spacing={24} align="center" w="full">
-                    <SmartContracts />
                     <DigitalCharacters />
                     <WhatIsSipher uaString={uaString} />
                     <OwnerBenefits />
@@ -50,7 +48,7 @@ const HomeBody = ({ uaString }: HomeBodyProps) => {
                 />
             </Flex>
         </BackgroundContainer>
-    )
-}
+    );
+};
 
-export default HomeBody
+export default HomeBody;

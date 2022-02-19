@@ -1,39 +1,39 @@
-import { Box, Flex, SimpleGrid } from "@chakra-ui/layout"
-import { GradientOutlineButton, MotionFlex, TextContainer, Typo } from "@components/shared"
-import { content, definition } from "@constant/content/whatIsSipher"
-import { AnimatePresence } from "framer-motion"
-import { useUserAgent } from "next-useragent"
-import { useEffect, useRef, useState } from "react"
-import { IoMdPlay } from "react-icons/io"
+import { Box, Flex, SimpleGrid } from "@chakra-ui/layout";
+import { GradientOutlineButton, MotionFlex, TextContainer, Typo } from "@components/shared";
+import { content, definition } from "@constant/content/whatIsSipher";
+import { AnimatePresence } from "framer-motion";
+// import { useUserAgent } from "next-useragent";
+import { useEffect, useRef, useState } from "react";
+import { IoMdPlay } from "react-icons/io";
 interface WhatIsSipherProps {
-    uaString: string
+    uaString: string;
 }
 
 const WhatIsSipher = ({ uaString }: WhatIsSipherProps) => {
-    const videoRef = useRef<HTMLVideoElement>(null)
-    const [isPlaying, setIsPlaying] = useState(false)
-    const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent)
-    const isIOS = isIos || isIpad || isIphone || isSafari
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    // const { isIos, isIpad, isIphone, isSafari } = useUserAgent(uaString || window.navigator.userAgent);
+    // const isIOS = isIos || isIpad || isIphone || isSafari;
 
     useEffect(() => {
         const timeout = setInterval(() => {
             if (videoRef.current && isPlaying && videoRef.current.volume < 1) {
-                videoRef.current.volume = Math.min(1, videoRef.current.volume + 0.1)
+                videoRef.current.volume = Math.min(1, videoRef.current.volume + 0.1);
             }
-        }, 100)
-        return () => clearInterval(timeout)
-    }, [isPlaying])
+        }, 100);
+        return () => clearInterval(timeout);
+    }, [isPlaying]);
 
     useEffect(() => {
         if (videoRef.current) {
             if (isPlaying) {
-                videoRef.current.play()
+                videoRef.current.play();
             } else {
-                videoRef.current.pause()
-                videoRef.current.volume = 0
+                videoRef.current.pause();
+                videoRef.current.volume = 0;
             }
         }
-    }, [isPlaying])
+    }, [isPlaying]);
 
     return (
         <TextContainer headline="What Is Sipher">
@@ -75,7 +75,7 @@ const WhatIsSipher = ({ uaString }: WhatIsSipherProps) => {
                     <video
                         src={"/video/whatissipher.mp4"}
                         playsInline={true}
-                        controls={isIOS}
+                        controls
                         ref={videoRef}
                         onPlay={() => setIsPlaying(true)}
                         onPause={() => setIsPlaying(false)}
@@ -103,7 +103,7 @@ const WhatIsSipher = ({ uaString }: WhatIsSipherProps) => {
                 ))}
             </SimpleGrid>
         </TextContainer>
-    )
-}
+    );
+};
 
-export default WhatIsSipher
+export default WhatIsSipher;

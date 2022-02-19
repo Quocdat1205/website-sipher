@@ -1,4 +1,11 @@
-const content = [
+export const contentRoadmap = [
+    "Hello Sipherians! Welcome to our Roadmap. As you may already know, the primary goal of Sipher is to create games that:",
+    "1) Tell a compelling story and are fun for everyone to play - we are hoping to reach the masses, specifically gamers that enjoy playing with others, whether in Dungeon style PvE or MOBA PvP;",
+    "2) Allow you to have full ownership over all of your in-game assets (characters, items, in-game currency, equipment, land, etc.), and provide you with opportunities for making profit or earning real-life money from playing the game (P2E model).",
+    "To accomplish our main goal and vision, there are various phases that we must complete first. Each of these phases are described within our roadmap",
+];
+
+export const content = [
     {
         name: "Sipherian surge",
         completed: true,
@@ -80,6 +87,4 @@ const content = [
         date: "January 2023 & Beyond",
         content: ["Regular release of new in-game NFT Content", "Launch of Sipherian Worlds"],
     },
-]
-
-export default content
+];

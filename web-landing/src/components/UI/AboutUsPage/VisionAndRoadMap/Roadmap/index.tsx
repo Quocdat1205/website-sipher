@@ -1,18 +1,24 @@
-import { Accordion } from "@chakra-ui/react"
-import { TextContainer } from "@components/shared"
-import React from "react"
-import MyAccordionItem from "./MyAccordionItem"
-import content from "@constant/content/roadmap"
+import { ActionButton, TextContainer } from "@components/shared";
+import React from "react";
+import { contentRoadmap } from "@constant/content/roadmap";
+import { Box, Stack, Text } from "@chakra-ui/react";
 
 const RoadMap = () => {
     return (
         <TextContainer headline="ROADMAP">
-            <Accordion defaultIndex={[3]} allowMultiple>
-                {content.map(item => (
-                    <MyAccordionItem key={item.name} data={item} />
+            <Stack mb={8}>
+                {contentRoadmap.map(item => (
+                    <Text key={item}>{item}</Text>
                 ))}
-            </Accordion>
+            </Stack>
+            <Box textAlign="center">
+                <ActionButton
+                    text="JOIN US AT SIPHER"
+                    rounded="full"
+                    onClick={() => window.open("https://atlas.sipher.xyz/sipher-roadmap", "_blank")}
+                />
+            </Box>
         </TextContainer>
-    )
-}
-export default RoadMap
+    );
+};
+export default RoadMap;
