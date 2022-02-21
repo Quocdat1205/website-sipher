@@ -39,8 +39,8 @@ const VestingTable = ({ data = [] }: VestingProps) => {
     const { items, requestSort, sortConfig } = useSortableData(currentTableData);
 
     return (
-        <Box overflow="hidden" h="full" p={[0, 4]}>
-            <Box h="full" maxH="30rem" overflow="auto" whiteSpace="nowrap" rounded="lg" bg="background.secondary" p={4}>
+        <Box overflow="hidden" h="full">
+            <Box h="full" maxH="30rem" overflow="auto" whiteSpace="nowrap" rounded="lg" bg="background.secondary" p={[4,6]}>
                 <chakra.table mb={4} w="full">
                     <chakra.thead>
                         <chakra.tr>

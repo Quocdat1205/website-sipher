@@ -58,7 +58,7 @@ const Investor = () => {
         }
     );
 
-    const { data: claimableAmount } = useQuery(
+    const { data: claimableAmount, isLoading: isSCLoading } = useQuery(
         ["token-claimable-amount", account],
         () => scCaller.current!.Investor.getClaimableAmountAtTimestamp(account!, token!.totalAmount, token!.proof),
         {
@@ -104,12 +104,12 @@ const Investor = () => {
         <Flex
             pos="relative"
             flexDir="column"
-            pt={16}
+            pt={12}
             px={4}
             flex={1}
             w="full"
             overflow="hidden"
-            maxW="80rem"
+            maxW="68rem"
             bg="transparent"
         >
             <Flex flexDir="column" flex={1}>
@@ -143,7 +143,7 @@ const Investor = () => {
                         <VestingTable data={dataTable()} />
                     </GridItem>
                     <GridItem rounded="lg" rowSpan={2} colSpan={1} bg="#292A40">
-                        <Flex h="full" flexDir="column" justify="space-between" align="center" p={[4, 8]}>
+                        <Flex h="full" flexDir="column" justify="space-between" align="center" p={[4, 6]}>
                             <Flex align="center">
                                 <Text fontSize="lg" color="#7C7D91">
                                     Total Vesting
@@ -171,11 +171,11 @@ const Investor = () => {
                         </Flex>
                     </GridItem>
                 </Grid>
-                <Flex pt={16} flexDir="column" align="center">
+                <Flex pt={10} flexDir="column" align="center">
                     <Text color="#B8B9C7" textAlign="center">
                         Keep in mind that each time you withdraw gas fee appears.
                     </Text>
-                    <Text mb={8} color="#B8B9C7" textAlign="center">
+                    <Text mb={6} color="#B8B9C7" textAlign="center">
                         Please contact{" "}
                         <chakra.span
                             cursor="pointer"
@@ -189,7 +189,7 @@ const Investor = () => {
                     </Text>
                     <ActionButton
                         disabled={claimableAmount === 0}
-                        isLoading={isLoading}
+                        isLoading={isLoading || isSCLoading} 
                         text="Claim Available Tokens"
                         onClick={() => claim()}
                         rounded="base"

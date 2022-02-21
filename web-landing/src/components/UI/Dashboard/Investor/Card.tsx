@@ -13,7 +13,7 @@ interface Props {
 
 const Card = ({ title, value = 0, icon, sipherPrice = 0 }: Props) => {
     return (
-        <Stack p={[4, 8]}>
+        <Stack p={[4, 6]}>
             <Flex align="center">
                 <Box mr={2}>{icon}</Box>
                 <Text fontSize="lg" color="#7C7D91">
