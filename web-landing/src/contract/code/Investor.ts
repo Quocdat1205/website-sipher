@@ -1,4 +1,4 @@
-export const InvestorAddress = "0x27b83717fCeB7FFFd80c3a4FeEfC1E50AE2f2494"; // test
+export const InvestorAddress = "0xAb37F2838039c569b4463D0477bDbaaa4bE70e98"; // test
 
 export const InvestorAbi: any = [
     {

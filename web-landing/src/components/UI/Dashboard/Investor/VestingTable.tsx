@@ -8,7 +8,6 @@ import { IconSipher } from "@components/shared";
 import Pagination from "@components/shared/Pagination";
 import { useState, useMemo } from "react";
 import { format } from "date-fns";
-import { weiToEther } from "@source/contract";
 
 interface VestingItem {
     id: number;
@@ -40,7 +39,15 @@ const VestingTable = ({ data = [] }: VestingProps) => {
 
     return (
         <Box overflow="hidden" h="full">
-            <Box h="full" maxH="30rem" overflow="auto" whiteSpace="nowrap" rounded="lg" bg="background.secondary" p={[4,6]}>
+            <Box
+                h="full"
+                maxH="30rem"
+                overflow="auto"
+                whiteSpace="nowrap"
+                rounded="lg"
+                bg="background.secondary"
+                p={[4, 6]}
+            >
                 <chakra.table mb={4} w="full">
                     <chakra.thead>
                         <chakra.tr>
@@ -89,7 +96,7 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                                         <Box color="#5F6073" mr={2}>
                                             <IconSipher h="1rem" />
                                         </Box>
-                                        {currency(floorPrecised(weiToEther(item.totalAmount.toString()), 2))}
+                                        {currency(floorPrecised(item.totalAmount.toString(), 2))}
                                     </Flex>
                                 </chakra.td>
                                 <chakra.td p={2}></chakra.td>

@@ -1,4 +1,5 @@
 import Web3 from "web3";
+import { weiToEther } from "..";
 import { InvestorAbi, InvestorAddress } from "../code";
 
 export class Investor {
@@ -16,7 +17,7 @@ export class Investor {
     }
 
     async getClaimableAmountAtTimestamp(from: string, totalAmount: string, proof: string[]) {
-        return parseInt(
+        return weiToEther(
             await this.Investor.methods
                 .getClaimableAmountAtTimestamp(
                     from,

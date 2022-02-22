@@ -1,4 +1,4 @@
-export const AirdropsAddress = "0x27b83717fCeB7FFFd80c3a4FeEfC1E50AE2f2494"; // test
+export const AirdropsAddress = "0xaf53B583cB0e2A27cd2BCCF1356639cEB176383C"; // test
 
 export const AirdropsAbi: any = [
     {

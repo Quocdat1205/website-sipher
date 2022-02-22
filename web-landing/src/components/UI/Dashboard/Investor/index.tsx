@@ -38,7 +38,7 @@ const Investor = () => {
                 arr.push({
                     id: i,
                     startAt: (parseInt(token.startTime) + parseInt(token.vestingInterval) * i) * 1000,
-                    totalAmount: parseInt(token.totalAmount) / parseInt(token.numberOfVestingPoint),
+                    totalAmount: weiToEther(token.totalAmount || "0") / parseInt(token.numberOfVestingPoint),
                 });
                 i++;
             }
@@ -135,7 +135,7 @@ const Investor = () => {
                         <Card
                             sipherPrice={sipherPrice}
                             title="Locked Balance"
-                            value={parseInt(token?.totalAmount || "0") - (tokenClaimed || 0)}
+                            value={weiToEther(token?.totalAmount || "0") - (tokenClaimed || 0)}
                             icon={<Img src="/images/icons/bxs-lock.png" />}
                         />
                     </GridItem>
@@ -189,7 +189,7 @@ const Investor = () => {
                     </Text>
                     <ActionButton
                         disabled={claimableAmount === 0}
-                        isLoading={isLoading || isSCLoading} 
+                        isLoading={isLoading || isSCLoading}
                         text="Claim Available Tokens"
                         onClick={() => claim()}
                         rounded="base"

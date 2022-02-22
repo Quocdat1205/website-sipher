@@ -1,6 +1,5 @@
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { IconSipher } from "@components/shared";
-import { weiToEther } from "@source/contract";
 import { currency } from "@source/utils";
 import React from "react";
 
@@ -23,11 +22,11 @@ const Card = ({ title, value = 0, icon, sipherPrice = 0 }: Props) => {
             <Flex align="center">
                 <IconSipher />
                 <Text fontWeight={600} fontSize="2xl" ml={2}>
-                    {currency(weiToEther(value.toString()))}
+                    {currency(value)}
                 </Text>
             </Flex>
             <Text fontWeight={600} color="#7C7D91">
-                ${currency(weiToEther((value * sipherPrice).toString()))}
+                ${currency(value * sipherPrice)}
             </Text>
         </Stack>
     );

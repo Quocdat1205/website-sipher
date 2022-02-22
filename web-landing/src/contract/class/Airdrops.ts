@@ -1,4 +1,5 @@
 import Web3 from "web3";
+import { weiToEther } from "..";
 import { AirdropsAbi, AirdropsAddress } from "../code";
 
 export class Airdrops {
@@ -12,11 +13,11 @@ export class Airdrops {
         await this.Airdrops.methods.claim(totalAmount, proof).send({ from });
     }
     async claimed(from: string) {
-        return parseInt(await this.Airdrops.methods.claimed("0", from).call());
+        return weiToEther(await this.Airdrops.methods.claimed("0", from).call());
     }
 
     async getClaimableAmountAtTimestamp(from: string, totalAmount: string, proof: string[]) {
-        return parseInt(
+        return weiToEther(
             await this.Airdrops.methods
                 .getClaimableAmountAtTimestamp(
                     from,

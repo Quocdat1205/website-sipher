@@ -85,10 +85,7 @@ const Airdrops = () => {
                                         transform="skew(5deg)"
                                     >
                                         <chakra.span fontWeight={700}>
-                                            {currency(
-                                                weiToEther((parseInt(token.totalAmount) - tokenClaimed!).toString())
-                                            )}{" "}
-                                            $SIPHER
+                                            {currency(weiToEther(token.totalAmount) - (tokenClaimed || 0))} $SIPHER
                                         </chakra.span>{" "}
                                         Token(s) Airdrop
                                     </Text>
@@ -100,14 +97,13 @@ const Airdrops = () => {
                                     {currency(weiToEther(token.totalAmount) / 6)} $SIPHER starting on March 01 2022.
                                 </Text>
                                 <Text px={8} color="#7C7D91" textAlign="center" mb={4} fontWeight={500} fontSize="md">
-                                    Your current claimable amount is {currency(weiToEther(claimableAmount!.toString()))}{" "}
-                                    $SIPHER. You could claim every period or claim all at the end of the airdrops (09:00
-                                    AM UTC SEP 01 2022
+                                    Your current claimable amount is {currency(claimableAmount!)} $SIPHER. You could
+                                    claim every period or claim all at the end of the airdrops (09:00 AM UTC SEP 01 2022
                                     {/* Please come back for your first Vested Airdrop of{" "}
                                     {currency(weiToEther(token.totalAmount) / 6)} $SIPHER on March 01 2022. */}
                                 </Text>
                                 <Text color="#7C7D91" textAlign="center" mb={6} fontWeight={500} fontSize="md">
-                                    Your claimed amount: {currency(weiToEther(tokenClaimed!.toString()))} $SIPHER
+                                    Your claimed amount: {currency(tokenClaimed!)} $SIPHER
                                 </Text>
                                 <ActionButton
                                     onClick={() => claim()}
