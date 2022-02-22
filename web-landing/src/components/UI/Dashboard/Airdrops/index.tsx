@@ -115,11 +115,9 @@ const Airdrops = () => {
                                 />
                             </>
                         ) : (
-                            <>
-                                <Text textAlign="center" fontWeight={500} fontSize="2xl">
-                                    You are not eligible for any Airdrops at this time.
-                                </Text>
-                            </>
+                            <Text textAlign="center" fontWeight={500} fontSize="2xl">
+                                You are not eligible for any Airdrops at this time.
+                            </Text>
                         )}
                     </Flex>
                 </Flex>
