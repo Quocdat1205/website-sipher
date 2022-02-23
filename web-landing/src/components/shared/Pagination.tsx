@@ -1,6 +1,6 @@
 import React from "react";
 import { DOTS, usePagination } from "@hooks/usePagination";
-import { IconButton, chakra, HStack, Flex, Text } from "@chakra-ui/react";
+import { IconButton, Box, HStack, Flex, Text } from "@chakra-ui/react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const Pagination = props => {
@@ -43,7 +43,7 @@ const Pagination = props => {
             </IconButton>
             {paginationRange.map(pageNumber => {
                 if (pageNumber === DOTS) {
-                    return <chakra.li className="pagination-item dots">&#8230;</chakra.li>;
+                    return <Box className="pagination-item dots">&#8230;</Box>;
                 }
 
                 return (

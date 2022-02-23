@@ -42,7 +42,7 @@ const Investor = () => {
           id: i,
           startAt: (parseInt(token.startTime) + parseInt(token.vestingInterval) * i) * 1000,
           totalAmount: weiToEther(token.totalAmount || "0") / parseInt(token.numberOfVestingPoint),
-          claimed: i < lastClaimedPoint ? "claimed" : "",
+          claimed: i < lastClaimedPoint ? "Claimed" : "",
         });
         i++;
       }
@@ -155,7 +155,7 @@ const Investor = () => {
                       Total Vesting
                     </Text>
                   </Flex>
-                  <Stack spacing={4} align="center">
+                  <Stack spacing={2} align="center">
                     <IconSipher boxSize="3rem" />
                     <Text fontWeight={600} fontSize="2xl" ml={2}>
                       {currency(weiToEther(token?.totalAmount || "0"))}

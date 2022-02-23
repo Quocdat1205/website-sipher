@@ -4,7 +4,7 @@ import { Box, chakra, Flex, Text } from "@chakra-ui/react";
 import useSortableData from "src/hooks/useSortableData";
 import { BiCalendar } from "react-icons/bi";
 import { currency, floorPrecised } from "@source/utils";
-import { IconSipher } from "@components/shared";
+import { GradientText, IconSipher } from "@components/shared";
 import Pagination from "@components/shared/Pagination";
 import { useState, useMemo } from "react";
 import { format } from "date-fns";
@@ -21,8 +21,10 @@ interface VestingProps {
 }
 
 const header = [
-  { id: "startAt", name: "Start at" },
-  { id: "totalAmount", name: "Amount" },
+  { id: "startAt", name: "Start at" ,justify:"flex-start"},
+  { id: "totalAmount", name: "Amount" ,justify:"flex-start"},
+  { id: "claimed", name: "Status", justify:"flex-end" },
+
 ] as const;
 
 const pageSize = 6;
@@ -45,8 +47,8 @@ const VestingTable = ({ data = [] }: VestingProps) => {
           <chakra.thead>
             <chakra.tr>
               {header.map((i) => (
-                <chakra.th key={i.id} p={2} fontWeight={500} textAlign={"left"}>
-                  <Flex align="center">
+                <chakra.th key={i.id} p={2} fontWeight={500} >
+                  <Flex align="center" justify={i.justify}>
                     <Text mr={2} color="#7C7D91 ">
                       {i.name}
                     </Text>
@@ -64,7 +66,6 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                   </Flex>
                 </chakra.th>
               ))}
-              <chakra.th p={2}></chakra.th>
             </chakra.tr>
           </chakra.thead>
           <chakra.tbody>
@@ -88,8 +89,8 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                     {currency(floorPrecised(item.totalAmount.toString(), 2))}
                   </Flex>
                 </chakra.td>
-                <chakra.td p={2}>
-                  <Flex align="center">{item.claimed}</Flex>
+                <chakra.td p={2} textAlign="right">
+                  <GradientText>{item.claimed}</GradientText>
                 </chakra.td>
                 <chakra.td p={2}></chakra.td>
               </chakra.tr>
