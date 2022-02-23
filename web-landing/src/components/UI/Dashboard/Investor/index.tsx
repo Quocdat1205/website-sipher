@@ -96,7 +96,6 @@ const Investor = () => {
       },
     }
   );
-  console.log(claimableAmount)
 
   if (!token && isTokenLoading) {
     <Text>Loading ...</Text>;

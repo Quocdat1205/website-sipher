@@ -1,7 +1,4 @@
-import { BsFillTriangleFill } from "react-icons/bs";
-// import { formatDistanceToNow } from "date-fns";
-import { Box, chakra, Flex, Text } from "@chakra-ui/react";
-import useSortableData from "src/hooks/useSortableData";
+import { Box, chakra, Flex } from "@chakra-ui/react";
 import { BiCalendar } from "react-icons/bi";
 import { currency, floorPrecised } from "@source/utils";
 import { GradientText, IconSipher } from "@components/shared";
@@ -21,9 +18,9 @@ interface VestingProps {
 }
 
 const header = [
-  { id: "startAt", name: "Start at" ,justify:"flex-start"},
-  { id: "totalAmount", name: "Amount" ,justify:"flex-start"},
-  { id: "claimed", name: "Status", justify:"flex-end" },
+  { id: "startAt", name: "Start at" ,textAlign:"left"},
+  { id: "totalAmount", name: "Amount" ,textAlign:"left"},
+  { id: "claimed", name: "Status", textAlign:"right" },
 
 ] as const;
 
@@ -38,7 +35,6 @@ const VestingTable = ({ data = [] }: VestingProps) => {
     return data.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, data]);
 
-  const { items, requestSort, sortConfig } = useSortableData(currentTableData);
 
   return (
     <Box overflow="hidden" h="full">
@@ -47,29 +43,14 @@ const VestingTable = ({ data = [] }: VestingProps) => {
           <chakra.thead>
             <chakra.tr>
               {header.map((i) => (
-                <chakra.th key={i.id} p={2} fontWeight={500} >
-                  <Flex align="center" justify={i.justify}>
-                    <Text mr={2} color="#7C7D91 ">
+                <chakra.th  color="#7C7D91" key={i.id} p={2} fontWeight={500} textAlign={i.textAlign} >
                       {i.name}
-                    </Text>
-                    <Box
-                      cursor="pointer"
-                      onClick={() => requestSort(i.id)}
-                      rotate={
-                        sortConfig?.key === i.id ? (sortConfig.direction === "ascending" ? "0deg" : "180deg") : "180deg"
-                      }
-                      color="text.secondary"
-                      transform={"auto"}
-                    >
-                      <BsFillTriangleFill size={"0.5rem"} />
-                    </Box>
-                  </Flex>
                 </chakra.th>
               ))}
             </chakra.tr>
           </chakra.thead>
           <chakra.tbody>
-            {items.map((item, index) => (
+            {currentTableData.map((item, index) => (
               <chakra.tr key={index} borderTop="1px" borderColor="#45465D">
                 <chakra.td p={2}>
                   <Flex align="center">
