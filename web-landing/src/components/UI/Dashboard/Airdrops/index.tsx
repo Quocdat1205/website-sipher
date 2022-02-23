@@ -22,7 +22,7 @@ const Airdrops = () => {
         ["token-claimable-amount", account],
         () => scCaller.current!.Airdrops.getClaimableAmountAtTimestamp(account!, token!.totalAmount, token!.proof),
         {
-            enabled: !!account,
+            enabled: !!token && !!account,
             initialData: 0,
         }
     );
@@ -31,7 +31,7 @@ const Airdrops = () => {
         ["token-claimed", account],
         () => scCaller.current!.Airdrops.claimed(account!),
         {
-            enabled: !!account,
+            enabled: !!token && !!account,
             initialData: 0,
         }
     );

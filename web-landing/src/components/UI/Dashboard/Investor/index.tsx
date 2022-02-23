@@ -57,7 +57,7 @@ const Investor = () => {
     ["token-claimed", account],
     () => scCaller.current!.Investor.claimed(account!),
     {
-      enabled: !!account,
+      enabled: !!token && !!account,
       initialData: 0,
     }
   );
@@ -66,10 +66,11 @@ const Investor = () => {
     ["token-claimable-amount", account],
     () => scCaller.current!.Investor.getClaimableAmountAtTimestamp(account!, token!.totalAmount, token!.proof),
     {
-      enabled: !!account,
+      enabled: !!token && !!account,
       initialData: 0,
     }
   );
+
 
   const { data: sipherPrice } = useQuery(["sipher-price"], () => getSipherPrice(), {
     initialData: 0,
@@ -95,6 +96,7 @@ const Investor = () => {
       },
     }
   );
+  console.log(claimableAmount)
 
   if (!token && isTokenLoading) {
     <Text>Loading ...</Text>;
