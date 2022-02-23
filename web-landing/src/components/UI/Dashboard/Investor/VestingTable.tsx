@@ -67,7 +67,7 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                     <Box color="#5F6073" mr={2}>
                       <IconSipher h="1rem" />
                     </Box>
-                    {currency(floorPrecised(item.totalAmount.toString(), 2))}
+                    {currency(floorPrecised(item.totalAmount, 2))}
                   </Flex>
                 </chakra.td>
                 <chakra.td p={2} textAlign="right">
