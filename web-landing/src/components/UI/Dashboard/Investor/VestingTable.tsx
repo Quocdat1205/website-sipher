@@ -21,10 +21,9 @@ interface VestingProps {
 }
 
 const header = [
-  { id: "startAt", name: "Start at" ,justify:"flex-start"},
-  { id: "totalAmount", name: "Amount" ,justify:"flex-start"},
-  { id: "claimed", name: "Status", justify:"flex-end" },
-
+  { id: "startAt", name: "Start at", justify: "flex-start" },
+  { id: "totalAmount", name: "Amount", justify: "flex-start" },
+  { id: "claimed", name: "Status", justify: "flex-end" },
 ] as const;
 
 const pageSize = 6;
@@ -47,7 +46,7 @@ const VestingTable = ({ data = [] }: VestingProps) => {
           <chakra.thead>
             <chakra.tr>
               {header.map((i) => (
-                <chakra.th key={i.id} p={2} fontWeight={500} >
+                <chakra.th key={i.id} p={2} fontWeight={500}>
                   <Flex align="center" justify={i.justify}>
                     <Text mr={2} color="#7C7D91 ">
                       {i.name}
@@ -86,7 +85,7 @@ const VestingTable = ({ data = [] }: VestingProps) => {
                     <Box color="#5F6073" mr={2}>
                       <IconSipher h="1rem" />
                     </Box>
-                    {currency(floorPrecised(item.totalAmount.toString(), 2))}
+                    {currency(floorPrecised(item.totalAmount, 2))}
                   </Flex>
                 </chakra.td>
                 <chakra.td p={2} textAlign="right">

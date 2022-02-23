@@ -71,7 +71,6 @@ const Investor = () => {
     }
   );
 
-
   const { data: sipherPrice } = useQuery(["sipher-price"], () => getSipherPrice(), {
     initialData: 0,
     enabled: !!account,
@@ -96,7 +95,7 @@ const Investor = () => {
       },
     }
   );
-  console.log(claimableAmount)
+  console.log(claimableAmount);
 
   if (!token && isTokenLoading) {
     <Text>Loading ...</Text>;
@@ -135,7 +134,7 @@ const Investor = () => {
                 <Card
                   sipherPrice={sipherPrice}
                   title="Total Withdrawn"
-                  value={weiToEther(tokenClaimed!.toString()) || 0}
+                  value={weiToEther(tokenClaimed!.toLocaleString("fullwide", { useGrouping: false })) || 0}
                   icon={<Img src="/images/icons/bx-money.png" />}
                 />
               </GridItem>
@@ -143,7 +142,10 @@ const Investor = () => {
                 <Card
                   sipherPrice={sipherPrice}
                   title="Locked Balance"
-                  value={weiToEther(token?.totalAmount || "0") - (weiToEther(tokenClaimed!.toString()) || 0)}
+                  value={
+                    weiToEther(token?.totalAmount || "0") -
+                    (weiToEther(tokenClaimed!.toLocaleString("fullwide", { useGrouping: false })) || 0)
+                  }
                   icon={<Img src="/images/icons/bxs-lock.png" />}
                 />
               </GridItem>
