@@ -49,8 +49,8 @@ export const getAirdrop = async (
     const { data } = await fetcher.get(`/airdrop/${address}/airdrops`)
 
     return {
-        totalAmount: data.totalAmount,
-        proof: data.proof,
+        totalAmount: data.totalAmount || "0",
+        proof: data.proof || [],
     }
 }
 
