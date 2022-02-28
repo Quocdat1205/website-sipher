@@ -89,8 +89,7 @@ const Airdrops = () => {
                 </Text>
                 <ActionButton
                   onClick={() => claim()}
-                  // disabled={claimableAmount === 0}
-                  disabled
+                  disabled={claimableAmount === 0}
                   isLoading={isLoading}
                   w="10rem"
                   text="CLAIM"
