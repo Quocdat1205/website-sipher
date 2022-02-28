@@ -24,8 +24,7 @@ const WalletCard = ({ src, text, onClick }: WalletCard) => {
         <Flex
             align="center"
             flex={1}
-            px={4}
-            py={2}
+            p={4}
             rounded="lg"
             bg="blackAlpha.800"
             cursor="pointer"
@@ -36,7 +35,7 @@ const WalletCard = ({ src, text, onClick }: WalletCard) => {
                 onClick()
             }}
         >
-            <Img src={src} alt={text} boxSize="3rem" mr={8} />
+            <Img src={src} alt={text} boxSize="2rem" mr={8} />
             <Text fontWeight="semibold">{text}</Text>
         </Flex>
     )
@@ -65,6 +64,11 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                             onClick={() => wallet.connect("injected")}
                         />
                         <WalletCard
+                            src="/images/icons/wallet/coinbase.png"
+                            text="Coinbase"
+                            onClick={() => wallet.connect("coinbase")}
+                        />
+                        <WalletCard
                             src="/images/icons/wallet/walletconnect.svg"
                             text="WalletConnect"
                             onClick={() => wallet.connect("walletConnect")}
@@ -72,7 +76,11 @@ export const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
                         <WalletCard
                             src="/images/icons/wallet/trezor.png"
                             text="For Trezor Wallet User Only"
-                            onClick={() => router.push("https://trezorwallet.sipher.xyz/stake/overview")}
+                            onClick={() =>
+                                router.push(
+                                    "https://trezorwallet.sipher.xyz/stake/overview"
+                                )
+                            }
                         />
                         <WalletCard
                             src="/images/icons/wallet/gnosis.png"
