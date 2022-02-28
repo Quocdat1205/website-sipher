@@ -141,11 +141,9 @@ const Airdrops = () => {
                                 >
                                     Your current claimable amount is{" "}
                                     {currency(claimableAmount!)} $SIPHER. You
-                                    could claim every period or claim all at the
-                                    end of the airdrops (09:00 AM UTC SEP 01
-                                    2022
-                                    {/* Please come back for your first Vested Airdrop of{" "}
-                                    {currency(weiToEther(token.totalAmount) / 6)} $SIPHER on March 01 2022. */}
+                                    can claim every period or claim all at the
+                                    end of the airdrops (00:00 UTC TUE JUL 19
+                                    2022)
                                 </Text>
                                 <Text
                                     color="#7C7D91"
