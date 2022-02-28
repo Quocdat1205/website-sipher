@@ -7,11 +7,12 @@ interface Props {
     title: string;
     value?: number;
     icon?: React.ReactNode;
+    sipherPrice?: number;
 }
 
-const Card = ({ title, value = 0, icon }: Props) => {
+const Card = ({ title, value = 0, icon, sipherPrice = 0 }: Props) => {
     return (
-        <Stack p={8}>
+        <Stack p={[4, 6]}>
             <Flex align="center">
                 <Box mr={2}>{icon}</Box>
                 <Text fontSize="lg" color="#7C7D91">
@@ -25,7 +26,7 @@ const Card = ({ title, value = 0, icon }: Props) => {
                 </Text>
             </Flex>
             <Text fontWeight={600} color="#7C7D91">
-                ${currency(value * 1.5)}
+                ${currency(value * sipherPrice)}
             </Text>
         </Stack>
     );
