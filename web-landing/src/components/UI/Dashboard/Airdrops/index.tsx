@@ -7,6 +7,7 @@ import { weiToEther } from "@source/contract";
 import { currency } from "@source/utils";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+//
 
 const Airdrops = () => {
   const { account, scCaller } = useWallet();
