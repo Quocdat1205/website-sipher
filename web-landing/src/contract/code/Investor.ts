@@ -1,20 +1,40 @@
-export const InvestorAddress = "0xAb37F2838039c569b4463D0477bDbaaa4bE70e98"; // test
+export const InvestorAddress = "0x0000000000000000000000000000000000000000" // test
 
 export const InvestorAbi: any = [
     {
         inputs: [
-            { internalType: "contract IERC20", name: "_tokenDrops", type: "address" },
+            {
+                internalType: "contract IERC20",
+                name: "_tokenDrops",
+                type: "address",
+            },
             {
                 components: [
-                    { internalType: "uint32", name: "startTime", type: "uint32" },
-                    { internalType: "uint32", name: "vestingInterval", type: "uint32" },
-                    { internalType: "uint32", name: "numberOfVestingPoint", type: "uint32" },
+                    {
+                        internalType: "uint32",
+                        name: "startTime",
+                        type: "uint32",
+                    },
+                    {
+                        internalType: "uint32",
+                        name: "vestingInterval",
+                        type: "uint32",
+                    },
+                    {
+                        internalType: "uint32",
+                        name: "numberOfVestingPoint",
+                        type: "uint32",
+                    },
                 ],
                 internalType: "struct SipherAirdrops.AirdropsConfig",
                 name: "_airdropsConfig",
                 type: "tuple",
             },
-            { internalType: "bytes32", name: "_whitelistedMerkleRoot", type: "bytes32" },
+            {
+                internalType: "bytes32",
+                name: "_whitelistedMerkleRoot",
+                type: "bytes32",
+            },
         ],
         stateMutability: "nonpayable",
         type: "constructor",
@@ -22,9 +42,24 @@ export const InvestorAbi: any = [
     {
         anonymous: false,
         inputs: [
-            { indexed: true, internalType: "address", name: "account", type: "address" },
-            { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
-            { indexed: false, internalType: "uint32", name: "airdropsID", type: "uint32" },
+            {
+                indexed: true,
+                internalType: "address",
+                name: "account",
+                type: "address",
+            },
+            {
+                indexed: false,
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256",
+            },
+            {
+                indexed: false,
+                internalType: "uint32",
+                name: "airdropsID",
+                type: "uint32",
+            },
         ],
         name: "Claim",
         type: "event",
@@ -32,8 +67,18 @@ export const InvestorAbi: any = [
     {
         anonymous: false,
         inputs: [
-            { indexed: true, internalType: "address", name: "previousOwner", type: "address" },
-            { indexed: true, internalType: "address", name: "newOwner", type: "address" },
+            {
+                indexed: true,
+                internalType: "address",
+                name: "previousOwner",
+                type: "address",
+            },
+            {
+                indexed: true,
+                internalType: "address",
+                name: "newOwner",
+                type: "address",
+            },
         ],
         name: "OwnershipTransferred",
         type: "event",
@@ -44,7 +89,11 @@ export const InvestorAbi: any = [
         outputs: [
             { internalType: "uint32", name: "startTime", type: "uint32" },
             { internalType: "uint32", name: "vestingInterval", type: "uint32" },
-            { internalType: "uint32", name: "numberOfVestingPoint", type: "uint32" },
+            {
+                internalType: "uint32",
+                name: "numberOfVestingPoint",
+                type: "uint32",
+            },
         ],
         stateMutability: "view",
         type: "function",
@@ -106,7 +155,13 @@ export const InvestorAbi: any = [
         stateMutability: "view",
         type: "function",
     },
-    { inputs: [], name: "pause", outputs: [], stateMutability: "nonpayable", type: "function" },
+    {
+        inputs: [],
+        name: "pause",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
     {
         inputs: [],
         name: "paused",
@@ -114,21 +169,47 @@ export const InvestorAbi: any = [
         stateMutability: "view",
         type: "function",
     },
-    { inputs: [], name: "renounceOwnership", outputs: [], stateMutability: "nonpayable", type: "function" },
+    {
+        inputs: [],
+        name: "renounceOwnership",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
     {
         inputs: [
-            { internalType: "contract IERC20", name: "_tokenDrops", type: "address" },
+            {
+                internalType: "contract IERC20",
+                name: "_tokenDrops",
+                type: "address",
+            },
             {
                 components: [
-                    { internalType: "uint32", name: "startTime", type: "uint32" },
-                    { internalType: "uint32", name: "vestingInterval", type: "uint32" },
-                    { internalType: "uint32", name: "numberOfVestingPoint", type: "uint32" },
+                    {
+                        internalType: "uint32",
+                        name: "startTime",
+                        type: "uint32",
+                    },
+                    {
+                        internalType: "uint32",
+                        name: "vestingInterval",
+                        type: "uint32",
+                    },
+                    {
+                        internalType: "uint32",
+                        name: "numberOfVestingPoint",
+                        type: "uint32",
+                    },
                 ],
                 internalType: "struct SipherAirdrops.AirdropsConfig",
                 name: "_airdropsConfig",
                 type: "tuple",
             },
-            { internalType: "bytes32", name: "_whitelistedMerkleRoot", type: "bytes32" },
+            {
+                internalType: "bytes32",
+                name: "_whitelistedMerkleRoot",
+                type: "bytes32",
+            },
         ],
         name: "startNewAirdrops",
         outputs: [],
@@ -138,25 +219,47 @@ export const InvestorAbi: any = [
     {
         inputs: [],
         name: "tokenDrops",
-        outputs: [{ internalType: "contract IERC20", name: "", type: "address" }],
+        outputs: [
+            { internalType: "contract IERC20", name: "", type: "address" },
+        ],
         stateMutability: "view",
         type: "function",
     },
     {
-        inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
+        inputs: [
+            { internalType: "address", name: "newOwner", type: "address" },
+        ],
         name: "transferOwnership",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
     },
-    { inputs: [], name: "unpause", outputs: [], stateMutability: "nonpayable", type: "function" },
+    {
+        inputs: [],
+        name: "unpause",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
     {
         inputs: [
             {
                 components: [
-                    { internalType: "uint32", name: "startTime", type: "uint32" },
-                    { internalType: "uint32", name: "vestingInterval", type: "uint32" },
-                    { internalType: "uint32", name: "numberOfVestingPoint", type: "uint32" },
+                    {
+                        internalType: "uint32",
+                        name: "startTime",
+                        type: "uint32",
+                    },
+                    {
+                        internalType: "uint32",
+                        name: "vestingInterval",
+                        type: "uint32",
+                    },
+                    {
+                        internalType: "uint32",
+                        name: "numberOfVestingPoint",
+                        type: "uint32",
+                    },
                 ],
                 internalType: "struct SipherAirdrops.AirdropsConfig",
                 name: "_airdropsConfig",
@@ -169,7 +272,13 @@ export const InvestorAbi: any = [
         type: "function",
     },
     {
-        inputs: [{ internalType: "bytes32", name: "_whitelistedMerkleRoot", type: "bytes32" }],
+        inputs: [
+            {
+                internalType: "bytes32",
+                name: "_whitelistedMerkleRoot",
+                type: "bytes32",
+            },
+        ],
         name: "updateWhitelistedMerkleRoot",
         outputs: [],
         stateMutability: "nonpayable",
@@ -184,7 +293,11 @@ export const InvestorAbi: any = [
     },
     {
         inputs: [
-            { internalType: "contract IERC20", name: "_tokenERC20", type: "address" },
+            {
+                internalType: "contract IERC20",
+                name: "_tokenERC20",
+                type: "address",
+            },
             { internalType: "uint256", name: "amount", type: "uint256" },
         ],
         name: "withdrawFund",
@@ -192,4 +305,4 @@ export const InvestorAbi: any = [
         stateMutability: "nonpayable",
         type: "function",
     },
-];
+]

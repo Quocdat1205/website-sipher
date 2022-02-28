@@ -1,45 +1,45 @@
-import { useOutsideClick } from "@chakra-ui/hooks";
-import { Flex, Text, Box } from "@chakra-ui/layout";
-import { Collapse } from "@chakra-ui/transition";
-import useWalletContext from "@hooks/web3/useWalletContext";
-import { useEffect, useRef, useState } from "react";
-import { FaWallet } from "react-icons/fa";
-import { FiChevronDown } from "react-icons/fi";
-import { ActionButton, IconSipher, WalletModal } from ".";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-import { currency } from "@source/utils";
+import { useOutsideClick } from "@chakra-ui/hooks"
+import { Flex, Text, Box } from "@chakra-ui/layout"
+import { Collapse } from "@chakra-ui/transition"
+import useWalletContext from "@hooks/web3/useWalletContext"
+import { useEffect, useRef, useState } from "react"
+import { FaWallet } from "react-icons/fa"
+import { FiChevronDown } from "react-icons/fi"
+import { ActionButton, IconSipher, WalletModal } from "."
+import { useRouter } from "next/router"
+import { useQuery } from "react-query"
+import { currency } from "@source/utils"
 
 const menuData = [
     { id: "home", path: "/" },
     { id: "dashboard", path: "/dashboard/inventory/inu" },
     { id: "backer", path: "/investor" },
-];
+]
 
 export const WalletButton = () => {
-    const wallet = useWalletContext();
-    const [isOpen, setIsOpen] = useState(false);
-    const [menu, setMenu] = useState(false);
-    const router = useRouter();
+    const wallet = useWalletContext()
+    const [isOpen, setIsOpen] = useState(false)
+    const [menu, setMenu] = useState(false)
+    const router = useRouter()
 
     const handleClick = () => {
-        if (!wallet.isActive) setIsOpen(true);
-    };
+        if (!wallet.isActive) setIsOpen(true)
+    }
 
-    const boxRef = useRef<HTMLDivElement>(null);
+    const boxRef = useRef<HTMLDivElement>(null)
     useOutsideClick({
         ref: boxRef,
         handler: () => setMenu(false),
-    });
+    })
 
     useEffect(() => {
-        if (wallet.isActive) setIsOpen(false);
+        if (wallet.isActive) setIsOpen(false)
         else {
             if (router.pathname.includes("inventory")) {
-                router.push("/");
+                router.push("/")
             }
         }
-    }, [wallet.isActive, router]);
+    }, [wallet.isActive, router])
 
     const { data: balance } = useQuery(
         ["balance", wallet.account],
@@ -49,7 +49,7 @@ export const WalletButton = () => {
             initialData: 0,
             refetchInterval: 2000,
         }
-    );
+    )
 
     return (
         <Box ml={[1, 0]} pos="relative" ref={boxRef}>
@@ -88,14 +88,22 @@ export const WalletButton = () => {
                                     <FaWallet />
                                 </Box>
                                 <Text fontWeight="semibold" fontSize="xs">
-                                    {`${wallet.account?.slice(0, 6)}...${wallet.account?.slice(
+                                    {`${wallet.account?.slice(
+                                        0,
+                                        6
+                                    )}...${wallet.account?.slice(
                                         wallet.account.length - 4,
                                         wallet.account.length
                                     )}`}
                                 </Text>
                             </Flex>
                             <Flex align="center">
-                                <Text color="#9B9E9D" fontWeight="semibold" fontSize="x-small" mr={1}>
+                                <Text
+                                    color="#9B9E9D"
+                                    fontWeight="semibold"
+                                    fontSize="x-small"
+                                    mr={1}
+                                >
                                     {currency(balance!)}
                                 </Text>
                                 <IconSipher boxSize="0.9rem" />
@@ -119,7 +127,7 @@ export const WalletButton = () => {
                         pt={["4.25rem", "4.5rem"]}
                     >
                         {router.pathname.split("/")[1] === "investor"
-                            ? menuData.map(i => (
+                            ? menuData.map((i) => (
                                   <Flex
                                       key={i.id}
                                       align="center"
@@ -143,7 +151,7 @@ export const WalletButton = () => {
                                       </Text>
                                   </Flex>
                               ))
-                            : menuData.slice(1, 3).map(i => (
+                            : menuData.slice(1, 3).map((i) => (
                                   <Flex
                                       key={i.id}
                                       align="center"
@@ -169,9 +177,9 @@ export const WalletButton = () => {
                               ))}
                         <ActionButton
                             onClick={() => {
-                                setMenu(false);
-                                wallet.resetToken();
-                                wallet.reset();
+                                setMenu(false)
+                                wallet.resetToken()
+                                wallet.reset()
                             }}
                             text="Disconnect"
                             w="full"
@@ -183,7 +191,7 @@ export const WalletButton = () => {
             </Box>
             <WalletModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </Box>
-    );
-};
+    )
+}
 
-export default WalletButton;
+export default WalletButton

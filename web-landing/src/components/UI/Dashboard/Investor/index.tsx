@@ -303,7 +303,8 @@ const Investor = () => {
                                 with any question relate to vesting
                             </Text>
                             <ActionButton
-                                disabled={claimableAmount === 0}
+                                // disabled={claimableAmount === 0}
+                                disabled
                                 isLoading={isLoading || isSCLoading}
                                 text="Claim Available Tokens"
                                 onClick={() => claim()}

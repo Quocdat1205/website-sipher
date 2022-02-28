@@ -88,7 +88,7 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center" maxW="45rem">
-                        {token?.totalAmount ? (
+                        {token?.totalAmount !== "0" ? (
                             <>
                                 <Text
                                     textAlign="center"
@@ -113,7 +113,7 @@ const Airdrops = () => {
                                     >
                                         <chakra.span fontWeight={700}>
                                             {currency(
-                                                weiToEther(token.totalAmount) -
+                                                weiToEther(token!.totalAmount) -
                                                     (tokenClaimed || 0)
                                             )}{" "}
                                             $SIPHER
@@ -127,7 +127,7 @@ const Airdrops = () => {
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
                                     {currency(
-                                        weiToEther(token.totalAmount) / 6
+                                        weiToEther(token!.totalAmount) / 6
                                     )}{" "}
                                     $SIPHER starting on March 01 2022.
                                 </Text>
