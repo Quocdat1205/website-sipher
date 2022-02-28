@@ -3,8 +3,8 @@ import { WalletLinkConnector } from "@web3-react/walletlink-connector"
 import { Connector } from "../types"
 
 const RPC_URLS: { [chainId: number]: string } = {
-    1: `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID_MAIN}`,
-    4: `https://rinkeby.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID_TEST}`,
+    1: `https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_INFURA_ID_MAIN}`,
+    4: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_INFURA_ID_TEST}`,
 }
 
 const initCoinbaseConnect = (): Connector => {
