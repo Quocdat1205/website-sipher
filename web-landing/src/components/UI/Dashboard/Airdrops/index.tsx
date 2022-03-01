@@ -18,20 +18,20 @@ const Airdrops = () => {
     enabled: !!account,
   });
 
-  const { data: claimableAmount } = useQuery(
-    ["token-claimable-amount", account],
-    () => scCaller.current!.Airdrops.getClaimableAmountAtTimestamp(account!, token!.totalAmount, token!.proof),
-    {
-      enabled: token?.totalAmount !== "0" && !!account,
-      initialData: 0,
-    }
-  );
-
   const { data: tokenClaimed } = useQuery(
     ["token-claimed", account],
     () => scCaller.current!.Airdrops.claimed(account!),
     {
-      enabled: token?.totalAmount !== "0" && !!account,
+      enabled: !!token?.totalAmount && !!account,
+      initialData: 0,
+    }
+  );
+
+  const { data: claimableAmount } = useQuery(
+    ["token-claimable-amount", account],
+    () => scCaller.current!.Airdrops.getClaimableAmountAtTimestamp(account!, token!.totalAmount, token!.proof),
+    {
+      enabled: !!token?.totalAmount && !!account,
       initialData: 0,
     }
   );
@@ -55,8 +55,6 @@ const Airdrops = () => {
       },
     }
   );
-  console.log(claimableAmount);
-  
 
   return (
     <>
