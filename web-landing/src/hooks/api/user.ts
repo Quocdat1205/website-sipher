@@ -79,3 +79,12 @@ export const logout = async (): Promise<boolean> => {
     })
     return data
 }
+
+export const trackIP = async (address, countryAsk): Promise<boolean> => {
+    const { data } = await fetcher.post("/ip", {
+        address,
+        type: "login",
+        countryAsk,
+    })
+    return data.tracking
+}

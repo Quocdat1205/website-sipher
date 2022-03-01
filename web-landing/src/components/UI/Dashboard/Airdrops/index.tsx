@@ -1,5 +1,6 @@
 import { Box, chakra, Flex, Text } from "@chakra-ui/react"
 import { ActionButton, HeaderBackground } from "@components/shared"
+import { SignInModal } from "@components/UI/Modal"
 import { getAirdrop } from "@hooks/api"
 import useTransactionToast from "@hooks/useTransactionToast"
 import useWallet from "@hooks/web3/useWallet"
@@ -177,6 +178,7 @@ const Airdrops = () => {
                     </Flex>
                 </Flex>
             </Flex>
+            <SignInModal />
         </>
     )
 }
