@@ -10,52 +10,66 @@ import React, { useState } from "react"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 
 const Airdrops = () => {
-  const { account, scCaller } = useWallet();
-  const [isLoading, setIsLoading] = useState(false);
-  const transactionToast = useTransactionToast();
-  const qc = useQueryClient();
+    const { account, scCaller } = useWallet()
+    const [isLoading, setIsLoading] = useState(false)
+    const transactionToast = useTransactionToast()
+    const qc = useQueryClient()
 
-  const { data: token } = useQuery(["token-airdrops", account], () => getAirdrop(account!), {
-    enabled: !!account,
-  });
+    const { data: token } = useQuery(
+        ["token-airdrops", account],
+        () => getAirdrop(account!),
+        {
+            enabled: !!account,
+        }
+    )
 
-  const { data: tokenClaimed } = useQuery(
-    ["token-claimed", account],
-    () => scCaller.current!.Airdrops.claimed(account!),
-    {
-      enabled: !!account,
-      initialData: 0,
-    }
-  );
+    const { data: tokenClaimed } = useQuery(
+        ["token-claimed", account],
+        () => scCaller.current!.Airdrops.claimed(account!),
+        {
+            enabled: !!account,
+            initialData: 0,
+        }
+    )
 
-  const { data: claimableAmount } = useQuery(
-    ["token-claimable-amount", account],
-    () => scCaller.current!.Airdrops.getClaimableAmountAtTimestamp(account!, token!.totalAmount, token!.proof),
-    {
-      enabled: !!token && !!account,
-      initialData: 0,
-    }
-  );
+    const { data: claimableAmount } = useQuery(
+        ["token-claimable-amount", account],
+        () =>
+            scCaller.current!.Airdrops.getClaimableAmountAtTimestamp(
+                account!,
+                token!.totalAmount,
+                token!.proof
+            ),
+        {
+            enabled: !!token && !!account,
+            initialData: 0,
+        }
+    )
 
-  const { mutate: claim } = useMutation(
-    () => scCaller.current!.Airdrops.claim(account!, token!.totalAmount, token!.proof),
-    {
-      onMutate: () => {
-        setIsLoading(true);
-        transactionToast({ status: "processing" });
-      },
-      onSuccess: () => {
-        transactionToast({ status: "successClaim" });
-        setIsLoading(false);
-        qc.invalidateQueries("token-claimed");
-        qc.invalidateQueries("token-claimable-amount");
-      },
-      onError: () => {
-        setIsLoading(false);
-        transactionToast({ status: "failed" });
-      },
-    }
-  );
+    const { mutate: claim } = useMutation(
+        () =>
+            scCaller.current!.Airdrops.claim(
+                account!,
+                token!.totalAmount,
+                token!.proof
+            ),
+        {
+            onMutate: () => {
+                setIsLoading(true)
+                transactionToast({ status: "processing" })
+            },
+            onSuccess: () => {
+                transactionToast({ status: "successClaim" })
+                setIsLoading(false)
+                qc.invalidateQueries("token-claimed")
+                qc.invalidateQueries("token-claimable-amount")
+            },
+            onError: () => {
+                setIsLoading(false)
+                transactionToast({ status: "failed" })
+            },
+        }
+    )
 
     return (
         <>
@@ -75,7 +89,7 @@ const Airdrops = () => {
             >
                 <Flex w="full" flex={1} align="center" justify="center">
                     <Flex direction="column" align="center" maxW="45rem">
-                        {token?.totalAmount ? (
+                        {token?.totalAmount !== "0" && token ? (
                             <>
                                 <Text
                                     textAlign="center"
@@ -100,8 +114,7 @@ const Airdrops = () => {
                                     >
                                         <chakra.span fontWeight={700}>
                                             {currency(
-                                                weiToEther(token.totalAmount) -
-                                                    (tokenClaimed || 0)
+                                                weiToEther(token!.totalAmount)
                                             )}{" "}
                                             $SIPHER
                                         </chakra.span>{" "}
@@ -114,7 +127,7 @@ const Airdrops = () => {
                                 </Text>
                                 <Text mb={8} textAlign="center" fontSize="2xl">
                                     {currency(
-                                        weiToEther(token.totalAmount) / 6
+                                        weiToEther(token!.totalAmount) / 6
                                     )}{" "}
                                     $SIPHER starting on March 01 2022.
                                 </Text>
@@ -150,6 +163,7 @@ const Airdrops = () => {
                                     text="CLAIM"
                                     rounded="full"
                                 />
+                                <SignInModal />
                             </>
                         ) : (
                             <Text
@@ -164,9 +178,8 @@ const Airdrops = () => {
                     </Flex>
                 </Flex>
             </Flex>
-            <SignInModal />
         </>
     )
 }
 
-export default Airdrops;
+export default Airdrops
